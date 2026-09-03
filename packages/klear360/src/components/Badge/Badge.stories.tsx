@@ -1,0 +1,232 @@
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import { Title } from '@storybook/addon-docs/blocks';
+import type { BadgeProps } from './Badge';
+import { Badge as BadgeComponent } from './Badge';
+import { InfoIcon } from '~components/Icons';
+import iconMap from '~components/Icons/iconMap';
+import BaseBox from '~components/Box/BaseBox';
+import { Text as Klear360Text } from '~components/Typography';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgTypes';
+
+const Page = (): React.ReactElement => {
+  return (
+    <StoryPageWrapper
+      componentName="Badge"
+      componentDescription="Badges are used to show small amount of color coded metadata, which are ideal for getting user attention."
+      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=73941-78445&t=pjKzaOWOoMI2J9jb-1&scaling=min-zoom&page-id=8110%3A0&mode=design"
+    >
+      <Title>Usage</Title>
+      <Sandbox>
+        {`
+        import { Badge, InfoIcon } from '@klear/klear360/components';
+
+        function App() {
+          return (
+            <Badge color="neutral" icon={InfoIcon}>
+              Boop
+            </Badge>
+          )
+        }
+
+        export default App;
+        `}
+      </Sandbox>
+    </StoryPageWrapper>
+  );
+};
+
+export default {
+  title: 'Components/Badge',
+  component: BadgeComponent,
+  tags: ['autodocs'],
+  argTypes: {
+    ...getStyledPropsArgTypes(),
+    icon: {
+      name: 'icon',
+      // weird TS error
+      type: 'select' as 'string',
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+    },
+  },
+  parameters: {
+    docs: {
+      page: Page,
+    },
+  },
+} as Meta<BadgeProps>;
+
+const BadgeTemplate: StoryFn<typeof BadgeComponent> = ({ children, ...args }) => {
+  return <BadgeComponent {...args}>{children}</BadgeComponent>;
+};
+
+export const Badge = BadgeTemplate.bind({});
+Badge.args = {
+  children: 'Label',
+  color: 'neutral',
+  size: 'small',
+};
+Badge.storyName = 'Default';
+
+const BadgesWithVariantTemplate: StoryFn<typeof BadgeComponent> = ({ ...args }) => {
+  const variants = ['positive', 'negative', 'notice', 'information', 'neutral', 'primary'] as const;
+
+  return (
+    <BaseBox display="flex" flexDirection="column">
+      <Klear360Text>Subtle Emphasis</Klear360Text>
+      <BaseBox
+        display="flex"
+        flexDirection="row"
+        paddingTop="spacing.3"
+        paddingBottom="spacing.5"
+        flexWrap="wrap"
+      >
+        {variants.map((variant) => (
+          <BadgeComponent
+            {...args}
+            color={variant}
+            key={variant}
+            emphasis="subtle"
+            marginRight="spacing.3"
+            marginTop="spacing.2"
+          >
+            {variant}
+          </BadgeComponent>
+        ))}
+      </BaseBox>
+      <Klear360Text>Intense Emphasis</Klear360Text>
+      <BaseBox
+        display="flex"
+        flexDirection="row"
+        paddingTop="spacing.3"
+        paddingBottom="spacing.5"
+        flexWrap="wrap"
+      >
+        {variants.map((variant) => (
+          <BadgeComponent
+            {...args}
+            color={variant}
+            key={variant}
+            emphasis="intense"
+            marginRight="spacing.3"
+            marginTop="spacing.2"
+          >
+            {variant}
+          </BadgeComponent>
+        ))}
+      </BaseBox>
+    </BaseBox>
+  );
+};
+
+export const BadgeSmallSize = BadgesWithVariantTemplate.bind({});
+BadgeSmallSize.args = {
+  size: 'small',
+};
+BadgeSmallSize.storyName = 'Small Size';
+
+export const BadgeMediumSize = BadgesWithVariantTemplate.bind({});
+BadgeMediumSize.args = {
+  size: 'medium',
+};
+BadgeMediumSize.storyName = 'Medium Size';
+
+export const BadgeLargeSize = BadgesWithVariantTemplate.bind({});
+BadgeLargeSize.args = {
+  size: 'large',
+};
+BadgeLargeSize.storyName = 'Large Size';
+
+export const BadgeWithIcon = BadgesWithVariantTemplate.bind({});
+BadgeWithIcon.args = {
+  icon: InfoIcon,
+};
+BadgeWithIcon.parameters = {
+  docs: {
+    source: {
+      code: `<Badge variant='positive' icon={InfoIcon}>Positive</Badge>
+      \n<Badge variant='negative' icon={InfoIcon}>Negative</Badge>
+      \n<Badge variant='notice' icon={InfoIcon}>Notice</Badge>
+      \n<Badge variant='information' icon={InfoIcon}>Information</Badge>
+      \n<Badge variant='neutral' icon={InfoIcon}>Neutral</Badge>`,
+      language: 'jsx',
+      type: 'code',
+    },
+  },
+};
+BadgeWithIcon.storyName = 'With Icon';
+
+const AllVariantsTemplate: StoryFn<typeof BadgeComponent> = () => {
+  const colors = ['positive', 'negative', 'notice', 'information', 'neutral', 'primary'] as const;
+  const sizes = ['xsmall', 'small', 'medium', 'large'] as const;
+  const emphases = ['subtle', 'intense'] as const;
+
+  return (
+    <BaseBox display="flex" flexDirection="column" gap="spacing.6">
+      {emphases.map((emphasis) => (
+        <BaseBox key={emphasis} display="flex" flexDirection="column" gap="spacing.4">
+          <Klear360Text weight="semibold" size="large">
+            {emphasis.charAt(0).toUpperCase() + emphasis.slice(1)} Emphasis
+          </Klear360Text>
+          {sizes.map((size) => (
+            <BaseBox key={size} display="flex" flexDirection="column" gap="spacing.3">
+              <Klear360Text size="small" color="surface.text.gray.muted">
+                Size: {size}
+              </Klear360Text>
+              <BaseBox display="flex" flexDirection="row" flexWrap="wrap" gap="spacing.3">
+                {colors.map((color) => (
+                  <BadgeComponent
+                    key={`${emphasis}-${size}-${color}-icon`}
+                    color={color}
+                    size={size}
+                    emphasis={emphasis}
+                    icon={InfoIcon}
+                  >
+                    {color}
+                  </BadgeComponent>
+                ))}
+              </BaseBox>
+              <BaseBox display="flex" flexDirection="row" flexWrap="wrap" gap="spacing.3">
+                {colors.map((color) => (
+                  <BadgeComponent
+                    key={`${emphasis}-${size}-${color}-no-icon`}
+                    color={color}
+                    size={size}
+                    emphasis={emphasis}
+                  >
+                    {color}
+                  </BadgeComponent>
+                ))}
+              </BaseBox>
+            </BaseBox>
+          ))}
+        </BaseBox>
+      ))}
+    </BaseBox>
+  );
+};
+
+export const AllVariants = AllVariantsTemplate.bind({});
+AllVariants.storyName = 'All Variants';
+
+const TextTruncationTemplate: StoryFn<typeof BadgeComponent> = ({ children, ...args }) => {
+  return (
+    <BaseBox maxWidth="spacing.40" display="flex" flexDirection="column" gap="spacing.4">
+      <Klear360Text size="small" color="surface.text.gray.muted">
+        Hover over the truncated badge text to see the tooltip with full text. The container below
+        is constrained to a max width.
+      </Klear360Text>
+      <BadgeComponent {...args}>{children}</BadgeComponent>
+    </BaseBox>
+  );
+};
+
+export const BadgeTextTruncation = TextTruncationTemplate.bind({});
+BadgeTextTruncation.args = {
+  children: 'This is a very long badge label that will get truncated',
+  color: 'neutral',
+  size: 'medium',
+};
+BadgeTextTruncation.storyName = 'Text Truncation Tooltip';

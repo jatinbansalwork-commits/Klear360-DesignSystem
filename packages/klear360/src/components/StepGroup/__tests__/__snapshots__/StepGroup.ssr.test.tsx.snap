@@ -1,0 +1,911 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StepGroup /> should render nested StepGroup 1`] = `"<div id="root"><div data-klear360-component="step-group" class="BaseBox-bksIuc dCTqwo"><div class="BaseBox-bksIuc isqTnG step-item step-index-0 step-nesting-level-0" data-klear360-component="step-item"><div data-klear360-component="box" class="BaseBox-bksIuc iqgxnS"><div data-klear360-component="base-box" class="BaseBox-bksIuc kiZlbL"></div><div data-klear360-component="box" class="BaseBox-bksIuc kHmZwC"><div data-klear360-component="base-box" class="BaseBox-bksIuc kYjEaU"><div aria-label="neutral indicator" role="status" data-klear360-component="indicator" class="BaseBox-bksIuc lkNxUe"><div data-klear360-component="base-box" class="BaseBox-bksIuc hbpipW"><svg aria-hidden="true" data-klear360-component="icon" height="8" viewBox="0 0 10 10" width="8" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="5" cy="5" r="5" fill="hsla(218, 50%, 6%, 1)" data-klear360-component="svg-circle"></circle></svg><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><p letter-spacing="50" class="StyledBaseText-foUshD hJqQvC" data-klear360-component="text"></p></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc CzlhU"></div></div><div data-klear360-component="box" class="BaseBox-bksIuc aRfHl"><div data-klear360-component="box" class="BaseBox-bksIuc kIVDfd"><div data-klear360-component="box" class="BaseBox-bksIuc cqNcXW"><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD fMILxR" data-klear360-component="text">Introduction</p><p letter-spacing="50" class="StyledBaseText-foUshD dwYkqm" data-klear360-component="text">Thu, 15th Oct</p><p letter-spacing="50" class="StyledBaseText-foUshD fJKKha" data-klear360-component="text">Header description</p></div></div></div></div></div><div class="BaseBox-bksIuc isqTnG step-item step-index-1 step-nesting-level-0" data-klear360-component="step-item"><div data-klear360-component="box" class="BaseBox-bksIuc iqgxnS"><div data-klear360-component="base-box" class="BaseBox-bksIuc cbdMhb"></div><div data-klear360-component="box" class="BaseBox-bksIuc kHmZwC"><div data-klear360-component="base-box" class="BaseBox-bksIuc kYjEaU"><div aria-label="neutral indicator" role="status" data-klear360-component="indicator" class="BaseBox-bksIuc lkNxUe"><div data-klear360-component="base-box" class="BaseBox-bksIuc hbpipW"><svg aria-hidden="true" data-klear360-component="icon" height="8" viewBox="0 0 10 10" width="8" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="5" cy="5" r="5" fill="hsla(218, 50%, 6%, 1)" data-klear360-component="svg-circle"></circle></svg><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><p letter-spacing="50" class="StyledBaseText-foUshD hJqQvC" data-klear360-component="text"></p></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc CzlhU"></div></div><div data-klear360-component="box" class="BaseBox-bksIuc aRfHl"><div data-klear360-component="box" class="BaseBox-bksIuc kIVDfd"><div data-klear360-component="box" class="BaseBox-bksIuc cqNcXW"><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD fMILxR" data-klear360-component="text">Personal Details</p><p letter-spacing="50" class="StyledBaseText-foUshD dwYkqm" data-klear360-component="text">Thu, 15th Oct</p><p letter-spacing="50" class="StyledBaseText-foUshD fJKKha" data-klear360-component="text">Person Details description</p></div></div></div></div></div><div data-klear360-component="step-group" class="BaseBox-bksIuc joGOhw"><div class="BaseBox-bksIuc isqTnG step-item step-index-0 step-nesting-level-1" data-klear360-component="step-item"><div data-klear360-component="box" class="BaseBox-bksIuc iqgxnS"><svg aria-hidden="true" data-klear360-component="icon" height="14" viewBox="0 0 20 14" width="20" fill="none" visibility="visible" class="Svgweb__StyledSvg-sc-1s52w1n-0 bdGiDM"><path d="M1 0V5C1 9.41828 4.58172 13 9 13H20" stroke="hsla(214, 32%, 91%, 1)" stroke-width="2" data-klear360-component="svg-path"></path></svg><div data-klear360-component="box" class="BaseBox-bksIuc EExPr"><div data-klear360-component="base-box" class="BaseBox-bksIuc pcUgX"><div aria-label="positive indicator" role="status" data-klear360-component="indicator" class="BaseBox-bksIuc lkNxUe"><div data-klear360-component="base-box" class="BaseBox-bksIuc hbpipW"><svg aria-hidden="true" data-klear360-component="icon" height="8" viewBox="0 0 10 10" width="8" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="5" cy="5" r="5" fill="hsla(143, 72%, 31%, 1)" data-klear360-component="svg-circle"></circle></svg><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><p letter-spacing="50" class="StyledBaseText-foUshD hJqQvC" data-klear360-component="text"></p></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc hhBMBb"></div></div><div data-klear360-component="box" class="BaseBox-bksIuc aRfHl"><div data-klear360-component="box" class="BaseBox-bksIuc kIVDfd"><div data-klear360-component="box" class="BaseBox-bksIuc cqNcXW"><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD erDbnY" data-klear360-component="text">Address</p><p letter-spacing="50" class="StyledBaseText-foUshD dwYkqm" data-klear360-component="text">Thu, 15th Oct</p><p letter-spacing="50" class="StyledBaseText-foUshD fJKKha" data-klear360-component="text"></p></div></div></div></div></div><div class="BaseBox-bksIuc isqTnG step-item step-index-1 step-nesting-level-1" data-klear360-component="step-item"><div data-klear360-component="box" class="BaseBox-bksIuc iqgxnS"><div data-klear360-component="base-box" class="BaseBox-bksIuc bnDTJU"></div><div data-klear360-component="box" class="BaseBox-bksIuc dbgVhV"><div data-klear360-component="base-box" class="BaseBox-bksIuc kYjEaU"><div aria-label="neutral indicator" role="status" data-klear360-component="indicator" class="BaseBox-bksIuc lkNxUe"><div data-klear360-component="base-box" class="BaseBox-bksIuc hbpipW"><svg aria-hidden="true" data-klear360-component="icon" height="8" viewBox="0 0 10 10" width="8" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="5" cy="5" r="5" fill="hsla(218, 50%, 6%, 1)" data-klear360-component="svg-circle"></circle></svg><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><p letter-spacing="50" class="StyledBaseText-foUshD hJqQvC" data-klear360-component="text"></p></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc hjwkvv"></div><svg aria-hidden="true" data-klear360-component="icon" height="5" viewBox="0 0 42 5" width="42" fill="hsla(214, 32%, 91%, 1)" visibility="hidden" class="Svgweb__StyledSvg-sc-1s52w1n-0 jKvbIw"><path d="M32 1C32 1.55228 31.5523 2 31 2C30.4477 2 30 1.55228 30 1C30 0.447715 30.4477 0 31 0C31.5523 0 32 0.447715 32 1Z" data-klear360-component="svg-path"></path><path d="M2 4C2 4.55228 1.55228 5 1 5C0.447715 5 0 4.55228 0 4C0 3.44772 0.447715 3 1 3C1.55228 3 2 3.44772 2 4Z" data-klear360-component="svg-path"></path><path d="M27.5 3.5C28.0523 3.5 28.5 3.05228 28.5 2.5C28.5 1.94772 28.0523 1.5 27.5 1.5C26.9477 1.5 26.5 1.94772 26.5 2.5C26.5 3.05228 26.9477 3.5 27.5 3.5Z" data-klear360-component="svg-path"></path><path d="M5.5 2.5C5.5 3.05228 5.05228 3.5 4.5 3.5C3.94772 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.94772 1.5 4.5 1.5C5.05228 1.5 5.5 1.94772 5.5 2.5Z" data-klear360-component="svg-path"></path><path d="M16.5 3.5C17.0523 3.5 17.5 3.05228 17.5 2.5C17.5 1.94772 17.0523 1.5 16.5 1.5C15.9477 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.9477 3.5 16.5 3.5Z" data-klear360-component="svg-path"></path><path d="M11.5 2.5C11.5 3.05228 11.0523 3.5 10.5 3.5C9.94771 3.5 9.5 3.05228 9.5 2.5C9.5 1.94772 9.94771 1.5 10.5 1.5C11.0523 1.5 11.5 1.94772 11.5 2.5Z" data-klear360-component="svg-path"></path><path d="M22.5 3.5C23.0523 3.5 23.5 3.05228 23.5 2.5C23.5 1.94772 23.0523 1.5 22.5 1.5C21.9477 1.5 21.5 1.94772 21.5 2.5C21.5 3.05228 21.9477 3.5 22.5 3.5Z" data-klear360-component="svg-path"></path></svg></div><div data-klear360-component="box" class="BaseBox-bksIuc aRfHl"><div data-klear360-component="box" class="BaseBox-bksIuc kIVDfd"><div data-klear360-component="box" class="BaseBox-bksIuc cqNcXW"><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD erDbnY" data-klear360-component="text">Bank Details</p><p letter-spacing="50" class="StyledBaseText-foUshD dwYkqm" data-klear360-component="text">Thu, 15th Oct</p><p letter-spacing="50" class="StyledBaseText-foUshD fJKKha" data-klear360-component="text">Person Details description</p></div></div></div></div></div></div></div></div>"`;
+
+exports[`<StepGroup /> should render nested StepGroup 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  max-width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 12px;
+  margin-left: 12px;
+  width: 100%;
+  gap: 4px;
+}
+
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+}
+
+.c3.c3.c3.c3.c3 {
+  height: 6px;
+  width: 2px;
+  border-left-width: 2px;
+  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-style: solid;
+  visibility: hidden;
+}
+
+.c4.c4.c4.c4.c4 {
+  margin-left: -11px;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 2px;
+  height: 20px;
+  width: 20px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 50%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+}
+
+.c7.c7.c7.c7.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c8.c8.c8.c8.c8 {
+  margin-left: 0px;
+}
+
+.c10.c10.c10.c10.c10 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 2px;
+  border-left-width: 2px;
+  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-style: solid;
+  visibility: visible;
+}
+
+.c11.c11.c11.c11.c11 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c12.c12.c12.c12.c12 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.c13.c13.c13.c13.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.c17.c17.c17.c17.c17 {
+  height: 6px;
+  width: 2px;
+  border-left-width: 2px;
+  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-style: solid;
+  visibility: visible;
+}
+
+.c18.c18.c18.c18.c18 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.c20.c20.c20.c20.c20 {
+  margin-top: -13px;
+  margin-left: 20px;
+}
+
+.c21.c21.c21.c21.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 2px;
+  height: 20px;
+  width: 20px;
+  background-color: hsla(143,73%,40%,0.09);
+  border-radius: 50%;
+}
+
+.c22.c22.c22.c22.c22 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 31px;
+  width: 2px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB2aWV3Qm94PSIwIDAgMiAyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGgKICAgICAgZD0iTTAgMUMwIDAuNDQ3NzE1IDAuNDQ3NzE1IDAgMSAwQzEuNTUyMjggMCAyIDAuNDQ3NzE1IDIgMUMyIDEuNTUyMjggMS41NTIyOCAyIDEgMkMwLjQ0NzcxNSAyIDAgMS41NTIyOCAwIDFaIgogICAgICBmaWxsPSJoc2xhKDIxNCwgMzIlLCA5MSUsIDEpIgogICAgLz4KICA8L3N2Zz4KICA=);
+  background-size: 2px 6px;
+  background-position: top;
+  background-repeat: no-repeat round;
+  visibility: visible;
+}
+
+.c24.c24.c24.c24.c24 {
+  margin-left: 31px;
+  height: 6px;
+  width: 2px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB2aWV3Qm94PSIwIDAgMiAyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGgKICAgICAgZD0iTTAgMUMwIDAuNDQ3NzE1IDAuNDQ3NzE1IDAgMSAwQzEuNTUyMjggMCAyIDAuNDQ3NzE1IDIgMUMyIDEuNTUyMjggMS41NTIyOCAyIDEgMkMwLjQ0NzcxNSAyIDAgMS41NTIyOCAwIDFaIgogICAgICBmaWxsPSJoc2xhKDIxNCwgMzIlLCA5MSUsIDEpIgogICAgLz4KICA8L3N2Zz4KICA=);
+  background-size: 2px 6px;
+  background-position: top;
+  background-repeat: no-repeat round;
+  visibility: visible;
+}
+
+.c25.c25.c25.c25.c25 {
+  margin-left: 20px;
+}
+
+.c26.c26.c26.c26.c26 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 31px;
+  width: 2px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB2aWV3Qm94PSIwIDAgMiAyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGgKICAgICAgZD0iTTAgMUMwIDAuNDQ3NzE1IDAuNDQ3NzE1IDAgMSAwQzEuNTUyMjggMCAyIDAuNDQ3NzE1IDIgMUMyIDEuNTUyMjggMS41NTIyOCAyIDEgMkMwLjQ0NzcxNSAyIDAgMS41NTIyOCAwIDFaIgogICAgICBmaWxsPSJoc2xhKDIxNCwgMzIlLCA5MSUsIDEpIgogICAgLz4KICA8L3N2Zz4KICA=);
+  background-size: 2px 6px;
+  background-position: top;
+  background-repeat: no-repeat round;
+  visibility: hidden;
+}
+
+.c19.c19.c19.c19.c19 {
+  visibility: visible;
+}
+
+.c27.c27.c27.c27.c27 {
+  visibility: hidden;
+}
+
+.c9.c9.c9.c9.c9 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.c14.c14.c14.c14.c14 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c15.c15.c15.c15.c15 {
+  color: hsla(215,25%,27%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1rem;
+  -webkit-letter-spacing: -0.14300000000000002px;
+  -moz-letter-spacing: -0.14300000000000002px;
+  -ms-letter-spacing: -0.14300000000000002px;
+  letter-spacing: -0.14300000000000002px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.c16.c16.c16.c16.c16 {
+  color: hsla(215,25%,27%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+.c23.c23.c23.c23.c23 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width:320px) {
+  .c3.c3.c3.c3.c3 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:480px) {
+  .c3.c3.c3.c3.c3 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c3.c3.c3.c3.c3 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .c3.c3.c3.c3.c3 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c3.c3.c3.c3.c3 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:320px) {
+  .c10.c10.c10.c10.c10 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:480px) {
+  .c10.c10.c10.c10.c10 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c10.c10.c10.c10.c10 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .c10.c10.c10.c10.c10 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c10.c10.c10.c10.c10 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:320px) {
+  .c17.c17.c17.c17.c17 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:480px) {
+  .c17.c17.c17.c17.c17 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c17.c17.c17.c17.c17 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .c17.c17.c17.c17.c17 {
+    border-left-style: solid;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c17.c17.c17.c17.c17 {
+    border-left-style: solid;
+  }
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="step-group"
+  >
+    <div
+      class="c1 step-item step-index-0 step-nesting-level-0"
+      data-klear360-component="step-item"
+    >
+      <div
+        class="c2"
+        data-klear360-component="box"
+      >
+        <div
+          class="c3"
+          data-klear360-component="base-box"
+        />
+        <div
+          class="c4"
+          data-klear360-component="box"
+        >
+          <div
+            class="c5"
+            data-klear360-component="base-box"
+          >
+            <div
+              aria-label="neutral indicator"
+              class="c6"
+              data-klear360-component="indicator"
+              role="status"
+            >
+              <div
+                class="c7"
+                data-klear360-component="base-box"
+              >
+                <svg
+                  aria-hidden="true"
+                  class=""
+                  data-klear360-component="icon"
+                  fill="none"
+                  height="8"
+                  viewBox="0 0 10 10"
+                  width="8"
+                >
+                  <circle
+                    cx="5"
+                    cy="5"
+                    data-klear360-component="svg-circle"
+                    fill="hsla(218, 50%, 6%, 1)"
+                    r="5"
+                  />
+                </svg>
+                <div
+                  class="c8"
+                  data-klear360-component="base-box"
+                >
+                  <p
+                    class="c9"
+                    data-klear360-component="text"
+                    letter-spacing="50"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c10"
+          data-klear360-component="base-box"
+        />
+      </div>
+      <div
+        class="c11"
+        data-klear360-component="box"
+      >
+        <div
+          class="c12"
+          data-klear360-component="box"
+        >
+          <div
+            class="c13"
+            data-klear360-component="box"
+          >
+            <div
+              class=""
+              data-klear360-component="box"
+            >
+              <p
+                class="c14"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Introduction
+              </p>
+              <p
+                class="c15"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Thu, 15th Oct
+              </p>
+              <p
+                class="c16"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Header description
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c1 step-item step-index-1 step-nesting-level-0"
+      data-klear360-component="step-item"
+    >
+      <div
+        class="c2"
+        data-klear360-component="box"
+      >
+        <div
+          class="c17"
+          data-klear360-component="base-box"
+        />
+        <div
+          class="c4"
+          data-klear360-component="box"
+        >
+          <div
+            class="c5"
+            data-klear360-component="base-box"
+          >
+            <div
+              aria-label="neutral indicator"
+              class="c6"
+              data-klear360-component="indicator"
+              role="status"
+            >
+              <div
+                class="c7"
+                data-klear360-component="base-box"
+              >
+                <svg
+                  aria-hidden="true"
+                  class=""
+                  data-klear360-component="icon"
+                  fill="none"
+                  height="8"
+                  viewBox="0 0 10 10"
+                  width="8"
+                >
+                  <circle
+                    cx="5"
+                    cy="5"
+                    data-klear360-component="svg-circle"
+                    fill="hsla(218, 50%, 6%, 1)"
+                    r="5"
+                  />
+                </svg>
+                <div
+                  class="c8"
+                  data-klear360-component="base-box"
+                >
+                  <p
+                    class="c9"
+                    data-klear360-component="text"
+                    letter-spacing="50"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c10"
+          data-klear360-component="base-box"
+        />
+      </div>
+      <div
+        class="c11"
+        data-klear360-component="box"
+      >
+        <div
+          class="c12"
+          data-klear360-component="box"
+        >
+          <div
+            class="c13"
+            data-klear360-component="box"
+          >
+            <div
+              class=""
+              data-klear360-component="box"
+            >
+              <p
+                class="c14"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Personal Details
+              </p>
+              <p
+                class="c15"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Thu, 15th Oct
+              </p>
+              <p
+                class="c16"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Person Details description
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c18"
+      data-klear360-component="step-group"
+    >
+      <div
+        class="c1 step-item step-index-0 step-nesting-level-1"
+        data-klear360-component="step-item"
+      >
+        <div
+          class="c2"
+          data-klear360-component="box"
+        >
+          <svg
+            aria-hidden="true"
+            class="c19"
+            data-klear360-component="icon"
+            fill="none"
+            height="14"
+            viewBox="0 0 20 14"
+            visibility="visible"
+            width="20"
+          >
+            <path
+              d="M1 0V5C1 9.41828 4.58172 13 9 13H20"
+              data-klear360-component="svg-path"
+              stroke="hsla(214, 32%, 91%, 1)"
+              stroke-width="2"
+            />
+          </svg>
+          <div
+            class="c20"
+            data-klear360-component="box"
+          >
+            <div
+              class="c21"
+              data-klear360-component="base-box"
+            >
+              <div
+                aria-label="positive indicator"
+                class="c6"
+                data-klear360-component="indicator"
+                role="status"
+              >
+                <div
+                  class="c7"
+                  data-klear360-component="base-box"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class=""
+                    data-klear360-component="icon"
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 10 10"
+                    width="8"
+                  >
+                    <circle
+                      cx="5"
+                      cy="5"
+                      data-klear360-component="svg-circle"
+                      fill="hsla(143, 72%, 31%, 1)"
+                      r="5"
+                    />
+                  </svg>
+                  <div
+                    class="c8"
+                    data-klear360-component="base-box"
+                  >
+                    <p
+                      class="c9"
+                      data-klear360-component="text"
+                      letter-spacing="50"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c22"
+            data-klear360-component="base-box"
+          />
+        </div>
+        <div
+          class="c11"
+          data-klear360-component="box"
+        >
+          <div
+            class="c12"
+            data-klear360-component="box"
+          >
+            <div
+              class="c13"
+              data-klear360-component="box"
+            >
+              <div
+                class=""
+                data-klear360-component="box"
+              >
+                <p
+                  class="c23"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Address
+                </p>
+                <p
+                  class="c15"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Thu, 15th Oct
+                </p>
+                <p
+                  class="c16"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="c1 step-item step-index-1 step-nesting-level-1"
+        data-klear360-component="step-item"
+      >
+        <div
+          class="c2"
+          data-klear360-component="box"
+        >
+          <div
+            class="c24"
+            data-klear360-component="base-box"
+          />
+          <div
+            class="c25"
+            data-klear360-component="box"
+          >
+            <div
+              class="c5"
+              data-klear360-component="base-box"
+            >
+              <div
+                aria-label="neutral indicator"
+                class="c6"
+                data-klear360-component="indicator"
+                role="status"
+              >
+                <div
+                  class="c7"
+                  data-klear360-component="base-box"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class=""
+                    data-klear360-component="icon"
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 10 10"
+                    width="8"
+                  >
+                    <circle
+                      cx="5"
+                      cy="5"
+                      data-klear360-component="svg-circle"
+                      fill="hsla(218, 50%, 6%, 1)"
+                      r="5"
+                    />
+                  </svg>
+                  <div
+                    class="c8"
+                    data-klear360-component="base-box"
+                  >
+                    <p
+                      class="c9"
+                      data-klear360-component="text"
+                      letter-spacing="50"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c26"
+            data-klear360-component="base-box"
+          />
+          <svg
+            aria-hidden="true"
+            class="c27"
+            data-klear360-component="icon"
+            fill="hsla(214, 32%, 91%, 1)"
+            height="5"
+            viewBox="0 0 42 5"
+            visibility="hidden"
+            width="42"
+          >
+            <path
+              d="M32 1C32 1.55228 31.5523 2 31 2C30.4477 2 30 1.55228 30 1C30 0.447715 30.4477 0 31 0C31.5523 0 32 0.447715 32 1Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M2 4C2 4.55228 1.55228 5 1 5C0.447715 5 0 4.55228 0 4C0 3.44772 0.447715 3 1 3C1.55228 3 2 3.44772 2 4Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M27.5 3.5C28.0523 3.5 28.5 3.05228 28.5 2.5C28.5 1.94772 28.0523 1.5 27.5 1.5C26.9477 1.5 26.5 1.94772 26.5 2.5C26.5 3.05228 26.9477 3.5 27.5 3.5Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M5.5 2.5C5.5 3.05228 5.05228 3.5 4.5 3.5C3.94772 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.94772 1.5 4.5 1.5C5.05228 1.5 5.5 1.94772 5.5 2.5Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M16.5 3.5C17.0523 3.5 17.5 3.05228 17.5 2.5C17.5 1.94772 17.0523 1.5 16.5 1.5C15.9477 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.9477 3.5 16.5 3.5Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M11.5 2.5C11.5 3.05228 11.0523 3.5 10.5 3.5C9.94771 3.5 9.5 3.05228 9.5 2.5C9.5 1.94772 9.94771 1.5 10.5 1.5C11.0523 1.5 11.5 1.94772 11.5 2.5Z"
+              data-klear360-component="svg-path"
+            />
+            <path
+              d="M22.5 3.5C23.0523 3.5 23.5 3.05228 23.5 2.5C23.5 1.94772 23.0523 1.5 22.5 1.5C21.9477 1.5 21.5 1.94772 21.5 2.5C21.5 3.05228 21.9477 3.5 22.5 3.5Z"
+              data-klear360-component="svg-path"
+            />
+          </svg>
+        </div>
+        <div
+          class="c11"
+          data-klear360-component="box"
+        >
+          <div
+            class="c12"
+            data-klear360-component="box"
+          >
+            <div
+              class="c13"
+              data-klear360-component="box"
+            >
+              <div
+                class=""
+                data-klear360-component="box"
+              >
+                <p
+                  class="c23"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Bank Details
+                </p>
+                <p
+                  class="c15"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Thu, 15th Oct
+                </p>
+                <p
+                  class="c16"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Person Details description
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

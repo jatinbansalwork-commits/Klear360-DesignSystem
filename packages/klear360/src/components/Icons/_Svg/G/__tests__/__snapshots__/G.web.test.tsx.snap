@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<G /> should render html g component 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class=""
+    data-klear360-component="icon"
+    fill="none"
+    height="40px"
+    viewBox="0 0 6 6"
+    width="40px"
+  >
+    <g
+      clip-path="url(#prefix__clip0)"
+      data-klear360-component="svg-g"
+    >
+      <path
+        d="M2 2h2v2H2V2"
+        data-klear360-component="svg-path"
+        fill="#000"
+      />
+    </g>
+  </svg>
+</div>
+`;

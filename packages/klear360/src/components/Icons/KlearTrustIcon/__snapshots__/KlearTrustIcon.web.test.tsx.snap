@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<KlearTrustIcon /> should render KlearTrustIcon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class=""
+    data-klear360-component="icon"
+    fill="none"
+    height="20px"
+    viewBox="0 0 24 24"
+    width="20px"
+  >
+    <path
+      d="M19.7981 3.96094V15.3838C19.798 16.163 19.4121 16.8915 18.7679 17.3301L12.1311 21.8467L5.49443 17.3301C4.85022 16.8915 4.46425 16.163 4.46415 15.3838V3.96094L12.1311 2.09277L19.7981 3.96094Z"
+      fill="url(#klearTrustFill-:r0:)"
+      stroke="url(#klearTrustStroke-:r0:)"
+      stroke-width="0.666667"
+    />
+    <g
+      filter="url(#klearTrustShadow-:r0:)"
+    >
+      <path
+        d="M16.2 7.8L10.6 13.4L8.1 10.9L6.7 12.3L10.6 16.2L17.6 9.2L16.2 7.8Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <filter
+        color-interpolation-filters="sRGB"
+        filterUnits="userSpaceOnUse"
+        height="14.9444"
+        id="klearTrustShadow-:r0:"
+        width="12.9444"
+        x="5.65925"
+        y="3.19819"
+      >
+        <feflood
+          flood-opacity="0"
+          result="BackgroundImageFix"
+        />
+        <fecolormatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        />
+        <feoffset />
+        <fegaussianblur
+          stdDeviation="1.11111"
+        />
+        <fecomposite
+          in2="hardAlpha"
+          operator="out"
+        />
+        <fecolormatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0.294097 0 0 0 0 0.152931 0 0 0 0.25 0"
+        />
+        <feblend
+          in2="BackgroundImageFix"
+          mode="normal"
+          result="effect1_dropShadow"
+        />
+        <feblend
+          in="SourceGraphic"
+          in2="effect1_dropShadow"
+          mode="normal"
+          result="shape"
+        />
+      </filter>
+      <lineargradient
+        gradientUnits="userSpaceOnUse"
+        id="klearTrustFill-:r0:"
+        x1="4.13115"
+        x2="18.2093"
+        y1="5.0249"
+        y2="18.4295"
+      >
+        <stop
+          stop-color="#00FD0A"
+        />
+        <stop
+          offset="0.972213"
+          stop-color="#00AD8E"
+        />
+      </lineargradient>
+      <lineargradient
+        gradientUnits="userSpaceOnUse"
+        id="klearTrustStroke-:r0:"
+        x1="6.35337"
+        x2="17.5246"
+        y1="4.55055"
+        y2="17.4954"
+      >
+        <stop
+          stop-color="#65FF4D"
+        />
+        <stop
+          offset="0.302473"
+          stop-color="white"
+          stop-opacity="0.895"
+        />
+        <stop
+          offset="0.452125"
+          stop-color="#65FF4D"
+          stop-opacity="0.805"
+        />
+        <stop
+          offset="1"
+          stop-color="#00C67F"
+        />
+      </lineargradient>
+    </defs>
+  </svg>
+</div>
+`;

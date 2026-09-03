@@ -1,0 +1,19 @@
+{
+  "name": "@klear/i18n-react",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React bindings for @klear/i18n.",
+  "author": "Klear",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "peerDependencies": {
+    "@klear/i18n": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

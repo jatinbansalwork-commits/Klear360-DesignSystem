@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<KlearIcon /> should render KlearIcon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class=""
+    data-klear360-component="icon"
+    fill="none"
+    height="20px"
+    viewBox="0 0 24 24"
+    width="20px"
+  >
+    <path
+      clip-rule="evenodd"
+      d="M5 3H8V10.8L15 3H19L11 11.5L19.4 21H15.4L8 12.6V21H5V3Z"
+      data-klear360-component="svg-path"
+      fill="hsla(218, 50%, 6%, 1)"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;

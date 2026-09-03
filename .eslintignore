@@ -1,0 +1,41 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# build direcotries
+**/storybook-site
+**/storybook-static
+**/build
+**/dist
+
+# klear360-mcp non-code directories
+packages/klear360-mcp/base-klear360-template/
+packages/klear360-mcp/knowledgebase/
+packages/klear360-mcp/cursorRules/
+packages/klear360/components.js
+packages/klear360/components.native.js
+packages/klear360/components.d.ts
+packages/klear360/tokens.js
+packages/klear360/tokens.native.js
+packages/klear360/tokens.d.ts
+packages/klear360/utils.js
+packages/klear360/utils.native.js
+packages/klear360/utils.d.ts
+
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+#error logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# don't ignore dot files
+!.*rc.js

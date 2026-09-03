@@ -1,0 +1,707 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OTPInput /> should have hidden input for form submissions 1`] = `"<div id="root"><div data-klear360-component="otp-input" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc iqgxnS"><label for="otp-undefined-input-undefined" style="width:100%;flex-shrink:0;margin-right:0px" data-klear360-component="form-label"><div data-klear360-component="base-box" class="BaseBox-bksIuc fhmUvk"><div data-klear360-component="base-box" class="BaseBox-bksIuc eHGxoV"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc gQLxiP"><p letter-spacing="50" class="StyledBaseText-foUshD hPRusU" data-klear360-component="text">Enter OTP</p><div data-klear360-component="visually-hidden" class="VisuallyHiddenweb__StyledVisuallyHidden-pm2p4j-0 dWmplj"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text"></p></div></div></div></div></div></label><div data-klear360-component="base-box" class="BaseBox-bksIuc chMDmW"><input hidden="" id="otp-undefined-input-undefined" name="otpInput" readonly="" value=""/><div data-klear360-component="base-box" class="BaseBox-bksIuc fWlpiU"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-0-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label="Enter OTP character 1" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc jXTSoE"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-1-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label=" character 2" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc jXTSoE"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-2-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label=" character 3" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc jXTSoE"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-3-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label=" character 4" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc jXTSoE"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-4-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label=" character 5" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc jXTSoE"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  cCiNvd __klear360-base-input-wrapper" data-klear360-component="base-box"><input name="otpInput" type="text" required="" inputMode="decimal" autoComplete="one-time-code" id="otp-undefined-input-undefined-5-undefined-input-undefined" placeholder="" data-klear360-component="styled-base-input" aria-required="true" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-label=" character 6" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 cQTGmv" value=""/></div></div></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"></div></div></div>"`;
+
+exports[`<OTPInput /> should have hidden input for form submissions 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-height: 36px;
+  gap: 0px;
+}
+
+.c7.c7.c7.c7.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 0px;
+}
+
+.c9.c9.c9.c9.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.c13.c13.c13.c13.c13 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 8px;
+}
+
+.c14.c14.c14.c14.c14 {
+  margin-left: 0px;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+}
+
+.c6.c6.c6.c6.c6 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c12.c12.c12.c12.c12 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.625rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: hsla(0,0%,100%,0);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  cursor: auto;
+}
+
+.c12.c12.c12.c12.c12::-webkit-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.625rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.c12.c12.c12.c12.c12::-moz-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.625rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.c12.c12.c12.c12.c12:-ms-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.625rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.c12.c12.c12.c12.c12::placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.625rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.c12.c12.c12.c12.c12:focus {
+  outline: none;
+}
+
+.c11.c11.c11.c11.c11 {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c11.c11.c11.c11.c11:hover {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(215,20%,65%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c11.c11.c11.c11.c11:focus-within {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c5.c5.c5.c5.c5 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0 -1px -1px 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  left: -10000px;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.c10.c10.c10.c10.c10 {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.c10.c10.c10.c10.c10:focus-within {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+  z-index: 2;
+}
+
+<div
+  id="root"
+>
+  <div
+    class=""
+    data-klear360-component="otp-input"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <label
+        data-klear360-component="form-label"
+        for="otp-37-input-38"
+        style="width:100%;flex-shrink:0;margin-right:0px"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c2"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=""
+              data-klear360-component="base-box"
+            >
+              <div
+                class="c3"
+                data-klear360-component="base-box"
+              >
+                <p
+                  class="c4"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Enter OTP
+                </p>
+                <div
+                  class="c5"
+                  data-klear360-component="visually-hidden"
+                >
+                  <p
+                    class="c6"
+                    data-klear360-component="text"
+                    letter-spacing="50"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </label>
+      <div
+        class="c7"
+        data-klear360-component="base-box"
+      >
+        <input
+          hidden=""
+          id="otp-37-input-38"
+          name="otpInput"
+          readonly=""
+          value=""
+        />
+        <div
+          class="c8"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label="Enter OTP character 1"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-0-49-input-50"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c13"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label=" character 2"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-1-55-input-56"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c13"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label=" character 3"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-2-61-input-62"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c13"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label=" character 4"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-3-67-input-68"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c13"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label=" character 5"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-4-73-input-74"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c13"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=""
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c9"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c10 focus-ring-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  c11 __klear360-base-input-wrapper"
+                  data-klear360-component="base-box"
+                >
+                  <input
+                    aria-describedby=""
+                    aria-disabled="false"
+                    aria-invalid="false"
+                    aria-label=" character 6"
+                    aria-required="true"
+                    autocomplete="one-time-code"
+                    class="c12"
+                    data-klear360-component="styled-base-input"
+                    id="otp-37-input-38-5-79-input-80"
+                    inputmode="decimal"
+                    name="otpInput"
+                    placeholder=""
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c14"
+      data-klear360-component="base-box"
+    />
+  </div>
+</div>
+`;

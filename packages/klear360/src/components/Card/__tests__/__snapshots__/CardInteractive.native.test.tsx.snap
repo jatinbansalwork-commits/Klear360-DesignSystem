@@ -1,0 +1,527 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> should render a clickable Card 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": false,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "transform": [
+          {
+            "scale": 1,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "disabled": undefined,
+        }
+      }
+      accessible={true}
+      borderRadius="medium"
+      data-klear360-component="card"
+      display="block"
+      isFocused={false}
+      isSelected={false}
+      style={
+        [
+          {
+            "borderRadius": 12,
+            "display": "block",
+          },
+          {
+            "borderColor": "transparent",
+            "borderStyle": "solid",
+            "borderWidth": 2,
+          },
+        ]
+      }
+    >
+      <View
+        backgroundColor="surface.background.gray.intense"
+        borderRadius="medium"
+        data-klear360-component="base-box"
+        elevation="lowRaised"
+        style={
+          [
+            {
+              "backgroundColor": "hsla(0, 0%, 100%, 1)",
+              "borderRadius": 12,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "textAlign": "left",
+            },
+            {
+              "elevation": 8,
+              "shadowColor": "hsla(200, 10%, 18%, 1)",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.06,
+              "shadowRadius": 2,
+            },
+            [
+              {
+                "borderColor": "hsla(222, 47%, 11%, 0.12)",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "display": "flex",
+                "flexDirection": "column",
+                "width": "100%",
+              },
+            ],
+          ]
+        }
+        textAlign="left"
+        variant="primary"
+      >
+        <View
+          data-klear360-component="card-body"
+          style={
+            [
+              {},
+            ]
+          }
+        >
+          Plain Card
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Card /> should render a interactive Card 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": true,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "transform": [
+          {
+            "scale": 1,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "disabled": undefined,
+        }
+      }
+      accessible={true}
+      borderRadius="medium"
+      data-klear360-component="card"
+      display="block"
+      isFocused={false}
+      isSelected={true}
+      style={
+        [
+          {
+            "borderRadius": 12,
+            "display": "block",
+          },
+          {
+            "borderColor": "hsla(198, 100%, 18%, 1)",
+            "borderStyle": "solid",
+            "borderWidth": 2,
+          },
+        ]
+      }
+    >
+      <View
+        backgroundColor="surface.background.gray.intense"
+        borderRadius="medium"
+        data-klear360-component="base-box"
+        elevation="lowRaised"
+        style={
+          [
+            {
+              "backgroundColor": "hsla(0, 0%, 100%, 1)",
+              "borderRadius": 12,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "textAlign": "left",
+            },
+            {
+              "elevation": 8,
+              "shadowColor": "hsla(200, 10%, 18%, 1)",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.06,
+              "shadowRadius": 2,
+            },
+            [
+              {
+                "borderColor": "hsla(222, 47%, 11%, 0.12)",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "display": "flex",
+                "flexDirection": "column",
+                "width": "100%",
+              },
+            ],
+          ]
+        }
+        textAlign="left"
+        variant="primary"
+      >
+        <View
+          data-klear360-component="card-body"
+          style={
+            [
+              {},
+            ]
+          }
+        >
+          Plain Card
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Card /> should render a linkable Card 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="link"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": false,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "transform": [
+          {
+            "scale": 1,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "disabled": undefined,
+        }
+      }
+      accessible={true}
+      borderRadius="medium"
+      data-klear360-component="card"
+      display="block"
+      isFocused={false}
+      isSelected={false}
+      style={
+        [
+          {
+            "borderRadius": 12,
+            "display": "block",
+          },
+          {
+            "borderColor": "transparent",
+            "borderStyle": "solid",
+            "borderWidth": 2,
+          },
+        ]
+      }
+    >
+      <View
+        backgroundColor="surface.background.gray.intense"
+        borderRadius="medium"
+        data-klear360-component="base-box"
+        elevation="lowRaised"
+        style={
+          [
+            {
+              "backgroundColor": "hsla(0, 0%, 100%, 1)",
+              "borderRadius": 12,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "textAlign": "left",
+            },
+            {
+              "elevation": 8,
+              "shadowColor": "hsla(200, 10%, 18%, 1)",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.06,
+              "shadowRadius": 2,
+            },
+            [
+              {
+                "borderColor": "hsla(222, 47%, 11%, 0.12)",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "display": "flex",
+                "flexDirection": "column",
+                "width": "100%",
+              },
+            ],
+          ]
+        }
+        textAlign="left"
+        variant="primary"
+      >
+        <View
+          data-klear360-component="card-body"
+          style={
+            [
+              {},
+            ]
+          }
+        >
+          Plain Card
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Card /> should render a linkable Card with onClick 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="link"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": false,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "transform": [
+          {
+            "scale": 1,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "disabled": undefined,
+        }
+      }
+      accessible={true}
+      borderRadius="medium"
+      data-klear360-component="card"
+      display="block"
+      isFocused={false}
+      isSelected={false}
+      style={
+        [
+          {
+            "borderRadius": 12,
+            "display": "block",
+          },
+          {
+            "borderColor": "transparent",
+            "borderStyle": "solid",
+            "borderWidth": 2,
+          },
+        ]
+      }
+    >
+      <View
+        backgroundColor="surface.background.gray.intense"
+        borderRadius="medium"
+        data-klear360-component="base-box"
+        elevation="lowRaised"
+        style={
+          [
+            {
+              "backgroundColor": "hsla(0, 0%, 100%, 1)",
+              "borderRadius": 12,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "textAlign": "left",
+            },
+            {
+              "elevation": 8,
+              "shadowColor": "hsla(200, 10%, 18%, 1)",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.06,
+              "shadowRadius": 2,
+            },
+            [
+              {
+                "borderColor": "hsla(222, 47%, 11%, 0.12)",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "display": "flex",
+                "flexDirection": "column",
+                "width": "100%",
+              },
+            ],
+          ]
+        }
+        textAlign="left"
+        variant="primary"
+      >
+        <View
+          data-klear360-component="card-body"
+          style={
+            [
+              {},
+            ]
+          }
+        >
+          Plain Card
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

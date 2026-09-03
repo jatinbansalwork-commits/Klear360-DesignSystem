@@ -1,0 +1,856 @@
+## Component Name
+
+Modal
+
+## Description
+
+Modal is a dialog component that appears in front of the app content to provide critical information or request user input. It's designed to focus user attention, disabling all other interactions until explicitly dismissed. Modals are accessible, can be dismissed via escape key, clicking outside, or a close button (when dismissible), and come in three sizes: small, medium, and large.
+
+## Important Constraints
+
+- `ModalHeader`'s `trailing` prop only accepts `Button`, `IconButton`, `Badge`, `Link`, `Text` & `Amount` components.
+
+## TypeScript Types
+
+These types represent the props that the Modal component and its subcomponents accept. When using the Modal component along with its subcomponents, you'll need these type definitions to understand the available props.
+
+```typescript
+// The main Modal component props
+type ModalProps = {
+  /**
+   *  Children of Modal
+   * Only ModalHeader, ModalBody and ModalFooter are allowed as children
+   */
+  children: React.ReactNode;
+  /**
+   Sets the modal to open or close
+   * @default false
+   */
+  isOpen: boolean;
+  /**
+   *  Callback function when user clicks on close button or outside the modal or on pressing escape key.
+   */
+  onDismiss: () => void;
+  /**
+   * Whether the modal can be dismissed by clicking outside or pressing escape key
+   * @default true
+   * @note
+   * If isDismissible is false, the modal will not be dismissed when the user clicks outside the modal or presses the escape key and the close button will not be shown. you need to handle the closing of the modal from your own code. also onDismiss will not be called.
+   */
+  isDismissible?: boolean;
+  /**
+   *  Ref to the element to be focused on opening the modal.
+   */
+  initialFocusRef?: React.MutableRefObject<any>;
+  /**
+   *  Size of the modal
+   * @default 'small'
+   */
+  size?: 'small' | 'medium' | 'large' | 'full';
+  /**
+   *  Accessibility label for the modal
+   */
+  accessibilityLabel?: string;
+  /**
+   * Sets the z-index of the modal
+   * @default 1000
+   */
+  zIndex?: number;
+} & DataAnalyticsAttribute;
+
+// The ModalHeader component props
+type ModalHeaderProps = {
+  /**
+   * Title of the header
+   */
+  title?: React.ReactNode;
+  /**
+   * Subtitle of the header
+   */
+  subtitle?: React.ReactNode;
+  /**
+   * Content to be displayed before the title
+   */
+  leading?: React.ReactNode;
+  /**
+   * Content to be displayed after the title
+   */
+  trailing?: React.ReactNode;
+  /**
+   * Content to be displayed as a suffix to the title
+   */
+  titleSuffix?: React.ReactNode;
+} & DataAnalyticsAttribute;
+
+// The ModalBody component props
+type ModalBodyProps = {
+  children: React.ReactNode;
+  /**
+   * Sets the padding equally on all sides. Only few `spacing` tokens are allowed deliberately
+   * @default `spacing.6`
+   */
+  padding?: Extract<SpacingValueType, 'spacing.0' | 'spacing.6'>;
+} & DataAnalyticsAttribute;
+
+// The ModalFooter component props
+type ModalFooterProps = {
+  children: React.ReactNode;
+} & DataAnalyticsAttribute;
+```
+
+## Usage Guidelines
+
+**Do**
+
+- Use `Modal` for critical information or decisions that require focused user attention on desktop.
+- Compose with `ModalHeader`, `ModalBody`, and `ModalFooter` sub-components for proper structure.
+- Use `size` to match content needs: `"small"` (400px) for confirmations, `"medium"` (760px) for forms, `"large"` (1024px) for complex content.
+- Use `initialFocusRef` to direct focus to the most relevant element on open.
+- Use `isDismissible={false}` only for flows that require explicit user action (e.g., forced confirmations).
+
+**Don't**
+
+- Don't use `Modal` on mobile/mWeb — use `BottomSheet` instead (Modal is desktop-first by design).
+- Don't use `Modal` for supplementary information that doesn't need to block interaction — use `Drawer` or `Popover`.
+- Don't expect auto-conversion to BottomSheet on small screens — consumers must implement responsive logic manually.
+- Don't put arbitrary components in `ModalHeader` trailing — only Button, IconButton, Badge, Link, Text, and Amount are allowed.
+- Don't use `ModalBody` padding values other than `"spacing.0"` or `"spacing.6"`.
+
+## Anatomy
+
+Every modal is composed of three optional regions stacked vertically inside a floating card:
+
+```
+┌─────────────────────────────────┐  ← Modal Card (400px wide at size="small")
+│  _Modal Header                  │  (optional — title, subtitle, close ×)
+│  ─────────────────────────────  │  ← Divider
+│  modal-body / Slot              │  (always present)
+│  ─────────────────────────────  │  ← Divider (optional)
+│  _Modal Footer                  │  (optional — action buttons)
+└─────────────────────────────────┘
+```
+
+A **Dismiss Action** (`×` icon button) can be placed in two ways:
+
+| Placement | When to use | Behaviour |
+|---|---|---|
+| **In-header** | Modal has a `ModalHeader` with title | Rendered inside `ModalHeader` flex row, right-aligned |
+| **External / floating** | Headerless modals (no `ModalHeader`) | Absolutely positioned at `top: 16px, right: 16px`; circular `surface.background.gray.intense` background, 28px diameter |
+
+Use the external dismiss when there is no header — it avoids wasted vertical space while still providing an escape route.
+
+## Modal Templates
+
+Four established templates cover the most common modal use cases:
+
+### Template 1 — Standard Modal with Header
+
+General-purpose modals with a named title (forms, detail views, guided flows, information panels).
+
+```
+┌─────────────────────────────────┐
+│ Header Title              [✕]  │  ← ModalHeader (in-header dismiss)
+│ Header Subtitle                 │
+│ ─────────────────────────────── │
+│  [     Slot content area     ]  │  ← ModalBody
+│ ─────────────────────────────── │
+│       [Secondary]  [Primary]    │  ← ModalFooter (full-width buttons)
+└─────────────────────────────────┘
+```
+
+```jsx
+<Modal isOpen={isOpen} onDismiss={onClose}>
+  <ModalHeader title="Header Title" subtitle="Header Subtitle" />
+  <ModalBody>{/* your content */}</ModalBody>
+  <ModalFooter>
+    <Button variant="secondary" isFullWidth onClick={onSecondary}>Secondary</Button>
+    <Button isFullWidth onClick={onPrimary}>Primary</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Template 2 — Destructive Confirmation Modal
+
+Irreversible or destructive actions (deleting data, discarding unsaved changes, revoking access).
+
+```
+                           [✕]    ← External floating dismiss
+┌─────────────────────────────────┐
+│  [🗑️]                           │  ← Negative icon badge (48×48px)
+│  Action title?                  │
+│  Consequence description        │
+│ ─────────────────────────────── │
+│         [No, Go back]  [Discard]│  ← Right-aligned compact buttons
+└─────────────────────────────────┘
+```
+
+```jsx
+<Modal isOpen={isOpen} onDismiss={onClose}>
+  <ModalBody>
+    <Box backgroundColor="feedback.background.negative.subtle" borderRadius="medium"
+         padding="spacing.3" width="48px" height="48px">
+      <TrashIcon color="feedback.icon.negative.intense" size="large" />
+    </Box>
+    <Heading size="medium" weight="semibold">Discard import?</Heading>
+    <Text size="medium" color="surface.text.gray.subtle">
+      We do not save the progress, you'll need to upload the files again
+    </Text>
+  </ModalBody>
+  <ModalFooter>
+    <Button variant="tertiary" color="primary" onClick={onCancel}>No, Go back</Button>
+    <Button color="negative" onClick={onConfirm}>Discard</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Template 3 — Headerless Modal (Full-width buttons)
+
+Modals whose content is self-explanatory (embedded form, image, rich media) where a header label would be redundant.
+
+```
+                           [✕]    ← External floating dismiss
+┌─────────────────────────────────┐
+│  [     Slot content area     ]  │  ← ModalBody (bare slot)
+│ ─────────────────────────────── │
+│       [Secondary]  [Primary]    │  ← ModalFooter (full-width buttons)
+└─────────────────────────────────┘
+```
+
+### Template 4 — Headerless Modal (Compact / Right-aligned buttons)
+
+Compact confirmations where the action pair has a clear destructive semantic ("Cancel" / "Delete").
+
+```
+                           [✕]    ← External floating dismiss
+┌─────────────────────────────────┐
+│  [     Slot content area     ]  │  ← ModalBody (bare slot)
+│ ─────────────────────────────── │
+│              [Secondary][Primary]│  ← ModalFooter (right-aligned, content-sized)
+└─────────────────────────────────┘
+```
+
+## Footer Button Alignment Patterns
+
+| Layout | Templates | When to use |
+|---|---|---|
+| **Full-width equal** | 1, 3 | Both buttons `flex: 1`, filling the footer equally. Standard confirm/cancel where both actions carry equal weight. |
+| **Fixed-size right-aligned** | 2, 4 | Buttons size to their label, grouped at `justify-end`. Best for destructive confirmations where the primary label is short (e.g. "Discard", "Delete"). |
+
+## Button Color Semantics
+
+| Scenario | Secondary button | Primary button |
+|---|---|---|
+| Neutral action | `variant="secondary"` | `variant="primary" color="primary"` (blue) |
+| Destructive / negative | `variant="tertiary" color="primary"` | `variant="primary" color="negative"` (red) |
+
+## Example
+
+Below is a comprehensive example showcasing the Modal component with various configurations:
+
+```tsx
+import React, { useState, useRef } from 'react';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Box,
+  Button,
+  Radio,
+  RadioGroup,
+  Text,
+  TextArea,
+  Checkbox,
+} from '@klear/klear360/components';
+
+const ModalExample = () => {
+  // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // State for form values
+  const [selectedAddress, setSelectedAddress] = useState('home');
+  const [selectedSize, setSelectedSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const [saveAsDefault, setSaveAsDefault] = useState(false);
+
+  // Ref for initial focus when modal opens
+  const addAddressButtonRef = useRef(null);
+
+  // Handlers
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const handleSave = () => {
+    // Handle save logic here
+    closeModal();
+  };
+
+  return (
+    <>
+      {/* Buttons to demonstrate different modal sizes */}
+      <Box display="flex" gap="spacing.5" flexWrap="wrap" marginBottom="spacing.5">
+        <Button
+          onClick={() => {
+            setSelectedSize('small');
+            openModal();
+          }}
+        >
+          Open Small Modal
+        </Button>
+      </Box>
+
+      {/* Modal component */}
+      <Modal
+        isOpen={isModalOpen}
+        onDismiss={closeModal}
+        size={selectedSize}
+        initialFocusRef={addAddressButtonRef}
+        accessibilityLabel="Address selection modal"
+      >
+        <ModalHeader
+          title="Select Delivery Address"
+          subtitle="Choose where you'd like your order delivered"
+        />
+
+        <ModalBody>
+          <Box display="flex" flexDirection="column" gap="spacing.5">
+            <Box marginTop="spacing.5">
+              <Text size="small" color="surface.text.gray.subtle">
+                Need to add a new address?
+              </Text>
+
+              <Box marginTop="spacing.4">
+                <TextArea
+                  label="Address Line 1"
+                  placeholder="Enter street address"
+                  marginBottom="spacing.4"
+                />
+                <TextArea
+                  label="Address Line 2"
+                  placeholder="Apt, Suite, Building (optional)"
+                  marginBottom="spacing.4"
+                />
+              </Box>
+            </Box>
+          </Box>
+        </ModalBody>
+
+        <ModalFooter>
+          <Box display="flex" gap="spacing.3" justifyContent="flex-end" width="100%">
+            <Button variant="tertiary" onClick={closeModal}>
+              Cancel
+            </Button>
+            <Button ref={addAddressButtonRef} onClick={handleSave}>
+              Save Address
+            </Button>
+          </Box>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+export default ModalExample;
+```
+
+### OTP Modal Example
+
+This example demonstrates a modal for OTP verification with input fields, timer, and resend functionality.
+
+```tsx
+import React from 'react';
+import {
+  Box,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  BottomSheet,
+  BottomSheetHeader,
+  BottomSheetBody,
+  BottomSheetFooter,
+  Text,
+  OTPInput,
+  Link,
+  LockIcon,
+} from '@klear/klear360/components';
+import { useBreakpoint, useTheme } from '@klear/klear360/utils';
+
+// Responsive wrapper component for handling mobile/desktop modal display
+function ResponsiveModalWrapper({
+  children,
+  footer,
+  isOpen,
+  onDismiss,
+  modalBodyPadding,
+  modalSize = 'small',
+  wrapInBottomSheetFooter = false,
+  customSnapPoints = [0.35, 0.5, 0.85],
+}: {
+  children: React.ReactElement | React.ReactElement[];
+  footer?: React.ReactElement;
+  isOpen: boolean;
+  onDismiss: () => void;
+  modalBodyPadding?: 'spacing.0' | 'spacing.6';
+  modalSize?: 'small' | 'medium' | 'large' | 'full';
+  wrapInBottomSheetFooter?: boolean;
+  customSnapPoints?: [number, number, number];
+}): React.ReactNode {
+  const { theme } = useTheme();
+  const { matchedDeviceType } = useBreakpoint(theme);
+  const isMobile = matchedDeviceType === 'mobile';
+
+  if (isMobile) {
+    return (
+      <BottomSheet isOpen={isOpen} onDismiss={onDismiss} snapPoints={customSnapPoints}>
+        <BottomSheetHeader />
+        <BottomSheetBody padding="spacing.5">
+          {children}
+          {footer && !wrapInBottomSheetFooter && <Box marginTop="spacing.6">{footer}</Box>}
+        </BottomSheetBody>
+        {footer && wrapInBottomSheetFooter && <BottomSheetFooter>{footer}</BottomSheetFooter>}
+      </BottomSheet>
+    );
+  }
+
+  return (
+    <Modal isOpen={isOpen} onDismiss={onDismiss} size={modalSize}>
+      <ModalHeader />
+      <ModalBody padding={modalBodyPadding}>{children}</ModalBody>
+      {footer && <ModalFooter>{footer}</ModalFooter>}
+    </Modal>
+  );
+}
+
+function OTPModal(): React.ReactElement {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [otp, setOtp] = React.useState('');
+  const [error, setError] = React.useState<string | null>(null);
+  const [isResendOtpTimerRunning, setIsResendOtpTimerRunning] = React.useState(false);
+  const [resendOtpTimer, setResendOtpTimer] = React.useState(30);
+  const { theme } = useTheme();
+  const { matchedDeviceType } = useBreakpoint(theme);
+  const isMobile = matchedDeviceType === 'mobile';
+
+  // Start timer when modal opens
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsResendOtpTimerRunning(true);
+      setResendOtpTimer(30);
+    } else {
+      setIsResendOtpTimerRunning(false);
+      setResendOtpTimer(30);
+    }
+  }, [isOpen]);
+
+  // Handle timer countdown
+  React.useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isResendOtpTimerRunning && resendOtpTimer > 0) {
+      timer = setInterval(() => {
+        setResendOtpTimer((prev) => {
+          if (prev <= 1) {
+            setIsResendOtpTimerRunning(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isResendOtpTimerRunning, resendOtpTimer]);
+
+  const handleVerify = (): void => {
+    if (otp.length !== 6) {
+      setError('Please enter a valid 6-digit OTP');
+      return;
+    }
+    // Verify OTP logic here
+    setError(null);
+    setIsOpen(false);
+  };
+
+  return (
+    <Box>
+      <Button onClick={() => setIsOpen(true)}>Verify Phone Number</Button>
+      <ResponsiveModalWrapper
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        footer={
+          <Box display="flex" gap="spacing.5" justifyContent="flex-end" width="100%">
+            <Button variant="tertiary" isFullWidth={isMobile} onClick={() => setIsOpen(false)}>
+              Cancel
+            </Button>
+            <Button isFullWidth={isMobile} onClick={handleVerify} isDisabled={otp.length !== 6}>
+              Verify
+            </Button>
+          </Box>
+        }
+        customSnapPoints={[0.5, 0.6, 0.75]}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          borderRadius="medium"
+          padding="spacing.4"
+          width="48px"
+          height="48px"
+          // backgroundColor="feedback.background.neutral.subtle"
+        >
+          <LockIcon color="surface.icon.gray.subtle" size="xlarge" />
+        </Box>
+        <Box marginTop="spacing.4" display="flex" flexDirection="column" gap="spacing.2">
+          <Text size="large" weight="semibold">
+            2 Step Verification
+          </Text>
+          <Text size="medium" weight="regular" color="surface.text.gray.subtle">
+            This action requires 2-step verification. A 6-digit OTP has been sent via SMS to
+            8757450923. The OTP will expire in 5 minutes.
+          </Text>
+        </Box>
+        <Box marginY="spacing.5">
+          <OTPInput
+            label="Enter the code"
+            otpLength={6}
+            size="large"
+            aria-label="Enter verification code"
+            value={otp}
+            onChange={(value) => setOtp(value.rawValue ?? '')}
+            errorText={error ?? undefined}
+          />
+        </Box>
+        <Box
+          marginTop="spacing.5"
+          display="flex"
+          flexDirection="row"
+          gap="spacing.2"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Text size="medium" weight="regular" color="surface.text.gray.subtle">
+            {isResendOtpTimerRunning
+              ? `Resend OTP in ${resendOtpTimer} seconds`
+              : "Didn't receive OTP?"}
+          </Text>
+          {!isResendOtpTimerRunning && (
+            <Link
+              onClick={() => {
+                setIsResendOtpTimerRunning(true);
+                setResendOtpTimer(30);
+              }}
+              size="medium"
+              variant="button"
+              aria-label="Resend verification code"
+            >
+              Resend OTP
+            </Link>
+          )}
+        </Box>
+      </ResponsiveModalWrapper>
+    </Box>
+  );
+}
+
+export default OTPModal;
+
+```
+### Share Modal Example
+
+This example shows a modal for sharing content with social media options and copy link functionality.
+
+```tsx
+import React from 'react';
+import {
+  Box,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  BottomSheet,
+  BottomSheetHeader,
+  BottomSheetBody,
+  BottomSheetFooter,
+  Text,
+  TextInput,
+  ActionList,
+  ActionListItem,
+  Alert,
+  TwitterIcon,
+  FacebookIcon,
+  WhatsAppIcon,
+  CopyIcon,
+} from '@klear/klear360/components';
+import { useBreakpoint, useTheme } from '@klear/klear360/utils';
+
+// [ResponsiveModalWrapper component code remains the same as above in otp modal example]
+
+function ResponsiveModalWrapper({
+  children,
+  footer,
+  isOpen,
+  onDismiss,
+  modalBodyPadding,
+  modalSize = 'small',
+  wrapInBottomSheetFooter = false,
+  customSnapPoints = [0.35, 0.5, 0.85],
+}: {
+  children: React.ReactElement | React.ReactElement[];
+  footer?: React.ReactElement;
+  isOpen: boolean;
+  onDismiss: () => void;
+  modalBodyPadding?: 'spacing.0' | 'spacing.6';
+  modalSize?: 'small' | 'medium' | 'large' | 'full';
+  wrapInBottomSheetFooter?: boolean;
+  customSnapPoints?: [number, number, number];
+}): React.ReactNode {
+  const { theme } = useTheme();
+  const { matchedDeviceType } = useBreakpoint(theme);
+  const isMobile = matchedDeviceType === 'mobile';
+
+  if (isMobile) {
+    return (
+      <BottomSheet isOpen={isOpen} onDismiss={onDismiss} snapPoints={customSnapPoints}>
+        <BottomSheetHeader />
+        <BottomSheetBody padding="spacing.5">
+          {children}
+          {footer && !wrapInBottomSheetFooter && <Box marginTop="spacing.6">{footer}</Box>}
+        </BottomSheetBody>
+        {footer && wrapInBottomSheetFooter && <BottomSheetFooter>{footer}</BottomSheetFooter>}
+      </BottomSheet>
+    );
+  }
+
+  return (
+    <Modal isOpen={isOpen} onDismiss={onDismiss} size={modalSize}>
+      <ModalHeader />
+      <ModalBody padding={modalBodyPadding}>{children}</ModalBody>
+      {footer && <ModalFooter>{footer}</ModalFooter>}
+    </Modal>
+  );
+}
+
+function ShareModal(): React.ReactElement {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [showCopiedAlert, setShowCopiedAlert] = React.useState(false);
+
+  const shareUrl = 'https://example.com/share-link';
+
+  const shareOptions = [
+    {
+      icon: TwitterIcon,
+      label: 'Twitter',
+      url: `https://twitter.com/intent/tweet?url=${shareUrl}`,
+    },
+    {
+      icon: FacebookIcon,
+      label: 'Facebook',
+      url: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+    },
+    { icon: WhatsAppIcon, label: 'WhatsApp', url: `https://wa.me/?text=${shareUrl}` },
+  ];
+
+  const handleShare = (url: string): void => {
+    window.open(url, '_blank');
+  };
+
+  const handleCopy = async (): Promise<void> => {
+    await navigator.clipboard.writeText(shareUrl);
+    setShowCopiedAlert(true);
+    setTimeout(() => setShowCopiedAlert(false), 3000);
+  };
+
+  return (
+    <Box>
+      <Button onClick={() => setIsOpen(true)}>Share</Button>
+      <ResponsiveModalWrapper
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        modalSize="small"
+        footer={
+          <Box display="flex" justifyContent="flex-end">
+            <Button variant="tertiary" onClick={() => setIsOpen(false)}>
+              Close
+            </Button>
+          </Box>
+        }
+      >
+        <Box display="flex" flexDirection="column" gap="spacing.4">
+          <Text size="large" weight="semibold">
+            Share this content
+          </Text>
+          {showCopiedAlert && (
+            <Alert
+              color="positive"
+              title="Link copied!"
+              description="The link has been copied to your clipboard."
+              isDismissible
+              onDismiss={() => setShowCopiedAlert(false)}
+            />
+          )}
+          <Box>
+            <ActionList>
+              {shareOptions.map((option) => (
+                <ActionListItem
+                  key={option.label}
+                  title={option.label}
+                  onClick={() => handleShare(option.url)}
+                  value={option.label}
+                />
+              ))}
+            </ActionList>
+          </Box>
+          <Box display="flex" gap="spacing.3">
+            <TextInput value={shareUrl} accessibilityLabel="Share URL" />
+            <Button
+              variant="secondary"
+              icon={CopyIcon}
+              onClick={handleCopy}
+              accessibilityLabel="Copy link"
+            />
+          </Box>
+        </Box>
+      </ResponsiveModalWrapper>
+    </Box>
+  );
+}
+
+export default ShareModal;
+
+```
+### Informational Modal Example
+
+This example demonstrates a modal for displaying important information or announcements with rich content.
+
+```tsx
+import React from 'react';
+import {
+  Box,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  BottomSheet,
+  BottomSheetHeader,
+  BottomSheetBody,
+  BottomSheetFooter,
+  Text,
+  Heading,
+  Badge,
+  List,
+  ListItem,
+  InfoIcon,
+  CheckIcon,
+} from '@klear/klear360/components';
+import { useBreakpoint, useTheme } from '@klear/klear360/utils';
+
+// [ResponsiveModalWrapper component code remains the same as in otp modal example]
+
+function ResponsiveModalWrapper({
+  children,
+  footer,
+  isOpen,
+  onDismiss,
+  modalBodyPadding,
+  modalSize = 'small',
+  wrapInBottomSheetFooter = false,
+  customSnapPoints = [0.35, 0.5, 0.85],
+}: {
+  children: React.ReactElement | React.ReactElement[];
+  footer?: React.ReactElement;
+  isOpen: boolean;
+  onDismiss: () => void;
+  modalBodyPadding?: 'spacing.0' | 'spacing.6';
+  modalSize?: 'small' | 'medium' | 'large' | 'full';
+  wrapInBottomSheetFooter?: boolean;
+  customSnapPoints?: [number, number, number];
+}): React.ReactNode {
+  const { theme } = useTheme();
+  const { matchedDeviceType } = useBreakpoint(theme);
+  const isMobile = matchedDeviceType === 'mobile';
+
+  if (isMobile) {
+    return (
+      <BottomSheet isOpen={isOpen} onDismiss={onDismiss} snapPoints={customSnapPoints}>
+        <BottomSheetHeader />
+        <BottomSheetBody padding="spacing.5">
+          {children}
+          {footer && !wrapInBottomSheetFooter && <Box marginTop="spacing.6">{footer}</Box>}
+        </BottomSheetBody>
+        {footer && wrapInBottomSheetFooter && <BottomSheetFooter>{footer}</BottomSheetFooter>}
+      </BottomSheet>
+    );
+  }
+
+  return (
+    <Modal isOpen={isOpen} onDismiss={onDismiss} size={modalSize}>
+      <ModalHeader />
+      <ModalBody padding={modalBodyPadding}>{children}</ModalBody>
+      {footer && <ModalFooter>{footer}</ModalFooter>}
+    </Modal>
+  );
+}
+
+function InformationalModal(): React.ReactElement {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const { theme } = useTheme();
+  const { matchedDeviceType } = useBreakpoint(theme);
+  const isMobile = matchedDeviceType === 'mobile';
+
+  const features = [
+    'Enhanced security with 2FA',
+    'Improved dashboard performance',
+    'New analytics features',
+    'Better mobile responsiveness',
+  ];
+
+  return (
+    <Box>
+      <Button onClick={() => setIsOpen(true)} icon={InfoIcon}>
+        What's New
+      </Button>
+      <ResponsiveModalWrapper
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        modalSize="medium"
+        footer={
+          <Box display="flex" gap="spacing.5" justifyContent="flex-end" width="100%">
+            <Button variant="primary" isFullWidth={isMobile} onClick={() => setIsOpen(false)}>
+              Got it
+            </Button>
+          </Box>
+        }
+      >
+        <Box display="flex" flexDirection="column" gap="spacing.6">
+          <Box display="flex" alignItems="center" gap="spacing.3">
+            <Heading size="large">Platform Updates</Heading>
+            <Badge color="notice">New</Badge>
+          </Box>
+          <Text size="medium" color="surface.text.gray.muted">
+            We've made several improvements to enhance your experience. Here are the key updates:
+          </Text>
+          <List>
+            {features.map((feature) => (
+              <ListItem key={feature} icon={CheckIcon}>
+                {feature}
+              </ListItem>
+            ))}
+          </List>
+          <Box
+            padding="spacing.4"
+            backgroundColor="surface.background.gray.subtle"
+            borderRadius="medium"
+          >
+            <Text size="small" color="surface.text.gray.muted">
+              These updates are now live. For more details, please visit our documentation.
+            </Text>
+          </Box>
+        </Box>
+      </ResponsiveModalWrapper>
+    </Box>
+  );
+}
+
+export default InformationalModal;
+```

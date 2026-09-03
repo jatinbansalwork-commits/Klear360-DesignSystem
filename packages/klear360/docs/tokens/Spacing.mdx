@@ -1,0 +1,57 @@
+import { Meta, DocsContainer } from '@storybook/addon-docs/blocks';
+import { useTheme, Klear360Provider } from '../../src/components';
+import { klear360Theme } from '../../src/tokens';
+import { makeSpace } from '../../src/utils';
+
+<Meta
+  title="Tokens/Spacing"
+  parameters={{
+    docs: {
+      container: ({ children, context }) => {
+        const colorScheme = context.store.globals.globals.colorScheme;
+        return (
+          <DocsContainer context={context}>
+            <Klear360Provider
+              key={colorScheme}
+              themeTokens={klear360Theme}
+              colorScheme={colorScheme}
+            >
+              {children}
+            </Klear360Provider>
+          </DocsContainer>
+        );
+      },
+    },
+  }}
+/>
+
+# ↔️ Spacing
+
+> These tokens should be used along with the [makeSpace util](?path=/story/utils-makespace--docs).
+
+export const Spacing = () => {
+  const { theme } = useTheme();
+  return (
+    <table>
+      <tbody>
+        {Object.entries(theme.spacing).map(([key, value]) => (
+          <tr key={key}>
+            <td>{`theme.spacing.${key}`}</td>
+            <td>
+              <div
+                style={{
+                  height: makeSpace(value),
+                  width: makeSpace(value),
+                  backgroundColor: 'rgba(223, 135, 0, 0.18)',
+                }}
+              />
+            </td>
+            <td>{value}px</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+<Spacing />

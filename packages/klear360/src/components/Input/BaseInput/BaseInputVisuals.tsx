@@ -1,0 +1,509 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React from 'react';
+import type { ReactElement } from 'react';
+import type { BaseInputProps } from './BaseInput';
+import { inputDropdownButtonPadding } from './baseInputTokens';
+import { throwKlear360Error, logger } from '~utils/logger';
+import { isReactNative } from '~utils';
+import BaseBox from '~components/Box/BaseBox';
+import { Text } from '~components/Typography';
+import type { BaseBoxProps, SpacingValueType } from '~components/Box/BaseBox';
+import type { IconColors } from '~components/Icons';
+import { isValidAllowedChildren } from '~utils/isValidAllowedChildren';
+import { Tooltip } from '~components/Tooltip';
+import { Box } from '~components/Box';
+
+type InputVisuals = Pick<
+  BaseInputProps,
+  | 'leadingIcon'
+  | 'prefix'
+  | 'trailingInteractionElement'
+  | 'onTrailingInteractionElementClick'
+  | 'leadingInteractionElement'
+  | 'leadingDropDown'
+  | 'trailingDropDown'
+  | 'suffix'
+  | 'trailingIcon'
+  | 'isDisabled'
+  | 'validationState'
+  | 'size'
+  | 'trailingButton'
+  | 'showHintsAsTooltip'
+  | 'errorText'
+  | 'successText'
+  | 'validationTextPlacement'
+> & {
+  size: NonNullable<BaseInputProps['size']>;
+  errorTextId?: string;
+  successTextId?: string;
+};
+
+const getVisualContainerStyles = ({
+  shouldStretch,
+}: {
+  shouldStretch?: boolean;
+} = {}): Pick<BaseBoxProps, 'display' | 'flexDirection' | 'alignItems' | 'alignSelf'> => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  alignSelf: shouldStretch ? 'stretch' : 'center',
+});
+
+const trailingIconColor: Record<NonNullable<InputVisuals['validationState']>, IconColors> = {
+  none: 'surface.icon.gray.subtle',
+  error: 'feedback.icon.negative.intense',
+  success: 'feedback.icon.positive.intense',
+};
+
+const iconSize = {
+  xsmall: 'small',
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+} as const;
+
+const textSize = {
+  xsmall: 'small',
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+} as const;
+
+const validationTextSize = {
+  xsmall: 'xsmall',
+  small: 'small',
+  medium: 'small',
+  large: 'medium',
+} as const;
+
+const validationTextColor = {
+  success: 'feedback.text.positive.intense',
+  error: 'feedback.text.negative.intense',
+  none: 'surface.text.gray.subtle', // TypeScript exhaustiveness — never reached at runtime
+} as const;
+
+const getPrefixStyles = ({
+  hasLeadingIcon,
+  hasPrefix,
+}: {
+  hasLeadingIcon: boolean;
+  hasPrefix: boolean;
+}): Pick<BaseBoxProps, 'paddingLeft'> => {
+  if (hasPrefix && hasLeadingIcon) {
+    return {
+      paddingLeft: 'spacing.3',
+    };
+  }
+
+  if (hasPrefix && !hasLeadingIcon) {
+    return {
+      paddingLeft: 'spacing.4',
+    };
+  }
+
+  return {
+    paddingLeft: 'spacing.0',
+  };
+};
+
+const getInteractionElementStyles = ({
+  hasTrailingIcon,
+  hasLeadingInteractionElement,
+  hasLeadingDropDown,
+  hasTrailingInteractionElement,
+  hasSuffix,
+  hasTrailingButton,
+  hasTrailingDropDown,
+}: {
+  hasTrailingIcon: boolean;
+  hasLeadingInteractionElement?: boolean;
+  hasLeadingDropDown?: boolean;
+  hasTrailingInteractionElement?: boolean;
+  hasSuffix: boolean;
+  hasTrailingButton: boolean;
+  hasTrailingDropDown?: boolean;
+}): SpacingValueType => {
+  if (hasTrailingInteractionElement && (hasSuffix || hasTrailingIcon || hasTrailingButton)) {
+    return 'spacing.2';
+  }
+
+  if (hasLeadingDropDown || hasTrailingDropDown) {
+    return 'spacing.2';
+  }
+
+  if (hasTrailingInteractionElement && !hasSuffix && !hasTrailingIcon && !hasTrailingButton) {
+    return 'spacing.4';
+  }
+
+  if (hasLeadingInteractionElement) {
+    return 'spacing.2';
+  }
+
+  return 'spacing.0';
+};
+
+const getSuffixStyles = ({
+  hasTrailingIcon,
+  hasSuffix,
+  hasTrailingButton,
+}: {
+  hasTrailingIcon: boolean;
+  hasSuffix: boolean;
+  hasTrailingButton: boolean;
+}): Pick<BaseBoxProps, 'paddingRight'> => {
+  if (hasSuffix && (hasTrailingIcon || hasTrailingButton)) {
+    return {
+      paddingRight: 'spacing.3',
+    };
+  }
+
+  if (hasSuffix && !hasTrailingIcon && !hasTrailingButton) {
+    return {
+      paddingRight: 'spacing.4',
+    };
+  }
+
+  return {
+    paddingRight: 'spacing.0',
+  };
+};
+
+const getTrailingIconStyles = ({
+  hasTrailingIcon,
+  hasTrailingButton,
+}: {
+  hasTrailingIcon: boolean;
+  hasTrailingButton: boolean;
+}): Pick<BaseBoxProps, 'paddingRight'> => {
+  if (hasTrailingIcon && hasTrailingButton) {
+    return {
+      paddingRight: 'spacing.3',
+    };
+  }
+
+  if (hasTrailingIcon && !hasTrailingButton) {
+    return {
+      paddingRight: 'spacing.4',
+    };
+  }
+
+  return {
+    paddingRight: 'spacing.0',
+  };
+};
+
+export const getInputVisualsToBeRendered = ({
+  leadingIcon,
+  prefix,
+  trailingInteractionElement,
+  leadingInteractionElement,
+  suffix,
+  trailingIcon,
+  trailingButton,
+  leadingDropDown,
+  trailingDropDown,
+}: InputVisuals) => ({
+  hasLeadingIcon: Boolean(leadingIcon),
+  hasPrefix: Boolean(prefix),
+  hasTrailingInteractionElement: Boolean(trailingInteractionElement),
+  hasLeadingInteractionElement: Boolean(leadingInteractionElement),
+  hasSuffix: Boolean(suffix),
+  hasTrailingIcon: Boolean(trailingIcon),
+  hasTrailingButton: Boolean(trailingButton),
+  hasLeadingDropDown: Boolean(leadingDropDown),
+  hasTrailingDropDown: Boolean(trailingDropDown),
+});
+
+const getTooltipContent = ({
+  validationState,
+  errorText,
+  successText,
+}: {
+  validationState: BaseInputProps['validationState'];
+  errorText: BaseInputProps['errorText'];
+  successText: BaseInputProps['errorText'];
+}): string => {
+  if (validationState === 'error' && errorText) {
+    return errorText;
+  }
+
+  if (validationState === 'success' && successText) {
+    return successText;
+  }
+
+  return '';
+};
+
+const ValidationIconTooltip = ({
+  children,
+  validationState,
+  errorText,
+  successText,
+  showHintsAsTooltip,
+}: {
+  children: ReactElement;
+  validationState: BaseInputProps['validationState'];
+  errorText: BaseInputProps['errorText'];
+  successText: BaseInputProps['errorText'];
+  showHintsAsTooltip: BaseInputProps['showHintsAsTooltip'];
+}) => {
+  if (
+    (showHintsAsTooltip && validationState === 'error' && errorText) ||
+    (validationState === 'success' && successText)
+  ) {
+    return (
+      <Tooltip content={getTooltipContent({ validationState, errorText, successText })}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          {children}
+        </Box>
+      </Tooltip>
+    );
+  }
+
+  return children;
+};
+
+export const BaseInputVisuals = ({
+  leadingIcon: LeadingIcon,
+  prefix,
+  trailingInteractionElement,
+  onTrailingInteractionElementClick,
+  leadingDropDown,
+  trailingDropDown,
+  leadingInteractionElement,
+  suffix,
+  trailingIcon: TrailingIcon,
+  isDisabled,
+  validationState = 'none',
+  size,
+  showHintsAsTooltip,
+  errorText,
+  successText,
+  validationTextPlacement,
+  trailingButton: TrailingButton,
+  errorTextId,
+  successTextId,
+}: InputVisuals): ReactElement | null => {
+  const {
+    hasLeadingIcon,
+    hasPrefix,
+    hasSuffix,
+    hasTrailingInteractionElement,
+    hasLeadingInteractionElement,
+    hasTrailingIcon,
+    hasTrailingButton,
+    hasLeadingDropDown,
+    hasTrailingDropDown,
+  } = getInputVisualsToBeRendered({
+    leadingIcon: LeadingIcon,
+    prefix,
+    leadingInteractionElement,
+    trailingInteractionElement,
+    suffix,
+    trailingIcon: TrailingIcon,
+    trailingButton: TrailingButton,
+    leadingDropDown,
+    trailingDropDown,
+    size,
+  });
+
+  const insideValidationText =
+    validationTextPlacement === 'inside' && validationState !== 'none'
+      ? validationState === 'error'
+        ? errorText
+        : successText
+      : undefined;
+  const hasInsideValidationText = Boolean(insideValidationText);
+
+  const hasLeadingVisuals =
+    hasLeadingInteractionElement || hasLeadingIcon || hasPrefix || hasLeadingDropDown;
+  const hasTrailingVisuals =
+    hasTrailingInteractionElement ||
+    hasSuffix ||
+    hasTrailingIcon ||
+    hasTrailingButton ||
+    hasTrailingDropDown ||
+    hasInsideValidationText;
+
+  if (__DEV__) {
+    if (hasTrailingButton && !isValidAllowedChildren(TrailingButton, 'Link')) {
+      throwKlear360Error({
+        message: 'trailingButton must be a valid Klear360 Link component',
+        moduleName: 'BaseInput',
+      });
+    }
+
+    if (hasInsideValidationText && (hasTrailingIcon || hasTrailingButton || hasSuffix)) {
+      logger({
+        message:
+          'Using validationTextPlacement="inside" with trailingIcon, trailingButton, or suffix may cause layout conflicts. Consider using validationTextPlacement="outside" when trailing visuals are present.',
+        moduleName: 'BaseInput',
+        type: 'warn',
+      });
+    }
+  }
+
+  if (hasLeadingVisuals) {
+    return (
+      <BaseBox {...getVisualContainerStyles({ shouldStretch: hasLeadingDropDown })}>
+        {hasLeadingInteractionElement ? (
+          <BaseBox
+            paddingLeft={getInteractionElementStyles({
+              hasTrailingIcon,
+              hasLeadingInteractionElement,
+              hasSuffix,
+              hasTrailingButton,
+            })}
+            paddingY={`spacing.${inputDropdownButtonPadding[size]}`}
+            display="flex"
+            alignItems="stretch"
+            alignSelf="stretch"
+          >
+            {leadingInteractionElement}
+          </BaseBox>
+        ) : null}
+        {LeadingIcon ? (
+          <BaseBox paddingLeft="spacing.4" display="flex">
+            <LeadingIcon
+              size={iconSize[size]}
+              color={isDisabled ? 'surface.icon.gray.disabled' : 'surface.icon.gray.muted'}
+            />
+          </BaseBox>
+        ) : null}
+        {hasPrefix ? (
+          <BaseBox {...getPrefixStyles({ hasLeadingIcon, hasPrefix })}>
+            <Text
+              size={textSize[size]}
+              variant="body"
+              weight="regular"
+              color={isDisabled ? 'surface.text.gray.disabled' : 'surface.text.gray.muted'}
+            >
+              {prefix}
+            </Text>
+          </BaseBox>
+        ) : null}
+        {leadingDropDown ? (
+          <BaseBox
+            paddingLeft={`spacing.${inputDropdownButtonPadding[size]}`}
+            paddingY={`spacing.${inputDropdownButtonPadding[size]}`}
+            display="flex"
+            alignItems="stretch"
+            alignSelf="stretch"
+          >
+            {leadingDropDown}
+          </BaseBox>
+        ) : null}
+      </BaseBox>
+    );
+  }
+
+  if (hasTrailingVisuals) {
+    return (
+      <BaseBox
+        {...getVisualContainerStyles({
+          shouldStretch:
+            (hasTrailingInteractionElement && Boolean(onTrailingInteractionElementClick)) ||
+            hasTrailingDropDown,
+        })}
+      >
+        {hasTrailingInteractionElement ? (
+          <BaseBox
+            {...getVisualContainerStyles({
+              shouldStretch:
+                hasTrailingInteractionElement && Boolean(onTrailingInteractionElementClick),
+            })}
+          >
+            <BaseBox
+              paddingRight={getInteractionElementStyles({
+                hasTrailingIcon,
+                hasTrailingInteractionElement,
+                hasSuffix,
+                hasTrailingButton,
+                hasTrailingDropDown,
+              })}
+              display="flex"
+              alignItems="stretch"
+              alignSelf="stretch"
+              {...(!isReactNative() && { onClick: onTrailingInteractionElementClick })}
+            >
+              {trailingInteractionElement}
+            </BaseBox>
+          </BaseBox>
+        ) : null}
+        {hasSuffix ? (
+          <BaseBox {...getSuffixStyles({ hasTrailingIcon, hasSuffix, hasTrailingButton })}>
+            <Text
+              size={textSize[size]}
+              variant="body"
+              weight="regular"
+              color={isDisabled ? 'surface.text.gray.disabled' : 'surface.text.gray.subtle'}
+            >
+              {suffix}
+            </Text>
+          </BaseBox>
+        ) : null}
+        {hasInsideValidationText ? (
+          <BaseBox
+            id={validationState === 'error' ? errorTextId : successTextId}
+            paddingRight={size === 'xsmall' || size === 'small' ? 'spacing.3' : 'spacing.4'}
+            display="flex"
+            alignItems="center"
+          >
+            <Text
+              size={validationTextSize[size]}
+              variant="body"
+              weight="medium"
+              color={validationTextColor[validationState]}
+            >
+              {insideValidationText}
+            </Text>
+          </BaseBox>
+        ) : null}
+        {TrailingIcon ? (
+          <BaseBox
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            {...getTrailingIconStyles({ hasTrailingIcon, hasTrailingButton })}
+          >
+            <ValidationIconTooltip
+              showHintsAsTooltip={showHintsAsTooltip}
+              errorText={errorText}
+              successText={successText}
+              validationState={validationState}
+            >
+              <TrailingIcon
+                size={iconSize[size]}
+                color={
+                  isDisabled ? 'interactive.icon.gray.disabled' : trailingIconColor[validationState]
+                }
+              />
+            </ValidationIconTooltip>
+          </BaseBox>
+        ) : null}
+        {TrailingButton ? (
+          <BaseBox paddingRight="spacing.4" display="flex">
+            {React.cloneElement(TrailingButton, {
+              size,
+              variant: 'button',
+              isDisabled,
+            })}
+          </BaseBox>
+        ) : null}
+        {hasTrailingDropDown ? (
+          <BaseBox
+            paddingRight={`spacing.${inputDropdownButtonPadding[size]}`}
+            paddingY={`spacing.${inputDropdownButtonPadding[size]}`}
+            display="flex"
+            alignItems="stretch"
+            alignSelf="stretch"
+          >
+            {trailingDropDown}
+          </BaseBox>
+        ) : null}
+      </BaseBox>
+    );
+  }
+
+  return null;
+};

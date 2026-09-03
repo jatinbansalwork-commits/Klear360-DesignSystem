@@ -1,0 +1,863 @@
+/* eslint-disable react-native-a11y/has-valid-accessibility-descriptors */
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import { Title } from '@storybook/addon-docs/blocks';
+import React from 'react';
+import type { SearchInputProps } from './SearchInput';
+import { SearchInput as SearchInputComponent } from './SearchInput';
+import BaseBox from '~components/Box/BaseBox';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgTypes';
+import { Box } from '~components/Box';
+import { Text, Code } from '~components/Typography';
+import { Dropdown, DropdownOverlay, InputDropdownButton } from '~components/Dropdown';
+import {
+  ActionList,
+  ActionListItem,
+  ActionListSection,
+  ActionListItemIcon,
+} from '~components/ActionList';
+import {
+  Table,
+  TableHeader,
+  TableHeaderRow,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableToolbar,
+  TableToolbarActions,
+} from '~components/Table';
+import { Amount } from '~components/Amount';
+import {
+  SettingsIcon,
+  UserIcon,
+  SettlementsIcon,
+  TransactionsIcon,
+  HelpCircleIcon,
+  BulkPayoutsIcon,
+  InfoIcon,
+  GlobeIcon,
+} from '~components/Icons';
+import { Spinner } from '~components/Spinner';
+import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
+import { Link } from '~components/Link';
+
+const propsCategory = {
+  BASE_PROPS: 'Search Input Props',
+  LABEL_PROPS: 'Label Props',
+  TRAILING_VISUAL_PROPS: 'Trailing Visual Props',
+  KEYBOARD_PROPS: 'Keyboard Props',
+};
+
+export default {
+  title: 'Components/Input/SearchInput',
+  component: SearchInputComponent,
+  args: {
+    defaultValue: undefined,
+    placeholder: 'Search payment products, settings, and more',
+    name: 'search',
+    isDisabled: false,
+    value: undefined,
+    autoFocus: false,
+    size: 'medium',
+    onChange: ({ name, value }): void => {
+      console.log(`input field ${name} content changed to ${value}`);
+    },
+    onFocus: ({ name, value }): void => {
+      console.log(`input field ${name} received focus. The value is ${value}`);
+    },
+    onBlur: ({ name, value }): void => {
+      console.log(`input field ${name} content lost focus. The value is ${value}`);
+    },
+    label: 'Search here',
+    labelPosition: 'top',
+    helpText: undefined,
+    autoCapitalize: undefined,
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    defaultValue: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    testID: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    size: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    placeholder: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    name: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    isDisabled: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    value: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    autoFocus: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onSubmit: {
+      control: {
+        disable: true,
+      },
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onClick: {
+      control: {
+        disable: true,
+      },
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onChange: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onFocus: {
+      control: {
+        disable: true,
+      },
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onBlur: {
+      control: {
+        disable: true,
+      },
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    label: {
+      table: {
+        category: propsCategory.LABEL_PROPS,
+      },
+    },
+    accessibilityLabel: {
+      table: {
+        category: propsCategory.LABEL_PROPS,
+      },
+    },
+    labelPosition: {
+      table: {
+        category: propsCategory.LABEL_PROPS,
+      },
+    },
+    labelSuffix: {
+      table: {
+        category: propsCategory.LABEL_PROPS,
+      },
+    },
+    labelTrailing: {
+      table: {
+        category: propsCategory.LABEL_PROPS,
+      },
+    },
+    helpText: {
+      table: {
+        category: propsCategory.BASE_PROPS,
+      },
+    },
+    onClearButtonClick: {
+      table: {
+        category: propsCategory.TRAILING_VISUAL_PROPS,
+      },
+    },
+    isLoading: {
+      table: {
+        category: propsCategory.TRAILING_VISUAL_PROPS,
+      },
+    },
+    autoCapitalize: {
+      table: {
+        category: propsCategory.KEYBOARD_PROPS,
+      },
+    },
+    ...getStyledPropsArgTypes(),
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <StoryPageWrapper
+          componentDescription="The SearchInput component is a component that can be used to input name, email, telephone, url, search or plain text."
+          componentName="SearchInput"
+          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Input/SearchInput/_decisions/decisions.md"
+          figmaURL="https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=85072%3A160345&mode=design&t=Pv93G8LK6OtL4wwk-1"
+        >
+          <Title>Usage</Title>
+          <Sandbox>
+            {`
+              import { SearchInput } from '@klear/klear360/components';
+
+              function App() {
+                return (
+                  <SearchInput
+                    label="Name"
+                    placeholder="Enter Name"
+                    onChange={(e) => console.log(e)}
+                  />
+                )
+              }
+
+              export default App;
+            `}
+          </Sandbox>
+        </StoryPageWrapper>
+      ),
+    },
+  },
+} as Meta<SearchInputProps>;
+
+const menuItems = [
+  { title: 'Account & Settings', icon: SettingsIcon },
+  { title: 'Profile', icon: UserIcon },
+  { title: 'Transactions', icon: TransactionsIcon },
+  { title: 'Help', icon: HelpCircleIcon },
+  { title: 'Settlements', icon: SettlementsIcon },
+  { title: 'Payouts', icon: BulkPayoutsIcon },
+];
+
+const SearchInputTemplate: StoryFn<typeof SearchInputComponent> = (args) => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const filteredItems = menuItems.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+  return (
+    <BaseBox>
+      <SearchInputComponent {...args} onChange={({ value }) => setSearchTerm(value as string)} />
+      <ActionList>
+        <ActionListSection title={`${filteredItems.length} items found`}>
+          {filteredItems.map((item, index) => (
+            <ActionListItem
+              key={index}
+              title={item.title}
+              value={item.title}
+              leading={<ActionListItemIcon icon={item.icon} />}
+            />
+          ))}
+        </ActionListSection>
+      </ActionList>
+    </BaseBox>
+  );
+};
+
+export const Default = SearchInputTemplate.bind({});
+Default.storyName = 'Default';
+
+export const SearchInputHelpText = SearchInputTemplate.bind({});
+SearchInputHelpText.storyName = 'SearchInput with Help Text';
+SearchInputHelpText.args = {
+  helpText: 'Please enter an item to search',
+};
+
+export const SearchInputWithoutLabel = SearchInputTemplate.bind({});
+SearchInputWithoutLabel.storyName = 'SearchInput without label';
+SearchInputWithoutLabel.args = {
+  defaultValue: 'Transactions',
+  label: undefined,
+  accessibilityLabel: 'Search payment products, settings, and more.',
+};
+
+const SearchInputSizesTemplate: StoryFn<typeof SearchInputComponent> = ({ ...args }) => {
+  return (
+    <Box display="flex" flexDirection="column">
+      <Text size="large" marginBottom="spacing.4">
+        Medium Size:
+      </Text>
+      <SearchInputComponent {...args} size="medium" />
+      <Text size="large" marginTop="spacing.4" marginBottom="spacing.4">
+        Large Size:
+      </Text>
+      <SearchInputComponent {...args} size="large" />
+    </Box>
+  );
+};
+export const SearchInputSizes = SearchInputSizesTemplate.bind({});
+
+const SearchInputWithDropdownTemplate: StoryFn<typeof SearchInputComponent> = (args) => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [isFetching, setIsFetching] = React.useState(false);
+
+  // Set a timeout to simulate fetching data
+  React.useEffect(() => {
+    if (searchTerm.length > 0) {
+      setIsFetching(true);
+      setTimeout(() => {
+        setIsFetching(false);
+      }, 1000);
+    }
+  }, [searchTerm]);
+
+  const popularItems = [
+    { title: 'Transactions', icon: TransactionsIcon },
+    { title: 'Settlements', icon: SettlementsIcon },
+    { title: 'Account & Settings', icon: SettingsIcon },
+  ];
+  const filteredItems = menuItems.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  return (
+    <Dropdown>
+      <SearchInputComponent
+        label="Search"
+        placeholder="Search here"
+        {...args}
+        onChange={({ value }) => setSearchTerm(value as string)}
+        trailing={
+          <Dropdown>
+            <InputDropdownButton defaultValue="home" />
+            <DropdownOverlay>
+              <ActionList>
+                <ActionListItem title="Home" value="home" />
+                <ActionListItem title="Pricing" value="pricing" />
+              </ActionList>
+            </DropdownOverlay>
+          </Dropdown>
+        }
+      />
+
+      <DropdownOverlay>
+        {isFetching ? (
+          <BaseBox display="flex" justifyContent="center" padding="spacing.4">
+            <Spinner accessibilityLabel="Fetching data" />
+          </BaseBox>
+        ) : (
+          <ActionList>
+            {searchTerm.length === 0 ? (
+              <ActionListSection title="Popular Searches">
+                {popularItems.map((item, index) => (
+                  <ActionListItem
+                    key={index}
+                    title={item.title}
+                    value={item.title}
+                    leading={<ActionListItemIcon icon={item.icon} />}
+                  />
+                ))}
+              </ActionListSection>
+            ) : (
+              <ActionListSection title={`${filteredItems.length} items found`}>
+                {filteredItems.map((item, index) => (
+                  <ActionListItem
+                    key={index}
+                    title={item.title}
+                    value={item.title}
+                    leading={<ActionListItemIcon icon={item.icon} />}
+                  />
+                ))}
+              </ActionListSection>
+            )}
+          </ActionList>
+        )}
+      </DropdownOverlay>
+    </Dropdown>
+  );
+};
+
+export const SearchInputWithDropdown = SearchInputWithDropdownTemplate.bind({});
+SearchInputWithDropdown.storyName = 'With Dropdown';
+
+const SearchInputWithDisabledDropdownTemplate: StoryFn<typeof SearchInputComponent> = (args) => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [isFetching, setIsFetching] = React.useState(false);
+
+  // Set a timeout to simulate fetching data
+  React.useEffect(() => {
+    if (searchTerm.length > 0) {
+      setIsFetching(true);
+      setTimeout(() => {
+        setIsFetching(false);
+      }, 1000);
+    }
+  }, [searchTerm]);
+
+  const popularItems = [
+    { title: 'Transactions', icon: TransactionsIcon },
+    { title: 'Settlements', icon: SettlementsIcon },
+    { title: 'Account & Settings', icon: SettingsIcon },
+  ];
+  const filteredItems = menuItems.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  return (
+    <Dropdown>
+      <SearchInputComponent
+        label="Search"
+        placeholder="Search here"
+        {...args}
+        onChange={({ value }) => setSearchTerm(value as string)}
+        trailing={
+          <Dropdown>
+            <InputDropdownButton isDisabled defaultValue="home" />
+            <DropdownOverlay>
+              <ActionList>
+                <ActionListItem title="Home" value="home" />
+                <ActionListItem title="Pricing" value="pricing" />
+              </ActionList>
+            </DropdownOverlay>
+          </Dropdown>
+        }
+      />
+
+      <DropdownOverlay>
+        {isFetching ? (
+          <BaseBox display="flex" justifyContent="center" padding="spacing.4">
+            <Spinner accessibilityLabel="Fetching data" />
+          </BaseBox>
+        ) : (
+          <ActionList>
+            {searchTerm.length === 0 ? (
+              <ActionListSection title="Popular Searches">
+                {popularItems.map((item, index) => (
+                  <ActionListItem
+                    key={index}
+                    title={item.title}
+                    value={item.title}
+                    leading={<ActionListItemIcon icon={item.icon} />}
+                  />
+                ))}
+              </ActionListSection>
+            ) : (
+              <ActionListSection title={`${filteredItems.length} items found`}>
+                {filteredItems.map((item, index) => (
+                  <ActionListItem
+                    key={index}
+                    title={item.title}
+                    value={item.title}
+                    leading={<ActionListItemIcon icon={item.icon} />}
+                  />
+                ))}
+              </ActionListSection>
+            )}
+          </ActionList>
+        )}
+      </DropdownOverlay>
+    </Dropdown>
+  );
+};
+
+const SearchInputWithControlledDropdownTemplate: StoryFn<typeof SearchInputComponent> = (args) => {
+  const [inputDropdownValue, setInputDropdownValue] = React.useState('payment-products');
+  return (
+    <Box display="flex" flexDirection="column">
+      <SearchInputComponent
+        label="Search"
+        placeholder="Search here"
+        {...args}
+        trailing={
+          <Dropdown>
+            <InputDropdownButton
+              value={inputDropdownValue}
+              onChange={({ value }) => setInputDropdownValue(value)}
+            />
+            <DropdownOverlay>
+              <ActionList>
+                <ActionListItem title="Payment Products" value="payment-products" />
+                <ActionListItem title="Business Credit Card" value="business-credit-card" />
+                <ActionListItem title="Lending Tech Stack" value="lending-tech-stack" />
+              </ActionList>
+            </DropdownOverlay>
+          </Dropdown>
+        }
+      />
+    </Box>
+  );
+};
+
+export const SearchInputWithControlledDropdown = SearchInputWithControlledDropdownTemplate.bind({});
+SearchInputWithControlledDropdown.storyName = 'With Controlled Dropdown';
+
+export const SearchInputWithDisabledDropdown = SearchInputWithDisabledDropdownTemplate.bind({});
+SearchInputWithDisabledDropdown.storyName = 'With Dropdown Disabled';
+
+const SearchInputWithTableTemplate: StoryFn<typeof SearchInputComponent> = () => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  type Item = {
+    id: string;
+    paymentId: string;
+    amount: number;
+    date: Date;
+    method: string;
+  };
+
+  const nodes: Item[] = [
+    ...Array.from({ length: 10 }, (_, i) => ({
+      id: (i + 1).toString(),
+      paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
+      amount: Number((Math.random() * 10000).toFixed(2)),
+      date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
+      method: ['Bank Transfer', 'Credit Card', 'UPI', 'PayPal'][Math.floor(i / 4)],
+      account: Math.floor(Math.random() * 1000000000).toString(),
+    })),
+  ];
+
+  const data: TableData<Item> = {
+    nodes,
+  };
+
+  return (
+    <Table
+      data={data}
+      toolbar={
+        <TableToolbar>
+          <TableToolbarActions>
+            <BaseBox width="300px">
+              <SearchInputComponent
+                label="Search Transaction"
+                onChange={({ value }) => setSearchTerm(value as string)}
+                placeholder="Transaction method"
+                helpText='Search by "Credit Card", "UPI", "Paypal", etc.'
+              />
+            </BaseBox>
+          </TableToolbarActions>
+        </TableToolbar>
+      }
+    >
+      {(tableData: Item[]) => (
+        <>
+          <TableHeader>
+            <TableHeaderRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>Amount</TableHeaderCell>
+              <TableHeaderCell>Date</TableHeaderCell>
+              <TableHeaderCell>Method</TableHeaderCell>
+            </TableHeaderRow>
+          </TableHeader>
+          <TableBody>
+            {tableData
+              // Filter item based on the search input value
+              .filter((tableItem) =>
+                tableItem.method.toLowerCase().includes(searchTerm.toLowerCase()),
+              )
+              .map((tableItem, index) => (
+                <TableRow key={index} item={tableItem}>
+                  <TableCell>
+                    <Code size="medium">{tableItem.paymentId}</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Amount value={tableItem.amount} />
+                  </TableCell>
+                  <TableCell>
+                    {tableItem.date?.toLocaleDateString('en-IN', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                    })}
+                  </TableCell>
+                  <TableCell>{tableItem.method}</TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </>
+      )}
+    </Table>
+  );
+};
+
+export const SearchInputWithTable = SearchInputWithTableTemplate.bind({});
+SearchInputWithTable.storyName = 'With Table';
+
+export const SearchInputWithLabelSuffixTrailing = SearchInputTemplate.bind({});
+SearchInputWithLabelSuffixTrailing.storyName = 'SearchInput with Label Suffix & Trailing';
+SearchInputWithLabelSuffixTrailing.args = {
+  label: 'Search here',
+  placeholder: 'Search here',
+  labelSuffix: (
+    <Tooltip content="Search for payment products, settings, and more" placement="right">
+      <TooltipInteractiveWrapper display="flex">
+        <InfoIcon size="small" color="surface.icon.gray.muted" />
+      </TooltipInteractiveWrapper>
+    </Tooltip>
+  ),
+  labelTrailing: <Link size="small">Learn more</Link>,
+};
+
+export const SearchInputShowcase: StoryFn<typeof SearchInputComponent> = () => {
+  return (
+    <Box display="flex" flexDirection="column" gap="spacing.8">
+      {/* Basic Variants */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          Basic Variants
+        </Text>
+        <Box display="flex" flexDirection="column" gap="spacing.5">
+          <SearchInputComponent
+            label="Default"
+            placeholder="Search payment products, settings, and more"
+            name="default"
+          />
+          <SearchInputComponent label="With Value" defaultValue="Transactions" name="withValue" />
+          <SearchInputComponent
+            label="With Help Text"
+            placeholder="Search payment products, settings, and more"
+            helpText="This is a helpful message"
+            name="withHelpText"
+          />
+          <SearchInputComponent
+            label="Disabled"
+            placeholder="Search payment products, settings, and more"
+            isDisabled
+            name="disabled"
+          />
+        </Box>
+      </Box>
+
+      {/* Sizes */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          Sizes
+        </Text>
+        <Box display="flex" flexDirection="column" gap="spacing.5">
+          <SearchInputComponent
+            label="Medium Size"
+            placeholder="Medium size search input"
+            size="medium"
+            name="sizeMedium"
+          />
+          <SearchInputComponent
+            label="Large Size"
+            placeholder="Large size search input"
+            size="large"
+            name="sizeLarge"
+          />
+        </Box>
+      </Box>
+
+      {/* Label Positions */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          Label Positions
+        </Text>
+        <Box display="flex" flexDirection="column" gap="spacing.5">
+          <SearchInputComponent
+            label="Label Top"
+            placeholder="Label on top"
+            labelPosition="top"
+            name="labelTop"
+          />
+          <SearchInputComponent
+            label="Label Left"
+            placeholder="Label on left"
+            labelPosition="left"
+            name="labelLeft"
+          />
+        </Box>
+      </Box>
+
+      {/* Without Label */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          Without Label
+        </Text>
+        <SearchInputComponent
+          placeholder="Search payment products, settings, and more"
+          accessibilityLabel="Search payment products, settings, and more"
+          defaultValue="Transactions"
+          name="withoutLabel"
+        />
+      </Box>
+
+      {/* With Dropdowns */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          With Trailing Dropdown
+        </Text>
+        <Box display="flex" flexDirection="column" gap="spacing.5">
+          <Box>
+            <Text weight="semibold" marginBottom="spacing.3">
+              Medium Size
+            </Text>
+            <SearchInputComponent
+              label="Search"
+              placeholder="Search here"
+              size="medium"
+              trailing={
+                <Dropdown>
+                  <InputDropdownButton defaultValue="payment-products" />
+                  <DropdownOverlay>
+                    <ActionList>
+                      <ActionListItem title="Payment Products" value="payment-products" />
+                      <ActionListItem title="Business Credit Card" value="business-credit-card" />
+                      <ActionListItem title="Lending Tech Stack" value="lending-tech-stack" />
+                    </ActionList>
+                  </DropdownOverlay>
+                </Dropdown>
+              }
+              name="trailingDropdownMedium"
+            />
+          </Box>
+
+          <Box>
+            <Text weight="semibold" marginBottom="spacing.3">
+              Large Size
+            </Text>
+            <SearchInputComponent
+              label="Search"
+              placeholder="Search here"
+              size="large"
+              trailing={
+                <Dropdown>
+                  <InputDropdownButton defaultValue="payment-products" />
+                  <DropdownOverlay>
+                    <ActionList>
+                      <ActionListItem title="Payment Products" value="payment-products" />
+                      <ActionListItem title="Business Credit Card" value="business-credit-card" />
+                      <ActionListItem title="Lending Tech Stack" value="lending-tech-stack" />
+                    </ActionList>
+                  </DropdownOverlay>
+                </Dropdown>
+              }
+              name="trailingDropdownLarge"
+            />
+          </Box>
+
+          <Box>
+            <Text weight="semibold" marginBottom="spacing.3">
+              With Icon in Dropdown
+            </Text>
+            <SearchInputComponent
+              label="Search"
+              placeholder="Search here"
+              trailing={
+                <Dropdown>
+                  <InputDropdownButton defaultValue="www" icon={GlobeIcon} />
+                  <DropdownOverlay>
+                    <ActionList>
+                      <ActionListItem title="www." value="www" />
+                      <ActionListItem title="blog." value="blog" />
+                      <ActionListItem title="shop." value="shop" />
+                    </ActionList>
+                  </DropdownOverlay>
+                </Dropdown>
+              }
+              name="trailingDropdownWithIcon"
+            />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Loading State */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          Loading State
+        </Text>
+        <SearchInputComponent
+          label="Loading"
+          placeholder="Search payment products, settings, and more"
+          isLoading
+          name="loading"
+        />
+      </Box>
+
+      {/* With Clear Button */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="feedback.text.information.intense"
+        >
+          With Clear Button
+        </Text>
+        <SearchInputComponent
+          label="With Clear Button"
+          defaultValue="Clear me"
+          name="clearButton"
+        />
+      </Box>
+
+      {/* With Label Suffix & Trailing */}
+      <Box>
+        <Text
+          size="large"
+          weight="semibold"
+          marginBottom="spacing.4"
+          color="surface.text.gray.subtle"
+        >
+          With Label Suffix & Trailing
+        </Text>
+        <SearchInputComponent
+          label="Search"
+          placeholder="Search payment products, settings, and more"
+          labelSuffix={
+            <Tooltip content="Search for payment products, settings, and more" placement="right">
+              <TooltipInteractiveWrapper display="flex">
+                <InfoIcon size="small" color="surface.icon.gray.muted" />
+              </TooltipInteractiveWrapper>
+            </Tooltip>
+          }
+          labelTrailing={<Link size="small">Learn more</Link>}
+          name="labelSuffixTrailing"
+        />
+      </Box>
+    </Box>
+  );
+};
+
+SearchInputShowcase.storyName = 'Showcase - All Variants';
+SearchInputShowcase.parameters = {
+  docs: {
+    description: {
+      story:
+        'A comprehensive showcase of all SearchInput variants including basic states, sizes, label positions, dropdowns, loading states, and more.',
+    },
+  },
+};

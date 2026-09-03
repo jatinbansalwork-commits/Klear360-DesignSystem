@@ -1,0 +1,194 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+import type { ReactElement } from 'react';
+import React from 'react';
+import { BaseText } from '../BaseText';
+import type { BaseTextProps, BaseTextSizes } from '../BaseText/types';
+import { useValidateAsProp } from '../utils';
+import { getStyledProps } from '~components/Box/styledProps';
+import type { StyledPropsKlear360 } from '~components/Box/styledProps';
+import type { Klear360ElementRef, TestID, ElementTiming } from '~utils/types';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+import { throwKlear360Error } from '~utils/logger';
+
+const validAsValues = ['p', 'span', 'div', 'abbr', 'figcaption', 'cite', 'q', 'label'] as const;
+type TextCommonProps = {
+  as?: typeof validAsValues[number];
+  truncateAfterLines?: number;
+  children: React.ReactNode;
+  weight?: Extract<BaseTextProps['fontWeight'], 'regular' | 'medium' | 'semibold'>;
+  /**
+   * Overrides the color of the Text component.
+   *
+   * **Note** This takes priority over `type` and `contrast` prop to decide color of text
+   */
+  color?: BaseTextProps['color'];
+  textAlign?: BaseTextProps['textAlign'];
+  textTransform?: BaseTextProps['textTransform'];
+  textDecorationLine?: BaseTextProps['textDecorationLine'];
+  wordBreak?: BaseTextProps['wordBreak'];
+} & TestID &
+  ElementTiming &
+  StyledPropsKlear360;
+
+export type TextVariant = 'body' | 'caption';
+
+type TextBodyVariant = TextCommonProps & {
+  variant?: Extract<TextVariant, 'body'>;
+  size?: Extract<BaseTextSizes, 'xsmall' | 'small' | 'medium' | 'large'>;
+};
+
+type TextCaptionVariant = TextCommonProps & {
+  variant?: Extract<TextVariant, 'caption'>;
+  size?: Extract<BaseTextSizes, 'small' | 'medium'>;
+};
+
+export type TextProps<T> = T extends { variant: infer Variant }
+  ? Variant extends 'caption'
+    ? TextCaptionVariant
+    : Variant extends 'body'
+    ? TextBodyVariant
+    : T
+  : T;
+
+type GetTextPropsReturn = Omit<BaseTextProps, 'children'>;
+type GetTextProps<T extends { variant: TextVariant }> = Pick<
+  TextProps<T>,
+  | 'variant'
+  | 'weight'
+  | 'size'
+  | 'color'
+  | 'testID'
+  | 'textAlign'
+  | 'textDecorationLine'
+  | 'textTransform'
+>;
+
+const getTextProps = <T extends { variant: TextVariant }>({
+  variant,
+  weight,
+  size,
+  color = 'surface.text.gray.normal',
+  testID,
+  textAlign,
+  textDecorationLine,
+}: GetTextProps<T>): GetTextPropsReturn => {
+  const props: GetTextPropsReturn = {
+    color,
+    fontSize: 100,
+    fontWeight: weight ?? 'regular',
+    fontStyle: 'normal',
+    lineHeight: 100,
+    fontFamily: 'text',
+    componentName: 'text',
+    testID,
+    textAlign,
+    textDecorationLine,
+  };
+
+  if (variant === 'caption') {
+    // variant of caption can only have size of small
+    if (size && size !== 'small' && size !== 'medium') {
+      if (__DEV__) {
+        throwKlear360Error({
+          moduleName: 'Text',
+          message: `size cannot be '${size}' when variant is 'caption'`,
+        });
+      }
+      // Set size as small in case of invalid size
+      size = 'small';
+    }
+  } else if (variant !== 'caption' && !size) {
+    size = 'medium';
+  }
+
+  if (variant === 'body') {
+    if (size === 'xsmall') {
+      props.fontSize = 25;
+      props.lineHeight = 25;
+      props.letterSpacing = 50;
+    }
+    if (size === 'small') {
+      props.fontSize = 75;
+      props.lineHeight = 75;
+      props.letterSpacing = 50;
+    }
+    if (size === 'medium') {
+      props.fontSize = 100;
+      props.lineHeight = 100;
+      props.letterSpacing = 50;
+    }
+    if (size === 'large') {
+      props.fontSize = 200;
+      props.lineHeight = 200;
+      props.letterSpacing = 25;
+    }
+  }
+  if (variant === 'caption') {
+    if (size === 'small') {
+      props.fontSize = 50;
+      props.lineHeight = 50;
+      props.fontWeight = 'regular';
+      props.letterSpacing = 50;
+    }
+    if (size === 'medium') {
+      props.fontSize = 100;
+      props.lineHeight = 50;
+      props.fontWeight = 'regular';
+      props.letterSpacing = 50;
+    }
+  }
+
+  return props;
+};
+
+const _Text = <T extends { variant: TextVariant }>(
+  {
+    as = 'p',
+    variant = 'body',
+    weight = 'regular',
+    size,
+    truncateAfterLines,
+    children,
+    color,
+    testID,
+    textAlign,
+    textDecorationLine,
+    wordBreak,
+    textTransform,
+    elementtiming,
+    ...styledProps
+  }: TextProps<T>,
+  ref: React.Ref<Klear360ElementRef>,
+): ReactElement => {
+  const props: Omit<BaseTextProps, 'children'> = {
+    as,
+    truncateAfterLines,
+    wordBreak,
+    textTransform,
+    elementtiming,
+    ...getTextProps({
+      variant,
+      weight,
+      color,
+      size,
+      testID,
+      textAlign,
+      textDecorationLine,
+    }),
+  };
+
+  useValidateAsProp({ componentName: 'Text', as, validAsValues });
+
+  return (
+    <BaseText ref={ref} {...props} {...getStyledProps(styledProps)}>
+      {children}
+    </BaseText>
+  );
+};
+
+const Text = assignWithoutSideEffects(React.forwardRef(_Text), {
+  displayName: 'Text',
+  componentId: 'Text',
+});
+
+export { Text, getTextProps };

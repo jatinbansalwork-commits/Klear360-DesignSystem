@@ -1,0 +1,287 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+
+import React from 'react';
+import styled from 'styled-components';
+import { useDropdown } from './useDropdown';
+import { dropdownComponentIds } from './dropdownComponentIds';
+import { makeSpace } from '~utils';
+import { makeAccessible } from '~utils/makeAccessible';
+import type { DataAnalyticsAttribute } from '~utils/types';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { metaAttribute } from '~utils/metaAttribute';
+import { spacing } from '~tokens/global';
+import type { BaseButtonProps } from '~components/Button/BaseButton/BaseButton';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+import { ChevronUpDownIcon } from '~components/Icons';
+import { Box } from '~components/Box';
+import { getFocusRingStyles } from '~utils/getFocusRingStyles';
+import { Text } from '~components/Typography';
+import { getActionListContainerRole } from '~components/ActionList/getA11yRoles';
+import { useId } from '~utils/useId';
+import type { IconComponent } from '~components/Icons';
+import { useControlledDropdownInput } from '~utils/useControlledDropdownInput';
+import {
+  inputDropdownButtonBorderRadius,
+  baseInputHeight,
+  inputDropdownButtonPadding,
+} from '~components/Input/BaseInput/baseInputTokens';
+import type { BaseInputProps } from '~components/Input/BaseInput/BaseInput';
+
+type BaseInputDropDownButtonProps = {
+  /**
+   * isOpen is used to control the open state of the dropdown
+   */
+  isOpen?: boolean;
+  /**
+   * onBlur is the callback function that is called when the dropdown is blurred
+   */
+  onBlur?: BaseButtonProps['onBlur'];
+  /**
+   * onKeyDown is the callback function that is called when the dropdown is keyed down
+   */
+  onKeyDown?: BaseButtonProps['onKeyDown'];
+  /**
+   * onClick is the callback function that is called when the dropdown is clicked
+   */
+  onClick?: BaseButtonProps['onClick'];
+  /**
+   * accessibilityLabel is the label of the dropdown
+   */
+  accessibilityLabel?: string;
+  /**
+   * @private
+   */
+  _isInsideSearchInput?: boolean;
+  /**
+   * isDisabled is the disabled state of the dropdown
+   */
+  isDisabled?: boolean;
+  /**
+   * onChange is the callback function that is called when the dropdown is changed
+   */
+  onChange?: (props: { name: string; value: string }) => void;
+  /**
+   * name is the name of the dropdown
+   */
+  name?: string;
+  /**
+   * testID is the testID of the dropdown
+   */
+  testID?: string;
+  /**
+   * icon is the icon of the dropdown
+   */
+  icon?: IconComponent;
+  /**
+   * leading is a custom leading element (e.g., flag image)
+   */
+  leading?: React.ReactNode;
+  /**
+   * showDisplayValue shows the selected value text in the trigger button.
+   * When false, only the leading element (e.g., a flag) is shown.
+   * @default true
+   */
+  showDisplayValue?: boolean;
+  /**
+   * size is the size of the dropdown button (inherited from parent input)
+   * @default 'medium'
+   */
+  size?: NonNullable<BaseInputProps['size']>;
+} & DataAnalyticsAttribute;
+
+type ControlledInputDropDownButtonProps = BaseInputDropDownButtonProps & {
+  /**
+   * value is the value of the dropdown
+   */
+  value: string;
+  defaultValue?: never;
+};
+
+type UncontrolledInputDropDownButtonProps = BaseInputDropDownButtonProps & {
+  value?: never;
+  /**
+   * defaultValue is the default selected value of the dropdown
+   */
+  defaultValue: string;
+};
+
+type InputDropDownButtonProps =
+  | ControlledInputDropDownButtonProps
+  | UncontrolledInputDropDownButtonProps;
+
+const StyledSearchTrailingDropdown = styled.button<{
+  $isSelected?: boolean;
+  isDisabled?: boolean;
+  $size: NonNullable<BaseInputProps['size']>;
+}>(({ theme, isDisabled, $size }) => {
+  // The wrapper BaseBox in BaseInputVisuals already applies paddingY
+  // So we need to subtract that from the baseInputHeight to get the correct button height
+  const paddingValue = inputDropdownButtonPadding[$size];
+  const wrapperVerticalPadding = spacing[paddingValue] * 2; // top + bottom padding from wrapper
+  const buttonHeight = baseInputHeight[$size] - wrapperVerticalPadding;
+
+  return {
+    backgroundColor: theme.colors.transparent,
+    gap: makeSpace(theme.spacing[2]),
+    display: 'flex',
+    boxSizing: 'border-box',
+    height: makeSpace(buttonHeight),
+    padding: makeSpace(theme.spacing[2]),
+    alignItems: 'center',
+    border: 'none',
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    '&[disabled]': {
+      cursor: 'not-allowed',
+      pointerEvents: 'none',
+    },
+    '&:focus': {
+      ...getFocusRingStyles({ theme }),
+      backgroundColor: theme.colors.interactive.background.gray.faded,
+    },
+    '&:hover': {
+      backgroundColor: theme.colors.interactive.background.gray.faded,
+    },
+    '&:focus-visible': {
+      outlineOffset: makeSpace(theme.spacing[0]),
+    },
+    borderRadius: inputDropdownButtonBorderRadius[$size],
+  };
+});
+
+const _InputDropdownButton = ({
+  onClick,
+  onBlur,
+  onKeyDown,
+  accessibilityLabel,
+  _isInsideSearchInput = false,
+  isDisabled,
+  onChange,
+  name,
+  testID,
+  value,
+  defaultValue,
+  icon: Icon,
+  leading,
+  showDisplayValue = true,
+  size = 'medium',
+  ...rest
+}: InputDropDownButtonProps): React.ReactElement | null => {
+  const idBase = useId('input-drop-down-button');
+  const {
+    onTriggerClick,
+    onTriggerKeydown,
+    dropdownBaseId,
+    isOpen,
+    activeIndex,
+    hasFooterAction,
+    triggererRef,
+    displayValue,
+  } = useDropdown();
+
+  useControlledDropdownInput({
+    onChange: ({ name, values }) => {
+      onChange?.({
+        name: name || idBase,
+        value: values[0],
+      });
+    },
+    name,
+    value,
+    defaultValue,
+    triggererRef,
+    isSelectInput: false,
+  });
+
+  if (!displayValue) {
+    return null;
+  }
+
+  return (
+    <StyledSearchTrailingDropdown
+      type="button"
+      $size={size}
+      disabled={isDisabled}
+      onClick={(e) => {
+        if (isDisabled) return;
+        onTriggerClick();
+        // Setting it for web fails it on native typecheck and vice versa
+        onClick?.(e as any);
+        // Since this dropdown is inside another dropdown we should stop event stopPropagation.
+        e?.stopPropagation();
+      }}
+      onBlur={(e) => {
+        if (isDisabled) return;
+        // With button trigger, there is no "value" as such. It's just clickable items
+        // Setting it for web fails it on native typecheck and vice versa
+        onBlur?.(e as any);
+        e?.stopPropagation();
+      }}
+      onKeyDown={(e) => {
+        if (isDisabled) return;
+        onTriggerKeydown?.({ event: e as any });
+        // Setting it for web fails it on native typecheck and vice versa
+        onKeyDown?.(e as any);
+        e?.stopPropagation();
+      }}
+      {...makeAccessible({
+        label: accessibilityLabel ?? `change ${displayValue} filter`,
+        hasPopup: getActionListContainerRole(hasFooterAction, 'InputDropdownButton'),
+        expanded: isOpen,
+        controls: `${dropdownBaseId}-actionlist`,
+        activeDescendant: activeIndex >= 0 ? `${dropdownBaseId}-${activeIndex}` : undefined,
+      })}
+      ref={triggererRef}
+      isDisabled={isDisabled}
+      {...makeAnalyticsAttribute(rest)}
+      {...metaAttribute({ name: 'InputDropdownButton', testID })}
+    >
+      <Box
+        padding={`spacing.${inputDropdownButtonPadding[size]}`}
+        display="flex"
+        gap="spacing.2"
+        alignItems="center"
+      >
+        {_isInsideSearchInput && (
+          <Text
+            variant="body"
+            size="medium"
+            weight="regular"
+            color={isDisabled ? 'surface.text.gray.disabled' : 'surface.text.gray.muted'}
+          >
+            {' '}
+            in
+          </Text>
+        )}
+        {leading}
+        {Icon && (
+          <Icon
+            size="medium"
+            color={isDisabled ? 'surface.icon.gray.disabled' : 'surface.icon.gray.muted'}
+          />
+        )}
+
+        {showDisplayValue && (
+          <Text
+            variant="body"
+            size="medium"
+            weight="regular"
+            color={isDisabled ? 'surface.text.gray.disabled' : 'surface.text.gray.subtle'}
+          >
+            {displayValue}
+          </Text>
+        )}
+        <ChevronUpDownIcon
+          color={isDisabled ? 'surface.icon.gray.disabled' : 'surface.icon.gray.muted'}
+        />
+      </Box>
+    </StyledSearchTrailingDropdown>
+  );
+};
+
+const InputDropdownButton = assignWithoutSideEffects(_InputDropdownButton, {
+  componentId: dropdownComponentIds.triggers.InputDropdownButton,
+  displayName: 'InputDropDown',
+});
+
+export { InputDropdownButton };

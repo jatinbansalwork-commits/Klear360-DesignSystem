@@ -1,0 +1,559 @@
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useCallback,
+  isValidElement,
+  cloneElement,
+} from 'react';
+import {
+  LineChart as RechartsLineChart,
+  Line as RechartsLine,
+  ResponsiveContainer as RechartsResponsiveContainer,
+  Customized as RechartsCustomized,
+} from 'recharts';
+import { animate } from 'framer-motion';
+import { useChartsColorTheme, assignDataColorMapping } from '../utils';
+import { CommonChartComponentsContext } from '../CommonChartComponents';
+import type {
+  DataColorMapping,
+  SecondaryLabelMap,
+  ChartXAxisProps,
+  RangeMap,
+} from '../CommonChartComponents/types';
+import { componentId as commonComponentIds } from '../CommonChartComponents/tokens';
+import type { ChartLineProps, ChartLineWrapperProps } from './types';
+import { componentIds } from './componentIds';
+import {
+  getDefinedNumericPoints,
+  getInteriorGaps,
+  parsePathAnchors,
+  buildBridgePathData,
+} from '../utils/nullBridgeUtils';
+import { perLineBandClass } from '../utils/referenceBandUtils';
+import { LineChartContext, useLineChartContext } from './LineChartContext';
+import { useReferenceBand } from './useReferenceBand';
+import getIn from '~utils/lodashButBetter/get';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { metaAttribute } from '~utils/metaAttribute';
+import type { DataAnalyticsAttribute, TestID } from '~utils/types';
+import { useTheme } from '~components/Klear360Provider';
+import BaseBox from '~components/Box/BaseBox';
+import { getComponentId } from '~utils/isValidAllowedChildren';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+
+const getStrokeDasharray = (style?: ChartLineProps['strokeStyle']): string | undefined =>
+  style === 'dashed' ? '5 5' : style === 'dotted' ? '2 2' : undefined;
+
+// Dash pattern used for the bridge drawn across null points when `connectNulls` is enabled.
+const NULL_BRIDGE_DASHARRAY = '5 5';
+
+const Line: React.FC<ChartLineProps> = ({
+  color,
+  strokeStyle = 'solid',
+  type = 'monotone',
+  dot = false,
+  activeDot = true,
+  showLegend = true,
+  connectNulls = false,
+  connectNullsStyle = 'solid',
+  _index,
+  _colorTheme,
+  _totalLines,
+  hide,
+  dataKey,
+  // `rangeLowerDataKey` / `rangeUpperDataKey` drive this line's invisible bound lines below. The
+  // remaining range-* props are consumed by ChartLineWrapper's band layer / tooltip / legend; they
+  // must be destructured out here so they don't leak onto the underlying Recharts <Line>.
+  rangeLowerDataKey,
+  rangeUpperDataKey,
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  rangeName,
+  rangeColor,
+  showRangeLegend,
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+  ...props
+}) => {
+  const { theme } = useTheme();
+  const { hoveredDataKey, setHoveredDataKey } = useLineChartContext();
+
+  const themeColors = useChartsColorTheme({
+    colorTheme: _colorTheme,
+    chartName: 'line',
+    chartDataIndicators: _totalLines,
+  });
+
+  const isOtherLineHovered = hoveredDataKey !== null && hoveredDataKey !== dataKey;
+  const colorToken = getIn(theme.colors, color ?? themeColors[_index ?? 0]);
+
+  const strokeDasharray = getStrokeDasharray(strokeStyle);
+
+  // A solid bridge just uses Recharts' native connectNulls on the main line. A dashed bridge keeps
+  // the main line gapped (connectNulls off) and is drawn separately by NullBridgeLayer.
+  const isSolidBridge = connectNulls && connectNullsStyle === 'solid';
+
+  const isLineDotted = strokeStyle === 'dashed';
+  const animationBegin = isLineDotted
+    ? theme.motion.delay.gentle + theme.motion.duration.xgentle
+    : theme.motion.delay.gentle;
+  const animationDuration = theme.motion.duration.xgentle;
+
+  // Animated opacity using framer-motion
+  const targetOpacity = isOtherLineHovered ? 0.2 : 1;
+  const [animatedOpacity, setAnimatedOpacity] = useState(targetOpacity);
+
+  useEffect(() => {
+    const controls = animate(animatedOpacity, targetOpacity, {
+      duration: 0.5,
+      ease: 'easeInOut',
+      onUpdate: (latest) => setAnimatedOpacity(latest),
+    });
+
+    return () => controls.stop();
+  }, [targetOpacity]);
+
+  const updateHoveredDataKey = useCallback(
+    (key: string | null) => {
+      if (!hide) {
+        setHoveredDataKey?.(key);
+      }
+    },
+    [hide, setHoveredDataKey],
+  );
+
+  const handleMouseEnter = useCallback(() => {
+    updateHoveredDataKey(dataKey as string);
+  }, [dataKey, updateHoveredDataKey]);
+
+  const handleMouseLeave = useCallback(() => {
+    updateHoveredDataKey(null);
+  }, [updateHoveredDataKey]);
+
+  // activeDot config with hover handlers
+  const activeDotConfig = useMemo(
+    () =>
+      activeDot
+        ? {
+            onMouseEnter: () => updateHoveredDataKey(dataKey as string),
+            onMouseLeave: () => updateHoveredDataKey(null),
+          }
+        : false,
+    [activeDot, dataKey, updateHoveredDataKey],
+  );
+
+  // When this line declares a range, render two invisible bound lines so Recharts computes their
+  // geometry and folds them into the y-domain. ChartLineWrapper's reference-band layer reads these
+  // curves (by className) and paints the shaded band between them, color-matched to this line.
+  const hasRange = Boolean(rangeLowerDataKey && rangeUpperDataKey);
+
+  return (
+    <>
+      {hasRange ? (
+        <>
+          <RechartsLine
+            key={`band-${dataKey}-lower`}
+            className={perLineBandClass(dataKey as string, 'lower')}
+            type="monotone"
+            dataKey={rangeLowerDataKey}
+            stroke="transparent"
+            strokeWidth={1}
+            dot={false}
+            activeDot={false}
+            connectNulls
+            legendType="none"
+            tooltipType="none"
+            isAnimationActive={false}
+            hide={hide}
+          />
+          <RechartsLine
+            key={`band-${dataKey}-upper`}
+            className={perLineBandClass(dataKey as string, 'upper')}
+            type="monotone"
+            dataKey={rangeUpperDataKey}
+            stroke="transparent"
+            strokeWidth={1}
+            dot={false}
+            activeDot={false}
+            connectNulls
+            legendType="none"
+            tooltipType="none"
+            isAnimationActive={false}
+            hide={hide}
+          />
+        </>
+      ) : null}
+      <RechartsLine
+        key={`line-${dataKey}-background`}
+        type="monotone"
+        dataKey={dataKey}
+        stroke="transparent"
+        strokeWidth={15}
+        dot={false}
+        activeDot={false}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        connectNulls
+        legendType="none"
+        tooltipType="none"
+        hide={hide}
+      />
+      {/*
+       * The dashed bridge across null points is rendered by ChartLineWrapper's <Customized> layer
+       * (NullBridgeLayer) as a curved path following the monotone spline, so it can span only the
+       * no-data stretch while matching the solid line's curve.
+       */}
+      <RechartsLine
+        key={`line-${dataKey}-main`}
+        stroke={colorToken}
+        strokeWidth={1.5}
+        strokeDasharray={strokeDasharray}
+        type={type}
+        dataKey={dataKey}
+        activeDot={isOtherLineHovered ? false : activeDotConfig}
+        dot={dot}
+        connectNulls={isSolidBridge}
+        legendType={showLegend ? 'line' : 'none'}
+        animationBegin={animationBegin}
+        animationDuration={animationDuration}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        hide={hide}
+        // Animated opacity using framer-motion
+        strokeOpacity={animatedOpacity}
+        isAnimationActive={true}
+        {...props}
+      />
+    </>
+  );
+};
+
+const ChartLine = assignWithoutSideEffects(Line, {
+  componentId: componentIds.ChartLine,
+});
+
+// Main components
+const ChartLineWrapper: React.FC<ChartLineWrapperProps & TestID & DataAnalyticsAttribute> = ({
+  children,
+  colorTheme = 'categorical',
+  testID,
+  data,
+  ...restProps
+}) => {
+  const themeColors = useChartsColorTheme({
+    colorTheme,
+    chartName: 'line',
+  });
+
+  // State to track which line is currently hovered
+  const [hoveredDataKey, setHoveredDataKey] = useState<string | null>(null);
+  const [selectedDataKeys, setSelectedDataKeys] = useState<string[] | undefined>(undefined);
+
+  /**
+   * We need to check child of CharLineWrapper. if they have any custom color we store that.
+   * We need these mapping because colors of tooltip & legend is determine based on this
+   *  recharts do provide a color but it is hex code and we need klear360 color token .
+   */
+
+  const { dataColorMapping, lineChartModifiedChildrens, secondaryDataKey } = useMemo(() => {
+    const childrenArray = React.Children.toArray(children);
+    const dataColorMapping: DataColorMapping = {};
+    // Count ChartLine components
+    const totalLines = childrenArray.filter(
+      (child): child is React.ReactElement =>
+        isValidElement(child) && getComponentId(child) === componentIds.ChartLine,
+    ).length;
+
+    // Find ChartXAxis and extract secondaryDataKey
+    let secondaryDataKey: string | undefined;
+    for (const child of childrenArray) {
+      if (React.isValidElement(child) && getComponentId(child) === commonComponentIds.chartXAxis) {
+        secondaryDataKey = (child.props as ChartXAxisProps)?.secondaryDataKey;
+        break;
+      }
+    }
+
+    let LineChartIndex = 0;
+    const lineChartModifiedChildrens = React.Children.map(children, (child) => {
+      if (isValidElement(child) && getComponentId(child) === componentIds.ChartLine) {
+        const childColor = child?.props?.color;
+        const dataKey = (child?.props as ChartLineProps)?.dataKey as string;
+        if (dataKey) {
+          /**
+           *  if we have custom color given by user we use that other wise we just
+           *  assign theme colors to the dataColorMapping, in `assignDataColorMapping`
+           */
+          dataColorMapping[dataKey] = {
+            colorToken: childColor,
+            isCustomColor: Boolean(childColor),
+          };
+        }
+        // Pass hide prop based on whether this line's dataKey is NOT in selectedDataKeys
+        // If selectedDataKeys is undefined, show all lines (default behavior)
+        return cloneElement(child, {
+          _index: LineChartIndex++,
+          _colorTheme: colorTheme,
+          _totalLines: totalLines,
+          hide: selectedDataKeys ? !selectedDataKeys.includes(dataKey) : false,
+        } as Partial<ChartLineProps>);
+      }
+      return child;
+    });
+    assignDataColorMapping(dataColorMapping, themeColors);
+
+    return { dataColorMapping, lineChartModifiedChildrens, totalLines, secondaryDataKey };
+  }, [children, colorTheme, themeColors, selectedDataKeys]);
+
+  // Ordered ChartLine children (matching Recharts' render order) and which of them bridge nulls with
+  // a dashed stroke. Used to map each rendered line curve back to its dataKey when drawing bridges.
+  const chartLineOrder = useMemo(() => {
+    const lines: Array<{ dataKey: string; isDashedBridge: boolean }> = [];
+    React.Children.forEach(children, (child) => {
+      if (isValidElement(child) && getComponentId(child) === componentIds.ChartLine) {
+        const childProps = child.props as ChartLineProps;
+        const dataKey = childProps.dataKey as string;
+        if (dataKey) {
+          lines.push({
+            dataKey,
+            isDashedBridge:
+              childProps.connectNulls === true && childProps.connectNullsStyle === 'dashed',
+          });
+        }
+      }
+    });
+    return lines;
+  }, [children]);
+
+  const hasDashedBridge = chartLineOrder.some((line) => line.isDashedBridge);
+
+  /**
+   * The dashed bridges are drawn as curved paths derived from Recharts' own rendered geometry:
+   * after layout we parse each visible line's pixel anchor points from its SVG path and densely
+   * sample the monotone spline through them across each interior null run. This matches the solid
+   * line's curve exactly (Recharts v3 doesn't expose the axis scales to <Customized>) while spanning
+   * only the no-data stretch, so nulls read as "no data" rather than a measured value.
+   */
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { hasReferenceBand, renderReferenceBands, referenceBandLegendInfos } = useReferenceBand(
+    children,
+    data,
+    containerRef,
+    dataColorMapping,
+  );
+
+  // Map of line dataKey -> its range keys, so the tooltip can show the industry range per series.
+  const rangeMap = useMemo<RangeMap>(() => {
+    const map: RangeMap = {};
+    React.Children.forEach(children, (child) => {
+      if (isValidElement(child) && getComponentId(child) === componentIds.ChartLine) {
+        const props = child.props as ChartLineProps;
+        const dataKey = props.dataKey as string;
+        if (dataKey && props.rangeLowerDataKey && props.rangeUpperDataKey) {
+          map[dataKey] = {
+            rangeLowerDataKey: props.rangeLowerDataKey,
+            rangeUpperDataKey: props.rangeUpperDataKey,
+            rangeName: props.rangeName,
+          };
+        }
+      }
+    });
+    return map;
+  }, [children]);
+
+  const [bridgePaths, setBridgePaths] = useState<
+    Array<{ id: string; dataKey: string; d: string; stroke: string }>
+  >([]);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container || !hasDashedBridge) {
+      setBridgePaths((prev) => (prev.length === 0 ? prev : []));
+      return undefined;
+    }
+
+    const computeBridges = (): void => {
+      const surface = container.querySelector('svg.recharts-surface');
+      if (!surface) return;
+      // Visible lines, in render order, and the coloured curves Recharts drew for them. Each
+      // ChartLine also renders a transparent hover-target curve, which we filter out. Hidden lines
+      // render nothing, so both lists stay aligned only when their counts match.
+      const visibleLines = chartLineOrder.filter((line) =>
+        selectedDataKeys ? selectedDataKeys.includes(line.dataKey) : true,
+      );
+      const colouredCurves = Array.from(
+        surface.querySelectorAll<SVGPathElement>('.recharts-line-curve'),
+      ).filter((curve) => {
+        const stroke = (curve.getAttribute('stroke') ?? '').toLowerCase();
+        return stroke !== '' && stroke !== 'transparent' && stroke !== 'none';
+      });
+      if (colouredCurves.length !== visibleLines.length) return;
+
+      const nextPaths: Array<{ id: string; dataKey: string; d: string; stroke: string }> = [];
+      visibleLines.forEach((line, position) => {
+        if (!line.isDashedBridge) return;
+        const curve = colouredCurves[position];
+        const stroke = curve.getAttribute('stroke') ?? '';
+        const anchors = parsePathAnchors(curve.getAttribute('d') ?? '');
+        const { indices } = getDefinedNumericPoints(data, line.dataKey);
+        // Anchors must line up 1:1 with the defined data points for the sampling to be meaningful.
+        if (anchors.length !== indices.length) return;
+
+        getInteriorGaps(indices).forEach(({ from, to }) => {
+          nextPaths.push({
+            id: `null-bridge-${line.dataKey}-${indices[from]}`,
+            dataKey: line.dataKey,
+            d: buildBridgePathData(anchors, from, to),
+            stroke,
+          });
+        });
+      });
+
+      setBridgePaths((previous) => {
+        const isSame =
+          previous.length === nextPaths.length &&
+          previous.every(
+            (item, index) =>
+              item.id === nextPaths[index].id &&
+              item.d === nextPaths[index].d &&
+              item.stroke === nextPaths[index].stroke,
+          );
+        return isSame ? previous : nextPaths;
+      });
+    };
+
+    computeBridges();
+
+    // The line geometry isn't available synchronously (ResponsiveContainer renders the chart in a
+    // later commit) and it keeps changing while the line's draw-in animation runs, so we recompute
+    // whenever the chart's DOM or the line paths (`d`) mutate, and on resize.
+    const cleanups: Array<() => void> = [];
+    if (typeof MutationObserver !== 'undefined') {
+      let rafId: number | null = null;
+      const mutationObserver = new MutationObserver((mutations) => {
+        // Skip mutations that originate from our own bridge layer (the dashed paths we render),
+        // which would otherwise cause re-entrant computeBridges calls on every bridge update.
+        const isBridgeMutation = mutations.some(
+          (m) => m.target instanceof Element && m.target.closest('.klear360-null-bridge-layer'),
+        );
+        if (isBridgeMutation) return;
+        // Debounce: coalesce multiple mutations in a single animation frame so that hover-related
+        // DOM changes (tooltips, active dots, crosshair) don't each trigger a separate computation.
+        if (rafId !== null) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          computeBridges();
+        });
+      });
+      mutationObserver.observe(container, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['d'],
+      });
+      cleanups.push(() => {
+        mutationObserver.disconnect();
+        if (rafId !== null) cancelAnimationFrame(rafId);
+      });
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      const resizeObserver = new ResizeObserver(() => computeBridges());
+      resizeObserver.observe(container);
+      cleanups.push(() => resizeObserver.disconnect());
+    }
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, [data, chartLineOrder, hasDashedBridge, selectedDataKeys]);
+
+  const renderNullBridges = (): React.ReactElement | null => {
+    if (bridgePaths.length === 0) return null;
+    return (
+      <g className="klear360-null-bridge-layer">
+        {bridgePaths.map(({ id, dataKey, d, stroke }) => {
+          const isHidden = selectedDataKeys ? !selectedDataKeys.includes(dataKey) : false;
+          if (isHidden) return null;
+          const isOtherLineHovered = hoveredDataKey !== null && hoveredDataKey !== dataKey;
+          return (
+            <path
+              key={id}
+              d={d}
+              fill="none"
+              stroke={stroke}
+              strokeWidth={1.5}
+              strokeDasharray={NULL_BRIDGE_DASHARRAY}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity={isOtherLineHovered ? 0.2 : 1}
+              style={{ transition: 'stroke-opacity 0.5s ease-in-out' }}
+            />
+          );
+        })}
+      </g>
+    );
+  };
+
+  // Build secondary label map internally from ChartXAxis's secondaryDataKey prop
+  const secondaryLabelMap = useMemo<SecondaryLabelMap | undefined>(() => {
+    if (!secondaryDataKey || !data) return undefined;
+    const map: SecondaryLabelMap = {};
+    data.forEach((item, index) => {
+      map[index] = item[secondaryDataKey] as string | number | undefined;
+    });
+    return map;
+  }, [data, secondaryDataKey]);
+
+  // Memoize context values to prevent unnecessary re-renders of consumers
+  const lineChartContextValue = useMemo(() => ({ hoveredDataKey, setHoveredDataKey }), [
+    hoveredDataKey,
+  ]);
+
+  const commonChartContextValue = useMemo(
+    () => ({
+      chartName: 'line' as const,
+      dataColorMapping,
+      selectedDataKeys,
+      setSelectedDataKeys,
+      secondaryLabelMap,
+      dataLength: data?.length,
+      referenceBands: referenceBandLegendInfos,
+      rangeMap,
+    }),
+    [
+      dataColorMapping,
+      selectedDataKeys,
+      secondaryLabelMap,
+      data?.length,
+      referenceBandLegendInfos,
+      rangeMap,
+    ],
+  );
+
+  return (
+    <LineChartContext.Provider value={lineChartContextValue}>
+      <CommonChartComponentsContext.Provider value={commonChartContextValue}>
+        <BaseBox
+          {...metaAttribute({ name: 'line-chart', testID })}
+          {...makeAnalyticsAttribute(restProps)}
+          width="100%"
+          height="100%"
+          {...restProps}
+        >
+          <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+            <RechartsResponsiveContainer width="100%" height="100%">
+              <RechartsLineChart data={data} onMouseLeave={() => setHoveredDataKey(null)}>
+                {/* Painted first so the shaded bands sit behind the trend lines. */}
+                {hasReferenceBand ? <RechartsCustomized component={renderReferenceBands} /> : null}
+                {lineChartModifiedChildrens}
+                {hasDashedBridge ? <RechartsCustomized component={renderNullBridges} /> : null}
+              </RechartsLineChart>
+            </RechartsResponsiveContainer>
+          </div>
+        </BaseBox>
+      </CommonChartComponentsContext.Provider>
+    </LineChartContext.Provider>
+  );
+};
+
+export { ChartLine, ChartLineWrapper };

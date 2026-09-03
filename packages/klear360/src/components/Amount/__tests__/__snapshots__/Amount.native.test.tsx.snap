@@ -1,0 +1,3608 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Amount /> should allow customizing number of fraction digits 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+    testID="amount-custom-decimals"
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          123
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          4568
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render AED currency Amount 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        AED
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render Amount with default props 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render Amount with negative sign 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={100}
+        fontWeight="regular"
+        lineHeight={100}
+        marginX="spacing.2"
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 4,
+              "marginRight": 4,
+              "marginTop": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        -
+      </Text>
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          10,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render MYR currency Amount 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        MYR
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render USD currency Amount 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        $
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render all sizes of Amount 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="semibold"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="semibold"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="semibold"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={75}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 17,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={75}
+          fontWeight="regular"
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="semibold"
+        lineHeight={75}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 17,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={75}
+          fontWeight="semibold"
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="semibold"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={200}
+        fontWeight="regular"
+        lineHeight={500}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 26,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={500}
+          fontWeight="regular"
+          lineHeight={500}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 20,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 26,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={200}
+          fontWeight="regular"
+          lineHeight={200}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 24,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={200}
+        fontWeight="semibold"
+        lineHeight={500}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 26,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={500}
+          fontWeight="semibold"
+          lineHeight={500}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 20,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 26,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={200}
+          fontWeight="semibold"
+          lineHeight={200}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 24,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={75}
+        fontWeight="regular"
+        lineHeight={300}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 22,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={300}
+          fontWeight="regular"
+          lineHeight={300}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 22,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={75}
+          fontWeight="regular"
+          lineHeight={75}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={75}
+        fontWeight="semibold"
+        lineHeight={300}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 22,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={300}
+          fontWeight="semibold"
+          lineHeight={300}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 22,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={75}
+          fontWeight="semibold"
+          lineHeight={75}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "600",
+                "letterSpacing": 0,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={700}
+        fontWeight="regular"
+        lineHeight={900}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 32,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 42,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={900}
+          fontWeight="regular"
+          lineHeight={900}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 36,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 42,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={700}
+          fontWeight="regular"
+          lineHeight={700}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 32,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 38,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render amount with Decimal value 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={75}
+        fontWeight="regular"
+        lineHeight={300}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 22,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={300}
+          fontWeight="regular"
+          lineHeight={300}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 22,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="heading"
+          fontSize={75}
+          fontWeight="regular"
+          lineHeight={75}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          22
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render amount with Humanize value 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={75}
+        fontWeight="regular"
+        lineHeight={300}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 22,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontFamily="heading"
+        fontSize={300}
+        fontWeight="regular"
+        lineHeight={300}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 22,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 0,
+              "marginTop": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        1
+        K
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render currencyIndicator="currency-code" 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        INR
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render currencyIndicator="currency-symbol" 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render information intent Amount  1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="feedback.text.information.intense"
+        data-klear360-component="base-text"
+        fontSize={100}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={1}
+        style={
+          [
+            {
+              "color": "hsla(200, 100%, 33%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 1,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <Text
+        accessible={true}
+        color="feedback.text.information.intense"
+        data-klear360-component="base-text"
+        fontFamily="text"
+        fontSize={100}
+        fontWeight="regular"
+        lineHeight={100}
+        style={
+          [
+            {
+              "color": "hsla(200, 100%, 33%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 0,
+              "marginTop": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        1,000
+        .
+        00
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render isStrikethrough={true} 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="surface.text.gray.normal"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(0, 0%, 2%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="surface.text.gray.normal"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 2%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+      <View
+        borderBottomColor="surface.text.gray.normal"
+        borderBottomStyle="solid"
+        borderBottomWidth="thin"
+        data-klear360-component="base-box"
+        position="absolute"
+        style={
+          [
+            {
+              "borderBottomColor": "hsla(0, 0%, 2%, 1)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
+              "position": "absolute",
+              "top": "50%",
+              "width": "100%",
+            },
+          ]
+        }
+        top="50%"
+        width="100%"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Amount /> should render positive intent Amount  1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="amount"
+    display="flex"
+    flexDirection="row"
+    style={
+      [
+        {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      alignItems="baseline"
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="row"
+      position="relative"
+      style={
+        [
+          {
+            "alignItems": "baseline",
+            "display": "flex",
+            "flexDirection": "row",
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        color="feedback.text.positive.intense"
+        data-klear360-component="base-text"
+        fontSize={25}
+        fontWeight="regular"
+        lineHeight={100}
+        marginRight="spacing.1"
+        opacity={0.64}
+        style={
+          [
+            {
+              "color": "hsla(150, 100%, 23%, 1)",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 20,
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 2,
+              "marginTop": 0,
+              "opacity": 0.64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "textDecorationLine": "none",
+            },
+            {
+              "includeFontPadding": false,
+            },
+          ]
+        }
+      >
+        ₹
+      </Text>
+      <View
+        alignItems="baseline"
+        data-klear360-component="base-box"
+        flexDirection="row"
+        style={
+          [
+            {
+              "alignItems": "baseline",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="feedback.text.positive.intense"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={100}
+          fontWeight="regular"
+          lineHeight={100}
+          style={
+            [
+              {
+                "color": "hsla(150, 100%, 23%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          1,000
+        </Text>
+        <Text
+          accessible={true}
+          color="feedback.text.positive.intense"
+          data-klear360-component="base-text"
+          fontFamily="text"
+          fontSize={25}
+          fontWeight="regular"
+          lineHeight={25}
+          opacity={0.64}
+          style={
+            [
+              {
+                "color": "hsla(150, 100%, 23%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 10,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 13,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "opacity": 0.64,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+              {
+                "includeFontPadding": false,
+              },
+            ]
+          }
+        >
+          .
+          00
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

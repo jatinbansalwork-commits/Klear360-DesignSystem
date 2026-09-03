@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Skeleton /> should render skeleton 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityElementsHidden={true}
+    data-klear360-component="skeleton"
+    height="50px"
+    importantForAccessibility="no-hide-descendants"
+    style={
+      [
+        {
+          "height": 50,
+          "width": "100%",
+        },
+        {
+          "overflow": "hidden",
+        },
+      ]
+    }
+    width="100%"
+  >
+    <View
+      style={
+        [
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          {
+            "backgroundColor": "hsl(206, 10%, 29%)",
+            "opacity": NaN,
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`<Skeleton /> should support margin and other layout props 1`] = `[Function]`;

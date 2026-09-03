@@ -1,0 +1,2355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> with <AutoComplete /> should render AutoComplete 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="dropdown"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      height="100%"
+      position="relative"
+      style={
+        [
+          {
+            "height": "100%",
+            "position": "relative",
+            "textAlign": "left",
+          },
+        ]
+      }
+      textAlign="left"
+    >
+      <View
+        data-klear360-component="base-box"
+        position="relative"
+        style={
+          [
+            {
+              "position": "relative",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="autocomplete"
+          style={
+            [
+              {},
+            ]
+          }
+        >
+          <View
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            position="relative"
+            style={
+              [
+                {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "position": "relative",
+                  "width": "100%",
+                },
+              ]
+            }
+            width="100%"
+          >
+            <View
+              data-klear360-component="base-box"
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "marginBottom": 0,
+                    "marginTop": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                data-klear360-component="base-box"
+                style={
+                  [
+                    {
+                      "marginBottom": 4,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  gap="spacing.0"
+                  maxHeight="36px"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "gap": 0,
+                        "maxHeight": 36,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    color="surface.text.gray.subtle"
+                    data-klear360-component="text"
+                    fontFamily="text"
+                    fontSize={75}
+                    fontStyle="normal"
+                    fontWeight="medium"
+                    letterSpacing={50}
+                    lineHeight={75}
+                    numberOfLines={2}
+                    style={
+                      [
+                        {
+                          "color": "hsla(218, 50%, 6%, 1)",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontStyle": "normal",
+                          "fontWeight": "500",
+                          "letterSpacing": -0.15600000000000003,
+                          "lineHeight": 17,
+                          "marginBottom": 0,
+                          "marginLeft": 0,
+                          "marginRight": 0,
+                          "marginTop": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "paddingRight": 0,
+                          "paddingTop": 0,
+                          "textDecorationLine": "none",
+                        },
+                      ]
+                    }
+                  >
+                    Select Fruit
+                  </Text>
+                  <View
+                    data-klear360-component="visually-hidden"
+                    style={
+                      [
+                        {
+                          "borderColor": "black",
+                          "borderStyle": "solid",
+                          "borderWidth": 0,
+                          "clip": "rect(0 0 0 0)",
+                          "clipPath": "inset(50%)",
+                          "height": 1,
+                          "left": -10000,
+                          "marginBottom": -1,
+                          "marginLeft": 0,
+                          "marginRight": -1,
+                          "marginTop": 0,
+                          "overflow": "hidden",
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "paddingRight": 0,
+                          "paddingTop": 0,
+                          "position": "absolute",
+                          "whiteSpace": "nowrap",
+                          "width": 1,
+                          "wordWrap": "normal",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      color="surface.text.gray.normal"
+                      data-klear360-component="text"
+                      fontFamily="text"
+                      fontSize={100}
+                      fontStyle="normal"
+                      fontWeight="regular"
+                      letterSpacing={50}
+                      lineHeight={100}
+                      style={
+                        [
+                          {
+                            "color": "hsla(216, 56%, 2%, 1)",
+                            "fontFamily": "Inter",
+                            "fontSize": 14,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": -0.18200000000000002,
+                            "lineHeight": 20,
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "paddingRight": 0,
+                            "paddingTop": 0,
+                            "textDecorationLine": "none",
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              className="focus-ring-wrapper"
+              currentInteraction="default"
+              data-klear360-component="base-box"
+              isTableInputCell={false}
+              shouldAddLimitedFocus={false}
+              style={
+                [
+                  {},
+                  {
+                    "borderRadius": 8,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  {
+                    "position": "relative",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  pointerEvents="none"
+                  style={
+                    [
+                      {
+                        "borderColor": "hsla(198, 100%, 18%, 0.18)",
+                        "position": "absolute",
+                      },
+                      {
+                        "borderRadius": 8,
+                        "borderWidth": 0,
+                        "bottom": -0,
+                        "left": -0,
+                        "right": -0,
+                        "top": -0,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  currentInteraction="default"
+                  isDropdownTrigger={true}
+                  isTableInputCell={false}
+                  onClick={[Function]}
+                  setShowAllTagsWithAnimation={[Function]}
+                  size="medium"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                        "borderColor": "hsla(214, 32%, 91%, 1)",
+                        "borderRadius": 8,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "height": "auto",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": "100%",
+                      },
+                      {
+                        "maxHeight": 36,
+                      },
+                      {
+                        "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                        "borderColor": "hsla(214, 32%, 91%, 1)",
+                        "borderRadius": 8,
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    data-klear360-component="base-box"
+                    display="flex"
+                    flexDirection="row"
+                    justifyContent="flex-start"
+                    minHeight="36px"
+                    onLayout={[Function]}
+                    position="relative"
+                    style={
+                      [
+                        {
+                          "display": "flex",
+                          "flexBasis": 0,
+                          "flexDirection": "row",
+                          "flexGrow": 1,
+                          "flexShrink": 1,
+                          "justifyContent": "flex-start",
+                          "minHeight": 36,
+                          "paddingBottom": 2,
+                          "paddingLeft": 12,
+                          "paddingRight": 12,
+                          "paddingTop": 2,
+                          "position": "relative",
+                        },
+                      ]
+                    }
+                  >
+                    <RCTScrollView
+                      contentContainerStyle={
+                        {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "flexGrow": 1,
+                          "flexWrap": "nowrap",
+                          "position": "relative",
+                        }
+                      }
+                      horizontal={true}
+                      onContentSizeChange={[Function]}
+                      onScrollBeginDrag={[Function]}
+                      onScrollEndDrag={[Function]}
+                      showsHorizontalScrollIndicator={true}
+                    >
+                      <View>
+                        <View
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          accessible={true}
+                          data-klear360-component="base-box"
+                          focusable={true}
+                          height="100%"
+                          onClick={[Function]}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          position="absolute"
+                          style={
+                            [
+                              {
+                                "height": "100%",
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          width="100%"
+                        />
+                        <View
+                          data-klear360-component="base-box"
+                          style={
+                            [
+                              {
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          width="100%"
+                        >
+                          <TextInput
+                            accessibilityActiveDescendant="dropdown-7-0"
+                            accessibilityControls="dropdown-7-actionlist"
+                            accessibilityDescribedBy=""
+                            accessibilityHasPopup="menu"
+                            accessibilityInvalid={false}
+                            accessibilityRequired={false}
+                            accessibilityRole="combobox"
+                            accessibilityState={
+                              {
+                                "disabled": false,
+                                "expanded": true,
+                              }
+                            }
+                            accessible={true}
+                            autoComplete="off"
+                            data-klear360-component="styled-base-input"
+                            editable={true}
+                            hasLeadingDropdown={false}
+                            hasTags={false}
+                            id="dropdown-7-trigger-1-input-2"
+                            includeFontPadding={false}
+                            isDropdownTrigger={true}
+                            isFocused={false}
+                            isInsideCounterInput={false}
+                            isTableInputCell={false}
+                            isTextArea={false}
+                            keyboardType="default"
+                            multiline={false}
+                            onBlur={[Function]}
+                            onChangeText={[Function]}
+                            onEndEditing={[Function]}
+                            onFocus={[Function]}
+                            onKeyPress={[Function]}
+                            onSubmitEditing={[Function]}
+                            placeholder="Select Option"
+                            placeholderTextColor="hsla(222, 47%, 11%, 0.32)"
+                            secureTextEntry={false}
+                            style={
+                              [
+                                {
+                                  "backgroundColor": "hsla(0, 0%, 100%, 0)",
+                                  "color": "hsla(216, 56%, 2%, 1)",
+                                  "flexBasis": 0,
+                                  "flexGrow": 1,
+                                  "flexShrink": 1,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontStyle": "normal",
+                                  "fontWeight": "400",
+                                  "letterSpacing": -0.18200000000000002,
+                                  "marginBottom": 0,
+                                  "marginLeft": 0,
+                                  "marginRight": 0,
+                                  "marginTop": 0,
+                                  "paddingBottom": 0,
+                                  "paddingLeft": 0,
+                                  "paddingRight": 8,
+                                  "paddingTop": 0,
+                                  "textAlignVertical": "center",
+                                  "textDecorationLine": "none",
+                                  "width": "100%",
+                                },
+                              ]
+                            }
+                            textAlign="left"
+                            textContentType="none"
+                            trailingInteractionElement={
+                              <InputChevronIcon
+                                isOpen={true}
+                              />
+                            }
+                            value=""
+                            valueComponentType="text"
+                          />
+                        </View>
+                      </View>
+                    </RCTScrollView>
+                    <View
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessible={true}
+                      data-klear360-component="base-box"
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                  <View
+                    alignItems="center"
+                    alignSelf="stretch"
+                    data-klear360-component="base-box"
+                    display="flex"
+                    flexDirection="row"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "stretch",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      alignSelf="stretch"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "alignSelf": "stretch",
+                            "display": "flex",
+                            "flexDirection": "row",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        alignItems="stretch"
+                        alignSelf="stretch"
+                        data-klear360-component="base-box"
+                        display="flex"
+                        style={
+                          [
+                            {
+                              "alignItems": "stretch",
+                              "alignSelf": "stretch",
+                              "display": "flex",
+                              "paddingRight": 12,
+                            },
+                          ]
+                        }
+                      >
+                        <View
+                          accessibilityLabel="Chevron Icon"
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          accessibilityValue={
+                            {
+                              "max": undefined,
+                              "min": undefined,
+                              "now": undefined,
+                              "text": undefined,
+                            }
+                          }
+                          accessible={true}
+                          collapsable={false}
+                          focusable={false}
+                          onClick={[Function]}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={
+                            {
+                              "display": "flex",
+                              "justifyContent": "center",
+                              "marginBottom": "auto",
+                              "marginLeft": "auto",
+                              "marginRight": "auto",
+                              "marginTop": "auto",
+                              "opacity": 1,
+                            }
+                          }
+                        >
+                          <RNSVGSvgView
+                            accessibilityElementsHidden={true}
+                            align="xMidYMid"
+                            bbHeight="16px"
+                            bbWidth="16px"
+                            data-klear360-component="icon"
+                            display="none"
+                            fill="none"
+                            focusable={false}
+                            height="16px"
+                            importantForAccessibility="no-hide-descendants"
+                            meetOrSlice={0}
+                            minX={0}
+                            minY={0}
+                            style={
+                              [
+                                {
+                                  "backgroundColor": "transparent",
+                                  "borderWidth": 0,
+                                },
+                                [
+                                  {
+                                    "display": "none",
+                                  },
+                                ],
+                                {
+                                  "flex": 0,
+                                  "height": 16,
+                                  "width": 16,
+                                },
+                              ]
+                            }
+                            vbHeight={24}
+                            vbWidth={24}
+                            width="16px"
+                          >
+                            <RNSVGGroup
+                              fill={null}
+                              propList={
+                                [
+                                  "fill",
+                                ]
+                              }
+                            >
+                              <RNSVGPath
+                                clipRule={0}
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill={
+                                  {
+                                    "payload": 4281614934,
+                                    "type": 0,
+                                  }
+                                }
+                                fillRule={0}
+                                propList={
+                                  [
+                                    "fill",
+                                    "fillRule",
+                                  ]
+                                }
+                              />
+                            </RNSVGGroup>
+                          </RNSVGSvgView>
+                          <RNSVGSvgView
+                            accessibilityElementsHidden={true}
+                            align="xMidYMid"
+                            bbHeight="16px"
+                            bbWidth="16px"
+                            data-klear360-component="icon"
+                            display="flex"
+                            fill="none"
+                            focusable={false}
+                            height="16px"
+                            importantForAccessibility="no-hide-descendants"
+                            meetOrSlice={0}
+                            minX={0}
+                            minY={0}
+                            style={
+                              [
+                                {
+                                  "backgroundColor": "transparent",
+                                  "borderWidth": 0,
+                                },
+                                [
+                                  {
+                                    "display": "flex",
+                                  },
+                                ],
+                                {
+                                  "flex": 0,
+                                  "height": 16,
+                                  "width": 16,
+                                },
+                              ]
+                            }
+                            vbHeight={24}
+                            vbWidth={24}
+                            width="16px"
+                          >
+                            <RNSVGGroup
+                              fill={null}
+                              propList={
+                                [
+                                  "fill",
+                                ]
+                              }
+                            >
+                              <RNSVGPath
+                                clipRule={0}
+                                d="M11.2929 8.29289C11.6834 7.90237 12.3166 7.90237 12.7071 8.29289L18.7071 14.2929C19.0976 14.6834 19.0976 15.3166 18.7071 15.7071C18.3166 16.0976 17.6834 16.0976 17.2929 15.7071L12 10.4142L6.70711 15.7071C6.31658 16.0976 5.68342 16.0976 5.29289 15.7071C4.90237 15.3166 4.90237 14.6834 5.29289 14.2929L11.2929 8.29289Z"
+                                fill={
+                                  {
+                                    "payload": 4281614934,
+                                    "type": 0,
+                                  }
+                                }
+                                fillRule={0}
+                                propList={
+                                  [
+                                    "fill",
+                                    "fillRule",
+                                  ]
+                                }
+                              />
+                            </RNSVGGroup>
+                          </RNSVGSvgView>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            data-klear360-component="base-box"
+            style={
+              [
+                {
+                  "marginLeft": 0,
+                },
+              ]
+            }
+          >
+            <View
+              data-klear360-component="base-box"
+              display="flex"
+              flexDirection="row"
+              justifyContent="flex-end"
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        data-klear360-component="base-box"
+        position="relative"
+        style={
+          [
+            {
+              "position": "relative",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          display="flex"
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "display": "flex",
+                "height": "100%",
+                "position": "static",
+                "width": "100%",
+              },
+            ]
+          }
+          testID="closeable-area"
+        >
+          <View
+            colorScheme="light"
+            data-klear360-component="dropdown-overlay"
+            display="flex"
+            elevation="midRaised"
+            isInBottomSheet={false}
+            position="absolute"
+            style={
+              [
+                {
+                  "display": "flex",
+                  "position": "absolute",
+                  "width": "100%",
+                },
+                {
+                  "elevation": 16,
+                  "shadowColor": "hsla(200, 10%, 18%, 1)",
+                  "shadowOffset": {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.06,
+                  "shadowRadius": 4,
+                },
+                [
+                  {
+                    "backgroundColor": "hsla(0, 0%, 100%, 0.94)",
+                    "borderColor": "hsla(213, 27%, 84%, 1)",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "transform": [
+                      {
+                        "translateY": 8,
+                      },
+                    ],
+                  },
+                  {
+                    "elevation": 16,
+                    "shadowColor": "hsla(200, 10%, 18%, 1)",
+                    "shadowOffset": {
+                      "height": 2,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.06,
+                    "shadowRadius": 4,
+                  },
+                ],
+              ]
+            }
+            testID="dropdown-overlay"
+            width="100%"
+          >
+            <View
+              accessibilityLabelledBy="dropdown-7-label"
+              accessibilityRole="menu"
+              accessible={true}
+              data-klear360-component="action-list"
+              id="dropdown-7-actionlist"
+              style={
+                [
+                  {},
+                ]
+              }
+            >
+              <RCTScrollView
+                accessible={true}
+                data={
+                  [
+                    {
+                      "data": [
+                        {
+                          "_index": 0,
+                          "title": "Mango",
+                          "value": "mango",
+                        },
+                        {
+                          "_index": 1,
+                          "title": "Apple",
+                          "value": "apple",
+                        },
+                        {
+                          "_index": 2,
+                          "title": "Banana",
+                          "value": "banana",
+                        },
+                      ],
+                      "hideDivider": true,
+                      "title": null,
+                    },
+                  ]
+                }
+                getItem={[Function]}
+                getItemCount={[Function]}
+                isInBottomSheet={false}
+                keyExtractor={[Function]}
+                marginBottom={0}
+                onContentSizeChange={[Function]}
+                onLayout={[Function]}
+                onMomentumScrollBegin={[Function]}
+                onMomentumScrollEnd={[Function]}
+                onScroll={[Function]}
+                onScrollBeginDrag={[Function]}
+                onScrollEndDrag={[Function]}
+                renderItem={[Function]}
+                scrollEventThrottle={50}
+                stickyHeaderIndices={[]}
+                style={
+                  [
+                    {
+                      "marginBottom": 0,
+                      "maxHeight": 300,
+                      "paddingBottom": 8,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 8,
+                    },
+                  ]
+                }
+                windowSize={5}
+              >
+                <View>
+                  <View
+                    onFocusCapture={[Function]}
+                    onLayout={[Function]}
+                    style={null}
+                  />
+                  <View
+                    onFocusCapture={[Function]}
+                    onLayout={[Function]}
+                    style={null}
+                  >
+                    <View
+                      accessibilityRole="menuitem"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": false,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        {
+                          "borderRadius": 8,
+                          "borderWidth": 0,
+                          "cursor": "pointer",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "opacity": 1,
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 8,
+                          "paddingTop": 8,
+                          "textDecorationColor": "black",
+                          "textDecorationLine": "none",
+                          "textDecorationStyle": "solid",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        alignItems="flex-start"
+                        data-klear360-component="box"
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                        style={
+                          [
+                            {
+                              "alignItems": "flex-start",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "justifyContent": "flex-start",
+                              "width": "100%",
+                            },
+                          ]
+                        }
+                        width="100%"
+                      >
+                        <View
+                          alignItems="center"
+                          data-klear360-component="box"
+                          display="flex"
+                          height="20px"
+                          justifyContent="center"
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "display": "flex",
+                                "height": 20,
+                                "justifyContent": "center",
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            accessibilityElementsHidden={true}
+                            data-klear360-component="base-box"
+                            importantForAccessibility="no-hide-descendants"
+                            pointerEvents="none"
+                            style={
+                              [
+                                {
+                                  "pointerEvents": "none",
+                                },
+                              ]
+                            }
+                          >
+                            <View
+                              data-klear360-component="checkbox"
+                              style={
+                                [
+                                  {},
+                                ]
+                              }
+                            >
+                              <View
+                                accessibilityInvalid={false}
+                                accessibilityRequired={false}
+                                accessibilityRole="checkbox"
+                                accessibilityState={
+                                  {
+                                    "busy": undefined,
+                                    "checked": false,
+                                    "disabled": false,
+                                    "expanded": undefined,
+                                    "selected": undefined,
+                                  }
+                                }
+                                accessibilityValue={
+                                  {
+                                    "max": undefined,
+                                    "min": undefined,
+                                    "now": undefined,
+                                    "text": undefined,
+                                  }
+                                }
+                                accessible={true}
+                                collapsable={false}
+                                focusable={true}
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  [
+                                    {
+                                      "display": "flex",
+                                      "flexDirection": "row",
+                                      "marginBottom": 2,
+                                      "marginTop": 2,
+                                    },
+                                  ]
+                                }
+                              >
+                                <View
+                                  data-klear360-component="base-box"
+                                  display="flex"
+                                  flexDirection="column"
+                                  style={
+                                    [
+                                      {
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                      },
+                                    ]
+                                  }
+                                >
+                                  <View
+                                    data-klear360-component="base-box"
+                                    display="flex"
+                                    flexDirection="row"
+                                    style={
+                                      [
+                                        {
+                                          "display": "flex",
+                                          "flexDirection": "row",
+                                        },
+                                      ]
+                                    }
+                                  >
+                                    <View
+                                      data-klear360-component="checkbox-icon-wrapper"
+                                      isChecked={false}
+                                      isNegative={false}
+                                      size="medium"
+                                      style={
+                                        [
+                                          {
+                                            "alignItems": "center",
+                                            "backgroundColor": "hsla(0, 0%, 100%, 0)",
+                                            "borderColor": "hsla(215, 20%, 65%, 1)",
+                                            "borderRadius": 4,
+                                            "borderStyle": "solid",
+                                            "borderWidth": 1.5,
+                                            "display": "flex",
+                                            "flexShrink": 0,
+                                            "height": 16,
+                                            "justifyContent": "center",
+                                            "marginBottom": 2,
+                                            "marginLeft": 2,
+                                            "marginRight": 2,
+                                            "marginTop": 2,
+                                            "paddingTop": 0,
+                                            "position": "relative",
+                                            "width": 16,
+                                          },
+                                        ]
+                                      }
+                                    />
+                                  </View>
+                                </View>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          display="flex"
+                          flexDirection="column"
+                          style={
+                            [
+                              {
+                                "display": "flex",
+                                "flexDirection": "column",
+                                "paddingLeft": 8,
+                                "paddingRight": 8,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            alignItems="center"
+                            data-klear360-component="box"
+                            display="flex"
+                            flexDirection="row"
+                            height="20px"
+                            style={
+                              [
+                                {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "flexDirection": "row",
+                                  "height": 20,
+                                },
+                              ]
+                            }
+                          >
+                            <Text
+                              accessible={true}
+                              color="interactive.text.gray.normal"
+                              data-klear360-component="text"
+                              fontFamily="text"
+                              fontSize={100}
+                              fontStyle="normal"
+                              fontWeight="regular"
+                              lineHeight={100}
+                              numberOfLines={1}
+                              style={
+                                [
+                                  {
+                                    "color": "hsla(216, 56%, 2%, 1)",
+                                    "fontFamily": "Inter",
+                                    "fontSize": 14,
+                                    "fontStyle": "normal",
+                                    "fontWeight": "400",
+                                    "letterSpacing": 0,
+                                    "lineHeight": 20,
+                                    "marginBottom": 0,
+                                    "marginLeft": 0,
+                                    "marginRight": 0,
+                                    "marginTop": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "paddingRight": 0,
+                                    "paddingTop": 0,
+                                    "textDecorationLine": "none",
+                                  },
+                                ]
+                              }
+                            >
+                              Mango
+                            </Text>
+                          </View>
+                          <View
+                            data-klear360-component="box"
+                            style={
+                              [
+                                {},
+                              ]
+                            }
+                          />
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          style={
+                            [
+                              {
+                                "marginLeft": "auto",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    onFocusCapture={[Function]}
+                    onLayout={[Function]}
+                    style={null}
+                  >
+                    <View
+                      accessibilityRole="menuitem"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": false,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        {
+                          "borderRadius": 8,
+                          "borderWidth": 0,
+                          "cursor": "pointer",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "opacity": 1,
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 8,
+                          "paddingTop": 8,
+                          "textDecorationColor": "black",
+                          "textDecorationLine": "none",
+                          "textDecorationStyle": "solid",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        alignItems="flex-start"
+                        data-klear360-component="box"
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                        style={
+                          [
+                            {
+                              "alignItems": "flex-start",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "justifyContent": "flex-start",
+                              "width": "100%",
+                            },
+                          ]
+                        }
+                        width="100%"
+                      >
+                        <View
+                          alignItems="center"
+                          data-klear360-component="box"
+                          display="flex"
+                          height="20px"
+                          justifyContent="center"
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "display": "flex",
+                                "height": 20,
+                                "justifyContent": "center",
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            accessibilityElementsHidden={true}
+                            data-klear360-component="base-box"
+                            importantForAccessibility="no-hide-descendants"
+                            pointerEvents="none"
+                            style={
+                              [
+                                {
+                                  "pointerEvents": "none",
+                                },
+                              ]
+                            }
+                          >
+                            <View
+                              data-klear360-component="checkbox"
+                              style={
+                                [
+                                  {},
+                                ]
+                              }
+                            >
+                              <View
+                                accessibilityInvalid={false}
+                                accessibilityRequired={false}
+                                accessibilityRole="checkbox"
+                                accessibilityState={
+                                  {
+                                    "busy": undefined,
+                                    "checked": false,
+                                    "disabled": false,
+                                    "expanded": undefined,
+                                    "selected": undefined,
+                                  }
+                                }
+                                accessibilityValue={
+                                  {
+                                    "max": undefined,
+                                    "min": undefined,
+                                    "now": undefined,
+                                    "text": undefined,
+                                  }
+                                }
+                                accessible={true}
+                                collapsable={false}
+                                focusable={true}
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  [
+                                    {
+                                      "display": "flex",
+                                      "flexDirection": "row",
+                                      "marginBottom": 2,
+                                      "marginTop": 2,
+                                    },
+                                  ]
+                                }
+                              >
+                                <View
+                                  data-klear360-component="base-box"
+                                  display="flex"
+                                  flexDirection="column"
+                                  style={
+                                    [
+                                      {
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                      },
+                                    ]
+                                  }
+                                >
+                                  <View
+                                    data-klear360-component="base-box"
+                                    display="flex"
+                                    flexDirection="row"
+                                    style={
+                                      [
+                                        {
+                                          "display": "flex",
+                                          "flexDirection": "row",
+                                        },
+                                      ]
+                                    }
+                                  >
+                                    <View
+                                      data-klear360-component="checkbox-icon-wrapper"
+                                      isChecked={false}
+                                      isNegative={false}
+                                      size="medium"
+                                      style={
+                                        [
+                                          {
+                                            "alignItems": "center",
+                                            "backgroundColor": "hsla(0, 0%, 100%, 0)",
+                                            "borderColor": "hsla(215, 20%, 65%, 1)",
+                                            "borderRadius": 4,
+                                            "borderStyle": "solid",
+                                            "borderWidth": 1.5,
+                                            "display": "flex",
+                                            "flexShrink": 0,
+                                            "height": 16,
+                                            "justifyContent": "center",
+                                            "marginBottom": 2,
+                                            "marginLeft": 2,
+                                            "marginRight": 2,
+                                            "marginTop": 2,
+                                            "paddingTop": 0,
+                                            "position": "relative",
+                                            "width": 16,
+                                          },
+                                        ]
+                                      }
+                                    />
+                                  </View>
+                                </View>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          display="flex"
+                          flexDirection="column"
+                          style={
+                            [
+                              {
+                                "display": "flex",
+                                "flexDirection": "column",
+                                "paddingLeft": 8,
+                                "paddingRight": 8,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            alignItems="center"
+                            data-klear360-component="box"
+                            display="flex"
+                            flexDirection="row"
+                            height="20px"
+                            style={
+                              [
+                                {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "flexDirection": "row",
+                                  "height": 20,
+                                },
+                              ]
+                            }
+                          >
+                            <Text
+                              accessible={true}
+                              color="interactive.text.gray.normal"
+                              data-klear360-component="text"
+                              fontFamily="text"
+                              fontSize={100}
+                              fontStyle="normal"
+                              fontWeight="regular"
+                              lineHeight={100}
+                              numberOfLines={1}
+                              style={
+                                [
+                                  {
+                                    "color": "hsla(216, 56%, 2%, 1)",
+                                    "fontFamily": "Inter",
+                                    "fontSize": 14,
+                                    "fontStyle": "normal",
+                                    "fontWeight": "400",
+                                    "letterSpacing": 0,
+                                    "lineHeight": 20,
+                                    "marginBottom": 0,
+                                    "marginLeft": 0,
+                                    "marginRight": 0,
+                                    "marginTop": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "paddingRight": 0,
+                                    "paddingTop": 0,
+                                    "textDecorationLine": "none",
+                                  },
+                                ]
+                              }
+                            >
+                              Apple
+                            </Text>
+                          </View>
+                          <View
+                            data-klear360-component="box"
+                            style={
+                              [
+                                {},
+                              ]
+                            }
+                          />
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          style={
+                            [
+                              {
+                                "marginLeft": "auto",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    onFocusCapture={[Function]}
+                    onLayout={[Function]}
+                    style={null}
+                  >
+                    <View
+                      accessibilityRole="menuitem"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": false,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        {
+                          "borderRadius": 8,
+                          "borderWidth": 0,
+                          "cursor": "pointer",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "opacity": 1,
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 8,
+                          "paddingTop": 8,
+                          "textDecorationColor": "black",
+                          "textDecorationLine": "none",
+                          "textDecorationStyle": "solid",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        alignItems="flex-start"
+                        data-klear360-component="box"
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                        style={
+                          [
+                            {
+                              "alignItems": "flex-start",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "justifyContent": "flex-start",
+                              "width": "100%",
+                            },
+                          ]
+                        }
+                        width="100%"
+                      >
+                        <View
+                          alignItems="center"
+                          data-klear360-component="box"
+                          display="flex"
+                          height="20px"
+                          justifyContent="center"
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "display": "flex",
+                                "height": 20,
+                                "justifyContent": "center",
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            accessibilityElementsHidden={true}
+                            data-klear360-component="base-box"
+                            importantForAccessibility="no-hide-descendants"
+                            pointerEvents="none"
+                            style={
+                              [
+                                {
+                                  "pointerEvents": "none",
+                                },
+                              ]
+                            }
+                          >
+                            <View
+                              data-klear360-component="checkbox"
+                              style={
+                                [
+                                  {},
+                                ]
+                              }
+                            >
+                              <View
+                                accessibilityInvalid={false}
+                                accessibilityRequired={false}
+                                accessibilityRole="checkbox"
+                                accessibilityState={
+                                  {
+                                    "busy": undefined,
+                                    "checked": false,
+                                    "disabled": false,
+                                    "expanded": undefined,
+                                    "selected": undefined,
+                                  }
+                                }
+                                accessibilityValue={
+                                  {
+                                    "max": undefined,
+                                    "min": undefined,
+                                    "now": undefined,
+                                    "text": undefined,
+                                  }
+                                }
+                                accessible={true}
+                                collapsable={false}
+                                focusable={true}
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  [
+                                    {
+                                      "display": "flex",
+                                      "flexDirection": "row",
+                                      "marginBottom": 2,
+                                      "marginTop": 2,
+                                    },
+                                  ]
+                                }
+                              >
+                                <View
+                                  data-klear360-component="base-box"
+                                  display="flex"
+                                  flexDirection="column"
+                                  style={
+                                    [
+                                      {
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                      },
+                                    ]
+                                  }
+                                >
+                                  <View
+                                    data-klear360-component="base-box"
+                                    display="flex"
+                                    flexDirection="row"
+                                    style={
+                                      [
+                                        {
+                                          "display": "flex",
+                                          "flexDirection": "row",
+                                        },
+                                      ]
+                                    }
+                                  >
+                                    <View
+                                      data-klear360-component="checkbox-icon-wrapper"
+                                      isChecked={false}
+                                      isNegative={false}
+                                      size="medium"
+                                      style={
+                                        [
+                                          {
+                                            "alignItems": "center",
+                                            "backgroundColor": "hsla(0, 0%, 100%, 0)",
+                                            "borderColor": "hsla(215, 20%, 65%, 1)",
+                                            "borderRadius": 4,
+                                            "borderStyle": "solid",
+                                            "borderWidth": 1.5,
+                                            "display": "flex",
+                                            "flexShrink": 0,
+                                            "height": 16,
+                                            "justifyContent": "center",
+                                            "marginBottom": 2,
+                                            "marginLeft": 2,
+                                            "marginRight": 2,
+                                            "marginTop": 2,
+                                            "paddingTop": 0,
+                                            "position": "relative",
+                                            "width": 16,
+                                          },
+                                        ]
+                                      }
+                                    />
+                                  </View>
+                                </View>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          display="flex"
+                          flexDirection="column"
+                          style={
+                            [
+                              {
+                                "display": "flex",
+                                "flexDirection": "column",
+                                "paddingLeft": 8,
+                                "paddingRight": 8,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            alignItems="center"
+                            data-klear360-component="box"
+                            display="flex"
+                            flexDirection="row"
+                            height="20px"
+                            style={
+                              [
+                                {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "flexDirection": "row",
+                                  "height": 20,
+                                },
+                              ]
+                            }
+                          >
+                            <Text
+                              accessible={true}
+                              color="interactive.text.gray.normal"
+                              data-klear360-component="text"
+                              fontFamily="text"
+                              fontSize={100}
+                              fontStyle="normal"
+                              fontWeight="regular"
+                              lineHeight={100}
+                              numberOfLines={1}
+                              style={
+                                [
+                                  {
+                                    "color": "hsla(216, 56%, 2%, 1)",
+                                    "fontFamily": "Inter",
+                                    "fontSize": 14,
+                                    "fontStyle": "normal",
+                                    "fontWeight": "400",
+                                    "letterSpacing": 0,
+                                    "lineHeight": 20,
+                                    "marginBottom": 0,
+                                    "marginLeft": 0,
+                                    "marginRight": 0,
+                                    "marginTop": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "paddingRight": 0,
+                                    "paddingTop": 0,
+                                    "textDecorationLine": "none",
+                                  },
+                                ]
+                              }
+                            >
+                              Banana
+                            </Text>
+                          </View>
+                          <View
+                            data-klear360-component="box"
+                            style={
+                              [
+                                {},
+                              ]
+                            }
+                          />
+                        </View>
+                        <View
+                          data-klear360-component="box"
+                          style={
+                            [
+                              {
+                                "marginLeft": "auto",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    onFocusCapture={[Function]}
+                    onLayout={[Function]}
+                    style={null}
+                  />
+                </View>
+              </RCTScrollView>
+            </View>
+            <View
+              accessible={true}
+              data-klear360-component="base-box"
+              style={
+                [
+                  {},
+                ]
+              }
+            >
+              <View
+                borderBottomColor="surface.border.gray.muted"
+                borderPosition="borderBottom"
+                data-klear360-component="divider"
+                dividerStyle="solid"
+                isDividerHorizontal={true}
+                style={
+                  [
+                    {
+                      "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                      "borderBottomStyle": "solid",
+                    },
+                    {
+                      "borderBottomStyle": "solid",
+                      "borderBottomWidth": 1,
+                      "borderWidth": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+                thickness="thin"
+              />
+              <View
+                data-klear360-component="dropdown-footer"
+                style={
+                  [
+                    {
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                      "width": "100%",
+                    },
+                  ]
+                }
+                width="100%"
+              >
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": false,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  borderRadius={8}
+                  buttonPaddingBottom="0px"
+                  buttonPaddingLeft="12px"
+                  buttonPaddingRight="12px"
+                  buttonPaddingTop="0px"
+                  collapsable={false}
+                  color="primary"
+                  data-klear360-component="button"
+                  defaultBackgroundColor="hsla(198, 100%, 18%, 1)"
+                  defaultBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(198, 100%, 18%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+                  focusBackgroundColor="hsla(200, 98%, 17%, 1)"
+                  focusBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+                  focusRingColor="hsla(198, 100%, 18%, 0.18)"
+                  focusable={true}
+                  hoverBackgroundColor="hsla(200, 98%, 17%, 1)"
+                  hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+                  hoverIconColor="hsla(0, 0%, 100%, 1)"
+                  isFullWidth={false}
+                  isLoading={false}
+                  isPressed={false}
+                  minHeight="36px"
+                  motionDuration="duration.xquick"
+                  motionEasing="easing.standard"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  size="medium"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "alignSelf": "center",
+                        "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                        "borderColor": "black",
+                        "borderRadius": 8,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "cursor": "pointer",
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 36,
+                        "overflow": "hidden",
+                        "paddingBottom": 0,
+                        "paddingLeft": 12,
+                        "paddingRight": 12,
+                        "paddingTop": 0,
+                        "textDecorationColor": "black",
+                        "textDecorationLine": "none",
+                        "textDecorationStyle": "solid",
+                        "width": "auto",
+                      },
+                      {
+                        "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                      },
+                    ]
+                  }
+                  type="button"
+                >
+                  <View
+                    pointerEvents="none"
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <RNSVGSvgView
+                      bbHeight="100%"
+                      bbWidth="100%"
+                      focusable={false}
+                      pointerEvents="none"
+                      style={
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          {
+                            "flex": 0,
+                            "height": "100%",
+                            "width": "100%",
+                          },
+                        ]
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGDefs>
+                          <RNSVGLinearGradient
+                            gradient={
+                              [
+                                0,
+                                -1,
+                                1,
+                                16777215,
+                              ]
+                            }
+                            gradientTransform={null}
+                            gradientUnits={0}
+                            name="topFade-r0"
+                            x1="0"
+                            x2="0"
+                            y1="0"
+                            y2="1"
+                          />
+                          <RNSVGLinearGradient
+                            gradient={
+                              [
+                                0,
+                                -1,
+                                1,
+                                16777215,
+                              ]
+                            }
+                            gradientTransform={null}
+                            gradientUnits={0}
+                            name="bottomFade-r0"
+                            x1="0"
+                            x2="0"
+                            y1="1"
+                            y2="0"
+                          />
+                          <RNSVGMask
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
+                            height="100%"
+                            maskContentUnits={1}
+                            maskUnits={0}
+                            name="topMask-r0"
+                            width="100%"
+                            x="0%"
+                            y="0%"
+                          >
+                            <RNSVGRect
+                              fill={
+                                {
+                                  "brushRef": "topFade-r0",
+                                  "type": 1,
+                                }
+                              }
+                              height="20%"
+                              propList={
+                                [
+                                  "fill",
+                                ]
+                              }
+                              width="100%"
+                              x="0"
+                              y="0"
+                            />
+                          </RNSVGMask>
+                          <RNSVGMask
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
+                            height="100%"
+                            maskContentUnits={1}
+                            maskUnits={0}
+                            name="bottomMask-r0"
+                            width="100%"
+                            x="0%"
+                            y="0%"
+                          >
+                            <RNSVGRect
+                              fill={
+                                {
+                                  "brushRef": "bottomFade-r0",
+                                  "type": 1,
+                                }
+                              }
+                              height="20%"
+                              propList={
+                                [
+                                  "fill",
+                                ]
+                              }
+                              width="100%"
+                              x="0"
+                              y="80%"
+                            />
+                          </RNSVGMask>
+                          <RNSVGRadialGradient
+                            cx={0}
+                            cy={0}
+                            fx={0}
+                            fy={0}
+                            gradient={
+                              [
+                                0,
+                                788529151,
+                                1,
+                                16777215,
+                              ]
+                            }
+                            gradientTransform={null}
+                            gradientUnits={1}
+                            name="btnGlow-r0"
+                            rx={64}
+                            ry={64}
+                          />
+                        </RNSVGDefs>
+                        <RNSVGRect
+                          fill={null}
+                          height="100%"
+                          mask="bottomMask-r0"
+                          propList={
+                            [
+                              "fill",
+                              "stroke",
+                              "strokeWidth",
+                            ]
+                          }
+                          rx={8}
+                          ry={8}
+                          stroke={
+                            {
+                              "payload": 788529151,
+                              "type": 0,
+                            }
+                          }
+                          strokeWidth={7}
+                          width="100%"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGRect
+                          fill={null}
+                          height="100%"
+                          mask="topMask-r0"
+                          propList={
+                            [
+                              "fill",
+                              "stroke",
+                              "strokeWidth",
+                            ]
+                          }
+                          rx={8}
+                          ry={8}
+                          stroke={
+                            {
+                              "payload": 788529151,
+                              "type": 0,
+                            }
+                          }
+                          strokeWidth={4}
+                          width="100%"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGRect
+                          fill={null}
+                          height="100%"
+                          propList={
+                            [
+                              "fill",
+                              "stroke",
+                              "strokeWidth",
+                            ]
+                          }
+                          rx={8}
+                          ry={8}
+                          stroke={
+                            {
+                              "payload": 4278206556,
+                              "type": 0,
+                            }
+                          }
+                          strokeWidth={1}
+                          width="100%"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGRect
+                          fill={null}
+                          height="100%"
+                          mask="bottomMask-r0"
+                          propList={
+                            [
+                              "fill",
+                              "stroke",
+                              "strokeWidth",
+                            ]
+                          }
+                          rx={8}
+                          ry={8}
+                          stroke={
+                            {
+                              "payload": 4278270550,
+                              "type": 0,
+                            }
+                          }
+                          strokeWidth={5}
+                          width="100%"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGRect
+                          fill={
+                            {
+                              "brushRef": "btnGlow-r0",
+                              "type": 1,
+                            }
+                          }
+                          height="100%"
+                          propList={
+                            [
+                              "fill",
+                            ]
+                          }
+                          rx={8}
+                          ry={8}
+                          width="100%"
+                          x={0}
+                          y={0}
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "transform": [
+                          {
+                            "scale": 1,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      isHidden={false}
+                      justifyContent="center"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexBasis": 0,
+                            "flexDirection": "row",
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                            "justifyContent": "center",
+                            "zIndex": 1,
+                          },
+                          {
+                            "opacity": 1,
+                          },
+                        ]
+                      }
+                      zIndex={1}
+                    >
+                      <Text
+                        accessible={true}
+                        color="interactive.text.onPrimary.normal"
+                        data-klear360-component="base-text"
+                        fontSize={100}
+                        fontWeight="medium"
+                        lineHeight={100}
+                        marginX="spacing.2"
+                        style={
+                          [
+                            {
+                              "color": "hsla(0, 0%, 100%, 1)",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontStyle": "normal",
+                              "fontWeight": "500",
+                              "letterSpacing": 0,
+                              "lineHeight": 20,
+                              "marginBottom": 0,
+                              "marginLeft": 4,
+                              "marginRight": 4,
+                              "marginTop": 0,
+                              "paddingBottom": 0,
+                              "paddingLeft": 0,
+                              "paddingRight": 0,
+                              "paddingTop": 0,
+                              "textAlign": "center",
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        textAlign="center"
+                      >
+                        Apply
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

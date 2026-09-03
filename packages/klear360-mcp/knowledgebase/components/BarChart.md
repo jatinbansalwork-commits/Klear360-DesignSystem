@@ -1,0 +1,271 @@
+# BarChart
+
+## Component Name
+
+BarChart
+
+## Description
+
+BarChart is a comprehensive data visualization component that renders interactive bar charts with support for grouped, stacked, and vertical layouts. It provides customizable colors, animations, and interactive features like hover states and tooltips. The component is built on top of Recharts and integrates seamlessly with Klear360's design system, offering consistent styling and accessibility features. BarChart supports multiple data series, custom color themes, and various chart configurations for displaying categorical data effectively.
+
+## Important Constraints
+
+- `ChartBarWrapper` component only accepts `ChartBar`, `ChartXAxis`, `ChartYAxis`, `ChartCartesianGrid`, `ChartTooltip`, `ChartLegend`, and `ChartReferenceLine` components as children.
+- `data` prop is required and must be an array of objects with consistent data structure
+- `dataKey` prop is required for each `ChartBar` component and must correspond to a property in the data array
+- `stackId` must be consistent across all bars that should be stacked together
+- `layout="vertical"` requires `ChartXAxis` to have `type="number"` and `ChartYAxis` to have `type="category"`
+- Color tokens must follow the exact format: `data.background.categorical.{color}.{emphasis}` or `data.background.sequential.{color}.{number}`
+- Bar animations are controlled internally to ensure smooth entry/exit animations while preventing unwanted animations during tooltip hover interactions
+
+## TypeScript Types
+
+These types define the props that the BarChart component and its subcomponents accept:
+
+```typescript
+type ChartBarProps = Omit<RechartsBarProps, 'fill' | 'dataKey' | 'name' | 'label' | 'activeBar'> & {
+  /**
+   * The data key corresponding to a property in the data array.
+   */
+  dataKey: RechartsBarProps['dataKey'];
+  /**
+   * The name of the bar shown in tooltip and legend.
+   * If not provided, the dataKey will be used as the name.
+   */
+  name?: RechartsBarProps['name'];
+  /**
+   * The color of the bar.
+   * If not provided, colors will be picked from the default theme colors.
+   */
+  color?: ChartsCategoricalColorToken | ChartSequentialColorToken;
+  /**
+   * The stack id of the bar chart.
+   * Bars with the same stackId will be stacked on top of each other.
+   */
+  stackId?: RechartsBarProps['stackId'];
+  /**
+   * The active bar configuration for hover states.
+   * @default false
+   */
+  activeBar?: RechartsBarProps['activeBar'];
+  /**
+   * The label configuration for the bar chart.
+   * Can be a boolean, object, or custom render function.
+   * @default false
+   */
+  label?: RechartsBarProps['label'];
+  /**
+   * Whether to show this bar in the legend.
+   * @default true
+   */
+  showLegend?: boolean;
+  /**
+   * Whether to hide this bar. When true, the bar will not be rendered.
+   * This is typically controlled internally by legend click interactions.
+   */
+  hide?: boolean;
+  /**
+   * The width of the bar in pixels.
+   */
+  barSize?: RechartsBarProps['barSize'];
+};
+
+type data = {
+  [key: string]: unknown;
+};
+
+type ChartBarWrapperProps = {
+  children?: React.ReactNode;
+  /**
+   * The color theme of the bar chart.
+   */
+  colorTheme?:  'categorical';
+  /**
+   * The orientation of the bar chart.
+   */
+  layout?: 'horizontal' | 'vertical';
+  /**
+   * Chart data to be rendered
+   */
+  data: data[];
+} & BoxProps;
+
+
+type ChartsCategoricalColorToken = `data.background.categorical.${ChartColorCategories}.${keyof ChartCategoricalEmphasis}`;
+
+type ChartSequentialColorToken = `data.background.sequential.${Exclude<ChartColorCategories, 'gray'>}.${keyof ChartSequentialEmphasis}`;
+
+type colorTheme = 'categorical';
+
+
+type ChartXAxisProps = Omit<RechartsXAxisProps, 'tick' | 'label' | 'dataKey' | 'stroke'> & {
+  /**
+   * The label of the x-axis.
+   */
+  label?: string;
+  /**
+   * The data key of the x-axis.
+   */
+  dataKey?: string;
+  /**
+   *  Optional secondary data key for multi-line X-axis labels.
+   *  When provided, the X-axis will display two lines of text:
+   *  - Primary label (from dataKey)
+   *  - Secondary label (from secondaryDataKey)
+   * @example
+   * // Data: [{ date: 'Jan', year: '2024' }, { date: 'Feb', year: '2024' }]
+   * <ChartXAxis dataKey="date" secondaryDataKey="year" />
+   * // Renders:
+   * //   Jan        Feb
+   * //  2024       2024
+   */
+   secondaryDataKey?: string;
+    /**
+   * The interval of the x-axis.
+   * @default: 0
+   * @example
+   * // Data: [{ date: 'Jan', year: '2024' }, { date: 'Feb', year: '2024' }]
+   * <ChartXAxis dataKey="date" interval={1} />
+   * // Renders:
+   * //   Jan
+   * //   Feb
+   *
+   * note: if you can't  see all labels in case of large labels. try setting interval 0
+   */
+  interval?: number;
+  /**
+   * Custom formatter function to transform tick values before display.
+   * Useful for formatting timestamps, currencies, or other numeric values.
+   *
+   * @param value - The raw tick value from the data
+   * @param index - The index of the tick
+   * @returns The formatted string to display
+   *
+   * @example
+   * // Format timestamp to readable date
+   * <ChartXAxis
+   *   dataKey="timestamp"
+   *   tickFormatter={(value) => new Date(value).toLocaleDateString()}
+   * />
+   *
+   * @example
+   * // Format currency values
+   * <ChartXAxis
+   *   dataKey="amount"
+   *   tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+   * />
+   */
+  tickFormatter?: (value: string, index: number) => string;
+};
+
+type ChartYAxisProps = Omit<RechartsYAxisProps, 'tick' | 'label' | 'dataKey' | 'stroke'> & {
+  /**
+   * The label of the y-axis.
+   */
+  label?: string;
+  /**
+   * The data key of the y-axis.
+   */
+  dataKey?: string;
+};
+
+type ChartTooltipProps = ComponentProps<typeof RechartsTooltip>;
+
+
+type Layout = 'horizontal' | 'vertical';
+type Align = 'left' | 'right';
+
+type ChartTooltipProps = ComponentProps<typeof RechartsTooltip>;
+type ChartLegendProps = ComponentProps<typeof RechartsLegend> & {
+  layout?: Layout;
+  align?: Align;
+};
+
+
+type ChartCartesianGridProps = Omit<RechartsCartesianGridProps, 'strokeDasharray' | 'verticalFill' | 'horizontalFill'>;
+
+type ChartReferenceLineProps = {
+  /**
+   * The y-coordinate of the reference line.
+   */
+  y?: RechartsReferenceLineProps['y'];
+  /**
+   * The x-coordinate  of the reference line.
+   */
+  x?: RechartsReferenceLineProps['x'];
+  /**
+   * The label of the reference line.
+   */
+  label: string;
+};
+```
+
+## Usage Guidelines
+
+**Do**
+
+- Use `BarChart` for comparing discrete categorical values across groups.
+- Wrap in `ChartBarWrapper` and compose with `ChartBar`, `ChartXAxis`, `ChartYAxis`, `ChartTooltip`, `ChartLegend`.
+- Use `stackId` on multiple `ChartBar` components to create stacked bars showing composition.
+- Use `layout="vertical"` for horizontal bars — remember to set `ChartXAxis type="number"` and `ChartYAxis type="category"`.
+- Use both categorical and sequential color tokens — BarChart supports both palettes unlike other charts.
+
+**Don't**
+
+- Don't use `BarChart` for time-series trends — use `LineChart` or `AreaChart` instead.
+- Don't use `BarChart` for proportional/percentage composition — use `DonutChart` instead.
+- Don't add `<Defs/>` elements — color and gradient handling is managed internally.
+- Don't forget to swap axis types when using `layout="vertical"`.
+
+## Example
+
+### Basic BarChart with Multiple Series
+
+```tsx
+import React from 'react';
+import {
+  ChartBar,
+  ChartBarWrapper,
+  ChartXAxis,
+  ChartYAxis,
+  ChartCartesianGrid,
+  ChartTooltip,
+  ChartLegend,
+} from '@klear/klear360/components';
+
+const salesData = [
+  { month: 'Jan', revenue: 4000, profit: 2000, expenses: 1000 },
+  { month: 'Feb', revenue: 3000, profit: 1500, expenses: 800 },
+  { month: 'Mar', revenue: 5000, profit: 3000, expenses: 1200 },
+  { month: 'Apr', revenue: 4500, profit: 2500, expenses: 1100 },
+];
+
+const BasicBarChart = () => {
+  return (
+    <div style={{ width: '100%', height: '400px' }}>
+      <ChartBarWrapper data={salesData}>
+        <ChartCartesianGrid />
+        <ChartXAxis dataKey="month" />
+        <ChartYAxis />
+        <ChartTooltip />
+        <ChartLegend />
+        <ChartBar
+          dataKey="revenue"
+          name="Revenue"
+          color="data.background.categorical.blue.moderate"
+        />
+        <ChartBar
+          dataKey="profit"
+          name="Profit"
+          color="data.background.categorical.green.moderate"
+        />
+        <ChartBar
+          dataKey="expenses"
+          name="Expenses"
+          color="data.background.categorical.gold.moderate"
+        />
+      </ChartBarWrapper>
+    </div>
+  );
+};
+```

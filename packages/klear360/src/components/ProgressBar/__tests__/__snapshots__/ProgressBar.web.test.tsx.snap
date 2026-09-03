@@ -1,0 +1,4472 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProgressBar /> should accept data-analytics attribute 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3.c3.c3.c3.c3 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-analytics-progress-value="20"
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c2"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c3"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c2"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-99"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render ProgressBar without label and percentage 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c3.c3.c3.c3.c3 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c4.c4.c4.c4.c4 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 50%;
+  border-radius: 4px;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      />
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="50"
+        aria-valuetext="50%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-14"
+        role="progressbar"
+      >
+        <div
+          class="c2 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c3 c4 c5"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c6"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render ProgressBar without label and percentage 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="50"
+        aria-valuetext="50%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-45"
+        role="progressbar"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c2"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="32.98672286269283"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with default props 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c5.c5.c5.c5.c5 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-34"
+        role="progressbar"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c2"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="52.778756580308524"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c4"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+            <p
+              class="c5"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              20
+              %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with large size 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c4.c4.c4.c4.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5.c5.c5.c5.c5 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+  fill: hsla(216,56%,2%,1);
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-43"
+        role="progressbar"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="72"
+            viewBox="0 0 72 72"
+            width="72"
+          >
+            <circle
+              cx="36"
+              cy="36"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="32.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="7px"
+            />
+            <circle
+              class="c2"
+              cx="36"
+              cy="36"
+              fill="none"
+              r="32.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="204.20352248333654"
+              stroke-dashoffset="163.36281798666923"
+              stroke-width="7px"
+              transform="rotate(-90 36 36)"
+            />
+            <text
+              class="c3"
+              dy=".4em"
+              text-anchor="middle"
+              x="50%"
+              y="50%"
+            >
+              20
+              %
+            </text>
+          </svg>
+          <div
+            class="c4"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c5"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with medium size 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c4.c4.c4.c4.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5.c5.c5.c5.c5 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  fill: hsla(216,56%,2%,1);
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-41"
+        role="progressbar"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="48"
+            viewBox="0 0 48 48"
+            width="48"
+          >
+            <circle
+              cx="24"
+              cy="24"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="21.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="5px"
+            />
+            <circle
+              class="c2"
+              cx="24"
+              cy="24"
+              fill="none"
+              r="21.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="135.0884841043611"
+              stroke-dashoffset="108.07078728348888"
+              stroke-width="5px"
+              transform="rotate(-90 24 24)"
+            />
+            <text
+              class="c3"
+              dy=".4em"
+              text-anchor="middle"
+              x="50%"
+              y="50%"
+            >
+              20
+              %
+            </text>
+          </svg>
+          <div
+            class="c4"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c5"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with small size 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c5.c5.c5.c5.c5 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-39"
+        role="progressbar"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c2"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="52.778756580308524"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c4"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+            <p
+              class="c5"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              20
+              %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=information ProgressBar 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(195,100%,22%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(195,100%,22%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-20"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=information ProgressBar 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(195,100%,22%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(195,100%,22%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-51"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=negative ProgressBar 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(3,69%,51%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(3,69%,51%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-22"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=negative ProgressBar 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(3,69%,51%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(3,69%,51%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-53"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=neutral ProgressBar 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(218,50%,6%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(218,50%,6%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-24"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=neutral ProgressBar 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(218,50%,6%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(218,50%,6%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-55"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=notice ProgressBar 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(35,99%,44%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(35,99%,44%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-26"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=notice ProgressBar 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(35,99%,44%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(35,99%,44%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-57"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=positive ProgressBar 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(143,73%,40%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(143,73%,40%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-28"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render color=positive ProgressBar 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(143,73%,40%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(143,73%,40%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: iUKfkR-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c3"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="progress-linear-59"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8 c9"
+              data-klear360-component="base-box"
+              type="progress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with default props 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3.c3.c3.c3.c3 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c2"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c3"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c2"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-1"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with medium size 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3.c3.c3.c3.c3 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 4px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c2"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c3"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c2"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-8"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with small size 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3.c3.c3.c3.c3 {
+  margin-bottom: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c8.c8.c8.c8.c8 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c7.c7.c7.c7.c7 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 20%;
+  border-radius: 4px;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c2"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c3"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c2"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            20%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        aria-valuetext="20%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-6"
+        role="progressbar"
+      >
+        <div
+          class="c4 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5 c6 c7"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c8"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render meter variant of ProgressBar  1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2.c2.c2.c2.c2 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c3.c3.c3.c3.c3 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c4.c4.c4.c4.c4 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c6.c6.c6.c6.c6 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c5.c5.c5.c5.c5 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 70%;
+  border-radius: 4px;
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      />
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="70"
+        aria-valuetext="70"
+        class=""
+        data-klear360-component="base-box"
+        id="meter-linear-16"
+        role="meter"
+      >
+        <div
+          class="c2 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c3 c4 c5"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c6"
+              data-klear360-component="base-box"
+              type="meter"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should render meter variant of ProgressBar  2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c2.c2.c2.c2.c2 {
+  height: 100%;
+  width: 100%;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+}
+
+<div>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="70"
+        aria-valuetext="70"
+        class=""
+        data-klear360-component="base-box"
+        id="meter-circular-47"
+        role="meter"
+      >
+        <div
+          class="c1"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c2"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="19.792033717615702"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c4"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              70
+              %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 1`] = `
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c8.c8.c8.c8.c8 {
+  margin-bottom: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c11.c11.c11.c11.c11 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c13.c13.c13.c13.c13 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c12.c12.c12.c12.c12 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(0,0%,100%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.c7.c7.c7.c7.c7 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+.c0.c0.c0.c0.c0 {
+  min-height: 36px;
+  width: auto;
+  cursor: pointer;
+  background-color: hsla(198,100%,18%,1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
+  -webkit-transition-property: background-color,background-image,box-shadow;
+  transition-property: background-color,background-image,box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  position: relative;
+}
+
+.c0.c0.c0.c0.c0:hover {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:active {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:focus-visible {
+  background-color: hsla(200,98%,17%,1);
+  outline: 1px solid hsla(198,100%,18%,0.09);
+  background-image: none;
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+}
+
+.c0.c0.c0.c0.c0 * {
+  -webkit-transition-property: color,fill,opacity;
+  transition-property: color,fill,opacity;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c1.c1.c1.c1.c1 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
+  transition-duration: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-timing-function: 160px;
+  transition-timing-function: 160px;
+}
+
+.c3.c3.c3.c3.c3 {
+  opacity: 1;
+}
+
+<div>
+  <button
+    class="c0"
+    data-klear360-component="button"
+    role="button"
+    type="button"
+  >
+    <div
+      class=" c1"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c2 c3"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c4"
+          data-klear360-component="base-text"
+        >
+          Update Progress
+        </div>
+      </div>
+    </div>
+  </button>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c5"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c6"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c7"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c8"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c7"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            0%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        aria-valuetext="0%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-3"
+        role="progressbar"
+      >
+        <div
+          class="c9 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c10 c11 c12"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c13"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 2`] = `
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c8.c8.c8.c8.c8 {
+  margin-bottom: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  overflow: hidden;
+  position: relative;
+  height: 2px;
+  background-color: hsla(222,47%,11%,0.09);
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10 {
+  background-color: hsla(198,100%,18%,1);
+}
+
+.c11.c11.c11.c11.c11 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+}
+
+.c13.c13.c13.c13.c13 {
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 960ms;
+  transition-duration: 960ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+}
+
+.c12.c12.c12.c12.c12 {
+  background-color: hsla(198,100%,18%,1);
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(0,0%,100%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.c7.c7.c7.c7.c7 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+.c0.c0.c0.c0.c0 {
+  min-height: 36px;
+  width: auto;
+  cursor: pointer;
+  background-color: hsla(198,100%,18%,1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
+  -webkit-transition-property: background-color,background-image,box-shadow;
+  transition-property: background-color,background-image,box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  position: relative;
+}
+
+.c0.c0.c0.c0.c0:hover {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:active {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:focus-visible {
+  background-color: hsla(200,98%,17%,1);
+  outline: 1px solid hsla(198,100%,18%,0.09);
+  background-image: none;
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+}
+
+.c0.c0.c0.c0.c0 * {
+  -webkit-transition-property: color,fill,opacity;
+  transition-property: color,fill,opacity;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c1.c1.c1.c1.c1 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
+  transition-duration: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-timing-function: 160px;
+  transition-timing-function: 160px;
+}
+
+.c3.c3.c3.c3.c3 {
+  opacity: 1;
+}
+
+<div>
+  <button
+    class="c0"
+    data-klear360-component="button"
+    role="button"
+    type="button"
+  >
+    <div
+      class=" c1"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c2 c3"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c4"
+          data-klear360-component="base-text"
+        >
+          Update Progress
+        </div>
+      </div>
+    </div>
+  </button>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c5"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c6"
+        data-klear360-component="base-box"
+      >
+        <label
+          class="c7"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Label
+        </label>
+        <div
+          class="c8"
+          data-klear360-component="base-box"
+        >
+          <p
+            class="c7"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            0%
+          </p>
+        </div>
+      </div>
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        aria-valuetext="0%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-linear-3"
+        role="progressbar"
+      >
+        <div
+          class="c9 __klear360-progress-bar-track"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c10 c11 c12"
+            data-klear360-component="base-box"
+          >
+            <div
+              class=" c13"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 3`] = `
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c8.c8.c8.c8.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(0,0%,100%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c10.c10.c10.c10.c10 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.c7.c7.c7.c7.c7 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+.c0.c0.c0.c0.c0 {
+  min-height: 36px;
+  width: auto;
+  cursor: pointer;
+  background-color: hsla(198,100%,18%,1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
+  -webkit-transition-property: background-color,background-image,box-shadow;
+  transition-property: background-color,background-image,box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  position: relative;
+}
+
+.c0.c0.c0.c0.c0:hover {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:active {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:focus-visible {
+  background-color: hsla(200,98%,17%,1);
+  outline: 1px solid hsla(198,100%,18%,0.09);
+  background-image: none;
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+}
+
+.c0.c0.c0.c0.c0 * {
+  -webkit-transition-property: color,fill,opacity;
+  transition-property: color,fill,opacity;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c1.c1.c1.c1.c1 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
+  transition-duration: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-timing-function: 160px;
+  transition-timing-function: 160px;
+}
+
+.c3.c3.c3.c3.c3 {
+  opacity: 1;
+}
+
+<div>
+  <button
+    class="c0"
+    data-klear360-component="button"
+    role="button"
+    type="button"
+  >
+    <div
+      class=" c1"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c2 c3"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c4"
+          data-klear360-component="base-text"
+        >
+          Update Progress
+        </div>
+      </div>
+    </div>
+  </button>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c5"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        aria-valuetext="0%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-36"
+        role="progressbar"
+      >
+        <div
+          class="c6"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c7"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="65.97344572538566"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c8"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c9"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+            <p
+              class="c10"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              0
+              %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 4`] = `
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c8.c8.c8.c8.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(0,0%,100%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.c9.c9.c9.c9.c9 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.c10.c10.c10.c10.c10 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.c7.c7.c7.c7.c7 {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  -webkit-transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  transition: stroke-dashoffset 960ms cubic-bezier(0.5,0,0,1);
+  -webkit-animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+  animation: dorXNl-450290765 960ms cubic-bezier(0.5,0,0,1) infinite;
+}
+
+.c0.c0.c0.c0.c0 {
+  min-height: 36px;
+  width: auto;
+  cursor: pointer;
+  background-color: hsla(198,100%,18%,1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
+  -webkit-transition-property: background-color,background-image,box-shadow;
+  transition-property: background-color,background-image,box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  position: relative;
+}
+
+.c0.c0.c0.c0.c0:hover {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:active {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c0.c0.c0.c0.c0:focus-visible {
+  background-color: hsla(200,98%,17%,1);
+  outline: 1px solid hsla(198,100%,18%,0.09);
+  background-image: none;
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+}
+
+.c0.c0.c0.c0.c0 * {
+  -webkit-transition-property: color,fill,opacity;
+  transition-property: color,fill,opacity;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c1.c1.c1.c1.c1 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
+  transition-duration: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-timing-function: 160px;
+  transition-timing-function: 160px;
+}
+
+.c3.c3.c3.c3.c3 {
+  opacity: 1;
+}
+
+<div>
+  <button
+    class="c0"
+    data-klear360-component="button"
+    role="button"
+    type="button"
+  >
+    <div
+      class=" c1"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c2 c3"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c4"
+          data-klear360-component="base-text"
+        >
+          Update Progress
+        </div>
+      </div>
+    </div>
+  </button>
+  <div
+    class=""
+    data-klear360-component="progress-bar"
+  >
+    <div
+      class="c5"
+      data-klear360-component="base-box"
+    >
+      <div
+        aria-label="Label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        aria-valuetext="0%"
+        class=""
+        data-klear360-component="base-box"
+        id="undefined-circular-36"
+        role="progressbar"
+      >
+        <div
+          class="c6"
+          data-klear360-component="base-box"
+        >
+          <svg
+            aria-hidden="true"
+            class=""
+            data-klear360-component="icon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              data-klear360-component="svg-circle"
+              fill="none"
+              r="10.5"
+              stroke="hsla(222, 47%, 11%, 0.09)"
+              stroke-width="3px"
+            />
+            <circle
+              class="c7"
+              cx="12"
+              cy="12"
+              fill="none"
+              r="10.5"
+              stroke="hsla(198, 100%, 18%, 1)"
+              stroke-dasharray="65.97344572538566"
+              stroke-dashoffset="65.97344572538566"
+              stroke-width="3px"
+              transform="rotate(-90 12 12)"
+            />
+          </svg>
+          <div
+            class="c8"
+            data-klear360-component="base-box"
+          >
+            <p
+              class="c9"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              Label
+            </p>
+            <p
+              class="c10"
+              data-klear360-component="text"
+              letter-spacing="50"
+            >
+              0
+              %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,217 @@
+# AreaChart
+
+## Component Name
+
+AreaChart
+
+## Description
+
+AreaChart is a data visualization component built on top of Recharts that displays quantitative data as filled areas under curves. It supports single and multiple data series, stacked areas, and various styling options. The component is designed for showing trends over time, comparing multiple datasets, and highlighting data patterns with customizable colors and interactive features.
+
+## Important Constraints
+
+- Maximum of 10 areas can be configured in a single chart (throws error if exceeded)
+- `ChartAreaWrapper` only accepts `ChartArea` components as direct children for proper indexing
+- `dataKey` prop is required for each `ChartArea` component to specify which data field to display
+- `name` prop is required for each `ChartArea` component for legend and tooltip display
+- Data array must contain objects with consistent key structure across all data points
+- `colorTheme` currently only supports 'default' value (other themes will log warning)
+
+## TypeScript Types
+
+These types define the props that the AreaChart component and its subcomponents accept:
+
+```typescript
+
+type ChartAreaProps {
+  type?: 'step' | 'stepAfter' | 'stepBefore' | 'linear' | 'monotone';
+  connectNulls?: boolean;
+  showLegend?: boolean;
+  dataKey: string;
+  name: string;
+  stackId?: string | number;
+  color?: ChartsCategoricalColorToken;
+  dot?: RechartAreaProps['dot'];
+  activeDot?: RechartAreaProps['activeDot'];
+}
+
+type data = {
+  [key: string]: string | number | null;
+};
+
+type ChartAreaWrapperProps = {
+  children?: React.ReactNode;
+  colorTheme?:  'categorical';
+  data: data[];
+} & BoxProps;
+
+type ChartReferenceLineProps = {
+  /**
+   * The y-coordinate of the reference line.
+   */
+  y?: RechartsReferenceLineProps['y'];
+  /**
+   * The x-coordinate  of the reference line.
+   */
+  x?: RechartsReferenceLineProps['x'];
+  /**
+   * The label of the reference line.
+   */
+  label: string;
+};
+
+
+type ChartXAxisProps = Omit<RechartsXAxisProps, 'tick' | 'label' | 'dataKey' | 'stroke'> & {
+  /**
+   * The label of the x-axis.
+   */
+  label?: string;
+  /**
+   * The data key of the x-axis.
+   */
+  dataKey?: string;
+  /**
+   * Optional secondary data key for multi-line X-axis labels.
+   * When provided, the X-axis will display two lines of text:
+   * - Primary label (from dataKey)
+   * - Secondary label (from secondaryDataKey)
+   * @example
+   * // Data: [{ date: 'Jan', year: '2024' }, { date: 'Feb', year: '2024' }]
+   * <ChartXAxis dataKey="date" secondaryDataKey="year" />
+   * // Renders:
+   * //   Jan        Feb
+   * //  2024       2024
+   */
+   secondaryDataKey?: string;
+    /**
+   * The interval of the x-axis.
+   * @default: 0
+   * @example
+   * // Data: [{ date: 'Jan', year: '2024' }, { date: 'Feb', year: '2024' }]
+   * <ChartXAxis dataKey="date" interval={1} />
+   * // Renders:
+   * //   Jan
+   * //   Feb
+   *
+   * note: if you can't  see all labels in case of large labels. try setting interval 0
+   */
+  interval?: number;
+  /**
+   * Custom formatter function to transform tick values before display.
+   * Useful for formatting timestamps, currencies, or other numeric values.
+   *
+   * @param value - The raw tick value from the data
+   * @param index - The index of the tick
+   * @returns The formatted string to display
+   *
+   * @example
+   * // Format timestamp to readable date
+   * <ChartXAxis
+   *   dataKey="timestamp"
+   *   tickFormatter={(value) => new Date(value).toLocaleDateString()}
+   * />
+   *
+   * @example
+   * // Format currency values
+   * <ChartXAxis
+   *   dataKey="amount"
+   *   tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+   * />
+   */
+  tickFormatter?: (value: string, index: number) => string;
+};
+
+
+type ChartYAxisProps = Omit<RechartsYAxisProps, 'tick' | 'label' | 'dataKey' | 'stroke'> & {
+  /**
+   * The label of the y-axis.
+   */
+  label?: string;
+  /**
+   * The data key of the y-axis.
+   */
+  dataKey?: string;
+};
+
+type ChartTooltipProps = ComponentProps<typeof RechartsTooltip>;
+
+
+type Layout = 'horizontal' | 'vertical';
+type Align = 'left' | 'right';
+
+type ChartTooltipProps = ComponentProps<typeof RechartsTooltip>;
+type ChartLegendProps = ComponentProps<typeof RechartsLegend> & {
+  layout?: Layout;
+  align?: Align;
+};
+
+
+type ChartCartesianGridProps = ComponentProps<typeof RechartsCartesianGrid>;
+
+type ChartsCategoricalColorToken = `data.background.categorical.${ChartColorCategories}.${keyof ChartCategoricalEmphasis}`;
+
+type colorTheme = 'categorical';
+```
+
+## Usage Guidelines
+
+**Do**
+
+- Use `AreaChart` for showing trends over time with filled regions to emphasize volume or cumulative data.
+- Wrap in `ChartAreaWrapper` with `data` prop and compose with `ChartArea`, `ChartXAxis`, `ChartYAxis`, `ChartTooltip`, `ChartLegend`.
+- Use `stackId` on multiple `ChartArea` components to create stacked area visualizations showing cumulative proportions.
+- Use `connectNulls={true}` when your data has gaps that should be interpolated across.
+- Use `type="monotone"` (default) for smooth curves; `type="step"` for discrete step data.
+
+**Don't**
+
+- Don't use more than 10 `ChartArea` components per chart — this is the maximum enforced limit.
+- Don't use `AreaChart` for categorical comparisons — use `BarChart` instead.
+- Don't use `AreaChart` for showing parts of a whole — use `DonutChart` for proportional data.
+- Don't use sequential color tokens — only categorical color tokens are supported.
+- Don't try to customize chart margins — they are predefined internally.
+
+## Examples
+
+### Basic Area Chart with Single Data Series
+
+```typescript
+import React from 'react';
+import {
+  ChartAreaWrapper,
+  ChartArea,
+  ChartXAxis,
+  ChartYAxis,
+  ChartCartesianGrid,
+  ChartTooltip,
+  Box,
+} from '@klear/klear360/components';
+
+function BasicAreaChart() {
+  const data = [
+    { month: 'Jan', revenue: 4000 },
+    { month: 'Feb', revenue: 3000 },
+    { month: 'Mar', revenue: 2000 },
+    { month: 'Apr', revenue: 2780 },
+    { month: 'May', revenue: 1890 },
+    { month: 'Jun', revenue: 2390 },
+  ];
+
+  return (
+    <Box width="100%" height="400px">
+      <ChartAreaWrapper data={data}>
+        <ChartCartesianGrid />
+        <CharChartXAxis dataKey="month" />
+        <ChartYAxis />
+        <ChartTooltip />
+        <Area
+          dataKey="revenue"
+          name="Revenue"
+          type="monotone"
+          color="data.background.categorical.azure.intense"
+        />
+      </ChartAreaWrapper>
+    </Box>
+  );
+}
+```

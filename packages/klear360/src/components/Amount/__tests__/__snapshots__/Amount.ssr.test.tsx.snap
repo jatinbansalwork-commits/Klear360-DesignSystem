@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Amount /> should render Amount on server 1`] = `"<div id="root"><div data-klear360-component="amount" class="BaseBox-bksIuc dVjwNi"><div data-klear360-component="base-box" class="BaseBox-bksIuc flXYva"><span opacity="0.64" class="StyledBaseText-foUshD qPrlR" data-klear360-component="base-text">₹</span><span class="StyledBaseText-foUshD kWzOiW" data-klear360-component="base-text">10,000</span><span opacity="0.64" class="StyledBaseText-foUshD dpLkep" data-klear360-component="base-text">.<!-- -->00</span></div></div></div>"`;
+
+exports[`<Amount /> should render Amount on server 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  position: relative;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.625rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  margin: 0;
+  padding: 0;
+  opacity: 0.64;
+  margin-right: 2px;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.625rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  margin: 0;
+  padding: 0;
+  opacity: 0.64;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="amount"
+  >
+    <div
+      class="c1"
+      data-klear360-component="base-box"
+    >
+      <span
+        class="c2"
+        data-klear360-component="base-text"
+        opacity="0.64"
+      >
+        ₹
+      </span>
+      <span
+        class="c3"
+        data-klear360-component="base-text"
+      >
+        10,000
+      </span>
+      <span
+        class="c4"
+        data-klear360-component="base-text"
+        opacity="0.64"
+      >
+        .
+        <!-- -->
+        00
+      </span>
+    </div>
+  </div>
+</div>
+`;

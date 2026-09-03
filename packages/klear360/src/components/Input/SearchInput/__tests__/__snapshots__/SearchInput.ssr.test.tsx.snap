@@ -1,0 +1,636 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchInput /> should render SearchInput 1`] = `"<div id="root"><div data-klear360-component="base-box" class="BaseBox-bksIuc emXDue"><div data-klear360-component="search-input" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div data-klear360-component="base-box" class="BaseBox-bksIuc cPCUku"><label for="searchinput-undefined-input-undefined" style="width:100%;flex-shrink:0;margin-right:0px" data-klear360-component="form-label"><div data-klear360-component="base-box" class="BaseBox-bksIuc fhmUvk"><div data-klear360-component="base-box" class="BaseBox-bksIuc eHGxoV"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc gQLxiP"><p letter-spacing="50" class="StyledBaseText-foUshD hPRusU" data-klear360-component="text">Search here</p><div data-klear360-component="visually-hidden" class="VisuallyHiddenweb__StyledVisuallyHidden-pm2p4j-0 dWmplj"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text"></p></div></div></div></div></div></label></div><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  daBVTY eoNeTz __klear360-base-input-wrapper" data-klear360-component="base-box"><div data-klear360-component="base-box" class="BaseBox-bksIuc kXHuQ"><div data-klear360-component="base-box" class="BaseBox-bksIuc icobYX"><svg aria-hidden="true" data-klear360-component="icon" height="16px" viewBox="0 0 24 24" width="16px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><path d="M16.6177 18.0319C15.078 19.2635 13.125 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 13.125 19.2635 15.078 18.0319 16.6177L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0977 20.6834 22.0977 20.2929 21.7071L16.6177 18.0319ZM4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 12.886 17.2541 14.5978 16.0413 15.8565C16.0071 15.8828 15.9742 15.9116 15.9429 15.9429C15.9116 15.9742 15.8827 16.0071 15.8564 16.0413C14.5977 17.2542 12.886 18 11 18C7.13401 18 4 14.866 4 11Z" clip-rule="evenodd" fill="hsla(215, 25%, 27%, 1)" fill-rule="evenodd" data-klear360-component="svg-path"></path></svg></div></div><div class="BaseBox-bksIuc BaseInputTagSlotweb__TagSlotContainer-yqvb5y-0 hnPCgP gfXbQE tags-slot" data-klear360-component="base-box"><div data-klear360-component="base-box" class="BaseBox-bksIuc gcVAyv"><input type="text" inputMode="search" enterKeyHint="search" autoComplete="off" id="searchinput-undefined-input-undefined" placeholder="Search payment products, settings, and more" data-klear360-component="styled-base-input" aria-required="false" aria-disabled="false" aria-invalid="false" aria-describedby="searchinput-undefined-helptext-undefined" class="StyledBaseInputweb__StyledBaseNativeInput-q40kfl-0 itDDUU"/></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><div data-klear360-component="base-box" class="BaseBox-bksIuc jnAPEq"><div id="searchinput-undefined-helptext-undefined" data-klear360-component="base-box" class="BaseBox-bksIuc clhaJX"><span data-klear360-component="base-box" class="BaseBox-bksIuc orhco"><span letter-spacing="50" class="StyledBaseText-foUshD clrrhm" data-klear360-component="text">Enter an item to search</span></span></div></div></div></div></div></div>"`;
+
+exports[`<SearchInput /> should render SearchInput 2`] = `
+.c0.c0.c0.c0.c0 {
+  position: relative;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.c4.c4.c4.c4.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-height: 36px;
+  gap: 0px;
+}
+
+.c12.c12.c12.c12.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c13.c13.c13.c13.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 12px;
+}
+
+.c14.c14.c14.c14.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  min-height: 36px;
+}
+
+.c16.c16.c16.c16.c16 {
+  width: 100%;
+  min-width: min(20%,60px);
+}
+
+.c18.c18.c18.c18.c18 {
+  margin-left: 0px;
+}
+
+.c19.c19.c19.c19.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c20.c20.c20.c20.c20 {
+  margin-top: 4px;
+}
+
+.c21.c21.c21.c21.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.c6.c6.c6.c6.c6 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+}
+
+.c8.c8.c8.c8.c8 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c22.c22.c22.c22.c22 {
+  color: hsla(215,25%,27%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1rem;
+  -webkit-letter-spacing: -0.14300000000000002px;
+  -moz-letter-spacing: -0.14300000000000002px;
+  -ms-letter-spacing: -0.14300000000000002px;
+  letter-spacing: -0.14300000000000002px;
+  margin: 0;
+  padding: 0;
+  word-break: break-word;
+  margin-top: 0px;
+}
+
+.c17.c17.c17.c17.c17 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: hsla(0,0%,100%,0);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0px;
+  padding-right: 12px;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  cursor: auto;
+}
+
+.c17.c17.c17.c17.c17::-webkit-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c17.c17.c17.c17.c17::-moz-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c17.c17.c17.c17.c17:-ms-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c17.c17.c17.c17.c17::placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c17.c17.c17.c17.c17:focus {
+  outline: none;
+}
+
+.c10.c10.c10.c10.c10 {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c10.c10.c10.c10.c10:hover {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(215,20%,65%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c10.c10.c10.c10.c10:focus-within {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c11.c11.c11.c11.c11 {
+  -webkit-animation: none;
+  animation: none;
+  max-height: 36px;
+}
+
+.c15.c15.c15.c15.c15 {
+  -ms-overflow-style: none;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c15.c15.c15.c15.c15::-webkit-scrollbar {
+  display: none;
+}
+
+.c7.c7.c7.c7.c7 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0 -1px -1px 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  left: -10000px;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.c9.c9.c9.c9.c9 {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.c9.c9.c9.c9.c9:focus-within {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+  z-index: 2;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="base-box"
+  >
+    <div
+      class=""
+      data-klear360-component="search-input"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <label
+            data-klear360-component="form-label"
+            for="searchinput-1-input-2"
+            style="width:100%;flex-shrink:0;margin-right:0px"
+          >
+            <div
+              class="c3"
+              data-klear360-component="base-box"
+            >
+              <div
+                class="c4"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class=""
+                  data-klear360-component="base-box"
+                >
+                  <div
+                    class="c5"
+                    data-klear360-component="base-box"
+                  >
+                    <p
+                      class="c6"
+                      data-klear360-component="text"
+                      letter-spacing="50"
+                    >
+                      Search here
+                    </p>
+                    <div
+                      class="c7"
+                      data-klear360-component="visually-hidden"
+                    >
+                      <p
+                        class="c8"
+                        data-klear360-component="text"
+                        letter-spacing="50"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+        <div
+          class=" c9 focus-ring-wrapper"
+          data-klear360-component="base-box"
+        >
+          <div
+            class=" c10 c11 __klear360-base-input-wrapper"
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c12"
+              data-klear360-component="base-box"
+            >
+              <div
+                class="c13"
+                data-klear360-component="base-box"
+              >
+                <svg
+                  aria-hidden="true"
+                  class=""
+                  data-klear360-component="icon"
+                  fill="none"
+                  height="16px"
+                  viewBox="0 0 24 24"
+                  width="16px"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M16.6177 18.0319C15.078 19.2635 13.125 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 13.125 19.2635 15.078 18.0319 16.6177L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0977 20.6834 22.0977 20.2929 21.7071L16.6177 18.0319ZM4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 12.886 17.2541 14.5978 16.0413 15.8565C16.0071 15.8828 15.9742 15.9116 15.9429 15.9429C15.9116 15.9742 15.8827 16.0071 15.8564 16.0413C14.5977 17.2542 12.886 18 11 18C7.13401 18 4 14.866 4 11Z"
+                    data-klear360-component="svg-path"
+                    fill="hsla(215, 25%, 27%, 1)"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              class="c14 c15 tags-slot"
+              data-klear360-component="base-box"
+            >
+              <div
+                class="c16"
+                data-klear360-component="base-box"
+              >
+                <input
+                  aria-describedby="searchinput-1-helptext-4"
+                  aria-disabled="false"
+                  aria-invalid="false"
+                  aria-required="false"
+                  autocomplete="off"
+                  class="c17"
+                  data-klear360-component="styled-base-input"
+                  enterkeyhint="search"
+                  id="searchinput-1-input-2"
+                  inputmode="search"
+                  placeholder="Search payment products, settings, and more"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="c18"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c19"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c20"
+            data-klear360-component="base-box"
+            id="searchinput-1-helptext-4"
+          >
+            <span
+              class="c21"
+              data-klear360-component="base-box"
+            >
+              <span
+                class="c22"
+                data-klear360-component="text"
+                letter-spacing="50"
+              >
+                Enter an item to search
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

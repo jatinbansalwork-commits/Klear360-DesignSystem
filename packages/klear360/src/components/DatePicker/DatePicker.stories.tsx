@@ -1,0 +1,1483 @@
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import dayjs from 'dayjs';
+import React from 'react';
+import { Title } from '@storybook/addon-docs/blocks';
+import { I18nProvider } from '@klear/i18n-react';
+import type { DatePickerProps, DatesRangeValue } from './types';
+import { DatePicker as DatePickerComponent, FilterChipDatePicker } from './';
+import { Box } from '~components/Box';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import { Code, Text } from '~components/Typography';
+import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgTypes';
+import { Button } from '~components/Button';
+import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
+import { InfoIcon } from '~components/Icons';
+import { Link } from '~components/Link';
+import { TimePicker } from '~components/TimePicker';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from '~components/Modal';
+
+const propsCategory = {
+  BASE_PROPS: 'DatePicker Props',
+  INPUT_PROPS: 'Input Props',
+};
+
+const baseProp = {
+  table: {
+    category: propsCategory.BASE_PROPS,
+  },
+} as const;
+const inputProp = {
+  table: {
+    category: propsCategory.INPUT_PROPS,
+  },
+} as const;
+export default {
+  title: 'Components/DatePicker',
+  component: DatePickerComponent,
+  tags: ['autodocs'],
+  argTypes: {
+    ...getStyledPropsArgTypes(),
+    value: baseProp,
+    isOpen: baseProp,
+    onChange: baseProp,
+    selectionType: baseProp,
+    presets: baseProp,
+    minDate: baseProp,
+    maxDate: baseProp,
+    excludeDate: baseProp,
+    picker: baseProp,
+    visibleMonth: baseProp,
+    defaultVisibleMonth: baseProp,
+    onVisibleMonthChange: baseProp,
+    onOpenChange: baseProp,
+    allowSingleDateInRange: baseProp,
+    defaultIsOpen: baseProp,
+    defaultPicker: baseProp,
+    defaultValue: baseProp,
+    firstDayOfWeek: baseProp,
+    onMonthSelect: baseProp,
+    onYearSelect: baseProp,
+    onNext: baseProp,
+    onNextDecade: baseProp,
+    onNextMonth: baseProp,
+    onNextYear: baseProp,
+    onPickerChange: baseProp,
+    onPrevious: baseProp,
+    onPreviousDecade: baseProp,
+    onPreviousMonth: baseProp,
+    onPreviousYear: baseProp,
+    locale: baseProp,
+    footer: baseProp,
+    accessibilityLabel: inputProp,
+    errorText: inputProp,
+    helpText: inputProp,
+    isDisabled: inputProp,
+    isRequired: inputProp,
+    label: inputProp,
+    labelPosition: inputProp,
+    size: inputProp,
+    successText: inputProp,
+    validationState: inputProp,
+    name: inputProp,
+    autoFocus: inputProp,
+    necessityIndicator: inputProp,
+    showClearButton: inputProp,
+    onClearButtonClick: inputProp,
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <StoryPageWrapper
+          componentDescription="The DatePicker component is used to select a date or a range of dates."
+          componentName="DatePicker"
+          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/DatePicker/_decisions/decisions.md"
+          figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=88832-1762629&t=oSH8pSWjSoiOUnXo-0"
+        >
+          <Title>Usage</Title>
+          <Sandbox editorHeight={600}>
+            {`
+              import { DatePicker } from '@klear/klear360/components';
+import { m } from 'framer-motion';
+
+              function App() {
+                return (
+                  <DatePicker
+                    label="Name"
+                    onChange={(e) => console.log(e)}
+                  />
+                )
+              }
+
+              export default App;
+            `}
+          </Sandbox>
+        </StoryPageWrapper>
+      ),
+    },
+  },
+} as Meta<DatePickerProps<'single' | 'range'>>;
+
+const DatePickerTemplate: StoryFn<typeof DatePickerComponent> = ({ ...args }) => {
+  if (args.selectionType === 'single' && typeof args.label === 'object') {
+    throw new Error(
+      '[Storybook Controls]: Cannot use {start,end} label for single selection, please switch to the SingleDatePicker story',
+    );
+  }
+
+  return (
+    <DatePickerComponent
+      onChange={(date) => {
+        console.log(date);
+      }}
+      {...args}
+    />
+  );
+};
+
+export const SingleDatePicker = DatePickerTemplate.bind({});
+SingleDatePicker.storyName = 'SingleDatePicker';
+SingleDatePicker.args = {
+  label: 'Select a date',
+  selectionType: 'single',
+  size: 'large',
+};
+
+export const RangeDatePicker = DatePickerTemplate.bind({});
+RangeDatePicker.storyName = 'RangeDatePicker';
+RangeDatePicker.args = {
+  label: { start: 'Select a date range' },
+  selectionType: 'range',
+};
+
+export const DatePickerPresets: StoryFn<typeof DatePickerComponent> = ({ ..._args }) => {
+  const [selectedDates, setSelectedDates] = React.useState<DatesRangeValue>([
+    dayjs().subtract(7, 'days').toDate(),
+    dayjs().toDate(),
+  ]);
+
+  return (
+    <Box>
+      <Text>
+        In Range DatePicker you can pass <Code size="medium">presets</Code> which will render a
+        quick selection panel inside DatePicker for easy to use range selections
+      </Text>
+      <Text marginTop="spacing.4">
+        presets accepts an array of objects with <Code>label</Code> and{' '}
+        <Code size="medium">value</Code> properties.
+      </Text>
+      <Text marginTop="spacing.2" marginBottom="spacing.5">
+        Example:
+        <Code size="medium">
+          {`
+            [ { label: 'Past 7 days', value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date]} ]
+          `}
+        </Code>
+      </Text>
+
+      <DatePickerComponent
+        label={{ start: 'Select a date range' }}
+        selectionType="range"
+        value={selectedDates}
+        onChange={(date) => {
+          console.log(date);
+          setSelectedDates(date as DatesRangeValue);
+        }}
+        presets={[
+          {
+            label: 'Today',
+            value: (date) => [dayjs(date).startOf('day').toDate(), date],
+          },
+          {
+            label: 'Yesterday',
+            value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+          },
+          {
+            label: 'Past 7 days',
+            value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+          },
+          {
+            label: 'Past 15 days',
+            value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+          },
+          {
+            label: 'Past month',
+            value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+          },
+          {
+            label: 'Past year',
+            value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+          },
+          {
+            label: 'Past financial year',
+            value: (date) => {
+              const d = dayjs(date);
+              const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+              return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+            },
+          },
+          {
+            label: 'Custom',
+            value: () => [null, null] as DatesRangeValue,
+          },
+        ]}
+      />
+    </Box>
+  );
+};
+
+DatePickerPresets.storyName = 'With Presets';
+
+export const DatePickerPresetsWithDisplayFormatCompact: StoryFn<typeof DatePickerComponent> = ({
+  ..._args
+}) => {
+  const [selectedDates, setSelectedDates] = React.useState<DatesRangeValue>([
+    dayjs().subtract(7, 'days').toDate(),
+    dayjs().toDate(),
+  ]);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        When using <Code size="medium">{'displayFormat="compact"'}</Code> with presets, the
+        DatePicker displays a single input field showing the selected preset label or date range in
+        a compact format.
+      </Text>
+
+      <DatePickerComponent
+        label={{ start: 'Select a date range' }}
+        selectionType="range"
+        allowSingleDateInRange={true}
+        value={selectedDates}
+        onChange={(date) => {
+          console.log(date);
+          setSelectedDates(date as DatesRangeValue);
+        }}
+        displayFormat="compact"
+        presets={[
+          {
+            label: 'Today',
+            value: (date) => [dayjs(date).startOf('day').toDate(), date],
+          },
+          {
+            label: 'Yesterday',
+            value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+          },
+          {
+            label: 'Past 7 days',
+            value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+          },
+          {
+            label: 'Past 15 days',
+            value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+          },
+          {
+            label: 'Past month',
+            value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+          },
+          {
+            label: 'Past year',
+            value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+          },
+          {
+            label: 'Past financial year',
+            value: (date) => {
+              const d = dayjs(date);
+              const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+              return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+            },
+          },
+          {
+            label: 'Custom',
+            value: () => [null, null] as DatesRangeValue,
+          },
+        ]}
+      />
+    </Box>
+  );
+};
+
+DatePickerPresetsWithDisplayFormatCompact.storyName = 'With Presets (displayFormat compact)';
+
+export const DatePickerControlled: StoryFn<typeof DatePickerComponent> = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [dateRange, setDateRange] = React.useState<DatesRangeValue>([
+    dayjs().subtract(3, 'months').toDate(),
+    dayjs().add(3, 'day').subtract(3, 'months').toDate(),
+  ]);
+  const [date, setDate] = React.useState(dayjs().subtract(3, 'months').toDate());
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">isOpen</Code>, <Code size="medium">value</Code> and associated
+        event handlers you can control the DatePicker.
+      </Text>
+      <Box marginBottom="spacing.5">
+        <Text>
+          Selected: [{dayjs(dateRange[0]).format('DD-MM-YYYY')},{' '}
+          {dayjs(dateRange[1]).format('DD-MM-YYYY')}]
+        </Text>
+        <Text marginTop="spacing.2">IsOpen: {JSON.stringify(isOpen)}</Text>
+      </Box>
+      <DatePickerComponent
+        label={{ start: 'Select a date range' }}
+        selectionType="range"
+        isOpen={isOpen}
+        onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+        value={dateRange}
+        onChange={(date) => {
+          setDateRange(date);
+        }}
+      />
+      <Box marginTop="spacing.5">
+        <Text marginBottom="spacing.5">Single Date Picker</Text>
+        <Text>Selected: {dayjs(date).format('DD-MM-YYYY')}</Text>
+        <DatePickerComponent
+          label="Select a date"
+          selectionType="single"
+          value={date}
+          onChange={(date) => {
+            if (date) setDate(date);
+          }}
+        />
+      </Box>
+
+      <Button
+        onClick={() => {
+          setDate(
+            dayjs()
+              .subtract(Math.round(Math.random() * 10), 'month')
+              .toDate(),
+          );
+        }}
+        marginTop="spacing.5"
+      >
+        {' '}
+        Change Date
+      </Button>
+    </Box>
+  );
+};
+
+DatePickerControlled.storyName = 'Controlled DatePicker';
+
+export const Validations: StoryFn<typeof DatePickerComponent> = () => {
+  const [date, setDate] = React.useState<DatesRangeValue>([
+    new Date(),
+    dayjs().add(3, 'day').toDate(),
+  ]);
+  const [hasError, setHasError] = React.useState(false);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        DatePicker supports all common Input props like <Code size="medium">validationState</Code>,{' '}
+        <Code size="medium">isRequired</Code>, <Code size="medium">isDisabled</Code> etc.
+      </Text>
+      <DatePickerComponent
+        validationState={hasError ? 'error' : 'none'}
+        errorText="Cannot select a range which is more than 3 days"
+        label={{ start: 'Select a date range' }}
+        selectionType="range"
+        value={date}
+        onChange={(date) => {
+          setDate(date);
+          if (dayjs(date[1]).diff(date[0], 'day') > 3) {
+            setHasError(true);
+          } else {
+            setHasError(false);
+          }
+        }}
+      />
+    </Box>
+  );
+};
+
+Validations.storyName = 'Validations';
+
+export const MinMaxDates: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">minDate</Code> and <Code size="medium">maxDate</Code> props you can
+        set minimum and maximum dates that can be selected.
+      </Text>
+      <Box marginY="spacing.4" display="flex" gap="spacing.2" flexDirection="column">
+        <Text>Example: </Text>
+        <Text size="small">{`minDate={dayjs().subtract(1, 'week').toDate()}`}</Text>
+        <Text size="small">{`maxDate={dayjs().add(1, 'week').toDate()}`}</Text>
+      </Box>
+      <DatePickerComponent
+        label={{ start: 'Select a date range' }}
+        selectionType="range"
+        minDate={dayjs().subtract(1, 'week').toDate()}
+        maxDate={dayjs().add(1, 'week').toDate()}
+      />
+      <Box marginTop="spacing.8">
+        <Text marginBottom="spacing.3">Single DatePicker with min/max:</Text>
+        <DatePickerComponent
+          label="Select a date"
+          selectionType="single"
+          minDate={dayjs().subtract(1, 'month').toDate()}
+          maxDate={dayjs().add(1, 'month').toDate()}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+MinMaxDates.storyName = 'MinMaxDates';
+
+export const InitialMonthWithDisabledToday: StoryFn<typeof DatePickerComponent> = () => {
+  // minDate and maxDate are both restricted to March 2026, so months outside it have no
+  // selectable dates and the calendar opens directly on March 2026.
+  const minDate = dayjs('2026-03-01').startOf('month').toDate();
+  const maxDate = dayjs('2026-03-31').endOf('month').toDate();
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        When today&apos;s month falls outside the allowed <Code size="medium">minDate</Code> /{' '}
+        <Code size="medium">maxDate</Code> range, the calendar no longer opens on a fully-disabled
+        month. Instead it opens clamped to the range — here directly on{' '}
+        <Code size="medium">March 2026</Code> (the only selectable month).
+      </Text>
+      <Box marginY="spacing.4" display="flex" gap="spacing.2" flexDirection="column">
+        <Text>Example (allowed range limited to March 2026): </Text>
+        <Text size="small">{`minDate={dayjs('2026-03-01').startOf('month').toDate()}`}</Text>
+        <Text size="small">{`maxDate={dayjs('2026-03-31').endOf('month').toDate()}`}</Text>
+      </Box>
+      <DatePickerComponent
+        label="Select a date"
+        selectionType="single"
+        minDate={minDate}
+        maxDate={maxDate}
+      />
+      <Box marginTop="spacing.8">
+        <Text marginBottom="spacing.3">Range DatePicker with the same March 2026 range:</Text>
+        <DatePickerComponent
+          label={{ start: 'Select a date range' }}
+          selectionType="range"
+          minDate={minDate}
+          maxDate={maxDate}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+InitialMonthWithDisabledToday.storyName = 'Initial Month (Disabled Today)';
+
+export const ExcludeDates: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">excludeDate</Code> function you can exclude specific dates from
+        being selected.
+      </Text>
+      <Box marginY="spacing.4" display="flex" gap="spacing.2" flexDirection="column">
+        <Text>Example, exclude weekends: </Text>
+        <Text size="small">{`excludeDate={(date) => dayjs(date).day() === 0 || dayjs(date).day() === 6}`}</Text>
+      </Box>
+      <DatePickerComponent
+        label="Select Dates Without Weekends"
+        selectionType="single"
+        excludeDate={(date) => dayjs(date).day() === 0 || dayjs(date).day() === 6}
+      />
+    </Box>
+  );
+};
+
+ExcludeDates.storyName = 'ExcludeDates';
+
+export const LabelPositionLeft: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        The <Code size="medium">label</Code> prop accepts a string or an object{' '}
+        <Code size="medium">{`{start, end}`}</Code> depending on the
+        <Code size="medium">selectionType</Code>. When the{' '}
+        <Code size="medium">labelPositionLeft</Code> prop is set & selectionType is range, the label
+        will be rendered on the left with the <Code size="medium">{`{start}`}</Code> string.
+      </Text>
+      <Box display="flex" gap="spacing.5" flexDirection="column">
+        <DatePickerComponent
+          labelPosition="left"
+          selectionType="range"
+          label={{ start: 'Select a date range' }}
+        />
+        <DatePickerComponent selectionType="single" labelPosition="left" label="Select a date" />
+      </Box>
+    </Box>
+  );
+};
+
+LabelPositionLeft.storyName = 'LabelPositionLeft';
+
+export const MonthPicker: StoryFn<typeof DatePickerComponent> = ({ ...args }) => {
+  return (
+    <Box>
+      <Text>
+        By passing <Code size="medium">picker</Code> prop as <Code size="medium">month</Code> or{' '}
+        <Code size="medium">year</Code> you can render a month/year picker
+      </Text>
+      <Text marginTop="spacing.2">
+        You can also hook into onMonthSelect and onYearSelect events
+      </Text>
+      <Text
+        color="surface.text.gray.muted"
+        size="small"
+        marginTop="spacing.2"
+        marginBottom="spacing.4"
+      >
+        Note: picker is only supported in single selection mode
+      </Text>
+      <DatePickerComponent format="MMM" picker="month" selectionType="single" {...args} />
+    </Box>
+  );
+};
+
+MonthPicker.storyName = 'Month/Year Picker';
+
+export const Localization: StoryFn<typeof DatePickerComponent> = () => {
+  console.log(Intl.DateTimeFormat.supportedLocalesOf('en'));
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        The DatePicker component supports localization using the i18n library. You can pass the
+        locale prop to the
+        <Code size="medium">I18nProvider</Code> to change the locale of the DatePicker.
+      </Text>
+      <I18nProvider initData={{ locale: 'hi-IN' }}>
+        <DatePickerComponent label={`initData={{ locale: 'hi-IN' }}`} />
+      </I18nProvider>
+
+      <I18nProvider initData={{ locale: 'ms-MY' }}>
+        <Box marginTop="spacing.5">
+          <DatePickerComponent label={`initData={{ locale: 'ms-MY' }}`} />
+        </Box>
+      </I18nProvider>
+    </Box>
+  );
+};
+
+Localization.storyName = 'Localization';
+
+export const FilterChipDatePickerStorySingleStory: StoryFn<typeof FilterChipDatePicker> = () => {
+  return (
+    <Box>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="single"
+        onChange={(date) => {
+          console.log('date', date);
+        }}
+      />
+    </Box>
+  );
+};
+
+FilterChipDatePickerStorySingleStory.storyName = 'FilterChipDatePicker (Single Selection)';
+
+export const FilterChipDatePickerClearButtonBehavior: StoryFn<typeof FilterChipDatePicker> = () => {
+  return (
+    <Box display="flex" flexDirection="column" gap="spacing.8" maxWidth="760px">
+      <Text>
+        Use <Code size="medium">showClearButton</Code> to control the clear (cross) button on the
+        FilterChipDatePicker. It defaults to <Code size="medium">true</Code>.
+      </Text>
+
+      <Box display="flex" flexDirection="column" gap="spacing.3">
+        <Text weight="semibold">With clear button (default)</Text>
+        <Text size="small" color="surface.text.gray.muted">
+          Once a date is selected the cross appears; pressing it clears the value (fires{' '}
+          <Code size="medium">onChange</Code> with an empty value and{' '}
+          <Code size="medium">onClearButtonClick</Code>).
+        </Text>
+        <Box>
+          <FilterChipDatePicker label="Date" selectionType="single" defaultValue={new Date()} />
+        </Box>
+      </Box>
+
+      <Box display="flex" flexDirection="column" gap="spacing.3">
+        <Text weight="semibold">Without clear button (showClearButton={'{false}'})</Text>
+        <Text size="small" color="surface.text.gray.muted">
+          For filters that must always hold a value. The chip starts with a default date and never
+          shows the cross, so it can&apos;t be cleared to an empty state — the calendar can still be
+          opened to change the date.
+        </Text>
+        <Box>
+          <FilterChipDatePicker
+            label="Date"
+            selectionType="single"
+            defaultValue={new Date()}
+            showClearButton={false}
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+FilterChipDatePickerClearButtonBehavior.storyName = 'FilterChipDatePicker (Clear Button Behaviour)';
+
+export const FilterChipDatePickerStoryMultiSelectionStory: StoryFn<
+  typeof FilterChipDatePicker
+> = () => {
+  return (
+    <Box>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="range"
+        onChange={(date) => {
+          console.log(date);
+        }}
+      />
+    </Box>
+  );
+};
+
+FilterChipDatePickerStoryMultiSelectionStory.storyName = 'FilterChipDatePicker (Multi Selection)';
+
+export const FilterChipDatePickerStoryWithPreset: StoryFn<typeof FilterChipDatePicker> = ({
+  displayFormat,
+}) => {
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        Use the <Code size="medium">displayFormat</Code> control below to switch between{' '}
+        <Code size="medium">compact</Code> and <Code size="medium">default</Code>. In{' '}
+        <Code size="medium">compact</Code> mode, selecting a named preset (e.g.{' '}
+        <Code size="medium">Past 7 days</Code>) shows the preset label, while a{' '}
+        <Code size="medium">Custom</Code> range shows a humanised date range (e.g. 7 Jun - 12 Jun
+        2026). In <Code size="medium">default</Code> mode, the chip always shows the raw date range.
+      </Text>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="range"
+        displayFormat={displayFormat}
+        presets={[
+          {
+            label: 'Past 7 days',
+            value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+          },
+          {
+            label: 'Past 15 days',
+            value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+          },
+          {
+            label: 'Past month',
+            value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+          },
+          {
+            label: 'Custom',
+            value: () => [null, null] as DatesRangeValue,
+          },
+        ]}
+        onChange={(date) => {
+          console.log(date);
+        }}
+      />
+    </Box>
+  );
+};
+
+FilterChipDatePickerStoryWithPreset.storyName =
+  'FilterChipDatePicker (Range Selection) with Presets';
+FilterChipDatePickerStoryWithPreset.args = {
+  displayFormat: 'compact',
+};
+FilterChipDatePickerStoryWithPreset.argTypes = {
+  displayFormat: {
+    name: 'displayFormat',
+    control: { type: 'inline-radio' },
+    options: ['compact', 'default'],
+    description: 'Controls what is shown inside the selected state of the chip.',
+    ...baseProp,
+  },
+};
+
+export const ControlledFilterChipDatePickerSingle: StoryFn<typeof FilterChipDatePicker> = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">isOpen</Code>, <Code size="medium">value</Code> and associated
+        event handlers you can control the FilterChipDatePicker.
+      </Text>
+      <Box marginBottom="spacing.5">
+        <Text>Selected: {dayjs(date).format('DD-MM-YYYY')}</Text>
+        <Text marginTop="spacing.2">IsOpen: {JSON.stringify(isOpen)}</Text>
+      </Box>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="single"
+        isOpen={isOpen}
+        onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+        value={date}
+        onChange={(date) => {
+          setDate(date as Date);
+        }}
+      />
+    </Box>
+  );
+};
+
+export const ControlledFilterChipDatePickerRange: StoryFn<typeof FilterChipDatePicker> = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [date, setDate] = React.useState<DatesRangeValue>([
+    new Date(),
+    dayjs().add(3, 'day').toDate(),
+  ]);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">isOpen</Code>, <Code size="medium">value</Code> and associated
+        event handlers you can control the FilterChipDatePicker.
+      </Text>
+      <Box marginBottom="spacing.5">
+        <Text>
+          Selected: [{dayjs(date[0]).format('DD-MM-YYYY')}, {dayjs(date[1]).format('DD-MM-YYYY')}]
+        </Text>
+        <Text marginTop="spacing.2">IsOpen: {JSON.stringify(isOpen)}</Text>
+      </Box>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="range"
+        isOpen={isOpen}
+        onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+        value={date}
+        onChange={(date) => {
+          setDate(date as DatesRangeValue);
+        }}
+        onClearButtonClick={() => {
+          setDate([null, null]);
+        }}
+      />
+    </Box>
+  );
+};
+
+export const DisabledDatePickerWithFilterChipSelectInput: StoryFn<
+  typeof DatePickerComponent
+> = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [date, setDate] = React.useState<DatesRangeValue>([
+    new Date(),
+    dayjs().add(3, 'day').toDate(),
+  ]);
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">isOpen</Code>, <Code size="medium">value</Code> and associated
+        event handlers you can control the FilterChipDatePicker.
+      </Text>
+      <Box marginBottom="spacing.5">
+        <Text>
+          Selected: [{dayjs(date[0]).format('DD-MM-YYYY')}, {dayjs(date[1]).format('DD-MM-YYYY')}]
+        </Text>
+        <Text marginTop="spacing.2">IsOpen: {JSON.stringify(isOpen)}</Text>
+      </Box>
+      <FilterChipDatePicker
+        label="Date"
+        selectionType="range"
+        isOpen={isOpen}
+        onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+        value={date}
+        onChange={(date) => {
+          setDate(date as DatesRangeValue);
+        }}
+        onClearButtonClick={() => {
+          setDate([null, null]);
+        }}
+        isDisabled
+      />
+    </Box>
+  );
+};
+
+export const DatePickerWithLabelSuffixTrailing: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box>
+      <Box display="flex" gap="spacing.5" flexDirection="column">
+        <DatePickerComponent
+          selectionType="single"
+          labelPosition="left"
+          label="Select a date"
+          labelSuffix={
+            <Tooltip content="Select a date" placement="right">
+              <TooltipInteractiveWrapper display="flex">
+                <InfoIcon size="small" color="surface.icon.gray.muted" />
+              </TooltipInteractiveWrapper>
+            </Tooltip>
+          }
+          labelTrailing={<Link size="small">Learn more</Link>}
+        />
+        <DatePickerComponent
+          labelPosition="left"
+          selectionType="range"
+          label="Select a date range"
+          labelSuffix={
+            <Tooltip content="Select a date" placement="right">
+              <TooltipInteractiveWrapper display="flex">
+                <InfoIcon size="small" color="surface.icon.gray.muted" />
+              </TooltipInteractiveWrapper>
+            </Tooltip>
+          }
+          labelTrailing={<Link size="small">Learn more</Link>}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+export const DatePickerWithFooter = DatePickerTemplate.bind({});
+DatePickerWithFooter.storyName = 'DatePicker with Footer';
+DatePickerWithFooter.args = {
+  label: 'Select a date',
+  selectionType: 'range',
+  footer: (
+    <Box display="flex" flexDirection="column" gap="spacing.2">
+      <Text size="small" color="surface.text.gray.normal">
+        This section only displays records from the last 45 days. This section only displays records
+        from the last 45 days.
+      </Text>
+      <Link size="small" href="#">
+        Link to report tab
+      </Link>
+    </Box>
+  ),
+};
+
+export const WithoutActionButtons = DatePickerTemplate.bind({});
+WithoutActionButtons.storyName = 'Without Action Buttons';
+WithoutActionButtons.args = {
+  label: 'Select a date',
+  selectionType: 'single',
+  showFooterActions: false,
+};
+
+export const ClearButtonUncontrolled: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">showClearButton</Code> prop, you can render a clear button in the
+        DatePicker input. When clicked, it will clear the selected date.
+      </Text>
+      <Text marginBottom="spacing.5" color="surface.text.gray.muted" size="small">
+        In uncontrolled mode, the clear button will automatically clear the internal state.
+      </Text>
+      <Box display="flex" gap="spacing.5" flexDirection="column">
+        <DatePickerComponent
+          label="Single Date (Uncontrolled)"
+          selectionType="single"
+          showClearButton
+          onChange={(value) => {
+            console.log('value', value);
+          }}
+          onClearButtonClick={() => {
+            console.log('Clear button clicked - Single');
+          }}
+          presets={[
+            {
+              label: 'In 7 days',
+              value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+            },
+            {
+              label: 'In a month',
+              value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+            },
+          ]}
+        />
+        <DatePickerComponent
+          label={{ start: 'Date Range (Uncontrolled)' }}
+          selectionType="range"
+          showClearButton
+          onClearButtonClick={() => {
+            console.log('Clear button clicked - Range');
+          }}
+          onChange={(value) => {
+            console.log('value', value);
+          }}
+          presets={[
+            {
+              label: 'Today',
+              value: (date) => [dayjs(date).startOf('day').toDate(), date],
+            },
+            {
+              label: 'Yesterday',
+              value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+            },
+            {
+              label: 'Past 7 days',
+              value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+            },
+            {
+              label: 'Past 15 days',
+              value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+            },
+            {
+              label: 'Past month',
+              value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+            },
+            {
+              label: 'Past year',
+              value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+            },
+            {
+              label: 'Past financial year',
+              value: (date) => {
+                const d = dayjs(date);
+                const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+                return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+              },
+            },
+            {
+              label: 'Custom',
+              value: () => [null, null] as DatesRangeValue,
+            },
+          ]}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+ClearButtonUncontrolled.storyName = 'Clear Button (Uncontrolled)';
+
+export const ClearButtonControlled: StoryFn<typeof DatePickerComponent> = () => {
+  const [singleDate, setSingleDate] = React.useState<Date | null>(new Date());
+  const [dateRange, setDateRange] = React.useState<DatesRangeValue>([
+    dayjs().subtract(3, 'months').toDate(),
+    dayjs().add(3, 'day').subtract(3, 'months').toDate(),
+  ]);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">showClearButton</Code> and{' '}
+        <Code size="medium">onClearButtonClick</Code> props, you can control when the clear button
+        appears and handle the clear action in controlled mode.
+      </Text>
+      <Text marginBottom="spacing.5" color="surface.text.gray.muted" size="small">
+        In controlled mode, use <Code size="medium">onClearButtonClick</Code> to reset your state.
+      </Text>
+
+      <Box display="flex" gap="spacing.5" flexDirection="column">
+        <Box>
+          <Text marginBottom="spacing.2">
+            Selected Single Date: {singleDate ? dayjs(singleDate).format('DD-MM-YYYY') : 'None'}
+          </Text>
+          <DatePickerComponent
+            label="Single Date (Controlled)"
+            selectionType="single"
+            value={singleDate}
+            onChange={(date) => setSingleDate(date)}
+            showClearButton
+            onClearButtonClick={() => {
+              console.log('Clear button clicked - resetting single date');
+            }}
+          />
+        </Box>
+
+        <Box>
+          <Text marginBottom="spacing.2">
+            Selected Range: {dateRange[0] ? dayjs(dateRange[0]).format('DD-MM-YYYY') : 'None'} -{' '}
+            {dateRange[1] ? dayjs(dateRange[1]).format('DD-MM-YYYY') : 'None'}
+          </Text>
+          <DatePickerComponent
+            label={{ start: 'Date Range (Controlled)' }}
+            selectionType="range"
+            value={dateRange}
+            onChange={(date) => setDateRange(date)}
+            showClearButton
+            onClearButtonClick={() => {
+              console.log('Clear button clicked - resetting date range');
+            }}
+            presets={[
+              {
+                label: 'Today',
+                value: (date) => [dayjs(date).startOf('day').toDate(), date],
+              },
+              {
+                label: 'Yesterday',
+                value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+              },
+              {
+                label: 'Past 7 days',
+                value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+              },
+              {
+                label: 'Past 15 days',
+                value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+              },
+              {
+                label: 'Past month',
+                value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+              },
+              {
+                label: 'Past year',
+                value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+              },
+              {
+                label: 'Past financial year',
+                value: (date) => {
+                  const d = dayjs(date);
+                  const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+                  return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+                },
+              },
+              {
+                label: 'Custom',
+                value: () => [null, null] as DatesRangeValue,
+              },
+            ]}
+          />
+        </Box>
+
+        <Box display="flex" gap="spacing.3">
+          <Button
+            size="small"
+            onClick={() => {
+              setSingleDate(new Date());
+              setDateRange([new Date(), dayjs().add(7, 'day').toDate()]);
+            }}
+          >
+            Reset to Today
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+ClearButtonControlled.storyName = 'Clear Button (Controlled)';
+
+export const ClearButtonControlledDisplayCompact: StoryFn<typeof DatePickerComponent> = () => {
+  const [singleDate, setSingleDate] = React.useState<Date | null>(new Date());
+  const [dateRange, setDateRange] = React.useState<DatesRangeValue>([
+    dayjs().subtract(3, 'months').toDate(),
+    dayjs().add(3, 'day').subtract(3, 'months').toDate(),
+  ]);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        With <Code size="medium">showClearButton</Code> and{' '}
+        <Code size="medium">onClearButtonClick</Code> props, you can control when the clear button
+        appears and handle the clear action in controlled mode.
+      </Text>
+      <Text marginBottom="spacing.5" color="surface.text.gray.muted" size="small">
+        In controlled mode, use <Code size="medium">onClearButtonClick</Code> to reset your state.
+      </Text>
+
+      <Box display="flex" gap="spacing.5" flexDirection="column">
+        <Box>
+          <Text marginBottom="spacing.2">
+            Selected Single Date: {singleDate ? dayjs(singleDate).format('DD-MM-YYYY') : 'None'}
+          </Text>
+          <DatePickerComponent
+            label="Single Date (Controlled)"
+            selectionType="single"
+            value={singleDate}
+            onChange={(date) => setSingleDate(date)}
+            showClearButton
+            onClearButtonClick={() => {
+              console.log('Clear button clicked - resetting single date');
+            }}
+          />
+        </Box>
+
+        <Box>
+          <Text marginBottom="spacing.2">
+            Selected Range: {dateRange[0] ? dayjs(dateRange[0]).format('DD-MM-YYYY') : 'None'} -{' '}
+            {dateRange[1] ? dayjs(dateRange[1]).format('DD-MM-YYYY') : 'None'}
+          </Text>
+          <DatePickerComponent
+            label={{ start: 'Date Range (Controlled)' }}
+            selectionType="range"
+            value={dateRange}
+            onChange={(date) => setDateRange(date)}
+            showClearButton
+            onClearButtonClick={() => {
+              console.log('Clear button clicked - resetting date range');
+            }}
+            allowSingleDateInRange
+            displayFormat="compact"
+            presets={[
+              {
+                label: 'Today',
+                value: (date) => [dayjs(date).startOf('day').toDate(), date],
+              },
+              {
+                label: 'Yesterday',
+                value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+              },
+              {
+                label: 'Past 7 days',
+                value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+              },
+              {
+                label: 'Past 15 days',
+                value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+              },
+              {
+                label: 'Past month',
+                value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+              },
+              {
+                label: 'Past year',
+                value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+              },
+              {
+                label: 'Past financial year',
+                value: (date) => {
+                  const d = dayjs(date);
+                  const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+                  return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+                },
+              },
+              {
+                label: 'Custom',
+                value: () => [null, null] as DatesRangeValue,
+              },
+            ]}
+          />
+        </Box>
+
+        <Box display="flex" gap="spacing.3">
+          <Button
+            size="small"
+            onClick={() => {
+              setSingleDate(new Date());
+              setDateRange([new Date(), dayjs().add(7, 'day').toDate()]);
+            }}
+          >
+            Reset to Today
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+ClearButtonControlledDisplayCompact.storyName = 'Clear Button (Controlled ) (Display Compact)';
+
+export const DatePickerWithCardsShowcase: StoryFn<typeof DatePickerComponent> = () => {
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap="spacing.7"
+      backgroundColor="surface.background.gray.moderate"
+      padding="spacing.8"
+      minHeight="100vh"
+    >
+      <Box maxWidth="320px">
+        <DatePickerComponent
+          label="Select Date"
+          selectionType="single"
+          defaultValue={new Date()}
+          onChange={(date) => console.log(date)}
+        />
+      </Box>
+      <Box maxWidth="320px">
+        <DatePickerComponent
+          label="Select Range"
+          selectionType="range"
+          defaultValue={[new Date(), new Date()]}
+          onChange={(date) => console.log(date)}
+        />
+      </Box>
+
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+      >
+        {' '}
+        Change Date
+      </Button>
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+        color="positive"
+      >
+        {' '}
+        Change Date
+      </Button>
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+        color="negative"
+      >
+        {' '}
+        Change Date
+      </Button>
+
+      <Box maxWidth="320px">
+        <DatePickerComponent
+          label="Select Range"
+          selectionType="range"
+          defaultValue={[new Date(), new Date()]}
+          onChange={(date) => console.log(date)}
+          presets={[
+            {
+              label: 'Today',
+              value: (date) => [dayjs(date).startOf('day').toDate(), date],
+            },
+            {
+              label: 'Yesterday',
+              value: (date) => [dayjs(date).subtract(1, 'day').startOf('day').toDate(), date],
+            },
+            {
+              label: 'Past 7 days',
+              value: (date) => [dayjs(date).subtract(7, 'days').toDate(), date],
+            },
+            {
+              label: 'Past 15 days',
+              value: (date) => [dayjs(date).subtract(15, 'days').toDate(), date],
+            },
+            {
+              label: 'Past month',
+              value: (date) => [dayjs(date).subtract(1, 'month').toDate(), date],
+            },
+            {
+              label: 'Past year',
+              value: (date) => [dayjs(date).subtract(1, 'year').toDate(), date],
+            },
+            {
+              label: 'Past financial year',
+              value: (date) => {
+                const d = dayjs(date);
+                const year = d.month() >= 3 ? d.year() : d.year() - 1;
+
+                return [dayjs(`${year - 1}-04-01`).toDate(), dayjs(`${year}-03-31`).toDate()];
+              },
+            },
+            {
+              label: 'Custom',
+              value: () => [null, null] as DatesRangeValue,
+            },
+          ]}
+        />
+      </Box>
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+      >
+        {' '}
+        Change Date
+      </Button>
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+        color="positive"
+      >
+        {' '}
+        Change Date
+      </Button>
+      <Button
+        onClick={() => {
+          console.log('Change Date');
+        }}
+        marginTop="spacing.5"
+        color="negative"
+      >
+        {' '}
+        Change Date
+      </Button>
+    </Box>
+  );
+};
+
+DatePickerWithCardsShowcase.storyName = 'With Cards (Backdrop Showcase)';
+
+const useDateTimePickerState = (): {
+  selectedDate: Date | null;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  selectedTime: Date | null;
+  setSelectedTime: React.Dispatch<React.SetStateAction<Date | null>>;
+  combinedDateTime: Date | null;
+} => {
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date());
+  const [selectedTime, setSelectedTime] = React.useState<Date | null>(() => {
+    const now = new Date();
+    now.setHours(10, 0, 0, 0);
+    return now;
+  });
+
+  const combinedDateTime = React.useMemo(() => {
+    if (!selectedDate || !selectedTime) return null;
+    const combined = new Date(selectedDate);
+    combined.setHours(selectedTime.getHours(), selectedTime.getMinutes(), 0, 0);
+    return combined;
+  }, [selectedDate, selectedTime]);
+
+  return { selectedDate, setSelectedDate, selectedTime, setSelectedTime, combinedDateTime };
+};
+
+const DateTimePickerFields = ({
+  selectedDate,
+  setSelectedDate,
+  selectedTime,
+  setSelectedTime,
+  combinedDateTime,
+}: ReturnType<typeof useDateTimePickerState>): React.ReactElement => (
+  <Box display="flex" flexDirection="column" gap="spacing.5">
+    <DatePickerComponent
+      label="Event Date"
+      selectionType="single"
+      value={selectedDate}
+      onChange={(date) => setSelectedDate(date)}
+    />
+    <TimePicker
+      label="Event Time"
+      value={selectedTime}
+      onChange={({ value }) => setSelectedTime(value)}
+      timeFormat="12h"
+      minuteStep={15}
+    />
+    {combinedDateTime && (
+      <Box
+        padding="spacing.4"
+        backgroundColor="feedback.background.positive.subtle"
+        borderRadius="medium"
+      >
+        <Text weight="semibold" size="small">
+          Scheduled for:
+        </Text>
+        <Text size="small" marginTop="spacing.2">
+          {dayjs(combinedDateTime).format('dddd, MMMM D, YYYY [at] h:mm A')}
+        </Text>
+      </Box>
+    )}
+  </Box>
+);
+
+export const DatePickerWithTimePicker: StoryFn<typeof DatePickerComponent> = () => {
+  const state = useDateTimePickerState();
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        Combine <Code size="medium">DatePicker</Code> and <Code size="medium">TimePicker</Code> on a
+        single page for scheduling use cases like booking appointments, creating events, or setting
+        deadlines.
+      </Text>
+      <DateTimePickerFields {...state} />
+    </Box>
+  );
+};
+
+DatePickerWithTimePicker.storyName = 'DatePicker with TimePicker';
+
+export const DatePickerWithTimePickerInModal: StoryFn<typeof DatePickerComponent> = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const state = useDateTimePickerState();
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        Combine <Code size="medium">DatePicker</Code> and <Code size="medium">TimePicker</Code>{' '}
+        inside a <Code size="medium">Modal</Code> for scheduling use cases like booking
+        appointments, creating events, or setting deadlines.
+      </Text>
+
+      <Button onClick={() => setIsOpen(true)}>Schedule Event</Button>
+
+      <Modal isOpen={isOpen} onDismiss={() => setIsOpen(false)} size="medium">
+        <ModalHeader title="Schedule an Event" subtitle="Pick a date and time for your event" />
+        <ModalBody>
+          <DateTimePickerFields {...state} />
+        </ModalBody>
+        <ModalFooter>
+          <Box display="flex" gap="spacing.3" justifyContent="flex-end" width="100%">
+            <Button variant="secondary" onClick={() => setIsOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                console.log('Event scheduled:', state.combinedDateTime);
+                setIsOpen(false);
+              }}
+            >
+              Confirm
+            </Button>
+          </Box>
+        </ModalFooter>
+      </Modal>
+    </Box>
+  );
+};
+
+export const DatePickerComparisonRange: StoryFn<typeof DatePickerComponent> = () => {
+  const [primaryRange, setPrimaryRange] = React.useState<DatesRangeValue>([
+    dayjs().subtract(1, 'month').toDate(),
+    dayjs().toDate(),
+  ]);
+  const [comparisonRange, setComparisonRange] = React.useState<DatesRangeValue>([null, null]);
+  const [comparisonVisibleMonth, setComparisonVisibleMonth] = React.useState<Date | undefined>();
+
+  // Same-length period immediately preceding the primary range, with no gap between the two.
+  React.useEffect(() => {
+    const [primaryStart, primaryEnd] = primaryRange;
+    if (!primaryStart || !primaryEnd) return;
+    const rangeLengthInDays = dayjs(primaryEnd).diff(dayjs(primaryStart), 'day');
+    setComparisonVisibleMonth(
+      dayjs(primaryStart)
+        .subtract(rangeLengthInDays + 1, 'day')
+        .toDate(),
+    );
+  }, [primaryRange]);
+
+  return (
+    <Box>
+      <Text marginBottom="spacing.5">
+        Use <Code size="medium">visibleMonth</Code>/<Code size="medium">defaultVisibleMonth</Code>{' '}
+        to anchor a comparison <Code size="medium">DatePicker</Code> on the months immediately
+        preceding a primary range&apos;s selection — without pre-filling the comparison{' '}
+        <Code size="medium">value</Code>. Pick a primary range below, then open &quot;Compare
+        to&quot; and notice the calendar opens on the same-length period right before it.
+      </Text>
+      <Box display="flex" flexDirection="column" gap="spacing.5" maxWidth="400px">
+        <DatePickerComponent
+          label={{ start: 'Primary date range' }}
+          selectionType="range"
+          value={primaryRange}
+          onChange={(date) => setPrimaryRange(date)}
+        />
+        <DatePickerComponent
+          label={{ start: 'Compare to' }}
+          selectionType="range"
+          value={comparisonRange}
+          visibleMonth={comparisonVisibleMonth}
+          onVisibleMonthChange={setComparisonVisibleMonth}
+          onChange={(date) => setComparisonRange(date)}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+DatePickerComparisonRange.storyName = 'Comparison Range (visibleMonth)';
+
+DatePickerWithTimePickerInModal.storyName = 'DatePicker with TimePicker (Modal)';

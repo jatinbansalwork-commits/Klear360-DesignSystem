@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Code /> should render Code with color 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="code"
+    isHighlighted={false}
+    size="small"
+    style={
+      [
+        {},
+        {
+          "alignSelf": "center",
+          "borderRadius": 4,
+          "display": "flex",
+          "lineHeight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "verticalAlign": "middle",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      color="interactive.text.primary.disabled"
+      data-klear360-component="base-text"
+      fontFamily="code"
+      fontSize={25}
+      fontWeight="regular"
+      letterSpacing={100}
+      lineHeight={25}
+      style={
+        [
+          {
+            "color": "hsla(198, 100%, 18%, 0.32)",
+            "fontFamily": "Roboto Mono",
+            "fontSize": 10,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 13,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      TEST_TOKEN
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<Code /> should render Code with default properties 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="code"
+    isHighlighted={true}
+    size="small"
+    style={
+      [
+        {},
+        {
+          "alignSelf": "center",
+          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "borderRadius": 4,
+          "display": "flex",
+          "lineHeight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "verticalAlign": "middle",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      color="surface.text.gray.subtle"
+      data-klear360-component="base-text"
+      fontFamily="code"
+      fontSize={25}
+      fontWeight="regular"
+      letterSpacing={100}
+      lineHeight={25}
+      style={
+        [
+          {
+            "color": "hsla(200, 10%, 18%, 1)",
+            "fontFamily": "Roboto Mono",
+            "fontSize": 10,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 13,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      TEST_TOKEN
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<Code /> should render isHighlighted false Code 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="code"
+    isHighlighted={false}
+    size="small"
+    style={
+      [
+        {},
+        {
+          "alignSelf": "center",
+          "borderRadius": 4,
+          "display": "flex",
+          "lineHeight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "verticalAlign": "middle",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      color="surface.text.gray.normal"
+      data-klear360-component="base-text"
+      fontFamily="code"
+      fontSize={25}
+      fontWeight="regular"
+      letterSpacing={100}
+      lineHeight={25}
+      style={
+        [
+          {
+            "color": "hsla(0, 0%, 2%, 1)",
+            "fontFamily": "Roboto Mono",
+            "fontSize": 10,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 13,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      NON-HIGHLIGHTED
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<Code /> should render medium Code 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="code"
+    isHighlighted={true}
+    size="medium"
+    style={
+      [
+        {},
+        {
+          "alignSelf": "center",
+          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "borderRadius": 4,
+          "display": "flex",
+          "lineHeight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "verticalAlign": "middle",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      color="surface.text.gray.subtle"
+      data-klear360-component="base-text"
+      fontFamily="code"
+      fontSize={75}
+      fontWeight="regular"
+      letterSpacing={100}
+      lineHeight={75}
+      style={
+        [
+          {
+            "color": "hsla(200, 10%, 18%, 1)",
+            "fontFamily": "Roboto Mono",
+            "fontSize": 12,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 17,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      MEDIUM
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<Code /> should render small Code 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="code"
+    isHighlighted={true}
+    size="small"
+    style={
+      [
+        {},
+        {
+          "alignSelf": "center",
+          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "borderRadius": 4,
+          "display": "flex",
+          "lineHeight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "verticalAlign": "middle",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      color="surface.text.gray.subtle"
+      data-klear360-component="base-text"
+      fontFamily="code"
+      fontSize={25}
+      fontWeight="regular"
+      letterSpacing={100}
+      lineHeight={25}
+      style={
+        [
+          {
+            "color": "hsla(200, 10%, 18%, 1)",
+            "fontFamily": "Roboto Mono",
+            "fontSize": 10,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 13,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      SMALL
+    </Text>
+  </View>
+</View>
+`;

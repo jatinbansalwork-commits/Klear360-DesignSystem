@@ -1,0 +1,209 @@
+import React from 'react';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
+import { FILTER_CHIP_HEIGHT } from './tokens';
+import type { BaseFilterChipProps } from './types';
+import { makeBorderSize, makeSpace } from '~utils';
+import type { Theme } from '~components/Klear360Provider';
+import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
+import type { Klear360ElementRef } from '~utils/types';
+import { makeAccessible } from '~utils/makeAccessible';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { Box } from '~components/Box';
+import BaseBox from '~components/Box/BaseBox';
+import { Counter } from '~components/Counter';
+import { Divider } from '~components/Divider';
+import { ChevronDownIcon, CloseIcon } from '~components/Icons';
+import { Text } from '~components/Typography';
+import { getFocusRingStyles } from '~utils/getFocusRingStyles';
+import { getStyledProps } from '~components/Box/styledProps';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+
+const getInteractiveFilterItemStyles = ({ theme }: { theme: Theme }): CSSObject => {
+  return {
+    display: 'flex',
+    height: '100%',
+    alignItems: 'center',
+    border: 'none',
+    cursor: 'pointer',
+    color: 'currentcolor',
+    '&:not([disabled]):hover': {
+      backgroundColor: theme.colors.interactive.background.gray.faded,
+    },
+    '&[disabled]': {
+      cursor: 'not-allowed',
+    },
+    '&:focus-visible': {
+      ...getFocusRingStyles({ theme }),
+      outlineOffset: makeSpace(theme.spacing[1]),
+    },
+  };
+};
+
+const StyledFilterChip = styled(BaseBox)<{ $isSelected?: boolean; $isDisabled?: boolean }>(
+  ({ theme, $isDisabled, $isSelected }) => {
+    return {
+      borderWidth: makeBorderSize(theme.border.width.thin),
+      borderColor: theme.colors.interactive.border.gray[$isDisabled ? 'disabled' : 'faded'],
+      height: FILTER_CHIP_HEIGHT,
+      borderRadius: theme.border.radius.small,
+      display: 'flex',
+      borderStyle: $isSelected ? 'solid' : 'dashed',
+      backgroundColor: theme.colors.surface.background.gray.intense,
+      color: theme.colors.interactive.text.gray[$isDisabled ? 'disabled' : 'muted'],
+      width: 'fit-content',
+    };
+  },
+);
+
+const StyledFilterTrigger = styled.button<{ $hasClearButton?: boolean }>(
+  ({ theme, $hasClearButton }) => {
+    const { spacing } = theme;
+    return {
+      backgroundColor: theme.colors.transparent,
+      // When a clear button follows the trigger its right corners butt against the divider,
+      // so they're squared off. Without a clear button the trigger is a self-contained pill.
+      borderRadius: $hasClearButton ? theme.border.radius.none : theme.border.radius.small,
+      borderTopLeftRadius: theme.border.radius.small,
+      borderBottomLeftRadius: theme.border.radius.small,
+      paddingLeft: makeSpace(spacing[4]),
+      paddingRight: $hasClearButton ? makeSpace(spacing[2]) : makeSpace(spacing[3]),
+      gap: makeSpace(spacing[2]),
+      ...getInteractiveFilterItemStyles({ theme }),
+    };
+  },
+);
+
+const StyledFilterCloseButton = styled.button(({ theme }) => {
+  return {
+    backgroundColor: theme.colors.transparent,
+    borderTopRightRadius: theme.border.radius.small,
+    borderBottomRightRadius: theme.border.radius.small,
+    paddingLeft: makeSpace(theme.spacing[2] + theme.spacing[1]),
+    paddingRight: makeSpace(theme.spacing[2] + theme.spacing[1]),
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...getInteractiveFilterItemStyles({ theme }),
+  };
+});
+
+const renderValue = (
+  selectionType: BaseFilterChipProps['selectionType'],
+  value: BaseFilterChipProps['value'],
+  isDisabled?: boolean,
+): React.ReactElement => {
+  const valueColor = isDisabled ? 'interactive.text.gray.disabled' : 'interactive.text.gray.normal';
+
+  // For multiple selection: when a single option is selected we show its name (no redundant
+  // "1" counter); once more than one is selected we collapse to a compact counter.
+  // Use an explicit type guard so a non-array value (e.g. a plain string returned by
+  // getFilterChipDisplayValue) never enters the array branch where .length would be
+  // misinterpreted as character count.
+  if (selectionType === 'multiple') {
+    const valueArray = Array.isArray(value) ? value : value != null ? [value] : [];
+    if (valueArray.length === 1) {
+      return (
+        <Text as="span" size="small" weight="medium" color={valueColor} truncateAfterLines={1}>
+          {String(valueArray[0] ?? '')}
+        </Text>
+      );
+    }
+    return (
+      <Box display="flex" alignItems="center">
+        <Counter value={valueArray.length} color="neutral" size="small" />
+      </Box>
+    );
+  }
+
+  return (
+    <Text as="span" size="small" weight="medium" color={valueColor}>
+      {value != null ? String(value) : ''}
+    </Text>
+  );
+};
+
+const _BaseFilterChip: React.ForwardRefRenderFunction<Klear360ElementRef, BaseFilterChipProps> = (
+  {
+    value,
+    onClearButtonClick,
+    label,
+    isDisabled,
+    selectionType = 'single',
+    showClearButton = true,
+    onClick,
+    onKeyDown,
+    accessibilityProps,
+    id,
+    ...rest
+  }: BaseFilterChipProps,
+  ref: React.Ref<Klear360ElementRef>,
+): React.ReactElement => {
+  const isSelected =
+    selectionType === 'multiple' ? Array.isArray(value) && value.length > 0 : !!value;
+  const shouldShowClearButton = isSelected && showClearButton;
+
+  return (
+    <StyledFilterChip
+      $isDisabled={isDisabled}
+      $isSelected={isSelected}
+      ref={ref as React.Ref<HTMLDivElement>}
+    >
+      <StyledFilterTrigger
+        $hasClearButton={shouldShowClearButton}
+        disabled={isDisabled}
+        id={id}
+        onClick={(e) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onClick?.(e as any);
+        }}
+        onKeyDown={(e) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onKeyDown?.(e as any);
+        }}
+        {...makeAccessible({
+          ...accessibilityProps,
+          role: accessibilityProps?.role ?? 'button',
+        })}
+        {...getStyledProps(rest)}
+        {...makeAnalyticsAttribute(rest)}
+        {...metaAttribute({ name: 'filter-chip-trigger', testID: rest.testID })}
+      >
+        <Box display="flex" gap="spacing.2" whiteSpace="nowrap" alignItems="center">
+          <Text
+            size="small"
+            weight="medium"
+            color="interactive.text.gray.subtle"
+            truncateAfterLines={1}
+          >
+            {label}
+            {isSelected ? ':' : null}
+          </Text>
+          {isSelected ? renderValue(selectionType, value, isDisabled) : null}
+        </Box>
+        <Box display="flex" alignItems="center" paddingRight="spacing.1">
+          <ChevronDownIcon size="small" color="interactive.icon.gray.muted" />
+        </Box>
+      </StyledFilterTrigger>
+      {shouldShowClearButton ? (
+        <>
+          <Divider orientation="vertical" variant={isDisabled ? 'muted' : 'subtle'} />
+          <StyledFilterCloseButton
+            aria-label={`Clear ${label} value`}
+            // value can never be undefined because when it's undefined the button itself doesn't render/
+            onClick={() => onClearButtonClick?.({ value: value ?? '' })}
+            disabled={isDisabled}
+            {...metaAttribute({ name: 'filter-chip-close-button' })}
+          >
+            <CloseIcon size="small" color="interactive.icon.gray.muted" />
+          </StyledFilterCloseButton>
+        </>
+      ) : null}
+    </StyledFilterChip>
+  );
+};
+
+const BaseFilterChip = assignWithoutSideEffects(React.forwardRef(_BaseFilterChip), {
+  componentId: MetaConstants.BaseFilterChip,
+});
+
+export { BaseFilterChip };

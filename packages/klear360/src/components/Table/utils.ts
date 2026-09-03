@@ -1,0 +1,55 @@
+import { classes, tableRow, tableBackgroundColor } from './tokens';
+import type { Theme } from '~components/Klear360Provider';
+import type { DotNotationToken } from '~utils/lodashButBetter/get';
+
+import { makeMotionTime } from '~utils';
+import getIn from '~utils/lodashButBetter/get';
+
+const getTableRowBackgroundTransition = (theme: Theme): string => {
+  const rowBackgroundTransition = `background-color ${makeMotionTime(
+    getIn(theme.motion, tableRow.backgroundColorMotionDuration),
+  )} ${getIn(theme.motion, tableRow.backgroundColorMotionEasing)}`;
+
+  return rowBackgroundTransition;
+};
+
+const getTableActionsHoverStyles = ({
+  hoverColor,
+  theme,
+  backgroundGradientColor,
+}: {
+  hoverColor: DotNotationToken<Theme['colors']>;
+  backgroundGradientColor?: DotNotationToken<Omit<Theme['colors'], 'name'>>;
+  theme: Theme;
+}): React.CSSProperties => {
+  const rowBackgroundTransition = getTableRowBackgroundTransition(theme);
+
+  return {
+    // Solid layer 1 background - should match the table background
+    [`& .${classes.HOVER_ACTIONS}`]: {
+      background: `linear-gradient(90deg, transparent 0%, ${getIn(
+        theme.colors,
+        tableBackgroundColor,
+      )} 10.08%, ${getIn(theme.colors, tableBackgroundColor)} 100%)`,
+      transition: rowBackgroundTransition,
+    },
+    // Alpha layer 2 background - Stripped row background, Hover background in selected state, etc
+    [`& .${classes.HOVER_ACTIONS_LAYER2}`]: {
+      background: `linear-gradient(90deg, transparent 0%, ${getIn(
+        theme.colors,
+        backgroundGradientColor ?? 'transparent',
+      )} 10.08%, ${getIn(theme.colors, backgroundGradientColor ?? 'transparent')} 100%)`,
+      transition: rowBackgroundTransition,
+    },
+    // Alpha layer 3 background - Hover, selection, active background
+    [`& .${classes.HOVER_ACTIONS_LAYER3}`]: {
+      background: `linear-gradient(90deg, transparent 0%, ${getIn(
+        theme.colors,
+        hoverColor,
+      )} 10.08%, ${getIn(theme.colors, hoverColor)} 100%)`,
+      transition: rowBackgroundTransition,
+    },
+  };
+};
+
+export { getTableActionsHoverStyles, getTableRowBackgroundTransition };

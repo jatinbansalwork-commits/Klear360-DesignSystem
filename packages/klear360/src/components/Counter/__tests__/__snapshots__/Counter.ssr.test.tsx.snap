@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Counter /> should limit value with max prop 1`] = `"<div id="root"><div data-klear360-component="counter" class="BaseBox-bksIuc jqwUpk"><div data-klear360-component="base-box" class="BaseBox-bksIuc StyledCounterweb__StyledCounter-sc-4nhv0t-0 drIvvF jucZHe"><div data-klear360-component="base-box" class="BaseBox-bksIuc breitu"><p letter-spacing="50" class="StyledBaseText-foUshD dEAqKr" data-klear360-component="text">10+</p></div></div></div></div>"`;

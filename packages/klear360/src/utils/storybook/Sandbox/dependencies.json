@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "react-router-dom": "^6",
+    "framer-motion": "11.13.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@klear/klear360": "*",
+    "styled-components": "^5",
+    "@klear/i18n": "^1.12.3",
+    "@klear/i18n-react": "^4.0.12"
+  },
+  "devDependencies": {
+    "vite": "6.2.2",
+    "@vitejs/plugin-react": "4.3.4"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$comment": [
+    "Every place a Figma token payload has to land. `klear360` and `klear360-core` keep byte-identical",
+    "copies of the theme files, so a payload that only writes one of them leaves the other stale",
+    "and breaks the klear360-core typecheck. Add a file here rather than in uploadTokens.js.",
+    "",
+    "`declaration` picks the exact statement inside each file that gets replaced. It is matched",
+    "as a regex against the file source and must match exactly once."
+  ],
+  "themes": {
+    "klear360Theme": {
+      "declaration": "const colors: ColorsWithModes = \\{(.|\\n)+?\\n\\};",
+      "replacement": "const colors: ColorsWithModes = {{SERIALIZED}};",
+      "files": [
+        "packages/klear360/src/tokens/theme/klear360Theme.ts",
+        "packages/klear360-core/src/tokens/theme/klear360Theme.ts"
+      ]
+    },
+    "klear360NeutralTheme": {
+      "declaration": "const colors: ColorsWithModes = \\{(.|\\n)+?\\n\\};",
+      "replacement": "const colors: ColorsWithModes = {{SERIALIZED}};",
+      "files": [
+        "packages/klear360/src/tokens/theme/klear360NeutralTheme.ts",
+        "packages/klear360-core/src/tokens/theme/klear360NeutralTheme.ts"
+      ]
+    }
+  },
+  "globalColors": {
+    "declaration": "export const colors: Color = \\{(.|\\n)+?\\n\\};",
+    "replacement": "export const colors: Color = {{SERIALIZED}};",
+    "files": [
+      "packages/klear360/src/tokens/global/colors.ts",
+      "packages/klear360-core/src/tokens/global/colors.ts"
+    ]
+  },
+
+  "$comment_expressionRoots": [
+    "Identifiers a token value is allowed to start with when it is written unquoted. Anything",
+    "else coming out of Figma is written as a string literal instead of a bare identifier —",
+    "this is what stops `faint: 'transparent'` from becoming `faint: transparent`."
+  ],
+  "expressionRoots": ["globalColors", "opacity"],
+
+  "$comment_preservedTokenPaths": [
+    "Tokens that live in code and not in Figma. A push regenerates the whole declaration from the",
+    "payload, so anything Figma has never heard of is deleted — which is how the deprecated popup",
+    "aliases were dropped out from under a release. Paths listed here keep whatever the file",
+    "already says, comments included.",
+    "",
+    "`*` matches exactly one segment, so the leading one covers both `onLight` and `onDark`.",
+    "A path Figma DOES define is not affected: the payload always wins where it has an opinion.",
+    "",
+    "Remove an entry here when the token is genuinely ready to go, and the next push deletes it."
+  ],
+  "preservedTokenPaths": [
+    "*.popup.background.subtle",
+    "*.popup.background.intense",
+    "*.popup.border.subtle",
+    "*.popup.border.intense"
+  ],
+
+  "$comment_referenceScanRoots": [
+    "Searched for the text of every token path this payload deletes, so a removal that still",
+    "has consumers (components, codemod maps, docs) blocks the PR instead of shipping broken."
+  ],
+  "referenceScanRoots": [
+    "packages/klear360/src",
+    "packages/klear360/codemods",
+    "packages/klear360-core/src",
+    "packages/klear360-svelte/src",
+    "packages/klear360-mcp/knowledgebase"
+  ],
+  "referenceScanExtensions": [".ts", ".tsx", ".js", ".jsx", ".svelte", ".json", ".md", ".mdx"],
+
+  "verify": {
+    "$comment_generated": [
+      "Files derived from the token sources rather than written directly by this script. Run",
+      "before typecheck/snapshots so the derived output is part of the same touchedFiles set —",
+      "and part of the same PR — as the tokens it was derived from."
+    ],
+    "generated": [
+      {
+        "name": "theme.css",
+        "cwd": "packages/klear360-core",
+        "command": "yarn generate:tokens-css",
+        "outputs": ["packages/klear360-core/src/tokens/theme.css"]
+      }
+    ],
+    "typecheck": [
+      { "name": "@klear/klear360", "cwd": "packages/klear360", "command": "yarn typecheck" },
+      {
+        "name": "@klear/klear360-core",
+        "cwd": "packages/klear360-core",
+        "command": "yarn typecheck"
+      }
+    ],
+    "$comment_snapshots": [
+      "Token values are baked into component snapshots (BaseButton, Popover, Tabs, createTheme…),",
+      "so a token push always dirties them. Regenerate here instead of leaving it to review."
+    ],
+    "snapshots": [
+      {
+        "name": "web snapshots",
+        "cwd": "packages/klear360",
+        "command": "cross-env FRAMEWORK=REACT yarn jest -c ./jest.web.config.js --updateSnapshot --forceExit --ci=false"
+      },
+      {
+        "name": "native snapshots",
+        "cwd": "packages/klear360",
+        "command": "cross-env FRAMEWORK=REACT_NATIVE yarn jest -c ./jest.native.config.js --updateSnapshot --forceExit --ci=false"
+      }
+    ]
+  },
+
+  "changesetPackages": ["@klear/klear360", "@klear/klear360-core"]
+}

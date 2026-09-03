@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<List /> should render List with default properties 1`] = `"<div id="root"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><ul data-klear360-component="list" role="list" class="UnorderedListweb__UnorderedList-q5onp7-0 List__StyledUnorderedList-sc-149xlrc-1 gmagYa"><li data-klear360-component="list-item" class="ListItemElementweb__ListItemElement-yimofy-0 ListItem__StyledListItem-ubfjk4-0  dQPqNg"><div data-klear360-component="base-box" class="BaseBox-bksIuc bcRuZv"><div data-klear360-component="base-box" class="BaseBox-bksIuc gnTCHt"><svg aria-hidden="true" data-klear360-component="icon" height="6px" viewBox="0 0 6 6" width="6px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="3px" cy="3px" r="3px" fill="hsla(215, 25%, 27%, 1)" fill-opacity="0.48" data-klear360-component="svg-circle"></circle></svg></div><p letter-spacing="50" class="StyledBaseText-foUshD erDbnY" data-klear360-component="text">Level 1</p></div><div data-klear360-component="base-box" class="BaseBox-bksIuc"><ul data-klear360-component="list" role="list" class="UnorderedListweb__UnorderedList-q5onp7-0 List__StyledUnorderedList-sc-149xlrc-1 gmagYa"><li data-klear360-component="list-item" class="ListItemElementweb__ListItemElement-yimofy-0 ListItem__StyledListItem-ubfjk4-0  cNKCX"><div data-klear360-component="base-box" class="BaseBox-bksIuc bcRuZv"><div data-klear360-component="base-box" class="BaseBox-bksIuc gnTCHt"><svg aria-hidden="true" data-klear360-component="icon" height="6px" viewBox="0 0 6 6" width="6px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="3px" cy="3px" r="2.5px" stroke="hsla(215, 25%, 27%, 1)" data-klear360-component="svg-circle"></circle></svg></div><p letter-spacing="50" class="StyledBaseText-foUshD erDbnY" data-klear360-component="text">Level 2</p></div><div data-klear360-component="base-box" class="BaseBox-bksIuc"><ul data-klear360-component="list" role="list" class="UnorderedListweb__UnorderedList-q5onp7-0 List__StyledUnorderedList-sc-149xlrc-1 gmagYa"><li data-klear360-component="list-item" class="ListItemElementweb__ListItemElement-yimofy-0 ListItem__StyledListItem-ubfjk4-0  cNKCX"><div data-klear360-component="base-box" class="BaseBox-bksIuc bcRuZv"><div data-klear360-component="base-box" class="BaseBox-bksIuc gnTCHt"><svg aria-hidden="true" data-klear360-component="icon" height="6px" viewBox="0 0 6 6" width="6px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><rect data-klear360-component="svg-rect" height="6px" width="6px" rx="1px" fill="hsla(215, 25%, 27%, 1)" fill-opacity="0.48"></rect></svg></div><p letter-spacing="50" class="StyledBaseText-foUshD erDbnY" data-klear360-component="text">Level 3</p></div></li></ul></div></li></ul></div></li></ul></div></div>"`;
+
+exports[`<List /> should render List with default properties 2`] = `
+.c0.c0.c0.c0.c0 {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  margin-top: 7px;
+  margin-right: 8px;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c1.c1.c1.c1.c1 {
+  margin-left: 4px;
+}
+
+.c5.c5.c5.c5.c5 {
+  margin-left: 16px;
+}
+
+<div
+  id="root"
+>
+  <div
+    class=""
+    data-klear360-component="base-box"
+  >
+    <ul
+      class="c0"
+      data-klear360-component="list"
+      role="list"
+    >
+      <li
+        class="ListItemElementweb__ListItemElement-yimofy-0  c1"
+        data-klear360-component="list-item"
+      >
+        <div
+          class="c2"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          >
+            <svg
+              aria-hidden="true"
+              class=""
+              data-klear360-component="icon"
+              fill="none"
+              height="6px"
+              viewBox="0 0 6 6"
+              width="6px"
+            >
+              <circle
+                cx="3px"
+                cy="3px"
+                data-klear360-component="svg-circle"
+                fill="hsla(215, 25%, 27%, 1)"
+                fill-opacity="0.48"
+                r="3px"
+              />
+            </svg>
+          </div>
+          <p
+            class="c4"
+            data-klear360-component="text"
+            letter-spacing="50"
+          >
+            Level 1
+          </p>
+        </div>
+        <div
+          class=""
+          data-klear360-component="base-box"
+        >
+          <ul
+            class="c0"
+            data-klear360-component="list"
+            role="list"
+          >
+            <li
+              class="ListItemElementweb__ListItemElement-yimofy-0  c5"
+              data-klear360-component="list-item"
+            >
+              <div
+                class="c2"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="c3"
+                  data-klear360-component="base-box"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class=""
+                    data-klear360-component="icon"
+                    fill="none"
+                    height="6px"
+                    viewBox="0 0 6 6"
+                    width="6px"
+                  >
+                    <circle
+                      cx="3px"
+                      cy="3px"
+                      data-klear360-component="svg-circle"
+                      r="2.5px"
+                      stroke="hsla(215, 25%, 27%, 1)"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="c4"
+                  data-klear360-component="text"
+                  letter-spacing="50"
+                >
+                  Level 2
+                </p>
+              </div>
+              <div
+                class=""
+                data-klear360-component="base-box"
+              >
+                <ul
+                  class="c0"
+                  data-klear360-component="list"
+                  role="list"
+                >
+                  <li
+                    class="ListItemElementweb__ListItemElement-yimofy-0  c5"
+                    data-klear360-component="list-item"
+                  >
+                    <div
+                      class="c2"
+                      data-klear360-component="base-box"
+                    >
+                      <div
+                        class="c3"
+                        data-klear360-component="base-box"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class=""
+                          data-klear360-component="icon"
+                          fill="none"
+                          height="6px"
+                          viewBox="0 0 6 6"
+                          width="6px"
+                        >
+                          <rect
+                            data-klear360-component="svg-rect"
+                            fill="hsla(215, 25%, 27%, 1)"
+                            fill-opacity="0.48"
+                            height="6px"
+                            rx="1px"
+                            width="6px"
+                          />
+                        </svg>
+                      </div>
+                      <p
+                        class="c4"
+                        data-klear360-component="text"
+                        letter-spacing="50"
+                      >
+                        Level 3
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

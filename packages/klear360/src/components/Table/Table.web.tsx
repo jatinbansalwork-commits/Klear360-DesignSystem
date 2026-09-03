@@ -1,0 +1,706 @@
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { Table as ReactTable } from '@table-library/react-table-library/table';
+import { useTheme as useTableTheme } from '@table-library/react-table-library/theme';
+import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
+import { useSort } from '@table-library/react-table-library/sort';
+import { usePagination } from '@table-library/react-table-library/pagination';
+import {
+  SelectClickTypes,
+  SelectTypes,
+  useRowSelect,
+} from '@table-library/react-table-library/select';
+import { useTree } from '@table-library/react-table-library/tree';
+import styled from 'styled-components';
+import usePresence from 'use-presence';
+import type { TableContextType } from './TableContext';
+import { TableContext } from './TableContext';
+import { ComponentIds } from './componentIds';
+import {
+  checkboxCellWidth,
+  firstColumnStickyZIndex,
+  refreshWrapperZIndex,
+  tableBackgroundColor,
+  tablePagination,
+  classes,
+} from './tokens';
+import type {
+  TableProps,
+  TableNode,
+  Identifier,
+  TablePaginationType,
+  TableHeaderRowProps,
+} from './types';
+import { getTableBodyStyles } from './commonStyles';
+import { TableSurface } from './TableSurface.web';
+import { makeBorderSize, makeMotionTime, makeSpace } from '~utils';
+import { getComponentId, isValidAllowedChildren } from '~utils/isValidAllowedChildren';
+import { throwKlear360Error } from '~utils/logger';
+import type { BoxProps } from '~components/Box';
+import { getBaseBoxStyles } from '~components/Box/BaseBox/baseBoxStyles';
+import BaseBox from '~components/Box/BaseBox';
+import { Spinner } from '~components/Spinner';
+import { Skeleton } from '~components/Skeleton';
+import { getStyledProps } from '~components/Box/styledProps';
+import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+import { useTheme } from '~components/Klear360Provider';
+import getIn from '~utils/lodashButBetter/get';
+import { makeAccessible } from '~utils/makeAccessible';
+import { useIsMobile } from '~utils/useIsMobile';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
+import { useListViewContext } from '~components/ListView/ListViewContext';
+
+const rowSelectType: Record<
+  NonNullable<TableProps<unknown>['selectionType']>,
+  SelectTypes | undefined
+> = {
+  single: SelectTypes.SingleSelect,
+  multiple: SelectTypes.MultiSelect,
+  none: undefined,
+};
+
+// Get the number of TableHeaderCell components.
+// This is very complicated but the only way to iterate through the structure and get number of header cells.
+// Assuming number of header cells is the same as number of columns
+const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): number => {
+  const tableRootComponent = children([]);
+  if (tableRootComponent && React.isValidElement(tableRootComponent)) {
+    const tableComponentArray = React.Children.toArray(tableRootComponent);
+    if (React.isValidElement(tableComponentArray[0])) {
+      const tableComponentArrayChildren = React.Children.toArray(
+        tableComponentArray[0].props.children,
+      );
+      const tableHeader = tableComponentArrayChildren.find(
+        (child) => getComponentId(child) === ComponentIds.TableHeader,
+      );
+      const tableHeaderChildrenArray = React.isValidElement(tableHeader)
+        ? React.Children.toArray(tableHeader.props.children)
+        : null;
+      const tableHeaderRow = tableHeaderChildrenArray?.find(
+        (child) => getComponentId(child) === ComponentIds.TableHeaderRow,
+      );
+      const tableHeaderRowChildrenArray = React.isValidElement(tableHeaderRow)
+        ? React.Children.toArray(tableHeaderRow.props.children)
+        : null;
+      const tableHeaderCells = tableHeaderRowChildrenArray
+        ? tableHeaderRowChildrenArray.filter(
+            (child) => getComponentId(child) === ComponentIds.TableHeaderCell,
+          )
+        : null;
+      return tableHeaderCells?.length ?? 0;
+    }
+  }
+  return 0;
+};
+
+const StyledReactTable = styled(ReactTable)<{
+  $styledProps?: {
+    height?: BoxProps['height'];
+    width?: BoxProps['width'];
+    isVirtualized?: boolean;
+    isSelectable?: boolean;
+    showStripedRows?: boolean;
+  };
+}>(({ $styledProps }) => {
+  const { theme } = useTheme();
+  const styledPropsCSSObject = getBaseBoxStyles({
+    theme,
+    height: $styledProps?.height,
+    ...($styledProps?.isVirtualized && {
+      width: '100%',
+    }),
+  });
+  const $isSelectable = $styledProps?.isSelectable;
+  const $showStripedRows = $styledProps?.showStripedRows;
+  return {
+    '&&&': {
+      ...styledPropsCSSObject,
+      overflow: `${$styledProps?.isVirtualized ? 'unset' : 'auto'} !important`,
+    },
+    ...($styledProps?.isVirtualized
+      ? getTableBodyStyles({
+          isVirtualized: $styledProps?.isVirtualized,
+          theme,
+          height: $styledProps?.height,
+          width: '100%',
+          isSelectable: $isSelectable,
+          showStripedRows: $showStripedRows,
+        })
+      : null),
+  };
+});
+
+const RefreshWrapper = styled(BaseBox)<{
+  isRefreshSpinnerVisible: boolean;
+  isRefreshSpinnerEntering: boolean;
+  isRefreshSpinnerExiting: boolean;
+}>(({ isRefreshSpinnerVisible, isRefreshSpinnerEntering, isRefreshSpinnerExiting, theme }) => {
+  return {
+    opacity: isRefreshSpinnerVisible ? 1 : 0,
+    transition: `opacity ${makeMotionTime(theme.motion.duration.quick)} ${
+      isRefreshSpinnerEntering
+        ? theme.motion.easing.entrance
+        : isRefreshSpinnerExiting
+        ? theme.motion.easing.exit
+        : ''
+    }`,
+  };
+});
+
+const SKELETON_ROW_COUNT = 7;
+const SKELETON_CELL_WIDTHS = {
+  first: '70%',
+  last: '50%',
+  middle: '75%',
+  headerFirst: '80%',
+  headerRest: '60%',
+} as const;
+
+const StyledSkeletonRow = styled(BaseBox)<{ $columns: number; $isHeader?: boolean }>(
+  ({ theme, $columns, $isHeader }) => ({
+    display: 'grid',
+    gridTemplateColumns: `repeat(${$columns}, minmax(100px, 1fr))`,
+    paddingLeft: makeSpace(theme.spacing[4]),
+    paddingRight: makeSpace(theme.spacing[4]),
+    paddingTop: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
+    paddingBottom: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
+    borderBottomWidth: makeSpace(theme.border.width.thin),
+    borderBottomColor: theme.colors.surface.border.gray.muted,
+    borderBottomStyle: 'solid',
+    gap: makeSpace(theme.spacing[4]),
+    alignItems: 'center',
+  }),
+);
+
+const _Table = <Item,>({
+  children,
+  data,
+  multiSelectTrigger = 'row',
+  selectionType = 'none',
+  onSelectionChange,
+  isHeaderSticky,
+  isFooterSticky,
+  isFirstColumnSticky,
+  rowDensity = 'normal',
+  onSortChange,
+  sortFunctions,
+  toolbar,
+  pagination,
+  height,
+  showStripedRows,
+  gridTemplateColumns,
+  isLoading = false,
+  isRefreshing = false,
+  showBorderedCells = false,
+  defaultSelectedIds = [],
+  backgroundColor = tableBackgroundColor,
+  isGrouped = false,
+  checkboxDisplay = 'always',
+  ...rest
+}: TableProps<Item>): React.ReactElement => {
+  const { theme, colorScheme } = useTheme();
+  const { isInsideListView } = useListViewContext();
+  const [selectedRows, setSelectedRows] = React.useState<TableNode<unknown>['id'][]>(
+    selectionType !== 'none' ? defaultSelectedIds : [],
+  );
+  const [disabledRows, setDisabledRows] = React.useState<TableNode<unknown>['id'][]>([]);
+  const [totalItems, setTotalItems] = React.useState(data.nodes.length || 0);
+  const [paginationType, setPaginationType] = React.useState<NonNullable<TablePaginationType>>(
+    'client',
+  );
+  const [headerRowDensity, setHeaderRowDensity] = React.useState<TableHeaderRowProps['rowDensity']>(
+    undefined,
+  );
+  const [hasHoverActions, setHasHoverActions] = React.useState(false);
+  const tableRootComponent = children([]);
+  const isVirtualized = getComponentId(tableRootComponent) === ComponentIds.VirtualizedTable;
+  // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
+  const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || isFirstColumnSticky;
+
+  const isMobile = useIsMobile();
+  const lastHoverActionsColWidth = isMobile ? '1fr' : '0px';
+
+  const {
+    isEntering: isRefreshSpinnerEntering,
+    isMounted: isRefreshSpinnerMounted,
+    isExiting: isRefreshSpinnerExiting,
+    isVisible: isRefreshSpinnerVisible,
+  } = usePresence(isRefreshing, {
+    transitionDuration: theme.motion.duration.quick,
+  });
+
+  // Table Theme
+  const columnCount = getTableHeaderCellCount(children);
+  const firstColumnStickyHeaderCellCSS = isFirstColumnSticky
+    ? `
+  &:nth-of-type(1) {
+    left: 0 !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
+  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
+    z-index: 3 !important;
+  }
+  ${
+    selectionType === 'multiple' &&
+    `&:nth-of-type(2) {
+    left: ${checkboxCellWidth}px !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  `
+  }`
+    : '';
+  const firstColumnStickyFooterCellCSS = isFirstColumnSticky
+    ? `
+  &:nth-of-type(1) {
+    left: 0 !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
+  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
+    z-index: 3 !important;
+  }
+  ${
+    selectionType === 'multiple' &&
+    `&:nth-of-type(2) {
+    left: ${checkboxCellWidth}px !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  `
+  }`
+    : '';
+  const firstColumnStickyBodyCellCSS = isFirstColumnSticky
+    ? `
+  &:nth-of-type(1) {
+    left: 0 !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
+  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
+    z-index: 3 !important;
+  }
+  ${
+    selectionType === 'multiple' &&
+    `&:nth-of-type(2) {
+    left: ${checkboxCellWidth}px !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+  }
+  `
+  }`
+    : '';
+
+  const tableTheme = useTableTheme({
+    Table: `
+    height:${isFooterSticky ? `100%` : undefined};
+    ${
+      toolbar && !isInsideListView
+        ? `border-top: ${makeBorderSize(theme.border.width.thin)} solid ${
+            theme.colors.surface.border.gray.muted
+          };`
+        : ''
+    }
+    ${
+      pagination
+        ? `border-bottom: ${makeBorderSize(theme.border.width.thin)} solid ${
+            theme.colors.surface.border.gray.muted
+          };`
+        : ''
+    }
+    --data-table-library_grid-template-columns: ${
+      gridTemplateColumns
+        ? `${gridTemplateColumns} ${hasHoverActions ? lastHoverActionsColWidth : ''}`
+        : ` ${
+            selectionType === 'multiple' ? 'min-content' : ''
+          } repeat(${columnCount},minmax(100px, 1fr)) ${
+            hasHoverActions ? lastHoverActionsColWidth : ''
+          } !important;`
+    } !important;
+    background-color: ${getIn(theme.colors, backgroundColor)};
+    `,
+    HeaderCell: `
+    position: ${shouldHeaderBeSticky ? 'sticky' : 'relative'};
+
+    top: ${shouldHeaderBeSticky ? '0' : undefined};
+    ${firstColumnStickyHeaderCellCSS}
+    `,
+    Cell: `
+    ${firstColumnStickyBodyCellCSS}
+    `,
+    FooterCell: `
+    position: ${isFooterSticky ? 'sticky' : 'relative'};
+    bottom: ${isFooterSticky ? '0' : undefined};
+    ${firstColumnStickyFooterCellCSS}
+    `,
+  });
+
+  useEffect(() => {
+    // Get the total number of items
+    setTotalItems(data.nodes.length);
+  }, [data.nodes]);
+
+  // Selection Logic
+  const onSelectChange: MiddlewareFunction = (_, state): void => {
+    const selectedIds: Identifier[] = state.id ? [state.id] : state.ids ?? [];
+    setSelectedRows(selectedIds);
+    onSelectionChange?.({
+      selectedIds,
+      values: data.nodes.filter((node) => selectedIds.includes(node.id)),
+    });
+  };
+
+  const rowSelectConfig = useRowSelect(
+    data,
+    {
+      onChange: onSelectChange,
+      state: {
+        ...(selectionType === 'multiple'
+          ? { ids: selectedRows }
+          : selectionType === 'single'
+          ? { id: selectedRows[0] }
+          : {}),
+      },
+    },
+    {
+      clickType:
+        multiSelectTrigger === 'row' ? SelectClickTypes.RowClick : SelectClickTypes.ButtonClick,
+      rowSelect: selectionType !== 'none' ? rowSelectType[selectionType] : undefined,
+    },
+  );
+
+  const toggleRowSelectionById = useMemo(
+    () => (id: Identifier): void => {
+      // Use recursive selection only for grouped tables with multiple selection
+      if (selectionType === 'multiple' && isGrouped) {
+        rowSelectConfig.fns.onToggleByIdRecursively(id, {
+          // When clicking partially selected parent, select all children
+          isPartialToAll: true,
+        });
+      } else {
+        rowSelectConfig.fns.onToggleById(id);
+      }
+    },
+    [rowSelectConfig.fns],
+  );
+
+  const deselectAllRows = useMemo(
+    () => (): void => {
+      rowSelectConfig.fns.onRemoveAll();
+    },
+    [rowSelectConfig.fns],
+  );
+
+  const toggleAllRowsSelection = useMemo(
+    () => (): void => {
+      if (selectedRows.length > 0) {
+        rowSelectConfig.fns.onRemoveAll();
+      } else if (isGrouped) {
+        rowSelectConfig.fns.onToggleAll({});
+      } else {
+        const ids = data.nodes
+          .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
+          .filter(Boolean) as Identifier[];
+
+        rowSelectConfig.fns.onAddAll(ids);
+      }
+    },
+    [rowSelectConfig.fns, data.nodes, selectedRows, disabledRows],
+  );
+
+  const tree = useTree(
+    isGrouped ? data : { nodes: [] },
+    {},
+    {
+      // Disable row click expand/collapse (fallback enables unwanted expand/collapse on row click)
+      clickType: undefined,
+      // Disable all indentation for flat appearance
+      treeYLevel: undefined,
+    },
+  );
+
+  useIsomorphicLayoutEffect(() => {
+    if (isGrouped && tree?.fns.onToggleAll) {
+      tree.fns.onToggleAll({ ids: [] });
+    }
+  }, []);
+
+  // Sort Logic
+  const handleSortChange: MiddlewareFunction = (_, state) => {
+    onSortChange?.({
+      sortKey: state.sortKey,
+      isSortReversed: state.reverse,
+    });
+  };
+
+  const sort = useSort(
+    data,
+    {
+      onChange: handleSortChange,
+    },
+    {
+      // @ts-expect-error ignore this, if sortFunctions is undefined, it will be ignored
+      sortFns: sortFunctions,
+    },
+  );
+
+  const currentSortedState: TableContextType<Item>['currentSortedState'] = useMemo(() => {
+    return {
+      sortKey: sort.state.sortKey,
+      isSortReversed: sort.state.reverse,
+      sortableColumns: Object.keys(sortFunctions ?? {}),
+    };
+  }, [sort.state, sortFunctions]);
+
+  const toggleSort = useCallback(
+    (sortKey: string): void => {
+      sort.fns.onToggleSort({
+        sortKey,
+      });
+    },
+    [sort.fns],
+  );
+
+  // Pagination
+
+  const hasPagination = Boolean(pagination);
+
+  // Extract defaultPageSize from TablePagination child props
+  const paginationDefaultPageSize =
+    React.isValidElement(pagination) && getComponentId(pagination) === ComponentIds.TablePagination
+      ? (pagination.props as { defaultPageSize?: number }).defaultPageSize
+      : undefined;
+
+  const paginationConfig = usePagination(
+    data,
+    {
+      state: {
+        page: 0,
+        size: paginationDefaultPageSize ?? tablePagination.defaultPageSize,
+      },
+    },
+    {
+      isServer: paginationType === 'server',
+    },
+  );
+
+  const currentPaginationState = useMemo(() => {
+    return hasPagination
+      ? {
+          page: paginationConfig.state.page,
+          size: paginationConfig.state.size,
+        }
+      : undefined;
+  }, [paginationConfig.state, hasPagination]);
+
+  const setPaginationPage = useCallback(
+    (page: number): void => {
+      paginationConfig.fns.onSetPage(page);
+    },
+    [paginationConfig.fns],
+  );
+
+  const setPaginationRowSize = useCallback(
+    (size: number): void => {
+      paginationConfig.fns.onSetSize(size);
+    },
+    [paginationConfig.fns],
+  );
+
+  // Toolbar Component
+  if (__DEV__) {
+    if (toolbar && !isValidAllowedChildren(toolbar, ComponentIds.TableToolbar)) {
+      throwKlear360Error({
+        message: 'Only TableToolbar component is allowed in the `toolbar` prop',
+        moduleName: 'Table',
+      });
+    }
+  }
+
+  // Table Context
+  const tableContext: TableContextType<Item> = useMemo(
+    () => ({
+      selectionType,
+      selectedRows,
+      totalItems,
+      toggleRowSelectionById,
+      toggleAllRowsSelection,
+      deselectAllRows,
+      rowDensity,
+      toggleSort,
+      currentSortedState,
+      setPaginationPage,
+      setPaginationRowSize,
+      currentPaginationState,
+      showStripedRows,
+      disabledRows,
+      setDisabledRows,
+      paginationType,
+      setPaginationType,
+      backgroundColor,
+      headerRowDensity,
+      setHeaderRowDensity,
+      showBorderedCells,
+      hasHoverActions,
+      setHasHoverActions,
+      multiSelectTrigger,
+      columnCount,
+      gridTemplateColumns,
+      isVirtualized,
+      tableData: data.nodes,
+      isGrouped,
+      tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
+      checkboxDisplay,
+    }),
+    [
+      selectionType,
+      selectedRows,
+      totalItems,
+      toggleRowSelectionById,
+      toggleAllRowsSelection,
+      deselectAllRows,
+      gridTemplateColumns,
+      rowDensity,
+      toggleSort,
+      columnCount,
+      currentSortedState,
+      setPaginationPage,
+      setPaginationRowSize,
+      currentPaginationState,
+      showStripedRows,
+      disabledRows,
+      setDisabledRows,
+      paginationType,
+      setPaginationType,
+      backgroundColor,
+      headerRowDensity,
+      setHeaderRowDensity,
+      showBorderedCells,
+      hasHoverActions,
+      setHasHoverActions,
+      multiSelectTrigger,
+      isVirtualized,
+      data,
+      isGrouped,
+      checkboxDisplay,
+    ],
+  );
+
+  return (
+    <TableContext.Provider value={tableContext}>
+      <TableSurface
+        colorScheme={colorScheme}
+        borderRadius={isInsideListView ? 'none' : 'medium'}
+        overflow="hidden"
+        isInsideListView={isInsideListView ?? false}
+        // Transparent when inside ListView so the gradient pseudo-elements
+        // on ListViewSurface remain visible through the TableSurface.
+        backgroundColor={isInsideListView ? 'transparent' : 'surface.background.gray.intense'}
+      >
+        {isLoading ? (
+          <BaseBox
+            flex={1}
+            {...getStyledProps(rest)}
+            {...metaAttribute({ name: MetaConstants.Table })}
+            {...makeAnalyticsAttribute(rest)}
+            testID="table-skeleton"
+          >
+            {/* Header skeleton row */}
+            <StyledSkeletonRow $columns={columnCount || 5} $isHeader>
+              {Array.from({ length: columnCount || 5 }).map((_, i) => (
+                <Skeleton
+                  key={i}
+                  width={
+                    i === 0 ? SKELETON_CELL_WIDTHS.headerFirst : SKELETON_CELL_WIDTHS.headerRest
+                  }
+                  height="16px"
+                  borderRadius="medium"
+                />
+              ))}
+            </StyledSkeletonRow>
+            {/* Body skeleton rows */}
+            {Array.from({ length: SKELETON_ROW_COUNT }).map((_, rowIdx) => (
+              <StyledSkeletonRow key={rowIdx} $columns={columnCount || 5}>
+                {Array.from({ length: columnCount || 5 }).map((_, colIdx) => {
+                  const cols = columnCount || 5;
+                  const width =
+                    colIdx === 0
+                      ? SKELETON_CELL_WIDTHS.first
+                      : colIdx === cols - 1
+                      ? SKELETON_CELL_WIDTHS.last
+                      : SKELETON_CELL_WIDTHS.middle;
+                  return (
+                    <Skeleton key={colIdx} width={width} height="14px" borderRadius="medium" />
+                  );
+                })}
+              </StyledSkeletonRow>
+            ))}
+          </BaseBox>
+        ) : (
+          <BaseBox
+            flex={1}
+            position="relative"
+            {...getStyledProps(rest)}
+            {...metaAttribute({ name: MetaConstants.Table })}
+            width={isVirtualized ? `100%` : undefined}
+            {...makeAnalyticsAttribute(rest)}
+          >
+            {isRefreshSpinnerMounted && (
+              <RefreshWrapper
+                position="absolute"
+                width="100%"
+                height="100%"
+                zIndex={refreshWrapperZIndex}
+                backgroundColor="overlay.background.subtle"
+                justifyContent="center"
+                alignItems="center"
+                display="flex"
+                isRefreshSpinnerEntering={isRefreshSpinnerEntering}
+                isRefreshSpinnerExiting={isRefreshSpinnerExiting}
+                isRefreshSpinnerVisible={isRefreshSpinnerVisible}
+              >
+                <Spinner color="white" accessibilityLabel="Refreshing Table" size="large" />
+              </RefreshWrapper>
+            )}
+            {/* wrapping toolbar in BaseBox and passing the same analytics attributes as of table because in analytics POV, events triggered are from table */}
+            <BaseBox {...makeAnalyticsAttribute(rest)}>{toolbar}</BaseBox>
+            <StyledReactTable
+              role="table"
+              layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
+              data={data}
+              // @ts-expect-error ignore this, theme clashes with styled-component's theme. We're using useTheme from klear360 to get actual theme
+              theme={tableTheme}
+              select={selectionType !== 'none' ? rowSelectConfig : null}
+              sort={sortFunctions ? sort : null}
+              tree={isGrouped ? tree : null}
+              $styledProps={{
+                height,
+                width: isVirtualized ? `100%` : undefined,
+                isVirtualized,
+                isSelectable: selectionType !== 'none',
+                showStripedRows,
+              }}
+              pagination={hasPagination ? paginationConfig : null}
+              {...makeAccessible({ multiSelectable: selectionType === 'multiple' })}
+              {...metaAttribute({ name: MetaConstants.Table })}
+              {...makeAnalyticsAttribute(rest)}
+            >
+              {children}
+            </StyledReactTable>
+            {pagination}
+          </BaseBox>
+        )}
+      </TableSurface>
+    </TableContext.Provider>
+  );
+};
+const Table = assignWithoutSideEffects(_Table, {
+  componentId: ComponentIds.Table,
+});
+
+export { Table };

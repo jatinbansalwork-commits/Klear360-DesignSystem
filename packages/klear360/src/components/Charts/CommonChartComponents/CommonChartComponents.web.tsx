@@ -1,0 +1,969 @@
+import React from 'react';
+import styled from 'styled-components';
+import {
+  XAxis as RechartsXAxis,
+  YAxis as RechartsYAxis,
+  CartesianGrid as RechartsCartesianGrid,
+  Tooltip as RechartsTooltip,
+  Legend as RechartsLegend,
+  ReferenceLine as RechartsReferenceLine,
+  Line as RechartsLine,
+} from 'recharts';
+import {
+  getHighestColorInRange,
+  isSequentialColor,
+  sanitizeString,
+  totalChartColors,
+} from '../utils';
+import type {
+  ChartReferenceLineProps,
+  ChartReferenceBandProps,
+  ChartXAxisProps,
+  ChartYAxisProps,
+  ChartTooltipProps,
+  ChartLegendProps,
+  ChartCartesianGridProps,
+  Layout,
+  ChartColorToken,
+  DataColorMapping,
+  SecondaryLabelMap,
+} from './types';
+import {
+  RECT_HEIGHT,
+  TEXT_BASELINE,
+  PADDING_VERTICAL,
+  PADDING_HORIZONTAL,
+  X_AXIS_TICK_LINE_HEIGHT,
+  X_AXIS_TICK_START_DY,
+  X_AXIS_LABEL_GAP,
+  X_AXIS_LABEL_OFFSET,
+  X_AXIS_LABEL_HEIGHT,
+  LEGEND_MARGIN_TOP,
+  X_OFFSET,
+  REFERENCE_BAND_LOWER_CLASS,
+  REFERENCE_BAND_UPPER_CLASS,
+  componentId,
+} from './tokens';
+import { calculateTextWidth } from './utils';
+import { useCommonChartComponentsContext } from './CommonChartComponentsContext';
+import getIn from '~utils/lodashButBetter/get';
+import { Heading, Text } from '~components/Typography';
+import { Box } from '~components/Box';
+import { useTheme } from '~components/Klear360Provider';
+import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+import { useControllableState } from '~utils/useControllable';
+
+/**
+ * Helper function to get the appropriate color for chart elements (tooltip, legend)
+ *
+ * This function resolves the color token for chart elements based on the chart type and color mapping.
+ * The logic varies by chart type:
+ * - For line/area charts: Returns the mapped color directly if it's not a custom color.
+ *   If it is a custom color, it maps to the highest color in the range (unless it's sequential).
+ * - For sequential colors: Returns the mapped color as-is
+ * - For other cases: Uses getHighestColorInRange to get the highest intensity color from the range,
+ *   with special handling for donut charts when custom colors are used or when there are more
+ *   data points than the default color palette
+ *
+ * @param dataKey - The data key for the chart element
+ * @param name - The name/value of the chart element
+ * @param dataColorMapping - Color mapping object
+ * @param chartName - Type of chart (line, area, donut, etc.)
+ * @returns The resolved color token
+ */
+const getChartColor = (
+  dataKey: string,
+  name: string,
+  dataColorMapping: DataColorMapping,
+  chartName: string | undefined,
+): ChartColorToken => {
+  const colorKey = chartName === 'donut' ? sanitizeString(name ?? '') : dataKey;
+  const mappedColorData = dataColorMapping?.[colorKey ?? ''];
+
+  // Handle case where mappedColorData is undefined (e.g., during dynamic nameKey changes)
+  if (!mappedColorData) {
+    return 'data.background.categorical.azure.faint' as ChartColorToken;
+  }
+
+  const mappedColor = mappedColorData.colorToken;
+  const isCustomColor = mappedColorData.isCustomColor;
+
+  if ((chartName === 'line' || chartName === 'area') && !isCustomColor) {
+    return mappedColor;
+  }
+
+  if (mappedColor && isSequentialColor(mappedColor)) {
+    return mappedColor ?? 'data.background.categorical.azure.faint';
+  }
+  return getHighestColorInRange({
+    colorToken: mappedColor ?? ('data.background.categorical.azure.faint' as ChartColorToken),
+    followIntensityMapping:
+      chartName === 'donut' &&
+      (isCustomColor || Object.keys(dataColorMapping).length > totalChartColors),
+  });
+};
+
+/**
+ * Wraps text to fit within a given pixel width, breaking at word boundaries.
+ * Returns an array of lines that each fit within the max width.
+ */
+const wrapTextToFit = (text: string, maxWidthPx: number, fontSize: number): string[] => {
+  // Approximate average character width (varies by font, but ~0.5-0.6 of font size is common)
+  const avgCharWidth = fontSize * 0.55;
+  const maxCharsPerLine = Math.max(1, Math.floor(maxWidthPx / avgCharWidth));
+
+  // If text fits in one line, return as-is
+  if (text.length <= maxCharsPerLine) {
+    return [text];
+  }
+
+  const words = text.split(' ');
+  const lines: string[] = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    if (currentLine.length === 0) {
+      currentLine = word;
+    } else if (currentLine.length + 1 + word.length <= maxCharsPerLine) {
+      currentLine += ` ${word}`;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+
+  if (currentLine.length > 0) {
+    lines.push(currentLine);
+  }
+
+  return lines;
+};
+
+/**
+ * Reusable component for rendering wrapped text labels in SVG.
+ * Handles multi-line text rendering with configurable positioning.
+ */
+const wrappedTextLabel = ({
+  text,
+  maxWidth,
+  fontSize,
+  lineHeight,
+  startDy,
+  textAnchor,
+  fill,
+  fontFamily,
+  fontWeight,
+  letterSpacing,
+  yOffset = 0,
+}: {
+  text: string;
+  maxWidth: number;
+  fontSize: number;
+  lineHeight: number;
+  startDy: number;
+  textAnchor: 'start' | 'middle' | 'end';
+  fill: string;
+  fontFamily: string;
+  fontWeight: number;
+  letterSpacing: number;
+  yOffset?: number;
+}): { element: JSX.Element; height: number } => {
+  const lines = wrapTextToFit(text, maxWidth, fontSize);
+  const totalHeight = lines.length * lineHeight;
+
+  const element = (
+    <text
+      x={0}
+      y={yOffset}
+      textAnchor={textAnchor}
+      fill={fill}
+      fontSize={fontSize}
+      fontFamily={fontFamily}
+      fontWeight={fontWeight}
+      style={{ letterSpacing }}
+    >
+      {lines.map((line, index) => (
+        <tspan key={index} x={0} dy={index === 0 ? startDy : lineHeight}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+
+  return { element, height: totalHeight };
+};
+
+/**
+ * Custom tick component for X-axis with automatic text wrapping.
+ * - Primary label: Automatically wraps long text to multiple lines based on available width
+ * - Secondary label: Optional label from pre-computed secondaryLabelMap (shown below primary, also supports wrapping)
+ * - Edge alignment: For line/area charts, first/last ticks align start/end to prevent clipping.
+ *   For bar charts, all labels are center-aligned since bars are centered on tick positions.
+ * - Reports calculated height via onHeightCalculated callback for dynamic axis sizing
+ */
+const CustomXAxisTick = ({
+  x,
+  y,
+  payload,
+  secondaryLabelMap,
+  theme,
+  tickWidth,
+  chartName,
+  onHeightCalculated,
+  lastTick,
+  tickFormatter,
+}: {
+  x: number;
+  y: number;
+  payload: { value: string; index: number };
+  secondaryLabelMap?: SecondaryLabelMap;
+  theme: ReturnType<typeof useTheme>['theme'];
+  tickWidth?: number;
+  chartName?: string;
+  onHeightCalculated?: (height: number) => void;
+  lastTick: number;
+  tickFormatter?: (value: string, index: number) => string;
+}): JSX.Element => {
+  const fontSize = theme.typography.fonts.size[75];
+  const maxWidth = tickWidth ? tickWidth * 0.9 : Infinity;
+
+  // For bar charts, always center align labels since bars are centered on ticks
+  // For line/area charts, align first tick left and last tick right to prevent clipping
+  const shouldUseEdgeAlignment = chartName === 'line' || chartName === 'area';
+  const isFirstTick = shouldUseEdgeAlignment && payload.index === 0;
+  const isLastTick = shouldUseEdgeAlignment && payload.index === lastTick;
+
+  const getTextAnchor = (): 'start' | 'middle' | 'end' => {
+    if (isFirstTick) return 'start';
+    if (isLastTick) return 'end';
+    return 'middle';
+  };
+  const textAnchor = getTextAnchor();
+
+  // Common text style props
+  const textStyleProps = {
+    maxWidth,
+    fontSize,
+    lineHeight: X_AXIS_TICK_LINE_HEIGHT,
+    startDy: X_AXIS_TICK_START_DY,
+    textAnchor,
+    fill: theme.colors.surface.text.gray.muted,
+    fontFamily: theme.typography.fonts.family.text,
+    fontWeight: theme.typography.fonts.weight.regular,
+    letterSpacing: theme.typography.letterSpacings[100],
+  } as const;
+
+  // Apply tickFormatter if provided, otherwise use raw value
+  const displayValue = tickFormatter
+    ? tickFormatter(payload.value, payload.index)
+    : String(payload.value);
+
+  // Primary label
+  const primaryLabel = wrappedTextLabel({
+    ...textStyleProps,
+    text: displayValue,
+  });
+
+  // Secondary label from pre-computed map
+  const secondaryValue = secondaryLabelMap?.[payload.index];
+
+  const secondaryLabel =
+    secondaryValue !== undefined
+      ? wrappedTextLabel({
+          ...textStyleProps,
+          text: String(secondaryValue),
+          // primaryLabel.height gives us where primary ends (relative to its startDy)
+          // X_AXIS_LABEL_GAP adds the desired spacing between labels
+          yOffset: primaryLabel.height + X_AXIS_LABEL_GAP,
+        })
+      : null;
+
+  // Calculate total tick height and report it
+  const totalTickHeight =
+    X_AXIS_TICK_START_DY +
+    primaryLabel.height +
+    (secondaryLabel ? X_AXIS_LABEL_GAP + secondaryLabel.height : 0);
+
+  React.useEffect(() => {
+    onHeightCalculated?.(totalTickHeight);
+  }, [totalTickHeight, onHeightCalculated]);
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      {primaryLabel.element}
+      {secondaryLabel?.element}
+    </g>
+  );
+};
+
+const _ChartXAxis: React.FC<ChartXAxisProps> = ({
+  interval = 0,
+  tickLine = false,
+  label,
+  dataKey,
+  height,
+  tickFormatter,
+  ...props
+}) => {
+  const { theme } = useTheme();
+  const { secondaryLabelMap, chartName, dataLength } = useCommonChartComponentsContext();
+  // We don't want to pass secondaryDataKey to recharts
+  const { secondaryDataKey: _unusedsecondaryDataKey, ...restProps } = props;
+
+  // Calculate tick count from dataLength
+  const totalTickCount = dataLength ?? 1;
+
+  // Calculate visible tick count based on interval
+  // When interval is a number: 0 = show all, 1 = every 2nd, 2 = every 3rd, etc.
+  const visibleTickCount =
+    typeof interval === 'number' ? Math.ceil(totalTickCount / (interval + 1)) : totalTickCount; // For string intervals like 'preserveStart', use total as fallback
+
+  const lastTick = totalTickCount - 1;
+
+  // State to track the maximum tick height reported by CustomXAxisTick components
+  const minHeight = secondaryLabelMap ? 20 : 10;
+  const [maxTickHeight, setMaxTickHeight] = React.useState(minHeight);
+
+  // Callback to update max height when ticks report their calculated height
+  const handleHeightCalculated = React.useCallback((height: number) => {
+    setMaxTickHeight((prev) => Math.max(prev, height));
+  }, []);
+
+  // Calculate total axis height:
+  // - Tick labels height (dynamic)
+  // - X-axis label height + offset, always reserved so the gap between the
+  //   axis and elements below it (e.g. legend) stays constant whether or not
+  //   the `label` prop is present
+  const axisLabelSpace = X_AXIS_LABEL_OFFSET + X_AXIS_LABEL_HEIGHT;
+  const baseHeight = Math.max(maxTickHeight) + axisLabelSpace;
+
+  // Position for X-axis label: below tick labels with offset
+  const axisLabelY = maxTickHeight + X_AXIS_LABEL_OFFSET + X_AXIS_LABEL_HEIGHT / 2;
+
+  return (
+    <RechartsXAxis
+      {...restProps}
+      height={baseHeight || height}
+      interval={interval}
+      tick={(tickProps: {
+        x: string | number;
+        y: string | number;
+        payload: { value: string; index: number };
+        width?: string | number;
+      }) => {
+        // Calculate available width per tick from the total chart width
+        const tickWidth = Number(tickProps.width ?? 0) / visibleTickCount;
+        return (
+          <CustomXAxisTick
+            x={Number(tickProps.x)}
+            y={Number(tickProps.y)}
+            payload={tickProps.payload}
+            secondaryLabelMap={secondaryLabelMap}
+            theme={theme}
+            tickWidth={tickWidth}
+            lastTick={lastTick}
+            chartName={chartName}
+            onHeightCalculated={handleHeightCalculated}
+            tickFormatter={tickFormatter}
+          />
+        );
+      }}
+      tickLine={tickLine}
+      stroke={theme.colors.surface.border.gray.muted}
+      label={({ viewBox }: { viewBox: { x: number; y: number; width: number } }) => (
+        <text
+          x={viewBox.x + viewBox.width / 2 - X_OFFSET}
+          y={viewBox.y + axisLabelY}
+          textAnchor="middle"
+          fill={theme.colors.surface.text.gray.muted}
+          fontSize={theme.typography.fonts.size[75]}
+          fontFamily={theme.typography.fonts.family.text}
+          fontWeight={theme.typography.fonts.weight.regular}
+          letterSpacing={theme.typography.letterSpacings[100]}
+        >
+          {label}
+        </text>
+      )}
+      dataKey={dataKey}
+    />
+  );
+};
+
+const ChartXAxis = assignWithoutSideEffects(_ChartXAxis, {
+  componentId: componentId.chartXAxis,
+});
+
+const ChartYAxis: React.FC<ChartYAxisProps> = (props) => {
+  const { theme } = useTheme();
+
+  return (
+    <RechartsYAxis
+      {...props}
+      tick={{
+        fill: theme.colors.surface.text.gray.muted,
+        fontSize: theme.typography.fonts.size[75],
+        fontFamily: theme.typography.fonts.family.text,
+        fontWeight: theme.typography.fonts.weight.regular,
+        letterSpacing: theme.typography.letterSpacings[100],
+      }}
+      tickLine={false}
+      stroke={theme.colors.surface.border.gray.muted}
+      label={{
+        value: props?.label,
+        position: 'insideLeft',
+        style: {
+          textAnchor: 'middle',
+          fill: theme.colors.surface.text.gray.muted,
+          fontSize: theme.typography.fonts.size[75],
+          fontWeight: theme.typography.fonts.weight.regular,
+          fontFamily: theme.typography.fonts.family.text,
+          letterSpacing: theme.typography.letterSpacings[100],
+          lineHeight: theme.typography.lineHeights[500],
+        },
+        angle: -90,
+        fill: theme.colors.surface.text.gray.subtle,
+      }}
+      dataKey={props?.dataKey}
+    />
+  );
+};
+
+const ChartCartesianGrid: React.FC<ChartCartesianGridProps> = (props) => {
+  const { theme } = useTheme();
+
+  return (
+    <RechartsCartesianGrid
+      stroke={theme.colors.surface.border.gray.muted}
+      vertical={false}
+      {...props}
+    />
+  );
+};
+
+const CustomTooltip = ({
+  item,
+}: {
+  item: {
+    name: string;
+    value: string;
+    color: string;
+    dataKey: string;
+    payload: Record<string, unknown>;
+  };
+}): JSX.Element => {
+  const { theme } = useTheme();
+  const { dataColorMapping, chartName, rangeMap } = useCommonChartComponentsContext();
+
+  const toolTipColor = getChartColor(item.dataKey, item.name, dataColorMapping ?? {}, chartName);
+
+  // If this series has a reference band, show its industry range (low–high) beneath the value.
+  const range = rangeMap?.[item.dataKey];
+  const lowerValue = range ? item.payload?.[range.rangeLowerDataKey] : undefined;
+  const upperValue = range ? item.payload?.[range.rangeUpperDataKey] : undefined;
+  const hasRange =
+    range &&
+    lowerValue !== undefined &&
+    lowerValue !== null &&
+    upperValue !== undefined &&
+    upperValue !== null;
+
+  return (
+    <Box key={`tooltip-${item.name}`} paddingY="spacing.1">
+      <Box display="flex" alignItems="center" justifyContent="space-between" gap="spacing.4">
+        <Box display="flex" gap="spacing.3" alignItems="center" justifyContent="center">
+          <div
+            style={{
+              width: theme.spacing[4],
+              height: theme.spacing[4],
+              backgroundColor: getIn(theme.colors, toolTipColor),
+              borderRadius: theme.border.radius.small,
+            }}
+          />
+          <Text size="small" weight="regular" color="surface.text.staticWhite.normal">
+            {item.name}
+          </Text>
+        </Box>
+        <Text size="small" weight="regular" color="surface.text.staticWhite.normal">
+          {item.value}
+        </Text>
+      </Box>
+      {hasRange ? (
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          gap="spacing.4"
+          paddingLeft="spacing.5"
+        >
+          <Text size="xsmall" weight="regular" color="surface.text.staticWhite.muted">
+            {range?.rangeName ?? 'Industry'}
+          </Text>
+          <Text size="xsmall" weight="regular" color="surface.text.staticWhite.muted">
+            {`${String(lowerValue)}–${String(upperValue)}`}
+          </Text>
+        </Box>
+      ) : null}
+    </Box>
+  );
+};
+
+const ChartTooltip: React.FC<ChartTooltipProps> = (props) => {
+  const { theme } = useTheme();
+  return (
+    <RechartsTooltip
+      content={({ payload, label }) => {
+        const filteredPayLoad = payload.filter((item) => item.type !== 'none');
+        return (
+          <div
+            style={{
+              backgroundColor: theme.colors.surface.icon.staticBlack.normal,
+              borderRadius: theme.border.radius.large,
+              border: `1px solid ${theme.colors.surface.border.gray.muted}`,
+              padding: theme.spacing[4],
+            }}
+          >
+            <Heading size="small" weight="semibold" color="surface.text.staticWhite.normal">
+              {label}
+            </Heading>
+            <Box paddingTop={label ? 'spacing.4' : undefined}>
+              {filteredPayLoad.map((item) => (
+                <CustomTooltip item={item} key={item.name} />
+              ))}
+            </Box>
+          </div>
+        );
+      }}
+      cursor={{ fill: 'transparent', stroke: 'transparent' }}
+      {...props}
+    />
+  );
+};
+
+const StyledLegendWrapper = styled.button<{ $isHidden: boolean; $isClickable: boolean }>(
+  ({ theme, $isHidden, $isClickable }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    cursor: $isClickable ? 'pointer' : 'default',
+    opacity: $isHidden ? 0.4 : 1,
+    background: 'none',
+    border: 'none',
+    padding: theme.spacing[2],
+    '& p': {
+      color: theme.colors.surface.text.gray.muted,
+      textDecoration: $isHidden ? 'line-through' : 'none',
+      transition: $isClickable
+        ? `color ${theme.motion.duration.xquick}ms ${theme.motion.easing.linear}`
+        : 'none',
+    },
+    '&:hover p': {
+      color: $isClickable
+        ? theme.colors.surface.text.gray.normal
+        : theme.colors.surface.text.gray.muted,
+    },
+  }),
+);
+
+const LegendItem = ({
+  entry,
+  index,
+  isSelected,
+  onClick,
+  isClickable,
+}: {
+  entry: { color: string; value: string; dataKey: string };
+  index: number;
+  isSelected: boolean;
+  onClick: (dataKey: string) => void;
+  isClickable: boolean;
+}): JSX.Element => {
+  const { theme } = useTheme();
+  const { dataColorMapping, chartName } = useCommonChartComponentsContext();
+
+  const legendColor = getChartColor(entry.dataKey, entry.value, dataColorMapping ?? {}, chartName);
+
+  // For donut charts, use sanitized value (name) as the key, for other charts use dataKey
+  const legendKey = chartName === 'donut' ? sanitizeString(entry.value ?? '') : entry.dataKey;
+
+  return (
+    <StyledLegendWrapper
+      key={`item-${index}`}
+      $isHidden={!isSelected}
+      $isClickable={isClickable}
+      onClick={
+        isClickable
+          ? () => {
+              onClick(legendKey);
+            }
+          : undefined
+      }
+      type="button"
+    >
+      <Box display="flex" gap="spacing.3" justifyContent="center" alignItems="center">
+        <span
+          style={{
+            backgroundColor: getIn(theme.colors, legendColor),
+            width: theme.spacing[4],
+            height: theme.spacing[4],
+            display: 'inline-block',
+            borderRadius: theme.border.radius['2xsmall'],
+          }}
+        />
+        <Text size="medium" color="surface.text.gray.muted">
+          {entry.value}
+        </Text>
+      </Box>
+    </StyledLegendWrapper>
+  );
+};
+
+/**
+ * Informational (non-toggleable) legend entries for the reference band(s). Bands aren't selectable
+ * series, so each renders a static square swatch in the band's fill colour + its label. One entry
+ * per band (a per-line band or the standalone band).
+ */
+const ReferenceBandLegendSwatch = (): JSX.Element | null => {
+  const { theme } = useTheme();
+  const { referenceBands } = useCommonChartComponentsContext();
+  if (!referenceBands || referenceBands.length === 0) return null;
+  return (
+    <>
+      {referenceBands.map((band, index) => (
+        <Box display="flex" alignItems="center" padding="spacing.2" key={`reference-band-${index}`}>
+          <Box display="flex" gap="spacing.3" justifyContent="center" alignItems="center">
+            <span
+              style={{
+                backgroundColor: getIn(theme.colors, band.color),
+                opacity: band.fillOpacity,
+                width: theme.spacing[4],
+                height: theme.spacing[4],
+                display: 'inline-block',
+                borderRadius: theme.border.radius['2xsmall'],
+              }}
+            />
+            <Text size="medium" color="surface.text.gray.muted">
+              {band.name}
+            </Text>
+          </Box>
+        </Box>
+      ))}
+    </>
+  );
+};
+
+const CustomSquareLegend = (props: {
+  payload?: Array<{
+    payload: {
+      legendType: 'none' | 'line';
+      type: 'none' | 'line';
+    };
+    value: string;
+    color: string;
+    type: 'none' | 'line';
+    dataKey: string;
+  }>;
+  layout: Layout;
+  selectedDataKeys: string[];
+  onClick: (dataKey: string) => void;
+}): JSX.Element | null => {
+  const { payload, layout, selectedDataKeys, onClick } = props;
+  const { chartName, dataColorMapping, referenceBands } = useCommonChartComponentsContext();
+
+  /*
+  This is a custom legend component that is used to display the legend for the chart.
+  we need to show the legend only if the legendType is not none. (for example in line chart we don't want to show the legend for the reference line)
+  so we are filtering the payload and then mapping over it to display the legend.
+
+  For donut charts, we use dataColorMapping directly instead of payload because:
+  - When legend items are clicked, the donut data gets filtered
+  - This causes the payload to lose the filtered items
+  - But we need all legend items to remain visible so users can toggle them back
+  - dataColorMapping always contains all the original data keys
+  */
+  const isVerticalLayout = layout === 'vertical';
+  const isClickable =
+    chartName === 'line' || chartName === 'area' || chartName === 'bar' || chartName === 'donut';
+
+  // For donut charts, generate legend entries from dataColorMapping (which has all keys)
+  if (chartName === 'donut' && dataColorMapping) {
+    const donutLegendEntries = Object.keys(dataColorMapping).map((key) => ({
+      value: key, // The sanitized name
+      dataKey: key,
+      color: dataColorMapping[key].colorToken,
+    }));
+
+    if (donutLegendEntries.length === 0) {
+      return null;
+    }
+
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        gap="spacing.5"
+        flexDirection={isVerticalLayout ? 'column' : 'row'}
+        width={isVerticalLayout ? '100%' : 'auto'}
+        flexWrap="wrap"
+      >
+        {donutLegendEntries.map((entry, index) => (
+          <LegendItem
+            entry={entry}
+            index={index}
+            key={`item-${index}`}
+            isSelected={selectedDataKeys.includes(entry.dataKey)}
+            onClick={onClick}
+            isClickable={isClickable}
+          />
+        ))}
+      </Box>
+    );
+  }
+
+  // For other chart types, use the payload from recharts
+  const filteredPayload = (payload ?? []).filter(
+    (entry) => entry?.payload?.legendType !== 'none' && entry?.type !== 'none',
+  );
+
+  // Nothing to render — no real series and no reference band(s).
+  if (filteredPayload.length === 0 && (!referenceBands || referenceBands.length === 0)) {
+    return null;
+  }
+
+  return (
+    <Box
+      display="flex"
+      justifyContent="center"
+      gap="spacing.5"
+      flexDirection={isVerticalLayout ? 'column' : 'row'}
+      width={isVerticalLayout ? '100%' : 'auto'}
+      flexWrap="wrap"
+    >
+      {filteredPayload.map((entry, index) => (
+        <LegendItem
+          entry={entry}
+          index={index}
+          key={`item-${index}`}
+          isSelected={selectedDataKeys.includes(entry.dataKey)}
+          onClick={onClick}
+          isClickable={isClickable}
+        />
+      ))}
+      {/* Static swatch for the reference band (not a toggleable series). */}
+      <ReferenceBandLegendSwatch />
+    </Box>
+  );
+};
+
+const _ChartLegend: React.FC<ChartLegendProps> = ({
+  selectedDataKeys: selectedDataKeysProp,
+  defaultSelectedDataKeys,
+  onSelectedDataKeysChange,
+  ...props
+}) => {
+  const { theme } = useTheme();
+  const { dataColorMapping, setSelectedDataKeys } = useCommonChartComponentsContext();
+  const hasUserInteractedRef = React.useRef(false);
+  const isControlled = selectedDataKeysProp !== undefined;
+  const shouldAutoSelectAllDataKeys = !isControlled && defaultSelectedDataKeys === undefined;
+
+  // Get all available dataKeys from the chart
+  const allDataKeys = React.useMemo(() => Object.keys(dataColorMapping ?? {}), [dataColorMapping]);
+
+  // Use controllable state for selected keys
+  const [selectedKeysArray, setSelectedKeysArray] = useControllableState({
+    value: selectedDataKeysProp,
+    defaultValue: defaultSelectedDataKeys ?? allDataKeys,
+  });
+
+  React.useEffect(() => {
+    if (!shouldAutoSelectAllDataKeys || hasUserInteractedRef.current || allDataKeys.length === 0) {
+      return;
+    }
+
+    const isSelectedStateInSync =
+      selectedKeysArray.length === allDataKeys.length &&
+      allDataKeys.every((dataKey) => selectedKeysArray.includes(dataKey));
+
+    if (!isSelectedStateInSync) {
+      setSelectedKeysArray(() => [...allDataKeys], true);
+    }
+  }, [allDataKeys, selectedKeysArray, setSelectedKeysArray, shouldAutoSelectAllDataKeys]);
+
+  // Reset selection when allDataKeys completely changes (e.g., when nameKey prop changes)
+  // This detects when none of the currently selected keys exist in the new data keys
+  React.useEffect(() => {
+    if (allDataKeys.length > 0 && selectedKeysArray.length > 0) {
+      const hasOverlap = selectedKeysArray.some((key) => allDataKeys.includes(key));
+      if (!hasOverlap) {
+        // The data keys have completely changed, reset to all keys
+        setSelectedKeysArray(() => [...allDataKeys]);
+      }
+    }
+  }, [allDataKeys, selectedKeysArray, setSelectedKeysArray]);
+
+  // Sync selectedDataKeys to context's selectedDataKeys
+  React.useEffect(() => {
+    setSelectedDataKeys?.(selectedKeysArray);
+  }, [selectedKeysArray, setSelectedDataKeys]);
+
+  // Handle toggle
+  const handleClick = React.useCallback(
+    (dataKey: string) => {
+      hasUserInteractedRef.current = true;
+      const newSelectedKeys = selectedKeysArray.includes(dataKey)
+        ? selectedKeysArray.filter((key) => key !== dataKey)
+        : [...selectedKeysArray, dataKey];
+
+      setSelectedKeysArray(() => newSelectedKeys);
+      onSelectedDataKeysChange?.({ dataKey, selectedKeysArray: newSelectedKeys });
+    },
+    [setSelectedKeysArray, selectedKeysArray, onSelectedDataKeysChange],
+  );
+
+  return (
+    <RechartsLegend
+      wrapperStyle={{
+        fontFamily: theme.typography.fonts.family.text,
+        fontSize: theme.typography.fonts.size[100],
+        color: theme.colors.surface.text.gray.normal,
+        paddingTop: LEGEND_MARGIN_TOP,
+      }}
+      align="center"
+      verticalAlign={props.layout === 'vertical' ? 'middle' : 'bottom'}
+      content={
+        <CustomSquareLegend
+          layout={props.layout ?? 'horizontal'}
+          selectedDataKeys={selectedKeysArray}
+          onClick={handleClick}
+        />
+      }
+      {...props}
+    />
+  );
+};
+
+const ChartLegend = assignWithoutSideEffects(_ChartLegend, {
+  componentId: componentId.chartLegend,
+});
+
+const CustomReferenceLabel = ({
+  viewBox,
+  value,
+  isVertical,
+}: {
+  viewBox?: { x: number; y: number; width: number };
+  value: string | undefined;
+  isVertical: boolean;
+}): JSX.Element => {
+  // Extract viewBox coordinates with fallback values to prevent undefined errors.
+  // viewBox contains the positioning information for the reference line label from Recharts.
+  const { x, y, width } = viewBox ?? { x: 0, y: 0, width: 0 };
+  const { theme } = useTheme();
+
+  // Calculate dynamic text width to ensure the background rectangle fits the text perfectly.
+  // This prevents text overflow for long labels and avoids unnecessarily large rectangles for short text.
+  // The function also handles text truncation with ellipsis if the text exceeds the maximum width.
+  const { width: RECT_WIDTH, displayText } = value
+    ? calculateTextWidth(value, theme)
+    : { width: 80, displayText: value ?? '' };
+
+  const rect_x = isVertical ? x + width - RECT_WIDTH / 2 : x + width - RECT_WIDTH;
+  const rect_y = isVertical ? y : y - TEXT_BASELINE;
+  // Text position with padding inside the rectangle
+  const text_x = rect_x + PADDING_HORIZONTAL + (RECT_WIDTH - PADDING_HORIZONTAL * 2) / 2;
+  const text_y = rect_y + PADDING_VERTICAL + TEXT_BASELINE; // +15 for text baseline
+
+  return (
+    <g>
+      <rect
+        x={rect_x}
+        y={rect_y}
+        width={RECT_WIDTH}
+        height={RECT_HEIGHT}
+        rx={theme.border.radius.medium}
+        fill={theme.colors.surface.background.gray.subtle}
+        stroke={theme.colors.surface.border.gray.muted}
+        strokeWidth="1"
+      />
+      <text
+        x={text_x}
+        y={text_y}
+        textAnchor="middle"
+        fill={theme.colors.surface.text.gray.normal}
+        fontSize={theme.typography.fonts.size[50]}
+        fontFamily={theme.typography.fonts.family.text}
+        fontWeight={theme.typography.fonts.weight.medium}
+        letterSpacing={theme.typography.letterSpacings[100]}
+      >
+        {displayText}
+      </text>
+    </g>
+  );
+};
+
+const ChartReferenceLine: React.FC<ChartReferenceLineProps> = ({ label, x, y }) => {
+  const { theme } = useTheme();
+  return (
+    <RechartsReferenceLine
+      stroke={theme.colors.data.background.categorical.gray.intense}
+      strokeWidth={2}
+      strokeDasharray="4 4"
+      label={<CustomReferenceLabel value={label} isVertical={Boolean(x)} />}
+      x={x}
+      y={y}
+    />
+  );
+};
+
+/**
+ * Reference band. Renders two invisible bound lines (`lowerDataKey` / `upperDataKey`) so
+ * Recharts computes their geometry and folds them into the y-domain; ChartLineWrapper then reads
+ * those curves and paints the shaded band between them (a data-driven range that varies per point,
+ * unlike Recharts' fixed-rectangle `ReferenceArea`). The band's fill + legend swatch are handled by
+ * the wrapper and the shared legend via context.
+ */
+const _ChartReferenceBand: React.FC<ChartReferenceBandProps> = ({ lowerDataKey, upperDataKey }) => {
+  return (
+    <>
+      <RechartsLine
+        className={REFERENCE_BAND_LOWER_CLASS}
+        type="monotone"
+        dataKey={lowerDataKey}
+        stroke="transparent"
+        strokeWidth={1}
+        dot={false}
+        activeDot={false}
+        connectNulls
+        legendType="none"
+        tooltipType="none"
+        isAnimationActive={false}
+      />
+      <RechartsLine
+        className={REFERENCE_BAND_UPPER_CLASS}
+        type="monotone"
+        dataKey={upperDataKey}
+        stroke="transparent"
+        strokeWidth={1}
+        dot={false}
+        activeDot={false}
+        connectNulls
+        legendType="none"
+        tooltipType="none"
+        isAnimationActive={false}
+      />
+    </>
+  );
+};
+
+const ChartReferenceBand = assignWithoutSideEffects(_ChartReferenceBand, {
+  componentId: componentId.chartReferenceBand,
+});
+
+export {
+  ChartXAxis,
+  ChartYAxis,
+  ChartCartesianGrid,
+  ChartLegend,
+  ChartTooltip,
+  ChartReferenceLine,
+  ChartReferenceBand,
+};

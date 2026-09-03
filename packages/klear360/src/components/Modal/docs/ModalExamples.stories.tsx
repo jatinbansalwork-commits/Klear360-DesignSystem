@@ -1,0 +1,117 @@
+import React from 'react';
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import { Modal } from '../Modal';
+import {
+  BasicModalStory,
+  ModalWithNoBodyPaddingStory,
+  ModalWithScrollableBackgroundStory,
+  ModalWithScrollableContentStory,
+  ModalWithHeaderFooterStory,
+  ModalStackingStory,
+  OtpModalStory,
+  ShareModalStory,
+  InformationalModalStory,
+  NonDismissibleModalStory,
+} from './stories';
+import { Sandbox } from '~utils/storybook/Sandbox';
+
+const ModalMeta: Meta = {
+  title: 'Components/Modal/Examples',
+  component: Modal,
+  parameters: {
+    viewMode: 'story',
+    options: {
+      showPanel: false,
+    },
+    previewTabs: {
+      'storybook/docs/panel': {
+        hidden: true,
+      },
+    },
+    chromatic: { disableSnapshot: true },
+  },
+};
+
+const ModalTemplate: StoryFn<typeof Modal> = () => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {BasicModalStory}
+    </Sandbox>
+  );
+};
+
+export const BasicModal = ModalTemplate.bind({});
+
+export const ModalWithHeaderFooter = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ModalWithHeaderFooterStory}
+    </Sandbox>
+  );
+};
+
+export const ModalWithScrollableContent = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ModalWithScrollableContentStory}
+    </Sandbox>
+  );
+};
+
+export const ModalWithScrollableBackground = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ModalWithScrollableBackgroundStory}
+    </Sandbox>
+  );
+};
+
+export const ModalWithNoBodyPadding = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ModalWithNoBodyPaddingStory}
+    </Sandbox>
+  );
+};
+
+export const ModalStacking = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ModalStackingStory}
+    </Sandbox>
+  );
+};
+
+export const OtpModal = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {OtpModalStory}
+    </Sandbox>
+  );
+};
+
+export const ShareModal = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {ShareModalStory}
+    </Sandbox>
+  );
+};
+
+export const InformationalModal = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {InformationalModalStory}
+    </Sandbox>
+  );
+};
+
+export const NonDismissibleModal = (): React.ReactElement => {
+  return (
+    <Sandbox padding="spacing.0" editorHeight="100vh">
+      {NonDismissibleModalStory}
+    </Sandbox>
+  );
+};
+
+export default ModalMeta;

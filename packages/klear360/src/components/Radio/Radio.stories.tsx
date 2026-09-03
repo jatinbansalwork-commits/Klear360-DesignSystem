@@ -1,0 +1,453 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import React from 'react';
+import { Title } from '@storybook/addon-docs/blocks';
+import type { RadioGroupProps } from './RadioGroup/RadioGroup';
+import { RadioGroup as RadioGroupComponent } from './RadioGroup/RadioGroup';
+import { Radio as RadioComponent } from './Radio';
+import { Text } from '~components/Typography';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import BaseBox from '~components/Box/BaseBox';
+import { Box } from '~components/Box';
+import { Button } from '~components/Button';
+import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgTypes';
+import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
+import { Link } from '~components/Link';
+import { InfoIcon } from '~components/Icons';
+import { Badge } from '~components/Badge';
+
+const Page = (): React.ReactElement => {
+  return (
+    <StoryPageWrapper
+      componentDescription="Radio & RadioGroup can be used in forms when a user needs to single value from several options."
+      componentName="Radio"
+      imports={`import { Radio, RadioGroup } from '@klear/klear360/components';\nimport type { RadioProps, RadioGroupProps } from '@klear/klear360/components';`}
+      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=75857-146071&t=8df9lRjFiAYVTKc4-1&scaling=min-zoom&page-id=13133%3A160667&mode=design"
+    >
+      <Title>Usage</Title>
+      <Sandbox showConsole editorHeight={400}>
+        {`
+          import { RadioGroup, Radio } from '@klear/klear360/components';
+
+          function App() {
+            return (
+              <RadioGroup
+                helpText="Select only one"
+                label="Where do you want to collect payments?"
+                name="payment-collection"
+                onChange={({name, value}) => console.log({name, value})}
+                defaultValue="website"
+              >
+                <Radio value="website">Website</Radio>
+                <Radio value="android">Android App</Radio>
+                <Radio value="ios">iOS App</Radio>
+                <Radio
+                  value="social-media"
+                  helpText="Like WhatsApp, Facebook, Instagram"
+                >
+                  Social Media
+                </Radio>
+                <Radio value="offline-store">Offline Store</Radio>
+              </RadioGroup>
+            )
+          }
+
+          export default App;
+        `}
+      </Sandbox>
+    </StoryPageWrapper>
+  );
+};
+
+export default {
+  title: 'Components/Radio & RadioGroup',
+  component: RadioGroupComponent,
+  args: {
+    label: 'Radio example',
+    helpText: undefined,
+    isDisabled: false,
+    isRequired: false,
+    necessityIndicator: 'none',
+    labelPosition: undefined,
+    validationState: undefined,
+    errorText: undefined,
+    name: undefined,
+    defaultValue: undefined,
+    onChange: undefined,
+    value: undefined,
+    size: 'medium',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    value: {
+      options: ['apple', 'mango', 'orange'],
+      control: {
+        type: 'select',
+      },
+    },
+    defaultValue: {
+      options: ['apple', 'mango', 'orange'],
+      control: {
+        type: 'select',
+      },
+    },
+    ...getStyledPropsArgTypes(),
+  },
+  parameters: {
+    docs: {
+      page: Page,
+    },
+  },
+} as Meta<RadioGroupProps>;
+
+const RadioTemplate: StoryFn<typeof RadioGroupComponent> = ({ children, ...args }) => {
+  return (
+    <RadioGroupComponent {...args}>
+      <RadioComponent value="apple">Apple</RadioComponent>
+      <RadioComponent value="mango">Mango</RadioComponent>
+      <RadioComponent value="orange">Orange</RadioComponent>
+    </RadioGroupComponent>
+  );
+};
+
+export const Default = RadioTemplate.bind({});
+Default.storyName = 'Default';
+
+export const RadioGroupOrientation = RadioTemplate.bind({});
+RadioGroupOrientation.storyName = 'RadioGroup Orientation';
+RadioGroupOrientation.args = {
+  orientation: 'vertical',
+};
+
+export const RadioGroupOrientationHorizontal = RadioTemplate.bind({});
+RadioGroupOrientationHorizontal.storyName = 'RadioGroup Orientation Horizontal';
+RadioGroupOrientationHorizontal.args = {
+  orientation: 'horizontal',
+};
+
+export const HelpText = RadioTemplate.bind({});
+HelpText.storyName = 'HelpText';
+HelpText.args = {
+  helpText: 'RadioGroup help text',
+};
+
+export const HorizontalRadioGroupWithHelpText = RadioTemplate.bind({});
+HorizontalRadioGroupWithHelpText.storyName = 'HorizontalRadioGroupWithHelpText';
+HorizontalRadioGroupWithHelpText.args = {
+  orientation: 'horizontal',
+  helpText: 'RadioGroup help text',
+};
+
+export const ErrorText = RadioTemplate.bind({});
+ErrorText.storyName = 'ErrorText';
+ErrorText.args = {
+  validationState: 'error',
+  errorText: 'RadioGroup help text',
+};
+
+export const RadioGroupOrientationHorizontalWithErrorText = RadioTemplate.bind({});
+RadioGroupOrientationHorizontalWithErrorText.storyName =
+  'RadioGroup Orientation Horizontal With ErrorText';
+RadioGroupOrientationHorizontalWithErrorText.args = {
+  orientation: 'horizontal',
+  validationState: 'error',
+  errorText: 'RadioGroup error text',
+};
+
+export const Disabled = RadioTemplate.bind({});
+Disabled.storyName = 'Disabled';
+Disabled.args = {
+  isDisabled: true,
+};
+
+export const Optional = RadioTemplate.bind({});
+Optional.storyName = 'Optional';
+Optional.args = {
+  necessityIndicator: 'optional',
+};
+
+export const RequiredRadio = RadioTemplate.bind({});
+RequiredRadio.storyName = 'Required';
+RequiredRadio.args = {
+  necessityIndicator: 'required',
+};
+
+export const Small = RadioTemplate.bind({});
+Small.storyName = 'Small';
+Small.args = {
+  size: 'small',
+};
+
+export const Large = RadioTemplate.bind({});
+Large.storyName = 'Large';
+Large.args = {
+  size: 'large',
+};
+
+export const LabelPositionLeft = RadioTemplate.bind({});
+LabelPositionLeft.storyName = 'LabelPositionLeft';
+LabelPositionLeft.args = {
+  labelPosition: 'left',
+};
+
+export const KitchenSink = (): React.ReactElement => {
+  const [selected, setSelected] = React.useState('orange');
+
+  return (
+    <>
+      <RadioGroupComponent
+        helpText="Select atleast one"
+        label="Medium"
+        defaultValue="orange"
+        onChange={(e) => console.log(e)}
+        size="medium"
+      >
+        <RadioComponent value="apple">Apple</RadioComponent>
+        <RadioComponent value="mango">Mango</RadioComponent>
+        <RadioComponent value="orange">Orange</RadioComponent>
+      </RadioGroupComponent>
+      <Text>&nbsp;</Text>
+      <RadioGroupComponent
+        size="small"
+        helpText="Select atleast one"
+        label="Small"
+        defaultValue="orange"
+        onChange={(e) => console.log(e)}
+      >
+        <RadioComponent helpText="Apples are good" value="apple">
+          Apple
+        </RadioComponent>
+        <RadioComponent value="mango">Mango</RadioComponent>
+        <RadioComponent value="orange">Orange</RadioComponent>
+      </RadioGroupComponent>
+      <Text>&nbsp;</Text>
+      <RadioGroupComponent
+        errorText="Selected atleast one item"
+        helpText={`You selected ${selected}`}
+        label="Controlled"
+        value={selected}
+        onChange={({ value, name }) => {
+          setSelected(value);
+          console.log(name, value);
+        }}
+      >
+        <RadioComponent helpText="Apples Are 25% Air" value="apple">
+          Apple
+        </RadioComponent>
+        <RadioComponent helpText="The name “mango” originated in India" value="mango">
+          Mango
+        </RadioComponent>
+        <RadioComponent helpText="There are over 600 varieties of oranges." value="orange">
+          Orange
+        </RadioComponent>
+      </RadioGroupComponent>
+      <Text>&nbsp;</Text>
+      <RadioGroupComponent
+        necessityIndicator="required"
+        errorText="Atleast one has to be selected"
+        helpText="Select atleast one"
+        label="Select your fruit"
+      >
+        <RadioComponent value="apple">Apple</RadioComponent>
+        <RadioComponent value="mango">Mango</RadioComponent>
+        <RadioComponent value="orange">Orange</RadioComponent>
+      </RadioGroupComponent>
+      <Text>&nbsp;</Text>
+      <RadioGroupComponent
+        validationState="error"
+        necessityIndicator="optional"
+        errorText="Atleast one has to be selected"
+        helpText="Select atleast one"
+        label="Select your fruit"
+      >
+        <RadioComponent value="apple">Apple</RadioComponent>
+        <RadioComponent value="mango">Mango</RadioComponent>
+        <RadioComponent value="orange">Orange</RadioComponent>
+      </RadioGroupComponent>
+      <Text>&nbsp;</Text>
+      <RadioGroupComponent
+        labelPosition="left"
+        necessityIndicator="optional"
+        validationState="error"
+        errorText="This is invalid"
+        helpText="Select atleast one"
+        label="Select your fruit"
+      >
+        <RadioComponent value="apple">Apple</RadioComponent>
+        <RadioComponent value="mango">Mango</RadioComponent>
+        <RadioComponent value="orange">Orange</RadioComponent>
+      </RadioGroupComponent>
+      <BaseBox height="50px" overflow="scroll" marginTop="spacing.4">
+        <RadioGroupComponent
+          labelPosition="left"
+          necessityIndicator="optional"
+          validationState="error"
+          errorText="This is invalid"
+          helpText="Select atleast one"
+          label="Overflow Scroll"
+        >
+          <RadioComponent value="apple">Apple</RadioComponent>
+          <RadioComponent value="mango">Mango</RadioComponent>
+          <RadioComponent value="orange">Orange</RadioComponent>
+        </RadioGroupComponent>
+      </BaseBox>
+    </>
+  );
+};
+
+export const RadioGroupWithLabelSuffixTrailing = RadioTemplate.bind({});
+RadioGroupWithLabelSuffixTrailing.storyName = 'RadioGroup with Label Suffix & Trailing';
+RadioGroupWithLabelSuffixTrailing.args = {
+  label: 'Select your fruit',
+  labelPosition: 'top',
+  labelSuffix: (
+    <Tooltip content="Select your fruit" placement="right">
+      <TooltipInteractiveWrapper display="flex">
+        <InfoIcon size="small" color="surface.icon.gray.muted" />
+      </TooltipInteractiveWrapper>
+    </Tooltip>
+  ),
+  labelTrailing: <Link size="small">Learn more</Link>,
+};
+
+export const radioRef: StoryFn<typeof RadioComponent> = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const radioRef = React.useRef<HTMLInputElement>(null);
+
+  return (
+    <BaseBox gap="spacing.3" display="flex" alignItems="center">
+      <RadioGroupComponent label="Radio ref example">
+        <RadioComponent ref={radioRef} value="1">
+          Radio
+        </RadioComponent>
+      </RadioGroupComponent>
+      <Button onClick={() => radioRef?.current?.focus()}>Click to focus the Radio</Button>
+    </BaseBox>
+  );
+};
+
+radioRef.storyName = 'Radio Ref';
+radioRef.parameters = {
+  docs: {
+    description: {
+      story:
+        'Radio component exposes the `ref` prop. The `ref` exposes two methods `focus` & `scrollIntoView` which can be used to programatically control the DOM element',
+    },
+  },
+};
+
+const radioShowcaseColumns: Array<{
+  id: string;
+  label: string;
+  groupProps: Partial<RadioGroupProps>;
+}> = [
+  { id: 'unchecked', label: 'Unchecked', groupProps: {} },
+  { id: 'checked', label: 'Checked', groupProps: { defaultValue: 'option' } },
+];
+
+const radioShowcaseRows: Array<{
+  id: string;
+  label: string;
+  rowProps: Partial<RadioGroupProps>;
+}> = [
+  { id: 'default', label: 'Default', rowProps: {} },
+  { id: 'disabled', label: 'Disabled', rowProps: { isDisabled: true } },
+  {
+    id: 'error',
+    label: 'Error',
+    rowProps: { validationState: 'error' },
+  },
+];
+
+const radioShowcaseSizes: Array<{
+  id: string;
+  label: string;
+  size: RadioGroupProps['size'];
+}> = [
+  { id: 'small', label: 'Size Small', size: 'small' },
+  { id: 'medium', label: 'Size Medium', size: 'medium' },
+  { id: 'large', label: 'Size Large', size: 'large' },
+];
+
+const RadioShowcase = () => {
+  return (
+    <Box display="flex" flexDirection="column" gap="spacing.7">
+      {radioShowcaseSizes.map(({ id: sizeId, label, size }) => (
+        <Box key={sizeId} display="flex" flexDirection="column" gap="spacing.4">
+          <Text weight="semibold">{label}</Text>
+          <Box
+            display="grid"
+            gridTemplateColumns="140px repeat(2, minmax(160px, 1fr))"
+            rowGap="spacing.4"
+            columnGap="spacing.4"
+            alignItems="center"
+            justifyItems="center"
+          >
+            <Box />
+            {radioShowcaseColumns.map((column) => (
+              <Text key={column.id} size="small" textAlign="center" weight="medium">
+                {column.label}
+              </Text>
+            ))}
+            {radioShowcaseRows.map((row) => (
+              <React.Fragment key={row.id}>
+                <Box display="flex" justifyContent="flex-end" width="100%">
+                  <Text size="small" weight="medium">
+                    {row.label}
+                  </Text>
+                </Box>
+                {radioShowcaseColumns.map((column) => (
+                  <Box
+                    key={`${row.id}-${column.id}`}
+                    padding="spacing.3"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <RadioGroupComponent
+                      label=""
+                      name={`showcase-${sizeId}-${row.id}-${column.id}`}
+                      size={size}
+                      {...column.groupProps}
+                      {...row.rowProps}
+                    >
+                      <RadioComponent value="option">Option</RadioComponent>
+                    </RadioGroupComponent>
+                  </Box>
+                ))}
+              </React.Fragment>
+            ))}
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+};
+
+export const Showcase: StoryFn<typeof RadioGroupComponent> = () => {
+  return <RadioShowcase />;
+};
+
+export const WithBadge: StoryFn<typeof RadioGroupComponent> = () => {
+  return (
+    <RadioGroupComponent label="Select your plan" defaultValue="pro">
+      <RadioComponent value="basic">Basic</RadioComponent>
+      <RadioComponent value="pro" trailing={<Badge color="primary">Recommended</Badge>}>
+        Pro
+      </RadioComponent>
+      <RadioComponent value="enterprise" trailing={<Badge color="positive">New</Badge>}>
+        Enterprise
+      </RadioComponent>
+    </RadioGroupComponent>
+  );
+};
+WithBadge.storyName = 'With Badge';
+WithBadge.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use the `trailing` prop to display a `<Badge>` alongside a radio label. Only works in vertical `orientation` (the default).',
+    },
+  },
+};

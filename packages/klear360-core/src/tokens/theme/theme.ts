@@ -1,0 +1,188 @@
+import type { StringWithAutocomplete } from '~utils/types';
+import type {
+  Border,
+  BackdropBlur,
+  Breakpoints,
+  Motion,
+  Spacing,
+  TypographyWithPlatforms,
+  ElevationWithColorModes,
+} from '~tokens/global';
+import type { ColorChromaticScale, ColorNeutralGrayScale } from '~tokens/global/colors';
+
+export type ColorSchemeNames = 'dark' | 'light';
+export type ColorSchemeNamesInput = ColorSchemeNames | 'system';
+
+export type ColorSchemeModes = 'onDark' | 'onLight';
+
+export type FeedbackColors = 'information' | 'negative' | 'neutral' | 'notice' | 'positive';
+
+export type Emphasis = {
+  subtle: string;
+  moderate: string;
+  intense: string;
+  normal: string;
+  muted: string;
+  disabled: string;
+};
+
+export type DataCategoricalEmphasis = Pick<Emphasis, 'subtle' | 'moderate' | 'intense'> & {
+  faint: string;
+  strong: string;
+};
+
+export type DataSequentialEmphasis = Omit<
+  ColorChromaticScale,
+  'a50' | 'a150' | 'a100' | 'a200' | 'a400' | 'a500' | 'a600' | 'a700'
+>;
+
+export type DataColorCategories =
+  | 'blue'
+  | 'green'
+  | 'red'
+  | 'orange'
+  | 'skyBlue'
+  | 'purple'
+  | 'pink'
+  | 'gold'
+  | 'gray';
+
+type SubtleOrIntenseEmphasis = Pick<Emphasis, 'subtle' | 'intense'>;
+// Exporting this for usage in other components
+export type SubtleOrIntense = keyof SubtleOrIntenseEmphasis;
+type InteractiveStates = {
+  default: string;
+  highlighted: string;
+  disabled: string;
+  faded: string;
+};
+
+type InteractiveStatesWithFadedHighlighted = InteractiveStates & {
+  fadedHighlighted: string;
+};
+
+type InteractiveBackgroundStatesWithGhost = InteractiveStatesWithFadedHighlighted & {
+  ghost: string;
+};
+
+type InteractiveBackgroundColorsWithGhost = 'gray' | 'staticBlack' | 'staticWhite';
+type InteractiveBorderColorsWithFadedHighlighted = 'staticBlack' | 'staticWhite';
+
+type OnEmphasis = {
+  onSubtle: string;
+  onIntense: string;
+};
+
+type ColorCategories = {
+  staticBlack: Pick<Emphasis, 'normal' | 'subtle' | 'muted' | 'disabled'>;
+  staticWhite: Pick<Emphasis, 'normal' | 'subtle' | 'muted' | 'disabled'>;
+  gray: Pick<Emphasis, 'normal' | 'subtle' | 'muted' | 'disabled'>;
+  onSea: Pick<OnEmphasis, 'onSubtle' | 'onIntense'>;
+  onCloud: Pick<OnEmphasis, 'onSubtle' | 'onIntense'>;
+  primary: Pick<Emphasis, 'normal'>;
+};
+
+type InteractiveColorKeys = FeedbackColors | Exclude<keyof ColorCategories, 'onSea' | 'onCloud'>;
+
+/**
+ * @deprecated
+ * Use popup.[background|border].[color] instead
+ */
+type PopupDeprecatedTokens = {
+  /**
+   * @deprecated
+   *
+   * Use popup.[background|border].[color].subtle instead
+   */
+  subtle: string;
+  /**
+   * @deprecated
+   * Use popup.[background|border].[color].intense instead
+   */
+  intense: string;
+};
+
+export type Colors = {
+  interactive: {
+    background: Record<
+      Exclude<InteractiveColorKeys, InteractiveBackgroundColorsWithGhost>,
+      InteractiveStatesWithFadedHighlighted
+    > &
+      Record<InteractiveBackgroundColorsWithGhost, InteractiveBackgroundStatesWithGhost>;
+    border: Record<
+      Exclude<InteractiveColorKeys, InteractiveBorderColorsWithFadedHighlighted>,
+      InteractiveStates
+    > &
+      Record<InteractiveBorderColorsWithFadedHighlighted, InteractiveStatesWithFadedHighlighted>;
+    text: Record<
+      InteractiveColorKeys | 'onPrimary' | 'onNeutral',
+      Pick<Emphasis, 'normal' | 'subtle' | 'muted' | 'disabled'>
+    >;
+    icon: Record<
+      InteractiveColorKeys | 'onPrimary' | 'onNeutral',
+      Pick<Emphasis, 'normal' | 'subtle' | 'muted' | 'disabled'>
+    >;
+  };
+  feedback: {
+    background: Record<FeedbackColors, SubtleOrIntenseEmphasis>;
+    border: Record<FeedbackColors, SubtleOrIntenseEmphasis>;
+    text: Record<FeedbackColors, SubtleOrIntenseEmphasis>;
+    icon: Record<FeedbackColors, SubtleOrIntenseEmphasis>;
+  };
+  surface: {
+    background: {
+      gray: Pick<Emphasis, 'subtle' | 'moderate' | 'intense'>;
+      primary: SubtleOrIntenseEmphasis &
+        Partial<Pick<DataCategoricalEmphasis, 'moderate' | 'faint' | 'strong'>>;
+      sea: SubtleOrIntenseEmphasis;
+      cloud: SubtleOrIntenseEmphasis;
+      accent?: Pick<Emphasis, 'intense'>;
+    };
+    border: {
+      gray: Pick<Emphasis, 'normal' | 'subtle' | 'muted'>;
+      primary: Pick<Emphasis, 'normal' | 'muted'>;
+    };
+    text: ColorCategories;
+    icon: ColorCategories;
+  };
+  overlay: {
+    background: Pick<Emphasis, 'moderate' | 'subtle'>;
+  };
+  popup: {
+    background: Record<FeedbackColors, Pick<Emphasis, 'moderate'>> & {
+      gray: Pick<Emphasis, 'subtle' | 'moderate' | 'intense'>;
+    } & PopupDeprecatedTokens;
+    border: Record<FeedbackColors, Pick<Emphasis, 'moderate'>> & {
+      gray: Pick<Emphasis, 'subtle' | 'moderate' | 'intense'>;
+    } & PopupDeprecatedTokens;
+  };
+  transparent: string;
+  data: {
+    background: {
+      categorical: Record<DataColorCategories, DataCategoricalEmphasis>;
+      sequential: Record<DataColorCategories, DataSequentialEmphasis | ColorNeutralGrayScale>;
+    };
+  };
+};
+
+export type ColorsWithModes = Record<ColorSchemeModes, Colors>;
+
+export type ThemeTokens = {
+  name: 'klear360Theme' | 'klear360NeutralTheme' | StringWithAutocomplete; // Can be used to watch over state changes between theme without watching over entire theme object
+  border: Border;
+  backdropBlur: BackdropBlur;
+  breakpoints: Breakpoints;
+  colors: ColorsWithModes;
+  motion: Motion;
+  elevation: ElevationWithColorModes;
+  spacing: Spacing;
+  typography: TypographyWithPlatforms;
+};
+
+export type SpacingValues = `${Spacing[keyof Spacing]}px`;
+export type BorderWidthValues = `${Border['width'][keyof Border['width']]}px`;
+export type BorderRadiusValues =
+  | `${Border['radius'][Exclude<keyof Border['radius'], 'round'>]}px`
+  | `${Border['radius'][Extract<keyof Border['radius'], 'round'>]}`;
+
+export const colorSchemeNamesInput: ColorSchemeNamesInput[] = ['light', 'dark', 'system'];

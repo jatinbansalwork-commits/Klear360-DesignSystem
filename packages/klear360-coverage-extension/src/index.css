@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+code {
+  font-family: 'Roboto Mono', ui-monospace, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#klear360-coverage-extension * {
+  box-sizing: border-box;
+}

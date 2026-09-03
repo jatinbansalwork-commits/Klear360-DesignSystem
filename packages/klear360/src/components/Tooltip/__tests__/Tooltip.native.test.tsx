@@ -1,0 +1,108 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { act, fireEvent } from '@testing-library/react-native';
+import React from 'react';
+import { Tooltip, TooltipInteractiveWrapper } from '..';
+import { Button } from '~components/Button';
+import { Text } from '~components/Typography';
+import { klear360Theme } from '~tokens/theme';
+import renderWithTheme from '~utils/testing/renderWithTheme.native';
+const triggerId = 'tooltip-interactive-wrapper';
+const modalBackdropId = 'tooltip-modal-backdrop';
+
+describe('<Tooltip />', () => {
+  jest.useFakeTimers();
+
+  it('should render', () => {
+    const tooltipContent = 'Hello world';
+    const buttonText = 'Hover me';
+    const { toJSON, getByRole, getByTestId } = renderWithTheme(
+      <Tooltip content={tooltipContent}>
+        <Button>{buttonText}</Button>
+      </Tooltip>,
+    );
+
+    expect(getByRole('button')).toBeTruthy();
+    fireEvent(getByRole('button'), 'touchEnd');
+
+    expect(getByTestId(modalBackdropId)).toBeTruthy();
+
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  it('should render with title', () => {
+    const tooltipContent = 'Hello world';
+    const buttonText = 'Hover me';
+    const { toJSON, getByRole, getByTestId } = renderWithTheme(
+      <Tooltip title="Tooltip title" content={tooltipContent}>
+        <Button>{buttonText}</Button>
+      </Tooltip>,
+    );
+
+    expect(getByRole('button')).toBeTruthy();
+    fireEvent(getByRole('button'), 'touchEnd');
+
+    expect(getByTestId(modalBackdropId)).toBeTruthy();
+
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  it('should open on pressing trigger', () => {
+    const triggerText = 'Press me';
+    const tooltipContent = 'hello world';
+    const { getByTestId, queryByTestId } = renderWithTheme(
+      <Tooltip content={tooltipContent}>
+        <TooltipInteractiveWrapper>
+          <Text>{triggerText}</Text>
+        </TooltipInteractiveWrapper>
+      </Tooltip>,
+    );
+
+    expect(getByTestId(triggerId)).toBeTruthy();
+    expect(queryByTestId(modalBackdropId)).toBeNull();
+
+    fireEvent(getByTestId(triggerId), 'touchEnd');
+
+    expect(getByTestId(modalBackdropId)).toBeTruthy();
+  });
+
+  it('should close on pressing outside of trigger', async () => {
+    const triggerText = 'Press me';
+    const tooltipContent = 'hello world';
+    const { getByTestId, queryByTestId } = renderWithTheme(
+      <Tooltip content={tooltipContent}>
+        <TooltipInteractiveWrapper>
+          <Text>{triggerText}</Text>
+        </TooltipInteractiveWrapper>
+      </Tooltip>,
+    );
+
+    expect(getByTestId(triggerId)).toBeTruthy();
+    fireEvent(getByTestId(triggerId), 'touchEnd');
+    expect(getByTestId(modalBackdropId)).toBeTruthy();
+
+    // close on clicking backdrop
+    fireEvent.press(getByTestId(modalBackdropId));
+
+    // wait for closing animation to finish
+    await act(async () => {
+      jest.advanceTimersByTime(klear360Theme.motion.duration.gentle);
+    });
+    expect(queryByTestId(modalBackdropId)).toBeNull();
+  });
+
+  it('should render tooltip with custom zIndex', () => {
+    const tooltipContent = 'Hello world';
+    const buttonText = 'Hover me';
+    const { toJSON, getByRole } = renderWithTheme(
+      <Tooltip content={tooltipContent} zIndex={9999}>
+        <Button>{buttonText}</Button>
+      </Tooltip>,
+    );
+
+    fireEvent(getByRole('button'), 'touchEnd');
+    expect(toJSON()).toMatchSnapshot();
+  });
+});

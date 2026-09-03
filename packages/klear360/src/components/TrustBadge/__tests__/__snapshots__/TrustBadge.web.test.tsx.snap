@@ -1,0 +1,348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TrustBadge /> should render the default badge with the default trust label 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 8px;
+  height: 24px;
+  gap: 4px;
+  background-color: hsla(191,74%,95%,1);
+  border-radius: 9999px;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.625rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 0.8125rem;
+  -webkit-letter-spacing: -0.13px;
+  -moz-letter-spacing: -0.13px;
+  -ms-letter-spacing: -0.13px;
+  letter-spacing: -0.13px;
+  margin: 0;
+  padding: 0;
+}
+
+<div>
+  <div
+    class="c0"
+    data-klear360-component="trust-badge"
+  >
+    <div
+      aria-hidden="true"
+      class="c1"
+      data-klear360-component="base-box"
+    >
+      <svg
+        aria-hidden="true"
+        class=""
+        data-klear360-component="icon"
+        fill="none"
+        height="16px"
+        viewBox="0 0 24 24"
+        width="16px"
+      >
+        <path
+          d="M19.7981 3.96094V15.3838C19.798 16.163 19.4121 16.8915 18.7679 17.3301L12.1311 21.8467L5.49443 17.3301C4.85022 16.8915 4.46425 16.163 4.46415 15.3838V3.96094L12.1311 2.09277L19.7981 3.96094Z"
+          fill="url(#klearTrustFill-:r0:)"
+          stroke="url(#klearTrustStroke-:r0:)"
+          stroke-width="0.666667"
+        />
+        <g
+          filter="url(#klearTrustShadow-:r0:)"
+        >
+          <path
+            d="M16.2 7.8L10.6 13.4L8.1 10.9L6.7 12.3L10.6 16.2L17.6 9.2L16.2 7.8Z"
+            fill="white"
+          />
+        </g>
+        <defs>
+          <filter
+            color-interpolation-filters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="14.9444"
+            id="klearTrustShadow-:r0:"
+            width="12.9444"
+            x="5.65925"
+            y="3.19819"
+          >
+            <feflood
+              flood-opacity="0"
+              result="BackgroundImageFix"
+            />
+            <fecolormatrix
+              in="SourceAlpha"
+              result="hardAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            />
+            <feoffset />
+            <fegaussianblur
+              stdDeviation="1.11111"
+            />
+            <fecomposite
+              in2="hardAlpha"
+              operator="out"
+            />
+            <fecolormatrix
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0.294097 0 0 0 0 0.152931 0 0 0 0.25 0"
+            />
+            <feblend
+              in2="BackgroundImageFix"
+              mode="normal"
+              result="effect1_dropShadow"
+            />
+            <feblend
+              in="SourceGraphic"
+              in2="effect1_dropShadow"
+              mode="normal"
+              result="shape"
+            />
+          </filter>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="klearTrustFill-:r0:"
+            x1="4.13115"
+            x2="18.2093"
+            y1="5.0249"
+            y2="18.4295"
+          >
+            <stop
+              stop-color="#00FD0A"
+            />
+            <stop
+              offset="0.972213"
+              stop-color="#00AD8E"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="klearTrustStroke-:r0:"
+            x1="6.35337"
+            x2="17.5246"
+            y1="4.55055"
+            y2="17.4954"
+          >
+            <stop
+              stop-color="#65FF4D"
+            />
+            <stop
+              offset="0.302473"
+              stop-color="white"
+              stop-opacity="0.895"
+            />
+            <stop
+              offset="0.452125"
+              stop-color="#65FF4D"
+              stop-opacity="0.805"
+            />
+            <stop
+              offset="1"
+              stop-color="#00C67F"
+            />
+          </lineargradient>
+        </defs>
+      </svg>
+    </div>
+    <p
+      class="c2"
+      data-klear360-component="text"
+      letter-spacing="50"
+    >
+      Klear Trusted Business
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<TrustBadge /> should render the icon-only badge without the visible label and expose an a11y label 1`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div>
+  <div
+    class="c0"
+    data-klear360-component="trust-badge"
+  >
+    <div
+      aria-label="Klear Trusted Business"
+      class="c1"
+      data-klear360-component="base-box"
+      role="img"
+    >
+      <svg
+        aria-hidden="true"
+        class=""
+        data-klear360-component="icon"
+        fill="none"
+        height="16px"
+        viewBox="0 0 24 24"
+        width="16px"
+      >
+        <path
+          d="M19.7981 3.96094V15.3838C19.798 16.163 19.4121 16.8915 18.7679 17.3301L12.1311 21.8467L5.49443 17.3301C4.85022 16.8915 4.46425 16.163 4.46415 15.3838V3.96094L12.1311 2.09277L19.7981 3.96094Z"
+          fill="url(#klearTrustFill-:r1:)"
+          stroke="url(#klearTrustStroke-:r1:)"
+          stroke-width="0.666667"
+        />
+        <g
+          filter="url(#klearTrustShadow-:r1:)"
+        >
+          <path
+            d="M16.2 7.8L10.6 13.4L8.1 10.9L6.7 12.3L10.6 16.2L17.6 9.2L16.2 7.8Z"
+            fill="white"
+          />
+        </g>
+        <defs>
+          <filter
+            color-interpolation-filters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="14.9444"
+            id="klearTrustShadow-:r1:"
+            width="12.9444"
+            x="5.65925"
+            y="3.19819"
+          >
+            <feflood
+              flood-opacity="0"
+              result="BackgroundImageFix"
+            />
+            <fecolormatrix
+              in="SourceAlpha"
+              result="hardAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            />
+            <feoffset />
+            <fegaussianblur
+              stdDeviation="1.11111"
+            />
+            <fecomposite
+              in2="hardAlpha"
+              operator="out"
+            />
+            <fecolormatrix
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0.294097 0 0 0 0 0.152931 0 0 0 0.25 0"
+            />
+            <feblend
+              in2="BackgroundImageFix"
+              mode="normal"
+              result="effect1_dropShadow"
+            />
+            <feblend
+              in="SourceGraphic"
+              in2="effect1_dropShadow"
+              mode="normal"
+              result="shape"
+            />
+          </filter>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="klearTrustFill-:r1:"
+            x1="4.13115"
+            x2="18.2093"
+            y1="5.0249"
+            y2="18.4295"
+          >
+            <stop
+              stop-color="#00FD0A"
+            />
+            <stop
+              offset="0.972213"
+              stop-color="#00AD8E"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="klearTrustStroke-:r1:"
+            x1="6.35337"
+            x2="17.5246"
+            y1="4.55055"
+            y2="17.4954"
+          >
+            <stop
+              stop-color="#65FF4D"
+            />
+            <stop
+              offset="0.302473"
+              stop-color="white"
+              stop-opacity="0.895"
+            />
+            <stop
+              offset="0.452125"
+              stop-color="#65FF4D"
+              stop-opacity="0.805"
+            />
+            <stop
+              offset="1"
+              stop-color="#00C67F"
+            />
+          </lineargradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+`;

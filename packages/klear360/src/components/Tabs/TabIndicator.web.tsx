@@ -1,0 +1,151 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable consistent-return */
+import React from 'react';
+import styled from 'styled-components';
+import { useTabsContext } from './TabsContext';
+import { castWebType, makeMotionTime } from '~utils';
+import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
+import { useTheme } from '~components/Klear360Provider';
+import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
+import { useResize } from '~utils/useResize';
+import BaseBox from '~components/Box/BaseBox';
+
+const StyledTabIndicator = styled(BaseBox)(({ theme }) => {
+  return {
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.colors.interactive.background.primary.fadedHighlighted,
+    },
+  };
+});
+
+const TabIndicator = ({
+  tabListContainerRef,
+}: {
+  tabListContainerRef: React.RefObject<HTMLElement | null>;
+}): React.ReactElement => {
+  const { theme } = useTheme();
+  const { selectedValue, baseId, variant, isVertical, size } = useTabsContext();
+  const [shouldAnimate, setShouldAnimate] = React.useState(false);
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0, x: 0, y: 0 });
+
+  const updateDimensions = React.useCallback(() => {
+    const activeTabItem = document.getElementById(`${baseId}-${selectedValue}-tabitem`);
+    // Skip if element not found or not visible (width 0 means container is hidden)
+    if (!activeTabItem || activeTabItem.offsetWidth === 0) return;
+
+    setDimensions({
+      width: activeTabItem.offsetWidth,
+      height: activeTabItem.offsetHeight,
+      x: activeTabItem.offsetLeft,
+      y:
+        variant === 'filled' || isVertical
+          ? // on filled variant or vertical layout the indicator is positioned on top of the tab item
+            activeTabItem.offsetTop
+          : activeTabItem.offsetTop + activeTabItem.offsetHeight - 1.5,
+    });
+
+    // Enable animations after first valid measurement renders
+    setShouldAnimate((prev) => {
+      if (!prev) requestAnimationFrame(() => setShouldAnimate(true));
+      return prev;
+    });
+  }, [baseId, selectedValue, variant, isVertical]);
+
+  // Update the dimensions when the selected value changes
+  useIsomorphicLayoutEffect(() => {
+    if (!selectedValue) return;
+    updateDimensions();
+  }, [baseId, selectedValue, updateDimensions]);
+
+  // Update the dimensions when fonts load
+  React.useEffect(() => {
+    // check for FontFace API support
+    // FontFaceAPI is widely supported but better to be safe than sorry
+    if ('fonts' in document) {
+      try {
+        // wait for fonts to be loaded and then recalculate the dimensions
+        void document.fonts.ready.then(() => {
+          updateDimensions();
+        });
+      } catch (err: unknown) {
+        /* empty */
+      }
+    }
+  }, [updateDimensions]);
+
+  // Update the dimensions when the container resizes (covers window resize,
+  // sidebar toggles, lazy-loaded content, and containers becoming visible)
+  useResize(tabListContainerRef, updateDimensions);
+
+  const transitionProps = {
+    transitionProperty: 'transform, width, height, background-color',
+    transitionDuration: shouldAnimate
+      ? castWebType(makeMotionTime(theme.motion.duration.moderate))
+      : '0ms',
+    transitionTimingFunction: castWebType(theme.motion.easing.standard),
+  };
+
+  // Vertical bordered: 1.5px-wide line on the left side that slides vertically
+  if (isVertical && variant !== 'filled') {
+    return (
+      <StyledTabIndicator
+        pointerEvents="none"
+        position="absolute"
+        left="1.75px"
+        top="0px"
+        width="1.5px"
+        backgroundColor="interactive.border.neutral.highlighted"
+        style={{
+          ...transitionProps,
+          height: `${dimensions.height}px`,
+          transform: `translateY(${dimensions.y}px)`,
+        }}
+        {...metaAttribute({ name: MetaConstants.TabIndicator })}
+      />
+    );
+  }
+
+  if (variant === 'filled') {
+    const isSmallHorizontal = size === 'small' && !isVertical;
+    return (
+      <StyledTabIndicator
+        pointerEvents="none"
+        position="absolute"
+        left="0px"
+        top="0px"
+        borderRadius={isSmallHorizontal ? undefined : 'small'}
+        backgroundColor="surface.background.gray.intense"
+        style={{
+          ...transitionProps,
+          width: `${dimensions.width}px`,
+          height: `${dimensions.height}px`,
+          transform: `translate(${dimensions.x}px, ${dimensions.y}px)`,
+          // 6px for small — deliberate: between xsmall(4px) and small(8px) for visual proportion, mirrors SegmentedControl indicator radius
+          ...(isSmallHorizontal ? { borderRadius: 6 } : {}),
+        }}
+        {...metaAttribute({ name: MetaConstants.TabIndicator })}
+      />
+    );
+  }
+
+  return (
+    <StyledTabIndicator
+      pointerEvents="none"
+      position="absolute"
+      left="0%"
+      top="-0.5px"
+      height="2px"
+      backgroundColor="interactive.border.neutral.highlighted"
+      style={{
+        ...transitionProps,
+        width: `${dimensions.width}px`,
+        transform: `translate(${dimensions.x}px, ${dimensions.y}px)`,
+      }}
+      {...metaAttribute({ name: MetaConstants.TabIndicator })}
+    />
+  );
+};
+
+export { TabIndicator };

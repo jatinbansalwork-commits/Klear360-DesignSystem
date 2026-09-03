@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AnimateInteractions /> should render its children as expected 1`] = `"<div id="root"><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Test</p><button type="button" data-klear360-component="button" role="button" class="StyledBaseButtonweb__StyledBaseButton-wokdk0-0 bkfrfg"><div data-klear360-component="base-box" class="BaseBox-bksIuc AnimatedButtonContentweb__AnimatedButtonContent-sc-1g6ocf4-0  iUsIiL"><div data-klear360-component="base-box" class="BaseBox-bksIuc BaseButton__ButtonContent-sc-1xhzv77-0 jbTreI kmXDWf"><div class="StyledBaseText-foUshD kThtDu" data-klear360-component="base-text">Submit</div></div></div></button></div></div>"`;
+
+exports[`<AnimateInteractions /> should render its children as expected 2`] = `
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.c0.c0.c0.c0.c0 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c5.c5.c5.c5.c5 {
+  color: hsla(0,0%,100%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.c1.c1.c1.c1.c1 {
+  min-height: 36px;
+  width: auto;
+  cursor: pointer;
+  background-color: hsla(198,100%,18%,1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
+  -webkit-transition-property: background-color,background-image,box-shadow;
+  transition-property: background-color,background-image,box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  position: relative;
+}
+
+.c1.c1.c1.c1.c1:hover {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c1.c1.c1.c1.c1:active {
+  background-color: hsla(200,98%,17%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  background-image: none;
+}
+
+.c1.c1.c1.c1.c1:focus-visible {
+  background-color: hsla(200,98%,17%,1);
+  outline: 1px solid hsla(198,100%,18%,0.09);
+  background-image: none;
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+}
+
+.c1.c1.c1.c1.c1 * {
+  -webkit-transition-property: color,fill,opacity;
+  transition-property: color,fill,opacity;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c2.c2.c2.c2.c2 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
+  transition-duration: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-timing-function: 160px;
+  transition-timing-function: 160px;
+}
+
+.c4.c4.c4.c4.c4 {
+  opacity: 1;
+}
+
+<div
+  id="root"
+>
+  <div
+    class=""
+    data-klear360-component="box"
+  >
+    <p
+      class="c0"
+      data-klear360-component="text"
+      letter-spacing="50"
+    >
+      Test
+    </p>
+    <button
+      class="c1"
+      data-klear360-component="button"
+      role="button"
+      type="button"
+    >
+      <div
+        class=" c2"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c3 c4"
+          data-klear360-component="base-box"
+        >
+          <div
+            class="c5"
+            data-klear360-component="base-text"
+          >
+            Submit
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>
+</div>
+`;

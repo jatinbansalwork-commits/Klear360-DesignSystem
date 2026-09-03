@@ -1,0 +1,45 @@
+import React from 'react';
+import { TooltipContentWrapper } from './TooltipContentWrapper';
+import type { TooltipContentProps } from './types';
+import { Text } from '~components/Typography';
+import { isReactNative, makeSize } from '~utils';
+import { size } from '~tokens/global';
+import { DEFAULT_MAX_WIDTH } from './constants';
+
+const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
+  ({ children, title, arrow, side, style, isVisible, colorScheme, maxWidth }, ref) => {
+    return (
+      <TooltipContentWrapper
+        position={isReactNative() ? 'absolute' : 'relative'}
+        padding="spacing.4"
+        gap="spacing.2"
+        display="flex"
+        flexDirection="column"
+        maxWidth={maxWidth ?? makeSize(size[DEFAULT_MAX_WIDTH])}
+        ref={ref as never}
+        styles={style}
+        side={side}
+        isVisible={isVisible}
+        colorScheme={colorScheme}
+      >
+        {title ? (
+          <Text weight="semibold" size="medium" color="surface.text.staticWhite.normal">
+            {title}
+          </Text>
+        ) : null}
+        <Text
+          variant="body"
+          size="small"
+          weight="regular"
+          color="surface.text.staticWhite.subtle"
+          wordBreak="break-word"
+        >
+          {children}
+        </Text>
+        {arrow}
+      </TooltipContentWrapper>
+    );
+  },
+);
+
+export { TooltipContent };

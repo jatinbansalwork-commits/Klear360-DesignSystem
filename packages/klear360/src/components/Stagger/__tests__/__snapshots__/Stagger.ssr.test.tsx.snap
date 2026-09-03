@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Stagger /> should render its children as expected 1`] = `"<div id="root"><div class="BaseMotionweb__StyledDiv-sc-11zrxd0-0"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Item 1</p><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Item 2</p><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Item 3</p></div></div>"`;
+
+exports[`<Stagger /> should render its children as expected 2`] = `
+.c0.c0.c0.c0.c0 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+<div
+  id="root"
+>
+  <div
+    class=""
+  >
+    <p
+      class="c0"
+      data-klear360-component="text"
+      letter-spacing="50"
+    >
+      Item 1
+    </p>
+    <p
+      class="c0"
+      data-klear360-component="text"
+      letter-spacing="50"
+    >
+      Item 2
+    </p>
+    <p
+      class="c0"
+      data-klear360-component="text"
+      letter-spacing="50"
+    >
+      Item 3
+    </p>
+  </div>
+</div>
+`;

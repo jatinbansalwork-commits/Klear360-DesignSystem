@@ -1,0 +1,23 @@
+import React from 'react';
+import type { BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop as GorhomBottomSheetBackdrop } from '@gorhom/bottom-sheet';
+import { useTheme } from '~components/Klear360Provider';
+
+const BottomSheetBackdrop = (
+  props: BottomSheetBackdropProps & { zIndex: number; isDismissible: boolean },
+): React.ReactElement => {
+  const { theme } = useTheme();
+
+  return (
+    <GorhomBottomSheetBackdrop
+      {...props}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      pressBehavior={props.isDismissible ? 'close' : 'none'}
+      opacity={1}
+      style={[props.style, { backgroundColor: theme.colors.overlay.background.subtle }]}
+    />
+  );
+};
+
+export { BottomSheetBackdrop };

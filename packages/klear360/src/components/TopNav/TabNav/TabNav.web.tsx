@@ -1,0 +1,141 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable consistent-return */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useTopNavContext } from '../TopNavContext';
+import { TabNavContext } from './TabNavContext';
+import { TabNavIndicator } from './TabNavIndicator.web';
+import type { TabNavItemData, TabNavProps } from './types';
+import { useResize } from '~utils/useResize';
+import BaseBox from '~components/Box/BaseBox';
+import type { StyledPropsKlear360 } from '~components/Box/styledProps';
+import { getStyledProps } from '~components/Box/styledProps';
+import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
+import type { BoxProps } from '~components/Box';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import type { DataAnalyticsAttribute } from '~utils/types';
+import { size, backdropBlur } from '~tokens/global';
+import { makeSize } from '~utils';
+
+const TabNavItems = ({ children, ...rest }: BoxProps): React.ReactElement => {
+  return (
+    <BaseBox
+      {...rest}
+      display="flex"
+      width="100%"
+      gap="spacing.0"
+      position="relative"
+      left="-1px"
+      {...metaAttribute({ name: MetaConstants.TabNavItems })}
+      {...makeAnalyticsAttribute(rest)}
+    >
+      {React.Children.map(children, (child, index) => {
+        return React.cloneElement(child as React.ReactElement, {
+          __isInsideTabNavItems: true,
+          __index: index,
+        });
+      })}
+    </BaseBox>
+  );
+};
+
+const TabNav = ({
+  children,
+  items,
+  ...rest
+}: TabNavProps & StyledPropsKlear360 & DataAnalyticsAttribute): React.ReactElement => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const itemsRowRef = React.useRef<HTMLDivElement>(null);
+  const topNavContext = useTopNavContext();
+  const isPrimaryVariant = topNavContext?.variant === 'primary';
+  const [controlledItems, setControlledItems] = React.useState<TabNavItemData[]>(items);
+
+  const overflowingItems = controlledItems.filter(
+    (item) => item.isAlwaysOverflowing ?? item.isOverflowing,
+  );
+  const _items = controlledItems.filter((item) => !item.isAlwaysOverflowing && !item.isOverflowing);
+
+  // We need to memoize this callback otherwise it will cause infinite re-renders
+  // Because the ResizeObserver callback will be a new reference on every render
+  // and it will trigger a re-render
+  const resizeCallback = React.useCallback((resizeInfo: ResizeObserverEntry): void => {
+    const target = resizeInfo.target as HTMLElement;
+    const updateItems = (): void => {
+      setControlledItems((items) => {
+        return items.map((item, index) => {
+          // never overflow the first item
+          if (index === 0) return { ...item, isOverflowing: false };
+          // add padding to the offsetX to account the "More" menu's width changing due to the selection state (eg: More:ProdctName)
+          // Currently, hardcoding this to 150, we can make this dynamic too but that's causing layout thrashing
+          // because first we need to calculate the width of the "More" menu and then update the items
+          const padding = 150;
+          const offset = (item.offsetX! + padding)! - target.getBoundingClientRect().left;
+          if (offset > target.offsetWidth) {
+            return { ...item, isOverflowing: true };
+          } else {
+            return { ...item, isOverflowing: false };
+          }
+        });
+      });
+    };
+    // https://github.com/webpack/webpack/issues/14814
+    const flushSync = (ReactDOM as any)['flushSync'.toString()];
+    // Using flushSync to avoid layout thrashing,
+    // this will force React to flush all pending updates and only then update the DOM
+    if (flushSync !== undefined) {
+      flushSync(updateItems);
+    } else {
+      updateItems();
+    }
+  }, []);
+
+  useResize(ref, resizeCallback);
+
+  return (
+    <TabNavContext.Provider value={{ containerRef: ref, controlledItems, setControlledItems }}>
+      <BaseBox
+        as="nav"
+        display="flex"
+        width="100%"
+        alignItems="center"
+        alignSelf="center"
+        position="relative"
+        {...getStyledProps(rest)}
+        {...makeAnalyticsAttribute(rest)}
+        {...metaAttribute({ name: MetaConstants.TabNav })}
+        ref={ref}
+      >
+        <BaseBox display="flex" width="100%" position="relative">
+          <BaseBox
+            ref={itemsRowRef}
+            display="flex"
+            flexDirection="row"
+            width="max-content"
+            position="relative"
+          >
+            {children({ items: _items, overflowingItems })}
+            <TabNavIndicator containerRef={itemsRowRef} showGlow={!isPrimaryVariant} />
+          </BaseBox>
+        </BaseBox>
+        {isPrimaryVariant && (
+          <BaseBox
+            display={{ base: 'none', m: 'block' }}
+            position="absolute"
+            bottom="-4px"
+            left="spacing.3"
+            right="0px"
+            height={makeSize(size[20])}
+            style={{
+              background:
+                'radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.4), transparent 100%)',
+              filter: `blur(${backdropBlur.medium}px)`,
+              pointerEvents: 'none',
+            }}
+          />
+        )}
+      </BaseBox>
+    </TabNavContext.Provider>
+  );
+};
+
+export { TabNav, TabNavItems };

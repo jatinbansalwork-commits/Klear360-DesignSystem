@@ -1,0 +1,10 @@
+{
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "id": "1258393250170675750",
+  "name": "Klear360 Coverage",
+  "main": "build/main.js",
+  "ui": "build/ui.js",
+  "permissions": ["currentuser"],
+  "enablePrivatePluginApi": true
+}

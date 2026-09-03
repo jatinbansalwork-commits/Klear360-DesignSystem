@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Utils/Klear360 Coverage" />
+
+# Klear360 Coverage Utils
+
+Klear360 coverage measures the percentage of a page built with Klear360. It does so by calculating the DOM nodes built with Klear360 vs Non-Klear360. All the apps within Klear org that are using Klear360 have the coverage script integrated and you can check the coverage for your app on Amplitude. [Klear360 Coverage Dashboard](https://app.amplitude.com/analytics/klear-mobile/dashboard/texx2y4).
+
+You can utilize the following utils to measure the coverage in different stages of your app development workflow.
+
+> These functions are designed for web applications and should be used in a browser environment.
+
+## `assertKlear360Coverage`
+
+This utility function asserts that the calculated klear360 coverage meets a specified threshold.
+
+Parameters:
+
+* **`page`:** Playwright page object.
+* **`expect`:** The `expect` function from `@playwright/test`.
+* **`threshold` (optional):** Minimum threshold for klear360 coverage (default is 70).
+
+### Usage
+
+* Ensure that you are using Klear360 v10.22.0 or above and playwright is properly set up.
+
+* Import and use `assertKlear360Coverage` in your test files. Adjust the threshold based on your coverage requirements.
+
+  ```js dark
+  import { test, expect } from '@playwright/test';
+  import { assertKlear360Coverage } from '@klear/klear360/coverageUtils';
+
+  test.describe.parallel('Test Home @flow=home', () => {
+    test('should have klear360 coverage more than 70% @priority=normal', async ({ page }) => {
+      await page.goto('/');
+
+      await assertKlear360Coverage({ page, expect, threshold: 70 });
+    });
+  });
+  ```
+
+* Execute your tests using the Playwright Test runner.
+
+  ```bash dark
+  npx playwright test
+  ```
+
+* Once your tests are passing and klear360 coverage is meeting expectations, you're good to go!
+
+## `getKlear360Coverage`
+
+> Consider installing the [Klear360 Coverage Chrome Extension](https://chromewebstore.google.com/detail/klear360-coverage-extension/cpmmcebielcknjffelmpbcbgkcjapipp). This extension provides a convenient way to visualize and analyze the klear360 coverage directly in the Chrome browser. We internally use the below utility function.
+
+This utility function calculates the klear360 usage coverage in percentage of the DOM elements on a web page.
+
+```js dark
+import { getKlear360Coverage } from '@klear/klear360/coverageUtils';
+
+const { klear360Coverage, totalNodes, klear360Nodes } = getKlear360Coverage();
+```
+
+* **`klear360Coverage`:** The percentage of klear360 nodes in the total nodes.
+* **`totalNodes`:** Total number of DOM nodes.
+* **`klear360Nodes`:** Number of klear360 nodes.

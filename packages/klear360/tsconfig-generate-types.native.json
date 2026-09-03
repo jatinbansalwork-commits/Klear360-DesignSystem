@@ -1,0 +1,23 @@
+// tsconfig for generating native types
+{
+  "extends": "./tsconfig-generate-types.json",
+  // excluding test, storie & .web files while generating types
+  "exclude": [
+    "**/**.test.ts",
+    "**/**.test.tsx",
+    "__tests__",
+    "**/**.stories.tsx",
+    "**/**.stories.internal.tsx",
+    "**/**.web.ts",
+    "**/**.web.tsx",
+    "**/ThemePlayground/**/**.tsx",
+    "**/utils/storybook/**",
+    "**/storybook-recipes/**",
+    "**/components/**/docs/**",
+    "**/*Docs.tsx"
+  ],
+  "compilerOptions": {
+    "outDir": "build/generated-types/native",
+    "moduleSuffixes": [".native", ""]
+  }
+}

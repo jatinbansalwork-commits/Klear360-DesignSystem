@@ -1,0 +1,56 @@
+{
+  "name": "klear360-coverage-extension",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@klear/klear360": "^11.18.0",
+    "@klear/i18n": "1.0.0",
+    "@klear/i18n-react": "1.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-native": "0.64.4",
+    "@types/styled-components": "5.1.34",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "5.3.11",
+    "tinycolor2": "^1.6.0",
+    "typescript": "4.8.2",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "clean": "rimraf chrome-extension",
+    "mkdirs": "mkdir -p chrome-extension",
+    "copy:assets": "cp -r build/ chrome-extension",
+    "copy:extensionAssets": "cp manifest.json chrome-extension && node scripts/build-background-script.js",
+    "copy": "yarn run copy:assets && yarn run copy:extensionAssets",
+    "postbuild": "yarn run clean && yarn run mkdirs && yarn run copy"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.3"
+  }
+}

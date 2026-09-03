@@ -1,0 +1,53 @@
+{
+  "name": "@klear/klear360-mcp",
+  "version": "1.31.0",
+  "description": "Model Context Protocol server for Klear360",
+  "main": "dist/exports.js",
+  "type": "module",
+  "bin": "dist/server.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/klear/klear360.git"
+  },
+  "files": [
+    "dist",
+    "knowledgebase",
+    "cursorRules",
+    "skillTemplate",
+    "base-klear360-template"
+  ],
+  "scripts": {
+    "prepare": "yarn build",
+    "build": "cross-env NODE_ENV=production sh -c \"tsc && chmod +x dist/server.js && node src/replaceEnv.js\"",
+    "dev": "tsx src/server.ts",
+    "inspect": "npx -y @modelcontextprotocol/inspector node dist/server.js",
+    "start": "node dist/server.js",
+    "lint": "eslint --ext .ts src/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:updateSnapshots": "vitest -u"
+  },
+  "keywords": [
+    "klear",
+    "klear360",
+    "mcp",
+    "anthropic"
+  ],
+  "author": "Klear",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.26.0",
+    "dedent": "1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.6",
+    "cross-env": "7.0.3",
+    "dotenv": "16.4.5",
+    "tsx": "4.7.1",
+    "typescript": "5.9.3",
+    "vitest": "3.2.7"
+  }
+}

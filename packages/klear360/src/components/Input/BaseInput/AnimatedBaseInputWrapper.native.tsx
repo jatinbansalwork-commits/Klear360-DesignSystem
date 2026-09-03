@@ -1,0 +1,194 @@
+import React from 'react';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import styled from 'styled-components';
+import type { BaseInputWrapperProps } from './types';
+import {
+  getAnimatedBaseInputWrapperMaxHeight,
+  getBaseInputState,
+  getInputBackgroundAndBorderStyles,
+} from './baseInputStyles';
+import {
+  baseInputBackgroundColor,
+  baseInputBorderBackgroundMotion,
+  baseInputBorderColor,
+  baseInputBorderRadius,
+  baseInputHeight,
+  baseInputWrapperMaxHeight,
+} from './baseInputTokens';
+import { castNativeType, makeMotionTime } from '~utils';
+import { useTheme } from '~components/Klear360Provider';
+import getIn from '~utils/lodashButBetter/get';
+import type { EasingFactoryFn } from '~tokens/global';
+import { FocusRingWrapper } from '~utils/getFocusRingStyles';
+
+const StyledBaseInputWrapper = styled(Animated.View)<BaseInputWrapperProps>((props) => ({
+  ...getInputBackgroundAndBorderStyles({
+    theme: props.theme,
+    isFocused: props.currentInteraction === 'focus',
+    isDisabled: props.isDisabled,
+    validationState: props.validationState,
+    isTextArea: props.isTextArea,
+    isDropdownTrigger: props.isDropdownTrigger,
+    isTableInputCell: props.isTableInputCell,
+    size: props.size,
+    borderRadius: props.borderRadius,
+  }),
+}));
+
+const _AnimatedBaseInputWrapper: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  BaseInputWrapperProps & {
+    showAllTags?: boolean;
+    setShowAllTagsWithAnimation: (showAllTagsWithAnimation: boolean) => void;
+  }
+> = (
+  {
+    showAllTags,
+    isTextArea,
+    numberOfLines,
+    setShowAllTagsWithAnimation,
+    children,
+    maxTagRows,
+    isDropdownTrigger,
+    ...rest
+  },
+  ref,
+): React.ReactElement => {
+  const { theme } = useTheme();
+  const sharedHeight = useSharedValue<number>(baseInputHeight[rest.size]); // Initial max-width value
+
+  React.useEffect(() => {
+    if (!isDropdownTrigger) {
+      return;
+    }
+
+    sharedHeight.value = withTiming(
+      showAllTags ? baseInputWrapperMaxHeight[rest.size] : baseInputHeight[rest.size],
+      {
+        duration: theme.motion.duration.xquick,
+        easing: castNativeType(theme.motion.easing.exit),
+      },
+      (isComplete) => {
+        if (isComplete && !showAllTags) {
+          runOnJS(setShowAllTagsWithAnimation)(false);
+        }
+      },
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAllTags]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      maxHeight: sharedHeight.value,
+    };
+  });
+
+  const animatedStyleObject = maxTagRows === 'expandable' ? animatedStyle : {};
+  const maxHeightStyleObject = {
+    maxHeight: getAnimatedBaseInputWrapperMaxHeight({
+      maxTagRows,
+      showAllTags,
+      size: rest.size,
+    }),
+  };
+
+  const baseInputState = getBaseInputState({
+    isFocused: rest.currentInteraction === 'focus',
+    isHovered: rest.currentInteraction === 'hover',
+    isDisabled: Boolean(rest.isDisabled),
+  });
+
+  let borderColor = getIn(theme.colors, baseInputBorderColor[baseInputState]);
+  const backgroundColor = getIn(theme.colors, baseInputBackgroundColor[baseInputState]);
+
+  if (rest.validationState === 'error') {
+    borderColor = getIn(theme.colors, baseInputBorderColor.error);
+  }
+
+  const isFocused = rest.currentInteraction === 'focus';
+
+  const motionConfig: {
+    duration: number;
+    easing: EasingFactoryFn;
+  } = {
+    duration: castNativeType(
+      makeMotionTime(
+        getIn(
+          theme.motion.duration,
+          baseInputBorderBackgroundMotion[isFocused ? 'enter' : 'exit'].duration,
+        ),
+      ),
+    ),
+    easing: castNativeType(
+      theme.motion.easing[baseInputBorderBackgroundMotion[isFocused ? 'enter' : 'exit'].easing],
+    ),
+  };
+
+  const targetBorderWidth = rest.isTableInputCell
+    ? theme.border.width.none
+    : isFocused
+    ? theme.border.width.thick
+    : theme.border.width.thin;
+
+  const inputBorderRadius = rest.isTableInputCell
+    ? theme.border.radius.none
+    : theme.border.radius[rest.borderRadius ?? baseInputBorderRadius[rest.size]];
+
+  const animatedBorderAndBackgroundStyle = useAnimatedStyle(
+    () => ({
+      borderWidth: withTiming(targetBorderWidth, motionConfig),
+      borderRadius: inputBorderRadius,
+      borderStyle: 'solid',
+      backgroundColor: withTiming(backgroundColor, motionConfig),
+      borderColor: withTiming(borderColor, motionConfig),
+    }),
+    [
+      borderColor,
+      backgroundColor,
+      motionConfig,
+      rest.isTableInputCell,
+      rest.size,
+      targetBorderWidth,
+      inputBorderRadius,
+    ],
+  );
+
+  return (
+    <FocusRingWrapper
+      isFocused={isFocused}
+      borderRadius={inputBorderRadius}
+      disabled={rest.isTableInputCell}
+    >
+      <StyledBaseInputWrapper
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        style={[
+          isDropdownTrigger && !isTextArea
+            ? {
+                ...maxHeightStyleObject,
+                ...animatedStyleObject,
+              }
+            : !isTextArea
+            ? { height: baseInputHeight[rest.size] }
+            : {},
+          animatedBorderAndBackgroundStyle,
+        ]}
+        isDropdownTrigger={isDropdownTrigger}
+        numberOfLines={numberOfLines}
+        setShowAllTagsWithAnimation={setShowAllTagsWithAnimation}
+        {...rest}
+      >
+        {children}
+      </StyledBaseInputWrapper>
+    </FocusRingWrapper>
+  );
+};
+
+const AnimatedBaseInputWrapper = React.forwardRef(_AnimatedBaseInputWrapper);
+
+export { AnimatedBaseInputWrapper };

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlayIcon /> should render PlayIcon 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <RNSVGSvgView
+    accessibilityElementsHidden={true}
+    align="xMidYMid"
+    bbHeight="20px"
+    bbWidth="20px"
+    data-klear360-component="icon"
+    fill="none"
+    focusable={false}
+    height="20px"
+    importantForAccessibility="no-hide-descendants"
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        [
+          {},
+        ],
+        {
+          "flex": 0,
+          "height": 20,
+          "width": 20,
+        },
+      ]
+    }
+    vbHeight={24}
+    vbWidth={24}
+    width="20px"
+  >
+    <RNSVGGroup
+      fill={null}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    >
+      <RNSVGPath
+        clipRule={0}
+        d="M6.52081 2.12229C6.84189 1.947 7.23305 1.96101 7.54076 2.15882L21.5408 11.1588C21.827 11.3428 22 11.6597 22 12C22 12.3403 21.827 12.6572 21.5408 12.8412L7.54076 21.8412C7.23305 22.039 6.84189 22.053 6.52081 21.8777C6.19974 21.7024 6 21.3658 6 21V3C6 2.63419 6.19974 2.29758 6.52081 2.12229ZM8 4.83167V19.1683L19.1507 12L8 4.83167Z"
+        fill={
+          {
+            "payload": 4280889138,
+            "type": 0,
+          }
+        }
+        fillRule={0}
+        propList={
+          [
+            "fill",
+            "fillRule",
+          ]
+        }
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+</View>
+`;

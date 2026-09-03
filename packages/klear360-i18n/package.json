@@ -1,0 +1,74 @@
+{
+  "name": "@klear/i18n",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Internationalisation primitives (number, currency, phone number and geo formatting) used by Klear360.",
+  "author": "Klear",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "lib",
+    "core.js",
+    "currency.js",
+    "phoneNumber.js",
+    "types.js"
+  ],
+  "exports": {
+    ".": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/index.js"
+    },
+    "./core": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/core/index.js"
+    },
+    "./currency": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/currency/index.js"
+    },
+    "./phoneNumber": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/phoneNumber/index.js"
+    },
+    "./dateTime": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/dateTime/index.js"
+    },
+    "./geo": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/geo/index.js"
+    },
+    "./types": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/types/index.d.ts"
+    },
+    "./lib/assets/flags/*": "./lib/assets/flags/*"
+  },
+  "typesVersions": {
+    "*": {
+      "core": [
+        "./lib/types/core/index.d.ts"
+      ],
+      "currency": [
+        "./lib/types/currency/index.d.ts"
+      ],
+      "phoneNumber": [
+        "./lib/types/phoneNumber/index.d.ts"
+      ],
+      "dateTime": [
+        "./lib/types/dateTime/index.d.ts"
+      ],
+      "geo": [
+        "./lib/types/geo/index.d.ts"
+      ],
+      "types": [
+        "./lib/types/index.d.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@internationalized/date": "^3.5.2"
+  }
+}

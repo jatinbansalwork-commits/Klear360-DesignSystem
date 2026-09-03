@@ -1,0 +1,1809 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChipGroup /> selectionType="multiple" should render with selectionType="multiple" 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="base-box"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      accessibilityLabelledBy="chip-group-167-label"
+      accessible={true}
+      data-klear360-component="chip-group"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+          },
+        ]
+      }
+    >
+      <View
+        data-klear360-component="base-box"
+        style={
+          [
+            {
+              "marginBottom": 4,
+              "marginRight": 16,
+            },
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          flexDirection="row"
+          gap="spacing.0"
+          maxHeight="36px"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "gap": 0,
+                "maxHeight": 36,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="medium"
+            letterSpacing={50}
+            lineHeight={75}
+            numberOfLines={2}
+            style={
+              [
+                {
+                  "color": "hsla(200, 10%, 18%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "500",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            Select fruits
+          </Text>
+          <View
+            data-klear360-component="visually-hidden"
+            style={
+              [
+                {
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "clip": "rect(0 0 0 0)",
+                  "clipPath": "inset(50%)",
+                  "height": 1,
+                  "left": -10000,
+                  "marginBottom": -1,
+                  "marginLeft": 0,
+                  "marginRight": -1,
+                  "marginTop": 0,
+                  "overflow": "hidden",
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "position": "absolute",
+                  "whiteSpace": "nowrap",
+                  "width": 1,
+                  "wordWrap": "normal",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={100}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={100}
+              style={
+                [
+                  {
+                    "color": "hsla(0, 0%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.18200000000000002,
+                    "lineHeight": 20,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        data-klear360-component="base-box"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          data-klear360-component="visually-hidden"
+          style={
+            [
+              {
+                "borderColor": "black",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "left": -10000,
+                "marginBottom": -1,
+                "marginLeft": 0,
+                "marginRight": -1,
+                "marginTop": 0,
+                "overflow": "hidden",
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+                "wordWrap": "normal",
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.normal"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={100}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={100}
+            style={
+              [
+                {
+                  "color": "hsla(0, 0%, 2%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.18200000000000002,
+                  "lineHeight": 20,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          />
+        </View>
+        <View
+          columnGap="spacing.3"
+          data-klear360-component="base-box"
+          display="flex"
+          flexDirection="row"
+          flexWrap="wrap"
+          rowGap="spacing.3"
+          style={
+            [
+              {
+                "columnGap": 8,
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "marginBottom": 8,
+                "rowGap": 8,
+              },
+            ]
+          }
+        >
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="apple"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Apple
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="mango"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Mango
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="orange"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Orange
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ChipGroup /> selectionType="single" should render with selectionType="single" 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="base-box"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      accessibilityLabelledBy="chip-group-7-label"
+      accessibilityRole="radiogroup"
+      accessible={true}
+      data-klear360-component="chip-group"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+          },
+        ]
+      }
+    >
+      <View
+        data-klear360-component="base-box"
+        style={
+          [
+            {
+              "marginBottom": 4,
+              "marginRight": 16,
+            },
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          flexDirection="row"
+          gap="spacing.0"
+          maxHeight="36px"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "gap": 0,
+                "maxHeight": 36,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="medium"
+            letterSpacing={50}
+            lineHeight={75}
+            numberOfLines={2}
+            style={
+              [
+                {
+                  "color": "hsla(200, 10%, 18%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "500",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            Select fruits
+          </Text>
+          <View
+            data-klear360-component="visually-hidden"
+            style={
+              [
+                {
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "clip": "rect(0 0 0 0)",
+                  "clipPath": "inset(50%)",
+                  "height": 1,
+                  "left": -10000,
+                  "marginBottom": -1,
+                  "marginLeft": 0,
+                  "marginRight": -1,
+                  "marginTop": 0,
+                  "overflow": "hidden",
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "position": "absolute",
+                  "whiteSpace": "nowrap",
+                  "width": 1,
+                  "wordWrap": "normal",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={100}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={100}
+              style={
+                [
+                  {
+                    "color": "hsla(0, 0%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.18200000000000002,
+                    "lineHeight": 20,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        data-klear360-component="base-box"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          data-klear360-component="visually-hidden"
+          style={
+            [
+              {
+                "borderColor": "black",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "left": -10000,
+                "marginBottom": -1,
+                "marginLeft": 0,
+                "marginRight": -1,
+                "marginTop": 0,
+                "overflow": "hidden",
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+                "wordWrap": "normal",
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.normal"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={100}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={100}
+            style={
+              [
+                {
+                  "color": "hsla(0, 0%, 2%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.18200000000000002,
+                  "lineHeight": 20,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          />
+        </View>
+        <View
+          columnGap="spacing.3"
+          data-klear360-component="base-box"
+          display="flex"
+          flexDirection="row"
+          flexWrap="wrap"
+          rowGap="spacing.3"
+          style={
+            [
+              {
+                "columnGap": 8,
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "marginBottom": 8,
+                "rowGap": 8,
+              },
+            ]
+          }
+        >
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityDescribedBy="radio-1-helptext-2"
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="radio"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="apple"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Apple
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityDescribedBy="radio-3-helptext-4"
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="radio"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="mango"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Mango
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            alignSelf="flex-start"
+            data-klear360-component="chip"
+            display="flex"
+            style={
+              [
+                {
+                  "alignSelf": "flex-start",
+                  "display": "flex",
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityDescribedBy="radio-5-helptext-6"
+              accessibilityInvalid={false}
+              accessibilityRequired={false}
+              accessibilityRole="radio"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginBottom": 2,
+                    "marginTop": 2,
+                  },
+                ]
+              }
+              value="orange"
+            >
+              <View
+                data-klear360-component="base-box"
+                display="flex"
+                flexDirection="column"
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "column",
+                    },
+                  ]
+                }
+              >
+                <View
+                  alignItems="center"
+                  data-klear360-component="base-box"
+                  display="flex"
+                  flexDirection="row"
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    backgroundColor="surface.background.gray.intense"
+                    borderColor="interactive.border.gray.faded"
+                    isChecked={false}
+                    isDisabled={false}
+                    size="small"
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "flexWrap": "nowrap",
+                          "justifyContent": "flex-start",
+                          "maxWidth": 280,
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                          "textOverflow": "ellipsis",
+                        },
+                        {
+                          "transform": [
+                            {
+                              "scale": 1,
+                            },
+                          ],
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      alignItems="center"
+                      backgroundColor="surface.background.gray.intense"
+                      borderColor="interactive.border.gray.faded"
+                      borderWidth="thinner"
+                      color="primary"
+                      data-klear360-component="base-box"
+                      display="flex"
+                      flexDirection="row"
+                      height="28px"
+                      isChecked={false}
+                      isDisabled={false}
+                      justifyContent="flex-start"
+                      overflow="hidden"
+                      size="small"
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+                            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                            "borderStyle": "solid",
+                            "borderWidth": 0.5,
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "height": 28,
+                            "justifyContent": "flex-start",
+                            "overflow": "hidden",
+                            "paddingLeft": 8,
+                            "paddingRight": 8,
+                          },
+                          {
+                            "borderColor": "transparent",
+                            "borderRadius": 7,
+                            "display": "flex",
+                            "overflow": "visible",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        data-klear360-component="base-box"
+                        style={
+                          [
+                            {
+                              "paddingLeft": 4,
+                              "paddingRight": 4,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          color="interactive.text.gray.subtle"
+                          data-klear360-component="text"
+                          fontFamily="text"
+                          fontSize={100}
+                          fontStyle="normal"
+                          fontWeight="regular"
+                          letterSpacing={50}
+                          lineHeight={100}
+                          numberOfLines={1}
+                          style={
+                            [
+                              {
+                                "color": "hsla(200, 10%, 18%, 1)",
+                                "fontFamily": "Inter",
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": -0.18200000000000002,
+                                "lineHeight": 20,
+                                "marginBottom": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginTop": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingTop": 0,
+                                "textDecorationLine": "none",
+                              },
+                            ]
+                          }
+                        >
+                          Orange
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

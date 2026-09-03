@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Divider /> should render Divider on server 1`] = `"<div id="root"><div data-klear360-component="box" class="BaseBox-bksIuc gLoSOe"><div data-klear360-component="divider" role="separator" class="BaseBox-bksIuc Divider__StyledDivider-ybqmf8-0 eVLpRB irjAlI"></div></div></div>"`;
+
+exports[`<Divider /> should render Divider on server 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1.c1.c1.c1.c1 {
+  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-style: solid;
+}
+
+.c2.c2.c2.c2.c2 {
+  border-width: 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+@media screen and (min-width:320px) {
+  .c1.c1.c1.c1.c1 {
+    border-bottom-style: solid;
+  }
+}
+
+@media screen and (min-width:480px) {
+  .c1.c1.c1.c1.c1 {
+    border-bottom-style: solid;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c1.c1.c1.c1.c1 {
+    border-bottom-style: solid;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .c1.c1.c1.c1.c1 {
+    border-bottom-style: solid;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c1.c1.c1.c1.c1 {
+    border-bottom-style: solid;
+  }
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="box"
+  >
+    <div
+      class="c1 c2"
+      data-klear360-component="divider"
+      role="separator"
+    />
+  </div>
+</div>
+`;

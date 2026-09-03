@@ -1,0 +1,150 @@
+# EmptyState
+
+## Description
+
+EmptyState component provides a consistent way to display empty states across applications with optional visual assets, titles, descriptions, and action elements. It offers different size variants with appropriate spacing and typography scaling, making it suitable for various contexts from small cards to full-page empty states. The component supports custom illustrations, images, icons, and flexible content layouts while maintaining design consistency and accessibility standards.
+
+## TypeScript Types
+
+These are the props that the EmptyState component accepts:
+
+````typescript
+export type EmptyStateProps = {
+  /**
+   * Asset slot for custom illustrations, images, or any visual element.
+   * Supports PNGs, custom brand illustrations, SVGs, animated gifs, lottie components etc.
+   *
+   * @example
+   * ```jsx
+   * // Custom image
+   * <EmptyState asset={} />
+   *
+   * // Custom component
+   * <EmptyState asset={<CustomIllustration />} />
+   * ```
+   */
+  asset?: React.ReactNode;
+
+  /**
+   * Primary heading text for the empty state
+   */
+  title?: string;
+
+  /**
+   * Supporting description text providing context and guidance
+   */
+  description?: string;
+
+  /**
+   * Children content for actions, links, or any custom content.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Size variant affecting the overall scale of the component
+   * @default medium
+   */
+  size?: EmptyStateSize;
+} & TestID &
+  StyledPropsKlear360 &
+  DataAnalyticsAttribute;
+
+export type EmptyStateSize = 'small' | 'medium' | 'large' | 'xlarge';
+````
+
+## Usage Guidelines
+
+**Do**
+
+- Use `EmptyState` when a list, table, or section has no data to display — provide context and actionable next steps.
+- Include a clear `title` explaining why content is empty, and a `description` with guidance.
+- Use `children` to render action buttons (e.g., "Create New", "Retry") or links (e.g., "Contact Support").
+- Match `size` to context: `"small"` for inline empty states in cards, `"medium"` for lists/tables, `"xlarge"` for full-page states.
+- Provide `alt` text on custom image assets for accessibility.
+
+**Don't**
+
+- Don't use `EmptyState` as a loading placeholder — use `Skeleton` or `Spinner` while data is being fetched.
+- Don't wrap `EmptyState` around other components — use conditional rendering to show either the empty state or the actual content.
+- Don't omit both `title` and `description` — users need context to understand what to do next.
+- Don't use `EmptyState` for transient error feedback — use `Toast` or `Alert` for operation-level errors.
+- Don't use complex nested layouts in `children` without wrapping in `Box` for proper structure.
+
+## Examples
+
+### Complete EmptyState with Interactive Functionality
+
+```tsx
+import { useState } from 'react';
+import { EmptyState } from '@klear/klear360/components';
+import { Button } from '@klear/klear360/components';
+import { Link } from '@klear/klear360/components';
+import { Box } from '@klear/klear360/components';
+
+const ErrorEmptyState = () => {
+  const [isRetrying, setIsRetrying] = useState(false);
+
+  const handleRetry = async () => {
+    setIsRetrying(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      window.location.reload();
+    } finally {
+      setIsRetrying(false);
+    }
+  };
+
+  return (
+    <EmptyState
+      size="medium"
+      asset={
+        
+      }
+      title="Failed to load dashboard data"
+      description="We couldn't retrieve your transaction data due to a network issue. Please check your connection and try again, or contact support if the problem persists."
+      testID="dashboard-error-empty-state"
+      data-analytics-section="dashboard"
+      data-analytics-action="error-state-view"
+    >
+      <Box display="flex" flexDirection="column" gap="spacing.4" alignItems="center">
+        <Box display="flex" flexDirection="row" gap="spacing.3">
+          <Button onClick={handleRetry} isLoading={isRetrying}>
+            Try Again
+          </Button>
+          <Button variant="secondary" onClick={() => window.history.back()}>
+            Go Back
+          </Button>
+        </Box>
+        <Link href="/support" size="small">
+          Contact Support
+        </Link>
+      </Box>
+    </EmptyState>
+  );
+};
+```
+
+### Simple EmptyState with Klear360 Icon
+
+```tsx
+import { EmptyState } from '@klear/klear360/components';
+import { Button } from '@klear/klear360/components';
+import { EcommerceIcon } from '@klear/klear360/components';
+
+const SimpleEmptyState = () => {
+  return (
+    <EmptyState
+      size="xlarge"
+      asset={<EcommerceIcon size="2xlarge" color="surface.icon.gray.muted" />}
+      title="Your cart is empty"
+      description="Browse our products and add items you'd like to purchase."
+      testID="cart-empty-state"
+      data-analytics-section="shopping-cart"
+    >
+      <Button size="large" onClick={() => console.log('Navigate to products')}>
+        Start Shopping
+      </Button>
+    </EmptyState>
+  );
+};
+```

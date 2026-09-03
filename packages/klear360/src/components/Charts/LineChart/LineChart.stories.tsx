@@ -1,0 +1,1461 @@
+import type { StoryFn, Meta } from '@storybook/react-vite';
+import React from 'react';
+import { useTheme } from 'styled-components';
+import {
+  ChartXAxis,
+  ChartYAxis,
+  ChartCartesianGrid,
+  ChartTooltip,
+  ChartLegend,
+  ChartReferenceLine,
+  ChartReferenceBand,
+} from '~components/Charts/CommonChartComponents';
+import { ChartLine, ChartLineWrapper } from '~components/Charts/LineChart';
+import { Heading } from '~components/Typography/Heading';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import { Box } from '~components/Box';
+import BaseBox from '~components/Box/BaseBox';
+import { ChipGroup, Chip } from '~components/Chip';
+
+const Page = (): React.ReactElement => {
+  return (
+    <StoryPageWrapper
+      componentName="LineChart"
+      componentDescription="A Line Chart component built on top of Recharts with Klear360 design system styling."
+      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=93596-46375&m=dev"
+      apiDecisionLink="https://github.com/klear/klear360/blob/5920fbd32c70793454f8c8c6ff544b2a7413afb5/packages/klear360/src/components/Charts/_decisions/decisions.md"
+    >
+      <Heading size="large">Usage</Heading>
+      <Sandbox showConsole>
+        {`
+          import {
+           ChartLine,
+           ChartLineWrapper,
+           ChartXAxis,
+           ChartYAxis,
+           ChartCartesianGrid,
+           ChartTooltip,
+           ChartLegend,
+           ChartReferenceLine,
+           Box,
+         } from '@klear/klear360/components';
+
+         function App() {
+           const data = [
+             { name: 'Jan', sales: 4000 },
+             { name: 'Feb', sales: 3000 },
+             { name: 'Mar', sales: 2000 },
+           ];
+
+           return (
+             <Box width="400px" height="400px">
+               <ChartLineWrapper data={data}>
+                 <ChartCartesianGrid />
+                 <ChartXAxis dataKey="name" />
+                 <ChartYAxis />
+                 <ChartTooltip />
+                 <ChartLegend />
+                 <ChartLine dataKey="sales" name="Sales" />
+               </ChartLineWrapper>
+             </Box>
+           );
+         }
+
+         export default App;
+
+      `}
+      </Sandbox>
+    </StoryPageWrapper>
+  );
+};
+
+const propsCategory = {
+  CHAT_LINE_PROPS: 'ChartLine Props',
+};
+
+export default {
+  title: 'Components/Charts/LineChart',
+  component: ChartLine,
+  tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: { type: 'select' },
+      options: ['step', 'stepAfter', 'stepBefore', 'linear', 'monotone'],
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    connectNulls: {
+      control: { type: 'boolean' },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    showLegend: {
+      control: { type: 'boolean' },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    strokeStyle: {
+      control: { type: 'select' },
+      options: ['dotted', 'dashed', 'solid'],
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    dataKey: {
+      control: { type: 'text' },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    name: {
+      control: { type: 'text' },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    color: {
+      control: { type: 'text' },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    dot: {
+      control: { disable: true },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    activeDot: {
+      control: { disable: true },
+      table: {
+        category: propsCategory.CHAT_LINE_PROPS,
+      },
+    },
+    // Hide private props from Storybook
+    _index: {
+      table: { disable: true },
+    },
+    _colorTheme: {
+      table: { disable: true },
+    },
+  },
+  parameters: {
+    docs: {
+      page: Page,
+    },
+    // Fill the canvas (avoid `centered` shrink-wrap) but keep story L/R inset via ChartsWrapper.
+    layout: 'fullscreen',
+  },
+} as Meta<typeof ChartLine>;
+
+// Sample data for charts
+const chartData = [
+  { month: 'Jan', teamA: 4000, teamB: 2400 },
+  { month: 'Feb', teamA: 3000, teamB: 1398 },
+  { month: 'Mar', teamA: 2000, teamB: 9800 },
+  { month: 'Apr', teamA: 2780, teamB: 3908 },
+  { month: 'May', teamA: 1890, teamB: 4800 },
+  { month: 'Jun', teamA: 2390, teamB: 3800 },
+];
+
+// Active users trend with a per-point reference band (the range other teams fall in).
+const activeUsersRangeData = [
+  { month: 'Jan', activeUsers: 1180, min: 800, max: 1720 },
+  { month: 'Feb', activeUsers: 1120, min: 820, max: 1780 },
+  { month: 'Mar', activeUsers: 1360, min: 900, max: 1880 },
+  { month: 'Apr', activeUsers: 1300, min: 900, max: 1840 },
+  { month: 'May', activeUsers: 1320, min: 940, max: 1900 },
+  { month: 'Jun', activeUsers: 1420, min: 980, max: 1960 },
+  { month: 'Jul', activeUsers: 1540, min: 1020, max: 2020 },
+  { month: 'Aug', activeUsers: 1500, min: 1040, max: 2040 },
+  { month: 'Sep', activeUsers: 1580, min: 1080, max: 2080 },
+  { month: 'Oct', activeUsers: 1660, min: 1100, max: 2140 },
+  { month: 'Nov', activeUsers: 1720, min: 1140, max: 2220 },
+  { month: 'Dec', activeUsers: 1600, min: 1120, max: 2180 },
+  { month: 'Jan ’25', activeUsers: 1780, min: 1160, max: 2260 },
+  { month: 'Feb ’25', activeUsers: 1840, min: 1180, max: 2160 },
+  { month: 'Mar ’25', activeUsers: 1720, min: 1160, max: 2120 },
+  { month: 'Apr ’25', activeUsers: 1700, min: 1140, max: 2200 },
+  { month: 'May ’25', activeUsers: 1860, min: 1180, max: 2260 },
+  { month: 'Jun ’25', activeUsers: 1900, min: 1080, max: 2280 },
+];
+
+const forecastData = [
+  { date: 'Jan', historical: 4000, forecast: null },
+  { date: 'Feb', historical: 3000, forecast: null },
+  { date: 'Mar', historical: 2000, forecast: null },
+  { date: 'Apr', historical: 2500, forecast: 2500 },
+  { date: 'May', historical: null, forecast: 4000 },
+  { date: 'Jun', historical: null, forecast: 2390 },
+];
+
+// Data with null values for connectNulls example
+const dataWithNulls = [
+  { month: 'Jan', sales: 4000 },
+  { month: 'Feb', sales: 3000 },
+  { month: 'Mar', sales: 5000 },
+  { month: 'Apr', sales: null },
+  { month: 'May', sales: 1890 },
+  { month: 'Jun', sales: 2390 },
+];
+
+// Data for stepped line chart example
+const steppedData = [
+  { month: 'Jan', value: 100 },
+  { month: 'Feb', value: 150 },
+  { month: 'Mar', value: 120 },
+  { month: 'Apr', value: 200 },
+  { month: 'May', value: 180 },
+  { month: 'Jun', value: 250 },
+];
+
+// Data for switchable time periods
+const monthlyData = [
+  { period: 'Jan', revenue: 4500, expenses: 2800 },
+  { period: 'Feb', revenue: 5200, expenses: 3100 },
+  { period: 'Mar', revenue: 4800, expenses: 2900 },
+  { period: 'Apr', revenue: 6100, expenses: 3500 },
+  { period: 'May', revenue: 5800, expenses: 3200 },
+  { period: 'Jun', revenue: 6500, expenses: 3800 },
+];
+
+const yearlyData = [
+  { period: '2019', revenue: 45000, expenses: 28000 },
+  { period: '2020', revenue: 52000, expenses: 31000 },
+  { period: '2021', revenue: 61000, expenses: 35000 },
+  { period: '2022', revenue: 72000, expenses: 42000 },
+  { period: '2023', revenue: 85000, expenses: 48000 },
+  { period: '2024', revenue: 96000, expenses: 52000 },
+];
+
+const minuteData = [
+  { period: '0:00', revenue: 120, expenses: 85 },
+  { period: '0:15', revenue: 135, expenses: 92 },
+  { period: '0:30', revenue: 148, expenses: 98 },
+  { period: '0:45', revenue: 162, expenses: 105 },
+  { period: '1:00', revenue: 178, expenses: 112 },
+  { period: '1:15', revenue: 195, expenses: 125 },
+];
+
+// Data for multiple charts dashboard
+
+// Data for 10+ lines chart - Regional Sales Performance
+const regionalSalesData = [
+  {
+    month: 'Jan',
+    northAmerica: 4200,
+    southAmerica: 2800,
+    europe: 3500,
+    asia: 5200,
+    africa: 1800,
+    oceania: 2100,
+    middleEast: 2400,
+    centralAsia: 1900,
+    eastAsia: 4800,
+    southEastAsia: 3200,
+    caribbean: 1500,
+    scandinavia: 2600,
+  },
+  {
+    month: 'Feb',
+    northAmerica: 4500,
+    southAmerica: 3100,
+    europe: 3800,
+    asia: 5500,
+    africa: 2100,
+    oceania: 2300,
+    middleEast: 2700,
+    centralAsia: 2200,
+    eastAsia: 5100,
+    southEastAsia: 3500,
+    caribbean: 1700,
+    scandinavia: 2900,
+  },
+  {
+    month: 'Mar',
+    northAmerica: 4800,
+    southAmerica: 3400,
+    europe: 4100,
+    asia: 5800,
+    africa: 2400,
+    oceania: 2500,
+    middleEast: 3000,
+    centralAsia: 2500,
+    eastAsia: 5400,
+    southEastAsia: 3800,
+    caribbean: 1900,
+    scandinavia: 3200,
+  },
+  {
+    month: 'Apr',
+    northAmerica: 5200,
+    southAmerica: 3700,
+    europe: 4500,
+    asia: 6200,
+    africa: 2700,
+    oceania: 2800,
+    middleEast: 3300,
+    centralAsia: 2800,
+    eastAsia: 5800,
+    southEastAsia: 4100,
+    caribbean: 2200,
+    scandinavia: 3500,
+  },
+  {
+    month: 'May',
+    northAmerica: 5500,
+    southAmerica: 4000,
+    europe: 4800,
+    asia: 6600,
+    africa: 3000,
+    oceania: 3100,
+    middleEast: 3600,
+    centralAsia: 3100,
+    eastAsia: 6200,
+    southEastAsia: 4400,
+    caribbean: 2500,
+    scandinavia: 3800,
+  },
+  {
+    month: 'Jun',
+    northAmerica: 5900,
+    southAmerica: 4300,
+    europe: 5200,
+    asia: 7000,
+    africa: 3300,
+    oceania: 3400,
+    middleEast: 3900,
+    centralAsia: 3400,
+    eastAsia: 6600,
+    southEastAsia: 4700,
+    caribbean: 2800,
+    scandinavia: 4100,
+  },
+];
+
+const ChartsWrapper = ({
+  children,
+  fullWidth = false,
+}: {
+  children: React.ReactNode;
+  // Long category labels need the whole canvas to wrap cleanly without overlap.
+  fullWidth?: boolean;
+}): React.ReactElement => {
+  // IMPORTANT: use BaseBox + style. `Box` strips `style`, and % width/padding via
+  // Klear360 props doesn't reliably size on RN Storybook — so edge whitespace never showed.
+  return (
+    <BaseBox
+      height="100%"
+      backgroundColor="surface.background.gray.intense"
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="stretch"
+      paddingY="spacing.3"
+      borderRadius="medium"
+      // Default 70% width leaves ~15% whitespace each side; long-label stories
+      // opt into full width so all categories fit and wrap without overlap.
+      style={
+        fullWidth
+          ? { width: '100%', alignSelf: 'center' }
+          : { width: '70%', alignSelf: 'center', maxWidth: '70%' }
+      }
+    >
+      {children}
+    </BaseBox>
+  );
+};
+
+// Simple Line Chart Example
+export const SimpleLineChart: StoryFn<typeof ChartLine> = ({
+  dataKey = 'teamA',
+  name = 'Team A',
+  ...args
+}) => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={chartData}>
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine
+            dataKey={dataKey}
+            name={name}
+            strokeStyle="solid"
+            color="data.background.categorical.blue.moderate"
+            {...args}
+          />
+          <ChartReferenceLine y={1500} label="Avg: 1200" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Line chart with a reference band — the trend line plotted against the range others fall in.
+export const LineChartWithReferenceBand: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={activeUsersRangeData}>
+          <ChartReferenceBand lowerDataKey="min" upperDataKey="max" name="Reference band" />
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis label="Active users" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine
+            dataKey="activeUsers"
+            name="Active users"
+            strokeStyle="solid"
+            color="data.background.categorical.gray.intense"
+          />
+          <ChartReferenceLine y={1200} label="Avg: 1,200" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+LineChartWithReferenceBand.parameters = { controls: { disable: true } };
+
+// --- Industry SR: multiple lines, each with its own color-matched reference band ---
+// Each metric = the merchant's value for that metric; `<key>Min`/`<key>Max` = the industry range.
+const INDUSTRY_METRICS = [
+  {
+    key: 'payments',
+    name: 'Payments',
+    color: 'data.background.categorical.blue.moderate' as const,
+  },
+  { key: 'refunds', name: 'Refunds', color: 'data.background.categorical.green.moderate' as const },
+  { key: 'payouts', name: 'Payouts', color: 'data.background.categorical.gray.moderate' as const },
+  {
+    key: 'settlements',
+    name: 'Settlements',
+    color: 'data.background.categorical.orange.moderate' as const,
+  },
+  {
+    key: 'disputes',
+    name: 'Disputes',
+    color: 'data.background.categorical.purple.moderate' as const,
+  },
+];
+const INDUSTRY_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+const INDUSTRY_SERIES: Record<string, number[]> = {
+  payments: [62, 58, 66, 70, 68, 74, 78],
+  refunds: [50, 54, 52, 58, 60, 62, 64],
+  payouts: [40, 44, 46, 48, 50, 52, 52],
+  settlements: [28, 30, 33, 31, 34, 36, 33],
+  disputes: [44, 46, 45, 48, 47, 50, 47],
+};
+const industryComparisonData = INDUSTRY_MONTHS.map((month, index) => {
+  const row: Record<string, string | number> = { month };
+  INDUSTRY_METRICS.forEach((metric) => {
+    const value = INDUSTRY_SERIES[metric.key][index];
+    row[metric.key] = value;
+    row[`${metric.key}Min`] = Math.max(0, value - 12);
+    row[`${metric.key}Max`] = value + 12;
+  });
+  return row;
+});
+
+type IndustrySRArgs = { numberOfLines: number; showReferenceBand: boolean };
+
+// KitchenSink: reproduces the Figma "Industry SR" variant matrix — toggle the range on/off and
+// pick how many lines (1–5) to plot. Each line gets its own color-matched industry range band.
+export const LineChartIndustrySRKitchenSink: StoryFn<IndustrySRArgs> = ({
+  numberOfLines,
+  showReferenceBand,
+}) => {
+  const metrics = INDUSTRY_METRICS.slice(0, numberOfLines);
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={industryComparisonData}>
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis label="Success rate (%)" />
+          <ChartTooltip />
+          <ChartLegend />
+          {metrics.map((metric) => (
+            <ChartLine
+              key={metric.key}
+              dataKey={metric.key}
+              name={metric.name}
+              color={metric.color}
+              {...(showReferenceBand
+                ? {
+                    rangeLowerDataKey: `${metric.key}Min`,
+                    rangeUpperDataKey: `${metric.key}Max`,
+                    rangeName: `${metric.name} industry range`,
+                  }
+                : {})}
+            />
+          ))}
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+LineChartIndustrySRKitchenSink.args = { numberOfLines: 3, showReferenceBand: true };
+LineChartIndustrySRKitchenSink.argTypes = {
+  numberOfLines: {
+    control: { type: 'range', min: 1, max: 5, step: 1 },
+    description: 'Number of trend lines to plot (1–5).',
+  },
+  showReferenceBand: {
+    control: { type: 'boolean' },
+    description: 'Show each line’s industry reference band.',
+  },
+};
+
+// Simple Line chart with vertical line
+export const SimpleLineChartWithVerticalLine: StoryFn<typeof ChartLine> = ({
+  dataKey = 'teamA',
+  name = 'Team A',
+  ...args
+}) => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={chartData}>
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine
+            dataKey={dataKey}
+            name={name}
+            strokeStyle="solid"
+            color="data.background.categorical.blue.moderate"
+            {...args}
+          />
+          <ChartReferenceLine x="Apr" label="Avg: 1200" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Tiny Line Chart Example (no dots for cleaner look)
+export const TinyLineChart: StoryFn<typeof ChartLine> = ({
+  dataKey = 'teamA',
+  name = 'Team A',
+  ...args
+}) => {
+  return (
+    <ChartsWrapper>
+      <Box width="200px" height="100px">
+        <ChartLineWrapper data={chartData}>
+          <ChartLine
+            dataKey={dataKey}
+            name={name}
+            strokeStyle="solid"
+            color="data.background.categorical.blue.strong"
+            dot={false}
+            activeDot={false}
+            {...args}
+          />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Forecast Line Chart Example
+// This example shows how to link multiple lines together so they toggle visibility together
+// when clicking the legend. The forecast line has showLegend={false} but toggles with historical.
+export const ForecastLineChart: StoryFn<typeof ChartLine> = () => {
+  const [selectedDataKeys, setSelectedDataKeys] = React.useState(['historical', 'forecast']);
+
+  const handleSelectionChange = ({
+    dataKey,
+    selectedKeysArray,
+  }: {
+    dataKey: string;
+    selectedKeysArray: string[];
+  }): void => {
+    if (dataKey === 'historical' && selectedKeysArray.includes('forecast')) {
+      setSelectedDataKeys(selectedKeysArray.filter((key) => key !== 'forecast'));
+    } else {
+      setSelectedDataKeys([...selectedKeysArray, 'forecast']);
+    }
+  };
+
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={forecastData}>
+          <ChartXAxis dataKey="date" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend
+            selectedDataKeys={selectedDataKeys}
+            onSelectedDataKeysChange={handleSelectionChange}
+          />
+          <ChartLine
+            dataKey="historical"
+            name="Historical Data"
+            connectNulls={true}
+            color="data.background.categorical.blue.moderate"
+          />
+          <ChartLine
+            dataKey="forecast"
+            name="Forecasted Data"
+            strokeStyle="dashed"
+            connectNulls={true}
+            showLegend={false}
+            color="data.background.categorical.blue.moderate"
+          />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+ForecastLineChart.parameters = {
+  controls: { disable: true },
+};
+
+// Line Chart null handling — a single story covering all three ways nulls are represented:
+// - connectNulls={false} (default): the line breaks at null points (use for genuine outages).
+// - connectNulls={true} + connectNullsStyle="solid" (default): nulls bridged with a solid line.
+// - connectNulls={true} + connectNullsStyle="dashed": real data stays solid while the stretch
+//   across null points (no data for that period) renders dashed, without implying a value.
+export const LineChartNullBridge: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box display="flex" flexDirection="column" gap="spacing.8" width="100%">
+        <Box display="flex" flexDirection="column" gap="spacing.3" width="100%">
+          <Heading size="small">
+            Hard gap for outages (connectNulls=&#123;false&#125;, default)
+          </Heading>
+          <Box width="100%" height="220px">
+            <ChartLineWrapper data={dataWithNulls}>
+              <ChartXAxis dataKey="month" />
+              <ChartYAxis />
+              <ChartTooltip />
+              <ChartLegend />
+              <ChartLine
+                dataKey="sales"
+                name="Sales (Gap on no-data)"
+                color="data.background.categorical.gray.strong"
+              />
+            </ChartLineWrapper>
+          </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" gap="spacing.3" width="100%">
+          <Heading size="small">
+            Solid bridge across nulls (connectNullsStyle=&quot;solid&quot;)
+          </Heading>
+          <Box width="100%" height="220px">
+            <ChartLineWrapper data={dataWithNulls}>
+              <ChartXAxis dataKey="month" />
+              <ChartYAxis />
+              <ChartTooltip />
+              <ChartLegend />
+              <ChartLine
+                dataKey="sales"
+                name="Sales (Solid across no-data)"
+                connectNulls={true}
+                connectNullsStyle="solid"
+                color="data.background.categorical.blue.moderate"
+              />
+            </ChartLineWrapper>
+          </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" gap="spacing.3" width="100%">
+          <Heading size="small">
+            Dashed bridge across nulls (connectNullsStyle=&quot;dashed&quot;)
+          </Heading>
+          <Box width="100%" height="220px">
+            <ChartLineWrapper data={dataWithNulls}>
+              <ChartXAxis dataKey="month" />
+              <ChartYAxis />
+              <ChartTooltip />
+              <ChartLegend />
+              <ChartLine
+                dataKey="sales"
+                name="Sales (Dashed across no-data)"
+                connectNulls={true}
+                connectNullsStyle="dashed"
+                color="data.background.categorical.green.moderate"
+              />
+            </ChartLineWrapper>
+          </Box>
+        </Box>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartNullBridge.parameters = {
+  controls: { disable: true },
+  layout: 'fullscreen',
+};
+
+// Stepped Line Chart Example
+export const SteppedLineChart: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={steppedData}>
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine
+            dataKey="value"
+            name="Stepped Line"
+            type="step"
+            color="data.background.categorical.blue.moderate"
+          />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+SteppedLineChart.parameters = {
+  controls: { disable: true },
+};
+
+// Line Chart with Default Color Theme
+export const LineChartWithDefaultColorTheme: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={chartData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="teamA" name="value 2" />
+          <ChartLine dataKey="teamB" name="Value 1" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithDefaultColorTheme.parameters = {
+  controls: { disable: true },
+};
+
+//Line Chart with X and Y axis labels
+export const LineChartWithXAndYAxisLabels: StoryFn<typeof ChartLine> = ({
+  dataKey = 'teamA',
+  name = 'Team A',
+  ...args
+}) => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={chartData}>
+          <ChartXAxis dataKey="month" label="Month" />
+          <ChartYAxis label="Sales" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine
+            dataKey={dataKey}
+            name={name}
+            color="data.background.categorical.green.moderate"
+            {...args}
+          />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Line Chart with Switchable Time Periods
+export const LineChartWithSwitchableTimePeriods: StoryFn<typeof ChartLine> = () => {
+  const [timePeriod, setTimePeriod] = React.useState<'month' | 'year' | 'minute'>('month');
+
+  const dataMap = {
+    month: { data: monthlyData, label: 'Month' },
+    year: { data: yearlyData, label: 'Year' },
+    minute: { data: minuteData, label: 'Time (Minutes)' },
+  };
+
+  const currentData = dataMap[timePeriod];
+
+  return (
+    <ChartsWrapper>
+      <Box display="flex" flexDirection="column" width="100%" height="100%">
+        <Box marginBottom="spacing.5">
+          <ChipGroup
+            accessibilityLabel="Select time period"
+            selectionType="single"
+            value={timePeriod}
+            onChange={({ values }) => setTimePeriod(values[0] as 'month' | 'year' | 'minute')}
+          >
+            <Chip value="month">Monthly</Chip>
+            <Chip value="year">Yearly</Chip>
+            <Chip value="minute">Per Minute</Chip>
+          </ChipGroup>
+        </Box>
+
+        <Box width="100%" height="400px">
+          <ChartLineWrapper data={currentData.data} colorTheme="categorical">
+            <ChartXAxis dataKey="period" label={currentData.label} />
+            <ChartYAxis label="Amount ($)" />
+            <ChartTooltip />
+            <ChartLegend />
+            <ChartLine
+              dataKey="revenue"
+              name="Revenue"
+              color="data.background.categorical.blue.strong"
+            />
+            <ChartLine
+              dataKey="expenses"
+              name="Expenses"
+              color="data.background.categorical.red.strong"
+            />
+          </ChartLineWrapper>
+        </Box>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithSwitchableTimePeriods.parameters = {
+  controls: { disable: true },
+};
+
+// Line Chart with 10+ Lines - Regional Sales
+export const LineChartWithManyLines: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={regionalSalesData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" label="Month" />
+          <ChartYAxis label="Sales ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="northAmerica" name="North America" />
+          <ChartLine dataKey="southAmerica" name="South America" />
+          <ChartLine dataKey="europe" name="Europe" />
+          <ChartLine dataKey="asia" name="Asia" />
+          <ChartLine dataKey="africa" name="Africa" />
+          <ChartLine dataKey="oceania" name="Oceania" />
+          <ChartLine dataKey="middleEast" name="Middle East" />
+          <ChartLine dataKey="centralAsia" name="Central Asia" />
+          <ChartLine dataKey="eastAsia" name="East Asia" />
+          <ChartLine dataKey="southEastAsia" name="South East Asia" />
+          <ChartLine dataKey="caribbean" name="Caribbean" />
+          <ChartLine dataKey="scandinavia" name="Scandinavia" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithManyLines.parameters = {
+  controls: { disable: true },
+};
+
+export const LineChartWithCartesianGrid: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={regionalSalesData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" label="Month" />
+          <ChartYAxis label="Sales ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="northAmerica" name="North America" />
+          <ChartLine dataKey="southAmerica" name="South America" />
+          <ChartLine dataKey="europe" name="Europe" />
+          <ChartLine dataKey="asia" name="Asia" />
+          <ChartCartesianGrid />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithCartesianGrid.parameters = {
+  controls: { disable: true },
+};
+
+// Data for multi-line X-axis labels example
+const multiLineAxisData = [
+  { time: '10:00', day: 'Mon', revenue: 4500, orders: 120 },
+  { time: '11:00', day: 'Mon', revenue: 5200, orders: 145 },
+  { time: '12:00', day: 'Mon', revenue: 6100, orders: 180 },
+  { time: '13:00', day: 'Tue', revenue: 4800, orders: 135 },
+  { time: '14:00', day: 'Tue', revenue: 5500, orders: 160 },
+  { time: '15:00', day: 'Tue', revenue: 5900, orders: 170 },
+];
+
+// Line Chart with Multi-line X-Axis Labels
+export const LineChartWithMultiLineXAxis: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={multiLineAxisData} colorTheme="categorical">
+          <ChartXAxis dataKey="time" secondaryDataKey="day" label="Time / Day" />
+          <ChartYAxis label="Revenue ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="revenue" name="Revenue" />
+          <ChartLine dataKey="orders" name="Orders" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithMultiLineXAxis.parameters = {
+  controls: { disable: true },
+};
+
+// Data for large labels example
+const largeLabelsData = [
+  {
+    category: 'Premium Enterprise Solutions',
+    quarterlyRevenue: 1250,
+    operationalExpenses: 8500,
+  },
+  {
+    category: 'Small Business Subscriptions',
+    quarterlyRevenue: 9800,
+    operationalExpenses: 6200,
+  },
+  {
+    category: 'Individual Professional Plans',
+    quarterlyRevenue: 7500,
+    operationalExpenses: 4500,
+  },
+  {
+    category: 'Government & Non-Profit Contracts',
+    quarterlyRevenue: 1560,
+    operationalExpenses: 9800,
+  },
+  {
+    category: 'Educational Institution Licenses',
+    quarterlyRevenue: 6700,
+    operationalExpenses: 3800,
+  },
+  {
+    category: 'Healthcare Sector Partnerships',
+    quarterlyRevenue: 1890,
+    operationalExpenses: 1120,
+  },
+];
+
+// Line Chart with Large Labels (labels are automatically truncated to prevent overlap)
+export const LineChartWithLargeLabels: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper fullWidth>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={largeLabelsData} colorTheme="categorical">
+          <ChartXAxis dataKey="category" />
+          <ChartYAxis label="Amount in USD ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="quarterlyRevenue" name="All Sources" />
+          <ChartLine dataKey="operationalExpenses" name="Operational Expenses " />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithLargeLabels.parameters = {
+  controls: { disable: true },
+};
+
+// Data for large labels with secondary labels example
+const largeLabelsWithSecondaryData = [
+  {
+    category: 'Premium Enterprise Solutions Package',
+    quarter: 'Q1 2024',
+    revenue: 1250,
+    orders: 3200,
+  },
+  {
+    category: 'Small Business Growth Subscriptions',
+    quarter: 'Q2 2024',
+    revenue: 9800,
+    orders: 2800,
+  },
+  {
+    category: 'Individual Professional Development Plans',
+    quarter: 'Q3 2024',
+    revenue: 7500,
+    orders: 1900,
+  },
+  {
+    category: 'Government & Non-Profit Organization Contracts',
+    quarter: 'Q4 2024',
+    revenue: 1560,
+    orders: 4100,
+  },
+  {
+    category: 'Educational Institution Site Licenses',
+    quarter: 'Q1 2025',
+    revenue: 6700,
+    orders: 1500,
+  },
+];
+
+// Line Chart with Large Labels and Secondary Labels
+export const LineChartWithLargeLabelsAndSecondary: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper fullWidth>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={largeLabelsWithSecondaryData} colorTheme="categorical">
+          <ChartXAxis dataKey="category" secondaryDataKey="quarter" />
+          <ChartYAxis label="Amount ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="revenue" name="Revenue" />
+          <ChartLine dataKey="orders" name="Orders" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithLargeLabelsAndSecondary.parameters = {
+  controls: { disable: true },
+};
+
+export const LineChartWithCustomCursor: StoryFn<typeof ChartLine> = () => {
+  const theme = useTheme();
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={regionalSalesData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" label="Month" />
+          <ChartYAxis label="Sales ($)" />
+          <ChartTooltip
+            cursor={{ stroke: theme.colors.surface.border.gray.subtle, strokeWidth: 1 }}
+          />
+          <ChartLegend
+            onSelectedDataKeysChange={({ dataKey, selectedKeysArray }) => {
+              console.log(`Clicked: ${dataKey}, selectedKeysArray: ${selectedKeysArray}`);
+            }}
+          />
+          <ChartLine dataKey="northAmerica" name="North America" />
+          <ChartLine dataKey="southAmerica" name="South America" />
+          <ChartLine dataKey="europe" name="Europe" />
+          <ChartLine dataKey="asia" name="Asia" />
+          <ChartCartesianGrid />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Uncontrolled Legend with Default Selection
+export const LineChartWithDefaultSelectedDataKeys: StoryFn<typeof ChartLine> = () => {
+  const theme = useTheme();
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="500px">
+        <ChartLineWrapper data={regionalSalesData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" label="Month" />
+          <ChartYAxis label="Sales ($)" />
+          <ChartTooltip
+            cursor={{ stroke: theme.colors.surface.border.gray.subtle, strokeWidth: 1 }}
+          />
+          <ChartLegend
+            defaultSelectedDataKeys={['northAmerica', 'europe']}
+            onSelectedDataKeysChange={({ dataKey, selectedKeysArray }) => {
+              const isSelected = selectedKeysArray.includes(dataKey);
+              console.log(`Selection changed: ${dataKey}, isSelected: ${isSelected}`);
+            }}
+          />
+          <ChartLine dataKey="northAmerica" name="North America" />
+          <ChartLine dataKey="southAmerica" name="South America" />
+          <ChartLine dataKey="europe" name="Europe" />
+          <ChartLine dataKey="asia" name="Asia" />
+          <ChartCartesianGrid />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Controlled Legend Selection
+export const LineChartWithControlledSelection: StoryFn<typeof ChartLine> = () => {
+  const theme = useTheme();
+  const [selectedDataKeys, setSelectedDataKeys] = React.useState(['northAmerica', 'asia']);
+
+  const handleSelectionChange = ({
+    selectedKeysArray,
+  }: {
+    dataKey: string;
+    selectedKeysArray: string[];
+  }): void => {
+    setSelectedDataKeys(selectedKeysArray);
+  };
+
+  return (
+    <ChartsWrapper>
+      <Box display="flex" flexDirection="column" width="100%" height="100%">
+        <Box marginBottom="spacing.5">
+          <ChipGroup
+            accessibilityLabel="Select regions"
+            selectionType="multiple"
+            value={selectedDataKeys}
+            onChange={({ values }) => setSelectedDataKeys(values)}
+          >
+            <Chip value="northAmerica">North America</Chip>
+            <Chip value="southAmerica">South America</Chip>
+            <Chip value="europe">Europe</Chip>
+            <Chip value="asia">Asia</Chip>
+          </ChipGroup>
+        </Box>
+
+        <Box width="100%" height="400px">
+          <ChartLineWrapper data={regionalSalesData} colorTheme="categorical">
+            <ChartXAxis dataKey="month" label="Month" />
+            <ChartYAxis label="Sales ($)" />
+            <ChartTooltip
+              cursor={{ stroke: theme.colors.surface.border.gray.subtle, strokeWidth: 1 }}
+            />
+            <ChartLegend
+              selectedDataKeys={selectedDataKeys}
+              onSelectedDataKeysChange={handleSelectionChange}
+            />
+            <ChartLine dataKey="northAmerica" name="North America" />
+            <ChartLine dataKey="southAmerica" name="South America" />
+            <ChartLine dataKey="europe" name="Europe" />
+            <ChartLine dataKey="asia" name="Asia" />
+            <ChartCartesianGrid />
+          </ChartLineWrapper>
+        </Box>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+// Legend with onSelectedDataKeysChange callback
+export const LineChartWithLegendClickCallback: StoryFn<typeof ChartLine> = () => {
+  const theme = useTheme();
+  const [lastClicked, setLastClicked] = React.useState<string | null>(null);
+  const dummyData = [
+    {
+      timestamp: 1767292200,
+      date: 'Jan 2',
+      AOV: 2172,
+    },
+    {
+      timestamp: 1767378600,
+      date: 'Jan 3',
+      AOV: 2872,
+    },
+    {
+      timestamp: 1767465000,
+      date: 'Jan 4',
+      AOV: 2611,
+    },
+    {
+      timestamp: 1767551400,
+      date: 'Jan 5',
+      AOV: 3742,
+    },
+    {
+      timestamp: 1767637800,
+      date: 'Jan 6',
+      AOV: 3926,
+    },
+    {
+      timestamp: 1767724200,
+      date: 'Jan 7',
+      AOV: 2232,
+    },
+    {
+      timestamp: 1767810600,
+      date: 'Jan 8',
+      AOV: 3231,
+    },
+    {
+      timestamp: 1767897000,
+      date: 'Jan 9',
+      AOV: 3645,
+    },
+    {
+      timestamp: 1767983400,
+      date: 'Jan 10',
+      AOV: 2941,
+    },
+    {
+      timestamp: 1768069800,
+      date: 'Jan 11',
+      AOV: 2071,
+    },
+    {
+      timestamp: 1768156200,
+      date: 'Jan 12',
+      AOV: 3089,
+    },
+    {
+      timestamp: 1768242600,
+      date: 'Jan 13',
+      AOV: 3267,
+    },
+  ];
+
+  return (
+    <ChartsWrapper>
+      <Box display="flex" flexDirection="column" width="100%" height="100%">
+        <Box marginBottom="spacing.5">
+          <Heading size="small">Last clicked: {lastClicked ? `${lastClicked}` : 'None'}</Heading>
+        </Box>
+
+        <Box width="100%" height="400px">
+          <ChartLineWrapper data={dummyData} colorTheme="categorical">
+            <ChartXAxis dataKey="date" interval={2} />
+            <ChartYAxis />
+            <ChartTooltip
+              cursor={{ stroke: theme.colors.surface.border.gray.subtle, strokeWidth: 1 }}
+            />
+            <ChartLegend
+              onSelectedDataKeysChange={({ dataKey, selectedKeysArray }) => {
+                const isSelected = selectedKeysArray.includes(dataKey);
+                console.log({ dataKey, selectedKeysArray, isSelected });
+                setLastClicked(`${dataKey} (${isSelected ? 'selected' : 'deselected'})`);
+              }}
+            />
+            <ChartLine dataKey="AOV" name="AOV" />
+
+            <ChartCartesianGrid />
+          </ChartLineWrapper>
+        </Box>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithCustomCursor.parameters = {
+  controls: { disable: true },
+};
+
+LineChartWithDefaultSelectedDataKeys.parameters = {
+  controls: { disable: true },
+};
+
+LineChartWithControlledSelection.parameters = {
+  controls: { disable: true },
+};
+
+LineChartWithLegendClickCallback.parameters = {
+  controls: { disable: true },
+};
+
+// Data for custom tick formatter example
+const timestampData = [
+  { timestamp: 1704067200000, sales: 4500 }, // Jan 1, 2024
+  { timestamp: 1704153600000, sales: 5200 }, // Jan 2, 2024
+  { timestamp: 1704240000000, sales: 4800 }, // Jan 3, 2024
+  { timestamp: 1704326400000, sales: 6100 }, // Jan 4, 2024
+  { timestamp: 1704412800000, sales: 5800 }, // Jan 5, 2024
+  { timestamp: 1704499200000, sales: 6500 }, // Jan 6, 2024
+];
+
+// Line Chart with Custom X-Axis Tick Formatter
+export const LineChartWithCustomTickFormatter: StoryFn<typeof ChartLine> = () => {
+  // Custom formatter to convert timestamp to readable date
+  const formatTimestamp = (timestamp: number): string => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={timestampData} colorTheme="categorical">
+          <ChartXAxis
+            dataKey="timestamp"
+            label="Date"
+            tickFormatter={(value: string) => formatTimestamp(Number(value))}
+          />
+          <ChartYAxis label="Sales ($)" />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="sales" name="Daily Sales" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithCustomTickFormatter.parameters = {
+  controls: { disable: true },
+};
+
+// Data for currency formatter example
+const revenueData = [
+  { month: 'Jan', revenue: 125000 },
+  { month: 'Feb', revenue: 98500 },
+  { month: 'Mar', revenue: 145200 },
+  { month: 'Apr', revenue: 178900 },
+  { month: 'May', revenue: 156700 },
+  { month: 'Jun', revenue: 192400 },
+];
+
+// Line Chart with Custom Y-Axis Tick Formatter (Currency)
+export const LineChartWithCurrencyFormatter: StoryFn<typeof ChartLine> = () => {
+  // Custom formatter to display values in K format with currency
+  const formatCurrency = (value: number): string => {
+    if (value >= 1000) {
+      return `$${(value / 1000).toFixed(0)}K`;
+    }
+    return `$${value}`;
+  };
+
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={revenueData} colorTheme="categorical">
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis label="Revenue" tickFormatter={formatCurrency} />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="revenue" name="Monthly Revenue" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithCurrencyFormatter.parameters = {
+  controls: { disable: true },
+};
+
+// Interactive Sales Analysis with Benchmark and Single Point
+const salesAnalysisData = [
+  { date: 'Oct 01', sales: 4000 },
+  { date: 'Oct 02', sales: 3000 },
+  { date: 'Oct 03', sales: 2000 },
+  { date: 'Oct 04', sales: 2780 },
+  { date: 'Oct 05', sales: 1890 },
+  { date: 'Oct 06', sales: 2390 },
+  { date: 'Oct 07', sales: 3490 },
+  { date: 'Oct 08', sales: 4000 },
+  { date: 'Oct 09', sales: 3000 },
+  { date: 'Oct 10', sales: 2000 },
+  { date: 'Oct 11', sales: 2780 },
+  { date: 'Oct 12', sales: 1890 },
+  { date: 'Oct 13', sales: 2390 },
+  { date: 'Oct 14', sales: 3490 },
+  { date: 'Oct 15', sales: 4100 },
+  { date: 'Oct 16', sales: 3800 },
+];
+
+// Line Chart with Benchmark Line and Single Point
+export const LineChartWithBenchmarkAndSinglePoint: StoryFn<typeof ChartLine> = () => {
+  const theme = useTheme();
+  const benchmarkValue = 3200;
+  const specialEventDate = 'Oct 10';
+  const specialEventValue = 4500;
+
+  // Prepare chart data with benchmark line and single point
+  const chartDataWithExtras = React.useMemo(() => {
+    return salesAnalysisData.map((item) => ({
+      ...item,
+      benchmarkLine: benchmarkValue,
+      specialEvent: item.date === specialEventDate ? specialEventValue : null,
+    }));
+  }, []);
+
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="450px">
+        <ChartLineWrapper data={chartDataWithExtras}>
+          <ChartXAxis dataKey="date" />
+          <ChartYAxis />
+          <ChartTooltip
+            cursor={{ stroke: theme.colors.surface.border.gray.subtle, strokeWidth: 1 }}
+          />
+          <ChartLegend />
+
+          {/* Main Sales Line - Blue solid line with dots */}
+          <ChartLine
+            dataKey="sales"
+            name="Daily Sales"
+            type="monotone"
+            color="data.background.categorical.blue.moderate"
+          />
+
+          {/* Special Event - Single point only (all other values are null) */}
+          {/* Remove hide={true} to show in tooltip. Use showLegend={false} to hide from legend */}
+          <ChartLine
+            dataKey="specialEvent"
+            name="Special Event"
+            connectNulls={false}
+            color="data.background.categorical.red.intense"
+            dot={{
+              r: 6,
+              fill: theme.colors.data.background.categorical.red.intense,
+              stroke: theme.colors.data.background.categorical.red.intense,
+              strokeWidth: 2,
+            }}
+            activeDot={{
+              r: 8,
+              fill: theme.colors.data.background.categorical.red.intense,
+              stroke: theme.colors.data.background.categorical.red.intense,
+              strokeWidth: 3,
+            }}
+          />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithBenchmarkAndSinglePoint.parameters = {
+  controls: { disable: true },
+};
+
+export const LineChartWithSequentialColors: StoryFn<typeof ChartLine> = () => {
+  return (
+    <ChartsWrapper>
+      <Box width="100%" height="400px">
+        <ChartLineWrapper data={chartData}>
+          <ChartXAxis dataKey="month" />
+          <ChartYAxis />
+          <ChartTooltip />
+          <ChartLegend />
+          <ChartLine dataKey="teamA" name="Team A" color="data.background.sequential.blue.500" />
+          <ChartLine dataKey="teamB" name="Team B" color="data.background.sequential.blue.200" />
+        </ChartLineWrapper>
+      </Box>
+    </ChartsWrapper>
+  );
+};
+
+LineChartWithSequentialColors.parameters = {
+  controls: { disable: true },
+};
+
+SimpleLineChart.storyName = 'Simple Line Chart';
+LineChartWithReferenceBand.storyName = 'Line Chart with Reference Band';
+LineChartIndustrySRKitchenSink.storyName = 'Line Chart with Multiple Reference Bands';
+SimpleLineChartWithVerticalLine.storyName = 'Simple Line Chart with vertical line';
+TinyLineChart.storyName = 'Tiny Line Chart';
+ForecastLineChart.storyName = 'Forecast Line Chart';
+LineChartNullBridge.storyName = 'Line Chart (Connect Nulls)';
+SteppedLineChart.storyName = 'Stepped Line Chart';
+LineChartWithDefaultColorTheme.storyName = 'Line Chart with Color Theme';
+LineChartWithXAndYAxisLabels.storyName = 'Line Chart with X and Y axis labels';
+LineChartWithSwitchableTimePeriods.storyName = 'Line Chart with Switchable Time Periods';
+LineChartWithManyLines.storyName = 'Line Chart with many lines';
+LineChartWithMultiLineXAxis.storyName = 'Line Chart with Multi-line X-Axis Labels';
+LineChartWithLargeLabels.storyName = 'Line Chart with Large Labels';
+LineChartWithLargeLabelsAndSecondary.storyName =
+  'Line Chart with Large Labels and Secondary Labels';
+LineChartWithCustomCursor.storyName = 'Line Chart with custom cursor';
+LineChartWithDefaultSelectedDataKeys.storyName = 'Legend with Default Selected Keys (Uncontrolled)';
+LineChartWithControlledSelection.storyName = 'Legend with Controlled Selection';
+LineChartWithLegendClickCallback.storyName = 'Legend with Selection Change Callback';
+LineChartWithBenchmarkAndSinglePoint.storyName = 'Line Chart with Benchmark Line and Single Point';
+LineChartWithSequentialColors.storyName = 'Line Chart with Sequential Colors';

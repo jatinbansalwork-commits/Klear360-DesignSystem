@@ -1,0 +1,16 @@
+import type { StringChildrenType } from '~utils/types';
+
+type SkipNavLinkProps = {
+  id?: string;
+  children?: StringChildrenType;
+};
+
+const SkipNavLink = (_props: SkipNavLinkProps): never => {
+  throw new Error('[Klear360: SkipNav]: SkipNavLink is not available on React Native');
+};
+
+const SkipNavContent = (_props: SkipNavLinkProps): never => {
+  throw new Error('[Klear360: SkipNav]: SkipNavContent is not available on React Native');
+};
+
+export { SkipNavLink, SkipNavContent };

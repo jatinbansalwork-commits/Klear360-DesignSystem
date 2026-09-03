@@ -1,0 +1,183 @@
+import React from 'react';
+import { TopNavContext, useTopNavContext } from './TopNavContext';
+import type { DataAnalyticsAttribute, Klear360ElementRef, TestID } from '~utils/types';
+import { size } from '~tokens/global';
+import { makeSize } from '~utils';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
+import { componentZIndices } from '~utils/componentZIndices';
+import type { BoxProps } from '~components/Box';
+import { Klear360Provider, useTheme } from '~components/Klear360Provider';
+import BaseBox from '~components/Box/BaseBox';
+import type { BaseBoxProps } from '~components/Box/BaseBox/types';
+import type { StyledPropsKlear360 } from '~components/Box/styledProps';
+import {
+  SIDE_NAV_EXPANDED_L1_WIDTH_XL,
+  SIDE_NAV_EXPANDED_L1_WIDTH_BASE,
+} from '~components/SideNav/tokens';
+
+const TOP_NAV_HEIGHT = size[56];
+
+type TopNavProps = {
+  children: React.ReactNode;
+  /**
+   * Sets the background color variant of the TopNav.
+   *
+   * - `'neutral'` (default): Uses the static black background. Existing behavior.
+   * - `'primary'`: Uses the primary brand color (`surface.background.primary.intense`).
+   *
+   * Passing an explicit `backgroundColor` prop will override this variant.
+   *
+   * @default 'neutral'
+   */
+  variant?: 'primary' | 'neutral';
+} & Pick<
+  BoxProps,
+  | 'padding'
+  | 'paddingTop'
+  | 'paddingBottom'
+  | 'paddingLeft'
+  | 'paddingRight'
+  | 'paddingX'
+  | 'paddingY'
+  | 'backgroundColor'
+  | 'position'
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'width'
+  | 'zIndex'
+  | keyof DataAnalyticsAttribute
+> &
+  TestID &
+  StyledPropsKlear360;
+
+const TOP_NAV_BACKGROUND_COLOR: Record<
+  NonNullable<TopNavProps['variant']>,
+  BaseBoxProps['backgroundColor']
+> = {
+  neutral: 'interactive.background.staticBlack.default',
+  primary: 'surface.background.primary.intense',
+};
+
+const _TopNav = (
+  { children, variant = 'neutral', backgroundColor, ...rest }: TopNavProps,
+  ref: React.Ref<Klear360ElementRef>,
+): React.ReactElement => {
+  const { colorScheme, themeTokens } = useTheme();
+  const resolvedBackgroundColor = backgroundColor ?? TOP_NAV_BACKGROUND_COLOR[variant];
+
+  return (
+    <TopNavContext.Provider value={{ colorScheme, themeTokens, variant }}>
+      {/* We are forcing the theme to dark here because the TopNav is always in dark mode.
+       we also want components inside the TopNav to be in the same theme as the TopNav.
+      */}
+      <Klear360Provider themeTokens={themeTokens} colorScheme="dark">
+        <BaseBox
+          ref={ref as never}
+          display="grid"
+          gridTemplateColumns="auto minmax(0, 1fr) auto"
+          alignItems="center"
+          position="sticky"
+          top="0px"
+          width="100%"
+          paddingY={{ base: 'spacing.3', m: 'spacing.0' }}
+          paddingX={{ base: 'spacing.4', m: 'spacing.3' }}
+          height={makeSize(TOP_NAV_HEIGHT)}
+          zIndex={componentZIndices.topnav}
+          backgroundColor={resolvedBackgroundColor}
+          overflow="hidden"
+          {...rest}
+          {...metaAttribute({ name: MetaConstants.TopNav, testID: rest.testID })}
+          {...makeAnalyticsAttribute(rest)}
+        >
+          {children}
+        </BaseBox>
+      </Klear360Provider>
+    </TopNavContext.Provider>
+  );
+};
+
+const TopNav = React.forwardRef(_TopNav);
+
+type TopNavBrandProps = {
+  children: React.ReactNode;
+} & Pick<BoxProps, 'paddingY'>;
+
+const TopNavBrand = ({
+  children,
+  paddingY = 'spacing.5',
+}: TopNavBrandProps): React.ReactElement => {
+  return (
+    <BaseBox
+      flexDirection="row"
+      width={{
+        base: makeSize(SIDE_NAV_EXPANDED_L1_WIDTH_BASE),
+        xl: makeSize(SIDE_NAV_EXPANDED_L1_WIDTH_XL),
+      }}
+      {...metaAttribute({ name: MetaConstants.TopNavBrand })}
+      paddingY={paddingY}
+      marginLeft="spacing.6"
+    >
+      <BaseBox width="100%">{children}</BaseBox>
+    </BaseBox>
+  );
+};
+
+const TopNavContent = ({ children }: { children: React.ReactNode }): React.ReactElement => {
+  return (
+    <BaseBox
+      display="flex"
+      alignItems="center"
+      alignSelf="center"
+      justifyContent="center"
+      {...metaAttribute({ name: MetaConstants.TopNavContent })}
+    >
+      {children}
+    </BaseBox>
+  );
+};
+
+const TopNavActions = ({ children }: { children: React.ReactNode }): React.ReactElement => {
+  const topNavContext = useTopNavContext();
+  const { colorScheme, themeTokens } = useTheme();
+  const topNavActions = (
+    <BaseBox
+      alignSelf="flex-start"
+      display="flex"
+      gap="spacing.3"
+      alignItems="center"
+      marginTop="spacing.1"
+      padding="spacing.3"
+      paddingRight="spacing.2"
+      borderTopLeftRadius="medium"
+      borderTopRightRadius="medium"
+      {...metaAttribute({ name: MetaConstants.TopNavActions })}
+    >
+      {children}
+    </BaseBox>
+  );
+
+  if (topNavContext) {
+    return (
+      <Klear360Provider
+        themeTokens={topNavContext.themeTokens}
+        colorScheme={topNavContext.variant === 'primary' ? 'light' : 'dark'}
+      >
+        {topNavActions}
+      </Klear360Provider>
+    );
+  }
+
+  return (
+    <TopNavContext.Provider value={{ colorScheme, themeTokens }}>
+      <Klear360Provider themeTokens={themeTokens} colorScheme="dark">
+        {topNavActions}
+      </Klear360Provider>
+    </TopNavContext.Provider>
+  );
+};
+
+export { TopNav, TopNavBrand, TopNavContent, TopNavActions };
+export type { TopNavProps, TopNavBrandProps };

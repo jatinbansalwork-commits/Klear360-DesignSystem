@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmptyState /> SSR should render EmptyState on server 1`] = `"<div id="root"><div data-klear360-component="empty-state" class="BaseBox-bksIuc ennTKD"><div data-klear360-component="base-box" class="BaseBox-bksIuc hhljxv"><img src="https://cdn.klear.com/card-networks/visa.svg" alt="List view asset" width="90px" height="90px" style="object-fit:contain"/></div><div data-klear360-component="base-box" class="BaseBox-bksIuc EsFmn"><h6 class="StyledBaseText-foUshD gdKliq" data-klear360-component="heading">No data found</h6><p letter-spacing="50" class="StyledBaseText-foUshD hABxgZ" data-klear360-component="text">There&#x27;s no data to display right now</p></div></div></div>"`;
+
+exports[`<EmptyState /> SSR should render EmptyState on server 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.c1.c1.c1.c1.c1 {
+  max-height: 90px;
+  max-width: 90px;
+}
+
+.c2.c2.c2.c2.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.c4.c4.c4.c4.c4 {
+  color: hsla(215,25%,27%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="empty-state"
+  >
+    <div
+      class="c1"
+      data-klear360-component="base-box"
+    >
+      <img
+        alt="List view asset"
+        height="90px"
+        src="https://cdn.klear.com/card-networks/visa.svg"
+        style="object-fit:contain"
+        width="90px"
+      />
+    </div>
+    <div
+      class="c2"
+      data-klear360-component="base-box"
+    >
+      <h6
+        class="c3"
+        data-klear360-component="heading"
+      >
+        No data found
+      </h6>
+      <p
+        class="c4"
+        data-klear360-component="text"
+        letter-spacing="50"
+      >
+        There's no data to display right now
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EmptyState /> SSR should render EmptyState with minimal props on server 1`] = `"<div id="root"><div data-klear360-component="empty-state" class="BaseBox-bksIuc ennTKD"><div data-klear360-component="base-box" class="BaseBox-bksIuc EsFmn"><h6 class="StyledBaseText-foUshD gdKliq" data-klear360-component="heading">No data found</h6></div></div></div>"`;
+
+exports[`<EmptyState /> SSR should render EmptyState with minimal props on server 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.c2.c2.c2.c2.c2 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="c0"
+    data-klear360-component="empty-state"
+  >
+    <div
+      class="c1"
+      data-klear360-component="base-box"
+    >
+      <h6
+        class="c2"
+        data-klear360-component="heading"
+      >
+        No data found
+      </h6>
+    </div>
+  </div>
+</div>
+`;

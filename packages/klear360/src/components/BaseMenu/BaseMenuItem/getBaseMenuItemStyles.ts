@@ -1,0 +1,20 @@
+import type { CSSObject } from 'styled-components';
+import type { Theme } from '~components/Klear360Provider';
+import { isReactNative, makeBorderSize } from '~utils';
+import { makeSize } from '~utils/makeSize';
+
+const getBaseMenuItemStyles = (props: { theme: Theme }): CSSObject => {
+  return {
+    borderWidth: makeBorderSize(props.theme.border.width.none),
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: isReactNative() ? undefined : 'left',
+    backgroundColor: 'transparent',
+    borderRadius: makeSize(props.theme.border.radius.small),
+    textDecoration: 'none',
+    cursor: 'pointer',
+    width: '100%',
+  };
+};
+
+export { getBaseMenuItemStyles };

@@ -1,0 +1,540 @@
+import React from 'react';
+import type { Meta, StoryFn } from '@storybook/react-vite';
+import { Title } from '@storybook/addon-docs/blocks';
+import { Menu, MenuDivider, MenuItem, MenuOverlay, MenuHeader, MenuFooter } from '..';
+import type { MenuProps } from '..';
+import { CustomMenuItem, CustomMenuTrigger, MenuTrigger, navMenuItems } from './CustomMenu';
+import { klear360Theme } from '~tokens/theme';
+import { Box } from '~components/Box';
+import { Button } from '~components/Button';
+import {
+  ArrowRightIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CopyIcon,
+  LogOutIcon,
+  ShareIcon,
+  TestIcon,
+  TicketIcon,
+  UserIcon,
+} from '~components/Icons';
+import { Avatar } from '~components/Avatar';
+import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgTypes';
+import { Text } from '~components/Typography';
+import { Link } from '~components/Link';
+import { Badge } from '~components/Badge';
+import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
+import { Sandbox } from '~utils/storybook/Sandbox';
+import { Alert } from '~components/Alert';
+import { List, ListItem, ListItemText } from '~components/List';
+import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
+import { Klear360Provider } from '~components/Klear360Provider';
+
+const Page = (): React.ReactElement => {
+  return (
+    <StoryPageWrapper
+      componentName="Menu"
+      componentDescription="Action Menu displays a list of actions on temporary surfaces. They allow users to action(s) from multiple options. They appear when users interact with a button, action, or other control."
+      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=90082-41948&m=dev&scaling=min-zoom&content-scaling=fixed&page-id=90026%3A23382&t=C1ehQJKwn0PpRa7Y-1"
+    >
+      <Alert
+        isFullWidth
+        isDismissible={false}
+        color="information"
+        marginBottom="spacing.7"
+        title="Menu Usage Note"
+        description={
+          <List>
+            <ListItem>
+              Menu is <ListItemText weight="semibold">NOT</ListItemText> responsive by default. Some
+              Menus should become BottomSheet or Drawer in mobile. Make sure to use correct
+              component in mobile
+            </ListItem>
+            <ListItem>
+              Menus are <ListItemText weight="semibold">NOT</ListItemText> selectable. Use Dropdown
+              with Select or AutoComplete for selectable options
+            </ListItem>
+          </List>
+        }
+      />
+      <Title>Usage</Title>
+      <Sandbox>
+        {`
+        import React from 'react';
+        import {
+          Menu,
+          MenuDivider,
+          MenuItem,
+          MenuOverlay,
+          MenuHeader,
+          MenuFooter,
+          Button,
+          Box,
+          Link,
+          Text,
+          CopyIcon,
+          LogOutIcon,
+          ShareIcon,
+          TestIcon,
+          TicketIcon,
+          UserIcon
+        } from '@klear/klear360/components';
+
+        function App() {
+          return (
+            <Box>
+              <Menu>
+                <Button>Menu</Button>
+                <MenuOverlay>
+                  <MenuHeader title="Alex Rivera" subtitle="Admin" leading={<UserIcon />} />
+                  <Box paddingY="spacing.4" paddingX="spacing.3">
+                    <Text display="block" size="medium" weight="semibold">
+                      Klear Pvt Ltd
+                    </Text>
+                    <Box display="flex" alignItems="center" gap="spacing.3">
+                      <Text size="small">MID: Xyzyspoon13857</Text>
+                      <Link variant="button" size="small" icon={CopyIcon} />
+                    </Box>
+                  </Box>
+                  <Button variant="tertiary" isFullWidth size="xsmall">
+                    Switch Merchant
+                  </Button>
+                  <MenuDivider marginTop="spacing.3" />
+                  <MenuItem
+                    title="Enable Test Mode"
+                    leading={<TestIcon size="small" />}
+                    description="Enable test mode"
+                  />
+                  <MenuItem
+                    title="View Support Tickets"
+                    leading={<TicketIcon size="small" />}
+                    description="View all your support tickets"
+                  />
+                  <Menu>
+                    <MenuItem leading={<ShareIcon size="small" />} title="Share Profile" />
+                    <MenuOverlay>
+                      <MenuItem title="Mail" />
+                      <Menu>
+                        <MenuItem title="Instagram" />
+                        <MenuOverlay>
+                          <MenuItem title="Instagram Stories" />
+                          <MenuItem title="Instagram Post" />
+                          <MenuItem title="Instagram Chat" />
+                        </MenuOverlay>
+                      </Menu>
+                    </MenuOverlay>
+                  </Menu>
+                  <MenuItem
+                    leading={<LogOutIcon size="small" color="feedback.icon.negative.intense" />}
+                    title="Log Out"
+                    color="negative"
+                  />
+                  <MenuFooter>
+                    <Text variant="caption" size="small">
+                      Partner with us and start earning on every referral
+                    </Text>
+                  </MenuFooter>
+                </MenuOverlay>
+              </Menu>
+            </Box>
+          )
+
+        }
+
+        export default App;
+        `}
+      </Sandbox>
+    </StoryPageWrapper>
+  );
+};
+
+export default {
+  title: 'Components/Menu',
+  component: Menu,
+  tags: ['autodocs'],
+  argTypes: {
+    ...getStyledPropsArgTypes(),
+    trigger: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      page: Page,
+    },
+  },
+} as Meta<MenuProps>;
+
+type TemplateProps = MenuProps & { trigger: React.ReactElement };
+
+const accountsMenuOverlayContent = (
+  <>
+    <MenuHeader title="Alex Rivera" subtitle="Admin" leading={<UserIcon />} />
+    <Box paddingBottom="spacing.4" paddingX="spacing.3">
+      <Text display="block" size="medium" weight="semibold">
+        Klear Pvt Ltd
+      </Text>
+      <Box display="flex" alignItems="center" gap="spacing.3">
+        <Text size="small">MID: Xyzyspoon13857</Text>
+        <Link variant="button" size="small" icon={CopyIcon} />
+      </Box>
+    </Box>
+    <Button variant="tertiary" isFullWidth size="xsmall">
+      Switch Merchant
+    </Button>
+    <MenuDivider marginY="spacing.3" />
+    <MenuItem
+      title="Enable Test Mode"
+      leading={<TestIcon size="small" />}
+      description="Enable test mode"
+    />
+    <MenuItem
+      title="View Support Tickets"
+      leading={<TicketIcon size="small" />}
+      description="View all your support tickets"
+    />
+    <Menu>
+      <MenuItem leading={<ShareIcon size="small" />} title="Share Profile" />
+      <MenuOverlay>
+        <MenuItem title="Mail" />
+        <Menu>
+          <MenuItem title="Instagram" />
+          <MenuOverlay>
+            <MenuItem title="Instagram Stories" />
+            <MenuItem title="Instagram Post" />
+            <MenuItem title="Instagram Chat" />
+          </MenuOverlay>
+        </Menu>
+      </MenuOverlay>
+    </Menu>
+    <Tooltip content="Log out from Alex Rivera's Profile">
+      <MenuItem
+        leading={<LogOutIcon size="small" color="feedback.icon.negative.intense" />}
+        title="Log Out"
+        color="negative"
+      />
+    </Tooltip>
+    <MenuFooter>
+      <Text variant="caption" size="small">
+        Partner with us and start earning on every referral
+      </Text>
+    </MenuFooter>
+  </>
+);
+
+const MenuTemplate: StoryFn<TemplateProps> = ({ trigger, ...args }) => {
+  return (
+    <Box>
+      <Menu {...args}>
+        {trigger}
+        <MenuOverlay>{accountsMenuOverlayContent}</MenuOverlay>
+      </Menu>
+      <Text marginTop="spacing.9">Open Menu to know why these random blocks are here</Text>
+      <Klear360Provider themeTokens={klear360Theme} colorScheme="dark">
+        <Box
+          marginTop="spacing.4"
+          marginLeft="-12px"
+          backgroundColor="feedback.background.negative.intense"
+          height="100px"
+          width="100px"
+        />
+        <Box
+          marginLeft="200px"
+          borderRadius="round"
+          backgroundColor="feedback.background.negative.intense"
+          height="100px"
+          width="100px"
+        />
+      </Klear360Provider>
+    </Box>
+  );
+};
+
+const CustomOverlayMenuTemplate: StoryFn<MenuProps> = (args) => {
+  return (
+    <>
+      <Text marginY="spacing.4">
+        Menu component is flexible enough to let you create custom menus with custom triggers and
+        custom items
+      </Text>
+      <Box display="flex">
+        <Menu {...args}>
+          <MenuTrigger>Payments</MenuTrigger>
+          <MenuOverlay>
+            <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap="spacing.3">
+              {navMenuItems.payments.map((product) => (
+                <CustomMenuItem key={product.name} {...product} />
+              ))}
+            </Box>
+            <Link
+              icon={ArrowRightIcon}
+              iconPosition="right"
+              size="large"
+              marginY="spacing.3"
+              marginX="spacing.4"
+              href="https://klear.com/"
+            >
+              View All Products
+            </Link>
+          </MenuOverlay>
+        </Menu>
+
+        <Menu {...args}>
+          <MenuTrigger>Banking+</MenuTrigger>
+          <MenuOverlay>
+            <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap="spacing.3">
+              {navMenuItems.banking.map((product) => (
+                <CustomMenuItem key={product.name} {...product} />
+              ))}
+            </Box>
+            <Link
+              icon={ArrowRightIcon}
+              iconPosition="right"
+              size="large"
+              marginY="spacing.3"
+              marginX="spacing.4"
+              href="https://klear.com/x/"
+            >
+              View All Products
+            </Link>
+          </MenuOverlay>
+        </Menu>
+
+        <Menu {...args}>
+          <MenuTrigger>Payroll</MenuTrigger>
+          <MenuOverlay>
+            <MenuItem title="For SMEs" href="/payroll" />
+            <MenuItem
+              title="For Enterprises"
+              href="/payroll/enterprises"
+              titleSuffix={
+                <Badge color="positive" size="small">
+                  NEW
+                </Badge>
+              }
+            />
+          </MenuOverlay>
+        </Menu>
+      </Box>
+    </>
+  );
+};
+
+const ControlledMenuTemplate: StoryFn<TemplateProps> = ({ trigger, ...args }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <Box>
+      <Button marginY="spacing.4" onClick={() => setIsOpen(true)}>
+        Open Menu
+      </Button>
+      <Menu {...args} isOpen={isOpen} onOpenChange={({ isOpen }) => setIsOpen(isOpen)}>
+        {trigger}
+        <MenuOverlay>{accountsMenuOverlayContent}</MenuOverlay>
+      </Menu>
+    </Box>
+  );
+};
+
+export const Default = MenuTemplate.bind({});
+Default.args = {
+  trigger: <Avatar name="Alex Rivera" size="large" color="primary" />,
+};
+
+export const WithAvatarIcon = MenuTemplate.bind({});
+WithAvatarIcon.args = {
+  trigger: <Avatar size="large" color="primary" />,
+};
+
+export const CustomItems = CustomOverlayMenuTemplate.bind({});
+CustomItems.args = {
+  openInteraction: 'hover',
+};
+
+const fixedAnchorButtons = ['Payments', 'Settlements', 'Manage Account', 'Support'] as const;
+
+const fixedAnchorMenuItemsByTrigger: Record<typeof fixedAnchorButtons[number], string[]> = {
+  Payments: [
+    'Create a payment link for the latest abandoned checkout.',
+    'Share a one-time payment page with [email].',
+    'Retry the failed auto-debit for invoice #INV-2031.',
+    'Generate a reminder for overdue payment #PAY-7782.',
+  ],
+  Settlements: [
+    'Show today’s expected settlement timeline.',
+    'Reconcile payout #PAYOUT-1147 with bank statement.',
+    'Download T+1 settlement report for this week.',
+    'Investigate deduction marked as adjustment #ADJ-902.',
+  ],
+  'Manage Account': [
+    'Enable AMEX cards on my checkout page.',
+    'Update the business name on my billing label.',
+    'Add [email] as a Finance user.',
+    "Disable 'Cash on Delivery' for orders above ₹5,000.",
+  ],
+  Support: [
+    'Why was chargeback #CB-4451 raised?',
+    'Escalate open ticket #SUP-982 to priority support.',
+    'Share dispute evidence checklist with my team.',
+    'Draft a status update for customer [email].',
+  ],
+};
+
+export const MenuWithCustomOffsets = (props: MenuProps): React.ReactElement => {
+  type TriggerAnchorElement = { getBoundingClientRect: () => DOMRect };
+  const anchorRefs = React.useRef<(TriggerAnchorElement | null)[]>([]);
+  const [crossAxisOffsets, setCrossAxisOffsets] = React.useState<number[]>([]);
+  const [overlayWidth, setOverlayWidth] = React.useState<number | null>(null);
+
+  React.useLayoutEffect(() => {
+    const computeOffsets = (): void => {
+      const anchorRects = fixedAnchorButtons.map((_, index) =>
+        anchorRefs.current[index]?.getBoundingClientRect(),
+      );
+      const anchorLeft = anchorRects[0]?.left;
+      const lastAnchorRight = anchorRects[anchorRects.length - 1]?.right;
+
+      if (anchorLeft == null || lastAnchorRight == null) {
+        return;
+      }
+
+      setCrossAxisOffsets(
+        anchorRects.map((rect) => {
+          if (!rect) {
+            return 0;
+          }
+
+          return Math.round(anchorLeft - rect.left);
+        }),
+      );
+
+      setOverlayWidth(Math.round(lastAnchorRight - anchorLeft));
+    };
+
+    computeOffsets();
+    window.addEventListener('resize', computeOffsets);
+
+    return () => {
+      window.removeEventListener('resize', computeOffsets);
+    };
+  }, []);
+
+  return (
+    <Box paddingTop="spacing.10">
+      <Box display="flex" gap="spacing.4">
+        {fixedAnchorButtons.map((buttonLabel, index) => {
+          return (
+            <Box
+              key={buttonLabel}
+              ref={(element) => {
+                if (element && 'getBoundingClientRect' in element) {
+                  anchorRefs.current[index] = element;
+                  return;
+                }
+
+                anchorRefs.current[index] = null;
+              }}
+            >
+              <Menu {...props}>
+                <MenuTrigger>{buttonLabel}</MenuTrigger>
+                <MenuOverlay
+                  width={overlayWidth != null ? `${overlayWidth}px` : undefined}
+                  offset={{ mainAxis: 12, crossAxis: crossAxisOffsets[index] ?? 0 }}
+                >
+                  {fixedAnchorMenuItemsByTrigger[buttonLabel].map((menuItemTitle) => (
+                    <MenuItem key={`${buttonLabel}-${menuItemTitle}`} title={menuItemTitle} />
+                  ))}
+                </MenuOverlay>
+              </Menu>
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+};
+
+export const WithDifferentTriggers = (props: MenuProps): React.ReactElement => {
+  const [isLinkTriggerOpen, setIsLinkTriggerOpen] = React.useState(false);
+
+  return (
+    <Box display="flex" flexDirection="row" alignItems="center" gap="spacing.8">
+      <MenuTemplate {...props} trigger={<Button>Button Trigger</Button>} />
+      <MenuTemplate {...props} trigger={<Avatar name="Alex Rivera" size="large" />} />
+      <MenuTemplate
+        {...props}
+        onOpenChange={({ isOpen }) => {
+          setIsLinkTriggerOpen(isOpen);
+        }}
+        trigger={
+          <Link
+            variant="button"
+            icon={isLinkTriggerOpen ? ChevronUpIcon : ChevronDownIcon}
+            iconPosition="right"
+          >
+            Link Trigger
+          </Link>
+        }
+      />
+      <MenuTemplate
+        {...props}
+        trigger={<CustomMenuTrigger>Custom Menu Trigger</CustomMenuTrigger>}
+      />
+    </Box>
+  );
+};
+
+export const Controlled = ControlledMenuTemplate.bind({});
+Controlled.args = {
+  trigger: <Avatar name="Alex Rivera" size="large" color="primary" />,
+};
+
+export const WithTooltip = (props: MenuProps): React.ReactElement => {
+  return (
+    <Box paddingTop="spacing.10">
+      <Tooltip content="Alex Rivera's Profile" placement="top">
+        <TooltipInteractiveWrapper>
+          <Menu {...props}>
+            <Avatar name="Alex Rivera" />
+            <MenuOverlay>{accountsMenuOverlayContent}</MenuOverlay>
+          </Menu>
+        </TooltipInteractiveWrapper>
+      </Tooltip>
+    </Box>
+  );
+};
+
+export const WithPlacement = (props: MenuProps): React.ReactElement => {
+  const placements = [
+    'bottom-start',
+    'bottom-end',
+    'top-start',
+    'top-end',
+    'left',
+    'right',
+  ] as const;
+
+  return (
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="center"
+      gap="spacing.8"
+      paddingTop="spacing.15"
+      paddingBottom="spacing.15"
+    >
+      {placements.map((placement) => (
+        <Menu key={placement} {...props} defaultPlacement={placement}>
+          <Button>{placement}</Button>
+          <MenuOverlay>
+            <MenuItem title={`${placement} item 1`} />
+            <MenuItem title={`${placement} item 2`} />
+            <MenuItem title={`${placement} item 3`} />
+          </MenuOverlay>
+        </Menu>
+      ))}
+    </Box>
+  );
+};

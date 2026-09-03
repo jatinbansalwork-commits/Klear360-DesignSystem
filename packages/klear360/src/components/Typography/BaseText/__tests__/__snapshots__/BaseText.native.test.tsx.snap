@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BaseText /> should render regular text 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    color="surface.text.gray.normal"
+    data-klear360-component="base-text"
+    fontFamily="text"
+    fontSize={25}
+    fontWeight="regular"
+    lineHeight={100}
+    style={
+      [
+        {
+          "color": "hsla(0, 0%, 2%, 1)",
+          "fontFamily": "Inter",
+          "fontSize": 10,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+          "lineHeight": 20,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "textDecorationLine": "none",
+        },
+      ]
+    }
+  >
+    Displaying some text
+  </Text>
+</View>
+`;
+
+exports[`<BaseText /> should render text in italics style with line-through 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    color="surface.text.gray.normal"
+    data-klear360-component="base-text"
+    fontFamily="text"
+    fontSize={25}
+    fontStyle="italic"
+    fontWeight="regular"
+    lineHeight={100}
+    style={
+      [
+        {
+          "color": "hsla(0, 0%, 2%, 1)",
+          "fontFamily": "Inter",
+          "fontSize": 10,
+          "fontStyle": "italic",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+          "lineHeight": 20,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "textDecorationColor": "hsla(0, 0%, 2%, 1)",
+          "textDecorationLine": "line-through",
+        },
+      ]
+    }
+    textDecorationLine="line-through"
+  >
+    Displaying some text
+  </Text>
+</View>
+`;
+
+exports[`<BaseText /> should render text with default properties 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    data-klear360-component="base-text"
+    style={
+      [
+        {
+          "color": "hsla(0, 0%, 2%, 1)",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+          "lineHeight": 20,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "textDecorationLine": "none",
+        },
+      ]
+    }
+  >
+    Displaying some text
+  </Text>
+</View>
+`;

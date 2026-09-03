@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Display /> should render 1`] = `"<div id="root"><h1 letter-spacing="100" class="StyledBaseText-foUshD eaYlit" data-klear360-component="display">Displaying Landing Page Display</h1></div>"`;
+
+exports[`<Display /> should render 2`] = `
+.c0.c0.c0.c0.c0 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 3rem;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  font-variation-settings: 'opsz' 60;
+  line-height: 3.5rem;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+<div
+  id="root"
+>
+  <h1
+    class="c0"
+    data-klear360-component="display"
+    letter-spacing="100"
+  >
+    Displaying Landing Page Display
+  </h1>
+</div>
+`;

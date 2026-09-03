@@ -1,0 +1,115 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+dist
+
+# build direcotries
+**/storybook-site
+**/build
+packages/klear360/components.js
+packages/klear360/components.native.js
+packages/klear360/components.d.ts
+packages/klear360/tokens.js
+packages/klear360/tokens.native.js
+packages/klear360/tokens.d.ts
+packages/klear360/utils.js
+packages/klear360/utils.native.js
+packages/klear360/utils.d.ts
+packages/klear360/public/docs-yarn-lock.yaml
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# error logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug-storybook.log
+
+# design-sync artifacts (keep .design-sync/ source files, ignore build outputs)
+/.ds-sync/
+/ds-bundle/
+
+
+# React Native Specific:
+
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
+
+# CocoaPods
+**/ios/Pods/
+
+knowledgebase-ts-errors.json
+.cursor/rules/frontend-klear360-rules.mdc
+.playwright-mcp/
+
+# Agent scratch output — reports, plans and worktrees an agent writes while
+# working. These are throwaway notes about the change, not part of the change.
+# Templates and examples under .agents|.claude|.cursor are tracked on purpose.
+.agents/artifacts/
+.agents/reviews/
+.claude/artifacts/
+.claude/worktrees/
+.cursor/artifacts/
+.cursor/worktrees/
+/announcement.md

@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Indicator /> should have role and a11y label when text label is passed 1`] = `"<div id="root"><div aria-label="Active" role="status" data-klear360-component="indicator" class="BaseBox-bksIuc cYSRMy"><div data-klear360-component="base-box" class="BaseBox-bksIuc hbpipW"><svg aria-hidden="true" data-klear360-component="icon" height="8" viewBox="0 0 10 10" width="8" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0"><circle cx="5" cy="5" r="5" fill="hsla(218, 50%, 6%, 1)" data-klear360-component="svg-circle"></circle></svg><div data-klear360-component="base-box" class="BaseBox-bksIuc csLhZr"><p letter-spacing="50" class="StyledBaseText-foUshD hJqQvC" data-klear360-component="text">Active</p></div></div></div></div>"`;
+
+exports[`<Indicator /> should have role and a11y label when text label is passed 2`] = `
+.c0.c0.c0.c0.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.c1.c1.c1.c1.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2.c2.c2.c2.c2 {
+  margin-left: 4px;
+}
+
+.c3.c3.c3.c3.c3 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+<div
+  id="root"
+>
+  <div
+    aria-label="Active"
+    class="c0"
+    data-klear360-component="indicator"
+    role="status"
+  >
+    <div
+      class="c1"
+      data-klear360-component="base-box"
+    >
+      <svg
+        aria-hidden="true"
+        class=""
+        data-klear360-component="icon"
+        fill="none"
+        height="8"
+        viewBox="0 0 10 10"
+        width="8"
+      >
+        <circle
+          cx="5"
+          cy="5"
+          data-klear360-component="svg-circle"
+          fill="hsla(218, 50%, 6%, 1)"
+          r="5"
+        />
+      </svg>
+      <div
+        class="c2"
+        data-klear360-component="base-box"
+      >
+        <p
+          class="c3"
+          data-klear360-component="text"
+          letter-spacing="50"
+        >
+          Active
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

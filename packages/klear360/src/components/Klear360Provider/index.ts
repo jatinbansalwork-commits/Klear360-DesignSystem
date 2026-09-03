@@ -1,0 +1,25 @@
+import type { Colors, ThemeTokens } from '~tokens/theme/theme';
+import type {
+  Border,
+  Breakpoints,
+  Motion,
+  Spacing,
+  Typography,
+  Elevation,
+  BackdropBlur,
+} from '~tokens/global';
+export { Klear360Provider } from './Klear360Provider';
+export * from './types';
+export { default as useTheme } from './useTheme';
+
+export type Theme = {
+  name: ThemeTokens['name'];
+  border: Border;
+  breakpoints: Breakpoints;
+  colors: Colors;
+  spacing: Spacing;
+  motion: Motion;
+  elevation: Elevation;
+  typography: Typography;
+  backdropBlur: BackdropBlur;
+};

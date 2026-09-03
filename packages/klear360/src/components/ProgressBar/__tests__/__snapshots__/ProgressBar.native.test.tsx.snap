@@ -1,0 +1,6834 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProgressBar /> should render ProgressBar without label and percentage 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      />
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 50,
+            "text": "50%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-11"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={50}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "50%",
+                },
+                {
+                  "width": "50%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render ProgressBar without label and percentage 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 50,
+            "text": "50%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-40"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={32.98672286269283}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with default props 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-29"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={52.778756580308524}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="semibold"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.0"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              20
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with large size 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-38"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="72"
+            bbWidth="72"
+            data-klear360-component="icon"
+            focusable={false}
+            height="72"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 72,
+                  "width": 72,
+                },
+              ]
+            }
+            vbHeight={72}
+            vbWidth={72}
+            width="72"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="36"
+                cy="36"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="32.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="7px"
+              />
+              <RNSVGCircle
+                cx={36}
+                cy={36}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    72,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={32.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    204.20352248333654,
+                    204.20352248333654,
+                  ]
+                }
+                strokeDashoffset={163.36281798666923}
+                strokeWidth="7px"
+              />
+              <RNSVGText
+                content={null}
+                dx={[]}
+                dy={
+                  [
+                    ".5em",
+                  ]
+                }
+                fill={
+                  {
+                    "payload": 4278322440,
+                    "type": 0,
+                  }
+                }
+                font={
+                  {
+                    "fontFamily": "Inter",
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.18200000000000002,
+                    "textAnchor": "middle",
+                  }
+                }
+                propList={
+                  [
+                    "fill",
+                    "strokeWidth",
+                  ]
+                }
+                rotate={[]}
+                strokeWidth={0}
+                x={
+                  [
+                    "50%",
+                  ]
+                }
+                y={
+                  [
+                    "50%",
+                  ]
+                }
+              >
+                <RNSVGTSpan
+                  content="20%"
+                  dx={[]}
+                  dy={[]}
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                  font={{}}
+                  rotate={[]}
+                  x={[]}
+                  y={[]}
+                />
+              </RNSVGText>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with medium size 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-36"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="48"
+            bbWidth="48"
+            data-klear360-component="icon"
+            focusable={false}
+            height="48"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 48,
+                  "width": 48,
+                },
+              ]
+            }
+            vbHeight={48}
+            vbWidth={48}
+            width="48"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="24"
+                cy="24"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="21.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="5px"
+              />
+              <RNSVGCircle
+                cx={24}
+                cy={24}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    48,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={21.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    135.0884841043611,
+                    135.0884841043611,
+                  ]
+                }
+                strokeDashoffset={108.07078728348888}
+                strokeWidth="5px"
+              />
+              <RNSVGText
+                content={null}
+                dx={[]}
+                dy={
+                  [
+                    ".5em",
+                  ]
+                }
+                fill={
+                  {
+                    "payload": 4278322440,
+                    "type": 0,
+                  }
+                }
+                font={
+                  {
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "textAnchor": "middle",
+                  }
+                }
+                propList={
+                  [
+                    "fill",
+                    "strokeWidth",
+                  ]
+                }
+                rotate={[]}
+                strokeWidth={0}
+                x={
+                  [
+                    "50%",
+                  ]
+                }
+                y={
+                  [
+                    "50%",
+                  ]
+                }
+              >
+                <RNSVGTSpan
+                  content="20%"
+                  dx={[]}
+                  dy={[]}
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                  font={{}}
+                  rotate={[]}
+                  x={[]}
+                  y={[]}
+                />
+              </RNSVGText>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render circular variant ProgressBar with small size 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-34"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={52.778756580308524}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="semibold"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.0"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              20
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=information ProgressBar 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-15"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(195, 100%, 22%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(195, 100%, 22%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=information ProgressBar 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-44"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(195, 100%, 22%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(195, 100%, 22%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=negative ProgressBar 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-17"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(3, 69%, 51%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(3, 69%, 51%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=negative ProgressBar 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-46"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(3, 69%, 51%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(3, 69%, 51%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=neutral ProgressBar 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-19"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(218, 50%, 6%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(218, 50%, 6%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=neutral ProgressBar 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-48"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(218, 50%, 6%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(218, 50%, 6%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=notice ProgressBar 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-21"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(35, 99%, 44%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(35, 99%, 44%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=notice ProgressBar 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-50"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(35, 99%, 44%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(35, 99%, 44%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=positive ProgressBar 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-23"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(143, 73%, 40%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(143, 73%, 40%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render color=positive ProgressBar 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="progress-linear-52"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(143, 73%, 40%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(143, 73%, 40%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with default props 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.subtle"
+          data-klear360-component="text"
+          fontFamily="text"
+          fontSize={75}
+          fontStyle="normal"
+          fontWeight="regular"
+          letterSpacing={50}
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(218, 50%, 6%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": -0.15600000000000003,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+        >
+          Label
+        </Text>
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-1"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with medium size 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.subtle"
+          data-klear360-component="text"
+          fontFamily="text"
+          fontSize={75}
+          fontStyle="normal"
+          fontWeight="regular"
+          letterSpacing={50}
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(218, 50%, 6%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": -0.15600000000000003,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+        >
+          Label
+        </Text>
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-8"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="4px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 4,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render linear variant ProgressBar with small size 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.subtle"
+          data-klear360-component="text"
+          fontFamily="text"
+          fontSize={75}
+          fontStyle="normal"
+          fontWeight="regular"
+          letterSpacing={50}
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(218, 50%, 6%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": -0.15600000000000003,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+        >
+          Label
+        </Text>
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            20%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 20,
+            "text": "20%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-6"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={20}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "20%",
+                },
+                {
+                  "width": "20%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render meter variant of ProgressBar  1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="flex-end"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      />
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 70,
+            "text": "70",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="meter-linear-13"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={70}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "70%",
+                },
+                {
+                  "width": "70%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should render meter variant of ProgressBar  2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 70,
+            "text": "70",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="meter-circular-42"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={19.792033717615702}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="semibold"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              70
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    borderRadius={8}
+    buttonPaddingBottom="0px"
+    buttonPaddingLeft="12px"
+    buttonPaddingRight="12px"
+    buttonPaddingTop="0px"
+    collapsable={false}
+    color="primary"
+    data-klear360-component="button"
+    defaultBackgroundColor="hsla(198, 100%, 18%, 1)"
+    defaultBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(198, 100%, 18%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusBackgroundColor="hsla(200, 98%, 17%, 1)"
+    focusBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusRingColor="hsla(198, 100%, 18%, 0.18)"
+    focusable={true}
+    hoverBackgroundColor="hsla(200, 98%, 17%, 1)"
+    hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    hoverIconColor="hsla(0, 0%, 100%, 1)"
+    isFullWidth={false}
+    isLoading={false}
+    isPressed={false}
+    minHeight="36px"
+    motionDuration="duration.xquick"
+    motionEasing="easing.standard"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    size="medium"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+          "borderColor": "black",
+          "borderRadius": 8,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "cursor": "pointer",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "minHeight": 36,
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 12,
+          "paddingTop": 0,
+          "textDecorationColor": "black",
+          "textDecorationLine": "none",
+          "textDecorationStyle": "solid",
+          "width": "auto",
+        },
+        {
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+        },
+      ]
+    }
+    type="button"
+  >
+    <View
+      pointerEvents="none"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <RNSVGSvgView
+        bbHeight="100%"
+        bbWidth="100%"
+        focusable={false}
+        pointerEvents="none"
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            {
+              "flex": 0,
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        >
+          <RNSVGDefs>
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="topFade-r0"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+            />
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="bottomFade-r0"
+              x1="0"
+              x2="0"
+              y1="1"
+              y2="0"
+            />
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="topMask-r0"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "topFade-r0",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="0"
+              />
+            </RNSVGMask>
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="bottomMask-r0"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "bottomFade-r0",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="80%"
+              />
+            </RNSVGMask>
+            <RNSVGRadialGradient
+              cx={0}
+              cy={0}
+              fx={0}
+              fy={0}
+              gradient={
+                [
+                  0,
+                  788529151,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={1}
+              name="btnGlow-r0"
+              rx={64}
+              ry={64}
+            />
+          </RNSVGDefs>
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={7}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="topMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={4}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278206556,
+                "type": 0,
+              }
+            }
+            strokeWidth={1}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278270550,
+                "type": 0,
+              }
+            }
+            strokeWidth={5}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={
+              {
+                "brushRef": "btnGlow-r0",
+                "type": 1,
+              }
+            }
+            height="100%"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            rx={8}
+            ry={8}
+            width="100%"
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        alignItems="center"
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        isHidden={false}
+        justifyContent="center"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+              "zIndex": 1,
+            },
+            {
+              "opacity": 1,
+            },
+          ]
+        }
+        zIndex={1}
+      >
+        <Text
+          accessible={true}
+          color="interactive.text.onPrimary.normal"
+          data-klear360-component="base-text"
+          fontSize={100}
+          fontWeight="medium"
+          lineHeight={100}
+          marginX="spacing.2"
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 100%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "500",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 4,
+                "marginRight": 4,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textAlign": "center",
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+          textAlign="center"
+        >
+          Update Progress
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.subtle"
+          data-klear360-component="text"
+          fontFamily="text"
+          fontSize={75}
+          fontStyle="normal"
+          fontWeight="regular"
+          letterSpacing={50}
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(218, 50%, 6%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": -0.15600000000000003,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+        >
+          Label
+        </Text>
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            0%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 0,
+            "text": "0%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-3"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={0}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "0%",
+                },
+                {
+                  "width": "0%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 2`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    borderRadius={8}
+    buttonPaddingBottom="0px"
+    buttonPaddingLeft="12px"
+    buttonPaddingRight="12px"
+    buttonPaddingTop="0px"
+    collapsable={false}
+    color="primary"
+    data-klear360-component="button"
+    defaultBackgroundColor="hsla(198, 100%, 18%, 1)"
+    defaultBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(198, 100%, 18%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusBackgroundColor="hsla(200, 98%, 17%, 1)"
+    focusBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusRingColor="hsla(198, 100%, 18%, 0.18)"
+    focusable={true}
+    hoverBackgroundColor="hsla(200, 98%, 17%, 1)"
+    hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    hoverIconColor="hsla(0, 0%, 100%, 1)"
+    isFullWidth={false}
+    isLoading={false}
+    isPressed={false}
+    minHeight="36px"
+    motionDuration="duration.xquick"
+    motionEasing="easing.standard"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    size="medium"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+          "borderColor": "black",
+          "borderRadius": 8,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "cursor": "pointer",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "minHeight": 36,
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 12,
+          "paddingTop": 0,
+          "textDecorationColor": "black",
+          "textDecorationLine": "none",
+          "textDecorationStyle": "solid",
+          "width": "auto",
+        },
+        {
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+        },
+      ]
+    }
+    type="button"
+  >
+    <View
+      pointerEvents="none"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <RNSVGSvgView
+        bbHeight="100%"
+        bbWidth="100%"
+        focusable={false}
+        pointerEvents="none"
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            {
+              "flex": 0,
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        >
+          <RNSVGDefs>
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="topFade-r0"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+            />
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="bottomFade-r0"
+              x1="0"
+              x2="0"
+              y1="1"
+              y2="0"
+            />
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="topMask-r0"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "topFade-r0",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="0"
+              />
+            </RNSVGMask>
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="bottomMask-r0"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "bottomFade-r0",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="80%"
+              />
+            </RNSVGMask>
+            <RNSVGRadialGradient
+              cx={0}
+              cy={0}
+              fx={0}
+              fy={0}
+              gradient={
+                [
+                  0,
+                  788529151,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={1}
+              name="btnGlow-r0"
+              rx={64}
+              ry={64}
+            />
+          </RNSVGDefs>
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={7}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="topMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={4}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278206556,
+                "type": 0,
+              }
+            }
+            strokeWidth={1}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r0"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278270550,
+                "type": 0,
+              }
+            }
+            strokeWidth={5}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={
+              {
+                "brushRef": "btnGlow-r0",
+                "type": 1,
+              }
+            }
+            height="100%"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            rx={8}
+            ry={8}
+            width="100%"
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        alignItems="center"
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        isHidden={false}
+        justifyContent="center"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+              "zIndex": 1,
+            },
+            {
+              "opacity": 1,
+            },
+          ]
+        }
+        zIndex={1}
+      >
+        <Text
+          accessible={true}
+          color="interactive.text.onPrimary.normal"
+          data-klear360-component="base-text"
+          fontSize={100}
+          fontWeight="medium"
+          lineHeight={100}
+          marginX="spacing.2"
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 100%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "500",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 4,
+                "marginRight": 4,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textAlign": "center",
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+          textAlign="center"
+        >
+          Update Progress
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        style={
+          [
+            {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          color="surface.text.gray.subtle"
+          data-klear360-component="text"
+          fontFamily="text"
+          fontSize={75}
+          fontStyle="normal"
+          fontWeight="regular"
+          letterSpacing={50}
+          lineHeight={75}
+          style={
+            [
+              {
+                "color": "hsla(218, 50%, 6%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 12,
+                "fontStyle": "normal",
+                "fontWeight": "400",
+                "letterSpacing": -0.15600000000000003,
+                "lineHeight": 17,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+        >
+          Label
+        </Text>
+        <View
+          data-klear360-component="base-box"
+          style={
+            [
+              {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            color="surface.text.gray.subtle"
+            data-klear360-component="text"
+            fontFamily="text"
+            fontSize={75}
+            fontStyle="normal"
+            fontWeight="regular"
+            letterSpacing={50}
+            lineHeight={75}
+            style={
+              [
+                {
+                  "color": "hsla(218, 50%, 6%, 1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontStyle": "normal",
+                  "fontWeight": "400",
+                  "letterSpacing": -0.15600000000000003,
+                  "lineHeight": 17,
+                  "marginBottom": 0,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "marginTop": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                  "paddingTop": 0,
+                  "textDecorationLine": "none",
+                },
+              ]
+            }
+          >
+            60%
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 60,
+            "text": "60%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-linear-3"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          backgroundColor="hsla(222, 47%, 11%, 0.09)"
+          borderRadius="xsmall"
+          className="__klear360-progress-bar-track"
+          data-klear360-component="base-box"
+          height="2px"
+          overflow="hidden"
+          position="relative"
+          style={
+            [
+              {
+                "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
+                "borderRadius": 4,
+                "height": 2,
+                "overflow": "hidden",
+                "position": "relative",
+              },
+            ]
+          }
+        >
+          <View
+            backgroundColor="hsla(198, 100%, 18%, 1)"
+            progress={60}
+            style={
+              [
+                {
+                  "backgroundColor": "hsla(198, 100%, 18%, 1)",
+                  "height": "100%",
+                  "width": "60%",
+                },
+                {
+                  "width": "60%",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "backgroundColor": "white",
+                    "height": "100%",
+                    "opacity": 0,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 3`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    borderRadius={8}
+    buttonPaddingBottom="0px"
+    buttonPaddingLeft="12px"
+    buttonPaddingRight="12px"
+    buttonPaddingTop="0px"
+    collapsable={false}
+    color="primary"
+    data-klear360-component="button"
+    defaultBackgroundColor="hsla(198, 100%, 18%, 1)"
+    defaultBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(198, 100%, 18%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusBackgroundColor="hsla(200, 98%, 17%, 1)"
+    focusBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusRingColor="hsla(198, 100%, 18%, 0.18)"
+    focusable={true}
+    hoverBackgroundColor="hsla(200, 98%, 17%, 1)"
+    hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    hoverIconColor="hsla(0, 0%, 100%, 1)"
+    isFullWidth={false}
+    isLoading={false}
+    isPressed={false}
+    minHeight="36px"
+    motionDuration="duration.xquick"
+    motionEasing="easing.standard"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    size="medium"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+          "borderColor": "black",
+          "borderRadius": 8,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "cursor": "pointer",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "minHeight": 36,
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 12,
+          "paddingTop": 0,
+          "textDecorationColor": "black",
+          "textDecorationLine": "none",
+          "textDecorationStyle": "solid",
+          "width": "auto",
+        },
+        {
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+        },
+      ]
+    }
+    type="button"
+  >
+    <View
+      pointerEvents="none"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <RNSVGSvgView
+        bbHeight="100%"
+        bbWidth="100%"
+        focusable={false}
+        pointerEvents="none"
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            {
+              "flex": 0,
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        >
+          <RNSVGDefs>
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="topFade-r1"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+            />
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="bottomFade-r1"
+              x1="0"
+              x2="0"
+              y1="1"
+              y2="0"
+            />
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="topMask-r1"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "topFade-r1",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="0"
+              />
+            </RNSVGMask>
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="bottomMask-r1"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "bottomFade-r1",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="80%"
+              />
+            </RNSVGMask>
+            <RNSVGRadialGradient
+              cx={0}
+              cy={0}
+              fx={0}
+              fy={0}
+              gradient={
+                [
+                  0,
+                  788529151,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={1}
+              name="btnGlow-r1"
+              rx={64}
+              ry={64}
+            />
+          </RNSVGDefs>
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={7}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="topMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={4}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278206556,
+                "type": 0,
+              }
+            }
+            strokeWidth={1}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278270550,
+                "type": 0,
+              }
+            }
+            strokeWidth={5}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={
+              {
+                "brushRef": "btnGlow-r1",
+                "type": 1,
+              }
+            }
+            height="100%"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            rx={8}
+            ry={8}
+            width="100%"
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        alignItems="center"
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        isHidden={false}
+        justifyContent="center"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+              "zIndex": 1,
+            },
+            {
+              "opacity": 1,
+            },
+          ]
+        }
+        zIndex={1}
+      >
+        <Text
+          accessible={true}
+          color="interactive.text.onPrimary.normal"
+          data-klear360-component="base-text"
+          fontSize={100}
+          fontWeight="medium"
+          lineHeight={100}
+          marginX="spacing.2"
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 100%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "500",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 4,
+                "marginRight": 4,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textAlign": "center",
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+          textAlign="center"
+        >
+          Update Progress
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 0,
+            "text": "0%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-31"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={65.97344572538566}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="semibold"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.0"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              0
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ProgressBar /> should update the progress value appropriately 4`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    borderRadius={8}
+    buttonPaddingBottom="0px"
+    buttonPaddingLeft="12px"
+    buttonPaddingRight="12px"
+    buttonPaddingTop="0px"
+    collapsable={false}
+    color="primary"
+    data-klear360-component="button"
+    defaultBackgroundColor="hsla(198, 100%, 18%, 1)"
+    defaultBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(198, 100%, 18%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusBackgroundColor="hsla(200, 98%, 17%, 1)"
+    focusBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    focusRingColor="hsla(198, 100%, 18%, 0.18)"
+    focusable={true}
+    hoverBackgroundColor="hsla(200, 98%, 17%, 1)"
+    hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
+    hoverIconColor="hsla(0, 0%, 100%, 1)"
+    isFullWidth={false}
+    isLoading={false}
+    isPressed={false}
+    minHeight="36px"
+    motionDuration="duration.xquick"
+    motionEasing="easing.standard"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    size="medium"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+          "borderColor": "black",
+          "borderRadius": 8,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "cursor": "pointer",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "minHeight": 36,
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 12,
+          "paddingTop": 0,
+          "textDecorationColor": "black",
+          "textDecorationLine": "none",
+          "textDecorationStyle": "solid",
+          "width": "auto",
+        },
+        {
+          "backgroundColor": "hsla(198, 100%, 18%, 1)",
+        },
+      ]
+    }
+    type="button"
+  >
+    <View
+      pointerEvents="none"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <RNSVGSvgView
+        bbHeight="100%"
+        bbWidth="100%"
+        focusable={false}
+        pointerEvents="none"
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            {
+              "flex": 0,
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        >
+          <RNSVGDefs>
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="topFade-r1"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+            />
+            <RNSVGLinearGradient
+              gradient={
+                [
+                  0,
+                  -1,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={0}
+              name="bottomFade-r1"
+              x1="0"
+              x2="0"
+              y1="1"
+              y2="0"
+            />
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="topMask-r1"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "topFade-r1",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="0"
+              />
+            </RNSVGMask>
+            <RNSVGMask
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              height="100%"
+              maskContentUnits={1}
+              maskUnits={0}
+              name="bottomMask-r1"
+              width="100%"
+              x="0%"
+              y="0%"
+            >
+              <RNSVGRect
+                fill={
+                  {
+                    "brushRef": "bottomFade-r1",
+                    "type": 1,
+                  }
+                }
+                height="20%"
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+                width="100%"
+                x="0"
+                y="80%"
+              />
+            </RNSVGMask>
+            <RNSVGRadialGradient
+              cx={0}
+              cy={0}
+              fx={0}
+              fy={0}
+              gradient={
+                [
+                  0,
+                  788529151,
+                  1,
+                  16777215,
+                ]
+              }
+              gradientTransform={null}
+              gradientUnits={1}
+              name="btnGlow-r1"
+              rx={64}
+              ry={64}
+            />
+          </RNSVGDefs>
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={7}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="topMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 788529151,
+                "type": 0,
+              }
+            }
+            strokeWidth={4}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278206556,
+                "type": 0,
+              }
+            }
+            strokeWidth={1}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={null}
+            height="100%"
+            mask="bottomMask-r1"
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+              ]
+            }
+            rx={8}
+            ry={8}
+            stroke={
+              {
+                "payload": 4278270550,
+                "type": 0,
+              }
+            }
+            strokeWidth={5}
+            width="100%"
+            x={0}
+            y={0}
+          />
+          <RNSVGRect
+            fill={
+              {
+                "brushRef": "btnGlow-r1",
+                "type": 1,
+              }
+            }
+            height="100%"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            rx={8}
+            ry={8}
+            width="100%"
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        alignItems="center"
+        data-klear360-component="base-box"
+        display="flex"
+        flexDirection="row"
+        isHidden={false}
+        justifyContent="center"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+              "zIndex": 1,
+            },
+            {
+              "opacity": 1,
+            },
+          ]
+        }
+        zIndex={1}
+      >
+        <Text
+          accessible={true}
+          color="interactive.text.onPrimary.normal"
+          data-klear360-component="base-text"
+          fontSize={100}
+          fontWeight="medium"
+          lineHeight={100}
+          marginX="spacing.2"
+          style={
+            [
+              {
+                "color": "hsla(0, 0%, 100%, 1)",
+                "fontFamily": "Inter",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "500",
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginBottom": 0,
+                "marginLeft": 4,
+                "marginRight": 4,
+                "marginTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "textAlign": "center",
+                "textDecorationLine": "none",
+              },
+            ]
+          }
+          textAlign="center"
+        >
+          Update Progress
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    data-klear360-component="progress-bar"
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View
+      data-klear360-component="base-box"
+      display="flex"
+      flexDirection="column"
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%",
+          },
+        ]
+      }
+      width="100%"
+    >
+      <View
+        accessibilityLabel="Label"
+        accessibilityRole="progressbar"
+        accessibilityValue={
+          {
+            "max": 100,
+            "min": 0,
+            "now": 60,
+            "text": "60%",
+          }
+        }
+        accessible={true}
+        data-klear360-component="base-box"
+        id="undefined-circular-31"
+        style={
+          [
+            {},
+          ]
+        }
+      >
+        <View
+          alignItems="center"
+          data-klear360-component="base-box"
+          display="flex"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "width": "fit-content",
+              },
+            ]
+          }
+          width="fit-content"
+        >
+          <RNSVGSvgView
+            accessibilityElementsHidden={true}
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            data-klear360-component="icon"
+            focusable={false}
+            height="24"
+            importantForAccessibility="no-hide-descendants"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                [
+                  {},
+                ],
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGCircle
+                cx="12"
+                cy="12"
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r="10.5"
+                stroke={
+                  {
+                    "payload": 386864937,
+                    "type": 0,
+                  }
+                }
+                strokeWidth="3px"
+              />
+              <RNSVGCircle
+                cx={12}
+                cy={12}
+                fill={null}
+                matrix={
+                  [
+                    6.123233995736766e-17,
+                    -1,
+                    1,
+                    6.123233995736766e-17,
+                    0,
+                    24,
+                  ]
+                }
+                opacity={1}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={10.5}
+                stroke={
+                  {
+                    "payload": 4278206556,
+                    "type": 0,
+                  }
+                }
+                strokeDasharray={
+                  [
+                    65.97344572538566,
+                    65.97344572538566,
+                  ]
+                }
+                strokeDashoffset={26.389378290154262}
+                strokeWidth="3px"
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <View
+            alignItems="center"
+            data-klear360-component="base-box"
+            display="flex"
+            flexDirection="column"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="regular"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.3"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              Label
+            </Text>
+            <Text
+              accessible={true}
+              color="surface.text.gray.normal"
+              data-klear360-component="text"
+              fontFamily="text"
+              fontSize={75}
+              fontStyle="normal"
+              fontWeight="semibold"
+              letterSpacing={50}
+              lineHeight={75}
+              marginTop="spacing.0"
+              style={
+                [
+                  {
+                    "color": "hsla(216, 56%, 2%, 1)",
+                    "fontFamily": "Inter",
+                    "fontSize": 12,
+                    "fontStyle": "normal",
+                    "fontWeight": "600",
+                    "letterSpacing": -0.15600000000000003,
+                    "lineHeight": 17,
+                    "marginBottom": 0,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "marginTop": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "paddingRight": 0,
+                    "paddingTop": 0,
+                    "textDecorationLine": "none",
+                  },
+                ]
+              }
+            >
+              60
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

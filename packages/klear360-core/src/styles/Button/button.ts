@@ -1,0 +1,412 @@
+import { cva } from 'class-variance-authority';
+import { utilityClasses } from '../utilities';
+// @ts-expect-error - CSS modules may not have type definitions in build
+import styles from './button.module.css';
+
+export type ButtonVariants = {
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  color?:
+    | 'primary'
+    | 'white'
+    | 'positive'
+    | 'negative'
+    | 'information'
+    | 'notice'
+    | 'neutral'
+    | 'transparent';
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
+  isDisabled?: boolean;
+  isFullWidth?: boolean;
+  isIconOnly?: boolean;
+};
+
+export type ButtonColor =
+  | 'primary'
+  | 'white'
+  | 'positive'
+  | 'negative'
+  | 'information'
+  | 'notice'
+  | 'neutral'
+  | 'transparent';
+
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+
+export type ActionStatesType = 'default' | 'hover' | 'focus' | 'disabled';
+
+/**
+ * Get background color token based on variant, color, and state
+ * This generates the color token string that BaseText CVA uses for colors
+ */
+export function getButtonBackgroundColorToken({
+  variant,
+  color,
+  state,
+  property,
+}: {
+  variant: ButtonVariant;
+  color: ButtonColor;
+  state: ActionStatesType;
+  property: 'background' | 'border';
+}): string {
+  const _state = state === 'focus' || state === 'hover' ? 'highlighted' : state;
+  const isBorder = property === 'border';
+
+  if (color === 'white') {
+    if (variant === 'primary') {
+      return `interactive.${property}.staticWhite.${_state}`;
+    }
+    if (variant === 'secondary') {
+      if (isBorder) {
+        return 'interactive.border.staticWhite.highlighted';
+      }
+      return _state === 'default'
+        ? 'interactive.background.staticWhite.faded'
+        : _state === 'disabled'
+        ? 'interactive.background.gray.disabled'
+        : 'interactive.background.staticBlack.faded';
+    }
+    if (variant === 'tertiary') {
+      if (_state === 'disabled') {
+        return 'interactive.background.gray.disabled';
+      }
+      return _state === 'highlighted'
+        ? 'interactive.background.staticBlack.faded'
+        : 'interactive.background.staticWhite.faded';
+    }
+  }
+
+  if (color === 'neutral') {
+    if (variant === 'primary') {
+      return `interactive.${property}.staticBlack.${_state}`;
+    }
+    // secondary/tertiary render the same as the default (gray) buttons
+    if (variant === 'secondary') {
+      return isBorder ? 'interactive.border.primary.default' : 'surface.background.gray.intense';
+    }
+    if (variant === 'tertiary') {
+      return _state === 'disabled'
+        ? 'interactive.background.staticWhite.ghost'
+        : 'surface.background.gray.intense';
+    }
+  }
+
+  if (color === 'transparent') {
+    if (variant !== 'tertiary') {
+      throw new Error(
+        `Transparent color can only be used with tertiary variant but received "${variant}"`,
+      );
+    }
+    return _state === 'default' ? 'transparent' : `interactive.${property}.gray.faded`;
+  }
+
+  if (color && color !== 'primary') {
+    if (variant === 'tertiary') {
+      throw new Error(
+        `Tertiary variant can only be used with color: "primary" or "white" or "transparent" but received "${color}"`,
+      );
+    }
+    if (variant === 'primary') {
+      return `interactive.${property}.${color}.${_state}`;
+    }
+    if (variant === 'secondary') {
+      return isBorder
+        ? `interactive.border.${color}.default`
+        : _state === 'default'
+        ? `interactive.background.${color}.faded`
+        : `interactive.background.${color}.fadedHighlighted`;
+    }
+  }
+
+  // Base primary color
+  if (variant === 'primary') {
+    return `interactive.${property}.primary.${_state}`;
+  }
+  if (variant === 'secondary') {
+    if (isBorder) {
+      return 'interactive.border.primary.default';
+    }
+    return 'surface.background.gray.intense';
+  }
+  if (variant === 'tertiary') {
+    if (_state === 'disabled') {
+      return 'interactive.background.staticWhite.ghost';
+    }
+    return 'surface.background.gray.intense';
+  }
+
+  return `interactive.${property}.primary.${_state}`;
+}
+
+/**
+ * Get the progress "rest" (unfilled) background token for the definite loader.
+ *
+ * Inverted-layer model: the button base stays its normal color and a rest-colored
+ * cover recedes over it. This returns that rest color — the button's disabled-state
+ * background, which the receding cover paints. It reuses the standard disabled
+ * background token for the variant/color.
+ */
+export function getButtonProgressRestColorToken({
+  variant,
+  color,
+}: {
+  variant: ButtonVariant;
+  color: ButtonColor;
+}): string {
+  return getButtonBackgroundColorToken({
+    variant,
+    color,
+    state: 'disabled',
+    property: 'background',
+  });
+}
+
+/**
+ * Get text/icon color token based on variant, color, and state
+ */
+export function getButtonTextColorToken({
+  variant,
+  color,
+  state,
+  property,
+}: {
+  variant: ButtonVariant;
+  color: ButtonColor;
+  state: ActionStatesType;
+  property: 'icon' | 'text';
+}): string {
+  // Map state to color variant suffix
+  const stateSuffix = state === 'disabled' ? 'disabled' : 'normal';
+
+  if (color === 'white') {
+    if (variant === 'primary') {
+      return `interactive.${property}.staticBlack.${state === 'disabled' ? 'disabled' : 'muted'}`;
+    }
+    if (variant === 'secondary') {
+      return `interactive.${property}.staticWhite.${stateSuffix}`;
+    }
+    if (variant === 'tertiary') {
+      return `interactive.${property}.staticWhite.${stateSuffix}`;
+    }
+  }
+
+  if (color === 'neutral') {
+    if (variant === 'primary') {
+      return `interactive.${property}.staticWhite.${state === 'disabled' ? 'disabled' : 'normal'}`;
+    }
+    // secondary/tertiary render the same as the default (gray) buttons
+    if (variant === 'secondary') {
+      return `interactive.${property}.gray.${state === 'disabled' ? 'disabled' : 'normal'}`;
+    }
+    if (variant === 'tertiary') {
+      return `interactive.${property}.gray.${stateSuffix}`;
+    }
+  }
+
+  if (color === 'transparent') {
+    if (variant !== 'tertiary') {
+      throw new Error(
+        `Transparent color can only be used with tertiary variant but received "${variant}"`,
+      );
+    }
+    if (state === 'disabled') {
+      return `interactive.${property}.gray.disabled`;
+    }
+    return property === 'icon' ? 'interactive.icon.gray.muted' : 'surface.text.gray.normal';
+  }
+
+  if (color && color !== 'primary') {
+    if (variant === 'tertiary') {
+      throw new Error(
+        `Tertiary variant can only be used with color: "primary" or "white" or "transparent" but received "${color}"`,
+      );
+    }
+    if (variant === 'primary') {
+      // For disabled state, use color-specific disabled token (e.g., interactive.text.negative.disabled)
+      // For normal state, use staticWhite for contrast on colored background
+      if (state === 'disabled') {
+        return `interactive.${property}.${color}.disabled`;
+      }
+      return `interactive.${property}.staticWhite.normal`;
+    }
+    if (variant === 'secondary') {
+      return `interactive.${property}.${color}.${stateSuffix}`;
+    }
+  }
+
+  // Base primary color
+  if (variant === 'primary') {
+    // For disabled state, use primary.disabled instead of onPrimary.disabled
+    if (state === 'disabled') {
+      return `interactive.${property}.primary.disabled`;
+    }
+    return `interactive.${property}.onPrimary.normal`;
+  }
+  if (variant === 'secondary') {
+    return `interactive.${property}.gray.${state === 'disabled' ? 'disabled' : 'normal'}`;
+  }
+  if (variant === 'tertiary') {
+    return `interactive.${property}.gray.${stateSuffix}`;
+  }
+
+  return `interactive.${property}.onPrimary.${stateSuffix}`;
+}
+
+/**
+ * Get typography size mapping for buttons
+ * These values correspond to BaseText utility classes
+ */
+export function getButtonTextSizes(): {
+  fontSize: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>;
+  lineHeight: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>;
+} {
+  return {
+    fontSize: {
+      xsmall: 75,
+      small: 75,
+      medium: 100,
+      large: 200,
+    },
+    lineHeight: {
+      xsmall: 75,
+      small: 75,
+      medium: 100,
+      large: 200,
+    },
+  };
+}
+
+/**
+ * Get min height for buttons
+ */
+export function getButtonMinHeight(): Record<'xsmall' | 'small' | 'medium' | 'large', number> {
+  return {
+    xsmall: 28,
+    small: 32,
+    medium: 36,
+    large: 48,
+  };
+}
+
+/**
+ * Get icon size mapping for buttons
+ */
+export function getButtonIconSize(): Record<
+  'xsmall' | 'small' | 'medium' | 'large',
+  'small' | 'medium'
+> {
+  return {
+    xsmall: 'small',
+    small: 'small',
+    medium: 'medium',
+    large: 'medium',
+  } as const;
+}
+
+/**
+ * Get icon-only size mapping
+ */
+export function getButtonIconOnlySize(): Record<'xsmall' | 'small' | 'medium' | 'large', 'medium'> {
+  return {
+    xsmall: 'medium',
+    small: 'medium',
+    medium: 'medium',
+    large: 'medium',
+  } as const;
+}
+
+export const buttonStyles = cva(styles.btn, {
+  variants: {
+    variant: {
+      primary: styles.primary,
+      secondary: styles.secondary,
+      tertiary: styles.tertiary,
+    },
+    color: {
+      primary: styles['color-primary'],
+      white: styles['color-white'],
+      positive: styles['color-positive'],
+      negative: styles['color-negative'],
+      information: styles['color-information'],
+      notice: styles['color-notice'],
+      neutral: styles['color-neutral'],
+      transparent: styles['color-transparent'],
+    },
+    size: {
+      xsmall: styles.xsmall,
+      small: styles.small,
+      medium: styles.medium,
+      large: styles.large,
+    },
+    isDisabled: {
+      true: utilityClasses['cursor-not-allowed'],
+      false: utilityClasses['cursor-pointer'],
+    },
+    isFullWidth: {
+      true: utilityClasses['width-full'],
+      false: '',
+    },
+    isIconOnly: {
+      true: styles['icon-only'],
+      false: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    color: 'primary',
+    size: 'medium',
+    isDisabled: false,
+    isFullWidth: false,
+    isIconOnly: false,
+  },
+});
+
+// Export content and icon classes for use in component templates
+export const buttonContentClass = styles.content;
+export const buttonIconClass = styles.icon;
+export const loadingClass = styles.loading;
+export const animatedContentClass = styles['animated-content'];
+export const pressedClass = styles.pressed;
+export const dotsLoaderClass = styles['dots-loader'];
+export const progressOverlayClass = styles['progress-overlay'];
+export const progressFillClass = styles['progress-overlay-fill'];
+export const definiteLoadingClass = styles['definite-loading'];
+export const liveRegionClass = styles['live-region'];
+
+/**
+ * Get all Button component template classes as an object.
+ * Use this function in Svelte components to prevent tree-shaking from removing
+ * class imports that are only used in templates.
+ *
+ * @example
+ * const buttonClasses = getButtonTemplateClasses();
+ * // Use: buttonClasses.content, buttonClasses.icon, etc.
+ */
+export function getButtonTemplateClasses(): Record<string, string> {
+  return {
+    content: buttonContentClass,
+    icon: buttonIconClass,
+    avatarGroup: styles['avatar-group'],
+    loading: loadingClass,
+    animatedContent: animatedContentClass,
+    pressed: pressedClass,
+    dotsLoader: dotsLoaderClass,
+    progressOverlay: progressOverlayClass,
+    progressFill: progressFillClass,
+    definiteLoading: definiteLoadingClass,
+    liveRegion: liveRegionClass,
+  } as const;
+}
+
+/**
+ * Generate all classes for Button component
+ * This is the single source of truth for all Button styling
+ * Everything is class-based - no data attributes or inline styles
+ */
+export function getButtonClasses(props: ButtonVariants & { className?: string }): string {
+  const { className, ...cvaProps } = props;
+
+  const classes = [buttonStyles(cvaProps), className].filter(Boolean).join(' ');
+
+  return classes;
+}

@@ -1,0 +1,124 @@
+import React from 'react';
+import { Composite } from '@floating-ui/react';
+import styled from 'styled-components';
+import { useTabsContext } from './TabsContext';
+import { TabIndicator } from './TabIndicator';
+import { trackColor } from './tabTokens';
+import BaseBox from '~components/Box/BaseBox';
+import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
+import { Box } from '~components/Box';
+import type { StyledPropsKlear360 } from '~components/Box/styledProps';
+import { getStyledProps } from '~components/Box/styledProps';
+import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import type { DataAnalyticsAttribute } from '~utils/types';
+
+const ScrollableArea = styled(BaseBox)(() => {
+  return {
+    '&::-webkit-scrollbar': { display: 'none' },
+  };
+});
+
+const TabList = ({
+  children,
+  ...rest
+}: { children: React.ReactNode } & StyledPropsKlear360 &
+  DataAnalyticsAttribute): React.ReactElement => {
+  const { setSelectedValue, selectedValue, variant, isVertical, size } = useTabsContext();
+  const tabListContainerRef = React.useRef<HTMLDivElement>(null);
+  const isBordered = variant === 'bordered';
+  const isFilled = variant === 'filled';
+  const isCompact = size === 'small' && !isVertical;
+
+  // Set the first child as the selected value
+  useIsomorphicLayoutEffect(() => {
+    if (selectedValue) return;
+    const first = React.Children.toArray(children)[0];
+    if (React.isValidElement(first)) {
+      // We need to skip calling onChange on the first render when we set the initial value
+      setSelectedValue?.(() => first.props.value, true);
+    }
+  }, [children, selectedValue, setSelectedValue]);
+
+  return (
+    <Box
+      {...getStyledProps(rest)}
+      {...metaAttribute({ name: MetaConstants.TabList })}
+      {...makeAnalyticsAttribute(rest)}
+      display={isVertical ? 'flex' : 'block'}
+      flexShrink={0}
+      overflow="hidden"
+    >
+      <ScrollableArea
+        position="relative"
+        whiteSpace="nowrap"
+        flex="1 1 auto"
+        width="100%"
+        overflow="auto hidden"
+      >
+        <Composite
+          render={(htmlProps) => {
+            return (
+              <BaseBox flexDirection="row" display="flex">
+                {isVertical && isBordered ? (
+                  <BaseBox
+                    width="0px"
+                    height="auto"
+                    flexGrow={1}
+                    flexShrink={0}
+                    borderColor={trackColor}
+                    borderWidth="thin"
+                    style={{ transform: 'translateX(1.5px)' }}
+                  />
+                ) : null}
+                {/* @ts-expect-error spreading composite props */}
+                <BaseBox
+                  {...htmlProps}
+                  flexGrow={1}
+                  ref={tabListContainerRef}
+                  role="tablist"
+                  width="100%"
+                  display="flex"
+                  flexDirection={isVertical ? 'column' : 'row'}
+                  alignItems={isVertical ? 'start' : 'center'}
+                  overflow={isVertical ? 'hidden' : undefined}
+                  {...(isFilled
+                    ? {
+                        borderRadius: isCompact ? 'small' : 'medium',
+                        borderWidth: 'none',
+                        borderColor: 'interactive.border.gray.default',
+                        padding: isCompact ? 'spacing.1' : 'spacing.2',
+                        gap: isVertical ? 'spacing.0' : 'spacing.1',
+                        backgroundColor: 'interactive.background.gray.faded',
+                      }
+                    : {
+                        padding: 'spacing.0',
+                        gap: isVertical ? 'spacing.0' : { base: 'spacing.7', m: 'spacing.8' },
+                      })}
+                >
+                  {children}
+                </BaseBox>
+              </BaseBox>
+            );
+          }}
+        />
+        {!(isVertical && isFilled) ? (
+          <TabIndicator tabListContainerRef={tabListContainerRef} />
+        ) : null}
+      </ScrollableArea>
+      {/*
+        Adding border bottom with an div element, we can't put it on the outer Box of tablist because
+        it's not possible to offset or translate a border
+      */}
+      {!isVertical && isBordered ? (
+        <BaseBox
+          style={{ transform: 'translateY(-1px)' }}
+          borderBottomColor={trackColor}
+          borderBottomWidth="thin"
+        />
+      ) : null}
+    </Box>
+  );
+};
+
+export { TabList };

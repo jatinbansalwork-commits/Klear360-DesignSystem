@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Box /> should render Box as footer tag 1`] = `"<div id="root"><footer data-klear360-component="box" class="BaseBox-bksIuc hJywxo">Footer test!</footer></div>"`;
+
+exports[`<Box /> should render Box component with supported styles 1`] = `"<div id="root"><div data-klear360-component="box" class="BaseBox-bksIuc fRPUBq">children test!</div></div>"`;

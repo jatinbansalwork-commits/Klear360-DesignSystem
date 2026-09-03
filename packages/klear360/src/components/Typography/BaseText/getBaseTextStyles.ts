@@ -1,0 +1,109 @@
+import type { CSSObject } from 'styled-components';
+import { makeTypographySize } from '~utils/makeTypographySize';
+import type { StyledBaseTextProps } from './types';
+import { DOTTED_UNDERLINE_STYLES } from './tokens';
+import getIn from '~utils/lodashButBetter/get';
+import { isReactNative } from '~utils';
+import { makeLetterSpacing } from '~utils/makeLetterSpacing';
+import { logger } from '~utils/logger';
+
+const getBaseTextStyles = ({
+  color = 'surface.text.gray.normal',
+  fontFamily = 'text',
+  fontSize = 200,
+  fontWeight = 'regular',
+  fontStyle = 'normal',
+  textDecorationLine = 'none',
+  numberOfLines,
+  wordBreak,
+  lineHeight = 100,
+  letterSpacing = 100,
+  textAlign,
+  opacity,
+  theme,
+  textTransform,
+}: StyledBaseTextProps): CSSObject => {
+  const textColor = color === 'currentColor' ? 'currentColor' : getIn(theme.colors, color);
+  const themeFontFamily = theme.typography.fonts.family[fontFamily];
+  const themeFontSize = makeTypographySize(theme.typography.fonts.size[fontSize]);
+  const themeFontWeight = theme.typography.fonts.weight[fontWeight];
+  const themeLineHeight = makeTypographySize(theme.typography.lineHeights[lineHeight]);
+  const themeLetterSpacing = makeLetterSpacing(
+    theme.typography.letterSpacings[letterSpacing],
+    theme.typography.fonts.size[fontSize],
+  );
+  let truncateStyles: CSSObject = {};
+  let wordBreakStyles: CSSObject = {};
+  if (numberOfLines !== undefined) {
+    if (isReactNative()) {
+      truncateStyles = {};
+    } else {
+      truncateStyles = {
+        overflow: 'hidden',
+        display: '-webkit-box',
+        'line-clamp': `${numberOfLines}`,
+        '-webkit-line-clamp': `${numberOfLines}`,
+        '-webkit-box-orient': 'vertical',
+        overflowWrap: 'break-word',
+      };
+    }
+  }
+  if (wordBreak !== undefined) {
+    if (isReactNative()) {
+      wordBreakStyles = {};
+    } else {
+      wordBreakStyles = {
+        wordBreak,
+      };
+    }
+  }
+
+  // Handle 'dotted' as a special case - it creates a dotted underline
+  // Both RN and Web use 'underline' when dotted, just different styling
+  const isDotted = textDecorationLine === 'dotted';
+  const actualTextDecorationLine = isDotted ? 'underline' : textDecorationLine;
+
+  // Warn on React Native since dotted styling isn't supported
+  if (isDotted && isReactNative()) {
+    logger({
+      message:
+        'textDecorationLine="dotted" is not supported on React Native. Falling back to "underline".',
+      moduleName: 'BaseText',
+      type: 'warn',
+    });
+  }
+
+  // Apply dotted styles only on web
+  const dottedStyles = isDotted && !isReactNative() ? DOTTED_UNDERLINE_STYLES : {};
+
+  // Apply Display optical size (opsz: 60) for heading font on web.
+  // Inter's variable font exposes an optical-size axis; this keeps headings
+  // on the display cut rather than the default text cut.
+  const headingVariationStyles: CSSObject =
+    fontFamily === 'heading' && !isReactNative() ? { fontVariationSettings: "'opsz' 60" } : {};
+
+  return {
+    color: textColor,
+    fontFamily: themeFontFamily,
+    fontSize: themeFontSize,
+    fontWeight: themeFontWeight,
+    fontStyle,
+    textDecorationLine: actualTextDecorationLine,
+    ...dottedStyles,
+    ...headingVariationStyles,
+    ...(textDecorationLine !== 'none' && {
+      textDecorationColor: textColor,
+    }),
+    lineHeight: themeLineHeight,
+    letterSpacing: themeLetterSpacing,
+    textAlign,
+    margin: 0,
+    padding: 0,
+    opacity,
+    textTransform,
+    ...truncateStyles,
+    ...wordBreakStyles,
+  };
+};
+
+export default getBaseTextStyles;

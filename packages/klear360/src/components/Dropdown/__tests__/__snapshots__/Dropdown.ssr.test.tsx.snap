@@ -1,0 +1,755 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = `"<div id="root"><div data-klear360-component="dropdown" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc dbxUDf"><div data-klear360-component="base-box" class="BaseBox-bksIuc emXDue"><div data-klear360-component="visually-hidden" class="VisuallyHiddenweb__StyledVisuallyHidden-pm2p4j-0 dWmplj"><input tabindex="-1" aria-hidden="true" value=""/></div><div data-klear360-component="select-input" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc lhbwwB"><div data-klear360-component="base-box" class="BaseBox-bksIuc cPCUku"><label for="dropdown-undefined-trigger-undefined-input-undefined" style="width:100%;flex-shrink:0;margin-right:0px" id="dropdown-undefined-label" data-klear360-component="form-label"><div data-klear360-component="base-box" class="BaseBox-bksIuc fhmUvk"><div data-klear360-component="base-box" class="BaseBox-bksIuc eHGxoV"><div data-klear360-component="base-box" class="BaseBox-bksIuc"><div data-klear360-component="base-box" class="BaseBox-bksIuc gQLxiP"><p letter-spacing="50" class="StyledBaseText-foUshD hPRusU" data-klear360-component="text">Fruits</p><div data-klear360-component="visually-hidden" class="VisuallyHiddenweb__StyledVisuallyHidden-pm2p4j-0 dWmplj"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text"></p></div></div></div></div></div></label></div><div class="BaseBox-bksIuc BaseInput__FocusRingWrapper-sc-1x0hgyo-0  fkvwaf focus-ring-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc AnimatedBaseInputWrapperweb__StyledBaseInputWrapper-hf5k5f-0 AnimatedBaseInputWrapperweb__StyledAnimatedBaseInputWrapper-hf5k5f-1  daBVTY eoNeTz __klear360-base-input-wrapper" data-klear360-component="base-box"><div class="BaseBox-bksIuc BaseInputTagSlotweb__TagSlotContainer-yqvb5y-0 fUnCpu gfXbQE tags-slot" data-klear360-component="base-box"><div data-klear360-component="base-box" class="BaseBox-bksIuc gcVAyv"><button type="button" autoComplete="off" id="dropdown-undefined-trigger-undefined-input-undefined" value="" placeholder="Select Option" data-klear360-component="styled-base-input" aria-required="false" aria-disabled="false" aria-invalid="false" aria-describedby="" aria-haspopup="listbox" aria-expanded="false" aria-controls="dropdown-undefined-actionlist" role="combobox" class="StyledBaseInputweb__StyledBaseNativeButton-q40kfl-1 cxooWS"><div data-klear360-component="base-box" class="BaseBox-bksIuc fWgdbl"><p letter-spacing="50" class="StyledBaseText-foUshD eYCbOH" data-klear360-component="text">Select Option</p></div></button></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc gNwAVc"><div data-klear360-component="base-box" class="BaseBox-bksIuc gNwAVc"><div data-klear360-component="base-box" class="BaseBox-bksIuc NDTfu"><div data-klear360-component="base-box" class="BaseBox-bksIuc ehtDDU"><svg aria-hidden="true" data-klear360-component="icon" height="16px" viewBox="0 0 24 24" width="16px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0 dYvPXl"><path d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" clip-rule="evenodd" fill="hsla(215, 25%, 27%, 1)" fill-rule="evenodd" data-klear360-component="svg-path"></path></svg><svg aria-hidden="true" data-klear360-component="icon" height="16px" viewBox="0 0 24 24" width="16px" fill="none" class="Svgweb__StyledSvg-sc-1s52w1n-0 ppXlM"><path d="M11.2929 8.29289C11.6834 7.90237 12.3166 7.90237 12.7071 8.29289L18.7071 14.2929C19.0976 14.6834 19.0976 15.3166 18.7071 15.7071C18.3166 16.0976 17.6834 16.0976 17.2929 15.7071L12 10.4142L6.70711 15.7071C6.31658 16.0976 5.68342 16.0976 5.29289 15.7071C4.90237 15.3166 4.90237 14.6834 5.29289 14.2929L11.2929 8.29289Z" clip-rule="evenodd" fill="hsla(215, 25%, 27%, 1)" fill-rule="evenodd" data-klear360-component="svg-path"></path></svg></div></div></div></div></div></div></div><div data-klear360-component="base-box" class="BaseBox-bksIuc krcKbL"><div data-klear360-component="base-box" class="BaseBox-bksIuc jFUDbQ"></div></div></div></div></div></div></div>"`;
+
+exports[`<Dropdown /> should render dropdown and make it visible on click 2`] = `
+.c0.c0.c0.c0.c0 {
+  text-align: left;
+  position: relative;
+  height: 100%;
+}
+
+.c1.c1.c1.c1.c1 {
+  position: relative;
+}
+
+.c3.c3.c3.c3.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.c4.c4.c4.c4.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.c5.c5.c5.c5.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.c6.c6.c6.c6.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.c7.c7.c7.c7.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-height: 36px;
+  gap: 0px;
+}
+
+.c13.c13.c13.c13.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  min-height: 36px;
+}
+
+.c15.c15.c15.c15.c15 {
+  width: 100%;
+  min-width: min(20%,60px);
+}
+
+.c17.c17.c17.c17.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.c19.c19.c19.c19.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.c20.c20.c20.c20.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  padding-right: 12px;
+}
+
+.c21.c21.c21.c21.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.c24.c24.c24.c24.c24 {
+  margin-left: 0px;
+}
+
+.c25.c25.c25.c25.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c8.c8.c8.c8.c8 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+}
+
+.c9.c9.c9.c9.c9 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c18.c18.c18.c18.c18 {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+}
+
+.c22.c22.c22.c22.c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c23.c23.c23.c23.c23 {
+  display: none;
+}
+
+.c16.c16.c16.c16.c16 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: hsla(0,0%,100%,0);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0px;
+  padding-right: 8px;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  cursor: auto;
+}
+
+.c16.c16.c16.c16.c16::-webkit-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.c16.c16.c16.c16.c16::-moz-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.c16.c16.c16.c16.c16:-ms-input-placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.c16.c16.c16.c16.c16::placeholder {
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.c16.c16.c16.c16.c16:focus {
+  outline: none;
+}
+
+.c11.c11.c11.c11.c11 {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c11.c11.c11.c11.c11:hover {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(215,20%,65%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 160ms;
+  transition-duration: 160ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
+.c11.c11.c11.c11.c11:focus-within {
+  background-color: hsla(0,0%,100%,1);
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+  border: none;
+  border-width: 0px;
+  box-shadow: hsla(214,32%,91%,1) 0px 0px 0px 1px;
+  -webkit-transition-property: box-shadow,background-color;
+  transition-property: box-shadow,background-color;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-easing: cubic-bezier(0.5,0,0,1);
+  transition-easing: cubic-bezier(0.5,0,0,1);
+}
+
+.c12.c12.c12.c12.c12 {
+  -webkit-animation: none;
+  animation: none;
+  max-height: 36px;
+}
+
+.c14.c14.c14.c14.c14 {
+  -ms-overflow-style: none;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c14.c14.c14.c14.c14::-webkit-scrollbar {
+  display: none;
+}
+
+.c2.c2.c2.c2.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0 -1px -1px 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  left: -10000px;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.c10.c10.c10.c10.c10 {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.c10.c10.c10.c10.c10:focus-within {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 640ms;
+  transition-duration: 640ms;
+  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
+  transition-timing-function: cubic-bezier(0.5,0,0,1);
+  z-index: 2;
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+@media screen and (min-width:320px) {
+
+}
+
+@media screen and (min-width:480px) {
+
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+@media screen and (min-width:1024px) {
+
+}
+
+@media screen and (min-width:1200px) {
+
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+<div
+  id="root"
+>
+  <div
+    class=""
+    data-klear360-component="dropdown"
+  >
+    <div
+      class="c0"
+      data-klear360-component="base-box"
+    >
+      <div
+        class="c1"
+        data-klear360-component="base-box"
+      >
+        <div
+          class="c2"
+          data-klear360-component="visually-hidden"
+        >
+          <input
+            aria-hidden="true"
+            tabindex="-1"
+            value=""
+          />
+        </div>
+        <div
+          class=""
+          data-klear360-component="select-input"
+        >
+          <div
+            class="c3"
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c4"
+              data-klear360-component="base-box"
+            >
+              <label
+                data-klear360-component="form-label"
+                for="dropdown-7-trigger-1-input-2"
+                id="dropdown-7-label"
+                style="width:100%;flex-shrink:0;margin-right:0px"
+              >
+                <div
+                  class="c5"
+                  data-klear360-component="base-box"
+                >
+                  <div
+                    class="c6"
+                    data-klear360-component="base-box"
+                  >
+                    <div
+                      class=""
+                      data-klear360-component="base-box"
+                    >
+                      <div
+                        class="c7"
+                        data-klear360-component="base-box"
+                      >
+                        <p
+                          class="c8"
+                          data-klear360-component="text"
+                          letter-spacing="50"
+                        >
+                          Fruits
+                        </p>
+                        <div
+                          class="c2"
+                          data-klear360-component="visually-hidden"
+                        >
+                          <p
+                            class="c9"
+                            data-klear360-component="text"
+                            letter-spacing="50"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div
+              class=" c10 focus-ring-wrapper"
+              data-klear360-component="base-box"
+            >
+              <div
+                class=" c11 c12 __klear360-base-input-wrapper"
+                data-klear360-component="base-box"
+              >
+                <div
+                  class="c13 c14 tags-slot"
+                  data-klear360-component="base-box"
+                >
+                  <div
+                    class="c15"
+                    data-klear360-component="base-box"
+                  >
+                    <button
+                      aria-controls="dropdown-7-actionlist"
+                      aria-describedby=""
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      aria-haspopup="dialog"
+                      aria-invalid="false"
+                      aria-required="false"
+                      autocomplete="off"
+                      class="c16"
+                      data-klear360-component="styled-base-input"
+                      id="dropdown-7-trigger-1-input-2"
+                      placeholder="Select Option"
+                      role="combobox"
+                      type="button"
+                      value=""
+                    >
+                      <div
+                        class="c17"
+                        data-klear360-component="base-box"
+                      >
+                        <p
+                          class="c18"
+                          data-klear360-component="text"
+                          letter-spacing="50"
+                        >
+                          Select Option
+                        </p>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="c19"
+                  data-klear360-component="base-box"
+                >
+                  <div
+                    class="c19"
+                    data-klear360-component="base-box"
+                  >
+                    <div
+                      class="c20"
+                      data-klear360-component="base-box"
+                    >
+                      <div
+                        class="c21"
+                        data-klear360-component="base-box"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="c22"
+                          data-klear360-component="icon"
+                          fill="none"
+                          height="16px"
+                          viewBox="0 0 24 24"
+                          width="16px"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                            data-klear360-component="svg-path"
+                            fill="hsla(215, 25%, 27%, 1)"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden="true"
+                          class="c23"
+                          data-klear360-component="icon"
+                          fill="none"
+                          height="16px"
+                          viewBox="0 0 24 24"
+                          width="16px"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M11.2929 8.29289C11.6834 7.90237 12.3166 7.90237 12.7071 8.29289L18.7071 14.2929C19.0976 14.6834 19.0976 15.3166 18.7071 15.7071C18.3166 16.0976 17.6834 16.0976 17.2929 15.7071L12 10.4142L6.70711 15.7071C6.31658 16.0976 5.68342 16.0976 5.29289 15.7071C4.90237 15.3166 4.90237 14.6834 5.29289 14.2929L11.2929 8.29289Z"
+                            data-klear360-component="svg-path"
+                            fill="hsla(215, 25%, 27%, 1)"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c24"
+            data-klear360-component="base-box"
+          >
+            <div
+              class="c25"
+              data-klear360-component="base-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

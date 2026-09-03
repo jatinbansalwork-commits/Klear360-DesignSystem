@@ -1,0 +1,39 @@
+{
+  "name": "plugin-figma-klear360-coverage",
+  "private": "true",
+  "author": "Klear",
+  "version": "0.0.2",
+  "license": "MIT",
+  "dependencies": {
+    "@create-figma-plugin/ui": "2.5.0",
+    "@create-figma-plugin/utilities": "2.5.0",
+    "@floating-ui/react": "0.24.4",
+    "@klear/klear360": "8.14.0",
+    "dotenv": "16.3.1",
+    "preact": "10.15.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "styled-components": "6.0.2"
+  },
+  "devDependencies": {
+    "@create-figma-plugin/build": "2.5.0",
+    "@create-figma-plugin/tsconfig": "2.5.0",
+    "@figma/plugin-typings": "1.107.0-beta.2",
+    "@types/node": "20.4.1",
+    "@types/react": "18.2.0",
+    "typescript": "4.9.5"
+  },
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "watch": "build-figma-plugin --typecheck --watch"
+  },
+  "figma-plugin": {
+    "editorType": [
+      "figma"
+    ],
+    "id": "plugin-figma-klear360-coverage",
+    "name": "Klear360 Coverage",
+    "main": "src/main.ts",
+    "ui": "src/ui.tsx"
+  }
+}
