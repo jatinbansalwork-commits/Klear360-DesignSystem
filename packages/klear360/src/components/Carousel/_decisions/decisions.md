@@ -44,7 +44,7 @@ const Testimonial = () => {
         <Title>Acquire Customers From New Customer Segments</Title>
         <Text weight="bold">Subham Kumar</Text>
       </Box>
-      
+
     </Box>
   )
 };
@@ -81,7 +81,7 @@ When the `visibleItems` is set to `autofit`, the carousel will automatically adj
 - Automatic bleed support
 - Scroll Overlay support
 - Have `shouldAddStartEndMargin` prop which can be used to replicate [these](https://klear.com/gst-number-search/pan/) kind of carousels
-  
+
 
 
 > NOTE: To ensure bleed happens you need to specify a fixed amount of carousel item's width via the `carouselItemWidth` prop. Otherwise the carousel item will take up the 100% of the container width and won't bleed
@@ -134,7 +134,7 @@ We need to follow the APG Pattern For [Carousel](https://www.w3.org/WAI/ARIA/apg
 
 ## Motion
 
-https://github.com/klear/klear360/assets/35374649/6876f348-1b0a-4e9a-800a-300025f54b5c
+
 
 ## Open Questions
 

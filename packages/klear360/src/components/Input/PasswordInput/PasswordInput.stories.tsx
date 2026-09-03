@@ -20,7 +20,7 @@ const Page = (): ReactElement => {
   return (
     <StoryPageWrapper
       componentName="PasswordInput"
-      apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Input/PasswordInput/_decisions/decisions.md"
+      apiDecisionLink="./_decisions/decisions.md"
       componentDescription="PasswordInput is an input field for entering passwords. The input is masked by default. On mobile devices the last typed letter is shown for a brief moment. The masking can be toggled using an optional reveal button."
       figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=76077-85891&t=09RYuDrnHwIebYMZ-1&scaling=min-zoom&page-id=10953%3A110156&mode=design"
     >

@@ -276,8 +276,8 @@ import PauseIconComponent from './PauseIcon';
 import PaymentButtonFilledIconComponent from './PaymentButtonFilledIcon';
 import PaymentButtonIconComponent from './PaymentButtonIcon';
 import PaymentButtonsIconComponent from './PaymentButtonsIcon';
-import PaymentGatewayFilledIconComponent from './PaymentGatewayFilledIcon';
-import PaymentGatewayIconComponent from './PaymentGatewayIcon';
+import ConnectionFilledIconComponent from './ConnectionFilledIcon';
+import ConnectionIconComponent from './ConnectionIcon';
 import PaymentLinkFilledIconComponent from './PaymentLinkFilledIcon';
 import PaymentLinkIconComponent from './PaymentLinkIcon';
 import PaymentLinksIconComponent from './PaymentLinksIcon';
@@ -318,9 +318,9 @@ import QRCodeIconComponent from './QRCodeIcon';
 import RadioIconComponent from './RadioIcon';
 import RayIconComponent from './RayIcon';
 import KlearIconComponent from './KlearIcon';
-import KlearXIconComponent from './KlearXIcon';
-import KlearxPayrollFilledIconComponent from './KlearxPayrollFilledIcon';
-import KlearxPayrollIconComponent from './KlearxPayrollIcon';
+import KlearNowPayIconComponent from './KlearNowPayIcon';
+import KlearNowPayrollFilledIconComponent from './KlearNowPayrollFilledIcon';
+import KlearNowPayrollIconComponent from './KlearNowPayrollIcon';
 import RefreshIconComponent from './RefreshIcon';
 import RepeatIconComponent from './RepeatIcon';
 import ReportsIconComponent from './ReportsIcon';
@@ -730,8 +730,8 @@ const iconMap: Record<string, IconComponent> = {
   PaymentButtonFilledIcon: PaymentButtonFilledIconComponent,
   PaymentButtonIcon: PaymentButtonIconComponent,
   PaymentButtonsIcon: PaymentButtonsIconComponent,
-  PaymentGatewayFilledIcon: PaymentGatewayFilledIconComponent,
-  PaymentGatewayIcon: PaymentGatewayIconComponent,
+  ConnectionFilledIcon: ConnectionFilledIconComponent,
+  ConnectionIcon: ConnectionIconComponent,
   PaymentLinkFilledIcon: PaymentLinkFilledIconComponent,
   PaymentLinkIcon: PaymentLinkIconComponent,
   PaymentLinksIcon: PaymentLinksIconComponent,
@@ -772,9 +772,9 @@ const iconMap: Record<string, IconComponent> = {
   RadioIcon: RadioIconComponent,
   RayIcon: RayIconComponent,
   KlearIcon: KlearIconComponent,
-  KlearXIcon: KlearXIconComponent,
-  KlearxPayrollFilledIcon: KlearxPayrollFilledIconComponent,
-  KlearxPayrollIcon: KlearxPayrollIconComponent,
+  KlearNowPayIcon: KlearNowPayIconComponent,
+  KlearNowPayrollFilledIcon: KlearNowPayrollFilledIconComponent,
+  KlearNowPayrollIcon: KlearNowPayrollIconComponent,
   RefreshIcon: RefreshIconComponent,
   RepeatIcon: RepeatIconComponent,
   ReportsIcon: ReportsIconComponent,

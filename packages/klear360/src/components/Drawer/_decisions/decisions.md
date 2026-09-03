@@ -166,7 +166,7 @@ Will work in a similar manner as [Ant Design - Drawer](https://ant.design/compon
 
 ## Open Questions
 
-- **Design:** Should 2nd Drawer have back button or should it continue to have close button ([Context](https://github.com/klear/klear360/pull/2009#discussion_r1487305755))
+- **Design:** Should 2nd Drawer have back button or should it continue to have close button (Context)
   - We won't have back button anymore. We will have 1st Drawer peek from behind
 - **Dev:** Should there be a prop for dismissing component on outside click. E.g. `shouldDismissOnOutsideClick` or should we handle it as part of controlled component (with the UX that confirmation modal is always shown irrespective of whether its outside click or close button click)
   - We won't have new prop. This can be achieved with controlled component

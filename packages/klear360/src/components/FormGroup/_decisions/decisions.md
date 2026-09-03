@@ -2,7 +2,7 @@
 
 > [!NOTE]
 >
-> Questions like what is pattern, why are we building these patterns, and scope of pattern are answered in [pattern-terminology.md](https://github.com/klear/klear360/blob/e58edf015d2062bd51374c5a7024a85adc13f636/packages/klear360/src/components/ListView/_decisions/pattern-terminology.md)
+> Questions like what is pattern, why are we building these patterns, and scope of pattern are answered in [pattern-terminology.md](../../ListView/_decisions/pattern-terminology.md)
 
 FormGroup is a high-level pattern component that provides a consistent way to build forms. This document outlines key architectural decisions regarding layout, validation, and error handling strategies.
 
@@ -17,7 +17,7 @@ FormGroup is a high-level pattern component that provides a consistent way to bu
 
 > **Note**
 >
-> Unlike ListView, there aren't enough reasons to create Layout component for FormGroup, instead allowing users to compose forms using primitive klear360 components. More about this is discussed in [pattern-terminology.md](https://github.com/klear/klear360/blob/e58edf015d2062bd51374c5a7024a85adc13f636/packages/klear360/src/components/ListView/_decisions/pattern-terminology.md)
+> Unlike ListView, there aren't enough reasons to create Layout component for FormGroup, instead allowing users to compose forms using primitive klear360 components. More about this is discussed in [pattern-terminology.md](../../ListView/_decisions/pattern-terminology.md)
 
 ### Component Anatomy
 

@@ -13,11 +13,11 @@ This document outlines the API of `Accordion` component.
 
 ### Accordion open
 
-https://github.com/klear/klear360/assets/6682655/1a02d680-1832-4a70-a0a3-1a1f56f2b8b9
+
 
 ### Accordion close
 
-https://github.com/klear/klear360/assets/6682655/b54eaeb9-7257-4da4-bf3b-89e10785e4f9
+
 
 ## API
 
@@ -199,7 +199,7 @@ Native:
 ### With icons
 
 <div align="center">
-  
+
 </div>
 
 ```tsx

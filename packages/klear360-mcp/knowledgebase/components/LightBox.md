@@ -196,7 +196,7 @@ import {
   Text,
 } from '@klear/klear360/components';
 
-const PDF_URL = 'https://cdn.klear.com/traditional-banks-vs-klearx.pdf';
+const PDF_URL = 'https://cdn.klear.com/traditional-banks-vs-klearnow-pay.pdf';
 const VIDEO_URL = 'https://www.w3schools.com/html/mov_bbb.mp4';
 
 function MixedMediaLightBoxExample(): React.ReactElement {

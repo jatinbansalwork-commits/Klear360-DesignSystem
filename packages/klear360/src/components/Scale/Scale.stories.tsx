@@ -15,7 +15,7 @@ const Page = (): React.ReactElement => {
       componentName="Scale"
       componentDescription="Scale component animates over CSS `scale` property and allows you to enlarge or shrink element on certain interactions"
       figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=74864-85897&t=CvaYT53LNc4OYVKa-1&scaling=min-zoom&page-id=21689%3A381614&mode=design"
-      apiDecisionLink="https://github.com/klear/klear360/blob/master/rfcs/2024-08-21-motion-presets.md"
+      apiDecisionLink="../../../../../rfcs/2024-08-21-motion-presets.md"
     >
       <Title>Usage</Title>
       <ScaleSandbox />

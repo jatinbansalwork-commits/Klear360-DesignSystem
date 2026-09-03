@@ -1,6 +1,6 @@
 ---
 Start Date: 21-08-2024
-RFC PR: https://github.com/klear/klear360/pull/2336
+RFC PR:
 Klear360 Issue: (leave this empty if no issue yet)
 ---
 
@@ -66,7 +66,7 @@ You might have seen our previous [RFC on Motion Foundations](./2022-03-22-motion
 
 As our org grows, we believe our products need to go a bit beyond the functionality. How do we make sure that our consumers really love our products? How do we add that cherry on top, those sprinkles, that pineapple on pizza?
 
- 
+
 
 To solve for consumer delight, the klear360 team is working on simplifying adding motion in our consumer applications and introduce consistent animations to our product.
 
@@ -382,7 +382,7 @@ import {
   <Card>
     <CardBody>
       <Scale motionTriggers={['on-animate-interactions']}>
-        
+
       </Scale>
     </CardBody>
   </Card>
@@ -406,7 +406,7 @@ E.g. in this case, the image scales up on hover of the image
 
 ```jsx
 <Scale motionTriggers={['hover']}>
-  
+
 </Scale>
 ```
 

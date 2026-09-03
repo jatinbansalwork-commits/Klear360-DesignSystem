@@ -300,7 +300,7 @@ const Uncontrolled = () => {
 
 ## Alternative APIs
 
-We [discussed](https://github.com/klear/klear360/pull/1693#discussion_r1345677600) another potential API:
+We discussed another potential API:
 
 ```jsx
 <Tabs>
@@ -383,7 +383,7 @@ The current API that is proposed is also much more familiar and is similar to ho
 Check the motion [prototype](https://www.figma.com/proto/LSG77hEeVYDk7j7WV7OMJE/Klear360-DSL---Components-Guideline?type=design&node-id=4005-31894&t=b3OlPHxPuFH1BAIZ-0&scaling=min-zoom&page-id=3698%3A13772) here.
 
 
-https://github.com/klear/klear360/assets/35374649/8c9d59b1-6f59-42b3-a4c8-a31862479c82
+
 
 
 ## Accessibility

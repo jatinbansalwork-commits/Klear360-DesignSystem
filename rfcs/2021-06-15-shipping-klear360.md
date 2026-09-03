@@ -1,6 +1,6 @@
 ---
 Start Date: 15-06-2021
-RFC PR: https://github.com/klear/klear360/pull/312
+RFC PR:
 Klear360 Issue: NA
 ---
 

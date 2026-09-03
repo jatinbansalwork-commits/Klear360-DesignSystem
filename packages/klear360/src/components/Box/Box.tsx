@@ -18,7 +18,7 @@ const validateBackgroundString = (stringBackgroundColorValue: string): void => {
       stringBackgroundColorValue !== 'transparent'
     ) {
       throwKlear360Error({
-        message: `Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`${stringBackgroundColorValue}\` instead.\n\n Do you have a usecase of using other values? Create an issue on https://github.com/klear/klear360 repo to let us know and we can discuss ✨`,
+        message: `Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`${stringBackgroundColorValue}\` instead.\n\n Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klear360 repo to let us know and we can discuss ✨`,
         moduleName: 'Box',
       });
     }
@@ -198,7 +198,7 @@ const makeBoxProps = (
  *
  * Box components supports most spacing CSS properties like `display`, `padding*`, `flex*`, `height`, `width`, etc.
  *
- *  Check out {@linkcode BoxProps BoxPropsType} for complete list of props and [Layout RFC](https://github.com/klear/klear360/blob/master/rfcs/2023-01-06-layout.md) for more details on API decision.
+ *  Check out {@linkcode BoxProps BoxPropsType} for complete list of props and [Layout RFC](../../../../../rfcs/2023-01-06-layout.md) for more details on API decision.
  *
  * ----
  *

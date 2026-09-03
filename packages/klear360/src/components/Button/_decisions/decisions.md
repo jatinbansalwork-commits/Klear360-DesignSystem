@@ -69,4 +69,4 @@ This will be the Button component that is exposed to our consumers and will be a
 - Scope of A11y?
   - [WAI-ARI Button](https://www.w3.org/TR/wai-aria-practices-1.2/#button)
   - [WAI-ARI Link](https://www.w3.org/TR/wai-aria-practices-1.2/#link)
-  - To be discussed further depending on [A11y RFC](https://github.com/klear/klear360/pull/463) which is in progress
+  - To be discussed further depending on A11y RFC which is in progress

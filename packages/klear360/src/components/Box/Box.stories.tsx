@@ -27,7 +27,7 @@ const BoxStoryMeta = {
       page: () => (
         <StoryPageWrapper
           componentName="Box"
-          apiDecisionLink="https://github.com/klear/klear360/blob/master/rfcs/2023-01-06-layout.md"
+          apiDecisionLink="../../../../../rfcs/2023-01-06-layout.md"
           componentDescription="Box Component from Layout Primitives of Klear360."
           propsDescription="All Box props support responsive objects. Props marked with 💅🏼 next to their names are the props that can also be used as styled-props on other klear360 components. Check out styled-props documentation for more details."
         >

@@ -242,7 +242,7 @@ const meta: Meta<PhoneNumberInputProps> = {
         <StoryPageWrapper
           componentDescription="A phone number input is an input field that allow users to input phone numbers with a keyboard. It supports entering phone numbers from different geographic locations."
           componentName="PhoneNumberInput"
-          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Input/PhoneNumberInput/_decisions/_decisions.md"
+          apiDecisionLink=""
           figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=83906-15584&scaling=scale-down-width&page-id=82637%3A73097&mode=design&t=A1SUVWxe1R52aq58-1"
         >
           <Title>Usage</Title>

@@ -37,13 +37,6 @@ export const themeConfig = {
   inputTextColor: surfaceTextNormal,
   inputBorderRadius: 2,
 
-  // hack for changing height width of brand image
-  brandTitle: `
-    <img
-      width="90px"
-      alt="Klear360 logo"
-      src="https://raw.githubusercontent.com/klear/klear360/348012984e5039265ff8197e73c258ec00c7606e/branding/klear360-logo-name.min.svg"
-    />
-  `,
-  brandUrl: 'https://github.com/klear/klear360',
+  brandTitle: 'Klear360',
+  brandUrl: 'https://github.com/jatinbansalwork-commits/Klear360',
 };

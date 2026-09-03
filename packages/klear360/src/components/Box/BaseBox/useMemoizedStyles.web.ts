@@ -21,7 +21,7 @@ const getMemoDependency = (
   } catch (err: unknown) {
     if (__DEV__) {
       logger({
-        message: `stringification of props failed in BaseBox so falling back to re-calculations on all changes\n\n If you see this warning, please create issue on https://github.com/klear/klear360 as this could degrade runtime styling performance ${err}`,
+        message: `stringification of props failed in BaseBox so falling back to re-calculations on all changes\n\n If you see this warning, please create issue on https://github.com/jatinbansalwork-commits/Klear360 as this could degrade runtime styling performance ${err}`,
         moduleName: 'BaseBox',
         type: 'warn',
       });
@@ -41,7 +41,7 @@ const getMemoDependency = (
  * Without memo, the Box style recalculations will run on things like screen size change or randomly during scroll.
  * With memo, it only runs once for each box and then runs when any of the prop changes
  *
- * Checkout: https://github.com/klear/klear360/pull/1009#discussion_r1113767442 for benchmarks
+ * Checkout:  for benchmarks
  */
 const useMemoizedStyles = (boxProps: BaseBoxProps & { theme: Theme }): CSSObject => {
   const { colorScheme } = useTheme();

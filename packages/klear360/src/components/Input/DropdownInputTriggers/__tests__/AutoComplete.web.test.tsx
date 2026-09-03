@@ -166,7 +166,6 @@ describe('<Dropdown /> with <AutoComplete />', () => {
     expect(queryByRole('listbox')).toBeNull();
   });
 
-  // https://github.com/klear/klear360/issues/1676
   it('should update value when explicitly set in controlled single selection', async () => {
     const ControlledDropdown = (): React.ReactElement => {
       const [currentSelection, setCurrentSelection] = React.useState<string>('');

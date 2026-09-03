@@ -29,11 +29,11 @@ import {
   AnnouncementIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
   AcceptPaymentsIcon,
   MagicCheckoutIcon,
   AwardIcon,
-  KlearXIcon,
+  KlearNowPayIcon,
 } from '@klear/klear360/components';
 import SideNav from './SideNav';
 import { isItemActive, KlearLogo } from './utils';
@@ -164,13 +164,13 @@ const TopNavComponent = (): React.JSX.Element => {
                   {
                     href: '/banking',
                     title: 'Banking',
-                    icon: KlearXIcon,
+                    icon: KlearNowPayIcon,
                     description: 'Manage your banking needs.',
                   },
                   {
                     href: '/payroll',
                     title: 'Payroll',
-                    icon: KlearxPayrollIcon,
+                    icon: KlearNowPayrollIcon,
                     description: 'Automate payroll with ease.',
                   },
                   {

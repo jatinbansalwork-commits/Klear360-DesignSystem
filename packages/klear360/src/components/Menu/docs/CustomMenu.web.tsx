@@ -5,9 +5,9 @@ import { Box } from '~components/Box';
 import {
   BusinessBankingIcon,
   CurrentAccountIcon,
-  KlearXIcon,
+  KlearNowPayIcon,
   PaymentButtonIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   PaymentLinksIcon,
   PaymentPagesIcon,
 } from '~components/Icons';
@@ -55,10 +55,10 @@ const MenuTrigger = React.forwardRef<HTMLButtonElement, { children: string; clas
 const navMenuItems = {
   payments: [
     {
-      icon: PaymentGatewayIcon,
-      name: 'Payment Gateway',
+      icon: ConnectionIcon,
+      name: 'Connections',
       description: 'Payments on your Website & App',
-      href: '/payment-gateway',
+      href: '/connections',
     },
     {
       icon: PaymentLinksIcon,
@@ -81,10 +81,10 @@ const navMenuItems = {
   ],
   banking: [
     {
-      icon: KlearXIcon,
-      name: 'KlearX',
+      icon: KlearNowPayIcon,
+      name: 'KlearNow Pay',
       description: 'Business banking supercharged',
-      href: '/x',
+      href: '/klearnow-pay',
     },
     {
       icon: CurrentAccountIcon,

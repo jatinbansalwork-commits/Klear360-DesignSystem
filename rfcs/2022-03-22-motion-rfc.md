@@ -1,6 +1,6 @@
 ---
 Start Date: 22-03-2022
-RFC PR: https://github.com/klear/klear360/pull/438
+RFC PR:
 Klear360 Issue:
 ---
 
@@ -65,13 +65,13 @@ We can have 2 types of motion while building user interfaces,
 
     *Example: When a user drags a carousel, the carousel slides as per the user's drag.*
 
-    
+
 
 2. **Non-Realtime**: The object's behavior is *post-interactive* i.e it occurs after a user's action, and is transitional.
 
     *Example: When a user taps on a carousel card, it flips over within a set timeframe*
 
-    
+
 
 ## Scope of Motion
 As of this RFC, we will be defining rules of motion only for **Non-Realtime** interactions.
@@ -88,27 +88,27 @@ These are the actions an object on our UI can perform:
 
 1. **Scale**: An object can change it's dimensions (size) in X and Y axis
 
-    
+
 
 3. **Move**: An object can change it's position in X and Y axis
 
-    
+
 
 4. **Fade**: An object can change it's opacity within the range of 0 to 1
 
-    
+
 
 5. **Fill**: An object can change it's color
 
-    
+
 
 6. **Morph**: An object can morph itself into another object
 
-    
+
 
 7. **Rotation**: An object can rotate itself in a range of 0 to 360 degrees
 
-    
+
 
 ## Rules (Tokens) of Motion
 While defining motion for an object transitioning from one state to another, we need to consider the following:
@@ -232,19 +232,19 @@ We can represent this as a bezier function `cubic-bezier(0.42, 0, 0.58, 1)` and 
   > All of the following easings are for the `standard` intent
   - **Effective**:
 
-    
+
 
   - **Revealing**:
 
-    
+
 
   - **Attentive**:
 
-    
+
 
   - **Wary**:
 
-    
+
 
 Here is the **list of tokens** that we will store in Klear360 for `Easing`:
 ```js
@@ -604,7 +604,7 @@ Eg) Multi-step keyframe
 # References
 - https://shengbanx.gitbooks.io/motion-system/content/chapter2.html
 - https://www.joshwcomeau.com/animation/css-transitions
-- [Klear Motion Design team's research](https://github.com/klear/klear360/pull/325)
+- Klear Motion Design team's research
 - https://formidable.com/blog/2021/reanimated-two/
 - https://blog.swmansion.com/introducing-reanimated-2-752b913af8b3
 - https://docs.swmansion.com/react-native-reanimated/docs

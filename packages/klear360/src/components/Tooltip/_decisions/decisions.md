@@ -144,13 +144,13 @@ To make FloatingUI work with Klear360 components seamlessly there are few things
   - onTouchStart
   - onTouchEnd
 
-2. Expose the actual DOM node from ref instead of only exposing [certain methods via our useKlear360InnerRef](https://github.com/klear/klear360/blob/69a1bcef2f09ceaf6f910eaaca3076055fb059a2/packages/klear360/src/hooks/useKlear360InnerRef.web.ts#L26-L27) hook which we used to prevent component styling misuses. We need to expose the actual DOM node because FloatingUI internally does this [isElement check](https://github.com/floating-ui/floating-ui/blob/b8990250568043b876e1c8fe42358fe337847ede/packages/react/src/hooks/useFloating.ts#L59) on the tooltip trigger element.
+2. Expose the actual DOM node from ref instead of only exposing certain methods via our useKlear360InnerRef hook which we used to prevent component styling misuses. We need to expose the actual DOM node because FloatingUI internally does this [isElement check](https://github.com/floating-ui/floating-ui/blob/b8990250568043b876e1c8fe42358fe337847ede/packages/react/src/hooks/useFloating.ts#L59) on the tooltip trigger element.
 
 </details>
 
 ## Motion
 
-https://github.com/klear/klear360/assets/35374649/6ad26074-dad7-4076-95e3-c0ae073afcc8
+
 
 You can check the [Tooltip motion here](https://www.figma.com/proto/LSG77hEeVYDk7j7WV7OMJE/Klear360-DSL---Components-Guideline?type=design&node-id=629-881474&scaling=min-zoom&page-id=175%3A811766).
 
@@ -192,13 +192,13 @@ There are certain cases where long press makes sense and certain places where im
 
 Google interactive icons, a search icon button might be clickable which shows a search input on clicked, but on long pressing it shows a tooltip.
 
-https://github.com/klear/klear360/assets/35374649/51b8db65-7c46-4d7b-b388-61ab4fae8727
+
 
 **Immediately press (Klear icon tooltip):**
 
 Immediately shows tooltip on clicking on the icon for more info.
 
-https://github.com/klear/klear360/assets/35374649/612a96b9-34e1-492b-8e81-e04b896d79db
+
 
 Immediate tooltips makes sense when the tooltip trigger doesn't do any extra action on clicking, for example imagine in that search icon button if an immediate tooltip is used the tooltip will never have a chance to show up since the screen changes and it opens a new dialog/page.
 

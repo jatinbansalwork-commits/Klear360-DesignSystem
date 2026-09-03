@@ -1,6 +1,6 @@
 ---
 Start Date: 08-11-2023
-RFC PR: https://github.com/klear/klear360/pull/1803
+RFC PR:
 Klear360 Issue:
 ---
 
@@ -126,9 +126,9 @@ Example: https://stackblitz.com/~/github.com/example/klear360-self-hosted-font
 
 <!-- #### Difference between loading fonts without preload and with preload
 
-https://github.com/klear/klear360/assets/30949385/b2b12cbe-2c93-4af9-bc7f-7b94ed36b90b
 
-https://github.com/klear/klear360/assets/30949385/d468cfc1-c1a9-44ad-9d85-a3ea37320ce7 -->
+
+ -->
 
 #### 2. Self Hosted: Using CSS Imports from Klear360 (✅ Preferred)
 

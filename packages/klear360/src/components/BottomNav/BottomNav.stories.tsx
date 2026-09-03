@@ -16,7 +16,7 @@ import {
   HomeIcon,
   MenuDotsIcon,
   PaymentButtonIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
   KlearIcon,
@@ -80,7 +80,7 @@ const bottomNavItems = [
   {
     title: 'Payments',
     href: '/payments',
-    icon: PaymentGatewayIcon,
+    icon: ConnectionIcon,
   },
   {
     title: 'Transactions',

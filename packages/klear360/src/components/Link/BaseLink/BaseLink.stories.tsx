@@ -14,7 +14,7 @@ export default {
     onClick: (event): void => {
       console.log('clicked', event);
     },
-    href: 'https://github.com/klear/klear360',
+    href: 'https://github.com/jatinbansalwork-commits/Klear360',
     target: '_blank',
     rel: 'noreferrer noopener',
     contrast: 'low',

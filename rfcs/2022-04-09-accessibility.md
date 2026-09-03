@@ -715,7 +715,7 @@ const props = makeAccessible({
 }
 ```
 
-> See implementation [pull request for makeAccessible](https://github.com/klear/klear360/pull/481)
+> See implementation pull request for makeAccessible
 
 ### Hidden Content
 
@@ -923,12 +923,12 @@ Automated accessibility tools only [pick up around 40% of errors automatically](
 
 # Actionable Items
 
-- [x] Implement and decide upon which 3rd party library to use for [roving tabindex pattern.](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--1)
-- [x] Implement [`<SkipNavigation />` component.](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--2)
-- [ ] Implement proper [focus rings & keyboard only focus rings.](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--3)
-- [x] Implement and decide upon [focus trapping methods.](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--4)
-- [x] Implement [`makeAccessible` compatibility layer](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--5) for aria attributes.
-- [ ] Implement [live regions & `announce()` utilties](https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--6) for dynamic content announcements.
+- [x] Implement and decide upon which 3rd party library to use for [roving tabindex pattern.](./2022-04-09-accessibility.md#platform-specific-implementation--1)
+- [x] Implement [`<SkipNavigation />` component.](./2022-04-09-accessibility.md#platform-specific-implementation--2)
+- [ ] Implement proper [focus rings & keyboard only focus rings.](./2022-04-09-accessibility.md#platform-specific-implementation--3)
+- [x] Implement and decide upon [focus trapping methods.](./2022-04-09-accessibility.md#platform-specific-implementation--4)
+- [x] Implement [`makeAccessible` compatibility layer](./2022-04-09-accessibility.md#platform-specific-implementation--5) for aria attributes.
+- [ ] Implement [live regions & `announce()` utilties](./2022-04-09-accessibility.md#platform-specific-implementation--6) for dynamic content announcements.
 - [x] Implement `<VisuallyHidden />` component for [hidden content](#hidden-content)
 - [ ] Ensure each component adhers to the [WAI-ARIA Authoring Pratices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/)
 - [ ] Ensure general accessibility guidelines are followed while building klear360 components, we discussed best practices for each category:

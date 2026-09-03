@@ -19,7 +19,7 @@ export default {
     lineHeight: 200,
     name: 'Storybook',
     children:
-      'Current Accounts supercharged by KlearX come with integrated tools and integrations that make financial management and accounting simple',
+      'Current Accounts supercharged by KlearNow Pay come with integrated tools and integrations that make financial management and accounting simple',
   },
   parameters: {
     docs: {

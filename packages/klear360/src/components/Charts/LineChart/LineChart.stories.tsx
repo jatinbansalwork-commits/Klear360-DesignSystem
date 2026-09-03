@@ -24,7 +24,7 @@ const Page = (): React.ReactElement => {
       componentName="LineChart"
       componentDescription="A Line Chart component built on top of Recharts with Klear360 design system styling."
       figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=93596-46375&m=dev"
-      apiDecisionLink="https://github.com/klear/klear360/blob/5920fbd32c70793454f8c8c6ff544b2a7413afb5/packages/klear360/src/components/Charts/_decisions/decisions.md"
+      apiDecisionLink="../_decisions/decisions.md"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

@@ -40,7 +40,7 @@ Type of `children: React.ReactNode`
 ```
 <BaseText>
 	<BaseText weight="bold">Current <BaseText/>
-	  Accounts supercharged by KlearX come with integrated tools and integrations that make financial management and accounting simple
+	  Accounts supercharged by KlearNow Pay come with integrated tools and integrations that make financial management and accounting simple
 </BaseText>
 ```
 

@@ -141,7 +141,7 @@ const AccordionItem = ({
           />
           <CollapsibleBody
             // Just React Native things, need this 100% so collapsed content flows correctly inside Accordion
-            // In new API, AccordionItemBody takes 100% width to avoid issues like this - https://github.com/klear/klear360/pull/1814
+            // In new API, AccordionItemBody takes 100% width to avoid layout issues
             width={isReactNative() || !isDeprecatedAPI ? '100%' : undefined}
           >
             {isDeprecatedAPI ? (

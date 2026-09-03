@@ -10,7 +10,7 @@ import {
   ChevronDownIcon,
   HomeIcon,
   MagicCheckoutIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
 } from '~components/Icons';
 import { Menu, MenuItem, MenuOverlay } from '~components/Menu';
 import { Text } from '~components/Typography';
@@ -26,7 +26,7 @@ const TabNavExample = ({ items }: { items?: TabNavProps['items'] }): React.React
           {
             href: '/payroll',
             title: 'Payroll',
-            icon: KlearxPayrollIcon,
+            icon: KlearNowPayrollIcon,
             description: 'Automate payroll with ease.',
           },
           {
@@ -174,7 +174,7 @@ export const ShouldNotShowMore: StoryFn<typeof TabNav> = (): React.ReactElement 
     <TabNavExample
       items={[
         { title: 'Home', href: '/home', icon: HomeIcon },
-        { title: 'Payroll', href: '/payroll', icon: KlearxPayrollIcon },
+        { title: 'Payroll', href: '/payroll', icon: KlearNowPayrollIcon },
         { title: 'Payments', href: '/payments', icon: AcceptPaymentsIcon },
       ]}
     />

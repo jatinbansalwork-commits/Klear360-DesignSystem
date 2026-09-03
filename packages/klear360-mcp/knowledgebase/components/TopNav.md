@@ -193,7 +193,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   AcceptPaymentsIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
   ShoppingBagIcon,
   AwardIcon,
 } from '@klear/klear360/components';
@@ -259,7 +259,7 @@ const AppNavigation = () => {
     {
       title: 'Payroll',
       href: '/payroll',
-      icon: KlearxPayrollIcon,
+      icon: KlearNowPayrollIcon,
       description: 'Automate payroll with ease.',
     },
     {

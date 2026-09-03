@@ -254,7 +254,7 @@ describe('<TextArea />', () => {
   });
 
   it('should pass a11y', () => {
-    // todo: tests should be updated for improved a11y after https://github.com/klear/klear360/issues/696
+    // todo: tests should be updated for improved a11y
     const placeholder = 'First Last';
     const { getByPlaceholderText } = renderWithTheme(
       <TextArea

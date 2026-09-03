@@ -63,7 +63,7 @@ describe('<Box />', () => {
       expect(err).toMatchInlineSnapshot(`
         [Error: [Klear360: Box]: Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`red\` instead.
 
-         Do you have a usecase of using other values? Create an issue on https://github.com/klear/klear360 repo to let us know and we can discuss ✨]
+         Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klear360 repo to let us know and we can discuss ✨]
       `);
     }
     console.error = tempConsoleError;
@@ -112,7 +112,6 @@ describe('<Box />', () => {
     expect(getByTestId(testId)).toHaveProp('id', id);
   });
 
-  // https://github.com/klear/klear360/issues/1624
   it('should apply borderBottomColor prop to border bottom only', () => {
     const { toJSON } = renderWithTheme(
       <Box borderBottomColor="surface.border.gray.normal">I am Visible</Box>,

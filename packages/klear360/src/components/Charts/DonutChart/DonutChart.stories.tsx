@@ -19,7 +19,7 @@ const Page = (): React.ReactElement => {
       componentName="DonutChart"
       componentDescription="A Donut component built on top of Recharts with Klear360 design system styling."
       figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=93596-50164&m=dev"
-      apiDecisionLink="https://github.com/klear/klear360/tree/master/packages/klear360/src/components/Charts/_decisions"
+      apiDecisionLink="../_decisions"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

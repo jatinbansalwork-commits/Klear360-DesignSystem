@@ -83,7 +83,7 @@ const steps = [
 The `SpotlightPopover` component is used to render a guided tour with multiple steps.
 Each tour `step` will have a subset of props from the `Popover` component, with extra props for the tour related logic.
 
-> Check the Popover API Decisions [here](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Popover/_decisions/decisions.md)
+> Check the Popover API Decisions [here](../../Popover/_decisions/decisions.md)
 
 ```jsx
 // Step will have similar props as the Popover component, With extra SpotlightPopover related props.
@@ -336,7 +336,7 @@ const DashboardPage =  => {
 
 Check/Provide feedback for the motion for SpotlightPopover component here
 
-https://github.com/klear/klear360/assets/35374649/5830c059-fbd6-461e-915c-e3a98e930735
+
 
 ---
 
@@ -438,7 +438,7 @@ Jordan suggested few ways to directly use the `ref` and letting consumer attach 
 
 And on the web, there was a problem that even though simply adding `id` could work, not all our components had `id` prop. That means consumers will have to wrap everything with a `Box`.
 
-- We decided **not** to go with the `id` approach on web, and instead go with the same implementation as the [react-native POC](https://github.com/klear/klear360/compare/master...anu/tour-rn-poc#diff-4fe985a90d9ce955346ffc61e152a98272f4d02e044111d30241eb63c8fcf1b1R168-R183), where we keep track of refs of the elements via the `SpotlightPopoverStep` component.
+- We decided **not** to go with the `id` approach on web, and instead go with the same implementation as the react-native POC, where we keep track of refs of the elements via the `SpotlightPopoverStep` component.
   - Pros:
     - API is now same on both RN & Web
     - No need to wrap everything with Box, consumers can use the SpotlightPopoverStep enhancer component.
@@ -448,7 +448,7 @@ And on the web, there was a problem that even though simply adding `id` could wo
 
 The `SpotlightPopover` component needs to wrap the whole app, because the `SpotlightPopoverStep` needs to collect the `ref` of the element that needs to be highlighted and save it to the state inside the `SpotlightPopover` component.
 
-Check the POC implementation that we did for react-native [here](https://github.com/klear/klear360/compare/master...anu/tour-rn-poc#diff-4fe985a90d9ce955346ffc61e152a98272f4d02e044111d30241eb63c8fcf1b1R168-R183)
+Check the POC implementation that we did for react-native here
 
 **Conclusion:**
 
@@ -702,7 +702,7 @@ We will have to ask consumers to modify their code to use the new design, which 
 
 Finally, react-native projects will have to have a vastly different API for their tour flows.
 
-We did a [POC for react-native](https://github.com/klear/klear360/compare/master...anu/tour-rn-poc#diff-4fe985a90d9ce955346ffc61e152a98272f4d02e044111d30241eb63c8fcf1b1R332-R401) to see if it's possible to compose the existing `Popover` component to create a tour flow, but turns out there are a lot of challenges in doing so.
+We did a POC for react-native to see if it's possible to compose the existing `Popover` component to create a tour flow, but turns out there are a lot of challenges in doing so.
 
 - While on [web](https://codesandbox.io/s/popover-guided-tour-g2r8hw) it was still possible to chain multiple `Popover` components to create a tour flow, on react-native it's not possible because on RN iOS it's not possible to have [multiple `Modal`](https://github.com/react-native-modal/react-native-modal/issues/30) components open at the same time.
 - Consumers will have to take a different approach to get the Mask working on react-native, because there is no `id` prop or `getElementById` platform API like web which can be used to simply query the element and highlight it.
@@ -794,8 +794,8 @@ Also discussed if we can cut scope for now, since I'm going OOO from 11th, it wo
 
 Our POCs:
 
-- [SpotlightPopover Web POC](https://github.com/klear/klear360/compare/master...anu/tour-poc#diff-4fe985a90d9ce955346ffc61e152a98272f4d02e044111d30241eb63c8fcf1b1R198)
-- [SpotlightPopover RN POC](https://github.com/klear/klear360/compare/master...anu/tour-rn-poc#diff-4fe985a90d9ce955346ffc61e152a98272f4d02e044111d30241eb63c8fcf1b1R203)
+- SpotlightPopover Web POC
+- SpotlightPopover RN POC
 
 References:
 

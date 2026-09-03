@@ -186,7 +186,7 @@ export default {
       page: () => (
         <StoryPageWrapper
           componentName="OTPInput"
-          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Input/OTPInput/_decisions/_decisions.md"
+          apiDecisionLink="./_decisions/_decisions.md"
           componentDescription="A one-time password (OTP), also known as a one-time PIN, one-time authorization code (OTAC) or dynamic password, is a password that is valid for only one login session or a transaction. These are a group of inputs and can be either 4 or 6 characters long."
           figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=76077-81363&t=kxYCFAmMWz6sMy04-1&scaling=min-zoom&page-id=10953%3A180623&mode=design"
         >

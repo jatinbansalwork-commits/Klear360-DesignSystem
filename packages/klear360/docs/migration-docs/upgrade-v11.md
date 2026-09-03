@@ -52,7 +52,7 @@ npx jscodeshift ./PATH_TO_YOUR_DIR --extensions=tsx,ts,jsx,js -t ./node_modules/
   + <Text color="UPDATE_THIS_VALUE_WITH_A_NEW_COLOR_TOKEN"> Lorem ipsum </Text>
   ```
 
-- In a move towards internationalization, the default formatting of number in Amount component has now changed. It relies on locale state managed by [@klear/i18n](https://www.npmjs.com/package/@klear/i18n) library and fallbacks to browser locale to drive formatting. To maintain the previous formatting experience of the Amount component, ensure you follow the steps outlined in this [section](https://github.com/klear/klear360/blob/master/packages/klear360/upgrade-v11.md#amount).
+- In a move towards internationalization, the default formatting of number in Amount component has now changed. It relies on locale state managed by [@klear/i18n](https://www.npmjs.com/package/@klear/i18n) library and fallbacks to browser locale to drive formatting. To maintain the previous formatting experience of the Amount component, ensure you follow the steps outlined in this [section](./upgrade-v11.md#amount).
 
 **Step 5**: Test your page and make sure everything works as expected. Once the migration is complete for all pages, you can remove the old version of Klear360 from your project.
 

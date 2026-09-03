@@ -3,7 +3,7 @@ import { BottomNav, BottomNavItem } from '.';
 import iconMap from '~components/Icons/iconMap';
 import {
   PaymentButtonIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
   TransactionsIcon,
@@ -43,7 +43,7 @@ const bottomNavItems = [
   {
     title: 'Payments',
     href: '/payments',
-    icon: PaymentGatewayIcon,
+    icon: ConnectionIcon,
   },
   {
     title: 'Transactions',

@@ -189,7 +189,7 @@ const SelectContent =  => {
 
 **Problems with this Approach:**
 
-- This approach is very tricky & the [DX not very good](https://github.com/klear/klear360/pull/1002#discussion_r1116748930) for end consumers.
+- This approach is very tricky & the DX not very good for end consumers.
 - It also has UX issues because the lazy loaded component needs a suspense boundary with a fallback, which users will need to handle.
     - Users will either need to use a <Spinner /> or <Skeleton />
 
@@ -197,7 +197,7 @@ Seeing the cons of this approach we need to reconsider if it’s worth saving fe
 
 **Notable thing to consider (Bundle Size Note):**
 
-As Alex mentioned in [this comment](https://github.com/klear/klear360/pull/1002#discussion_r1122601498),
+As Alex mentioned in this comment,
 
 In this API, we're using <Dropdown /> so it will anyways add the Dropdown's bundle + the BottomSheet’s bundle.
 
@@ -243,11 +243,11 @@ In this API the idea is that you don’t even import anything from Dropdown. Eve
 
 **Cons**
 
-- BottomSheet’s trigger state will be [tied to the SelectInput](https://github.com/klear/klear360/blob/c994b0e7e827d8734d2e1d6b62c708bb1121e22b/packages/klear360/src/components/Input/SelectInput/SelectInput.tsx#L107), but since the BottomSheet can also be used as an independent component (can be used without SelectInput or ActionList) users will loose the ability to just open the BottomSheet with any other means, eg: clicking on a button.
+- BottomSheet’s trigger state will be tied to the SelectInput, but since the BottomSheet can also be used as an independent component (can be used without SelectInput or ActionList) users will loose the ability to just open the BottomSheet with any other means, eg: clicking on a button.
 - This approach also doesn’t solve the bundle size issue because SelectInput itself imports all the utilities related to `useDropdown`
 - Will need to copy-paste/rewrite most of the state management logic into BottomSheet since SelectInput relies on that logic to render “3 items select” label, trigger the `onChange` handler, open/close the dropdown & the ActionList also relies on that state to render & update:
-    - Need to handle [single-select / multi-select state](https://github.com/klear/klear360/blob/c994b0e7e827d8734d2e1d6b62c708bb1121e22b/packages/klear360/src/components/Dropdown/useDropdown.ts#L182-L214) inside BottomSheet
-    - The ActionList also [needs to be aware](https://github.com/klear/klear360/blob/c994b0e7e827d8734d2e1d6b62c708bb1121e22b/packages/klear360/src/components/ActionList/ActionListItem.tsx#L210) that BottomSheet is now the state manager
+    - Need to handle [single-select / multi-select state](../../Dropdown/useDropdown.ts#L182-L214) inside BottomSheet
+    - The ActionList also [needs to be aware](../../ActionList/ActionListItem.tsx#L210) that BottomSheet is now the state manager
     - BottomSheet will now also need the props of Dropdown (eg: selectionType)
 
 This interdependency & relation between Dropdown/BottomSheet/Select/ActionList is growing, The BottomSheet will become tied to SelectInput & Dropdown.
@@ -342,7 +342,7 @@ That in mweb ternary check the BottomSheet is replacing the <DropdownOverlay />,
 The BottomSheet only handles open/closing, dragging gestures state.
 The ActionList “Just works™️” because it’s already rendered inside of Dropdown and can access the `useDropdown`’s context.
 
-Only thing we do inside BottomSheet other than that is [sync the state of the](https://github.com/klear/klear360/blob/a457f466027e351a945ca5cfa3857d0c97f00b40/packages/klear360/src/components/BottomSheet/BottomSheet.tsx#L151) `isOpen` from Dropdown component to the BottomSheet that’s all.
+Only thing we do inside BottomSheet other than that is sync the state of the `isOpen` from Dropdown component to the BottomSheet that’s all.
 This way the BottomSheet becomes independent from the state of the Dropdown and can also be used in otherplaces without the bundle burden of the `useDropdown`
 
 ---

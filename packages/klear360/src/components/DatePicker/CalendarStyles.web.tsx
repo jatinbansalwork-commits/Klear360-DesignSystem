@@ -103,7 +103,7 @@ const CalendarGradientStyles = styled(BaseBox)<{ date: Date; isRange: boolean }>
     const cal1LastDay = cal1.endOf('month');
     // Check if the first and last day of the month are at the start or end of the week
     // If so, we don't apply the gradient, as it will overflow to the previous or next month
-    // Eg: https://github.com/klear/klear360/assets/35374649/025b8ed9-90b4-49b6-a307-a746ae5b910f
+    // Eg:
     const cal1IsFirstDayStartOfTheWeek = cal1FirstDay.day() === 0;
     const cal1IsLastDayEndOfTheWeek = cal1LastDay.day() === 6;
 

@@ -94,7 +94,7 @@ export const bottomNavWithReactRouter = {
   }
   `,
   'bottomNavItems.ts': dedent`import {
-    PaymentGatewayIcon,
+    ConnectionIcon,
     TransactionsIcon,
     PaymentLinkIcon,
     PaymentPagesIcon,
@@ -105,7 +105,7 @@ export const bottomNavWithReactRouter = {
     {
       title: 'Payments',
       href: '/',
-      icon: PaymentGatewayIcon,
+      icon: ConnectionIcon,
     },
     {
       title: 'Transactions',

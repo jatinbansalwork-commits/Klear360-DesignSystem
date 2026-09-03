@@ -27,7 +27,7 @@ describe('<Accordion />', () => {
   });
 
   // Skipped because `useId` is rendering different internal ids for `aria-controls`
-  // GitHub issue- https://github.com/klear/klear360/issues/2072
+
   it.skip('should render Deprecated API of Accordion on server', () => {
     const { container } = renderWithSSR(
       <Accordion>

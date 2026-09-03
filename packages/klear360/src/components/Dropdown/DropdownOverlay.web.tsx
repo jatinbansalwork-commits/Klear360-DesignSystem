@@ -66,7 +66,7 @@ const _DropdownOverlay = ({
     elements: {
       // Input triggers have their ref on internal input element but we want width height of overall visible input hence wrapperRef is needed
       // We fallback to use `triggererRef` for triggers like button and link where wrapper is not needed
-      // Checkout: https://github.com/klear/klear360/pull/1559#discussion_r1305438920
+      // Checkout:
       reference: (referenceRef?.current ??
         triggererWrapperRef.current ??
         triggererRef.current) as Element,

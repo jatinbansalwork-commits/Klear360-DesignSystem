@@ -178,7 +178,7 @@ const Caption = styled.div`
 Now there are couple of problem with this:
 1. How do I make this work on web and mobile since I've hardcoded desktop?
 2. Even if somehow I'm able to make the selection of platform(desktop/mobile) key dynamic then also it's not necessary that my `Caption` component will have same scale of font-size on desktop and mobile(keeping accessibility in mind). For eg: Imagine my value for font-size scale at 1200 is 32px and on mobile it's 40px. It'll just make my UI look bigger on mobile as it's not 1:1 mapping.
-> We have different font scale for mobile and desktop. Mobile has multiplicative factor of 1.1 and Desktop follows 1.125. Read more about it [here](https://github.com/klear/klear360/blob/master/rfcs/2021-01-05-typography-scaling.md#introduction)
+> We have different font scale for mobile and desktop. Mobile has multiplicative factor of 1.1 and Desktop follows 1.125. Read more about it [here](./2021-01-05-typography-scaling.md#introduction)
 
 To fix the above problem we need some sort of layer or logic in between which will solve this problem. Here's one approach.
 

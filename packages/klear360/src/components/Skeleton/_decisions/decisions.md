@@ -156,7 +156,7 @@ const App = () => {
 
 Check the motion [here](https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360---Payment-Light?type=design&node-id=16502-258345&scaling=min-zoom&page-id=16498%3A256331):
 
-https://github.com/klear/klear360/assets/35374649/8298efde-f977-4aa3-bc2d-92fb50a8c830
+
 
 
 ## Accessibility

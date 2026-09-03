@@ -307,8 +307,8 @@ import {
 | PaymentButtonIcon | Klear product icon for payment buttons |
 | PaymentButtonFilledIcon | Filled variant of PaymentButtonIcon |
 | PaymentButtonsIcon | Klear product icon for payment buttons (alternate) |
-| PaymentGatewayIcon | Icon for a connected service or integration |
-| PaymentGatewayFilledIcon | Filled variant of PaymentGatewayIcon |
+| ConnectionIcon | Icon for a connected service or integration |
+| ConnectionFilledIcon | Filled variant of ConnectionIcon |
 | PaymentLinkIcon | Klear product icon for payment links |
 | PaymentLinkFilledIcon | Filled variant of PaymentLinkIcon |
 | PaymentLinksIcon | Klear product icon for payment links (alternate) |
@@ -349,9 +349,9 @@ import {
 | RadioIcon | Radio/broadcast for streaming |
 | RayIcon | Klear Ray product icon |
 | KlearIcon | Klear logo |
-| KlearXIcon | KlearX business banking product logo |
-| KlearxPayrollIcon | Klear Payroll product icon |
-| KlearxPayrollFilledIcon | Filled variant of KlearxPayrollIcon |
+| KlearNowPayIcon | KlearNow Pay product logo |
+| KlearNowPayrollIcon | Klear payroll product icon |
+| KlearNowPayrollFilledIcon | Filled variant of KlearNowPayrollIcon |
 | RefreshIcon | Circular arrows for refresh/reload |
 | RepeatIcon | Repeat/loop arrows for repeating actions |
 | ReportsIcon | Document with chart for reports and analytics |

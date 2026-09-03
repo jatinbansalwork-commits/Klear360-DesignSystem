@@ -1,12 +1,7 @@
 import { Link, MemoryRouter, useLocation, matchPath } from 'react-router-dom';
 import { BottomNavItem, BottomNav } from '../index';
 import type { BottomNavItemProps, BottomNavProps } from '../index';
-import {
-  MenuDotsIcon,
-  PaymentGatewayIcon,
-  PaymentLinkIcon,
-  TransactionsIcon,
-} from '~components/Icons';
+import { MenuDotsIcon, ConnectionIcon, PaymentLinkIcon, TransactionsIcon } from '~components/Icons';
 
 const isItemActive = (
   location: { pathname: string },
@@ -46,7 +41,7 @@ const bottomNavItems = [
   {
     title: 'Payments',
     href: '/payments',
-    icon: PaymentGatewayIcon,
+    icon: ConnectionIcon,
   },
   {
     title: 'Transactions',

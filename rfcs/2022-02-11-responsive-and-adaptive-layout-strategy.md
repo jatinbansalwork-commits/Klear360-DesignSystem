@@ -46,9 +46,9 @@ Klear360 Issue: (leave this empty if no issue yet)
 There are multiple strategies to render content on devices with different screen resolutions. Modern web design gives us three options: Responsive, Adaptive, and Standalone Design. Of these, standalone is rarely used because of the overhead of maintaining multiple codebase and their development lifecycle. Hence, we would just be focussing on Adaptive and Responsive.
 
 1. Responsive - Make the content fluid so it'll render based on the available space
-   
+
 2. Adaptive - Make content targeted for specific screen sizes so it'll render exactly like that, regardless of the available space.
-   
+
 
 This RFC will focus on what approach and strategies we shall take in our Design System.
 
@@ -102,7 +102,7 @@ We'll basically define the approach and strategy we'll be taking in Klear360 to 
 - Responsive uses [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to change styles based on the target device such as display `type`, `width`, `height`, etc., and only one of these is necessary for the site to adapt to different screens.
 - Ensuring that elements fit within a page is not enough. For a responsive design to be successful, the design must also be usable at all screen resolutions and sizes.
   - An example of fluid search field which shrinks/grows based on screen width but isn't usable enough.
-    
+
 
 ### Pros and Cons of Responsive Design
 
@@ -190,7 +190,7 @@ After doing some research and aligning it with our uses cases at Klear, I propos
 ### 2. Components that can give some flexibility to handle Responsiveness to consumers
 
 - While most of the components can handle responsiveness internally there are use cases for components where we would need to give flexibility to accept responsive values for certain props. For eg: Layout Components that handles the overall layout of the page might change the layout on different screen sizes based on the available space.
-  
+
 - The idea here is to have certain components that deal with Layout of the page expose some flexibility to consumers to tweak if they want the layout to look different on different screen sizes
 
 ### 3. Components for Adaptive layout(rendering components conditionally)
@@ -198,10 +198,10 @@ After doing some research and aligning it with our uses cases at Klear, I propos
 - After handling responsiveness internally and also giving flexibility for few scenarios there are still few complex cases that we need to handle:
 
   - There are cases where we might need to render a completely different variation of a component based on the screen size and user experience. For eg: A Search Field component might be different for larger screen sizes and smaller screen sizes.
-    
+
 
   - Another example is to show and hide certain elements based on the screen size so that we can optimise for user experience for each screen size
-    
+
 
 - The idea here is to make it feasible for consumers to handle these kind of complex use cases with ease, maybe with a set of predefined components and APIs.
 
@@ -221,8 +221,8 @@ After doing some research and aligning it with our uses cases at Klear, I propos
 - We would then need to add a listener in the `Klear360Provider` which will listen to screen size changes and trigger a layout change.
 
 - For handling typography for different screen sizes we already have 2 scales one for smaller screens which are less than `960px` and the other for larger screens which are greater than `960px`. Now, once the screen size changes, the above listener would trigger a state change and then we can listen to it and swap the scales between small and large screens.
-- The typography will scale in segments. Which means if `h1` at `1440px` is `40px`, then at `960px` it will become `32px` directly rather than going from `40px` ➡️ `38px` ➡️ `36px` ➡️ `34px` ➡️ `32px`. You can read more about it in our [Typography Scaling RFC](https://github.com/klear/klear360/blob/master/rfcs/2021-01-05-typography-scaling.md)
-- The obvious question that might come to your mind is that what happens to the content after a breakpoint. For eg: after say `960px` the mobile typography scale would be picked up by the system but there are mobile devices who have resolutions ranging from `320px`, `480px`, `760px`, `960px` so won't the mobile typography scale look too small on say `760px` screen width device? Well, that's the reason we have kept the units of typography to be `rems` so it can adjust to these use cases based on resolutions, browsers font size, etc. This will also handle use cases for high resolution mobile screens for eg: iPhone 12. You can [read more about that in our RFC about units for layout and typography](https://github.com/klear/klear360/blob/master/rfcs/2021-02-19-units-for-typography-and-layout.md#what-will-work-for-us)
+- The typography will scale in segments. Which means if `h1` at `1440px` is `40px`, then at `960px` it will become `32px` directly rather than going from `40px` ➡️ `38px` ➡️ `36px` ➡️ `34px` ➡️ `32px`. You can read more about it in our [Typography Scaling RFC](./2021-01-05-typography-scaling.md)
+- The obvious question that might come to your mind is that what happens to the content after a breakpoint. For eg: after say `960px` the mobile typography scale would be picked up by the system but there are mobile devices who have resolutions ranging from `320px`, `480px`, `760px`, `960px` so won't the mobile typography scale look too small on say `760px` screen width device? Well, that's the reason we have kept the units of typography to be `rems` so it can adjust to these use cases based on resolutions, browsers font size, etc. This will also handle use cases for high resolution mobile screens for eg: iPhone 12. You can [read more about that in our RFC about units for layout and typography](./2021-02-19-units-for-typography-and-layout.md#what-will-work-for-us)
 
 ### On Consumer Code Side
 
@@ -267,7 +267,7 @@ export default Dashboard;
 **3. Components for Adaptive layout(rendering components conditionally)**
 
 - Consider, if we want to implement a layout similar to the below mockup where we have 2 different search inputs for different screens of the same web app.
-  
+
 
   <br/>
 
@@ -312,7 +312,7 @@ export default Dashboard;
   ```
 
 - Consider, another example where we want to show and hide bunch of components based on different screen sizes.
-  
+
 
   <br/>
 
@@ -463,7 +463,7 @@ But we can surely keep this approach into consideration and while this RFC is mo
 
 This is only for layout components. We aren't supporting multiple ways of achieving same things.
 
-So if you [read here](https://github.com/klear/klear360/pull/416/files#diff-f4d103560de689c11de7f41e8dbd9106c41e45f89247d0d2508f9150040c463dR85)
+So if you read here
 
 We say:
 

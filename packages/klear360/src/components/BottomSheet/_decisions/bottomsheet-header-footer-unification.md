@@ -261,7 +261,7 @@ After discussing with Rastogi, this is 1:1 with how figma does it
 />
 ```
 
-[Consult 7 other APIs which we discussed in Card](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Card/_decisions/decisions.md#alternative-apis)
+[Consult 7 other APIs which we discussed in Card](../../Card/_decisions/decisions.md#alternative-apis)
 
 ### BottomSheet Footer
 

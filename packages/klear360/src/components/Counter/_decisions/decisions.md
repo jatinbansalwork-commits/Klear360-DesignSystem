@@ -37,7 +37,7 @@ import { Counter } from '@klear/components';
 
 ## Open Questions
 
-- Similar to badge's [discussion around](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Badge/_decisions/decisions.md#variant-prop) naming the `intent` prop `variant` should we call it `variant`?
+- Similar to badge's [discussion around](../../Badge/_decisions/decisions.md#variant-prop) naming the `intent` prop `variant` should we call it `variant`?
 
 ## References
 

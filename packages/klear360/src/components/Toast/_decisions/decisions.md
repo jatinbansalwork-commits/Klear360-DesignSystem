@@ -263,5 +263,5 @@ You can checkout the toast motion [here](https://www.figma.com/proto/jubmQL9Z8V7
 
 - Q. Should we keep the ToastContainer inside Klear360Provider?
 
-  The problem is if we keep it inside Klear360Provider, given our new light/dark mode setup where consumers will need to nest Klear360Providers it would cause ToastContainer to render [multiple times](https://github.com/klear/klear360/pull/1990#discussion_r1470796627).
+  The problem is if we keep it inside Klear360Provider, given our new light/dark mode setup where consumers will need to nest Klear360Providers it would cause ToastContainer to render multiple times.
   - A. We will expose ToastContainer, so that users can render it at the root level of their app regardless of where Klear360Provider is.
