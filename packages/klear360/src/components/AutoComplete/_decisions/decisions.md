@@ -29,10 +29,10 @@ _This is a list of unique props to AutoComplete, apart from these all common inp
 
 #### Related Component APIs
 
-- [SelectInput](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/decisions.md#selectinput)
-- [Dropdown](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/decisions.md#dropdown)
-- [ActionList](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/decisions.md#actionlist)
-- [Controlled Dropdown](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/controlled-dropdown.md)
+- [SelectInput](../../Dropdown/_decisions/decisions.md#selectinput)
+- [Dropdown](../../Dropdown/_decisions/decisions.md#dropdown)
+- [ActionList](../../Dropdown/_decisions/decisions.md#actionlist)
+- [Controlled Dropdown](../../Dropdown/_decisions/controlled-dropdown.md)
 
 ## Usage
 
@@ -105,7 +105,7 @@ const [selections, setSelections] = React.useState([]);
 
 Complex flows such as [Adding New Item to ActionList](https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360---Payment-Light?node-id=47091%3A711978&mode=dev) should be handled with Controlled API.
 
-Checkout the [Changelog](https://github.com/klear/klear360/pull/1521#issue-1842703697) to see alternate API and limitations of it
+Checkout the Changelog to see alternate API and limitations of it
 
 <details>
 <summary>Show Full Code</summary>
@@ -259,7 +259,7 @@ While things are flawless when you give visible label (highly recommended), If t
 
 ## Accessibility
 
-AutoComplete will continue to follow [same keyboard navigations as SelectInput](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/decisions.md#accessibility).
+AutoComplete will continue to follow [same keyboard navigations as SelectInput](../../Dropdown/_decisions/decisions.md#accessibility).
 
 ## Referrences
 

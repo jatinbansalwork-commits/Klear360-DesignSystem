@@ -8,8 +8,6 @@ _(screenshot removed)_
 
 ## The Intro
 
-[![Watch the video]](https://github.com/klear/klear360/assets/11384858/5fe0f3de-37c4-4967-9024-e798ea8ff0f0)
-
 <br/>
 
 ## The Why?
@@ -50,8 +48,6 @@ It excludes the following nodes from coverage calculation:
 
 - The plugin by default highlights the non-klear360 items with a red box, if you feel to toggle the visibility then you can simply navigate to the **`Layers`** tab on the Left Panel and look for **`Non Klear360 Items`** group and toggle its visibility.
 
-[![Watch the video]](https://github.com/klear/klear360/assets/11384858/79a9f5e9-42fe-48f8-b011-38d45d22140a)
-
 <br/>
 
 ## Reading the Coverage Card
@@ -79,7 +75,7 @@ It excludes the following nodes from coverage calculation:
 
 ### Setup
 
-- Clone the Repository: `git clone https://github.com/klear/klear360`
+- Clone the Repository: `git clone https://github.com/jatinbansalwork-commits/Klear360`
 - Install Dependencies: `yarn install`
 - Navigate to the Plugin Directory: `cd packages/plugin-figma-klear360-coverage`
 - Start the Development Server: `yarn watch`

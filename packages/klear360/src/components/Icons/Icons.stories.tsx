@@ -67,9 +67,7 @@ const Page = (): ReactElement => {
         if it is inline with rest of the icons. Once you're happy with the results run the tests for
         web and native to update the snapshots.
       </Description>
-      <Description>
-        6. See [this reference PR](https://github.com/klear/klear360/pull/872).
-      </Description>
+      <Description>6. See this reference PR.</Description>
     </StoryPageWrapper>
   );
 };

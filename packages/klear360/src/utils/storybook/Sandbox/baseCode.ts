@@ -111,7 +111,6 @@ export const indexHTML = dedent`
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="https://raw.githubusercontent.com/klear/klear360/1e77f0b35172654037a431a916b3190b545fd232/branding/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Klear360 Example</title>
     <style>

@@ -35,7 +35,7 @@ General rule of thumb is to visit the component patterns page, read about the co
 
 ## Implementation
 
-To implement the proper aria attributes make use of our `makeAccessible` utility which we proposed [in the RFC](https://github.com/klear/klear360/blob/master/rfcs/2022-04-09-accessibility.md#platform-specific-implementation--5) - See usage [example](https://github.com/klear/klear360/blob/master/packages/klear360/src/storybook-recipes/AccessibilityInterop/AccessibilityInteropDemo.web.tsx).
+To implement the proper aria attributes make use of our `makeAccessible` utility which we proposed [in the RFC](./2022-04-09-accessibility.md#platform-specific-implementation--5) - See usage [example](../packages/klear360/src/storybook-recipes/AccessibilityInterop/AccessibilityInteropDemo.web.tsx).
 
 At this point we will also adhere to all the keyboard specific accessibility features, and implement proper keyboard management per component basis.
 
@@ -45,7 +45,7 @@ After building the component we have to do few rounds of manual testing to make 
 
 In MacOS we can press `fn+⌘+f5` to open up voice-over and test out our component with keyboard only.
 
-We also have a manual testing checklist in [Accessibility RFC](https://github.com/klear/klear360/blob/master/rfcs/2022-04-09-accessibility.md#manual-testing)
+We also have a manual testing checklist in [Accessibility RFC](./2022-04-09-accessibility.md#manual-testing)
 
 > If you are not familiar with using screen reader you can [follow this guide](https://dequeuniversity.com/tips/learn-voiceover),
 > And also ask for manual reviews from Maya or Morgan.

@@ -17,7 +17,7 @@ const Page = (): ReactElement => {
       apiDecisionLink={null}
     >
       <a
-        href="https://github.com/klear/klear360/blob/anu/a11y-rfc/rfcs/2022-04-09-accessibility.md#hidden-content"
+        href="../../../../../rfcs/2022-04-09-accessibility.md#hidden-content"
         target="_blank"
         rel="noreferrer noopener"
       >

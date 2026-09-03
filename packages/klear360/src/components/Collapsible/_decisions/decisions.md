@@ -2,7 +2,7 @@
 
 Collapsible is used to allow users to toggle the visibility of hidden content within a container.
 
-This document outlines the API of `Collapsible` component. This shares similarities with [Accordion's API](https://github.com/klear/klear360/pull/1189).
+This document outlines the API of `Collapsible` component. This shares similarities with Accordion's API.
 
 <div align="center">
   <img src="./collapsible-thumbnail.png" width="380" alt="" />
@@ -18,11 +18,11 @@ Collapsible shares the opening / closing interaction with Accordion:
 
 ### Collapsible button
 
-https://github.com/klear/klear360/assets/6682655/e37daea8-4cbb-42df-b33b-4d32dc0eab65
+
 
 ### Collapsible link
 
-https://github.com/klear/klear360/assets/6682655/eec42564-4a43-4449-96e1-7c81639d60e7
+
 
 ## API
 

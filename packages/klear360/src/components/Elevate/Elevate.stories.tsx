@@ -21,7 +21,7 @@ const Page = (): React.ReactElement => {
       componentDescription="Elevate component animates over CSS `box-shadow` property and allows you to highlight component by adding shadow"
       figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=74864-85897&t=CvaYT53LNc4OYVKa-1&scaling=min-zoom&page-id=21689%3A381614&mode=design"
       note="Elevate component animates over box-shadow so adding this to text components would create a broken experience. Make sure to use it on block components like Card, Box, etx"
-      apiDecisionLink="https://github.com/klear/klear360/blob/master/rfcs/2024-08-21-motion-presets.md"
+      apiDecisionLink="../../../../../rfcs/2024-08-21-motion-presets.md"
     >
       <Title>Usage</Title>
       <ElevateSandbox />

@@ -5,7 +5,7 @@ Modal components are often used to present information, notifications, or reques
 This document outlines the API of `Modal` component.
 
 <!-- TODO: Add this -->
-<!--  -->
+
 
 - [Design](#design)
 - [Anatomy](#anatomy)
@@ -35,7 +35,7 @@ This document outlines the API of `Modal` component.
 - [Figma - Modal](https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360---Payment-Light?type=design&node-id=35860-607833&t=hEZsxB4yG6A3Gmib-0)
 
 ## Anatomy
-Modal's Anatomy is similar to BottomSheet's Anatomy and we will keep the API decisions consistent to that of BottomSheet. You can find more details on [BottomSheet's API decisions here](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/BottomSheet/_decisions/decisions.md).
+Modal's Anatomy is similar to BottomSheet's Anatomy and we will keep the API decisions consistent to that of BottomSheet. You can find more details on [BottomSheet's API decisions here](../../BottomSheet/_decisions/decisions.md).
 ### Modal Anatomy
 <img src="./modal-anatomy.png" alt="Modal Anatomy" width="100%" />
 
@@ -95,7 +95,7 @@ const [isOpen, setIsOpen] = useState(false);
 | `padding`  | `'spacing.0'`, `'spacing.6`' | `'spacing.6'` | Padding for the Modal Body |          |
 
 ### `ModalHeader` API
-> `ModalHeader` API will be similar to [`BottomSheetHeader` API](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/BottomSheet/_decisions/decisions.md#bottomsheetheader-api) with the exception of `showBackButton` & `onBackButtonClick` props.
+> `ModalHeader` API will be similar to [`BottomSheetHeader` API](../../BottomSheet/_decisions/decisions.md#bottomsheetheader-api) with the exception of `showBackButton` & `onBackButtonClick` props.
 
 | Prop          | Type                                         | Default     | Description                                                                 | Required |
 | ------------- | -------------------------------------------- | ----------- | --------------------------------------------------------------------------- | -------- |
@@ -106,7 +106,7 @@ const [isOpen, setIsOpen] = useState(false);
 | `titleSuffix` | `Counter`                                    | `undefined` | A component to be placed adjacent to the title text                         |          |
 
 ### `ModalFooter` API
-> `ModalFooter` API will be similar to [`BottomSheetFooter` API](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/BottomSheet/_decisions/decisions.md#bottomsheetfooter-api).
+> `ModalFooter` API will be similar to [`BottomSheetFooter` API](../../BottomSheet/_decisions/decisions.md#bottomsheetfooter-api).
 
 | Prop       | Type              | Default     | Description                 | Required |
 | ---------- | ----------------- | ----------- | --------------------------- | -------- |

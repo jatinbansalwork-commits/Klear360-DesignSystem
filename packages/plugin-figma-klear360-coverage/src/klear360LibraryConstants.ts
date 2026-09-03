@@ -1012,7 +1012,7 @@ export const klear360ThemeData = {
     info: {
       key: '30708d54ce110d71b39c7a2452282f5c096f624d',
     },
-    klearx: {
+    'klearnow-pay': {
       key: '30ab602c231ff763e77ca1339ec8d489fc4532d7',
     },
     'align-left': {

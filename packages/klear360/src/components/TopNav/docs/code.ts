@@ -48,7 +48,7 @@ export const topNavFullExample = {
     AnnouncementIcon,
     ChevronDownIcon,
     ChevronRightIcon,
-    KlearxPayrollIcon,
+    KlearNowPayrollIcon,
     List,
     ListItem,
     AcceptPaymentsIcon,
@@ -176,7 +176,7 @@ export const topNavFullExample = {
                       {
                         href: "/payroll",
                         title: "Payroll",
-                        icon: KlearxPayrollIcon,
+                        icon: KlearNowPayrollIcon,
                         description: "Automate payroll with ease.",
                       },
                       {
@@ -390,7 +390,7 @@ export const topNavFullExample = {
     HomeIcon,
     LayoutIcon,
     PaymentButtonIcon,
-    PaymentGatewayIcon,
+    ConnectionIcon,
     PaymentLinkIcon,
     PaymentPagesIcon,
   } from "@klear/klear360/components";
@@ -442,7 +442,7 @@ export const topNavFullExample = {
           </NavLink>
 
           <SideNavSection title="Products" maxVisibleItems={2}>
-            <NavLink icon={PaymentGatewayIcon} title="Gateway" href="/gateway" />
+            <NavLink icon={ConnectionIcon} title="Connections" href="/connections" />
             <NavLink icon={PaymentLinkIcon} title="Links" href="/links" />
             <NavLink icon={PaymentPagesIcon} title="Pages" href="/pages" />
             <NavLink icon={PaymentButtonIcon} title="Button" href="/button" />
@@ -514,7 +514,7 @@ export const tabNavExample = {
     TabNavItems,
     Text,
     HomeIcon,
-    KlearxPayrollIcon,
+    KlearNowPayrollIcon,
     AcceptPaymentsIcon,
     MagicCheckoutIcon,
     AwardIcon,
@@ -533,7 +533,7 @@ export const tabNavExample = {
             {
               href: '/payroll',
               title: 'Payroll',
-              icon: KlearxPayrollIcon,
+              icon: KlearNowPayrollIcon,
               description: 'Automate payroll with ease.',
             },
             {

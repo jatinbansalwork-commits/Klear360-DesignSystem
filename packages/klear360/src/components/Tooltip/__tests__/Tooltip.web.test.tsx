@@ -328,7 +328,6 @@ describe('<Tooltip />', () => {
     );
   });
 
-  // https://github.com/klear/klear360/issues/1386
   it("should not override trigger's aria-label attribute", () => {
     const tooltipContent = 'Hello world';
     const { container, getByLabelText } = renderWithTheme(

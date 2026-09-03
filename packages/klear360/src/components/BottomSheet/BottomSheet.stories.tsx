@@ -1060,7 +1060,7 @@ interface Props {
   phoneNumbers: Array<string>;
 }
 
-// Example by: https://github.com/klear/klear360/issues/1777
+// Example by:
 const SimSelectionBottomSheet: React.FC<Props> = ({
   isOpen = false,
   onCtaClick,

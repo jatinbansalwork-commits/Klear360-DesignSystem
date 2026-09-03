@@ -180,7 +180,7 @@ describe('<Amount />', () => {
     expect(getAmountByParts({ value: 10000000, suffix: 'none', currency: 'INR' }).integer).toBe(
       '1,00,00,000',
     );
-    // Related issue - https://github.com/klear/klear360/issues/1572
+    // Related issue -
     expect(getAmountByParts({ value: 2.07, suffix: 'decimals', currency: 'INR' })).toEqual({
       currency: '₹',
       decimal: '.',

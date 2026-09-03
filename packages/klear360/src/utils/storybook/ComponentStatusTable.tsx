@@ -78,9 +78,10 @@ const ReleasedInLink = ({
   version?: string;
   framework?: 'react' | 'svelte';
 }): React.ReactElement => {
-  const ghUrlReact = 'https://github.com/klear/klear360/releases/tag/%40klear%2Fklear360%40';
+  const ghUrlReact =
+    'https://github.com/jatinbansalwork-commits/Klear360/releases/tag/%40klear%2Fklear360%40';
   const ghUrlSvelte =
-    'https://github.com/klear/klear360/releases/tag/%40klear%2Fklear360-svelte%40';
+    'https://github.com/jatinbansalwork-commits/Klear360/releases/tag/%40klear%2Fklear360-svelte%40';
   const ghUrl = framework === 'svelte' ? ghUrlSvelte : ghUrlReact;
 
   return version ? (

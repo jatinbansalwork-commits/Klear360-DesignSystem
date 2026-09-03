@@ -211,7 +211,7 @@ We will be using [FloatingUI](https://floating-ui.com/) to position the popover 
 You can check the [popover motion here](https://www.figma.com/file/LSG77hEeVYDk7j7WV7OMJE/Klear360-DSL---Components-Guideline?type=design&node-id=2875-43270&mode=design&t=mTbpUCQOr7kHk6UT-0).
 
 
-https://github.com/klear/klear360/assets/35374649/f774e28f-bbb7-4f44-a41d-71e9b873ec0c
+
 
 
 And give relavant feedback for motion in this thread.

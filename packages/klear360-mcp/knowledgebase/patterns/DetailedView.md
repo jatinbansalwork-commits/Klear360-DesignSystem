@@ -156,7 +156,7 @@ The drawer body is a **slot** — replace it with one or more `drawer-section` c
 
 | Example | Context |
 |---|---|
-| `single-transfer-view` | KlearX transfer — recipient account details, amount, reference |
+| `single-transfer-view` | KlearNow Pay transfer — recipient account details, amount, reference |
 | `bulk-transfer-view` | Bulk transfer batch — batch ID, file name, items count |
 | `transactions-view` | Payments dashboard — payment ID, order, method, gateway |
 | `contact-view` | Contacts — name, email, phone, fund accounts |

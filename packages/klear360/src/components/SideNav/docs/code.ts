@@ -296,7 +296,7 @@ export const sideNavWithReactRouter = {
     HeadsetIcon,
     LayoutIcon,
     PlusIcon,
-    KlearxPayrollIcon,
+    KlearNowPayrollIcon,
     ReportsIcon,
     StampIcon,
     UserCheckIcon,
@@ -384,7 +384,7 @@ export const sideNavWithReactRouter = {
           href: '/app/tax-payments',
         },
         {
-          icon: KlearxPayrollIcon,
+          icon: KlearNowPayrollIcon,
           title: 'Payroll',
           href: '/app/payroll',
         },

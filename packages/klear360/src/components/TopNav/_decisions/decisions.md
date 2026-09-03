@@ -30,7 +30,7 @@ The navigation bar is positioned at the top of the screen that provides quick ac
 // Desktop Navigation Bar
 <TopNav>
   <TopNavBrand>
-    
+
   </TopNavBrand>
   <TopNavContent>
     <TabNav
@@ -379,7 +379,7 @@ const WithMenu = () => {
 
 Once the available space for TabNavItems are less, the TabNav will start to horizontally scroll and will show a chevron icon to indicate that there are more items to the left or right.
 
-https://github.com/klear/klear360/assets/35374649/8a0fb6ae-cedd-4065-80ed-27647938453c
+
 
 </details>
 
@@ -505,7 +505,7 @@ For example, we want users to:
         <ExploreItem title="Express Checkout" description="Some product description" />
       </MenuItem>
       <MenuItem>
-        <ExploreItem title="KlearX" description="Some product description" />
+        <ExploreItem title="KlearNow Pay" description="Some product description" />
       </MenuItem>
     </MenuOverlay>
   </Menu>
@@ -514,7 +514,7 @@ For example, we want users to:
 
 **This API has few issues:**
 
-1. While it lets you add the “More” Menu and choose initial ordering of Express Checkout & KlearX, when screen size reduces there is no straightforward or intuitive way to move the overflowing items into the “More” Menu
+1. While it lets you add the “More” Menu and choose initial ordering of Express Checkout & KlearNow Pay, when screen size reduces there is no straightforward or intuitive way to move the overflowing items into the “More” Menu
 2. Even if we could somehow magically get the overflowingItems what data will item contain that will enable us to render the <ExploreItem />? We need title, description, icon etc data for rendering which the <TabNavItemLink> may not even need or be provided with since we don’t need to render description or icon.
 
 ----
@@ -643,8 +643,8 @@ const renderTabNavItem = (props) => {
             </MenuItem>
             <MenuItem>
               <ExploreItem
-                icon={KlearXIcon}
-                title="KlearX"
+                icon={KlearNowPayIcon}
+                title="KlearNow Pay"
                 description="Some product description"
               />
             </MenuItem>
@@ -712,7 +712,7 @@ const { overflowingItems, setOverflowingItems } = React.useState([]);
         />
       </MenuItem>
       <MenuItem>
-        <ExploreItem icon={KlearXIcon} title="KlearX" description="Some product description" />
+        <ExploreItem icon={KlearNowPayIcon} title="KlearNow Pay" description="Some product description" />
       </MenuItem>
     </MenuOverlay>
   </Menu>
@@ -725,7 +725,7 @@ Another approach is this, where we treat the JSX as the Data.
 This is similar to Dropdown where on initial render we loop over all the JSX elements build a list and store it and from that list we render.
 
 **Not leaning towards this API mainly because:**
-1. JSX as Data gets very [complicated](https://github.com/klear/klear360/blob/2e4b2cb309cdf3e87982cda9252e9ce97747c475/packages/klear360/src/components/ActionList/actionListUtils.ts#L137-L159) as seen on Dropdown, and most of the time breaks composition, like it looks like the component is flexible and composable but in reality it isn’t.
+1. JSX as Data gets very [complicated](../../ActionList/actionListUtils.ts#L137-L159) as seen on Dropdown, and most of the time breaks composition, like it looks like the component is flexible and composable but in reality it isn’t.
 2. Sets a odd expectation, where users need to pass the description/icon etc props to TabNavItemLink which that component may not even use but rather they are treated as “data” attributes for the overflowingItems
 3. We need to get the overflowingItems from somewhere, it will either be as a controlled state or we may need to introduce a render prop inside <TabNav>
 
@@ -753,7 +753,7 @@ const [overflowingItems, setOverflowingItems] = useState([]);
         <ExploreItem title="Express Checkout" description="Some product description" />
       </MenuItem>
       <MenuItem>
-        <ExploreItem title="KlearX" description="Some product description" />
+        <ExploreItem title="KlearNow Pay" description="Some product description" />
       </MenuItem>
     </MenuOverlay>
   </Menu>

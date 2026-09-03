@@ -17,7 +17,7 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentDescription="The Heading Component is usually used for headings of each major section of a page."
       componentName="Heading"
-      apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Typography/_decisions/decisions.md"
+      apiDecisionLink="../_decisions/decisions.md"
       figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=71123-52743&t=DaKuYvkYnno4qVsq-1&scaling=min-zoom&page-id=3%3A0&mode=design"
     >
       <Title>Usage</Title>

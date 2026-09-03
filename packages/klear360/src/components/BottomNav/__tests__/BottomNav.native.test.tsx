@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { BottomNav, BottomNavItem } from '../BottomNav.native';
-import { PaymentGatewayIcon, TransactionsIcon, PaymentLinkIcon } from '~components/Icons';
+import { ConnectionIcon, TransactionsIcon, PaymentLinkIcon } from '~components/Icons';
 import renderWithTheme from '~utils/testing/renderWithTheme.native';
 
 jest.mock('react-native-safe-area-context', () => ({
@@ -17,7 +17,7 @@ const renderBottomNav = ({
     <BottomNav>
       <BottomNavItem
         title="Payments"
-        icon={PaymentGatewayIcon}
+        icon={ConnectionIcon}
         isActive={activeItem === 'payments'}
         onClick={onPress}
         testID="bottomnav-item-payments"

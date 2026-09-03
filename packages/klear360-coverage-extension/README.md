@@ -2,7 +2,7 @@
 
 Klear360 coverage plugin helps you in getting coverage of klear360 on a web page instantaneously.
 
-https://github.com/klear/klear360/assets/6623629/53415eed-4681-4fe3-9ad5-235f5993181b
+
 
 ## Project structure
 

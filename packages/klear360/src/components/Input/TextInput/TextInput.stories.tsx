@@ -301,7 +301,7 @@ export default {
         <StoryPageWrapper
           componentDescription="The TextInput component is a component that can be used to input name, email, telephone, url, search or plain text."
           componentName="TextInput"
-          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Input/TextInput/_decisions/_decisions.md"
+          apiDecisionLink="./_decisions/_decisions.md"
           figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=76077-57130&t=icthxu77bIRPBob9-1&scaling=min-zoom&page-id=10953%3A191554&mode=design"
         >
           <Title>Usage</Title>

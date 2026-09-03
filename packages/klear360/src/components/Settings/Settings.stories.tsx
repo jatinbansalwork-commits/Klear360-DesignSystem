@@ -34,7 +34,7 @@ import {
   HomeIcon,
   ChevronRightIcon,
   ChevronDownIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
   AcceptPaymentsIcon,
   ShoppingBagIcon,
   AwardIcon,
@@ -416,7 +416,7 @@ const TopNavigation = (): React.ReactElement => {
               {
                 href: '/payroll',
                 title: 'Payroll',
-                icon: KlearxPayrollIcon,
+                icon: KlearNowPayrollIcon,
                 description: 'Automate payroll with ease.',
               },
               {

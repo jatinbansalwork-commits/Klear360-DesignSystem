@@ -34,8 +34,8 @@ import {
   PaymentButtonIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
-  KlearxPayrollIcon,
-  KlearxPayrollFilledIcon,
+  KlearNowPayrollIcon,
+  KlearNowPayrollFilledIcon,
   RayIcon,
 } from '~components/Icons';
 import { KlearLogoWhite } from '~components/SideNav/docs/KlearLogo';
@@ -370,7 +370,7 @@ const TopNavFullExample = ({ variant = 'neutral' }: { variant?: 'primary' | 'neu
                     {
                       href: '/payroll',
                       title: 'Payroll',
-                      icon: { default: KlearxPayrollIcon, selected: KlearxPayrollFilledIcon },
+                      icon: { default: KlearNowPayrollIcon, selected: KlearNowPayrollFilledIcon },
                       description: 'Automate payroll with ease.',
                     },
                     {
@@ -594,7 +594,7 @@ const TopNavMinimalTemplate: StoryFn<typeof TopNav> = () => {
                     {
                       href: '/payroll',
                       title: 'Payroll',
-                      icon: { default: KlearxPayrollIcon, selected: KlearxPayrollFilledIcon },
+                      icon: { default: KlearNowPayrollIcon, selected: KlearNowPayrollFilledIcon },
                       description: 'Automate payroll with ease.',
                     },
                     {

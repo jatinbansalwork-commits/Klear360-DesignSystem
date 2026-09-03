@@ -85,7 +85,7 @@ Default.args = {
   onClick: (event): void => {
     console.log('clicked', event);
   },
-  href: 'https://github.com/klear/klear360',
+  href: 'https://github.com/jatinbansalwork-commits/Klear360',
   target: '_blank',
   rel: 'noreferrer noopener',
 };
@@ -108,7 +108,7 @@ export const LinkInline = LinkInlineTemplate.bind({});
 LinkInline.storyName = 'Link - Inline';
 LinkInline.args = {
   variant: 'anchor',
-  href: 'https://github.com/klear/klear360/',
+  href: 'https://github.com/jatinbansalwork-commits/Klear360',
   target: '_blank',
   rel: 'noreferrer noopener',
   children: `Klear360's Github`,
@@ -204,7 +204,7 @@ LinkWithColor.storyName = 'Link - With Color';
 LinkWithColor.args = {
   variant: 'anchor',
   children: 'Learn More',
-  href: 'https://github.com/klear/klear360',
+  href: 'https://github.com/jatinbansalwork-commits/Klear360',
 };
 
 export const DisabledLinkButton = LinkTemplate.bind({});
@@ -316,7 +316,7 @@ const LinkWithVariantTemplate: StoryFn<typeof LinkComponent> = ({
         icon={icon}
         iconPosition={iconPosition}
         variant="anchor"
-        href="https://github.com/klear/klear360"
+        href="https://github.com/jatinbansalwork-commits/Klear360"
         target="_blank"
         rel="noreferrer noopener"
       >

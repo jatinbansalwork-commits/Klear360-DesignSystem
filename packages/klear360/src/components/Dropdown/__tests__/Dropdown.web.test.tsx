@@ -195,7 +195,7 @@ describe('<Dropdown />', () => {
   });
 
   // Skipped because flaky
-  // https://github.com/klear/klear360/issues/1721
+
   it.skip('should handle controlled props & disabled options with multi select', async () => {
     const ControlledDropdown = (): React.ReactElement => {
       const [currentSelection, setCurrentSelection] = React.useState<string[]>([]);

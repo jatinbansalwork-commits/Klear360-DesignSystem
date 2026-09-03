@@ -214,7 +214,7 @@ const App = () => {
 ## Accessibility
 
 - The `SearchInput` component adheres to accessibility standards similar to `TextInput`.
-- When used inside a dropdown, it will continue to follow the same [keyboard navigation as SelectInput](https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Dropdown/_decisions/decisions.md#accessibility), ensuring a consistent and intuitive user experience.
+- When used inside a dropdown, it will continue to follow the same [keyboard navigation as SelectInput](../../../Dropdown/_decisions/decisions.md#accessibility), ensuring a consistent and intuitive user experience.
 
 ## Open questions
 

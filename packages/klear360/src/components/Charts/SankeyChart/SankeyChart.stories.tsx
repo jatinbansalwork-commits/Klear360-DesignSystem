@@ -19,7 +19,7 @@ const Page = (): React.ReactElement => (
   <StoryPageWrapper
     componentName="SankeyChart"
     componentDescription="A Sankey flow diagram for visualising how a quantity is distributed across multiple stages. Built with Recharts for layout and React SVG for rendering. Suitable for payment routing, funnel analysis, and budget allocation."
-    apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/Charts/_decisions/decisions.md"
+    apiDecisionLink="../_decisions/decisions.md"
   >
     <Heading size="large">Usage</Heading>
     <Sandbox showConsole>

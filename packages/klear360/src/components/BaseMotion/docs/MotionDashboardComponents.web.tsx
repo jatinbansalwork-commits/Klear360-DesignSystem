@@ -31,10 +31,10 @@ import {
   HomeIcon,
   LayoutIcon,
   PaymentButtonIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
 } from '~components/Icons';
 import { KlearLogo } from '~components/SideNav/docs/KlearLogo';
 import { SearchInput } from '~components/Input/SearchInput';
@@ -117,7 +117,7 @@ const SideNavExample = ({
           </NavLink>
 
           <SideNavSection title="Products" maxVisibleItems={2}>
-            <NavLink icon={PaymentGatewayIcon} title="Gateway" href="/app/gateway" />
+            <NavLink icon={ConnectionIcon} title="Connections" href="/app/connections" />
             <NavLink icon={PaymentLinkIcon} title="Links" href="/app/links" />
             <NavLink icon={PaymentPagesIcon} title="Pages" href="/app/pages" />
             <NavLink icon={PaymentButtonIcon} title="Button" href="/app/button" />
@@ -240,7 +240,7 @@ export const DashboardWithRoutingExample = ({
                           {
                             href: '/app/payroll',
                             title: 'Payroll',
-                            icon: KlearxPayrollIcon,
+                            icon: KlearNowPayrollIcon,
                             description: 'Automate payroll with ease.',
                           },
                           {

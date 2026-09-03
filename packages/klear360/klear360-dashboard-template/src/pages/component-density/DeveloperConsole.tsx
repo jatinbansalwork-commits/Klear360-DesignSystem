@@ -169,7 +169,7 @@ const APIKeys = (): React.JSX.Element => {
         <Alert
           isFullWidth
           isDismissible={false}
-          description="Key ID and Secret are shared across KlearX and Klear Payments dashboard"
+          description="Key ID and Secret are shared across KlearNow Pay and Klear Payments dashboard"
           color="neutral"
           emphasis="subtle"
         />

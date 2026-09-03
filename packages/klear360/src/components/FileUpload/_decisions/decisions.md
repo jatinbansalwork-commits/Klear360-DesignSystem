@@ -182,11 +182,11 @@ Primarily, there are two types of usage for the `FileUpload` component:
 
 ### Submit Button File Upload (Uncontrolled)
 
-https://github.com/klear/klear360/assets/46647141/d78ec694-f6f7-413d-a32c-58da8f2582fb
+
 
 ### Direct Upload with Progress Display (Controlled)
 
-https://github.com/klear/klear360/assets/46647141/cb690625-011b-4c20-b610-9af5f0c5e077
+
 
 ## Examples
 

@@ -15,7 +15,7 @@ import {
   HomeIcon,
   LayoutIcon,
   PaymentButtonIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
 } from '~components/Icons';
@@ -87,7 +87,7 @@ const SideNavExample = ({
             maxVisibleItems={2}
             data-analytics-side-nav-section="Products"
           >
-            <NavLink icon={PaymentGatewayIcon} title="Gateway" href="/gateway" />
+            <NavLink icon={ConnectionIcon} title="Connections" href="/connections" />
             <NavLink icon={PaymentLinkIcon} title="Links" href="/links" />
             <NavLink icon={PaymentPagesIcon} title="Pages" href="/pages" />
             <NavLink icon={PaymentButtonIcon} title="Button" href="/button" />

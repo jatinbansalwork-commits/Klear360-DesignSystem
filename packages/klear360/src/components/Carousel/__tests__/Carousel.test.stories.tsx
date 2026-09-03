@@ -172,7 +172,7 @@ TestVisibleItemsOnMobile.play = async ({ canvasElement }) => {
 };
 
 // Test for onChange fires multiple times on parent component update
-// https://github.com/klear/klear360/issues/1863
+
 const multipleOnChange = fn();
 export const TestOnChangeParentUpdate: StoryFn<typeof CarouselComponent> = (
   props,

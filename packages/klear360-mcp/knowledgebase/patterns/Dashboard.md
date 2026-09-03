@@ -264,11 +264,11 @@ import {
   AnnouncementIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  KlearxPayrollIcon,
+  KlearNowPayrollIcon,
   AcceptPaymentsIcon,
   LayoutIcon,
   AwardIcon,
-  KlearXIcon,
+  KlearNowPayIcon,
 } from '@klear/klear360/components';
 import SideNav from './SideNav';
 import { isItemActive, KlearLogo } from './utils';
@@ -398,13 +398,13 @@ const TopNavComponent = () => {
                   {
                     href: '/banking',
                     title: 'Banking',
-                    icon: KlearXIcon,
+                    icon: KlearNowPayIcon,
                     description: 'Manage your banking needs.',
                   },
                   {
                     href: '/payroll',
                     title: 'Payroll',
-                    icon: KlearxPayrollIcon,
+                    icon: KlearNowPayrollIcon,
                     description: 'Automate payroll with ease.',
                   },
                   {

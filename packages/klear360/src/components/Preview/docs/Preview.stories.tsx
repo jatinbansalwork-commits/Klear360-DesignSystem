@@ -295,7 +295,10 @@ const PDFRenderer: StoryFn<typeof Preview> = () => {
     >
       <PreviewHeader title="Preview " />
       <PreviewBody>
-        <Document file="https://cdn.klear.com/traditional-banks-vs-klearx.pdf" className="pdf-page">
+        <Document
+          file="https://cdn.klear.com/traditional-banks-vs-klearnow-pay.pdf"
+          className="pdf-page"
+        >
           <ReactPdfPage key={currentPage} pageNumber={currentPage} width={800} height={700} />
         </Document>
       </PreviewBody>

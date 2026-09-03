@@ -151,7 +151,7 @@ Reusable components candidate
 - Add a prop call showClearButton which will display clear button
 - Add necessity indicator prop to all the input fields. if `optional` is provided then it'll show `${label} (optional)` and if `required` is provided then it'll show `${label} *`
 - create prefix and suffix props for plain text field
-- update docs for keyboard interaction for different input types for mobile. refer https://github.com/klear/klear360/blob/feat/input-field/packages/klear360/src/components/Input/_decisions/decisions.md#web--react-native-attributes-for-showing-keyboard-types-and-autocomplete-suggestions-based-on-input
+- update docs for keyboard interaction for different input types for mobile. refer
 - add autofillSuggestionType to docs to show how to guide browsers to show the correct autofill suggestions both on desktop and mobile platforms
 - add validationState: none | error | success
 - visually test if we want to reserve space for help/error/success text to avoid the layout content shift

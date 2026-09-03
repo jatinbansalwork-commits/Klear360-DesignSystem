@@ -136,7 +136,7 @@ This full bleed layout works for all desktop, mobile and native when the `isFull
 
 **Q1.** Should we use a different intent naming convention in code like `success`, `warn`, `info`, `error`? Currently this is same as design
 
-**A1.** It makes more sense to keep the terminologies similar in both design and code (because designs are what gets translated into code). [Related discussion](https://github.com/klear/klear360/pull/573#discussion_r929998203).
+**A1.** It makes more sense to keep the terminologies similar in both design and code (because designs are what gets translated into code). Related discussion.
 
 **Q2.** It's possible to pass any JSX as content but ideally we want to restrict it to few components (like `Link`, `string`, `List`). Doing these on code side would mean lot of checks. Similarly, restriction on `SecondaryAction` which should always be used with `PrimaryAction`. How do we do these - TS / runtime checks, etc.? One simpler alternative is to rely on design side restrictions for these but it makes the API more flexible should someone want to try things different from design.
 

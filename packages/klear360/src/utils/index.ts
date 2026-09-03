@@ -6,7 +6,6 @@ export * from './useColorScheme';
 export * from './useInterval';
 export * from './platform';
 
-// https://github.com/klear/klear360/pull/1193#discussion_r1212616031
 export * from './makeBorderSize';
 export * from './makeMotionTime';
 export * from './makeSpace';
@@ -15,7 +14,6 @@ export * from './makeSize';
 export * from './makePopupBoxShadow';
 export * from './makeSurfaceStyles';
 
-// https://github.com/klear/klear360/pull/1193#issuecomment-1609122359
 export * from './toTitleCase';
 export * from './usePrevious';
 

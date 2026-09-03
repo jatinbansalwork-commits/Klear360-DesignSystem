@@ -91,7 +91,7 @@ export default {
         <StoryPageWrapper
           componentDescription="The DatePicker component is used to select a date or a range of dates."
           componentName="DatePicker"
-          apiDecisionLink="https://github.com/klear/klear360/blob/master/packages/klear360/src/components/DatePicker/_decisions/decisions.md"
+          apiDecisionLink="./_decisions/decisions.md"
           figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=88832-1762629&t=oSH8pSWjSoiOUnXo-0"
         >
           <Title>Usage</Title>

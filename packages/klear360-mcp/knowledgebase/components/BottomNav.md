@@ -127,7 +127,7 @@ import {
   Box,
   Text,
   HomeIcon,
-  PaymentGatewayIcon,
+  ConnectionIcon,
   TransactionsIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
@@ -209,7 +209,7 @@ const MobileAppExample = () => {
     {
       title: 'Payments',
       href: '/payments',
-      icon: PaymentGatewayIcon,
+      icon: ConnectionIcon,
     },
     {
       title: 'Transactions',

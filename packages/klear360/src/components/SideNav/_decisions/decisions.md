@@ -61,7 +61,7 @@ import { NavLink } from 'react-router-dom';
 
     {/* Section Heading */}
     <SideNavSection title="Products" maxVisibleItems={3}>
-      <SideNavLink as={NavLink} href="/payment-gateway" title="Payment Gateway" />
+      <SideNavLink as={NavLink} href="/connections" title="Connections" />
       <SideNavLink as={NavLink} href="/payment-pages" title="Payment Pages" />
       <SideNavLink as={NavLink} href="/payment-links" title="Payment Links" />
       <SideNavLink as={NavLink} href="/qr-codes" title="QR Codes" />
@@ -546,7 +546,7 @@ For Example of SideNavItem, check SideNavFooter example below.
 
 ## References
 
-- [KlearX Navigation Bar](https://github.com/klear/x/blob/master/src/js/views/Home/ActionCenter/index.js#L21) (Internal)
+- [KlearNow Pay Navigation Bar](https://github.com/klear/x/blob/master/src/js/views/Home/ActionCenter/index.js#L21) (Internal)
 - [Klear Merchant Dashboard Navigation Bar](https://github.com/klear/dashboard/blob/6f61a5909c5311c3be08a3ea28b920ed302f1e64/web/js/merchant/components/SidebarV2/Sidebar.tsx) (Internal)
 - [SideNavigation - Atlassian DS](https://atlassian.design/components/side-navigation/examples)
 - [SideNav - Primer / GitHub](https://primer.style/react/deprecated/SideNav#url)

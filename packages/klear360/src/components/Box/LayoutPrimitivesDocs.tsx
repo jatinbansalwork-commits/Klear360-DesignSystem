@@ -363,7 +363,7 @@ function LayoutPrimitivesDocs(): React.ReactElement {
         <Text>
           This is a summary and some questions you might have regarding API. You can check out
           complete API decisions at{' '}
-          <Link href="https://github.com/klear/klear360/blob/master/rfcs/2023-01-06-layout.md">
+          <Link href="../../../../../rfcs/2023-01-06-layout.md">
             Layout Primitives and Components RFC
           </Link>
         </Text>
@@ -411,13 +411,8 @@ function LayoutPrimitivesDocs(): React.ReactElement {
               throughout your codebase?
               <List>
                 <ListItem>
-                  <ListItemLink
-                    href="https://github.com/klear/klear360/issues/new?title=Request+to+add+xyz+prop+to+Box&labels=enhancement"
-                    target="_blank"
-                  >
-                    Create an issue in klear/klear360 repo
-                  </ListItemLink>{' '}
-                  mentioning your use-cases and how frequently is it needed
+                  Create an issue in the Klear360 repo mentioning your use-cases and how frequently
+                  is it needed
                 </ListItem>
               </List>
             </ListItem>
@@ -425,12 +420,7 @@ function LayoutPrimitivesDocs(): React.ReactElement {
             <ListItem>
               Not convinced with the reasonings we had in Layouts RFC?
               <List>
-                <ListItem>
-                  <ListItemLink href="https://github.com/klear/klear360/issues/new" target="_blank">
-                    Create an issue in klear/klear360 repo
-                  </ListItemLink>{' '}
-                  and we can discuss
-                </ListItem>
+                <ListItem>Create an issue in the Klear360 repo and we can discuss</ListItem>
               </List>
             </ListItem>
           </List>
@@ -506,7 +496,7 @@ function LayoutPrimitivesDocs(): React.ReactElement {
             </ListItemLink>
           </ListItem>
           <ListItem>
-            <ListItemLink href="https://github.com/klear/klear360/blob/master/rfcs/2023-01-06-layout.md">
+            <ListItemLink href="../../../../../rfcs/2023-01-06-layout.md">
               Layout Primitives and Components RFC
             </ListItemLink>
           </ListItem>

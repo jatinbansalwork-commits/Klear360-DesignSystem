@@ -260,7 +260,7 @@ export const KLEAR360_ICONS = [
   'ReportsIcon',
   'MyAccountIcon',
   'KlearIcon',
-  'KlearXIcon',
+  'KlearNowPayIcon',
   'AnnouncementIcon',
   'AppStoreIcon',
   'CoinsIcon',
