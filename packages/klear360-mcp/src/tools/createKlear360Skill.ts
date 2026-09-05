@@ -1,4 +1,4 @@
-import { join, basename } from 'path';
+import { join } from 'path';
 import {
   existsSync,
   symlinkSync,

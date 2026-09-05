@@ -1,10 +1,6 @@
 # Klear360
 
-Klear360 is the design system that powers Klear products.
-
-It ships cross-platform UI components for React (web) and React Native, a theming
-and token engine, an MCP server for AI-assisted development, and a set of
-Figma plugins that connect design and code.
+Klear360 is the design system created by **Jatin Bansal**. It powers Klear products with cross-platform UI components, a token-driven theming engine, and AI-assisted development tooling.
 
 > Internal repository. Not published to any public registry.
 

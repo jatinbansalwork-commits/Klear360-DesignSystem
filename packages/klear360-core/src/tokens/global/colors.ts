@@ -206,6 +206,7 @@ export type Color = Readonly<{
     cloud: ColorChromaticScale;
     forest: ColorChromaticScale;
     orchid: ColorChromaticScale;
+    purple: ColorChromaticScale;
     magenta: ColorChromaticScale;
     topaz: ColorChromaticScale;
   };
@@ -394,6 +395,24 @@ export const colors: Color = {
       a150: `hsla(270, 56%, 53%, ${opacity[400]})`,
       a200: `hsla(270, 56%, 53%, ${opacity[500]})`,
       a400: `hsla(270, 56%, 53%, ${opacity[800]})`,
+    },
+    purple: {
+      50: '#f3f1fb',
+      100: '#e4dff6',
+      200: '#c9c0ed',
+      300: '#aea0e4',
+      400: '#9380db',
+      500: '#6c5dd3',
+      600: '#5648b8',
+      700: '#453a93',
+      800: '#342c6e',
+      900: '#231d49',
+      1000: '#120f24',
+      a50: `rgba(108, 93, 211, ${opacity[100]})`,
+      a100: `rgba(108, 93, 211, ${opacity[300]})`,
+      a150: `rgba(108, 93, 211, ${opacity[400]})`,
+      a200: `rgba(108, 93, 211, ${opacity[500]})`,
+      a400: `rgba(108, 93, 211, ${opacity[800]})`,
     },
     magenta: {
       50: `hsla(328, 76%, 97%, ${opacity[1300]})`,

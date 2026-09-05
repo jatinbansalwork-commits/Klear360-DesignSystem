@@ -36,7 +36,7 @@ const getFigmaToCodeToolSchema = {
 const getFigmaToCodeToolCallback: ToolCallback<typeof getFigmaToCodeToolSchema> = async ({
   fileKey,
   nodeId,
-  currentProjectRootDirectory,
+  currentProjectRootDirectory: _currentProjectRootDirectory,
 }) => {
   try {
     const isProd = process.env.NODE_ENV === 'production';

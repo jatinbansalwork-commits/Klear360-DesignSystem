@@ -6,19 +6,20 @@
 
 Klear360 MCP is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server that implements Klear's Design Guidelines and allows you to build Web Interfaces using Klear360 Design System.
 
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](<https://cursor.com/en-US/install-mcp?name=Klear360%20MCP%20(Stdio)&config=eyJjb21tYW5kIjoibnB4IC15IEByYXpvcnBheS9ibGFkZS1tY3BAbGF0ZXN0In0%3D>)
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](<https://cursor.com/en-US/install-mcp?name=Klear360%20MCP%20(Stdio)&config=eyJjb21tYW5kIjoibnB4IC15IEBrbGVhci9rbGVhcjM2MC1tY3BAbGF0ZXN0In0%3D>)
 
 ## Available Tools
 
-| Tool Name                   | Description                                                                                                                                                                                                                                |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `hi_klear360`                  | Provides a welcome message and overview of Klear360 MCP capabilities when user greets with "hi klear360", "hey klear360", etc.                                                                                                                      |
+| Tool Name                      | Description                                                                                                                                                                                                                                   |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hi_klear360`                  | Provides a welcome message and overview of Klear360 MCP capabilities when user greets with "hi klear360", "hey klear360", etc.                                                                                                                |
 | `create_new_klear360_project`  | Creates a new project using Klear360 with Vite, React, and TypeScript setup. Should only be called when creating a new project from scratch.                                                                                                  |
-| `create_klear360_cursor_rules` | Creates the cursor rules for Klear360 to help with code generation. Should be called before getting component docs and when the rule file doesn't exist.                                                                                      |
+| `create_klear360_skill`        | Creates the UI code guidelines skill for AI-assisted frontend code generation. Scaffolds the skill in `.agents/skills/ui-code-guidelines` and creates a symlink in `.claude/skills` for Claude Code support. Should be called before fetching component docs when the skill does not exist. |
 | `get_klear360_component_docs`  | Fetches the Klear360 Design System documentation for specific components. Useful when adding or modifying components in your project.                                                                                                         |
 | `get_klear360_pattern_docs`    | Fetches the Klear360 Design System pattern documentation. Use this to get information about design patterns, best practices, and implementation guidelines.                                                                                   |
 | `get_klear360_general_docs`    | Fetches general Klear360 Design System documentation. Use this to get information about setup, installation, theming, tokens, and general guidelines.                                                                                         |
-| `get_figma_to_code`         | Converts Figma designs into Klear360 Design System code. Provide a Figma design URL to generate the corresponding React components using Klear360's component library. **[NOTE: figma to code tool can only be accessed by Klear employees]** |
+| `get_klear360_changelog`       | Fetches the Klear360 changelog to help with upgrades and release notes. Supports a specific version or a range of versions.                                                                                                                   |
+| `get_figma_to_code`            | Converts Figma designs into Klear360 Design System code. Provide a Figma design URL to generate the corresponding React components using Klear360's component library. **[NOTE: figma to code tool can only be accessed by Klear employees]** |
 
 ## Prerequisites
 
@@ -118,9 +119,11 @@ For local Klear360 MCP development with Cursor, update your `mcp.json` with the 
 
 ```json
 {
-  "klear360-mcp": {
-    "command": "node",
-    "args": ["<<USER_PATH>>/klear360/packages/klear360-mcp/dist/server.js"]
+  "mcpServers": {
+    "klear360-mcp": {
+      "command": "node",
+      "args": ["<<USER_PATH>>/klear360/packages/klear360-mcp/dist/server.js"]
+    }
   }
 }
 ```

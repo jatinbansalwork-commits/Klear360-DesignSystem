@@ -22,7 +22,15 @@ import { fileURLToPath } from 'url';
 import prettier from 'prettier';
 
 import klear360Theme from '~tokens/theme/klear360Theme';
-import { border, breakpoints, spacing, motion, opacity, elevation } from '~tokens/global';
+import {
+  border,
+  breakpoints,
+  spacing,
+  motion,
+  opacity,
+  elevation,
+  colors as globalColors,
+} from '~tokens/global';
 import type { Typography } from '~tokens/global/typography';
 import {
   colorsToCSSVariables,
@@ -60,6 +68,7 @@ const COLOR_CATEGORY_LABELS: Record<string, string> = {
   overlay: 'Overlay',
   popup: 'Popup',
   data: 'Data',
+  ai: 'AI',
 };
 
 const declaration = (name: string, value: string): string => `  ${name}: ${value};`;
@@ -87,6 +96,23 @@ const emitColors = (map: Record<string, string>, commentSuffix = ''): string[] =
   }
   return lines;
 };
+
+const emitGlobalPurpleColors = (): string[] => {
+  const purple = globalColors.chromatic.purple;
+  const lines: string[] = ['  /* Global Purple (AI) */'];
+  for (const [key, value] of Object.entries(purple)) {
+    lines.push(declaration(`--purple-${key}`, value));
+  }
+  return lines;
+};
+
+/** kn-color aliases for AI assistant tokens (values emitted from theme ai.* paths). */
+const emitAiAliases = (): string[] => [
+  '',
+  '  /* AI token aliases */',
+  '  --kn-color-ai-accent: var(--ai-assistant-accent);',
+  '  --kn-color-ai-accent-text: var(--ai-assistant-accent-text);',
+];
 
 const emitBorder = (): string[] => {
   const lines: string[] = ['  /* Border */'];
@@ -174,14 +200,18 @@ export const generateThemeCSS = (): string => {
     '  /* Elevation */',
     ...emitMap(elevationToCSSVariables(elevation.onLight)),
     '',
+    ...emitGlobalPurpleColors(),
+    '',
     '  /* ===== THEME TOKENS - LIGHT MODE ===== */',
     '',
     ...emitColors(colorsToCSSVariables(colors.onLight)),
+    ...emitAiAliases(),
     '}',
     '',
     DARK_SELECTOR_BLOCK,
     '',
     ...emitColors(colorsToCSSVariables(colors.onDark), ' - Dark'),
+    ...emitAiAliases(),
     '',
     '  /* Elevation - Dark */',
     ...emitMap(elevationToCSSVariables(elevation.onDark)),

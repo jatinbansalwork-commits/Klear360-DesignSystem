@@ -716,6 +716,49 @@ const colors: ColorsWithModes = {
         },
       },
     },
+    ai: {
+      assistant: {
+        accent: globalColors.chromatic.purple[500],
+        accentText: globalColors.chromatic.purple[600],
+        brand: globalColors.chromatic.purple[600],
+        background: {
+          subtle: globalColors.chromatic.purple[50],
+          moderate: globalColors.chromatic.purple[100],
+        },
+      },
+      model: {
+        accent: globalColors.chromatic.purple[500],
+        accentText: globalColors.chromatic.purple[600],
+        background: {
+          subtle: globalColors.chromatic.purple[50],
+          moderate: globalColors.chromatic.purple[100],
+        },
+        border: {
+          subtle: globalColors.chromatic.purple[100],
+          normal: globalColors.chromatic.purple[500],
+        },
+        text: {
+          normal: globalColors.chromatic.purple[600],
+          muted: globalColors.chromatic.purple[500],
+        },
+      },
+      discussion: {
+        accent: globalColors.chromatic.purple[500],
+        accentText: globalColors.chromatic.purple[600],
+        background: {
+          subtle: globalColors.chromatic.purple[50],
+          moderate: globalColors.chromatic.purple[100],
+        },
+        border: {
+          subtle: globalColors.chromatic.purple[200],
+          normal: globalColors.chromatic.purple[500],
+        },
+        text: {
+          normal: globalColors.chromatic.purple[600],
+          muted: globalColors.chromatic.purple[400],
+        },
+      },
+    },
     transparent: `hsla(0, 0%, 100%, ${opacity[0]})`,
   },
   onDark: {
@@ -1429,6 +1472,49 @@ const colors: ColorsWithModes = {
             900: globalColors.neutral.blueGrayDark[400],
             1000: globalColors.neutral.blueGrayDark[300],
           },
+        },
+      },
+    },
+    ai: {
+      assistant: {
+        accent: globalColors.chromatic.purple[400],
+        accentText: globalColors.chromatic.purple[200],
+        brand: globalColors.chromatic.purple[500],
+        background: {
+          subtle: globalColors.chromatic.purple[900],
+          moderate: globalColors.chromatic.purple[800],
+        },
+      },
+      model: {
+        accent: globalColors.chromatic.purple[400],
+        accentText: globalColors.chromatic.purple[200],
+        background: {
+          subtle: globalColors.chromatic.purple[900],
+          moderate: globalColors.chromatic.purple[800],
+        },
+        border: {
+          subtle: globalColors.chromatic.purple[800],
+          normal: globalColors.chromatic.purple[400],
+        },
+        text: {
+          normal: globalColors.chromatic.purple[200],
+          muted: globalColors.chromatic.purple[400],
+        },
+      },
+      discussion: {
+        accent: globalColors.chromatic.purple[400],
+        accentText: globalColors.chromatic.purple[200],
+        background: {
+          subtle: globalColors.chromatic.purple[900],
+          moderate: globalColors.chromatic.purple[800],
+        },
+        border: {
+          subtle: globalColors.chromatic.purple[700],
+          normal: globalColors.chromatic.purple[400],
+        },
+        text: {
+          normal: globalColors.chromatic.purple[200],
+          muted: globalColors.chromatic.purple[300],
         },
       },
     },

@@ -138,6 +138,24 @@
   --elevation-mid-raised: 0px 16px 12px 0px hsla(200, 10%, 18%, 0.06);
   --elevation-high-raised: 0px 8px 24px -4px hsla(200, 10%, 18%, 0.06);
 
+  /* Global Purple (AI) */
+  --purple-50: #f3f1fb;
+  --purple-100: #e4dff6;
+  --purple-200: #c9c0ed;
+  --purple-300: #aea0e4;
+  --purple-400: #9380db;
+  --purple-500: #6c5dd3;
+  --purple-600: #5648b8;
+  --purple-700: #453a93;
+  --purple-800: #342c6e;
+  --purple-900: #231d49;
+  --purple-1000: #120f24;
+  --purple-a50: rgba(108, 93, 211, 0.09);
+  --purple-a100: rgba(108, 93, 211, 0.18);
+  --purple-a150: rgba(108, 93, 211, 0.24);
+  --purple-a200: rgba(108, 93, 211, 0.32);
+  --purple-a400: rgba(108, 93, 211, 0.64);
+
   /* ===== THEME TOKENS - LIGHT MODE ===== */
 
   /* Surface Colors */
@@ -584,7 +602,34 @@
   --data-background-sequential-gray-800: hsla(217, 33%, 17%, 1);
   --data-background-sequential-gray-900: hsla(222, 47%, 11%, 1);
   --data-background-sequential-gray-1000: hsla(220, 49%, 8%, 1);
+
+  /* AI Colors */
+  --ai-assistant-accent: #6c5dd3;
+  --ai-assistant-accent-text: #5648b8;
+  --ai-assistant-brand: #5648b8;
+  --ai-assistant-background-subtle: #f3f1fb;
+  --ai-assistant-background-moderate: #e4dff6;
+  --ai-model-accent: #6c5dd3;
+  --ai-model-accent-text: #5648b8;
+  --ai-model-background-subtle: #f3f1fb;
+  --ai-model-background-moderate: #e4dff6;
+  --ai-model-border-subtle: #e4dff6;
+  --ai-model-border-normal: #6c5dd3;
+  --ai-model-text-normal: #5648b8;
+  --ai-model-text-muted: #6c5dd3;
+  --ai-discussion-accent: #6c5dd3;
+  --ai-discussion-accent-text: #5648b8;
+  --ai-discussion-background-subtle: #f3f1fb;
+  --ai-discussion-background-moderate: #e4dff6;
+  --ai-discussion-border-subtle: #c9c0ed;
+  --ai-discussion-border-normal: #6c5dd3;
+  --ai-discussion-text-normal: #5648b8;
+  --ai-discussion-text-muted: #9380db;
   --transparent: hsla(0, 0%, 100%, 0);
+
+  /* AI token aliases */
+  --kn-color-ai-accent: var(--ai-assistant-accent);
+  --kn-color-ai-accent-text: var(--ai-assistant-accent-text);
 }
 
 /* Dark Mode
@@ -1042,7 +1087,34 @@
   --data-background-sequential-gray-800: hsla(215, 25%, 27%, 1);
   --data-background-sequential-gray-900: hsla(215, 19%, 35%, 1);
   --data-background-sequential-gray-1000: hsla(215, 16%, 47%, 1);
+
+  /* AI Colors - Dark */
+  --ai-assistant-accent: #9380db;
+  --ai-assistant-accent-text: #c9c0ed;
+  --ai-assistant-brand: #6c5dd3;
+  --ai-assistant-background-subtle: #231d49;
+  --ai-assistant-background-moderate: #342c6e;
+  --ai-model-accent: #9380db;
+  --ai-model-accent-text: #c9c0ed;
+  --ai-model-background-subtle: #231d49;
+  --ai-model-background-moderate: #342c6e;
+  --ai-model-border-subtle: #342c6e;
+  --ai-model-border-normal: #9380db;
+  --ai-model-text-normal: #c9c0ed;
+  --ai-model-text-muted: #9380db;
+  --ai-discussion-accent: #9380db;
+  --ai-discussion-accent-text: #c9c0ed;
+  --ai-discussion-background-subtle: #231d49;
+  --ai-discussion-background-moderate: #342c6e;
+  --ai-discussion-border-subtle: #453a93;
+  --ai-discussion-border-normal: #9380db;
+  --ai-discussion-text-normal: #c9c0ed;
+  --ai-discussion-text-muted: #aea0e4;
   --transparent: hsla(210, 6%, 13%, 0);
+
+  /* AI token aliases */
+  --kn-color-ai-accent: var(--ai-assistant-accent);
+  --kn-color-ai-accent-text: var(--ai-assistant-accent-text);
 
   /* Elevation - Dark */
   --elevation-none: none;

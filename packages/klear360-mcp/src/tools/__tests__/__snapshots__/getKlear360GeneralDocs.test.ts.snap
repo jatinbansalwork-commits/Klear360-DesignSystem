@@ -8,8 +8,6 @@ exports[`getKlear360GeneralDocs Tool > should return consistent general docs res
 
 # Usage
 import { Meta } from '@storybook/addon-docs';
-import figmaComponent from '../images/figma-component.png';
-import figmaToken from '../images/figma-token.png';
 
 <Meta title="Guides/How to use?" />
 
@@ -51,7 +49,6 @@ Klear360 is built with **"What you see in Figma is what you get on Code" ** phil
 
 Whenever you get a UI mockup handed over by your designer select the component you want to build. for eg: let's say I want to implement the Export button component from the below mockup.
 
-<img src={figmaComponent} alt="Figma mockup showing how to pick component and it's properties" />
 
 So to know the klear360 component's name and properties
 
@@ -76,7 +73,6 @@ Everything that you see on Figma built using Klear360 you'll always find that in
 
 Let's see how you can spot a token name from figma and write it in your code
 
-<img src={figmaToken} alt="Figma mockup showing how to pick token" />
 
 Whenever you get a UI mockup handed over by your designer
 
@@ -201,7 +197,7 @@ import {
 | BriefcaseIcon | Briefcase for business or work |
 | BugIcon | Bug for error reporting or debugging |
 | BuildingIcon | Office building for company or organization |
-| BulkPayoutsIcon | Klear product icon for bulk payouts |
+| BulkPayoutsIcon | Icon for running an action across many records |
 | BulkPayoutsFilledIcon | Filled variant of BulkPayoutsIcon |
 | BusinessBankingIcon | Klear product icon for business banking |
 | BusinessSpendManagementIcon | Klear product icon for business spend management |
@@ -361,7 +357,7 @@ import {
 | LockIcon | Locked padlock for security or restricted access |
 | LogInIcon | Arrow entering box for sign-in |
 | LogOutIcon | Arrow leaving box for sign-out |
-| MagicCheckoutIcon | Klear Magic Checkout product icon |
+| MagicCheckoutIcon | Klear Express Checkout product icon |
 | MagicCheckoutFilledIcon | Filled variant of MagicCheckoutIcon |
 | MagicKonnectIcon | Klear MagicKonnect product icon |
 | MagicKonnectFilledIcon | Filled variant of MagicKonnectIcon |
@@ -541,7 +537,7 @@ import {
 | UpiAutopayIcon | Klear product icon for UPI Autopay recurring payments |
 | UpiAutopayFilledIcon | Filled variant of UpiAutopayIcon |
 | UpiFilledIcon | Filled variant of UpiIcon |
-| UpiIcon | UPI (Unified Payments Interface) logo |
+| UpiIcon | Icon for sending or transferring an item |
 | UploadCloudIcon | Cloud with upload arrow |
 | UploadIcon | Upload arrow for sending files |
 | UserCheckIcon | Person with checkmark for verified user |
@@ -593,8 +589,6 @@ exports[`getKlear360GeneralDocs Tool > should return consistent general docs res
 
 # Usage
 import { Meta } from '@storybook/addon-docs';
-import figmaComponent from '../images/figma-component.png';
-import figmaToken from '../images/figma-token.png';
 
 <Meta title="Guides/How to use?" />
 
@@ -636,7 +630,6 @@ Klear360 is built with **"What you see in Figma is what you get on Code" ** phil
 
 Whenever you get a UI mockup handed over by your designer select the component you want to build. for eg: let's say I want to implement the Export button component from the below mockup.
 
-<img src={figmaComponent} alt="Figma mockup showing how to pick component and it's properties" />
 
 So to know the klear360 component's name and properties
 
@@ -661,7 +654,6 @@ Everything that you see on Figma built using Klear360 you'll always find that in
 
 Let's see how you can spot a token name from figma and write it in your code
 
-<img src={figmaToken} alt="Figma mockup showing how to pick token" />
 
 Whenever you get a UI mockup handed over by your designer
 
@@ -786,7 +778,7 @@ import {
 | BriefcaseIcon | Briefcase for business or work |
 | BugIcon | Bug for error reporting or debugging |
 | BuildingIcon | Office building for company or organization |
-| BulkPayoutsIcon | Klear product icon for bulk payouts |
+| BulkPayoutsIcon | Icon for running an action across many records |
 | BulkPayoutsFilledIcon | Filled variant of BulkPayoutsIcon |
 | BusinessBankingIcon | Klear product icon for business banking |
 | BusinessSpendManagementIcon | Klear product icon for business spend management |
@@ -946,7 +938,7 @@ import {
 | LockIcon | Locked padlock for security or restricted access |
 | LogInIcon | Arrow entering box for sign-in |
 | LogOutIcon | Arrow leaving box for sign-out |
-| MagicCheckoutIcon | Klear Magic Checkout product icon |
+| MagicCheckoutIcon | Klear Express Checkout product icon |
 | MagicCheckoutFilledIcon | Filled variant of MagicCheckoutIcon |
 | MagicKonnectIcon | Klear MagicKonnect product icon |
 | MagicKonnectFilledIcon | Filled variant of MagicKonnectIcon |
@@ -1126,7 +1118,7 @@ import {
 | UpiAutopayIcon | Klear product icon for UPI Autopay recurring payments |
 | UpiAutopayFilledIcon | Filled variant of UpiAutopayIcon |
 | UpiFilledIcon | Filled variant of UpiIcon |
-| UpiIcon | UPI (Unified Payments Interface) logo |
+| UpiIcon | Icon for sending or transferring an item |
 | UploadCloudIcon | Cloud with upload arrow |
 | UploadIcon | Upload arrow for sending files |
 | UserCheckIcon | Person with checkmark for verified user |

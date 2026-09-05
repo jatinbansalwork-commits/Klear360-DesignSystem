@@ -1,4 +1,3 @@
-import { basename } from 'path';
 import { z } from 'zod';
 import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 
@@ -20,7 +19,7 @@ const createNewKlear360ProjectToolSchema = {
 
 const createNewKlear360ProjectToolCallback: ToolCallback<
   typeof createNewKlear360ProjectToolSchema
-> = ({ currentProjectRootDirectory }) => {
+> = ({ currentProjectRootDirectory: _currentProjectRootDirectory }) => {
   try {
     return {
       content: [

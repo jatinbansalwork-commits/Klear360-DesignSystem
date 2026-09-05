@@ -2,7 +2,6 @@ import type { StoryFn, Meta } from '@storybook/react-vite';
 import type { AvatarProps } from '../Avatar';
 import { Avatar as AvatarComponent } from '../Avatar';
 import { AvatarGroup as AvatarGroupComponent } from '../AvatarGroup';
-import { TrustedBadgeIcon } from '../TrustedBadgeIcon';
 import { Heading } from '~components/Typography/Heading';
 import { Box } from '~components/Box';
 import { Sandbox } from '~utils/storybook/Sandbox';
@@ -179,14 +178,14 @@ const AvatarWithAddonsTemplate: StoryFn<typeof AvatarComponent> = (args) => {
             {...args}
             size={size}
             topAddon={<Indicator color="negative" />}
-            bottomAddon={TrustedBadgeIcon}
+            bottomAddon={BuildingIcon}
           />
           <AvatarComponent
             {...args}
             variant="square"
             size={size}
             topAddon={<Indicator color="negative" />}
-            bottomAddon={TrustedBadgeIcon}
+            bottomAddon={BuildingIcon}
           />
         </Box>
       ))}
@@ -408,7 +407,7 @@ export const AvatarShowcase: StoryFn<typeof AvatarComponent> = () => {
                 size={size}
                 name="Maya Chen"
                 topAddon={<Indicator color="positive" />}
-                bottomAddon={TrustedBadgeIcon}
+                bottomAddon={BuildingIcon}
               />
               <Text size="small">{size}</Text>
             </Box>
@@ -440,7 +439,7 @@ export const AvatarShowcase: StoryFn<typeof AvatarComponent> = () => {
                 name="Maya Chen"
                 variant="square"
                 topAddon={<Indicator color="negative" />}
-                bottomAddon={TrustedBadgeIcon}
+                bottomAddon={BuildingIcon}
               />
               <Text size="small">{size}</Text>
             </Box>
@@ -511,7 +510,7 @@ export const AvatarShowcase: StoryFn<typeof AvatarComponent> = () => {
                 src="https://avatars.githubusercontent.com/u/35374649?v=4"
                 name="Nitin Kumar"
                 topAddon={<Indicator color="positive" />}
-                bottomAddon={TrustedBadgeIcon}
+                bottomAddon={BuildingIcon}
               />
               <Text size="small">{size}</Text>
             </Box>

@@ -156,6 +156,28 @@ export type Colors = {
       gray: Pick<Emphasis, 'subtle' | 'moderate' | 'intense'>;
     } & PopupDeprecatedTokens;
   };
+  ai: {
+    assistant: {
+      accent: string;
+      accentText: string;
+      brand: string;
+      background: Pick<Emphasis, 'subtle' | 'moderate'>;
+    };
+    model: {
+      accent: string;
+      accentText: string;
+      background: Pick<Emphasis, 'subtle' | 'moderate'>;
+      border: Pick<Emphasis, 'subtle' | 'normal'>;
+      text: Pick<Emphasis, 'normal' | 'muted'>;
+    };
+    discussion: {
+      accent: string;
+      accentText: string;
+      background: Pick<Emphasis, 'subtle' | 'moderate'>;
+      border: Pick<Emphasis, 'subtle' | 'normal'>;
+      text: Pick<Emphasis, 'normal' | 'muted'>;
+    };
+  };
   transparent: string;
   data: {
     background: {

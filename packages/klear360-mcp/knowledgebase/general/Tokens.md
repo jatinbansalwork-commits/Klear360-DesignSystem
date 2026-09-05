@@ -20,7 +20,7 @@ Global tokens are foundational, context-free values. They define the raw design 
 - **Opacity** — 14-step opacity scale (0.0–1.0)
 - **Motion** — Duration, delay, and easing curves
 - **Typography** — Font sizes, weights, line heights, letter spacings, font families
-- **Colors** — 11 chromatic palettes, 4 neutral palettes, static black/white
+- **Colors** — 12 chromatic palettes, 4 neutral palettes, static black/white
 - **Elevation** — Shadow definitions for 4 elevation levels
 
 ### Tier 2: Theme/Semantic Tokens (Contextual Meanings)
@@ -32,6 +32,7 @@ Theme tokens map global values to **semantic purposes** and support light/dark m
 - **Surface colors** — For backgrounds, borders, and text on non-interactive surfaces
 - **Overlay/Popup colors** — For modals, drawers, and tooltips
 - **Data colors** — For charts and data visualization
+- **AI colors** — For AI assistant, model, and discussion surfaces (purple palette, separate from product primary)
 
 ## ThemeTokens Shape
 
@@ -330,6 +331,60 @@ theme.colors.transparent   // Fully transparent
 
 For charts and data visualization — see **ChartColorSystem** documentation for full details.
 
+### AI Colors (`theme.colors.ai.*`)
+
+Purple is the AI accent color — intentionally separate from the default interactive primary (azure) used elsewhere in the product. Use AI tokens for assistant UI, model selectors, discussion threads, streaming indicators, and AI-branded surfaces.
+
+| Token | CSS variable | Light value | Use |
+|---|---|---|---|
+| `ai.assistant.accent` | `--ai-assistant-accent` / `--kn-color-ai-accent` | `#6c5dd3` (purple-500) | Primary AI accent — streaming rings, chips, highlights |
+| `ai.assistant.accentText` | `--ai-assistant-accent-text` / `--kn-color-ai-accent-text` | `#5648b8` (purple-600) | Text on AI surfaces, brand mark |
+| `ai.assistant.brand` | `--ai-assistant-brand` | `#5648b8` | Brand-level AI color |
+| `ai.assistant.background.subtle` | `--ai-assistant-background-subtle` | `#f3f1fb` (purple-50) | Subtle AI background fill |
+| `ai.assistant.background.moderate` | `--ai-assistant-background-moderate` | `#e4dff6` (purple-100) | Moderate AI background fill |
+
+**Model tokens** (`theme.colors.ai.model.*`) — for model picker, model badges, and model-specific UI:
+
+| Token | CSS variable | Use |
+|---|---|---|
+| `ai.model.accent` | `--ai-model-accent` | Model selector accent |
+| `ai.model.accentText` | `--ai-model-accent-text` | Model label text |
+| `ai.model.background.subtle` | `--ai-model-background-subtle` | Model card background |
+| `ai.model.background.moderate` | `--ai-model-background-moderate` | Model card hover/selected |
+| `ai.model.border.subtle` | `--ai-model-border-subtle` | Model card border |
+| `ai.model.border.normal` | `--ai-model-border-normal` | Model card active border |
+| `ai.model.text.normal` | `--ai-model-text-normal` | Model name text |
+| `ai.model.text.muted` | `--ai-model-text-muted` | Model description text |
+
+**Discussion tokens** (`theme.colors.ai.discussion.*`) — for chat threads, message bubbles, and discussion panels:
+
+| Token | CSS variable | Use |
+|---|---|---|
+| `ai.discussion.accent` | `--ai-discussion-accent` | Discussion thread accent |
+| `ai.discussion.accentText` | `--ai-discussion-accent-text` | Discussion header text |
+| `ai.discussion.background.subtle` | `--ai-discussion-background-subtle` | Message bubble background |
+| `ai.discussion.background.moderate` | `--ai-discussion-background-moderate` | Thread panel background |
+| `ai.discussion.border.subtle` | `--ai-discussion-border-subtle` | Message bubble border |
+| `ai.discussion.border.normal` | `--ai-discussion-border-normal` | Active thread border |
+| `ai.discussion.text.normal` | `--ai-discussion-text-normal` | Message body text |
+| `ai.discussion.text.muted` | `--ai-discussion-text-muted` | Timestamp / metadata text |
+
+```jsx
+// In component props
+<Box backgroundColor="ai.discussion.background.subtle" borderColor="ai.discussion.border.subtle">
+  <Text color="ai.discussion.text.normal">AI response</Text>
+</Box>
+
+// In plain CSS
+.ai-chip {
+  background: var(--ai-assistant-background-subtle);
+  color: var(--ai-assistant-accent-text);
+  border: 1px solid var(--ai-model-border-normal);
+}
+```
+
+Dark mode inverts the purple scale (e.g. accent `#9380db`, backgrounds `#231d49` / `#342c6e`).
+
 ## Light/Dark Mode
 
 All color tokens exist in both `onLight` and `onDark` variants. The active mode is determined by the `colorScheme` prop on `Klear360Provider`. Consumers access `theme.colors.surface.*` (without specifying the mode) and the correct values resolve automatically.
@@ -361,7 +416,7 @@ const StyledCard = styled.div(
 
 These are the raw palettes that semantic tokens map to. **Do not use these directly** — always use semantic tokens above.
 
-**11 Chromatic palettes:** azure, emerald, crimson, cider, sapphire, sea, cloud, forest, orchid, magenta, topaz
+**12 Chromatic palettes:** azure, emerald, crimson, cider, sapphire, sea, cloud, forest, orchid, magenta, topaz, purple
 - Each has scales: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000
 - Plus alpha variants: a50, a100, a150, a200, a400
 

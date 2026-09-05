@@ -178,7 +178,7 @@ This example shows the three main types of Avatar (image, letter, and icon) with
 
 ```tsx
 import React from 'react';
-import { Avatar, Box, Indicator, BuildingIcon, TrustedBadgeIcon } from '@klear/klear360/components';
+import { Avatar, Box, Indicator, BuildingIcon } from '@klear/klear360/components';
 
 const AvatarExample = () => {
   // Image avatar with interactive props and variants
@@ -223,7 +223,7 @@ const AvatarExample = () => {
         name="With Addons"
         size="large"
         topAddon={<Indicator color="negative" />}
-        bottomAddon={TrustedBadgeIcon}
+        bottomAddon={BuildingIcon}
         data-analytics-section="profile"
         testID="user-avatar"
       />

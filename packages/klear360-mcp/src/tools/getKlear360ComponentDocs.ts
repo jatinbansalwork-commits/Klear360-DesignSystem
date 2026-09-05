@@ -1,4 +1,3 @@
-import { basename } from 'path';
 import { z } from 'zod';
 import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getKlear360DocsList } from '../utils/generalUtils.js';
@@ -39,7 +38,7 @@ const getKlear360ComponentDocsCore = ({
   currentProjectRootDirectory,
   skipLocalSkillChecks = false,
   skillVersion = '0',
-  clientName,
+  clientName: _clientName,
 }: {
   componentsList: string;
   currentProjectRootDirectory?: string;

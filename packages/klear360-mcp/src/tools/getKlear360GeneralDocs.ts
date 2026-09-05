@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { join, basename } from 'path';
+import { join } from 'path';
 import { z } from 'zod';
 import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { GENERAL_KNOWLEDGEBASE_DIRECTORY } from '../utils/tokens.js';
@@ -49,7 +49,7 @@ const getKlear360GeneralDocsCore = ({
   currentProjectRootDirectory,
   skipLocalSkillChecks = false,
   skillVersion = '0',
-  clientName,
+  clientName: _clientName,
 }: {
   topicsList: string;
   currentProjectRootDirectory?: string;

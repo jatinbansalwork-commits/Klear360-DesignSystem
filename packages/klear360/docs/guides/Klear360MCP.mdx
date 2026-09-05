@@ -24,14 +24,34 @@ export const toolsData = [
       'Creates a new project using Klear360 with Vite, React, and TypeScript setup. Should only be called when creating a new project from scratch.',
   },
   {
-    name: 'create_klear360_cursor_rules',
+    name: 'create_klear360_skill',
     description:
-      "Creates the cursor rules for Klear360 to help with code generation. Should be called before getting component docs and when the rule file doesn't exist.",
+      'Creates the UI code guidelines skill for AI-assisted frontend code generation. Scaffolds the skill in .agents/skills/ui-code-guidelines and creates a symlink in .claude/skills for Claude Code support. Should be called before fetching component docs when the skill does not exist.',
   },
   {
     name: 'get_klear360_component_docs',
     description:
       'Fetches the Klear360 Design System documentation for specific components. Useful when adding or modifying components in your project.',
+  },
+  {
+    name: 'get_klear360_pattern_docs',
+    description:
+      'Fetches the Klear360 Design System pattern documentation. Use this to get information about design patterns, best practices, and implementation guidelines.',
+  },
+  {
+    name: 'get_klear360_general_docs',
+    description:
+      'Fetches general Klear360 Design System documentation. Use this to get information about setup, installation, theming, tokens, and general guidelines.',
+  },
+  {
+    name: 'get_klear360_changelog',
+    description:
+      'Fetches the Klear360 changelog to help with upgrades and release notes. Supports a specific version or a range of versions.',
+  },
+  {
+    name: 'get_figma_to_code',
+    description:
+      "Converts Figma designs into Klear360 Design System code. Provide a Figma design URL to generate the corresponding React components using Klear360's component library. (Klear employees only)",
   },
 ];
 
