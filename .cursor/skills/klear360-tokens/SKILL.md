@@ -4,7 +4,6 @@ description: >-
   Guides Klear360 token architecture — global vs semantic tokens, spacing, color,
   typography, border, elevation, and theme.css generation. Use when adding or changing
   design tokens, theme files, CSS variables, or when reviewing hardcoded values in UI code.
-  For typography components and type hierarchy, use klear360-typography instead.
 ---
 
 # Klear360 Tokens
@@ -50,6 +49,8 @@ The generator owns the token-derived head of `theme.css`. The utility-class tail
 ## MCP reference
 
 Call `get_klear360_general_docs` with `topicsList: "Tokens"` for full token tables before making changes.
+
+For **typography component usage** (Text, Heading, Display, Code), load **klear360-typography** instead of wiring tokens manually.
 
 ## After edits
 

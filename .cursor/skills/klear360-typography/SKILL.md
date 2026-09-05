@@ -3,7 +3,8 @@ name: klear360-typography
 description: >-
   Guides Klear360 typography — Text, Heading, Display, Code components, global type
   tokens, font families, line heights, and makeTypographySize. Use when building or
-  changing text UI, type hierarchy, font sizing, or reviewing hardcoded font values.
+  changing text UI, type hierarchy, font sizing, captions, headings, hero display
+  type, inline code, or reviewing hardcoded font values.
 ---
 
 # Klear360 Typography
@@ -29,6 +30,14 @@ Typography tokens are **global only** — no semantic typography tier. Meaning c
 
 **Never expose `BaseText`** to consumers — it is internal.
 
+## Type hierarchy (top → bottom)
+
+```
+Display  →  Heading  →  Text (body)  →  Text (caption)  →  Code
+```
+
+Do not skip levels visually (e.g. Display for a form label) or invert hierarchy (caption larger than body).
+
 ## Component APIs
 
 ### Text
@@ -42,8 +51,20 @@ Typography tokens are **global only** — no semantic typography tier. Meaning c
   color="surface.text.gray.normal"
   as="p"                  // p | span | div | label | cite | q | abbr | figcaption
   truncateAfterLines={2}
+  textDecorationLine="dotted"  // abbreviations with Tooltip only
 />
 ```
+
+| Variant | Size | Token keys (fontSize / lineHeight / letterSpacing) |
+|---------|------|-----------------------------------------------------|
+| body | xsmall | 25 / 25 / 50 |
+| body | small | 75 / 75 / 50 |
+| body | medium | 100 / 100 / 50 |
+| body | large | 200 / 200 / 25 |
+| caption | small | 50 / 50 / 50 |
+| caption | medium | 100 / 50 / 50 |
+
+Caption always forces `weight="regular"`.
 
 ### Heading
 
@@ -51,10 +72,21 @@ Typography tokens are **global only** — no semantic typography tier. Meaning c
 <Heading
   size="medium"           // small | medium | large | xlarge | 2xlarge
   weight="semibold"       // regular | medium | semibold (default: semibold)
-  as="h2"                 // auto-mapped by size if omitted (small→h6 … 2xlarge→h2)
+  as="h2"                 // auto-mapped by size if omitted
   color="surface.text.gray.normal"
 />
 ```
+
+| Size | Token keys | Default `as` |
+|------|------------|--------------|
+| small | 300 / 300 | h6 |
+| medium | 400 / 400 | h5 |
+| large | 500 / 500 | h4 |
+| xlarge | 600 / 600 | h3 |
+| 2xlarge | 700 / 700 | h2 |
+
+- `fontFamily`: `heading`
+- Override `as` only when visual level ≠ semantic level
 
 ### Display
 
@@ -67,6 +99,15 @@ Typography tokens are **global only** — no semantic typography tier. Meaning c
 />
 ```
 
+| Size | Token keys (fontSize / lineHeight) |
+|------|-----------------------------------|
+| small | 800 / 800 |
+| medium | 900 / 900 |
+| large | 1000 / 1000 |
+| xlarge | 1100 / 1100 |
+
+Letter spacing: `50` when weight is regular/medium, else `100`.
+
 ### Code
 
 ```tsx
@@ -74,7 +115,33 @@ Typography tokens are **global only** — no semantic typography tier. Meaning c
 <Code size="medium" isHighlighted={false} color="surface.text.gray.normal" />
 ```
 
-`color` is only valid when `isHighlighted={false}`.
+| Size | Token keys |
+|------|------------|
+| small | 25 / 25 / 100 |
+| medium | 75 / 75 / 100 |
+
+`color` is only valid when `isHighlighted={false}`. Default highlight uses `feedback.background.neutral.subtle`.
+
+## Page structure example
+
+```tsx
+import { Display, Heading, Text, Code, Box } from '@klear/klear360/components';
+
+<Box display="flex" flexDirection="column" gap="spacing.4">
+  <Display size="medium">Welcome to Klear360</Display>
+  <Heading size="large">Account Settings</Heading>
+  <Text size="medium" color="surface.text.gray.normal">
+    Manage your profile and preferences.
+  </Text>
+  <Text variant="caption" size="small" color="surface.text.gray.subtle">
+    Last updated 2 minutes ago
+  </Text>
+  <Box flexDirection="row" flexWrap="wrap" alignItems="flex-start">
+    <Text size="medium">Your key is </Text>
+    <Code size="small">API_KEY</Code>
+  </Box>
+</Box>
+```
 
 ## Color tokens for text
 
@@ -110,22 +177,22 @@ typography: { onDesktop, onMobile }   // resolved by Klear360Provider — don't 
 
 ## Custom styled text (advanced)
 
-When typography components aren't enough, use token utilities — never raw px/rem:
+Prefer typography components. When building custom styled text outside components, use **`makeTypographySize`** from the public API — never raw px/rem:
 
 ```tsx
-import { makeTypographySize, makeLetterSpacing } from '@klear/klear360/utils';
+import { makeTypographySize } from '@klear/klear360/utils';
 
 const StyledLabel = styled.span`
   font-size: ${({ theme }) => makeTypographySize(theme.typography.fonts.size[100])};
   line-height: ${({ theme }) => makeTypographySize(theme.typography.lineHeights[100])};
-  letter-spacing: ${({ theme }) =>
-    makeLetterSpacing(theme.typography.fonts.size[100], theme.typography.letterSpacings[50])};
   font-family: ${({ theme }) => theme.typography.fonts.family.text};
+  font-weight: ${({ theme }) => theme.typography.fonts.weight.medium};
 `;
 ```
 
 - Web: `makeTypographySize` → rem
 - Native: `makeTypographySize` → px
+- Letter spacing is handled internally by typography components — do not hand-roll unless extending `BaseText`
 
 ## Theme customization (white-label)
 
@@ -143,15 +210,26 @@ After token source changes:
 cd packages/klear360-core && yarn generate:tokens-css
 ```
 
+## File map
+
+| Change type | Edit these |
+|-------------|------------|
+| Global type scale | `packages/klear360-core/src/tokens/global/typography.ts` |
+| Font families | `packages/klear360-core/src/tokens/global/fontFamily/` |
+| Component presets | `packages/klear360/src/components/Typography/` |
+| MCP docs | `packages/klear360-mcp/knowledgebase/components/{Text,Heading,Display,Code}.md` |
+| Storybook | `packages/klear360/docs/tokens/Typography.mdx` |
+
 ## Rules
 
 1. **Prefer components** over manual token wiring.
 2. **Never hardcode** font-size, line-height, or letter-spacing in px/rem/em.
 3. **Never hardcode** text colors — use semantic paths.
-4. **Respect hierarchy:** Display → Heading → Text → Code. Don't use Display for body copy.
+4. **Respect hierarchy:** Display → Heading → Text → Code.
 5. **Semantic HTML:** Let Heading auto-map size→h-tag; override `as` only when visual level ≠ semantic level.
 6. **Caption constraint:** `variant="caption"` accepts only `size="small"|"medium"`.
 7. **Layout on typography:** use styled props — `margin="spacing.3"`, `textAlign="center"`.
+8. **Don't use Display for body copy** or **Heading for hero text**.
 
 ## MCP & docs
 
