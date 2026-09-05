@@ -441,7 +441,7 @@ import {
 | QRCodeIcon | QR code for scanning |
 | RadioIcon | Radio/broadcast for streaming |
 | KlearAgentIcon | Klear Agent icon |
-| KlearLogoIcon | Klear logo |
+| KlearLogoIcon | Klear wordmark logo |
 | KlearNowPayIcon | KlearNow Pay product logo |
 | KlearNowPayrollIcon | Klear payroll product icon |
 | KlearNowPayrollFilledIcon | Filled variant of KlearNowPayrollIcon |
@@ -1022,7 +1022,7 @@ import {
 | QRCodeIcon | QR code for scanning |
 | RadioIcon | Radio/broadcast for streaming |
 | KlearAgentIcon | Klear Agent icon |
-| KlearLogoIcon | Klear logo |
+| KlearLogoIcon | Klear wordmark logo |
 | KlearNowPayIcon | KlearNow Pay product logo |
 | KlearNowPayrollIcon | Klear payroll product icon |
 | KlearNowPayrollFilledIcon | Filled variant of KlearNowPayrollIcon |
