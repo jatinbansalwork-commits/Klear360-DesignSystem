@@ -38,5 +38,5 @@ export const themeConfig = {
   inputBorderRadius: 2,
 
   brandTitle: 'Klear360',
-  brandUrl: 'https://github.com/jatinbansalwork-commits/Klearnow.ai',
+  brandUrl: 'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem',
 };

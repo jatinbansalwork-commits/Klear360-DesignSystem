@@ -13,7 +13,7 @@ const bashScriptContent = `
   SKILL_DIR=".agents/skills/ui-code-guidelines"
   REFS_DIR="$SKILL_DIR/references"
   SYMLINK_DIR=".claude/skills/ui-code-guidelines"
-  BASE_URL="https://raw.githubusercontent.com/jatinbansalwork-commits/Klearnow.ai/main/packages/klear360-mcp/skillTemplate"
+  BASE_URL="https://raw.githubusercontent.com/jatinbansalwork-commits/Klear360-DesignSystem/main/packages/klear360-mcp/skillTemplate"
   # Create directories
   mkdir -p "$SKILL_DIR"
   mkdir -p "$REFS_DIR"

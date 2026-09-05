@@ -18,7 +18,7 @@ const validateBackgroundString = (stringBackgroundColorValue: string): void => {
       stringBackgroundColorValue !== 'transparent'
     ) {
       throwKlear360Error({
-        message: `Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`${stringBackgroundColorValue}\` instead.\n\n Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klearnow.ai repo to let us know and we can discuss ✨`,
+        message: `Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`${stringBackgroundColorValue}\` instead.\n\n Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klear360-DesignSystem repo to let us know and we can discuss ✨`,
         moduleName: 'Box',
       });
     }

@@ -73,7 +73,7 @@ describe('<Box />', () => {
       expect(err).toMatchInlineSnapshot(`
         [Error: [Klear360: Box]: Oops! Currently you can only use \`transparent\`, \`surface.background.*\`, and \`overlay.*\` tokens with backgroundColor property but we received \`red\` instead.
 
-         Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klearnow.ai repo to let us know and we can discuss ✨]
+         Do you have a usecase of using other values? Create an issue on https://github.com/jatinbansalwork-commits/Klear360-DesignSystem repo to let us know and we can discuss ✨]
       `);
     }
     console.error = tempConsoleError;

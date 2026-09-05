@@ -91,11 +91,11 @@ it('should remove variant/intent prop in favor of color prop', async () => {
         <CardHeaderIconButton variant="secondary" color="default"> Click Me </CardHeaderIconButton>
         <CardHeaderIconButton variant="secondary" color="white"> Click Me </CardHeaderIconButton>
 
-        <Link color="default" href="https://github.com/jatinbansalwork-commits/Klearnow.ai" variant="anchor">
+        <Link color="default" href="https://github.com/jatinbansalwork-commits/Klear360-DesignSystem" variant="anchor">
           Learn More
         </Link>
 
-        <CardHeaderLink color="default" href="https://github.com/jatinbansalwork-commits/Klearnow.ai" variant="anchor">
+        <CardHeaderLink color="default" href="https://github.com/jatinbansalwork-commits/Klear360-DesignSystem" variant="anchor">
           Learn More
         </CardHeaderLink>
 
@@ -166,11 +166,11 @@ it('should remove variant/intent prop in favor of color prop', async () => {
             <CardHeaderIconButton variant="secondary" color="primary"> Click Me </CardHeaderIconButton>
             <CardHeaderIconButton variant="secondary" color="white"> Click Me </CardHeaderIconButton>
 
-            <Link color="primary" href="https://github.com/jatinbansalwork-commits/Klearnow.ai" variant="anchor">
+            <Link color="primary" href="https://github.com/jatinbansalwork-commits/Klear360-DesignSystem" variant="anchor">
               Learn More
             </Link>
 
-            <CardHeaderLink color="primary" href="https://github.com/jatinbansalwork-commits/Klearnow.ai" variant="anchor">
+            <CardHeaderLink color="primary" href="https://github.com/jatinbansalwork-commits/Klear360-DesignSystem" variant="anchor">
               Learn More
             </CardHeaderLink>
 

@@ -21,7 +21,7 @@ const getMemoDependency = (
   } catch (err: unknown) {
     if (__DEV__) {
       logger({
-        message: `stringification of props failed in BaseBox so falling back to re-calculations on all changes\n\n If you see this warning, please create issue on https://github.com/jatinbansalwork-commits/Klearnow.ai as this could degrade runtime styling performance ${err}`,
+        message: `stringification of props failed in BaseBox so falling back to re-calculations on all changes\n\n If you see this warning, please create issue on https://github.com/jatinbansalwork-commits/Klear360-DesignSystem as this could degrade runtime styling performance ${err}`,
         moduleName: 'BaseBox',
         type: 'warn',
       });

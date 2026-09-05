@@ -14,7 +14,7 @@ export default {
     onClick: (event): void => {
       console.log('clicked', event);
     },
-    href: 'https://github.com/jatinbansalwork-commits/Klearnow.ai',
+    href: 'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem',
     target: '_blank',
     rel: 'noreferrer noopener',
     contrast: 'low',

@@ -43,7 +43,7 @@ When intent is `perform-task-end-to-end`, load `perform-task-end-to-end` skill i
 
 ## Repository
 
-**One repo only:** https://github.com/jatinbansalwork-commits/Klearnow.ai  
+**One repo only:** https://github.com/jatinbansalwork-commits/Klear360-DesignSystem  
 The old `Klear360` GitHub URL redirects here — do not treat them as two repos. See [REPOSITORY.md](./REPOSITORY.md).
 
 ## Cursor Skills (Design System)
