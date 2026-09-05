@@ -43,7 +43,7 @@ const colors: ColorsWithModes = {
         gray: {
           normal: globalColors.neutral.blueGrayLight[300],
           subtle: globalColors.neutral.blueGrayLight[200],
-          muted: globalColors.neutral.blueGrayLight.a920,
+          muted: globalColors.neutral.blueGrayLight.a917,
         },
         primary: {
           normal: globalColors.chromatic.azure[500],
@@ -798,7 +798,7 @@ const colors: ColorsWithModes = {
         gray: {
           normal: globalColors.neutral.blueGrayDark[600],
           subtle: globalColors.neutral.blueGrayDark[800],
-          muted: globalColors.neutral.blueGrayDark.a520,
+          muted: globalColors.neutral.blueGrayDark.a523,
         },
         primary: {
           normal: globalColors.chromatic.azure[500],
