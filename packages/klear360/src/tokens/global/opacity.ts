@@ -9,6 +9,8 @@ export type Opacity = Readonly<{
   100: number;
   /**200: 0.12 */
   200: number;
+  /**250: 0.20 */
+  250: number;
   /**300: 0.18 */
   300: number;
   /**400: 0.24 */
@@ -39,6 +41,7 @@ export const opacity: Opacity = {
   50: 0.06,
   100: 0.09,
   200: 0.12,
+  250: 0.2,
   300: 0.18,
   400: 0.24,
   500: 0.32,
