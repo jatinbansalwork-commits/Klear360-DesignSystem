@@ -34,6 +34,39 @@ Theme tokens map global values to **semantic purposes** and support light/dark m
 - **Data colors** — For charts and data visualization
 - **AI colors** — For AI assistant, model, and discussion surfaces (purple palette, separate from product primary)
 
+### Vanilla CSS tiers (sample apps)
+
+When working in `tokens.css` / `components.css` (vanilla HTML apps), use four alias layers:
+
+| Tier | Prefix | Rule |
+|------|--------|------|
+| 1 Global | `--kn-primitive-*` | Raw palette — never in `components.css` |
+| 2 Semantic | `--theme-colors-*` | Role-based (surface, interactive, ai, feedback) |
+| 3 Product alias | `--kn-color-*` | CSS consumption layer |
+| 4 Component alias | `--kn-divider-*`, motion aliases | Scoped to a primitive (Divider, etc.) |
+
+**Divider default chain (muted, horizontal, thin):**
+
+```
+surface.border.gray.muted
+  light: hsla(222, 47%, 11%, 0.126)  (blueGrayLight.a917)
+  dark:  hsla(215, 25%, 27%, 0.189)  (blueGrayDark.a523)
+
+--theme-colors-surface-border-gray-muted
+  → --kn-color-border-surface-gray-muted
+  → --kn-divider-color-muted
+  → --kn-divider-color
+```
+
+**GenUI vertical spacing** (`.kn-genui__item` modifiers):
+
+| Class suffix | Spacing token |
+|--------------|---------------|
+| `--h3`, `--after-h3-block`, `--after-text-block` | `spacing.7` |
+| `--after-block-action` | `spacing.4` |
+| `--after-action` | `spacing.2` |
+| Stack `--gap-small/medium/large` | `spacing.2/4/5` |
+
 ## ThemeTokens Shape
 
 The `ThemeTokens` object (provided to `Klear360Provider`) has this top-level structure:
@@ -282,7 +315,7 @@ For non-interactive backgrounds, borders, and text.
 |---|---|
 | `surface.border.gray.normal` | Standard borders |
 | `surface.border.gray.subtle` | Light borders |
-| `surface.border.gray.muted` | Subtle borders (20% opacity on light) |
+| `surface.border.gray.muted` | Very subtle borders (Divider default). Light: `hsla(222, 47%, 11%, 0.126)` |
 | `surface.border.primary.normal` | Primary-colored borders |
 | `surface.border.primary.muted` | Subtle primary borders |
 

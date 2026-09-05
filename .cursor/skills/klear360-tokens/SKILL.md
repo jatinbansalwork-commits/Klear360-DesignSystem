@@ -50,6 +50,8 @@ The generator owns the token-derived head of `theme.css`. The utility-class tail
 
 Call `get_klear360_general_docs` with `topicsList: "Tokens"` for full token tables before making changes.
 
+For **typography component usage** (Text, Heading, Display, Code), load **klear360-typography** instead of wiring tokens manually.
+
 ## After edits
 
 Always run the **klear360-audit** skill before finishing.
