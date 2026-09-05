@@ -14,6 +14,7 @@ Use this skill to route work across the Klear360 layers, then **always** finish 
 
 | Task touches… | Load skill |
 |---------------|------------|
+| Adopting designer-skills DS topics | **klear360-ds-adoption** (router — not product skills) |
 | Colors, spacing, theme, CSS vars | **klear360-tokens** |
 | Text, headings, display type, font hierarchy | **klear360-typography** |
 | Chat, copilot, AI surfaces, GenUI / Generative UI | **klear360-ai-ui** |
