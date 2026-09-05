@@ -4,6 +4,7 @@ description: >-
   Guides Klear360 token architecture — global vs semantic tokens, spacing, color,
   typography, border, elevation, and theme.css generation. Use when adding or changing
   design tokens, theme files, CSS variables, or when reviewing hardcoded values in UI code.
+  For typography components and type hierarchy, use klear360-typography instead.
 ---
 
 # Klear360 Tokens

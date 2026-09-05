@@ -31,6 +31,7 @@ Pick components by **behavior**, not appearance:
 | 5+ options | `Dropdown` / `SelectInput` |
 | Searchable large list | `AutoComplete` |
 | Page navigation | `SideNav`, `TopNav`, `BottomNav` |
+| Body / heading / hero text | `Text`, `Heading`, `Display`, `Code` — see **klear360-typography** |
 
 Call `get_klear360_general_docs` with `topicsList: "ChoosingComponents"` for the full decision tree.
 

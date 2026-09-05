@@ -46,14 +46,21 @@ When intent is `perform-task-end-to-end`, load `perform-task-end-to-end` skill i
 **One repo only:** https://github.com/jatinbansalwork-commits/Klear360-DesignSystem  
 The old `Klear360` GitHub URL redirects here — do not treat them as two repos. See [REPOSITORY.md](./REPOSITORY.md).
 
+## Pull Request Policy
+
+**Every change requires a PR** — including a single dot, comment, or one-line fix. No exceptions.
+
+After any change: commit → push feature branch → open PR. **Do not ask** the user for permission to raise a PR; do it automatically. Never push directly to `main`. See [`.cursor/rules/klear360-pr-policy.mdc`](./.cursor/rules/klear360-pr-policy.mdc).
+
 ## Cursor Skills (Design System)
 
-Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**.
+Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**, then raise a PR.
 
 | Skill | When to load |
 | ----- | ------------ |
 | `klear360-design-system` | Full-stack DS work spanning multiple layers |
 | `klear360-tokens` | Token, theme, or CSS variable changes |
+| `klear360-typography` | Text, Heading, Display, Code, type hierarchy, font tokens |
 | `klear360-ai-ui` | AI assistant, chat, model picker, copilot UI |
 | `klear360-components` | Component selection, patterns, styled props |
 | `klear360-motion` | Animations, transitions, motion tokens |

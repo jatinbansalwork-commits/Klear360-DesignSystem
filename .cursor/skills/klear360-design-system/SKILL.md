@@ -15,6 +15,7 @@ Use this skill to route work across the Klear360 layers, then **always** finish 
 | Task touches… | Load skill |
 |---------------|------------|
 | Colors, spacing, theme, CSS vars | **klear360-tokens** |
+| Text, headings, display type, font hierarchy | **klear360-typography** |
 | Chat, copilot, AI surfaces, GenUI / Generative UI | **klear360-ai-ui** |
 | UI components, patterns, layouts | **klear360-components** |
 | Animations, transitions | **klear360-motion** |
@@ -29,7 +30,8 @@ Load only the skills relevant to the task — do not load all at once.
 2. Learn    → MCP docs for components/patterns/tokens involved
 3. Implement → Follow layer skill rules; minimize diff scope
 4. Audit    → Run klear360-audit; fix all failures before done
-5. Summarize → Report what changed and audit results
+5. PR       → Commit, push branch, open PR automatically (no asking — even for tiny diffs)
+6. Summarize → Report what changed, audit results, and PR URL
 ```
 
 ## MCP first
