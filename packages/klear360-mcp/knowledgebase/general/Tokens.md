@@ -49,8 +49,8 @@ When working in `tokens.css` / `components.css` (vanilla HTML apps), use four al
 
 ```
 surface.border.gray.muted
-  light: hsla(222, 47%, 11%, 0.126)  (blueGrayLight.a917)
-  dark:  hsla(215, 25%, 27%, 0.189)  (blueGrayDark.a523)
+  light: hsla(222, 47%, 11%, 0.038)  (blueGrayLight.a917)
+  dark:  hsla(215, 25%, 27%, 0.057)  (blueGrayDark.a523)
 
 --theme-colors-surface-border-gray-muted
   → --kn-color-border-surface-gray-muted
@@ -315,7 +315,9 @@ For non-interactive backgrounds, borders, and text.
 |---|---|
 | `surface.border.gray.normal` | Standard borders |
 | `surface.border.gray.subtle` | Light borders |
-| `surface.border.gray.muted` | Very subtle borders (Divider default). Light: `hsla(222, 47%, 11%, 0.126)` |
+| `surface.border.gray.muted` | Very subtle borders (Divider default). Light: `hsla(222, 47%, 11%, 0.038)` |
+| `surface.border.gray.subtle` | Subtle borders (Divider variant). Light: `hsla(214, 32%, 91%, 0.3)` |
+| `surface.border.gray.normal` | Standard borders (Divider variant). Light: `hsla(213, 27%, 84%, 0.3)` |
 | `surface.border.primary.normal` | Primary-colored borders |
 | `surface.border.primary.muted` | Subtle primary borders |
 
