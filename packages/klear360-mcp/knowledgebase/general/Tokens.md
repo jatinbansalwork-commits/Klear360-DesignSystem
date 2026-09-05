@@ -282,7 +282,7 @@ For non-interactive backgrounds, borders, and text.
 |---|---|
 | `surface.border.gray.normal` | Standard borders |
 | `surface.border.gray.subtle` | Light borders |
-| `surface.border.gray.muted` | Subtle borders (20% opacity on light) |
+| `surface.border.gray.muted` | Very subtle borders |
 | `surface.border.primary.normal` | Primary-colored borders |
 | `surface.border.primary.muted` | Subtle primary borders |
 

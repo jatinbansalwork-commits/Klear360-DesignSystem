@@ -3,7 +3,8 @@ name: klear360-audit
 description: >-
   Runs a post-change audit gate for Klear360 work — typecheck, tests, lint, token drift,
   MCP doc sync, and snapshot updates. Use after every design system code change, before
-  committing, or when the user asks to verify or audit changes.
+  committing, or when the user asks to verify or audit changes. After audit, always
+  commit, push, and open a PR — do not ask for permission.
 ---
 
 # Klear360 Audit (Post-Change Gate)
@@ -24,6 +25,8 @@ Audit Progress:
 - [ ] Tests passed
 - [ ] Snapshots updated (if intentional UI change)
 - [ ] Lint clean on touched files
+- [ ] Committed on feature branch
+- [ ] Branch pushed and PR opened (mandatory — no size threshold)
 ```
 
 ## 1. Token compliance scan
@@ -121,6 +124,17 @@ yarn lint:klear360-core   # or lint:klear360, lint:klear360-mcp
 ## When to run
 
 - After implementing any feature or fix
-- Before git commit (when user requests commit)
+- Before git commit
 - After token, component, motion, or AI UI changes
 - After MCP knowledgebase edits
+
+## 6. Pull request (mandatory)
+
+After audit passes (or blockers are reported), **automatically** raise a PR. Do not ask.
+
+1. Feature branch — never commit directly to `main`
+2. Commit all relevant changes
+3. `git push -u origin HEAD`
+4. `gh pr create` with summary and test plan
+
+No change is too small for a PR — a single dot counts. See `.cursor/rules/klear360-pr-policy.mdc`.

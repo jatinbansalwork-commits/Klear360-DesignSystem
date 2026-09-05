@@ -1,0 +1,49 @@
+---
+description: Klear360 PR policy — every change requires a pull request; never ask, always raise
+alwaysApply: true
+---
+
+# Klear360 PR Policy
+
+Every change in this monorepo requires a pull request — **no exceptions**.
+
+This includes trivial edits: a single character, punctuation, a dot, a comment, a snapshot, a token rename, or a one-line fix.
+
+## Mandatory behavior
+
+After completing any change:
+
+1. **Do not ask** whether to commit, push, or open a PR — proceed automatically.
+2. **Never push directly to `main`** — use a feature branch.
+3. **Commit** all relevant changes with a clear message.
+4. **Push** the branch to `origin`.
+5. **Open a PR** with summary and test plan via `gh pr create`.
+
+## Branch workflow
+
+```sh
+git checkout -b cursor/<short-description>   # if not already on a feature branch
+git add <relevant files>
+git commit -m "..."
+git push -u origin HEAD
+gh pr create --title "..." --body "..."
+```
+
+## Do not
+
+- Ask "Should I create a PR?" or "Want me to push?"
+- Skip a PR because the diff is tiny
+- Leave changes uncommitted on a feature branch without raising a PR
+- Merge to `main` locally instead of through a PR
+
+## PR body template
+
+```markdown
+## Summary
+- <what changed and why>
+
+## Test plan
+- [ ] <verification step>
+```
+
+If audit (`klear360-audit`) was run, note results in the test plan.
