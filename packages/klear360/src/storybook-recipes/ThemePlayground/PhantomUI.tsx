@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Card, CardBody } from '../../components';
 import { Heading, Text } from '~components/Typography';
 import { Chip, ChipGroup } from '~components/Chip';
-import { InfoIcon, KlearIcon } from '~components/Icons';
+import { InfoIcon, KlearLogoIcon } from '~components/Icons';
 import { IconButton } from '~components/Button/IconButton';
 import { Button } from '~components/Button';
 
@@ -78,7 +78,7 @@ const PhantomUI = (): React.ReactElement => {
               Continue
             </Button>
             <Box display="flex" flexDirection="row" marginTop="spacing.3" alignItems="center">
-              <KlearIcon
+              <KlearLogoIcon
                 color="interactive.icon.gray.normal"
                 size="medium"
                 marginRight="spacing.2"

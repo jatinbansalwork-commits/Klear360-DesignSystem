@@ -303,7 +303,7 @@ import { ChatInput } from '@klear/klear360/components';
 
 const ChatWithSuggestions = () => {
   const [suggestions, setSuggestions] = useState([
-    'Ask Ray anything related to Klear',
+    'Ask Klear Agent anything related to Klear',
     'Show me recent transactions',
     'Help me set up webhooks',
   ]);

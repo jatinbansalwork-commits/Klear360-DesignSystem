@@ -75,8 +75,8 @@ The navigation bar is positioned at the top of the screen that provides quick ac
     <Tooltip content="View Announcements">
       <Button icon={AnnouncementIcon} />
     </Tooltip>
-    <Tooltip content="Ask Ray">
-      <Button icon={RayIcon} />
+    <Tooltip content="Ask Klear Agent">
+      <Button icon={KlearAgentIcon} />
     </Tooltip>
     <Menu>
       <Avatar />
@@ -97,7 +97,7 @@ The navigation bar is positioned at the top of the screen that provides quick ac
     <SearchInput />
     <Button icon={ActivityIcon} accessibilityLabel="View Ecosystem Health" />
     <Button icon={AnnouncementIcon} accessibilityLabel="View Announcements" />
-    <Button icon={RayIcon} accessibilityLabel="Ask Ray" />
+    <Button icon={KlearAgentIcon} accessibilityLabel="Ask Klear Agent" />
     <Avatar onClick={openBottomSheet} />
     <BottomSheet>
       { /* Avatar BottomSheet Content */ }
@@ -443,7 +443,7 @@ const Dashboard = () => {
         <TopNavActions>
           <Button icon={ActivityIcon} accessibilityLabel="View Ecosystem Health" />
           <Button icon={AnnouncementIcon} accessibilityLabel="View Announcements" />
-          <Button icon={RayIcon} accessibilityLabel="Ask Ray" />
+          <Button icon={KlearAgentIcon} accessibilityLabel="Ask Klear Agent" />
           <Avatar onClick={openBottomSheet} />
           <BottomSheet>
             { /* Avatar BottomSheet Content */ }

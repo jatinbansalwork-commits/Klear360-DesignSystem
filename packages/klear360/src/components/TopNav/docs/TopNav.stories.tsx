@@ -36,7 +36,7 @@ import {
   PaymentPagesIcon,
   KlearNowPayrollIcon,
   KlearNowPayrollFilledIcon,
-  RayIcon,
+  KlearAgentIcon,
 } from '~components/Icons';
 import { KlearLogoWhite } from '~components/SideNav/docs/KlearLogo';
 import { SearchInput } from '~components/Input/SearchInput';
@@ -360,7 +360,7 @@ const TopNavFullExample = ({ variant = 'neutral' }: { variant?: 'primary' | 'neu
                     {
                       title: 'Ray AI',
                       href: '/home',
-                      icon: RayIcon,
+                      icon: KlearAgentIcon,
                       titleSuffix: (
                         <Badge size="small" emphasis="subtle" color="positive">
                           BETA

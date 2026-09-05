@@ -285,7 +285,7 @@ This example demonstrates a responsive layout with flexbox properties, styling, 
 
 ```tsx
 import React from 'react';
-import { Box, Text, Heading, Button, KlearIcon } from '@klear/klear360/components';
+import { Box, Text, Heading, Button, KlearLogoIcon } from '@klear/klear360/components';
 
 const ResponsiveLayout = () => {
   return (
@@ -331,7 +331,7 @@ const ResponsiveLayout = () => {
               padding="spacing.2"
               borderRadius="round"
             >
-              <KlearIcon size="medium" />
+              <KlearLogoIcon size="medium" />
             </Box>
           </Box>
 
@@ -396,7 +396,7 @@ const ResponsiveLayout = () => {
               padding="spacing.2"
               borderRadius="round"
             >
-              <KlearIcon size="medium" color="surface.icon.staticWhite.normal" />
+              <KlearLogoIcon size="medium" color="surface.icon.staticWhite.normal" />
             </Box>
           </Box>
 

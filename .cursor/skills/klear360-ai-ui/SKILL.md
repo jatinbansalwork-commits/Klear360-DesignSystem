@@ -1,13 +1,101 @@
 ---
 name: klear360-ai-ui
 description: >-
-  Guides Klear360 AI UI — GenUI (Generative UI), AI color palette experience,
-  assistant/model/discussion tokens (purple). Use when building chat, copilot,
-  streaming UI, schema-driven generative interfaces, model pickers, or any AI-branded
-  surface. Do not use product primary (azure) for AI experiences.
+  Guides Klear360 AI UI — ChatInput, ChatMessage, GenUI (Generative UI), AI color
+  palette experience, assistant/model/discussion tokens (purple). Use when building
+  chat, copilot, streaming UI, schema-driven generative interfaces, model pickers, or
+  any AI-branded surface. Do not use product primary (azure) for AI experiences.
 ---
 
 # Klear360 AI UI
+
+## Chat interface — ChatInput + ChatMessage
+
+Use **`ChatInput`** and **`ChatMessage`** as the standard pair for AI chat UIs. Do not substitute `TextArea` + custom bubbles.
+
+| Component | Role |
+|-----------|------|
+| `ChatInput` | User prompt — textarea, file upload, ghost suggestions, submit/stop |
+| `ChatMessage` | Message thread — user (`self`) and agent (`other`) bubbles |
+
+### ChatInput essentials
+
+- **`isGenerating`** + **`onStop`** — swap submit for stop while AI streams
+- **`onSubmit`** — receives `{ value, fileList }`; wire to your AI API
+- **`suggestions`** + **`onSuggestionAccept`** — must be used together
+- **`fileList`** / **`onFileChange`** — controlled attachments for multimodal prompts
+- Do not use `TextInput` or `TextArea` for AI chat — use `ChatInput`
+
+### ChatMessage essentials
+
+- **`senderType="self"`** — user messages (right-aligned)
+- **`senderType="other"`** — agent/AI messages (left-aligned); use `leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}`
+- **`isLoading`** + **`loadingText`** — streaming state; pass string array for rolling animation
+- **`footerActions`** — copy/thumbs/share on agent messages only (not self)
+- **`validationState="error"`** + **`errorText`** — failed send/receive
+- Put **GenUI** or rich JSX as `children` on agent `ChatMessage` for structured AI responses
+
+### Full chat layout pattern
+
+```tsx
+import {
+  Box,
+  ChatInput,
+  ChatMessage,
+  KlearAgentIcon,
+  GenUIProvider,
+  GenUISchemaRenderer,
+} from '@klear/klear360/components';
+
+function AIChatPanel({ messages, isGenerating, onSubmit, onStop }) {
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      backgroundColor="ai.discussion.background.subtle"
+    >
+      {/* Message thread */}
+      <Box flex={1} overflow="auto" padding="spacing.4" display="flex" flexDirection="column" gap="spacing.3">
+        {messages.map((msg) =>
+          msg.senderType === 'other' ? (
+            <ChatMessage
+              key={msg.id}
+              senderType="other"
+              leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+              isLoading={msg.isLoading}
+              loadingText={msg.loadingText}
+              footerActions={msg.footerActions}
+            >
+              {msg.genUI ? (
+                <GenUIProvider config={{ onActionClick: msg.onAction }}>
+                  <GenUISchemaRenderer components={msg.genUI.components} />
+                </GenUIProvider>
+              ) : (
+                msg.text
+              )}
+            </ChatMessage>
+          ) : (
+            <ChatMessage key={msg.id} senderType="self">
+              {msg.text}
+            </ChatMessage>
+          ),
+        )}
+      </Box>
+
+      {/* Input */}
+      <Box padding="spacing.4" borderTopWidth="thin" borderTopColor="ai.discussion.border.subtle">
+        <ChatInput
+          placeholder="Ask anything…"
+          isGenerating={isGenerating}
+          onSubmit={onSubmit}
+          onStop={onStop}
+        />
+      </Box>
+    </Box>
+  );
+}
+```
 
 ## GenUI — Generative UI Design System
 
@@ -40,7 +128,7 @@ Every AI-branded surface should feel cohesive through the **purple AI palette** 
 |------------------|--------|---------------|
 | Copilot chrome / streaming | `ai.assistant.*` | Accent rings, chips, brand highlights |
 | Model selection | `ai.model.*` | Picker cards, badges, borders |
-| Chat / generated content | `ai.discussion.*` | Message bubbles, thread panels, metadata |
+| Chat / generated content | `ai.discussion.*` | Message bubbles, thread panels, ChatMessage, ChatInput border |
 
 **Compose GenUI inside AI surfaces:**
 
@@ -97,6 +185,7 @@ Both modes are defined in `klear360Theme.ts` / `klear360NeutralTheme.ts` under `
 
 ## MCP reference
 
+- `get_klear360_component_docs` with `componentsList: "ChatInput, ChatMessage"` — chat UI API
 - `get_klear360_general_docs` with `topicsList: "Tokens"` — **AI Colors** section
 - `get_klear360_component_docs` with `componentsList: "GenUI"` — when available; otherwise read `packages/klear360/src/components/GenUI/` source and stories
 

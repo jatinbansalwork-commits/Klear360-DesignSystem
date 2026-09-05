@@ -15,7 +15,7 @@ import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Heading, Text } from '~components/Typography';
 import { Button } from '~components/Button';
-import { CheckIcon, RayIcon, KlearIcon } from '~components/Icons';
+import { CheckIcon, KlearAgentIcon, KlearLogoIcon } from '~components/Icons';
 import { List, ListItem, ListItemText } from '~components/List';
 import { ChatMessage } from '~components/ChatMessage';
 import { ChatInput } from '~components/ChatInput';
@@ -115,7 +115,7 @@ export const Zoomed: StoryFn<typeof KlearSenseComponent> = () => {
       <Box marginLeft="200px" position="relative" zIndex={1} maxWidth="500px">
         <ChatMessage
           senderType="other"
-          leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+          leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
           isLoading={true}
           loadingText={['Thinking...', 'Processing your request...']}
         >
@@ -1146,7 +1146,7 @@ const KlearSenseGradientBasicTemplate: StoryFn<typeof KlearSenseComponent> = () 
         {/* Klear */}
         <Box display="flex" flexDirection="column" alignItems="center" gap="spacing.3">
           <KlearSenseGradient size={100} viewBox="0 0 20 20" origin={[0.5, 0.2]}>
-            <KlearIcon color="surface.icon.staticWhite.normal" size="large" />
+            <KlearLogoIcon color="surface.icon.staticWhite.normal" size="large" />
           </KlearSenseGradient>
           <Text size="small" color="surface.text.gray.muted">
             Klear
@@ -1846,7 +1846,7 @@ const LoginPageTemplate: StoryFn<typeof KlearSenseComponent> = () => {
         <Box width="100%" maxWidth="360px">
           {/* Logo */}
           <Box marginBottom="spacing.8">
-            <KlearIcon size="xlarge" color="interactive.icon.primary.normal" />
+            <KlearLogoIcon size="xlarge" color="interactive.icon.primary.normal" />
           </Box>
 
           {/* Heading */}

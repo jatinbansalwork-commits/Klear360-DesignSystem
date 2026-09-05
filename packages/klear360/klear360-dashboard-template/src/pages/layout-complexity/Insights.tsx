@@ -25,7 +25,7 @@ import {
   ActionListItem,
   ArrowDownIcon,
   Divider,
-  RayIcon,
+  KlearAgentIcon,
   Klear360Provider,
   ArrowUpRightIcon,
 } from '@klear/klear360/components';
@@ -232,7 +232,7 @@ const PaymentInsights = (): React.ReactElement => {
                 </Box>
 
                 <Box display="flex" alignItems="center" gap="spacing.3" marginTop="spacing.5">
-                  <Badge color="neutral" size="medium" emphasis="subtle" icon={RayIcon}>
+                  <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                     Insight by RAY
                   </Badge>
                   <Divider variant="subtle" />
@@ -318,7 +318,7 @@ const PaymentInsights = (): React.ReactElement => {
                   </Box>
 
                   <Box display="flex" alignItems="center" gap="spacing.3" marginTop="spacing.5">
-                    <Badge color="neutral" size="medium" emphasis="subtle" icon={RayIcon}>
+                    <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                       RAY recommended
                     </Badge>
                     <Divider variant="subtle" />
@@ -415,7 +415,7 @@ const PaymentInsights = (): React.ReactElement => {
 
                   <Box flex={1}>
                     <Box display="flex" alignItems="center" gap="spacing.3">
-                      <Badge color="neutral" size="medium" emphasis="subtle" icon={RayIcon}>
+                      <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                         Insight by RAY
                       </Badge>
                       <Divider variant="subtle" />
@@ -521,7 +521,7 @@ const OtherweeklyInsights = (): React.ReactElement => {
                 </Box>
 
                 <Box display="flex" alignItems="center" gap="spacing.3" marginTop="spacing.5">
-                  <Badge color="neutral" size="medium" emphasis="subtle" icon={RayIcon}>
+                  <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                     Insight by RAY
                   </Badge>
                   <Divider variant="subtle" />

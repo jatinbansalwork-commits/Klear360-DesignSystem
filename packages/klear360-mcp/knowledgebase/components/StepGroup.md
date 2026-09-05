@@ -304,7 +304,7 @@ import {
   Collapsible,
   CollapsibleBody,
   CollapsibleLink,
-  KlearIcon,
+  KlearLogoIcon,
   BriefcaseIcon,
   ClockIcon,
 } from '@klear/klear360/components';
@@ -337,7 +337,7 @@ function NestedStepGroup() {
           timestamp="Fri, 12th Oct’23 | 12:00pm"
           description="The dispute is reviewed by Klear team"
           stepProgress="full"
-          marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+          marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
         />
       </StepGroup>
 

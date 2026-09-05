@@ -2,6 +2,7 @@
 
 Klear360 is the design system created by **Jatin Bansal**. It powers Klear products with cross-platform UI components, a token-driven theming engine, and AI-assisted development tooling.
 
+> **Repository:** https://github.com/jatinbansalwork-commits/Klearnow.ai (see [REPOSITORY.md](./REPOSITORY.md))  
 > Internal repository. Not published to any public registry.
 
 ## 📦 Monorepo Structure

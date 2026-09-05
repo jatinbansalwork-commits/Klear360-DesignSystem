@@ -440,8 +440,8 @@ import {
 | PromptIcon | Prompt/terminal cursor for command input |
 | QRCodeIcon | QR code for scanning |
 | RadioIcon | Radio/broadcast for streaming |
-| RayIcon | Klear Ray product icon |
-| KlearIcon | Klear logo |
+| KlearAgentIcon | Klear Agent icon |
+| KlearLogoIcon | Klear logo |
 | KlearNowPayIcon | KlearNow Pay product logo |
 | KlearNowPayrollIcon | Klear payroll product icon |
 | KlearNowPayrollFilledIcon | Filled variant of KlearNowPayrollIcon |
@@ -1021,8 +1021,8 @@ import {
 | PromptIcon | Prompt/terminal cursor for command input |
 | QRCodeIcon | QR code for scanning |
 | RadioIcon | Radio/broadcast for streaming |
-| RayIcon | Klear Ray product icon |
-| KlearIcon | Klear logo |
+| KlearAgentIcon | Klear Agent icon |
+| KlearLogoIcon | Klear logo |
 | KlearNowPayIcon | KlearNow Pay product logo |
 | KlearNowPayrollIcon | Klear payroll product icon |
 | KlearNowPayrollFilledIcon | Filled variant of KlearNowPayrollIcon |

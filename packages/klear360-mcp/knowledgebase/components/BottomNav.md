@@ -133,7 +133,7 @@ import {
   PaymentPagesIcon,
   MenuDotsIcon,
   CurrentAccountIcon,
-  KlearIcon,
+  KlearLogoIcon,
 } from '@klear/klear360/components';
 
 // Sample page component to show when a route is matched
@@ -238,7 +238,7 @@ const MobileAppExample = () => {
     {
       title: 'Settings',
       href: '/settings',
-      icon: KlearIcon,
+      icon: KlearLogoIcon,
     },
   ];
 

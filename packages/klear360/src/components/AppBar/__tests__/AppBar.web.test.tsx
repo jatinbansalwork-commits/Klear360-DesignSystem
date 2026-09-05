@@ -5,7 +5,7 @@ import { AppBarExample } from './AppBarExample';
 import renderWithTheme from '~utils/testing/renderWithTheme';
 import assertAccessible from '~utils/testing/assertAccessible';
 import { IconButton } from '~components/Button/IconButton';
-import { BellIcon, KlearIcon, UserIcon } from '~components/Icons';
+import { BellIcon, KlearLogoIcon, UserIcon } from '~components/Icons';
 
 describe('<AppBar />', () => {
   it('should render', () => {
@@ -74,7 +74,7 @@ describe('<AppBar />', () => {
     const { container } = renderWithTheme(
       <AppBar>
         <AppBarLeading
-          logo={<KlearIcon size="large" color="surface.icon.staticWhite.normal" />}
+          logo={<KlearLogoIcon size="large" color="surface.icon.staticWhite.normal" />}
           trustBadgeVariant="default"
         />
       </AppBar>,

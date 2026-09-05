@@ -99,9 +99,9 @@ The AI agents will use the MCP server to retrieve components and generate approp
 ### Clone the repository
 
 ```bash
-# Clone the repository
+# Clone the repository (canonical URL — do not use the old Klear360 redirect)
 git clone https://github.com/jatinbansalwork-commits/Klearnow.ai.git
-cd klear360
+cd Klearnow.ai
 
 # Install dependencies
 yarn

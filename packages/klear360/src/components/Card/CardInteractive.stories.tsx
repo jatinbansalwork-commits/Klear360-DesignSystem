@@ -17,7 +17,7 @@ import {
   CardHeaderBadge,
 } from '.';
 import { Code, Text, Heading } from '~components/Typography';
-import { RupeeIcon, KlearIcon } from '~components/Icons';
+import { RupeeIcon, KlearLogoIcon } from '~components/Icons';
 import { Link } from '~components/Link';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
@@ -822,7 +822,7 @@ const merchantOnboardingOptions = [
     value: 'payment-gateway',
     title: 'Payment Gateway',
     subtitle: 'Accept online payments',
-    icon: KlearIcon,
+    icon: KlearLogoIcon,
     features: [
       '100+ payment methods',
       'UPI, Cards, Netbanking, Wallets',
@@ -834,7 +834,7 @@ const merchantOnboardingOptions = [
     value: 'payment-links',
     title: 'Payment Links',
     subtitle: 'Share & collect payments',
-    icon: KlearIcon,
+    icon: KlearLogoIcon,
     features: [
       'No coding required',
       'Share via SMS, email, WhatsApp',
@@ -846,7 +846,7 @@ const merchantOnboardingOptions = [
     value: 'payment-pages',
     title: 'Payment Pages',
     subtitle: 'Create online store',
-    icon: KlearIcon,
+    icon: KlearLogoIcon,
     features: [
       'Ready-to-use online store',
       'Product catalog management',
@@ -858,7 +858,7 @@ const merchantOnboardingOptions = [
     value: 'pos',
     title: 'Point of Sale (POS)',
     subtitle: 'In-store payments',
-    icon: KlearIcon,
+    icon: KlearLogoIcon,
     features: [
       'Accept card & UPI payments',
       'Contactless payments',

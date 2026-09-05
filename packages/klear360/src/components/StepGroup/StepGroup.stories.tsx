@@ -18,7 +18,7 @@ import {
   ClockIcon,
   FileIcon,
   HeartIcon,
-  KlearIcon,
+  KlearLogoIcon,
   UserIcon,
 } from '~components/Icons';
 import { Alert } from '~components/Alert';
@@ -268,7 +268,7 @@ const StepGroupNestedTemplate: StoryFn<typeof StepGroup> = (args) => {
           timestamp="Fri, 12th Oct'23 | 12:00pm"
           description="The dispute is reviewed by Klear team"
           stepProgress="full"
-          marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+          marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
         />
       </StepGroup>
       <StepItem
@@ -715,7 +715,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                   timestamp="Wed, 27th Mar'24 | 12:00pm"
                   description="Description"
                   stepProgress="full"
-                  marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                  marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
                 />
               </StepGroup>
               <StepItem
@@ -763,7 +763,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                   title="Nested Step 1"
                   timestamp="Wed, 27th Mar'24 | 12:00pm"
                   stepProgress="full"
-                  marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                  marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
                 />
               </StepGroup>
               <StepItem
@@ -991,7 +991,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                 timestamp="Wed, 27th Mar'24 | 12:00pm"
                 description="Description"
                 stepProgress="full"
-                marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
               />
             </StepGroup>
             <StepItem
@@ -1337,7 +1337,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                   timestamp="Wed, 27th Mar'24 | 12:00pm"
                   description="Description"
                   stepProgress="full"
-                  marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                  marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
                 />
               </StepGroup>
               <StepItem
@@ -1411,7 +1411,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                   title="Nested Step 1"
                   timestamp="Wed, 27th Mar'24 | 12:00pm"
                   stepProgress="full"
-                  marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                  marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
                 />
               </StepGroup>
               <StepItem
@@ -1689,7 +1689,7 @@ export const StepGroupShowcase = (): React.ReactElement => {
                 timestamp="Wed, 27th Mar'24 | 12:00pm"
                 description="Description"
                 stepProgress="full"
-                marker={<StepItemIcon icon={KlearIcon} color="positive" />}
+                marker={<StepItemIcon icon={KlearLogoIcon} color="positive" />}
               />
             </StepGroup>
             <StepItem

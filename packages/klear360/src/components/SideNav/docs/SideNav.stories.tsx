@@ -48,7 +48,7 @@ import {
   TestIcon,
   GlobeIcon,
   DollarIcon,
-  RayIcon,
+  KlearAgentIcon,
 } from '~components/Icons';
 import { Button } from '~components/Button';
 import { Tooltip } from '~components/Tooltip';
@@ -618,7 +618,7 @@ export const CollapsibleSideNav: StoryFn<typeof SideNav> = ({ ...args }) => {
             >
               {isBannerExpandedUI ? (
                 <Box display="flex" alignItems="center" gap="spacing.3">
-                  <RayIcon size="medium" />
+                  <KlearAgentIcon size="medium" />
                   <Text truncateAfterLines={1} size="large" weight="semibold">
                     Ray AI
                   </Text>

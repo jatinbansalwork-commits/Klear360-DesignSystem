@@ -3,7 +3,7 @@ import type { IconComponent } from '..';
 import useIconProps from '../useIconProps';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 
-const _KlearIcon: IconComponent = ({ size, color, ...styledProps }) => {
+const _KlearLogoIcon: IconComponent = ({ size, color, ...styledProps }) => {
   const { height, width, iconColor } = useIconProps({ size, color });
 
   return (
@@ -18,8 +18,8 @@ const _KlearIcon: IconComponent = ({ size, color, ...styledProps }) => {
   );
 };
 
-const KlearIcon = assignWithoutSideEffects(_KlearIcon, {
-  componentId: 'KlearIcon',
+const KlearLogoIcon = assignWithoutSideEffects(_KlearLogoIcon, {
+  componentId: 'KlearLogoIcon',
 });
 
-export default KlearIcon;
+export default KlearLogoIcon;

@@ -316,8 +316,8 @@ import PrinterIconComponent from './PrinterIcon';
 import PromptIconComponent from './PromptIcon';
 import QRCodeIconComponent from './QRCodeIcon';
 import RadioIconComponent from './RadioIcon';
-import RayIconComponent from './RayIcon';
-import KlearIconComponent from './KlearIcon';
+import KlearAgentIconComponent from './KlearAgentIcon';
+import KlearLogoIconComponent from './KlearLogoIcon';
 import KlearNowPayIconComponent from './KlearNowPayIcon';
 import KlearNowPayrollFilledIconComponent from './KlearNowPayrollFilledIcon';
 import KlearNowPayrollIconComponent from './KlearNowPayrollIcon';
@@ -770,8 +770,8 @@ const iconMap: Record<string, IconComponent> = {
   PromptIcon: PromptIconComponent,
   QRCodeIcon: QRCodeIconComponent,
   RadioIcon: RadioIconComponent,
-  RayIcon: RayIconComponent,
-  KlearIcon: KlearIconComponent,
+  KlearAgentIcon: KlearAgentIconComponent,
+  KlearLogoIcon: KlearLogoIconComponent,
   KlearNowPayIcon: KlearNowPayIconComponent,
   KlearNowPayrollFilledIcon: KlearNowPayrollFilledIconComponent,
   KlearNowPayrollIcon: KlearNowPayrollIconComponent,

@@ -578,7 +578,7 @@ import {
   Divider,
   Code,
   Link,
-  KlearIcon,
+  KlearLogoIcon,
   ExternalLinkIcon,
   DownloadIcon,
   CheckIcon,
@@ -632,7 +632,7 @@ const SettlementDetailedView = () => {
       <Card width={{ base: '100%', m: '500px' }}>
         <CardHeader>
           <CardHeaderLeading
-            prefix={<CardHeaderIcon icon={KlearIcon} />}
+            prefix={<CardHeaderIcon icon={KlearLogoIcon} />}
             title="Settlement Summary"
           />
           <CardHeaderTrailing

@@ -2,7 +2,7 @@
 import { fireEvent } from '@testing-library/react';
 import { ChatMessage } from '../ChatMessage';
 import renderWithSSR from '~utils/testing/renderWithSSR.web';
-import { RayIcon } from '~components/Icons';
+import { KlearAgentIcon } from '~components/Icons';
 import { Card, CardBody } from '~components/Card';
 import { Box } from '~components/Box';
 import { Text } from '~components/Typography';
@@ -31,7 +31,7 @@ describe('<ChatMessage/>', () => {
     const { container } = renderWithSSR(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
       >
         {' '}
         This is another demo message{' '}
@@ -43,7 +43,7 @@ describe('<ChatMessage/>', () => {
     const { container } = renderWithSSR(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
         loadingText="Analyzing your response..."
       >
         <Card>
@@ -85,7 +85,7 @@ describe('<ChatMessage/>', () => {
     const { getByText } = renderWithSSR(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
         isLoading={true}
         loadingText="Analyzing your response..."
       >

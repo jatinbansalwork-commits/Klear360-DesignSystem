@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react-native';
 import { ChatMessage } from '../ChatMessage.native';
 import renderWithTheme from '~utils/testing/renderWithTheme.native';
-import { RayIcon } from '~components/Icons';
+import { KlearAgentIcon } from '~components/Icons';
 import { Card, CardBody } from '~components/Card';
 import { Box } from '~components/Box';
 import { Text } from '~components/Typography';
@@ -32,7 +32,7 @@ describe('<ChatMessage /> (native)', () => {
     const { toJSON } = renderWithTheme(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
       >
         This is another demo message
       </ChatMessage>,
@@ -44,7 +44,7 @@ describe('<ChatMessage /> (native)', () => {
     const { toJSON } = renderWithTheme(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
       >
         <Card>
           <CardBody>
@@ -96,7 +96,7 @@ describe('<ChatMessage /> (native)', () => {
     const { getByText } = renderWithTheme(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
         isLoading={true}
         loadingText="Analyzing your response..."
       >
@@ -111,7 +111,7 @@ describe('<ChatMessage /> (native)', () => {
     const { getByText } = renderWithTheme(
       <ChatMessage
         senderType="other"
-        leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+        leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
         footerActions={
           <Box>
             <Box key={1}>

@@ -41,6 +41,11 @@ fi
 
 When intent is `perform-task-end-to-end`, load `perform-task-end-to-end` skill in your context and do the task end-to-end as guided by the skill.
 
+## Repository
+
+**One repo only:** https://github.com/jatinbansalwork-commits/Klearnow.ai  
+The old `Klear360` GitHub URL redirects here — do not treat them as two repos. See [REPOSITORY.md](./REPOSITORY.md).
+
 ## Cursor Skills (Design System)
 
 Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**.

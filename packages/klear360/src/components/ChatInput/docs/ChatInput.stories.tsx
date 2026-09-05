@@ -9,7 +9,7 @@ import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgType
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Sandbox } from '~utils/storybook/Sandbox';
 import { ChatMessage } from '~components/ChatMessage';
-import { RayIcon } from '~components/Icons';
+import { KlearAgentIcon } from '~components/Icons';
 import { Card, CardBody } from '~components/Card';
 import { Radio, RadioGroup } from '~components/Radio';
 import { Move } from '~components/Move';
@@ -113,7 +113,7 @@ export const WithGhostSuggestions: StoryFn<typeof ChatInput> = () => {
       <ChatInput
         placeholder="Ask a question..."
         suggestions={[
-          'Ask Ray anything related to Klear',
+          'Ask Klear Agent anything related to Klear',
           'Show me recent transactions',
           'Help me set up webhooks',
         ]}
@@ -658,7 +658,7 @@ export const ProductUsecaseChatExperience: StoryFn<typeof ChatInput> = () => {
         borderBottomWidth="thin"
         borderBottomColor="surface.border.gray.muted"
       >
-        <RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
+        <KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
         <Box display="flex" flexDirection="column">
           <Text variant="body" size="medium" weight="semibold">
             Ray
@@ -699,7 +699,7 @@ export const ProductUsecaseChatExperience: StoryFn<typeof ChatInput> = () => {
                 }
                 leading={
                   msg.senderType === 'other' ? (
-                    <RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
+                    <KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
                   ) : undefined
                 }
               >
@@ -746,7 +746,7 @@ export const ProductUsecaseChatExperience: StoryFn<typeof ChatInput> = () => {
           accept=".jpg,.jpeg,.png,.pdf"
           suggestions={suggestions}
           onSuggestionAccept={({ suggestion }) => setText(suggestion)}
-          placeholder="Ask Ray anything about Klear..."
+          placeholder="Ask Klear Agent anything about Klear..."
         />
       </Box>
     </Box>

@@ -290,7 +290,7 @@ import {
     </Morph>
   ) : (
     <Morph layoutId="chat-interface">
-      <Button icon={KlearIcon} />
+      <Button icon={KlearLogoIcon} />
     </Morph>
   )
 }

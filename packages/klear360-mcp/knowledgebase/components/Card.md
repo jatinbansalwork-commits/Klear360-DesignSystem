@@ -539,7 +539,7 @@ import {
   Divider,
   CheckboxGroup,
   Checkbox,
-  KlearIcon,
+  KlearLogoIcon,
 } from '@klear/klear360/components';
 import React from 'react';
 
@@ -608,7 +608,7 @@ const ProductCard = ({
         <CardHeaderLeading
           title={option.title}
           subtitle={option.subtitle}
-          prefix={<CardHeaderIcon icon={KlearIcon} />}
+          prefix={<CardHeaderIcon icon={KlearLogoIcon} />}
         />
         {children}
       </Box>

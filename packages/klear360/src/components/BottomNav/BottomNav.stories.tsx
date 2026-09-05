@@ -19,7 +19,7 @@ import {
   ConnectionIcon,
   PaymentLinkIcon,
   PaymentPagesIcon,
-  KlearIcon,
+  KlearLogoIcon,
   TransactionsIcon,
 } from '~components/Icons';
 import { Box } from '~components/Box';
@@ -119,7 +119,7 @@ const sideNavItems = [
   {
     title: 'Rize',
     href: '/rize',
-    icon: KlearIcon,
+    icon: KlearLogoIcon,
   },
 ];
 

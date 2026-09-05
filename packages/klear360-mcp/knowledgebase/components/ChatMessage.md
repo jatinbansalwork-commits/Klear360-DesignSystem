@@ -144,7 +144,7 @@ import {
   ChipGroup,
   Chip,
   Button,
-  RayIcon,
+  KlearAgentIcon,
   ThumbsUpIcon,
   ThumbsDownIcon,
   SendIcon,
@@ -262,7 +262,7 @@ const ComprehensiveChatExample = () => {
                 messageType={isLastFromSender ? 'last' : 'default'}
                 leading={
                   showLeadingIcon ? (
-                    <RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
+                    <KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />
                   ) : undefined
                 }
                 wordBreak="break-word"
@@ -326,7 +326,7 @@ const ComprehensiveChatExample = () => {
               isLoading
               senderType="other"
               loadingText="Typing a response..."
-              leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+              leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
               aria-label="Support agent is typing a response"
             />
           )}
@@ -335,7 +335,7 @@ const ComprehensiveChatExample = () => {
         {/* Interactive question with radio options */}
         <ChatMessage
           senderType="other"
-          leading={<RayIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
+          leading={<KlearAgentIcon size="xlarge" color="surface.icon.onSea.onSubtle" />}
           messageType="last"
           aria-label="Support agent: What kind of business do you run?"
         >

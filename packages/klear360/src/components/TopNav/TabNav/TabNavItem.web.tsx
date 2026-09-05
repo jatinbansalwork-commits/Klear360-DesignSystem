@@ -18,7 +18,7 @@ import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { useTheme } from '~components/Klear360Provider';
 import type { Theme } from '~components/Klear360Provider';
 import type { IconComponent } from '~components/Icons';
-import { RayIcon } from '~components/Icons';
+import { KlearAgentIcon } from '~components/Icons';
 
 const isIconObjectProp = (
   icon: TabNavIconProp,
@@ -26,10 +26,10 @@ const isIconObjectProp = (
   return typeof icon === 'object' && icon !== null && 'default' in icon;
 };
 
-const isRayIcon = (icon?: TabNavIconProp): boolean => {
+const isKlearAgentIcon = (icon?: TabNavIconProp): boolean => {
   if (!icon) return false;
   const defaultIcon = isIconObjectProp(icon) ? icon.default : icon;
-  return defaultIcon === RayIcon;
+  return defaultIcon === KlearAgentIcon;
 };
 
 const getGlowColor = ({
@@ -41,7 +41,7 @@ const getGlowColor = ({
   isPrimaryVariant: boolean;
   theme: Theme;
 }): string => {
-  if (isRayIcon(icon) && !isPrimaryVariant) return theme.colors.surface.icon.onSea.onSubtle;
+  if (isKlearAgentIcon(icon) && !isPrimaryVariant) return theme.colors.surface.icon.onSea.onSubtle;
   if (isPrimaryVariant) return theme.colors.surface.icon.staticWhite.normal;
   return theme.colors.surface.background.primary.intense;
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, AppBarActions, AppBarLeading } from '../AppBar';
 import { IconButton } from '~components/Button/IconButton';
-import { BellIcon, KlearIcon, UserIcon } from '~components/Icons';
+import { BellIcon, KlearLogoIcon, UserIcon } from '~components/Icons';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = (): void => {};
@@ -16,7 +16,7 @@ const AppBarExample = (): React.ReactElement => {
     >
       <AppBarLeading
         title="Mavenshop"
-        logo={<KlearIcon size="large" color="surface.icon.staticWhite.normal" />}
+        logo={<KlearLogoIcon size="large" color="surface.icon.staticWhite.normal" />}
         trustBadgeVariant="default"
       />
       <AppBarActions>

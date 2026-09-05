@@ -34,7 +34,7 @@ import {
   DownloadIcon,
   ExternalLinkIcon,
   MoreHorizontalIcon,
-  KlearIcon,
+  KlearLogoIcon,
   UpiIcon,
 } from '~components/Icons';
 import { Link } from '~components/Link';
@@ -515,7 +515,7 @@ const DetailedViewWithCardTemplate: StoryFn<typeof Drawer> = ({ ...args }) => {
       <Card width={{ base: '100%', m: '500px' }}>
         <CardHeader>
           <CardHeaderLeading
-            prefix={<CardHeaderIcon icon={KlearIcon} />}
+            prefix={<CardHeaderIcon icon={KlearLogoIcon} />}
             title="Transaction Details"
           />
           <CardHeaderTrailing
