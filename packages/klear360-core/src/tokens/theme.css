@@ -120,7 +120,10 @@
   --opacity-50: 0.06;
   --opacity-100: 0.09;
   --opacity-200: 0.12;
+  --opacity-225: 0.126;
+  --opacity-250: 0.2;
   --opacity-300: 0.18;
+  --opacity-325: 0.189;
   --opacity-400: 0.24;
   --opacity-500: 0.32;
   --opacity-600: 0.48;
@@ -174,7 +177,7 @@
   --surface-background-accent-intense: transparent;
   --surface-border-gray-normal: hsla(213, 27%, 84%, 1);
   --surface-border-gray-subtle: hsla(214, 32%, 91%, 1);
-  --surface-border-gray-muted: hsla(222, 47%, 11%, 0.12);
+  --surface-border-gray-muted: hsla(222, 47%, 11%, 0.126);
   --surface-border-primary-normal: hsla(198, 100%, 18%, 1);
   --surface-border-primary-muted: hsla(198, 100%, 18%, 0.18);
   --surface-text-gray-normal: hsla(216, 56%, 2%, 1);
@@ -659,7 +662,7 @@
   --surface-background-accent-intense: transparent;
   --surface-border-gray-normal: hsla(217, 33%, 17%, 1);
   --surface-border-gray-subtle: hsla(222, 47%, 11%, 1);
-  --surface-border-gray-muted: hsla(215, 25%, 27%, 0.18);
+  --surface-border-gray-muted: hsla(215, 25%, 27%, 0.189);
   --surface-border-primary-normal: hsla(198, 100%, 18%, 1);
   --surface-border-primary-muted: hsla(198, 100%, 18%, 0.32);
   --surface-text-gray-normal: hsla(0, 0%, 100%, 1);

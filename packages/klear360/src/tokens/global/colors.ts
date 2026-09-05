@@ -131,6 +131,7 @@ export type ColorBlueGrayLightScale = Readonly<{
   a900: string;
   a909: string;
   a912: string;
+  a917: string;
   a918: string;
   a932: string;
   a964: string;
@@ -171,6 +172,7 @@ export type ColorBlueGrayDarkScale = Readonly<{
   a509: string;
   a512: string;
   a518: string;
+  a523: string;
   a532: string;
   a564: string;
   a572: string;
@@ -466,6 +468,7 @@ export const colors: Color = {
       a900: `hsla(222, 47%, 11%, ${opacity[0]})`,
       a909: `hsla(222, 47%, 11%, ${opacity[100]})`,
       a912: `hsla(222, 47%, 11%, ${opacity[200]})`,
+      a917: `hsla(222, 47%, 11%, ${opacity[225]})`,
       a918: `hsla(222, 47%, 11%, ${opacity[300]})`,
       a932: `hsla(222, 47%, 11%, ${opacity[500]})`,
       a964: `hsla(222, 47%, 11%, ${opacity[800]})`,
@@ -505,6 +508,7 @@ export const colors: Color = {
       a509: `hsla(215, 25%, 27%, ${opacity[100]})`,
       a512: `hsla(215, 25%, 27%, ${opacity[200]})`,
       a518: `hsla(215, 25%, 27%, ${opacity[300]})`,
+      a523: `hsla(215, 25%, 27%, ${opacity[325]})`,
       a532: `hsla(215, 25%, 27%, ${opacity[500]})`,
       a564: `hsla(215, 25%, 27%, ${opacity[800]})`,
       a572: `hsla(215, 25%, 27%, ${opacity[900]})`,
