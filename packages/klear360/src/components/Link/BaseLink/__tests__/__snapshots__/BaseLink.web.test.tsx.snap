@@ -77,7 +77,7 @@ exports[`<BaseLink /> should change the link to a visited state after click 1`] 
     aria-disabled="false"
     class="c0"
     data-klear360-component="link"
-    href="https://github.com/jatinbansalwork-commits/Klear360"
+    href="https://github.com/jatinbansalwork-commits/Klearnow.ai"
     rel="noreferrer noopener"
     role="link"
     target="_blank"

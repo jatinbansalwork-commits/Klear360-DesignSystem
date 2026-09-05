@@ -75,7 +75,7 @@ It excludes the following nodes from coverage calculation:
 
 ### Setup
 
-- Clone the Repository: `git clone https://github.com/jatinbansalwork-commits/Klear360`
+- Clone the Repository: `git clone https://github.com/jatinbansalwork-commits/Klearnow.ai`
 - Install Dependencies: `yarn install`
 - Navigate to the Plugin Directory: `cd packages/plugin-figma-klear360-coverage`
 - Start the Development Server: `yarn watch`

@@ -149,7 +149,7 @@ describe('<BaseLink />', () => {
     const { container, getByRole } = renderWithTheme(
       <BaseLink
         variant="anchor"
-        href="https://github.com/jatinbansalwork-commits/Klear360"
+        href="https://github.com/jatinbansalwork-commits/Klearnow.ai"
         target="_blank"
         rel="noreferrer noopener"
       >
