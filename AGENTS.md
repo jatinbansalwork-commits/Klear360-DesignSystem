@@ -40,3 +40,16 @@ fi
 ```
 
 When intent is `perform-task-end-to-end`, load `perform-task-end-to-end` skill in your context and do the task end-to-end as guided by the skill.
+
+## Cursor Skills (Design System)
+
+Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**.
+
+| Skill | When to load |
+| ----- | ------------ |
+| `klear360-design-system` | Full-stack DS work spanning multiple layers |
+| `klear360-tokens` | Token, theme, or CSS variable changes |
+| `klear360-ai-ui` | AI assistant, chat, model picker, copilot UI |
+| `klear360-components` | Component selection, patterns, styled props |
+| `klear360-motion` | Animations, transitions, motion tokens |
+| `klear360-audit` | **After every change** — typecheck, tests, token/MCP sync |
