@@ -9,11 +9,13 @@ export type Opacity = Readonly<{
   100: number;
   /**200: 0.12 */
   200: number;
-  /**225: 0.126 — 5% above 200 (divider muted) */
+  /**225: 0.038 — divider muted (30% of prior 0.126) */
   225: number;
+  /**390: 0.3 — divider normal/subtle at 30% alpha */
+  390: number;
   /**300: 0.18 */
   300: number;
-  /**325: 0.189 — 5% above 300 (divider muted dark) */
+  /**325: 0.057 — divider muted dark (30% of prior 0.189) */
   325: number;
   /**400: 0.24 */
   400: number;
@@ -43,9 +45,10 @@ export const opacity: Opacity = {
   50: 0.06,
   100: 0.09,
   200: 0.12,
-  225: 0.126,
+  225: 0.038,
   300: 0.18,
-  325: 0.189,
+  325: 0.057,
+  390: 0.3,
   400: 0.24,
   500: 0.32,
   600: 0.48,

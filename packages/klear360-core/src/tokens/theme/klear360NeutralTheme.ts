@@ -41,8 +41,8 @@ const colors: ColorsWithModes = {
       },
       border: {
         gray: {
-          normal: globalColors.neutral.blueGrayLight[300],
-          subtle: globalColors.neutral.blueGrayLight[200],
+          normal: globalColors.neutral.blueGrayLight.a330,
+          subtle: globalColors.neutral.blueGrayLight.a230,
           muted: globalColors.neutral.blueGrayLight.a917,
         },
         primary: {
@@ -796,9 +796,9 @@ const colors: ColorsWithModes = {
       },
       border: {
         gray: {
-          normal: globalColors.neutral.blueGrayDark[600],
-          subtle: globalColors.neutral.blueGrayDark[800],
-          muted: globalColors.neutral.blueGrayDark.a518,
+          normal: globalColors.neutral.blueGrayDark.a630,
+          subtle: globalColors.neutral.blueGrayDark.a830,
+          muted: globalColors.neutral.blueGrayDark.a523,
         },
         primary: {
           normal: globalColors.chromatic.azure[500],

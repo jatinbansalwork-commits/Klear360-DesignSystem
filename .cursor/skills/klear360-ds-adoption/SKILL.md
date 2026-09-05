@@ -65,7 +65,7 @@ CSS vars packages/klear360-core/src/tokens/theme.css
 
 ```
 surface.border.gray.muted  →  blueGrayLight.a917 (light) / blueGrayDark.a523 (dark)
-  React/CSS: hsla(222, 47%, 11%, 0.126) light
+  React/CSS: hsla(222, 47%, 11%, 0.038) light / hsla(215, 25%, 27%, 0.057) dark
 
 --theme-colors-surface-border-gray-muted
   → --kn-color-border-surface-gray-muted
