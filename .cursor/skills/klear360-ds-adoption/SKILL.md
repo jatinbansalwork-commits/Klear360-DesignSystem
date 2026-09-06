@@ -37,7 +37,7 @@ Reference: [Owl-Listener/designer-skills](https://github.com/Owl-Listener/design
 | `motion-system` | `--kn-motion-*` / `--theme-motion-*`; GenUI ring, Spark | **klear360-motion** |
 | `component-spec` | MCP component docs; `.kn-*` in `components.css` | **klear360-components** |
 | `pattern-library` | `docs/components.md` patterns → MCP pattern docs | **klear360-components** |
-| `icon-system` | Single AI mark (`#klear-assist-ray`) — already locked | maintain only |
+| `icon-system` | Single AI mark (`KlearAgentIcon`) — maintain only | **klear360-iconography** |
 | `accessibility-audit` | Contrast, focus rings, `prefers-reduced-motion` | audit pass (later) |
 | `documentation-template` | MCP `get_klear360_*_docs` knowledgebase shape | sync MCP |
 | `naming-convention` | `--kn-*` / `.kn-*` naming in tokens + components | **klear360-tokens** |
