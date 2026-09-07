@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@klear/klear360": "^12.58.0",
+    "@klear/klear360": "file:..",
     "@klear/i18n": "1.9.3",
     "@klear/i18n-react": "4.0.8",
     "@types/react-router-dom": "5.3.3",
@@ -28,6 +28,7 @@
     "@types/react-dom": "19.0.4",
     "@types/node": "22.15.2",
     "@vitejs/plugin-react": "4.3.4",
+    "vite-tsconfig-paths": "5.1.4",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-react-refresh": "0.4.19",
     "globals": "16.0.0",

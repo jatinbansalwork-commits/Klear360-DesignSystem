@@ -235,7 +235,7 @@ const PaymentInsights = (): React.ReactElement => {
                   <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                     Insight by RAY
                   </Badge>
-                  <Divider variant="subtle" />
+                  <Divider />
                 </Box>
 
                 <Box display="flex" gap="spacing.5" marginTop="spacing.5">
@@ -321,7 +321,7 @@ const PaymentInsights = (): React.ReactElement => {
                     <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                       RAY recommended
                     </Badge>
-                    <Divider variant="subtle" />
+                    <Divider />
                   </Box>
 
                   <Box display="flex" gap="spacing.5" marginTop="spacing.5">
@@ -418,7 +418,7 @@ const PaymentInsights = (): React.ReactElement => {
                       <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                         Insight by RAY
                       </Badge>
-                      <Divider variant="subtle" />
+                      <Divider />
                     </Box>
 
                     <Box display="flex" alignItems="center" gap="spacing.3" marginTop="spacing.5">
@@ -524,7 +524,7 @@ const OtherweeklyInsights = (): React.ReactElement => {
                   <Badge color="neutral" size="medium" emphasis="subtle" icon={KlearAgentIcon}>
                     Insight by RAY
                   </Badge>
-                  <Divider variant="subtle" />
+                  <Divider />
                 </Box>
 
                 <Box display="flex" gap="spacing.5" marginTop="spacing.5">

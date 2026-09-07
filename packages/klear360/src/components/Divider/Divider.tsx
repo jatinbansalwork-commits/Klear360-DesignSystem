@@ -25,7 +25,7 @@ type DividerProps = {
   /**
    * Sets the variant of divider
    *
-   * @default 'normal'
+   * @default 'muted'
    */
   variant?: 'normal' | 'subtle' | 'muted';
   /**
