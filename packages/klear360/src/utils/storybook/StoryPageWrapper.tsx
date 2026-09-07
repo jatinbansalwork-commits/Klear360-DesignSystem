@@ -1,7 +1,8 @@
 import React from 'react';
-import { Controls, Primary, Stories } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
 import styled from 'styled-components';
 import { SandboxHighlighter } from './Sandbox/SandpackEditor';
+import useDocsPrimaryStoryOf from './useDocsPrimaryStoryOf';
 import { componentData } from './componentStatusData';
 import BaseBox from '~components/Box/BaseBox';
 import { Alert } from '~components/Alert';
@@ -42,6 +43,10 @@ type StoryPageWrapperTypes = {
    * Use this to override default API decision component name
    */
   apiDecisionComponentName?: string;
+  /**
+   * Explicit CSF story export for docs Controls / Example blocks.
+   */
+  primaryStory?: unknown;
 };
 
 // Global Styles are not applied by default on `.mdx` pages of storybook. So just overriding few global styles here which are applied to both, stories and guide pages
@@ -82,6 +87,8 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
   );
 
   const { showStorybookControls = true, showArgsTable = true, showDefaultExample = true } = props;
+  const primaryStoryOf = useDocsPrimaryStoryOf(props.primaryStory ?? props.argTableComponent);
+  const controlsStoryOf = props.argTableComponent ?? primaryStoryOf;
 
   return (
     <Klear360Provider themeTokens={klear360Theme}>
@@ -154,7 +161,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
                 <Subtitle size="medium" marginY="spacing.4">
                   {`This is the default ${props.componentName}. You can change the properties using the controls below.`}
                 </Subtitle>
-                <Primary />
+                {primaryStoryOf ? <Canvas of={primaryStoryOf} /> : null}
               </>
             ) : null}
             {showArgsTable ? (
@@ -173,7 +180,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
                     </Box>
                   ) : null}
                 </BaseBox>
-                {props.argTableComponent ? <Controls of={props.argTableComponent} /> : <Controls />}
+                {controlsStoryOf ? <Controls of={controlsStoryOf} /> : null}
               </>
             ) : null}
 

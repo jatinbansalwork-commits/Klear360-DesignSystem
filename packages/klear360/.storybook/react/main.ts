@@ -19,7 +19,18 @@ const config: StorybookConfig = {
         configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
       },
     },
-    reactDocgen: isDevelopment ? false : 'react-docgen-typescript',
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) => {
+        if (prop.parent) {
+          return !prop.parent.fileName.includes('node_modules');
+        }
+
+        return true;
+      },
+    },
   },
 
   refs: {
@@ -27,14 +38,18 @@ const config: StorybookConfig = {
   },
 
   stories: [
-    '../../docs/**/*.mdx',
-    '../../docs/**/*.stories.@(ts|tsx|js|jsx)',
-    '../../src/**/*.mdx',
-    '../../src/**/*.stories.@(ts|tsx|js|jsx)',
-    '../../src/**/*.internal.stories.@(ts|tsx|js|jsx)',
+    { directory: '../../docs', files: '**/*.mdx' },
+    { directory: '../../docs', files: '**/*.stories.@(ts|tsx|js|jsx)' },
+    { directory: '../../src', files: '**/*.mdx' },
+    { directory: '../../src', files: '**/*.stories.@(ts|tsx|js|jsx)' },
+    { directory: '../../src', files: '**/*.internal.stories.@(ts|tsx|js|jsx)' },
   ],
 
-  addons: [getAbsolutePath('@storybook/addon-docs'), getAbsolutePath('@storybook/addon-a11y')],
+  addons: [
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-vitest'),
+  ],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
