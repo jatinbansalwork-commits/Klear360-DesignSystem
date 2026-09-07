@@ -503,7 +503,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.9.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Accessibility/SkipNav',
       },
       svelte: {
@@ -519,7 +519,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.9.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Accessibility/VisuallyHidden',
       },
       svelte: {
