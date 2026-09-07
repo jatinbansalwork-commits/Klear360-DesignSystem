@@ -24,7 +24,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="Tooltip"
       componentDescription="The tooltip typically provides additional context about the element or its function. A tooltip is always triggered by a mouse hover on desktop and on tap on mobile."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=74864-86058&t=yvLu210sawTgjmt0-1&scaling=min-zoom&page-id=37400%3A560753&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

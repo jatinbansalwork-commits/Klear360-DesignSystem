@@ -22,7 +22,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="TreeView"
       componentDescription="TreeView renders a hierarchical list of expandable, selectable items. It works standalone on a page, or inside Dropdown (in place of ActionList) where selection is controlled through the trigger's value / onChange."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=125205-58766"
       note="TreeView is a web-only component. On React Native it throws an error."
     >
       <Title>Usage</Title>

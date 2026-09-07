@@ -30,7 +30,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="StepGroup"
       componentDescription="Step Group visualises sequential processes with a consistent structure. It can be interactive, guiding users through steps, or function as a timeline for reference."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=85892-80483&scaling=min-zoom&page-id=83575%3A87543&mode=design&t=QJnz2culisyKAoNz-1"
     >
       <Title>Usage</Title>
       <Sandbox>

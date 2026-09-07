@@ -15,7 +15,6 @@ const Page = (): React.ReactElement => {
       componentName="FileUploadItem"
       componentDescription="FileUploadItem is a sub-component of FileUpload that displays individual file items with their upload status, actions, and progress."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=78670-22400&t=iCPjenOx6kthCZaE-1&scaling=min-zoom&page-id=74796%3A315549&mode=design"
     />
   );
 };

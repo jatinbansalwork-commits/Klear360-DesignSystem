@@ -14,7 +14,6 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentName="Alert"
       componentDescription="Alerts are messages that communicate information to users about any significant changes or explanations inside the system in a prominent way."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=6824-100&t=G19TEPr7l1vIpcWY-1&scaling=min-zoom&page-id=6824%3A0&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox editorHeight={500}>

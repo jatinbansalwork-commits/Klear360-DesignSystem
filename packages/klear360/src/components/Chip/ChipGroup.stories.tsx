@@ -30,7 +30,6 @@ const Page = (): React.ReactElement => {
       componentDescription="Chips represents a collection of selectable objects which enable users to make selections, filter content, and trigger relevant actions. Chips can have either single selection or multiple (based on context)."
       componentName="ChipGroup"
       imports={`import { Chip, ChipGroup } from '@klear/klear360/components';\nimport type { ChipProps, ChipGroupProps } from '@klear/klear360/components';`}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=75272-53870&t=TGcKiXJiozSRKwOG-1&scaling=min-zoom&page-id=52377%3A23885&mode=design"
       note={
         <Text>
           Chip is a combination of ChipGroup and Chip components. This story demonstrates only the

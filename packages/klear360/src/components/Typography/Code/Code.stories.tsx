@@ -15,7 +15,6 @@ const Page = (): ReactElement => {
       componentDescription="Code component can be used for displaying token, variable names, or inlined code snippets."
       componentName="Code"
       apiDecisionLink="../_decisions/decisions.md"
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=71123-52803&t=DaKuYvkYnno4qVsq-1&scaling=min-zoom&page-id=3%3A0&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

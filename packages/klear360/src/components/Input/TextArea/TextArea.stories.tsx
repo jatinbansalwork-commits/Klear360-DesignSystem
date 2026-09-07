@@ -204,7 +204,6 @@ export default {
           componentDescription="The TextArea component lets you enter long form text which spans over multiple lines."
           componentName="TextArea"
           apiDecisionLink="./_decisions/decisions.md"
-          figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=76077-93900&t=2ZLEEt6A65Rona3N-1&scaling=min-zoom&page-id=11115%3A166743&mode=design"
         >
           <Title>Usage</Title>
           <Sandbox>

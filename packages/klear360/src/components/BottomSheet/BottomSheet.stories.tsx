@@ -67,7 +67,6 @@ const Page = (): React.ReactElement => {
         BottomSheetHeaderProps
       } from '@klear/klear360/components';
       `}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=76140-1564627&t=eMQWVawMPyhCdtgv-1&scaling=min-zoom&page-id=25042%3A498654&mode=design"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole editorHeight={600}>

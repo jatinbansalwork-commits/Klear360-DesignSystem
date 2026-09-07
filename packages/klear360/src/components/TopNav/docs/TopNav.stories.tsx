@@ -71,7 +71,6 @@ const DocsPage = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="TopNav"
       componentDescription="The top navigation bar is positioned at the top of the screen that provides quick access to different products, search & user profile."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=90311-235393&m=dev"
     >
       <Title>Usage (with React Router v6)</Title>
       <Alert

@@ -20,7 +20,6 @@ const TextInputFormatMeta: Meta<typeof TextInputComponent> = {
         <StoryPageWrapper
           componentName="TextInput"
           componentDescription="TextInput with format support for different input patterns like credit card numbers, phone numbers etc."
-          figmaURL="https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=1234-5678"
         />
       ),
     },

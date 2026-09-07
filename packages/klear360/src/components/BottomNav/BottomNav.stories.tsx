@@ -31,7 +31,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="BottomNav"
       componentDescription="Bottom navigation component is a persistent user interface element at the bottom of a mobile app screen, providing quick access to core functionalities through icons and labels."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=96508-47113&node-type=frame&m=dev&scaling=min-zoom&content-scaling=fixed&page-id=91244%3A54900"
     >
       <Title>Usage (with React Router v6)</Title>
       <Alert

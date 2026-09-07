@@ -43,7 +43,6 @@ const Page = (): React.ReactElement => {
       componentName="ChatInput"
       componentDescription="ChatInput is an input component designed for AI chat interfaces. It combines a textarea, file upload, ghost suggestion autocomplete, and a submit action into a single composable input."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/QjSexUED296OBCwWwhYKQE/agenticSpark?node-id=116756-67218&m=dev"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

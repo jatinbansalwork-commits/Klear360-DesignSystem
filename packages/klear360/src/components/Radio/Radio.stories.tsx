@@ -23,7 +23,6 @@ const Page = (): React.ReactElement => {
       componentDescription="Radio & RadioGroup can be used in forms when a user needs to single value from several options."
       componentName="Radio"
       imports={`import { Radio, RadioGroup } from '@klear/klear360/components';\nimport type { RadioProps, RadioGroupProps } from '@klear/klear360/components';`}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=75857-146071&t=8df9lRjFiAYVTKc4-1&scaling=min-zoom&page-id=13133%3A160667&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox showConsole editorHeight={400}>

@@ -18,7 +18,6 @@ const Page = (): ReactElement => {
       apiDecisionLink=""
       note="Klear360 consists of a limited set of icons that are commonly used however you can contribute to Klear360 by adding more icons that are available on the Figma board as and when a use case arises. **See the adding icons section below for reference.**"
       imports={`// Replace IconName with actual Icon's name that you would like to use \nimport { IconName } from '@klear/klear360/components' \n// IconProps are generic Icon props for all icons, don't replace it with your IconName \nimport type { IconProps } from '@klear/klear360/components'`}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=59-177&t=asW4d8ea1ARhVt6g-1&scaling=min-zoom&page-id=57%3A0&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

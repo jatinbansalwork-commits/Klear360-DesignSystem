@@ -28,7 +28,6 @@ const Page = (): React.ReactElement => {
       componentName="ButtonGroup"
       componentDescription="The ButtonGroup component is used to group related buttons together."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=80753%3A108070&mode=design&t=iGYw4ygZL8cErFIL-1"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

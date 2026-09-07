@@ -68,7 +68,6 @@ const DocsPage = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="SideNav"
       componentDescription="The side navigation is positioned along the left side of the screen that provides quick access to different sections or functionalities of the application."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=87921-138303&m=dev&scaling=min-zoom&page-id=87588%3A51157"
     >
       <Title>Usage (with React Router v6)</Title>
       <Alert

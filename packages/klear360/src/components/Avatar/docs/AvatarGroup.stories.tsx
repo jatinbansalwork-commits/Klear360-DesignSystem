@@ -14,7 +14,6 @@ const Page = (): React.ReactElement => {
       componentName="AvatarGroup"
       componentDescription="The AvatarGroup component is used to group Avatars together."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=88229-1519025&m=dev"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

@@ -34,7 +34,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="InfoGroup"
       componentDescription="InfoGroup is a structured component for displaying key-value pairs in a consistent, organized format. It provides a standardized way to present information such as transaction details, user data, or any related data pairs with proper visual hierarchy and alignment."
-      figmaURL=""
     >
       <Title>Usage</Title>
       <Sandbox>

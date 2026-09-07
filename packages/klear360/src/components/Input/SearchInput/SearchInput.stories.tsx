@@ -208,7 +208,6 @@ export default {
           componentDescription="The SearchInput component is a component that can be used to input name, email, telephone, url, search or plain text."
           componentName="SearchInput"
           apiDecisionLink="./_decisions/decisions.md"
-          figmaURL="https://www.figma.com/file/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=85072%3A160345&mode=design&t=Pv93G8LK6OtL4wwk-1"
         >
           <Title>Usage</Title>
           <Sandbox>

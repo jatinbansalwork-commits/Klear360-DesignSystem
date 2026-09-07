@@ -18,7 +18,6 @@ const Page = (): React.ReactElement => {
       componentName="Avatar"
       componentDescription="An avatar component is a standardized visual representation of a user or entity. This reusable element, often manifesting as a profile picture, icon, or initials, facilitates user recognition and streamlines interface navigation."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=88229-1518352&m=dev"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

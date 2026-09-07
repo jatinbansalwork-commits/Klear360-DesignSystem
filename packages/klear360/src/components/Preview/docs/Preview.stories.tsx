@@ -29,7 +29,6 @@ const Page = (): React.ReactElement => {
       componentName="Preview"
       componentDescription="A Preview is a component that is used to preivew a file"
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=105023-179625&m=dev"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>
