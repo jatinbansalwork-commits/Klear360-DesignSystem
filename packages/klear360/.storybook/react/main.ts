@@ -38,14 +38,18 @@ const config: StorybookConfig = {
   },
 
   stories: [
-    '../../docs/**/*.mdx',
-    '../../docs/**/*.stories.@(ts|tsx|js|jsx)',
-    '../../src/**/*.mdx',
-    '../../src/**/*.stories.@(ts|tsx|js|jsx)',
-    '../../src/**/*.internal.stories.@(ts|tsx|js|jsx)',
+    { directory: '../../docs', files: '**/*.mdx' },
+    { directory: '../../docs', files: '**/*.stories.@(ts|tsx|js|jsx)' },
+    { directory: '../../src', files: '**/*.mdx' },
+    { directory: '../../src', files: '**/*.stories.@(ts|tsx|js|jsx)' },
+    { directory: '../../src', files: '**/*.internal.stories.@(ts|tsx|js|jsx)' },
   ],
 
-  addons: [getAbsolutePath('@storybook/addon-docs'), getAbsolutePath('@storybook/addon-a11y')],
+  addons: [
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-vitest'),
+  ],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
