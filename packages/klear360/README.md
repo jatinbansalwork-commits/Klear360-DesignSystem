@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://klear360.klear.com/"><img alt="Documentation klear360.klear.com" src="https://img.shields.io/badge/Documentation-klear360.klear.com-0648EF?style=for-the-badge&labelColor=0012AD&logo=readthedocs&logoColor=eee"/></a> &nbsp;<a href="../../CONTRIBUTING.md"><img alt="Discord Join Chat" src="https://img.shields.io/badge/Contributions-Open-333333?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=111111"/></a></p>
+  <a href="https://klear360.klear.com/"><img alt="Documentation klear360.klear.com" src="https://img.shields.io/badge/Documentation-klear360.klear.com-0648EF?style=for-the-badge&labelColor=0012AD&logo=readthedocs&logoColor=eee"/></a></p>
 
 <h1 aria-hidden="true"></h1>
 
