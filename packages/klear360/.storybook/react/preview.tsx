@@ -11,6 +11,9 @@ import React from 'react';
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 import './global.css';
 import { domMax, LazyMotion } from 'framer-motion';
+import { argsEnhancers } from './storybookPreviewEnhancers';
+
+export { argsEnhancers };
 
 const theme = create(themeConfig);
 
@@ -46,6 +49,18 @@ export const parameters = {
   // on development setting it to undefined so that on 'live reload' it won't switch
   // to docs panel while developing the component
   viewMode: process.env.NODE_ENV === 'development' ? undefined : 'docs',
+  actions: {
+    argTypesRegex: '^on[A-Z].*',
+  },
+  controls: {
+    expanded: true,
+    matchers: {
+      color: /(background|color|fill|stroke)$/i,
+    },
+  },
+  a11y: {
+    test: 'todo',
+  },
   options: {
     storySort: {
       method: 'alphabetical',
@@ -278,4 +293,7 @@ export const globalTypes = {
 
 export const initialGlobals = {
   [INTERNAL_STORY_ADDON_PARAM]: false,
+  a11y: {
+    manual: false,
+  },
 };

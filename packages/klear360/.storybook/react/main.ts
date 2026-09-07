@@ -19,7 +19,18 @@ const config: StorybookConfig = {
         configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
       },
     },
-    reactDocgen: isDevelopment ? false : 'react-docgen-typescript',
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) => {
+        if (prop.parent) {
+          return !prop.parent.fileName.includes('node_modules');
+        }
+
+        return true;
+      },
+    },
   },
 
   refs: {
