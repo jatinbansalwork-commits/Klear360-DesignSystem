@@ -31,7 +31,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.101.6',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Avatar/Avatar',
       },
       svelte: {
@@ -46,7 +46,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.101.6',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Avatar/AvatarGroup',
       },
       svelte: {
@@ -61,7 +61,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.41.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/EmptyState',
       },
       svelte: {
@@ -76,7 +76,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.36.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Card/SelectableCard',
       },
       svelte: {
@@ -92,7 +92,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Dropdown/With Select',
       },
       svelte: {
@@ -108,7 +108,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '1.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Alert',
       },
       svelte: {
@@ -124,7 +124,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '1.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Badge',
       },
       svelte: {
@@ -140,12 +140,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.11.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Button',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Button',
       },
     },
@@ -158,7 +158,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '5.3.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Card',
       },
       svelte: {
@@ -174,7 +174,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.13.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Checkbox/Checkbox',
       },
       svelte: {
@@ -190,7 +190,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.13.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Checkbox/CheckboxGroup',
       },
       svelte: {
@@ -206,7 +206,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '3.6.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Counter',
       },
       svelte: {
@@ -222,7 +222,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '3.6.2',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/IconButton',
       },
       svelte: {
@@ -238,7 +238,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '3.7.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Indicator',
       },
       svelte: {
@@ -254,7 +254,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.33.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/InfoGroup',
       },
       svelte: {
@@ -270,12 +270,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.13.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Link',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Link',
       },
     },
@@ -288,7 +288,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/List',
       },
       svelte: {
@@ -304,7 +304,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '5.4.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/ProgressBar',
       },
       svelte: {
@@ -320,12 +320,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '2.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Spinner',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Spinner',
       },
     },
@@ -338,7 +338,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '2.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/TextInput',
       },
       svelte: {
@@ -354,7 +354,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '2.3.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/TextArea',
       },
       svelte: {
@@ -370,7 +370,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '3.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/OTPInput',
       },
       svelte: {
@@ -386,7 +386,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '2.5.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/PasswordInput',
       },
       svelte: {
@@ -402,7 +402,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '1.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Radio & RadioGroup',
       },
       svelte: {
@@ -418,7 +418,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '1.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Radio & RadioGroup',
       },
       svelte: {
@@ -434,12 +434,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.4.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Text',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Text',
       },
     },
@@ -451,12 +451,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.6.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Heading',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Heading',
       },
     },
@@ -469,7 +469,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '0.5.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Title',
       },
       svelte: {
@@ -485,12 +485,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '3.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Code',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Typography/Code',
       },
     },
@@ -535,7 +535,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Dropdown/With Select',
       },
       svelte: {
@@ -551,7 +551,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Dropdown/With Select',
       },
       svelte: {
@@ -567,7 +567,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.5.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Layout Primitives (Box)/Layout Primitives Tutorial',
       },
       svelte: {
@@ -583,7 +583,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '7.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/BottomSheet',
       },
       svelte: {
@@ -598,7 +598,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '9.3.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Tag',
       },
       svelte: {
@@ -613,12 +613,12 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '6.7.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Amount',
       },
       svelte: {
         status: 'released',
-        releasedIn: '0.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Amount',
       },
     },
@@ -631,7 +631,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.5.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Switch',
       },
       svelte: {
@@ -647,7 +647,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.9.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Tooltip',
       },
       svelte: {
@@ -663,7 +663,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.12.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Accordion',
       },
       svelte: {
@@ -679,7 +679,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.12.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Collapsible',
       },
       svelte: {
@@ -695,7 +695,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.8.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Modal/SimpleModal',
       },
       svelte: {
@@ -710,7 +710,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '8.14.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Divider',
       },
       svelte: {
@@ -726,7 +726,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.4.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Chip/Chip',
       },
       svelte: {
@@ -741,7 +741,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.6.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/FileUpload',
       },
       svelte: {
@@ -756,7 +756,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.4.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Drawer',
       },
       svelte: {
@@ -772,7 +772,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '5.3.0',
+        releasedIn: '0.0.1',
       },
       svelte: {
         status: 'to-be-decided',
@@ -787,7 +787,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '9.1.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Skeleton',
       },
       svelte: {
@@ -803,7 +803,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.2.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Carousel',
       },
       svelte: {
@@ -819,7 +819,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.16.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Tabs',
       },
       svelte: {
@@ -834,7 +834,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.19.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Table',
       },
       svelte: {
@@ -862,7 +862,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.22.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Menu',
       },
       svelte: {
@@ -878,7 +878,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.23.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/TopNav',
       },
       svelte: {
@@ -894,7 +894,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.115.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/TreeView',
       },
       svelte: {
@@ -910,7 +910,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.21.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/SideNav',
       },
       svelte: {
@@ -925,7 +925,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.21.5',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/DatePicker',
       },
       svelte: {
@@ -941,7 +941,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.9.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Dropdown/With AutoComplete',
       },
       svelte: {
@@ -956,7 +956,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.3.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Toast/Docs',
       },
       svelte: {
@@ -972,7 +972,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.17.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/SearchInput',
       },
       svelte: {
@@ -987,7 +987,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.15.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/StepGroup',
       },
       svelte: {
@@ -1002,7 +1002,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.8.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/ButtonGroup',
       },
       svelte: {
@@ -1018,7 +1018,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.10.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/PhoneNumberInput',
       },
       svelte: {
@@ -1034,7 +1034,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '11.5.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Breadcrumbs',
       },
       svelte: {
@@ -1050,7 +1050,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.10.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Popover',
       },
       svelte: {
@@ -1066,7 +1066,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '10.18.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/SpotlightPopoverTour/Docs',
       },
       svelte: {
@@ -1082,7 +1082,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Fade/Docs',
       },
       svelte: {
@@ -1098,7 +1098,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Move/Docs',
       },
       svelte: {
@@ -1114,7 +1114,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Slide/Docs',
       },
       svelte: {
@@ -1130,7 +1130,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Morph/Docs',
       },
       svelte: {
@@ -1146,7 +1146,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Scale/Docs',
       },
       svelte: {
@@ -1162,7 +1162,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/AnimateInteractions/Docs',
       },
       svelte: {
@@ -1178,7 +1178,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.0.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Motion/Stagger/Docs',
       },
       svelte: {
@@ -1193,7 +1193,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.32.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/InputGroup',
       },
       svelte: {
@@ -1208,7 +1208,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.30.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Preview',
       },
       svelte: {
@@ -1224,7 +1224,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.20.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/FilterChipSelectInput',
       },
       svelte: {
@@ -1239,7 +1239,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.20.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Input/FilterChipDatePicker',
       },
       svelte: {
@@ -1255,7 +1255,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.20.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Patterns/ListView',
       },
       svelte: {
@@ -1270,7 +1270,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.14.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/QuickFilter',
       },
       svelte: {
@@ -1285,7 +1285,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.11.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/ChatMessage',
       },
       svelte: {
@@ -1301,7 +1301,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.49.7',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/LineChart',
       },
       svelte: {
@@ -1332,7 +1332,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.54.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/TimePicker',
       },
       svelte: {
@@ -1348,7 +1348,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.59.0',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/CounterInput',
       },
       svelte: {
@@ -1363,7 +1363,7 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'released',
-        releasedIn: '12.65.1',
+        releasedIn: '0.0.1',
         storybookLink: 'Components/Pagination',
       },
       svelte: {
