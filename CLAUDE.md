@@ -62,6 +62,7 @@ Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant
 | `klear360-ds-adoption` | Adopt designer-skills DS topics into tokens/MCP/CSS (not product UX) |
 | `klear360-tokens` | Token, theme, or CSS variable changes |
 | `klear360-typography` | Text, Heading, Display, Code, type hierarchy, font tokens |
+| `klear360-iconography` | Icons — sizes, colors, brand marks, filled/stroked, host integration |
 | `klear360-ai-ui` | AI assistant, chat, model picker, copilot UI |
 | `klear360-components` | Component selection, patterns, styled props |
 | `klear360-motion` | Animations, transitions, motion tokens |

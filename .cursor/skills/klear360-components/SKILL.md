@@ -38,6 +38,8 @@ Pick components by **behavior**, not appearance:
 
 For typography hierarchy, sizing, and token mapping, load **klear360-typography**.
 
+For icon selection, sizing, colors, and host integration, load **klear360-iconography**.
+
 Call `get_klear360_general_docs` with `topicsList: "ChoosingComponents"` for the full decision tree.
 
 ## Implementation rules
