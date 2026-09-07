@@ -15,7 +15,6 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentDescription="Pagination is a navigation component that allows users to navigate through multiple pages of content. It provides page number navigation, page size selection, and direct page jumping capabilities."
       componentName="Pagination"
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=75154-262065&m=dev"
     >
       <Title>Usage</Title>
       <Sandbox showConsole>

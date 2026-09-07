@@ -35,7 +35,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="Menu"
       componentDescription="Action Menu displays a list of actions on temporary surfaces. They allow users to action(s) from multiple options. They appear when users interact with a button, action, or other control."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=90082-41948&m=dev&scaling=min-zoom&content-scaling=fixed&page-id=90026%3A23382&t=C1ehQJKwn0PpRa7Y-1"
     >
       <Alert
         isFullWidth

@@ -1,5 +1,5 @@
 import { Meta, DocsContainer } from '@storybook/addon-docs/blocks';
-import { useTheme, Klear360Provider, Box, Button, ExternalLinkIcon } from '../../src//components';
+import { useTheme, Klear360Provider } from '../../src//components';
 import { klear360Theme } from '../../src/tokens';
 import { makeTypographySize } from '../../src/utils';
 
@@ -24,12 +24,6 @@ import { makeTypographySize } from '../../src/utils';
 # 🔡 Typography
 
 > These tokens should be used along with the [makeTypographySize util](?path=/story/utils-maketypographysize--docs).
-
-<Box paddingBottom="spacing.6">
-  <Button variant="tertiary" href="https://www.figma.com/file/5BZsOpNjbUHqgVh850yPBW/%5BResearch%5D-Typography-%26-Spacing-Refresh?type=design&node-id=101-99618&mode=design&t=KdVVWtntizpKmsBt-0" icon={ExternalLinkIcon} target="_blank">
-    {'View on Figma'}
-  </Button>
-</Box>
 
 export const Typography = () => {
   const { theme } = useTheme();

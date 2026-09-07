@@ -92,7 +92,6 @@ const Page = (): React.ReactElement => {
       componentName="LightBox"
       componentDescription="LightBox is a full-screen overlay component for viewing media items — images, videos, documents, or any custom content — in an immersive gallery experience. It provides prev/next navigation and a thumbnail strip for quick item access."
       apiDecisionLink={null}
-      figmaURL=""
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

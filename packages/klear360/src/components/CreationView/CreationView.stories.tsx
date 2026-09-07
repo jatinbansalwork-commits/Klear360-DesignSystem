@@ -78,7 +78,6 @@ const Page = (): React.ReactElement => {
       componentName="Creation View"
       componentDescription="Creation View is a pattern that is used in creation flows"
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/ZZ2dpcIAsPCEGPwQ2UdgL1/Klear360-Cheatsheet?node-id=949-178337&m=dev"
       codeUrl="./CreationView.stories.tsx"
     >
       <Heading size="large">Usage</Heading>

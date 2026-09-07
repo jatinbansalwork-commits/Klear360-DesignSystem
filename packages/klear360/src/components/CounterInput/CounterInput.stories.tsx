@@ -17,7 +17,6 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentName="CounterInput"
       componentDescription="CounterInput allows users to increment or decrement numerical values using built-in controls with manual text input support."
-      figmaURL="https://www.figma.com/design/fGoYjy1l6hjqG759G6XZEF/-Research--Counter-Input?node-id=323-11223&t=GDE5fN6tVSW2JXeR-0"
     >
       <Title>Usage</Title>
       <Sandbox showConsole>

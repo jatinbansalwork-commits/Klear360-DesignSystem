@@ -18,7 +18,6 @@ const Page = (): React.ReactElement => {
       componentName="Divider"
       componentDescription="Divider is a visual element that is used to separate or divide content within a layout"
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=74864-84931&t=L3B7EoN3ZA9RuSPa-1&scaling=min-zoom&page-id=37369%3A560819&mode=design"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox>

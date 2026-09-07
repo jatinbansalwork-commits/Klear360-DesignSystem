@@ -22,7 +22,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="Toast"
       componentDescription="Toast is a feedback element to display temporary short messages in the interface"
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=75839-1125191&t=J1cSX69DjMGlLgC9-1&scaling=min-zoom&page-id=7665%3A27414&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

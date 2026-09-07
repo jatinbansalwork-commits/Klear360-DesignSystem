@@ -16,7 +16,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="FloatingActionButton"
       componentDescription="A persistent, elevated button anchored to the bottom of the viewport, used for the single most important action on a screen. Use it for one action only — it is not a replacement for Button."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=125809-2463"
     >
       <Title>Usage</Title>
       <Alert

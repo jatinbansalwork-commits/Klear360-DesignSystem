@@ -55,7 +55,6 @@ export default {
         <StoryPageWrapper
           componentDescription="EmptyState component provides a consistent way to show empty states with optional assets, titles, descriptions, and actions across the application."
           componentName="EmptyState"
-          figmaURL="https://www.figma.com/design/UTlH5NpDte6c9L7o8z93vd/-Research--Empty-States?node-id=582-85262&m=dev"
         >
           <Heading size="large">Usage</Heading>
           <Sandbox editorHeight={500}>{EmptyStateStoryCode}</Sandbox>

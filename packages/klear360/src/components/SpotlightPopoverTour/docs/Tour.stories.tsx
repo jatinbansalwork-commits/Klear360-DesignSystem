@@ -30,7 +30,6 @@ const Page = (): React.ReactElement => {
       showDefaultExample={false}
       componentName="SpotlightPopoverTour"
       componentDescription="The SpotlightPopoverTour component is used to provide context as well as enable users to take certain actions on it. These are used to highlight a new feature or provide a guided tour to a new user."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=74881-74360&t=bARaYRnM1Bbbbn9J-1&scaling=min-zoom&page-id=63871%3A12995&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>{BasicExample}</Sandbox>

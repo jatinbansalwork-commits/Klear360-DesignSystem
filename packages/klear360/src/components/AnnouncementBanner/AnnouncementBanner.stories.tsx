@@ -16,7 +16,6 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentName="AnnouncementBanner"
       componentDescription="A slim, full-bleed banner used to surface a single short, system-wide promotional or informational message at the top or bottom edge of a page."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=123476-17024"
     >
       <Title>Usage</Title>
       <Sandbox editorHeight={400}>

@@ -41,7 +41,6 @@ const DocsPage = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="AppBar"
       componentDescription="A top-of-screen application/page header that gives context (logo and/or title), an optional back affordance, and a trailing slot for page-level actions. Use it for mobile and compact desktop surfaces where a full TopNav is too heavy."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=123476-15909&t=al61hwUh8Ms2HXUw-4"
     >
       <Title>Usage</Title>
       <Text>

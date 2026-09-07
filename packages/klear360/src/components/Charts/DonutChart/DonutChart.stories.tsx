@@ -18,7 +18,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="DonutChart"
       componentDescription="A Donut component built on top of Recharts with Klear360 design system styling."
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=93596-50164&m=dev"
       apiDecisionLink="../_decisions"
     >
       <Heading size="large">Usage</Heading>

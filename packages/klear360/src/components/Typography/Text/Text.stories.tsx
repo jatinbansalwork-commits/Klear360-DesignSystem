@@ -16,7 +16,6 @@ const Page = (): ReactElement => {
       componentDescription="The Text component is used to display main content of the page. It is often clubbed with Title or Heading to display content in a hierarchical structure. It applies responsive styles automatically based on the device it is being rendered on."
       componentName="Text"
       apiDecisionLink="../_decisions/decisions.md"
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=71123-52773&t=DaKuYvkYnno4qVsq-1&scaling=min-zoom&page-id=3%3A0&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

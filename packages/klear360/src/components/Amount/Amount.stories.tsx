@@ -24,7 +24,6 @@ const Page = (): React.ReactElement => {
       componentName="Amount"
       componentDescription="Amounts are used to show small amount of color coded metadata, which are ideal for getting user attention."
       note="This component only displays the provided value in the specified currency with the formatting capabilities enabled by @klear/i18n-react, it does not perform any currency conversion."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=73923-3993&t=BlKhwBm0KrrsRDPF-1&scaling=min-zoom&page-id=27439%3A575440&mode=design"
       propsDescription="The Amount component automatically formats numbers based on the user's browser locale enabled by @klear/i18n-react. To adjust the locale according to your page, utilise its hooks for updating the locale. For more details, please refer to
       the documentation of @klear/i18n-react library."
     >

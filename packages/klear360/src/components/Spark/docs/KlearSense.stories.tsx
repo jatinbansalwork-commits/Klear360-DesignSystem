@@ -29,7 +29,6 @@ const Page = (): ReactElement => {
     <StoryPageWrapper
       componentName="KlearSense"
       componentDescription="This is the KlearSense component which can be used for showing a KlearSense effect on the screen"
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=80952-9051&t=ozxGdqCDqI9hRYY8-1&scaling=min-zoom&page-id=614%3A1&mode=design"
     />
   );
 };

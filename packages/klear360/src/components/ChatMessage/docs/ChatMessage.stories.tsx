@@ -44,7 +44,6 @@ const Page = (): React.ReactElement => {
       componentName="ChatMessage"
       componentDescription="A Chat Message is a visual representation of a message in a chat application."
       apiDecisionLink={null}
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=100413-32686&t=n9A7LztwEkIsly3v-0"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

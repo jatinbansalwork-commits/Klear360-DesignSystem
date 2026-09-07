@@ -24,7 +24,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="Breadcrumb"
       componentDescription="Breadcrumbs are used for navigating through or to show user’s location in an application"
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=81379-63155&t=WMj82CNLXHQp4D1C-1&scaling=min-zoom&page-id=81010%3A24682&mode=design"
     >
       <Title>Usage</Title>
       <Sandbox>

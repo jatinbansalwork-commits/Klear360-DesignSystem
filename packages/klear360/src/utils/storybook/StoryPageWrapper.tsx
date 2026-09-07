@@ -10,7 +10,7 @@ import { klear360Theme } from '~tokens/theme';
 import { Box } from '~components/Box';
 import type { HeadingProps } from '~components/Typography';
 import { Display, Heading } from '~components/Typography';
-import { AnnouncementIcon, FigmaIcon, FileTextIcon } from '~components/Icons';
+import { AnnouncementIcon, FileTextIcon } from '~components/Icons';
 import { Button } from '~components/Button';
 
 const Subtitle = (props: HeadingProps): React.ReactElement => {
@@ -20,7 +20,6 @@ const Subtitle = (props: HeadingProps): React.ReactElement => {
 };
 
 type StoryPageWrapperTypes = {
-  figmaURL?: string;
   codeUrl?: string;
   argTableComponent?: unknown;
   componentDescription: string;
@@ -102,11 +101,6 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
               target="_blank"
             >
               Released In: v{componentMetaInfo.frameworks.react.releasedIn}
-            </Button>
-          ) : null}
-          {props.figmaURL ? (
-            <Button href={props.figmaURL} variant="tertiary" icon={FigmaIcon} target="_blank">
-              View on Figma
             </Button>
           ) : null}
           {props.codeUrl ? (

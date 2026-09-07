@@ -24,7 +24,6 @@ const Page = (): React.ReactElement => {
       componentName="AreaChart"
       componentDescription="An Area Chart component built on top of Recharts with Klear360 design system styling."
       apiDecisionLink="../_decisions/decisions.md"
-      figmaURL="https://www.figma.com/design/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?node-id=92678-188717&p=f&m=dev"
     >
       <Heading size="large">Usage</Heading>
       <Sandbox showConsole>

@@ -37,7 +37,6 @@ const Page = (): React.ReactElement => {
     <StoryPageWrapper
       componentName="Interactive Card"
       componentDescription="Enhancing the Card component to add additional interactions and behaviour. This includes making the card clickable, hoverable, linkable, selectable and more."
-      figmaURL="https://www.figma.com/proto/jubmQL9Z8V7881ayUD95ps/Klear360-DSL?type=design&node-id=75857-127700&t=qZx2sCUVp8UPW4qj-1&scaling=min-zoom&page-id=21248%3A307966&mode=design"
     >
       <Heading size="large">Usage</Heading>
       <Box marginY="spacing.6">
