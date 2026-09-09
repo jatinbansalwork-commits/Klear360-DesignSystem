@@ -2,4 +2,5 @@
 import './baseText.module.css';
 
 export { baseTextStyles, getBaseTextClasses } from './baseText';
-export type { BaseTextVariants } from './baseText';
+
+/** @typedef {import('./baseText').BaseTextVariants} BaseTextVariants */
