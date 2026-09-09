@@ -3,58 +3,50 @@
  * Framework-agnostic utilities that can be used across all component implementations
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type StyledPropsInputType = Record<string, any>;
-
 /**
  * StyledPropsKlear360 type - defines CSS properties that can be passed as props to components
  * These props are converted to CSS classes or inline styles
+ *
+ * @typedef {Partial<{
+ *   margin: string | string[],
+ *   marginX: string,
+ *   marginY: string,
+ *   marginTop: string,
+ *   marginBottom: string,
+ *   marginLeft: string,
+ *   marginRight: string,
+ *   display: string,
+ *   visibility: string,
+ *   alignSelf: string,
+ *   justifySelf: string,
+ *   placeSelf: string,
+ *   order: number | string,
+ *   flexWrap: string,
+ *   position: string,
+ *   zIndex: number | string,
+ *   top: string,
+ *   right: string,
+ *   bottom: string,
+ *   left: string,
+ *   gridColumn: string,
+ *   gridRow: string,
+ *   gridRowStart: string,
+ *   gridRowEnd: string,
+ *   gridColumnStart: string,
+ *   gridColumnEnd: string,
+ *   gridArea: string,
+ * }>} StyledPropsKlear360
  */
-export type StyledPropsKlear360 = Partial<{
-  // Margin props
-  margin: string | string[];
-  marginX: string;
-  marginY: string;
-  marginTop: string;
-  marginBottom: string;
-  marginLeft: string;
-  marginRight: string;
-
-  // Layout props
-  display: string;
-  visibility: string;
-
-  // Flexbox props
-  alignSelf: string;
-  justifySelf: string;
-  placeSelf: string;
-  order: number | string;
-  flexWrap: string;
-
-  // Position props
-  position: string;
-  zIndex: number | string;
-  top: string;
-  right: string;
-  bottom: string;
-  left: string;
-
-  // Grid props
-  gridColumn: string;
-  gridRow: string;
-  gridRowStart: string;
-  gridRowEnd: string;
-  gridColumnStart: string;
-  gridColumnEnd: string;
-  gridArea: string;
-}>;
 
 /**
  * Removing undefined styledProps because when used with spread operator,
  * undefined can override the earlier defined values.
+ * @param {Record<string, any>} obj
+ * @returns {StyledPropsKlear360}
  */
-const removeUndefinedStyledProps = (obj: StyledPropsInputType): StyledPropsKlear360 => {
-  const onlyDefinedStyledProps: StyledPropsKlear360 = {};
+const removeUndefinedStyledProps = (obj) => {
+  /** @type {StyledPropsKlear360} */
+  const onlyDefinedStyledProps = {};
   for (const key in obj) {
     if (obj[key] !== undefined) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
@@ -72,8 +64,10 @@ const removeUndefinedStyledProps = (obj: StyledPropsInputType): StyledPropsKlear
  * Can be used in generating storybook docs and testing the possible props.
  *
  * **Use `getStyledProps` instead if you're using this for adding styledProps!**
+ * @param {Record<string, any>} props
+ * @returns {StyledPropsKlear360}
  */
-const makeStyledProps = (props: StyledPropsInputType): StyledPropsKlear360 => {
+const makeStyledProps = (props) => {
   return {
     alignSelf: props.alignSelf,
     display: props.display,
@@ -120,9 +114,10 @@ const makeStyledProps = (props: StyledPropsInputType): StyledPropsKlear360 => {
  * const styledProps = getStyledProps(props);
  * // Returns: { marginX: 'spacing.3', display: 'flex' }
  * ```
+ * @param {Record<string, any>} props
+ * @returns {StyledPropsKlear360}
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getStyledProps = (props: Record<string, any>): StyledPropsKlear360 => {
+export const getStyledProps = (props) => {
   return removeUndefinedStyledProps(makeStyledProps(props));
 };
 

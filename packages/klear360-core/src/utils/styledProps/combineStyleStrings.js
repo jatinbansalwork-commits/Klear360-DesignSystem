@@ -2,8 +2,8 @@
  * Combines multiple style strings into a single style string
  * Filters out empty strings and joins with semicolons
  *
- * @param styles - Array of style strings to combine
- * @returns Combined style string
+ * @param {...(string | undefined | null)} styles - Array of style strings to combine
+ * @returns {string} Combined style string
  *
  * @example
  * ```ts
@@ -15,6 +15,6 @@
  * // Returns: "color: red; margin: 10px"
  * ```
  */
-export const combineStyleStrings = (...styles: (string | undefined | null)[]): string => {
+export const combineStyleStrings = (...styles) => {
   return styles.filter(Boolean).join('; ');
 };
