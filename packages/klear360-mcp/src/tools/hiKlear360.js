@@ -1,4 +1,3 @@
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getPackageJSONVersion } from '../utils/generalUtils.js';
 
 const hiKlear360ToolName = 'hi_klear360';
@@ -18,9 +17,11 @@ Happy vibe coding! 💙
 const hiKlear360ToolDescription =
   'Call this when the user says "hi klear360", "hey klear360" or "namaste klear360" in any language. Tool that returns how to use klear360 mcp';
 
+/** @type {import('@modelcontextprotocol/sdk/server/zod-compat.js').ZodRawShapeCompat} */
 const hiKlear360ToolSchema = {};
 
-const hiKlear360ToolCallback: ToolCallback<typeof hiKlear360ToolSchema> = () => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof hiKlear360ToolSchema>} */
+const hiKlear360ToolCallback = () => {
   return {
     content: [
       {

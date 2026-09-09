@@ -1,4 +1,3 @@
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import dedent from 'dedent';
 import { z } from 'zod';
 import { handleError } from '../utils/errorUtils.js';
@@ -9,7 +8,7 @@ const URLS = {
     DEV: 'http://localhost:8888',
     PROD: 'https://klear360-chat.dev.klear.in',
   },
-} as const;
+};
 
 const getFigmaToCodeToolName = 'get_figma_to_code';
 
@@ -33,7 +32,8 @@ const getFigmaToCodeToolSchema = {
     ),
 };
 
-const getFigmaToCodeToolCallback: ToolCallback<typeof getFigmaToCodeToolSchema> = async ({
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getFigmaToCodeToolSchema>} */
+const getFigmaToCodeToolCallback = async ({
   fileKey,
   nodeId,
   currentProjectRootDirectory: _currentProjectRootDirectory,
@@ -96,7 +96,7 @@ const getFigmaToCodeToolCallback: ToolCallback<typeof getFigmaToCodeToolSchema> 
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: getFigmaToCodeToolName,
       mcpErrorMessage: `Failed to generate figma code, ${error}`,
