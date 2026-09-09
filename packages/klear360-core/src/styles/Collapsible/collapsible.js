@@ -87,7 +87,8 @@ export const getCollapsibleInnerClasses = cva(styles.inner, {
   },
 });
 
-export function getCollapsibleTemplateClasses(): Record<string, string> {
+/** @returns {Record<string, string>} */
+export function getCollapsibleTemplateClasses() {
   return {
     triggerChevron: styles.triggerChevron,
     chevronExpanded: styles.chevronExpanded,
@@ -101,16 +102,19 @@ export function getCollapsibleTemplateClasses(): Record<string, string> {
   };
 }
 
-export type CollapsibleChevronVariants = {
-  isExpanded?: boolean;
-};
+/**
+ * @typedef {Object} CollapsibleChevronVariants
+ * @property {boolean} [isExpanded]
+ */
 
-export type CollapsibleInnerVariants = {
-  direction?: 'bottom' | 'top';
-  shouldApplyWidthRestrictions?: boolean;
-};
+/**
+ * @typedef {Object} CollapsibleInnerVariants
+ * @property {'bottom' | 'top'} [direction]
+ * @property {boolean} [shouldApplyWidthRestrictions]
+ */
 
-export type CollapsibleBodyInnerVariants = {
-  direction?: 'bottom' | 'top';
-  hasMargin?: boolean;
-};
+/**
+ * @typedef {Object} CollapsibleBodyInnerVariants
+ * @property {'bottom' | 'top'} [direction]
+ * @property {boolean} [hasMargin]
+ */

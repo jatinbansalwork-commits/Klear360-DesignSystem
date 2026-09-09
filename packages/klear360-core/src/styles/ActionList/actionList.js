@@ -2,9 +2,10 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './actionList.module.css';
 
-export type ActionListWrapperVariants = {
-  isInBottomSheet?: boolean;
-};
+/**
+ * @typedef {Object} ActionListWrapperVariants
+ * @property {boolean} [isInBottomSheet]
+ */
 
 /**
  * ListBox scroll wrapper. Standalone → `.wrapper` (max-height 300px + spacing.3
@@ -23,13 +24,18 @@ export const actionListWrapperCva = cva('', {
   },
 });
 
-export function getActionListWrapperClasses(props: ActionListWrapperVariants): string {
+/**
+ * @param {ActionListWrapperVariants} props
+ * @returns {string}
+ */
+export function getActionListWrapperClasses(props) {
   return actionListWrapperCva(props);
 }
 
-export type ActionListItemVariants = {
-  intent?: 'default' | 'negative';
-};
+/**
+ * @typedef {Object} ActionListItemVariants
+ * @property {'default' | 'negative'} [intent]
+ */
 
 /**
  * Row container (inlined BaseMenuItem). `.item` carries layout + hover/selected/
@@ -48,31 +54,36 @@ export const actionListItemCva = cva(styles.item, {
   },
 });
 
-export function getActionListItemClasses(props: ActionListItemVariants): string {
+/**
+ * @param {ActionListItemVariants} props
+ * @returns {string}
+ */
+export function getActionListItemClasses(props) {
   return actionListItemCva(props);
 }
 
 /**
  * Structural/template classes. Call from the Svelte component so Svelte does
  * not tree-shake CVA class references that only appear in compound selectors.
+ * @returns {{
+ *   wrapper: string,
+ *   wrapperInSheet: string,
+ *   item: string,
+ *   itemNegative: string,
+ *   itemInner: string,
+ *   itemLeading: string,
+ *   itemSelector: string,
+ *   itemContent: string,
+ *   itemContentWithLeading: string,
+ *   itemTitleRow: string,
+ *   itemTrailing: string,
+ *   itemBadgeGroup: string,
+ *   section: string,
+ *   sectionTitle: string,
+ *   sectionItems: string,
+ * }}
  */
-export function getActionListTemplateClasses(): {
-  wrapper: string;
-  wrapperInSheet: string;
-  item: string;
-  itemNegative: string;
-  itemInner: string;
-  itemLeading: string;
-  itemSelector: string;
-  itemContent: string;
-  itemContentWithLeading: string;
-  itemTitleRow: string;
-  itemTrailing: string;
-  itemBadgeGroup: string;
-  section: string;
-  sectionTitle: string;
-  sectionItems: string;
-} {
+export function getActionListTemplateClasses() {
   return {
     wrapper: styles.wrapper,
     wrapperInSheet: styles.wrapperInSheet,
