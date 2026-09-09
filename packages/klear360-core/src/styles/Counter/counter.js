@@ -2,21 +2,16 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './counter.module.css';
 
-export type CounterSize = 'small' | 'medium' | 'large';
-export type CounterColor =
-  | 'neutral'
-  | 'positive'
-  | 'negative'
-  | 'notice'
-  | 'information'
-  | 'primary';
-export type CounterEmphasis = 'subtle' | 'intense';
+/** @typedef {'small' | 'medium' | 'large'} CounterSize */
+/** @typedef {'neutral' | 'positive' | 'negative' | 'notice' | 'information' | 'primary'} CounterColor */
+/** @typedef {'subtle' | 'intense'} CounterEmphasis */
 
-export type CounterVariants = {
-  size?: CounterSize;
-  color?: CounterColor;
-  emphasis?: CounterEmphasis;
-};
+/**
+ * @typedef {Object} CounterVariants
+ * @property {CounterSize} [size]
+ * @property {CounterColor} [color]
+ * @property {CounterEmphasis} [emphasis]
+ */
 
 /**
  * Counter text size mapping
@@ -25,11 +20,9 @@ export type CounterVariants = {
  * - body xsmall: fontSize 25, lineHeight 25
  * - body small: fontSize 75, lineHeight 75
  * - body medium: fontSize 100, lineHeight 100
+ * @type {Record<CounterSize, { fontSize: 25 | 75 | 100, lineHeight: 25 | 75 | 100 }>}
  */
-export const counterTextSizes: Record<
-  CounterSize,
-  { fontSize: 25 | 75 | 100; lineHeight: 25 | 75 | 100 }
-> = {
+export const counterTextSizes = {
   small: { fontSize: 25, lineHeight: 25 },
   medium: { fontSize: 75, lineHeight: 75 },
   large: { fontSize: 100, lineHeight: 100 },
@@ -37,14 +30,10 @@ export const counterTextSizes: Record<
 
 /**
  * Get text color token based on color and emphasis
+ * @param {{ color: CounterColor, emphasis: CounterEmphasis }} params
+ * @returns {string}
  */
-export function getCounterTextColorToken({
-  color,
-  emphasis,
-}: {
-  color: CounterColor;
-  emphasis: CounterEmphasis;
-}): string {
+export function getCounterTextColorToken({ color, emphasis }) {
   if (color === 'primary') {
     return emphasis === 'intense'
       ? 'surface.text.staticWhite.normal'
@@ -93,8 +82,9 @@ export const counterContentClass = styles.content;
 /**
  * CSS module classes for conditional horizontal padding on the Counter content
  * wrapper.
+ * @type {Record<CounterSize, string>}
  */
-export const counterContentPaddingClass: Record<CounterSize, string> = {
+export const counterContentPaddingClass = {
   small: styles['content-padding-small'],
   medium: styles['content-padding-medium'],
   large: styles['content-padding-large'],
@@ -104,14 +94,10 @@ export const counterContentPaddingClass: Record<CounterSize, string> = {
  * Compute the class list for the Counter content wrapper.
  * Returns the base content class, plus the size-specific padding class when
  * the counter should render with horizontal padding (multi-digit values).
+ * @param {{ size: CounterSize, hasHorizontalPadding: boolean }} params
+ * @returns {string}
  */
-export function getCounterContentClasses({
-  size,
-  hasHorizontalPadding,
-}: {
-  size: CounterSize;
-  hasHorizontalPadding: boolean;
-}): string {
+export function getCounterContentClasses({ size, hasHorizontalPadding }) {
   const classes = [counterContentClass];
   if (hasHorizontalPadding) {
     classes.push(counterContentPaddingClass[size]);
@@ -122,8 +108,10 @@ export function getCounterContentClasses({
 /**
  * Generate all classes for Counter component
  * This is the single source of truth for all Counter styling
+ * @param {CounterVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getCounterClasses(props: CounterVariants & { className?: string }): string {
+export function getCounterClasses(props) {
   const { className, ...cvaProps } = props;
 
   const classes = [counterStyles(cvaProps), className].filter(Boolean).join(' ');

@@ -1,81 +1,49 @@
-// Font size and line height types matching BaseText
-export type FontSize =
-  | 25
-  | 50
-  | 75
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | 1000
-  | 1100;
-export type LineHeight =
-  | 0
-  | 25
-  | 50
-  | 75
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | 1000
-  | 1100;
+/**
+ * Font size and line height types matching BaseText
+ * @typedef {25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100} FontSize
+ */
+/**
+ * @typedef {0 | 25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100} LineHeight
+ */
 
-export type TextVariant = 'body' | 'caption';
-export type TextSize = 'xsmall' | 'small' | 'medium' | 'large';
-export type TextWeight = 'regular' | 'medium' | 'semibold';
-export type TextAs = 'p' | 'span' | 'div' | 'abbr' | 'figcaption' | 'cite' | 'q' | 'label';
+/** @typedef {'body' | 'caption'} TextVariant */
+/** @typedef {'xsmall' | 'small' | 'medium' | 'large'} TextSize */
+/** @typedef {'regular' | 'medium' | 'semibold'} TextWeight */
+/** @typedef {'p' | 'span' | 'div' | 'abbr' | 'figcaption' | 'cite' | 'q' | 'label'} TextAs */
 
-export const validTextAsValues: readonly TextAs[] = [
-  'p',
-  'span',
-  'div',
-  'abbr',
-  'figcaption',
-  'cite',
-  'q',
-  'label',
-] as const;
+/** @type {readonly TextAs[]} */
+export const validTextAsValues = ['p', 'span', 'div', 'abbr', 'figcaption', 'cite', 'q', 'label'];
 
-export type TextPropsResult = {
-  color?: string;
-  fontSize: FontSize;
-  fontWeight: TextWeight;
-  fontStyle: 'normal';
-  lineHeight: LineHeight;
-  letterSpacing?: 25 | 50 | 100;
-  fontFamily: 'text';
-  componentName: 'text';
-  testID?: string;
-  textAlign?: 'left' | 'center' | 'right' | 'justify';
-  textDecorationLine?: 'none' | 'underline' | 'line-through';
-};
-
-type GetTextPropsParams = {
-  variant: TextVariant;
-  weight?: TextWeight;
-  size?: TextSize | undefined;
-  color?: string;
-  testID?: string;
-  textAlign?: 'left' | 'center' | 'right' | 'justify';
-  textDecorationLine?: 'none' | 'underline' | 'line-through';
-};
+/**
+ * @typedef {Object} TextPropsResult
+ * @property {string} [color]
+ * @property {FontSize} fontSize
+ * @property {TextWeight} fontWeight
+ * @property {'normal'} fontStyle
+ * @property {LineHeight} lineHeight
+ * @property {25 | 50 | 100} [letterSpacing]
+ * @property {'text'} fontFamily
+ * @property {'text'} componentName
+ * @property {string} [testID]
+ * @property {'left' | 'center' | 'right' | 'justify'} [textAlign]
+ * @property {'none' | 'underline' | 'line-through'} [textDecorationLine]
+ */
 
 /**
  * Get BaseText props from Text props
  * Converts Text component props to BaseText props with appropriate font sizes and line heights
  * These values correspond to BaseText utility classes (font-size-25, font-size-75, etc.)
  * BaseText CVA will automatically convert these to the appropriate utility classes
+ * @param {{
+ *   variant: TextVariant,
+ *   weight?: TextWeight,
+ *   size?: TextSize | undefined,
+ *   color?: string,
+ *   testID?: string,
+ *   textAlign?: 'left' | 'center' | 'right' | 'justify',
+ *   textDecorationLine?: 'none' | 'underline' | 'line-through',
+ * }} params
+ * @returns {TextPropsResult}
  */
 export function getTextProps({
   variant,
@@ -85,8 +53,9 @@ export function getTextProps({
   testID,
   textAlign,
   textDecorationLine,
-}: GetTextPropsParams): TextPropsResult {
-  const props: TextPropsResult = {
+}) {
+  /** @type {TextPropsResult} */
+  const props = {
     color,
     fontSize: 100,
     fontWeight: weight ?? 'regular',
