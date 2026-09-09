@@ -11,7 +11,8 @@ import { SKILL_VERSION_STRING } from '../../utils/tokens.js';
 
 vi.mock('../../utils/skillUtils.js');
 
-const createMockContext = (): any => ({
+/** @returns {any} */
+const createMockContext = () => ({
   signal: new AbortController().signal,
   requestId: 'test-request-id',
   sendNotification: vi.fn().mockResolvedValue(undefined),
@@ -44,7 +45,8 @@ describe('createKlear360Skill HTTP callback', () => {
 });
 
 describe('createKlear360Skill stdio callback', () => {
-  let tmpDir: string;
+  /** @type {string} */
+  let tmpDir;
 
   beforeEach(() => {
     vi.clearAllMocks();

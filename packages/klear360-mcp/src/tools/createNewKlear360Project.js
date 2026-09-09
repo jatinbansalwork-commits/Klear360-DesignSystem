@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 import { handleError } from '../utils/errorUtils.js';
 import { getKlear360ComponentDocsToolName } from './getKlear360ComponentDocs.js';
@@ -17,9 +16,10 @@ const createNewKlear360ProjectToolSchema = {
     ),
 };
 
-const createNewKlear360ProjectToolCallback: ToolCallback<
-  typeof createNewKlear360ProjectToolSchema
-> = ({ currentProjectRootDirectory: _currentProjectRootDirectory }) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof createNewKlear360ProjectToolSchema>} */
+const createNewKlear360ProjectToolCallback = ({
+  currentProjectRootDirectory: _currentProjectRootDirectory,
+}) => {
   try {
     return {
       content: [
@@ -39,7 +39,7 @@ const createNewKlear360ProjectToolCallback: ToolCallback<
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: createNewKlear360ProjectToolName,
       errorObject: error,
