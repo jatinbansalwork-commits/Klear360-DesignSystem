@@ -2,13 +2,14 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './announcementBanner.module.css';
 
-export type AnnouncementBannerAlignment = 'center' | 'left';
+/** @typedef {'center' | 'left'} AnnouncementBannerAlignment */
 
-export type AnnouncementBannerTheme = 'light' | 'dark';
+/** @typedef {'light' | 'dark'} AnnouncementBannerTheme */
 
-export type AnnouncementBannerVariants = {
-  alignment?: AnnouncementBannerAlignment;
-};
+/**
+ * @typedef {Object} AnnouncementBannerVariants
+ * @property {AnnouncementBannerAlignment} [alignment]
+ */
 
 /**
  * CVA-based AnnouncementBanner styles
@@ -27,10 +28,10 @@ export const announcementBannerStyles = cva(styles['announcement-banner'], {
 
 /**
  * Generate all classes for the AnnouncementBanner container
+ * @param {AnnouncementBannerVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getAnnouncementBannerClasses(
-  props: AnnouncementBannerVariants & { className?: string },
-): string {
+export function getAnnouncementBannerClasses(props) {
   const { className, ...cvaProps } = props;
   return [announcementBannerStyles(cvaProps), className].filter(Boolean).join(' ');
 }
@@ -46,8 +47,9 @@ export const announcementBannerIconColorClass = styles['icon-color'];
  * Get all AnnouncementBanner template classes as an object.
  * Use this function in Svelte components to prevent tree-shaking from removing
  * class imports that are only used in templates.
+ * @returns {Record<string, string>}
  */
-export function getAnnouncementBannerTemplateClasses(): Record<string, string> {
+export function getAnnouncementBannerTemplateClasses() {
   return {
     banner: styles['announcement-banner'],
     iconWrapper: announcementBannerIconWrapperClass,
@@ -55,5 +57,5 @@ export function getAnnouncementBannerTemplateClasses(): Record<string, string> {
     alignLeft: styles['align-left'],
     textColor: announcementBannerTextColorClass,
     iconColor: announcementBannerIconColorClass,
-  } as const;
+  };
 }
