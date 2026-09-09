@@ -4,27 +4,22 @@ import { utilityClasses } from '../utilities';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './baseText.module.css';
 
-export type BaseTextVariants = {
-  fontSize?: 25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
-  lineHeight?: 0 | 25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
-  fontWeight?: 'regular' | 'medium' | 'semibold' | 'bold';
-  fontFamily?: 'text' | 'heading';
-  fontStyle?: 'normal' | 'italic';
-  textDecorationLine?: 'none' | 'underline' | 'line-through';
-  textAlign?: 'left' | 'center' | 'right' | 'justify';
-  textTransform?:
-    | 'none'
-    | 'capitalize'
-    | 'uppercase'
-    | 'lowercase'
-    | 'full-width'
-    | 'full-size-kana';
-  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
-  letterSpacing?: 25 | 50 | 100;
-  numberOfLines?: number;
-  color?: string;
-  opacity?: number;
-};
+/**
+ * @typedef {Object} BaseTextVariants
+ * @property {25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100} [fontSize]
+ * @property {0 | 25 | 50 | 75 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100} [lineHeight]
+ * @property {'regular' | 'medium' | 'semibold' | 'bold'} [fontWeight]
+ * @property {'text' | 'heading'} [fontFamily]
+ * @property {'normal' | 'italic'} [fontStyle]
+ * @property {'none' | 'underline' | 'line-through'} [textDecorationLine]
+ * @property {'left' | 'center' | 'right' | 'justify'} [textAlign]
+ * @property {'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'full-width' | 'full-size-kana'} [textTransform]
+ * @property {'normal' | 'break-all' | 'keep-all' | 'break-word'} [wordBreak]
+ * @property {25 | 50 | 100} [letterSpacing]
+ * @property {number} [numberOfLines]
+ * @property {string} [color]
+ * @property {number} [opacity]
+ */
 
 export const baseTextStyles = cva(styles.base, {
   variants: {
@@ -140,8 +135,10 @@ export const baseTextStyles = cva(styles.base, {
 /**
  * Convert color token to CSS class name (scoped via CSS module)
  * Example: 'surface.text.gray.normal' -> utilityClasses['color-surface-text-gray-normal']
+ * @param {string} color
+ * @returns {string | undefined}
  */
-function colorTokenToClassName(color: string): string | undefined {
+function colorTokenToClassName(color) {
   if (color === 'currentColor') {
     return utilityClasses['color-current'];
   }
@@ -150,15 +147,17 @@ function colorTokenToClassName(color: string): string | undefined {
   const className = `color-${kebabCase(withHyphens)}`;
   // Access the scoped class name from utility classes
   // Color classes are now in utilities.module.css
-  return utilityClasses[className as keyof typeof utilityClasses];
+  return utilityClasses[/** @type {keyof typeof utilityClasses} */ (className)];
 }
 
 /**
  * Generate all classes for BaseText component
  * This is the single source of truth for all BaseText styling
  * Everything is class-based - no data attributes or inline styles
+ * @param {BaseTextVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getBaseTextClasses(props: BaseTextVariants & { className?: string }): string {
+export function getBaseTextClasses(props) {
   const { className, color, opacity, numberOfLines, ...cvaProps } = props;
 
   // Generate CVA classes
@@ -175,11 +174,11 @@ export function getBaseTextClasses(props: BaseTextVariants & { className?: strin
     letterSpacing: cvaProps.letterSpacing,
     opacity:
       opacity !== undefined
-        ? (Math.round(opacity * 100) as 0 | 25 | 50 | 64 | 75 | 100)
+        ? /** @type {0 | 25 | 50 | 64 | 75 | 100} */ (Math.round(opacity * 100))
         : undefined,
     numberOfLines:
       numberOfLines !== undefined && numberOfLines >= 1 && numberOfLines <= 10
-        ? (numberOfLines as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10)
+        ? /** @type {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10} */ (numberOfLines)
         : undefined,
   };
 
