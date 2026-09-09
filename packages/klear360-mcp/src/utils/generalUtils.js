@@ -2,25 +2,37 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { SKILL_VERSION_STRING, KNOWLEDGEBASE_DIRECTORY, PROJECT_ROOT_DIRECTORY } from './tokens.js';
 
-const hasOutdatedSkill = (skillFilePath: string): boolean => {
+/**
+ * @param {string} skillFilePath
+ * @returns {boolean}
+ */
+const hasOutdatedSkill = (skillFilePath) => {
   const skillFileContent = readFileSync(skillFilePath, 'utf8');
   return !skillFileContent.includes(SKILL_VERSION_STRING);
 };
 
-const getPackageJSONVersion = (): string => {
+/**
+ * @returns {string}
+ */
+const getPackageJSONVersion = () => {
   const packageJson = JSON.parse(
     readFileSync(join(PROJECT_ROOT_DIRECTORY, 'package.json'), 'utf8'),
   );
   return packageJson.version;
 };
 
-type DocumentationType = 'components' | 'patterns' | 'general';
+/**
+ * @typedef {'components' | 'patterns' | 'general'} DocumentationType
+ */
 
 /**
  * Reads the given documentation type directory and returns a list of available klear360 docs
+ * @param {DocumentationType} documentationType
+ * @returns {string[]}
  */
-const getKlear360DocsList = (documentationType: DocumentationType): string[] => {
-  const klear360DocsList: string[] = [];
+const getKlear360DocsList = (documentationType) => {
+  /** @type {string[]} */
+  const klear360DocsList = [];
   try {
     // Read all markdown files and strip the .md extension
     const files = readdirSync(join(KNOWLEDGEBASE_DIRECTORY, documentationType));
@@ -29,7 +41,7 @@ const getKlear360DocsList = (documentationType: DocumentationType): string[] => 
         klear360DocsList.push(file.replace('.md', '').trim());
       }
     }
-  } catch (error: unknown) {
+  } catch (error) {
     console.error('Error reading knowledgebase directory:', error);
     return [];
   }
@@ -38,4 +50,3 @@ const getKlear360DocsList = (documentationType: DocumentationType): string[] => 
 };
 
 export { hasOutdatedSkill, getPackageJSONVersion, getKlear360DocsList };
-export type { DocumentationType };
