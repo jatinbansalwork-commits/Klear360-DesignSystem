@@ -1,8 +1,8 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import type { StreamableHTTPServerTransportOptions } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
-export const createStdioTransport = (): StdioServerTransport => {
+/** @returns {StdioServerTransport} */
+export const createStdioTransport = () => {
   const transport = new StdioServerTransport();
   return transport;
 };
@@ -19,10 +19,11 @@ export const createStdioTransport = (): StdioServerTransport => {
  * const transport = createStreamableHttpTransport();
  * server.connect(transport);
  * ```
+ *
+ * @param {import('@modelcontextprotocol/sdk/server/streamableHttp.js').StreamableHTTPServerTransportOptions} options
+ * @returns {StreamableHTTPServerTransport}
  */
-export const createStreamableHttpTransport = (
-  options: StreamableHTTPServerTransportOptions,
-): StreamableHTTPServerTransport => {
+export const createStreamableHttpTransport = (options) => {
   const transport = new StreamableHTTPServerTransport(options);
   return transport;
 };
