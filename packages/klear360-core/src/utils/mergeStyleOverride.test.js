@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { mergeStyleOverride } from './mergeStyleOverride';
-import type { ButtonSlot } from '../styles/Button/slots';
-import type { StyleOverride } from '../styles/shared/styleOverride';
 
 describe('mergeStyleOverride', () => {
   it('merges provider and instance overrides with instance winning', () => {
-    const provider: StyleOverride<ButtonSlot> = {
+    /** @type {import('../styles/shared/styleOverride').StyleOverride<import('../styles/Button/slots').ButtonSlot>} */
+    const provider = {
       root: 'provider-cta',
       text: 'provider-label',
     };
-    const instance: StyleOverride<ButtonSlot> = {
+    /** @type {import('../styles/shared/styleOverride').StyleOverride<import('../styles/Button/slots').ButtonSlot>} */
+    const instance = {
       root: 'instance-cta',
       icon: 'instance-icon',
     };

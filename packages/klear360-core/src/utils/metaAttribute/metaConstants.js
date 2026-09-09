@@ -1,4 +1,4 @@
-export const MetaConstants = {
+export const MetaConstants = /** @type {const} */ ({
   Accordion: 'accordion',
   AccordionButton: 'accordion-button',
   AccordionItem: 'accordion-item',
@@ -163,4 +163,4 @@ export const MetaConstants = {
   PreviewHeader: 'preview-header',
   PreviewBody: 'preview-body',
   PreviewFooter: 'preview-footer',
-} as const;
+});
