@@ -2,11 +2,12 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './tooltip.module.css';
 
-export type TooltipPlacementSide = 'top' | 'right' | 'bottom' | 'left';
+/** @typedef {'top' | 'right' | 'bottom' | 'left'} TooltipPlacementSide */
 
-export type TooltipVariants = {
-  placementSide?: TooltipPlacementSide;
-};
+/**
+ * @typedef {Object} TooltipVariants
+ * @property {TooltipPlacementSide} [placementSide]
+ */
 
 /**
  * CVA-based tooltip bubble styles. The `placementSide` variant drives the
@@ -29,8 +30,10 @@ export const tooltipStyles = cva(styles.bubble, {
 
 /**
  * Generate all classes for the Tooltip bubble.
+ * @param {TooltipVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getTooltipClasses(props: TooltipVariants & { className?: string }): string {
+export function getTooltipClasses(props) {
   const { className, ...cvaProps } = props;
   return [tooltipStyles(cvaProps), className].filter(Boolean).join(' ');
 }
@@ -47,8 +50,9 @@ export const tooltipContentClass = styles.content;
  * Get all Tooltip template classes as an object.
  * Call this in Svelte components to prevent tree-shaking from removing
  * class imports that are only used in templates.
+ * @returns {Record<string, string>}
  */
-export function getTooltipTemplateClasses(): Record<string, string> {
+export function getTooltipTemplateClasses() {
   return {
     trigger: tooltipTriggerClass,
     interactiveWrapper: tooltipInteractiveWrapperClass,
@@ -57,5 +61,5 @@ export function getTooltipTemplateClasses(): Record<string, string> {
     arrow: tooltipArrowClass,
     title: tooltipTitleClass,
     content: tooltipContentClass,
-  } as const;
+  };
 }

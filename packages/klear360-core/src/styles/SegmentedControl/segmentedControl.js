@@ -1,7 +1,8 @@
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './segmentedControl.module.css';
 
-export const getSegmentedControlTemplateClasses = (): Record<string, string> => ({
+/** @returns {Record<string, string>} */
+export const getSegmentedControlTemplateClasses = () => ({
   container: styles.container,
   containerSizeSmall: styles.containerSizeSmall,
   containerSizeMedium: styles.containerSizeMedium,
