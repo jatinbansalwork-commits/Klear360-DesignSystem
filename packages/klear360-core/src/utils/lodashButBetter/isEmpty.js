@@ -1,17 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-type Collection =
-  | Record<string, any>
-  | any[]
-  | Set<any>
-  | Map<any, any>
-  | string
-  | number
-  | boolean
-  | null
-  | undefined;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isEmpty(value: Collection): value is null | undefined {
+/**
+ * @param {Record<string, any> | any[] | Set<any> | Map<any, any> | string | number | boolean | null | undefined} value
+ * @returns {value is null | undefined}
+ */
+export default function isEmpty(value) {
   // Check if the value is null or undefined
   if (value == null) {
     return true;
