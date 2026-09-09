@@ -75,7 +75,8 @@ export const getAccordionButtonBorderClasses = cva('', {
   ],
 });
 
-export const getAccordionTemplateClasses = (): Record<string, string> => ({
+/** @returns {Record<string, string>} */
+export const getAccordionTemplateClasses = () => ({
   wrapper: styles.wrapper,
   filled: styles.filled,
   transparent: styles.transparent,
@@ -107,18 +108,21 @@ export const getAccordionTemplateClasses = (): Record<string, string> => ({
   accordionOuter: styles.accordionOuter,
 });
 
-export type AccordionWrapperVariants = {
-  variant?: 'filled' | 'transparent';
-};
+/**
+ * @typedef {Object} AccordionWrapperVariants
+ * @property {'filled' | 'transparent'} [variant]
+ */
 
-export type AccordionButtonVariants = {
-  isExpanded?: boolean;
-  isDisabled?: boolean;
-};
+/**
+ * @typedef {Object} AccordionButtonVariants
+ * @property {boolean} [isExpanded]
+ * @property {boolean} [isDisabled]
+ */
 
-export type AccordionButtonBorderVariants = {
-  variant?: 'filled' | 'transparent';
-  isFirstItem?: boolean;
-  isLastItem?: boolean;
-  isExpanded?: boolean;
-};
+/**
+ * @typedef {Object} AccordionButtonBorderVariants
+ * @property {'filled' | 'transparent'} [variant]
+ * @property {boolean} [isFirstItem]
+ * @property {boolean} [isLastItem]
+ * @property {boolean} [isExpanded]
+ */

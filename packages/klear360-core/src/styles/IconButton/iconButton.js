@@ -2,20 +2,22 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './iconButton.module.css';
 
-export type IconButtonEmphasis = 'subtle' | 'intense' | 'moderate';
-export type IconButtonSize = 'small' | 'medium' | 'large';
+/** @typedef {'subtle' | 'intense' | 'moderate'} IconButtonEmphasis */
+/** @typedef {'small' | 'medium' | 'large'} IconButtonSize */
 
-export type IconButtonVariants = {
-  emphasis?: IconButtonEmphasis;
-  size?: IconButtonSize;
-  isHighlighted?: boolean;
-};
+/**
+ * @typedef {Object} IconButtonVariants
+ * @property {IconButtonEmphasis} [emphasis]
+ * @property {IconButtonSize} [size]
+ * @property {boolean} [isHighlighted]
+ */
 
 /**
  * Fixed square dimensions (px) applied to the button when `isHighlighted` is true.
  * `large` is intentionally absent — it is an invalid combination with `isHighlighted`.
+ * @type {Record<'small' | 'medium', number>}
  */
-export const highlightedButtonSizeMap: Record<'small' | 'medium', number> = {
+export const highlightedButtonSizeMap = {
   small: 24,
   medium: 32,
 };
@@ -66,8 +68,9 @@ export const iconButtonStyles = cva(styles['icon-button'], {
  * Get all IconButton component template classes as an object.
  * Call this in Svelte components to prevent tree-shaking from removing class
  * imports that are only referenced through the CVA config.
+ * @returns {Record<string, string>}
  */
-export function getIconButtonTemplateClasses(): Record<string, string> {
+export function getIconButtonTemplateClasses() {
   return {
     iconButton: styles['icon-button'],
     emphasisIntense: styles['emphasis-intense'],
@@ -80,14 +83,16 @@ export function getIconButtonTemplateClasses(): Record<string, string> {
     highlightedMedium: styles['highlighted-medium'],
     highlightedIntense: styles['highlighted-intense'],
     highlightedSubtle: styles['highlighted-subtle'],
-  } as const;
+  };
 }
 
 /**
  * Generate all classes for the IconButton element.
  * Single source of truth for IconButton styling — everything is class-based.
+ * @param {IconButtonVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getIconButtonClasses(props: IconButtonVariants & { className?: string }): string {
+export function getIconButtonClasses(props) {
   const { className, ...cvaProps } = props;
 
   return [iconButtonStyles(cvaProps), className].filter(Boolean).join(' ');
