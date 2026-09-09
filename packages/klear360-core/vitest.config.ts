@@ -6,12 +6,12 @@ export default defineConfig({
     environment: 'node',
     globals: true,
     include: [
-      'src/utils/themeToCSSVariables/**/*.test.ts',
-      'src/utils/**/*.test.ts',
-      'src/styles/**/*.test.ts',
-      'src/tokens/theme/__tests__/createTheme.test.ts',
-      'src/tokens/__tests__/theme-css-layers.test.ts',
-      'src/tokens/__tests__/theme-css-generated.test.ts',
+      'src/utils/themeToCSSVariables/**/*.test.{ts,js}',
+      'src/utils/**/*.test.{ts,js}',
+      'src/styles/**/*.test.{ts,js}',
+      'src/tokens/theme/__tests__/createTheme.test.{ts,js}',
+      'src/tokens/__tests__/theme-css-layers.test.{ts,js}',
+      'src/tokens/__tests__/theme-css-generated.test.{ts,js}',
     ],
   },
   define: {

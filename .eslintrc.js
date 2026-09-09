@@ -71,6 +71,20 @@ module.exports = {
           '.ios.tsx',
           '.android.ts',
           '.android.tsx',
+          '.js',
+          '.jsx',
+          '.web.js',
+          '.web.jsx',
+          '.desktop.js',
+          '.desktop.jsx',
+          '.mobile.js',
+          '.mobile.jsx',
+          '.native.js',
+          '.native.jsx',
+          '.ios.js',
+          '.ios.jsx',
+          '.android.js',
+          '.android.jsx',
         ],
       },
       typescript: {
@@ -91,7 +105,15 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.{ts,tsx}'],
+      // .js/.jsx are scoped by name to the packages actually undergoing the
+      // TS-to-JSDoc migration, not a blanket **/*.{js,jsx} or packages/*/src/** -
+      // many unrelated .js files exist repo-wide (build/tooling configs,
+      // storybook-site bundles, other plugin packages like
+      // plugin-figma-token-publisher) that aren't covered by any tsconfig `project`
+      // entry below or don't satisfy these strict type-aware rules, and widening
+      // this indiscriminately breaks their linting (confirmed empirically).
+      // Add each package's `src/**/*.{js,jsx}` here as its migration begins.
+      files: ['**/*.{ts,tsx}', 'packages/klear360-core/src/**/*.{js,jsx}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         tsconfigRootDir: __dirname,
@@ -116,7 +138,7 @@ module.exports = {
         'react/jsx-filename-extension': [
           'error',
           {
-            extensions: ['.ts', '.tsx'],
+            extensions: ['.ts', '.tsx', '.js', '.jsx'],
           },
         ],
         'babel/new-cap': ['error', { capIsNewExceptionPattern: '^styled.' }],

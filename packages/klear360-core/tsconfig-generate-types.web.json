@@ -5,11 +5,17 @@
   "exclude": [
     "**/**.test.ts",
     "**/**.test.tsx",
+    "**/**.test.js",
+    "**/**.test.jsx",
     "__tests__",
     "**/**.stories.tsx",
+    "**/**.stories.jsx",
     "**/**.stories.internal.tsx",
+    "**/**.stories.internal.jsx",
     "**/**.native.ts",
-    "**/**.native.tsx"
+    "**/**.native.tsx",
+    "**/**.native.js",
+    "**/**.native.jsx"
   ],
   "compilerOptions": {
     "declarationDir": "dist/generated-types/web",
