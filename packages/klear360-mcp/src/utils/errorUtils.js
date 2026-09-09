@@ -1,15 +1,11 @@
-const handleError = ({
-  toolName,
-  errorObject,
-  mcpErrorMessage = '',
-}: {
-  toolName: string;
-  errorObject?: unknown;
-  mcpErrorMessage?: string;
-}): {
-  isError: true;
-  content: Array<{ type: 'text'; text: string }>;
-} => {
+/**
+ * @param {Object} params
+ * @param {string} params.toolName
+ * @param {unknown} [params.errorObject]
+ * @param {string} [params.mcpErrorMessage]
+ * @returns {{isError: true, content: Array<{type: 'text', text: string}>}}
+ */
+const handleError = ({ toolName, errorObject, mcpErrorMessage = '' }) => {
   return {
     isError: true,
     content: [
