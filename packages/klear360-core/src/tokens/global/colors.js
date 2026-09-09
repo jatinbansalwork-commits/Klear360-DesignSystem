@@ -1,6 +1,7 @@
 import { opacity } from './opacity';
 
-export type ColorChromaticScale = Readonly<{
+/**
+ * @typedef {Readonly<{
   50: string;
   100: string;
   200: string;
@@ -20,9 +21,11 @@ export type ColorChromaticScale = Readonly<{
   a500?: string;
   a600?: string;
   a700?: string;
-}>;
+ * }>} ColorChromaticScale
+ */
 
-export type ColorChromaticScaleExtended = Readonly<{
+/**
+ * @typedef {Readonly<{
   50: string;
   100: string;
   200: string;
@@ -42,9 +45,11 @@ export type ColorChromaticScaleExtended = Readonly<{
   a500: string;
   a600: string;
   a700: string;
-}>;
+ * }>} ColorChromaticScaleExtended
+ */
 
-export type ColorNeutralGrayScale = Readonly<{
+/**
+ * @typedef {Readonly<{
   0: string;
   50: string;
   100: string;
@@ -69,9 +74,11 @@ export type ColorNeutralGrayScale = Readonly<{
   a500?: string;
   a600?: string;
   a700?: string;
-}>;
+ * }>} ColorNeutralGrayScale
+ */
 
-export type ColorNeutralGrayScaleExtended = Readonly<{
+/**
+ * @typedef {Readonly<{
   0: string;
   50: string;
   100: string;
@@ -96,9 +103,11 @@ export type ColorNeutralGrayScaleExtended = Readonly<{
   a500: string;
   a600: string;
   a700: string;
-}>;
+ * }>} ColorNeutralGrayScaleExtended
+ */
 
-export type ColorBlueGrayLightScale = Readonly<{
+/**
+ * @typedef {Readonly<{
   0: string;
   50: string;
   100: string;
@@ -139,9 +148,11 @@ export type ColorBlueGrayLightScale = Readonly<{
   a1106: string;
   a1264: string;
   a1288: string;
-}>;
+ * }>} ColorBlueGrayLightScale
+ */
 
-export type ColorBlueGrayDarkScale = Readonly<{
+/**
+ * @typedef {Readonly<{
   0: string;
   50: string;
   100: string;
@@ -181,9 +192,11 @@ export type ColorBlueGrayDarkScale = Readonly<{
   a1194: string;
   a1312: string;
   a1388: string;
-}>;
+ * }>} ColorBlueGrayDarkScale
+ */
 
-export type ColorNeutralStaticScale = Readonly<{
+/**
+ * @typedef {Readonly<{
   1: string;
   5: string;
   10: string;
@@ -195,9 +208,11 @@ export type ColorNeutralStaticScale = Readonly<{
   400: string;
   450: string;
   500: string;
-}>;
+ * }>} ColorNeutralStaticScale
+ */
 
-export type Color = Readonly<{
+/**
+ * @typedef {Readonly<{
   chromatic: {
     azure: ColorChromaticScale;
     emerald: ColorChromaticScaleExtended;
@@ -220,9 +235,11 @@ export type Color = Readonly<{
     white: ColorNeutralStaticScale;
     black: ColorNeutralStaticScale;
   };
-}>;
+ * }>} Color
+ */
 
-export const colors: Color = {
+/** @type {Color} */
+export const colors = {
   chromatic: {
     azure: {
       50: `hsla(207, 23%, 92%, ${opacity[1300]})`,
