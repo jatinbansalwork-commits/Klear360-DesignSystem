@@ -1,5 +1,3 @@
-import type { AccessibilityMap } from './types';
-
 export const accessibilityValue = {
   valueMax: 'aria-valuemax',
   valueMin: 'aria-valuemin',
@@ -17,7 +15,8 @@ export const accessibilityState = {
 
 // TODO:
 // accessibilityViewIsModal
-export const accessibilityMap: AccessibilityMap = {
+/** @type {import('./types').AccessibilityMap} */
+export const accessibilityMap = {
   ...accessibilityState,
   ...accessibilityValue,
   activeDescendant: 'aria-activedescendant',
