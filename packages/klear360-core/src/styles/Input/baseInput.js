@@ -1,25 +1,22 @@
 import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './baseInput.module.css';
-import type {
-  BaseInputSize,
-  BaseInputValidationState,
-  BaseInputValueComponentType,
-} from './baseInputTokens';
 
-export type BaseInputWrapperVariants = {
-  size?: BaseInputSize;
-  validationState?: BaseInputValidationState;
-  borderRadius?: 'small' | 'medium';
-};
+/**
+ * @typedef {Object} BaseInputWrapperVariants
+ * @property {import('./baseInputTokens').BaseInputSize} [size]
+ * @property {import('./baseInputTokens').BaseInputValidationState} [validationState]
+ * @property {'small' | 'medium'} [borderRadius]
+ */
 
-export type BaseInputElementVariants = {
-  size?: BaseInputSize;
-  valueComponentType?: BaseInputValueComponentType;
-  hasLeadingVisual?: boolean;
-  hasTrailingVisual?: boolean;
-  textAlign?: 'left' | 'center' | 'right';
-};
+/**
+ * @typedef {Object} BaseInputElementVariants
+ * @property {import('./baseInputTokens').BaseInputSize} [size]
+ * @property {import('./baseInputTokens').BaseInputValueComponentType} [valueComponentType]
+ * @property {boolean} [hasLeadingVisual]
+ * @property {boolean} [hasTrailingVisual]
+ * @property {'left' | 'center' | 'right'} [textAlign]
+ */
 
 /**
  * Classes for the input wrapper (`.input-wrapper`): drives border color/width
@@ -75,14 +72,16 @@ export const baseInputElementCva = cva(styles.input, {
   },
 });
 
-const leftPadBySize: Record<BaseInputSize, string> = {
+/** @type {Record<import('./baseInputTokens').BaseInputSize, string>} */
+const leftPadBySize = {
   xsmall: styles['pad-left-xsmall'],
   small: styles['pad-left-small'],
   medium: styles['pad-left-medium'],
   large: styles['pad-left-large'],
 };
 
-const rightPadBySize: Record<BaseInputSize, string> = {
+/** @type {Record<import('./baseInputTokens').BaseInputSize, string>} */
+const rightPadBySize = {
   xsmall: styles['pad-right-xsmall'],
   small: styles['pad-right-small'],
   medium: styles['pad-right-medium'],
@@ -91,8 +90,10 @@ const rightPadBySize: Record<BaseInputSize, string> = {
 
 /**
  * Combined class string for the input wrapper element.
+ * @param {BaseInputWrapperVariants} props
+ * @returns {string}
  */
-export function getBaseInputWrapperClasses(props: BaseInputWrapperVariants): string {
+export function getBaseInputWrapperClasses(props) {
   return baseInputWrapperCva(props);
 }
 
@@ -100,8 +101,10 @@ export function getBaseInputWrapperClasses(props: BaseInputWrapperVariants): str
  * Combined class string for the native input element. Left/right padding is
  * resolved here (rather than a CVA variant) because it depends on both `size`
  * and the presence of leading/trailing visuals.
+ * @param {BaseInputElementVariants} props
+ * @returns {string}
  */
-export function getBaseInputClasses(props: BaseInputElementVariants): string {
+export function getBaseInputClasses(props) {
   const {
     size = 'medium',
     valueComponentType,
@@ -121,39 +124,40 @@ export function getBaseInputClasses(props: BaseInputElementVariants): string {
 /**
  * Structural classes referenced only inside Svelte templates. Calling this from
  * the component prevents CSS-module tree-shaking from dropping them.
+ * @returns {{
+ *   outer: string,
+ *   field: string,
+ *   labelLeft: string,
+ *   labelRow: string,
+ *   focusRingWrapper: string,
+ *   radiusMedium: string,
+ *   visuals: string,
+ *   visualsStretch: string,
+ *   leadingIcon: string,
+ *   prefix: string,
+ *   prefixWithIcon: string,
+ *   prefixNoIcon: string,
+ *   leadingInteraction: string,
+ *   leadingInteractionPad: string,
+ *   trailingInteraction: string,
+ *   trailingInteractionSolo: string,
+ *   trailingInteractionCombo: string,
+ *   suffix: string,
+ *   suffixWithTrailing: string,
+ *   suffixNoTrailing: string,
+ *   trailingIcon: string,
+ *   trailingIconWithButton: string,
+ *   trailingIconNoButton: string,
+ *   trailingButton: string,
+ *   insideValidation: string,
+ *   insideValidationSm: string,
+ *   insideValidationLg: string,
+ *   hintRow: string,
+ *   hasHint: string,
+ *   noHint: string,
+ * }}
  */
-export function getBaseInputTemplateClasses(): {
-  outer: string;
-  field: string;
-  labelLeft: string;
-  labelRow: string;
-  focusRingWrapper: string;
-  radiusMedium: string;
-  visuals: string;
-  visualsStretch: string;
-  leadingIcon: string;
-  prefix: string;
-  prefixWithIcon: string;
-  prefixNoIcon: string;
-  leadingInteraction: string;
-  leadingInteractionPad: string;
-  trailingInteraction: string;
-  trailingInteractionSolo: string;
-  trailingInteractionCombo: string;
-  suffix: string;
-  suffixWithTrailing: string;
-  suffixNoTrailing: string;
-  trailingIcon: string;
-  trailingIconWithButton: string;
-  trailingIconNoButton: string;
-  trailingButton: string;
-  insideValidation: string;
-  insideValidationSm: string;
-  insideValidationLg: string;
-  hintRow: string;
-  hasHint: string;
-  noHint: string;
-} {
+export function getBaseInputTemplateClasses() {
   return {
     outer: styles.outer,
     field: styles.field,
