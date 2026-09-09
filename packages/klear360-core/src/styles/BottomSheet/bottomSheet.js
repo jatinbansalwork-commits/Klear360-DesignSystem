@@ -24,15 +24,12 @@ export const AUTOCOMPLETE_DEFAULT_SNAPPOINT = 0.85;
 /**
  * Default snap points: [lower, middle, upper] expressed as fractions of the
  * viewport height. Matches React's `snapPoints = [0.35, 0.5, 0.85]`.
+ * @type {readonly [number, number, number]}
  */
-export const BOTTOM_SHEET_DEFAULT_SNAP_POINTS: readonly [number, number, number] = [
-  0.35,
-  0.5,
-  0.85,
-];
+export const BOTTOM_SHEET_DEFAULT_SNAP_POINTS = [0.35, 0.5, 0.85];
 
-export type BottomSheetBodyPadding = 'spacing.0' | 'spacing.5';
-export type BottomSheetBodyOverflow = 'auto' | 'hidden' | 'visible';
+/** @typedef {'spacing.0' | 'spacing.5'} BottomSheetBodyPadding */
+/** @typedef {'auto' | 'hidden' | 'visible'} BottomSheetBodyOverflow */
 
 /**
  * CVA wrapper for the inner content padding of the BottomSheetBody.
@@ -112,8 +109,9 @@ export const bottomSheetBodyClass = styles.body;
 /**
  * Aggregated class lookup. The Svelte component calls this to keep the CSS
  * imports alive against the bundler's tree-shaker.
+ * @returns {Record<string, string>}
  */
-export function getBottomSheetTemplateClasses(): Record<string, string> {
+export function getBottomSheetTemplateClasses() {
   return {
     surface: bottomSheetSurfaceClass,
     backdrop: bottomSheetBackdropClass,
@@ -140,5 +138,5 @@ export function getBottomSheetTemplateClasses(): Record<string, string> {
     footer: bottomSheetFooterClass,
     footerInner: bottomSheetFooterInnerClass,
     body: bottomSheetBodyClass,
-  } as const;
+  };
 }
