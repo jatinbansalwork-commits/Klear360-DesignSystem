@@ -1,7 +1,7 @@
 /**
  * Size tokens are currently not exposed for users (therefore not available in theme)
  */
-export const size = {
+export const size = /** @type {const} */ ({
   /** 0 px */
   0: 0,
   /** 1 px */
@@ -160,6 +160,8 @@ export const size = {
   1024: 1024,
   /** 1136 px */
   1136: 1136,
-} as const;
+});
 
-export type Size = typeof size;
+/**
+ * @typedef {typeof size} Size
+ */
