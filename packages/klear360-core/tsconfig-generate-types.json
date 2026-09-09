@@ -4,9 +4,13 @@
   "exclude": [
     "**/**.test.ts",
     "**/**.test.tsx",
+    "**/**.test.js",
+    "**/**.test.jsx",
     "__tests__",
     "**/**.stories.tsx",
-    "**/**.stories.internal.tsx"
+    "**/**.stories.jsx",
+    "**/**.stories.internal.tsx",
+    "**/**.stories.internal.jsx"
   ],
   "compilerOptions": {
     "declaration": true /* Generates corresponding '.d.ts' file. */,
