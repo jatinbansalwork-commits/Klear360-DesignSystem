@@ -1,10 +1,8 @@
 import { z } from 'zod';
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getKlear360DocsList } from '../utils/generalUtils.js';
 import { handleError } from '../utils/errorUtils.js';
 import { getKlear360DocsResponseText } from '../utils/getKlear360DocsResponseText.js';
 import { shouldCreateOrUpdateSkill } from '../utils/skillUtils.js';
-import type { McpToolResponse } from '../utils/types.js';
 import {
   commonKlear360MCPToolSchema,
   httpTransportSkillVersionSchema,
@@ -32,20 +30,22 @@ const getKlear360ComponentDocsHttpSchema = {
   ...httpTransportSkillVersionSchema,
 };
 
-// Core business logic function
+/**
+ * @param {Object} params
+ * @param {string} params.componentsList
+ * @param {string} [params.currentProjectRootDirectory]
+ * @param {boolean} [params.skipLocalSkillChecks]
+ * @param {string} [params.skillVersion]
+ * @param {'claude' | 'cursor' | 'unknown'} params.clientName
+ * @returns {import('../utils/types.js').McpToolResponse}
+ */
 const getKlear360ComponentDocsCore = ({
   componentsList,
   currentProjectRootDirectory,
   skipLocalSkillChecks = false,
   skillVersion = '0',
   clientName: _clientName,
-}: {
-  componentsList: string;
-  currentProjectRootDirectory?: string;
-  skipLocalSkillChecks?: boolean;
-  skillVersion?: string;
-  clientName: 'claude' | 'cursor' | 'unknown';
-}): McpToolResponse => {
+}) => {
   const components = componentsList.split(',').map((s) => s.trim());
   const invalidComponents = components.filter((comp) => !klear360ComponentsList.includes(comp));
   const invalidComponentsString = invalidComponents.join(', ');
@@ -85,7 +85,7 @@ const getKlear360ComponentDocsCore = ({
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: getKlear360ComponentDocsToolName,
       errorObject: error,
@@ -93,10 +93,12 @@ const getKlear360ComponentDocsCore = ({
   }
 };
 
-// Callback for stdio transport
-const getKlear360ComponentDocsStdioCallback: ToolCallback<
-  typeof getKlear360ComponentDocsStdioSchema
-> = ({ componentsList, currentProjectRootDirectory, clientName }) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getKlear360ComponentDocsStdioSchema>} */
+const getKlear360ComponentDocsStdioCallback = ({
+  componentsList,
+  currentProjectRootDirectory,
+  clientName,
+}) => {
   return getKlear360ComponentDocsCore({
     componentsList,
     currentProjectRootDirectory,
@@ -105,10 +107,13 @@ const getKlear360ComponentDocsStdioCallback: ToolCallback<
   });
 };
 
-// Callback for HTTP transport
-const getKlear360ComponentDocsHttpCallback: ToolCallback<
-  typeof getKlear360ComponentDocsHttpSchema
-> = ({ componentsList, skillVersion, clientName, currentProjectRootDirectory }) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getKlear360ComponentDocsHttpSchema>} */
+const getKlear360ComponentDocsHttpCallback = ({
+  componentsList,
+  skillVersion,
+  clientName,
+  currentProjectRootDirectory,
+}) => {
   return getKlear360ComponentDocsCore({
     componentsList,
     currentProjectRootDirectory,

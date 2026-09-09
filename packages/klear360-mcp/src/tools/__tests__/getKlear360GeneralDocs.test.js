@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getKlear360PatternDocsHttpCallback } from '../getKlear360PatternDocs.js';
+import { getKlear360GeneralDocsHttpCallback } from '../getKlear360GeneralDocs.js';
 import * as skillUtils from '../../utils/skillUtils.js';
 import * as getKlear360DocsResponseText from '../../utils/getKlear360DocsResponseText.js';
 import * as generalUtils from '../../utils/generalUtils.js';
@@ -7,38 +7,46 @@ import { SKILL_VERSION } from '../../utils/tokens.js';
 vi.mock('../../utils/skillUtils.js');
 vi.mock('../../utils/getKlear360DocsResponseText.js');
 vi.mock('../../utils/generalUtils.js', () => ({
-  getKlear360DocsList: vi.fn(() => ['ListView', 'DetailedView', 'FormGroup']),
+  getKlear360DocsList: vi.fn(() => [
+    'AvailableIcons',
+    'ChartColorSystem',
+    'Usage',
+    'WhiteLabelling',
+  ]),
 }));
 vi.mock('fs', () => ({
-  readFileSync: vi.fn(() => 'Mock pattern guide content'),
+  readFileSync: vi.fn(() => 'Mock guide content'),
   existsSync: vi.fn(() => false),
 }));
 
-// Create a mock context object for tool callbacks
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createMockContext = (): any => ({
+/**
+ * Create a mock context object for tool callbacks
+ * @returns {any}
+ */
+const createMockContext = () => ({
   signal: new AbortController().signal,
   requestId: 'test-request-id',
   sendNotification: vi.fn().mockResolvedValue(undefined),
   sendRequest: vi.fn().mockResolvedValue({}),
 });
 
-describe('getKlear360PatternDocs Tool', () => {
+describe('getKlear360GeneralDocs Tool', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Setup default mocks
     vi.spyOn(generalUtils, 'getKlear360DocsList').mockReturnValue([
-      'ListView',
-      'DetailedView',
-      'FormGroup',
+      'AvailableIcons',
+      'ChartColorSystem',
+      'Usage',
+      'WhiteLabelling',
     ]);
     vi.spyOn(skillUtils, 'shouldCreateOrUpdateSkill').mockReturnValue(undefined);
   });
 
-  it('should return pattern docs for valid patterns', () => {
+  it('should return general docs for valid topics', () => {
     const mockCurrentProjectRootDirectory = '/Users/test/project';
-    const mockPatternsList = 'ListView, DetailedView';
-    const mockResponseText = 'Mock pattern documentation';
+    const mockTopicsList = 'Usage, AvailableIcons';
+    const mockResponseText = 'Mock general documentation';
 
     // Mock the getKlear360DocsResponseText function
     vi.spyOn(getKlear360DocsResponseText, 'getKlear360DocsResponseText').mockReturnValue(
@@ -46,12 +54,12 @@ describe('getKlear360PatternDocs Tool', () => {
     );
 
     // Get the HTTP callback
-    const httpCallback = getKlear360PatternDocsHttpCallback;
+    const httpCallback = getKlear360GeneralDocsHttpCallback;
 
     // Call the tool callback
     const result = httpCallback(
       {
-        patternsList: mockPatternsList,
+        topicsList: mockTopicsList,
         currentProjectRootDirectory: mockCurrentProjectRootDirectory,
         clientName: 'cursor',
         skillVersion: SKILL_VERSION,
@@ -65,29 +73,28 @@ describe('getKlear360PatternDocs Tool', () => {
       expect(result.content).toHaveLength(1);
       expect(result.content[0]).toHaveProperty('type', 'text');
       if ('text' in result.content[0]) {
-        expect(result.content[0].text).toContain(mockResponseText);
-        expect(result.content[0].text).toContain('get_klear360_component_docs');
+        expect(result.content[0].text).toBe(mockResponseText.trim());
       }
     }
 
     // Verify getKlear360DocsResponseText was called with correct parameters
     expect(getKlear360DocsResponseText.getKlear360DocsResponseText).toHaveBeenCalledWith({
-      docsList: mockPatternsList,
-      documentationType: 'patterns',
+      docsList: mockTopicsList,
+      documentationType: 'general',
     });
   });
 
-  it('should return error for invalid patterns', () => {
+  it('should return error for invalid topics', () => {
     const mockCurrentProjectRootDirectory = '/Users/test/project';
-    const mockPatternsList = 'InvalidPattern, AnotherInvalid';
+    const mockTopicsList = 'InvalidTopic, AnotherInvalid';
 
     // Get the HTTP callback
-    const httpCallback = getKlear360PatternDocsHttpCallback;
+    const httpCallback = getKlear360GeneralDocsHttpCallback;
 
     // Call the tool callback
     const result = httpCallback(
       {
-        patternsList: mockPatternsList,
+        topicsList: mockTopicsList,
         currentProjectRootDirectory: mockCurrentProjectRootDirectory,
         clientName: 'cursor',
         skillVersion: SKILL_VERSION,
@@ -110,9 +117,9 @@ describe('getKlear360PatternDocs Tool', () => {
     }
   });
 
-  it('should return consistent pattern docs response (snapshot)', async () => {
+  it('should return consistent general docs response (snapshot)', async () => {
     const testProjectRootDirectory = '/Users/test/project';
-    const testPatternsList = 'FormGroup';
+    const testTopicsList = 'Usage, AvailableIcons';
 
     // Unmock fs first so that getKlear360DocsResponseText can read real files
     vi.doUnmock('fs');
@@ -120,12 +127,12 @@ describe('getKlear360PatternDocs Tool', () => {
     // Get the actual implementations (not mocked) to test real output
     // Re-import getKlear360DocsResponseText after unmocking fs so it uses actual readFileSync
     vi.doUnmock('../../utils/getKlear360DocsResponseText.js');
-    const actualGetKlear360DocsResponseText = await vi.importActual<
-      typeof getKlear360DocsResponseText
-    >('../../utils/getKlear360DocsResponseText.js');
-    const actualGeneralUtils = await vi.importActual<typeof generalUtils>(
+    const actualGetKlear360DocsResponseText = /** @type {typeof getKlear360DocsResponseText} */ (await vi.importActual(
+      '../../utils/getKlear360DocsResponseText.js',
+    ));
+    const actualGeneralUtils = /** @type {typeof generalUtils} */ (await vi.importActual(
       '../../utils/generalUtils.js',
-    );
+    ));
     vi.restoreAllMocks();
 
     if (actualGetKlear360DocsResponseText && actualGeneralUtils) {
@@ -142,12 +149,12 @@ describe('getKlear360PatternDocs Tool', () => {
     vi.spyOn(skillUtils, 'shouldCreateOrUpdateSkill').mockReturnValue(undefined);
 
     // Get the HTTP callback
-    const httpCallback = getKlear360PatternDocsHttpCallback;
+    const httpCallback = getKlear360GeneralDocsHttpCallback;
 
     // Call the tool callback with actual implementation
     const result = httpCallback(
       {
-        patternsList: testPatternsList,
+        topicsList: testTopicsList,
         currentProjectRootDirectory: testProjectRootDirectory,
         clientName: 'cursor',
         skillVersion: SKILL_VERSION,
@@ -159,9 +166,9 @@ describe('getKlear360PatternDocs Tool', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('should return consistent pattern docs response for claude agent', async () => {
+  it('should return consistent general docs response for claude agent', async () => {
     const testProjectRootDirectory = '/Users/test/project';
-    const testPatternsList = 'FormGroup';
+    const testTopicsList = 'Usage, AvailableIcons';
 
     // Unmock fs first so that getKlear360DocsResponseText can read real files
     vi.doUnmock('fs');
@@ -169,12 +176,12 @@ describe('getKlear360PatternDocs Tool', () => {
     // Get the actual implementations (not mocked) to test real output
     // Re-import getKlear360DocsResponseText after unmocking fs so it uses actual readFileSync
     vi.doUnmock('../../utils/getKlear360DocsResponseText.js');
-    const actualGetKlear360DocsResponseText = await vi.importActual<
-      typeof getKlear360DocsResponseText
-    >('../../utils/getKlear360DocsResponseText.js');
-    const actualGeneralUtils = await vi.importActual<typeof generalUtils>(
+    const actualGetKlear360DocsResponseText = /** @type {typeof getKlear360DocsResponseText} */ (await vi.importActual(
+      '../../utils/getKlear360DocsResponseText.js',
+    ));
+    const actualGeneralUtils = /** @type {typeof generalUtils} */ (await vi.importActual(
       '../../utils/generalUtils.js',
-    );
+    ));
     vi.restoreAllMocks();
 
     if (actualGetKlear360DocsResponseText && actualGeneralUtils) {
@@ -191,12 +198,12 @@ describe('getKlear360PatternDocs Tool', () => {
     vi.spyOn(skillUtils, 'shouldCreateOrUpdateSkill').mockReturnValue(undefined);
 
     // Get the HTTP callback
-    const httpCallback = getKlear360PatternDocsHttpCallback;
+    const httpCallback = getKlear360GeneralDocsHttpCallback;
 
     // Call the tool callback with actual implementation
     const result = httpCallback(
       {
-        patternsList: testPatternsList,
+        topicsList: testTopicsList,
         currentProjectRootDirectory: testProjectRootDirectory,
         clientName: 'claude',
         skillVersion: SKILL_VERSION,

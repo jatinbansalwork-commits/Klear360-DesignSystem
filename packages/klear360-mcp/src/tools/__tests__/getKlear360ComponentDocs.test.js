@@ -13,9 +13,11 @@ vi.mock('../../utils/generalUtils.js', () => ({
   getKlear360DocsList: vi.fn(() => ['Button', 'Accordion', 'Input']),
 }));
 
-// Create a mock context object for tool callbacks
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createMockContext = (): any => ({
+/**
+ * Create a mock context object for tool callbacks
+ * @returns {any}
+ */
+const createMockContext = () => ({
   signal: new AbortController().signal,
   requestId: 'test-request-id',
   sendNotification: vi.fn().mockResolvedValue(undefined),
@@ -112,12 +114,12 @@ describe('getKlear360ComponentDocs Tool', () => {
     const testComponentsList = 'Button, Accordion';
 
     // Get the actual implementations (not mocked) to test real output
-    const actualGetKlear360DocsResponseText = await vi.importActual<
-      typeof getKlear360DocsResponseText
-    >('../../utils/getKlear360DocsResponseText.js');
-    const actualGeneralUtils = await vi.importActual<typeof generalUtils>(
+    const actualGetKlear360DocsResponseText = /** @type {typeof getKlear360DocsResponseText} */ (await vi.importActual(
+      '../../utils/getKlear360DocsResponseText.js',
+    ));
+    const actualGeneralUtils = /** @type {typeof generalUtils} */ (await vi.importActual(
       '../../utils/generalUtils.js',
-    );
+    ));
     vi.restoreAllMocks();
 
     if (actualGetKlear360DocsResponseText && actualGeneralUtils) {
@@ -156,12 +158,12 @@ describe('getKlear360ComponentDocs Tool', () => {
     const testComponentsList = 'Button, Accordion';
 
     // Get the actual implementations (not mocked) to test real output
-    const actualGetKlear360DocsResponseText = await vi.importActual<
-      typeof getKlear360DocsResponseText
-    >('../../utils/getKlear360DocsResponseText.js');
-    const actualGeneralUtils = await vi.importActual<typeof generalUtils>(
+    const actualGetKlear360DocsResponseText = /** @type {typeof getKlear360DocsResponseText} */ (await vi.importActual(
+      '../../utils/getKlear360DocsResponseText.js',
+    ));
+    const actualGeneralUtils = /** @type {typeof generalUtils} */ (await vi.importActual(
       '../../utils/generalUtils.js',
-    );
+    ));
     vi.restoreAllMocks();
 
     if (actualGetKlear360DocsResponseText && actualGeneralUtils) {
@@ -200,12 +202,12 @@ describe('getKlear360ComponentDocs Tool', () => {
     const testComponentsList = 'Button, Accordion';
 
     // Get the actual implementations (not mocked) to test real output
-    const actualGetKlear360DocsResponseText = await vi.importActual<
-      typeof getKlear360DocsResponseText
-    >('../../utils/getKlear360DocsResponseText.js');
-    const actualGeneralUtils = await vi.importActual<typeof generalUtils>(
+    const actualGetKlear360DocsResponseText = /** @type {typeof getKlear360DocsResponseText} */ (await vi.importActual(
+      '../../utils/getKlear360DocsResponseText.js',
+    ));
+    const actualGeneralUtils = /** @type {typeof generalUtils} */ (await vi.importActual(
       '../../utils/generalUtils.js',
-    );
+    ));
     vi.restoreAllMocks();
 
     if (actualGetKlear360DocsResponseText && actualGeneralUtils) {
@@ -222,7 +224,6 @@ describe('getKlear360ComponentDocs Tool', () => {
     vi.spyOn(skillUtils, 'shouldCreateOrUpdateSkill').mockReturnValue(undefined);
 
     // Get the stdio callback
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const stdioCallback = getKlear360ComponentDocsStdioCallback;
 
     // Call the tool callback with actual implementation
