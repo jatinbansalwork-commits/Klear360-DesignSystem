@@ -1,7 +1,6 @@
 import cloneDeep from '~utils/lodashButBetter/cloneDeep';
 import overrideTheme from '../overrideTheme';
 import { klear360Theme } from '../';
-import type { ThemeTokens } from '../../theme';
 
 const invalidOverridesObjectError = '[Klear360: overrideTheme]: The overrides object is not valid';
 const invalidBaseThemeError =
@@ -30,7 +29,8 @@ describe('overrideTheme', () => {
       },
     };
 
-    const overridenTheme: ThemeTokens = cloneDeep(klear360Theme);
+    /** @type {import('../../theme').ThemeTokens} */
+    const overridenTheme = cloneDeep(klear360Theme);
     overridenTheme.colors.onLight.surface.background.primary.intense =
       overrides.colors.onLight.surface.background.primary.intense;
     overridenTheme.colors.onLight.feedback.background.positive.intense =
@@ -62,7 +62,8 @@ describe('overrideTheme', () => {
       },
     };
 
-    const overridenTheme: ThemeTokens = cloneDeep(klear360Theme);
+    /** @type {import('../../theme').ThemeTokens} */
+    const overridenTheme = cloneDeep(klear360Theme);
     overridenTheme.colors.onLight.surface.background.primary.intense =
       overrides.colors.onLight.surface.background.primary.intense;
     overridenTheme.colors.onLight.feedback.background.positive.intense =
@@ -131,7 +132,6 @@ describe('overrideTheme', () => {
 
     expect(() => {
       overrideTheme({
-        // @ts-expect-error test the invalid base theme case
         baseThemeTokens: invalidBaseTheme,
         overrides: invalidBaseTheme,
       });

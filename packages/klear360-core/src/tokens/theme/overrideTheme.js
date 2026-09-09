@@ -1,23 +1,9 @@
 import merge from '~utils/lodashButBetter/merge';
 import cloneDeep from '~utils/lodashButBetter/cloneDeep';
 import { hasSameObjectStructure } from '~utils/hasSameObjectStructure';
-import type { ObjectWithKeys } from '~utils/hasSameObjectStructure';
 import { isPartialMatchObjectKeys } from '~utils/isPartialMatchObjectKeys';
-import type { DeepPartial } from '~utils/isPartialMatchObjectKeys';
 import { throwKlear360Error } from '~utils/logger';
-import type { ThemeTokens } from './theme';
 import klear360Theme from './klear360Theme';
-
-type OverrideTheme = {
-  /**
-   * base tokens
-   */
-  baseThemeTokens: ThemeTokens;
-  /**
-   * partial theme tokens
-   */
-  overrides: DeepPartial<ThemeTokens>;
-};
 
 /**
  * @deprecated Use `createTheme` from `@klear/klear360/tokens` instead
@@ -46,13 +32,21 @@ type OverrideTheme = {
  *
  * <Klear360Provider themeTokens={customTheme} />
  * ```
+ * @param {Object} params
+ * @param {import('./theme').ThemeTokens} params.baseThemeTokens base tokens
+ * @param {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens>} params.overrides partial theme tokens
+ * @returns {import('./theme').ThemeTokens}
  */
-const overrideTheme = ({ baseThemeTokens, overrides }: OverrideTheme): ThemeTokens => {
+const overrideTheme = ({ baseThemeTokens, overrides }) => {
   if (__DEV__) {
     if (
       !hasSameObjectStructure(
-        (baseThemeTokens as unknown) as ObjectWithKeys,
-        (klear360Theme as unknown) as ObjectWithKeys,
+        /** @type {import('~utils/hasSameObjectStructure').ObjectWithKeys} */ (
+          /** @type {unknown} */ (baseThemeTokens)
+        ),
+        /** @type {import('~utils/hasSameObjectStructure').ObjectWithKeys} */ (
+          /** @type {unknown} */ (klear360Theme)
+        ),
       )
     ) {
       throwKlear360Error({
@@ -62,7 +56,7 @@ const overrideTheme = ({ baseThemeTokens, overrides }: OverrideTheme): ThemeToke
     }
 
     if (
-      !isPartialMatchObjectKeys<ThemeTokens>({
+      !isPartialMatchObjectKeys({
         objectToMatch: overrides,
         objectToInspect: baseThemeTokens,
       })
@@ -75,7 +69,10 @@ const overrideTheme = ({ baseThemeTokens, overrides }: OverrideTheme): ThemeToke
   }
 
   // Need to clone before merging since merge changes/mutates the actual object
-  return merge(cloneDeep(baseThemeTokens), overrides) as ThemeTokens;
+  return /** @type {import('./theme').ThemeTokens} */ (merge(
+    cloneDeep(baseThemeTokens),
+    overrides,
+  ));
 };
 
 export default overrideTheme;
