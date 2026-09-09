@@ -12,7 +12,8 @@ import { SKILL_VERSION, KLEAR360_SKILL_FILE_PATH, SKILL_VERSION_STRING } from '.
 
 describe('skillUtils', () => {
   describe('shouldCreateOrUpdateSkill (file-system path, skipLocalSkillChecks = false)', () => {
-    let tmpDir: string;
+    /** @type {string} */
+    let tmpDir;
 
     afterEach(() => {
       if (tmpDir && fs.existsSync(tmpDir)) {
@@ -20,7 +21,12 @@ describe('skillUtils', () => {
       }
     });
 
-    const makeSkillFile = (dir: string, content: string): void => {
+    /**
+     * @param {string} dir
+     * @param {string} content
+     * @returns {void}
+     */
+    const makeSkillFile = (dir, content) => {
       const skillDir = path.join(dir, '.agents/skills/ui-code-guidelines');
       fs.mkdirSync(skillDir, { recursive: true });
       fs.writeFileSync(path.join(skillDir, 'SKILL.md'), content);
@@ -110,7 +116,9 @@ describe('skillUtils', () => {
       expect(result).toMatchObject({
         content: [{ type: 'text', text: expect.stringContaining('Klear360 skill does not exist') }],
       });
-      expect(result!.content[0].text).toContain(mockProjectRootDirectory);
+      expect(/** @type {NonNullable<typeof result>} */ (result).content[0].text).toContain(
+        mockProjectRootDirectory,
+      );
     });
 
     it('should return content with update instructions when skill is outdated', () => {
@@ -120,7 +128,7 @@ describe('skillUtils', () => {
       expect(result).toMatchObject({
         content: [{ type: 'text', text: expect.stringContaining('Klear360 skill is outdated') }],
       });
-      const text = result!.content[0].text;
+      const text = /** @type {NonNullable<typeof result>} */ (result).content[0].text;
       expect(text).toContain(outdatedVersion);
       expect(text).toContain(SKILL_VERSION);
       expect(text).toContain(mockProjectRootDirectory);
@@ -138,7 +146,7 @@ describe('skillUtils', () => {
       expect(result).toMatchObject({
         content: [{ type: 'text', text: expect.stringContaining('Klear360 skill is outdated') }],
       });
-      const text = result!.content[0].text;
+      const text = /** @type {NonNullable<typeof result>} */ (result).content[0].text;
       expect(text).toContain('0.0.0');
       expect(text).toContain(SKILL_VERSION);
     });
