@@ -15,4 +15,7 @@ export {
   getBadgeTextColorToken,
   getBadgeIconColorToken,
 } from './badge';
-export type { BadgeVariants, BadgeSize, BadgeColor, BadgeEmphasis } from './badge';
+/** @typedef {import('./badge').BadgeVariants} BadgeVariants */
+/** @typedef {import('./badge').BadgeSize} BadgeSize */
+/** @typedef {import('./badge').BadgeColor} BadgeColor */
+/** @typedef {import('./badge').BadgeEmphasis} BadgeEmphasis */

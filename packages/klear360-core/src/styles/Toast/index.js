@@ -29,4 +29,6 @@ export {
   MIN_TOAST_DESKTOP,
   PEEKS,
 } from './toast';
-export type { ToastVariants, ToastColor, ToastType } from './toast';
+/** @typedef {import('./toast').ToastVariants} ToastVariants */
+/** @typedef {import('./toast').ToastColor} ToastColor */
+/** @typedef {import('./toast').ToastType} ToastType */
