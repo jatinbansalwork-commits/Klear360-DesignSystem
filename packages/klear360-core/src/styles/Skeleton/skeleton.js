@@ -4,21 +4,14 @@ import { utilityClasses } from '../utilities';
 import styles from './skeleton.module.css';
 import { getSpacingValue } from '~utils/styledProps/spacingUtils';
 
-export type SkeletonBorderRadius =
-  | 'none'
-  | '2xsmall'
-  | 'xsmall'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'xlarge'
-  | '2xlarge'
-  | 'max'
-  | 'round';
+/**
+ * @typedef {'none' | '2xsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge' | 'max' | 'round'} SkeletonBorderRadius
+ */
 
-export type SkeletonVariants = {
-  borderRadius?: SkeletonBorderRadius;
-};
+/**
+ * @typedef {Object} SkeletonVariants
+ * @property {SkeletonBorderRadius} [borderRadius]
+ */
 
 export const skeletonStyles = cva(styles.skeleton, {
   variants: {
@@ -39,24 +32,19 @@ export const skeletonStyles = cva(styles.skeleton, {
 
 export const skeletonClass = styles.skeleton;
 
-export type SkeletonFlexProps = {
-  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
-  justifyContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly'
-    | 'stretch';
-  alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
-  justifySelf?: 'auto' | 'start' | 'end' | 'center' | 'stretch';
-  placeSelf?: 'auto' | 'start' | 'end' | 'center' | 'stretch';
-};
+/**
+ * @typedef {Object} SkeletonFlexProps
+ * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} [flexDirection]
+ * @property {'nowrap' | 'wrap' | 'wrap-reverse'} [flexWrap]
+ * @property {'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'} [alignItems]
+ * @property {'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch'} [justifyContent]
+ * @property {'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'} [alignSelf]
+ * @property {'auto' | 'start' | 'end' | 'center' | 'stretch'} [justifySelf]
+ * @property {'auto' | 'start' | 'end' | 'center' | 'stretch'} [placeSelf]
+ */
 
-const alignItemsToUtility: Record<NonNullable<SkeletonFlexProps['alignItems']>, string> = {
+/** @type {Record<NonNullable<SkeletonFlexProps['alignItems']>, string>} */
+const alignItemsToUtility = {
   'flex-start': 'items-start',
   'flex-end': 'items-end',
   center: 'items-center',
@@ -64,7 +52,8 @@ const alignItemsToUtility: Record<NonNullable<SkeletonFlexProps['alignItems']>, 
   stretch: 'items-stretch',
 };
 
-const justifyContentToUtility: Record<NonNullable<SkeletonFlexProps['justifyContent']>, string> = {
+/** @type {Record<NonNullable<SkeletonFlexProps['justifyContent']>, string>} */
+const justifyContentToUtility = {
   'flex-start': 'justify-start',
   'flex-end': 'justify-end',
   center: 'justify-center',
@@ -74,7 +63,8 @@ const justifyContentToUtility: Record<NonNullable<SkeletonFlexProps['justifyCont
   stretch: 'justify-stretch',
 };
 
-const alignSelfToUtility: Record<NonNullable<SkeletonFlexProps['alignSelf']>, string> = {
+/** @type {Record<NonNullable<SkeletonFlexProps['alignSelf']>, string>} */
+const alignSelfToUtility = {
   auto: 'align-self-auto',
   'flex-start': 'align-self-start',
   'flex-end': 'align-self-end',
@@ -83,7 +73,8 @@ const alignSelfToUtility: Record<NonNullable<SkeletonFlexProps['alignSelf']>, st
   stretch: 'align-self-stretch',
 };
 
-const justifySelfToUtility: Record<NonNullable<SkeletonFlexProps['justifySelf']>, string> = {
+/** @type {Record<NonNullable<SkeletonFlexProps['justifySelf']>, string>} */
+const justifySelfToUtility = {
   auto: 'justify-self-auto',
   start: 'justify-self-start',
   end: 'justify-self-end',
@@ -91,7 +82,8 @@ const justifySelfToUtility: Record<NonNullable<SkeletonFlexProps['justifySelf']>
   stretch: 'justify-self-stretch',
 };
 
-const placeSelfToUtility: Record<NonNullable<SkeletonFlexProps['placeSelf']>, string> = {
+/** @type {Record<NonNullable<SkeletonFlexProps['placeSelf']>, string>} */
+const placeSelfToUtility = {
   auto: 'place-self-auto',
   start: 'place-self-start',
   end: 'place-self-end',
@@ -103,10 +95,10 @@ const placeSelfToUtility: Record<NonNullable<SkeletonFlexProps['placeSelf']>, st
  * Build the class string for a Skeleton element. Combines the base/keyframe class,
  * the borderRadius CVA variant, and any flex enum utility classes that have a
  * predefined utility match.
+ * @param {SkeletonVariants & SkeletonFlexProps & { className?: string }} props
+ * @returns {string}
  */
-export function getSkeletonClasses(
-  props: SkeletonVariants & SkeletonFlexProps & { className?: string },
-): string {
+export function getSkeletonClasses(props) {
   const {
     borderRadius,
     flexDirection,
@@ -120,54 +112,70 @@ export function getSkeletonClasses(
   } = props;
 
   const cvaClasses = skeletonStyles({ borderRadius });
-  const utilities: string[] = [];
+  /** @type {string[]} */
+  const utilities = [];
 
   if (flexDirection) {
     utilities.push(
-      utilityClasses[`flex-direction-${flexDirection}` as keyof typeof utilityClasses],
+      utilityClasses[
+        /** @type {keyof typeof utilityClasses} */ (`flex-direction-${flexDirection}`)
+      ],
     );
   }
   if (flexWrap) {
-    utilities.push(utilityClasses[`flex-wrap-${flexWrap}` as keyof typeof utilityClasses]);
+    utilities.push(
+      utilityClasses[/** @type {keyof typeof utilityClasses} */ (`flex-wrap-${flexWrap}`)],
+    );
   }
   if (alignItems) {
-    utilities.push(utilityClasses[alignItemsToUtility[alignItems] as keyof typeof utilityClasses]);
+    utilities.push(
+      utilityClasses[/** @type {keyof typeof utilityClasses} */ (alignItemsToUtility[alignItems])],
+    );
   }
   if (justifyContent) {
     utilities.push(
-      utilityClasses[justifyContentToUtility[justifyContent] as keyof typeof utilityClasses],
+      utilityClasses[
+        /** @type {keyof typeof utilityClasses} */ (justifyContentToUtility[justifyContent])
+      ],
     );
   }
   if (alignSelf) {
-    utilities.push(utilityClasses[alignSelfToUtility[alignSelf] as keyof typeof utilityClasses]);
+    utilities.push(
+      utilityClasses[/** @type {keyof typeof utilityClasses} */ (alignSelfToUtility[alignSelf])],
+    );
   }
   if (justifySelf) {
     utilities.push(
-      utilityClasses[justifySelfToUtility[justifySelf] as keyof typeof utilityClasses],
+      utilityClasses[
+        /** @type {keyof typeof utilityClasses} */ (justifySelfToUtility[justifySelf])
+      ],
     );
   }
   if (placeSelf) {
-    utilities.push(utilityClasses[placeSelfToUtility[placeSelf] as keyof typeof utilityClasses]);
+    utilities.push(
+      utilityClasses[/** @type {keyof typeof utilityClasses} */ (placeSelfToUtility[placeSelf])],
+    );
   }
 
   return [cvaClasses, ...utilities, className].filter(Boolean).join(' ');
 }
 
-export type SkeletonInlineStyleProps = {
-  width?: string;
-  maxWidth?: string;
-  minWidth?: string;
-  height?: string;
-  maxHeight?: string;
-  minHeight?: string;
-  alignContent?: string;
-  justifyItems?: string;
-  placeItems?: string;
-  flexGrow?: number;
-  flexShrink?: number;
-  flexBasis?: string;
-  order?: number;
-};
+/**
+ * @typedef {Object} SkeletonInlineStyleProps
+ * @property {string} [width]
+ * @property {string} [maxWidth]
+ * @property {string} [minWidth]
+ * @property {string} [height]
+ * @property {string} [maxHeight]
+ * @property {string} [minHeight]
+ * @property {string} [alignContent]
+ * @property {string} [justifyItems]
+ * @property {string} [placeItems]
+ * @property {number} [flexGrow]
+ * @property {number} [flexShrink]
+ * @property {string} [flexBasis]
+ * @property {number} [order]
+ */
 
 /**
  * Build the inline style string for a Skeleton element. Covers arbitrary dimension
@@ -175,11 +183,19 @@ export type SkeletonInlineStyleProps = {
  *
  * Returns `undefined` when no inline style is needed so the consumer can omit the
  * `style` attribute entirely.
+ * @param {SkeletonInlineStyleProps} props
+ * @returns {string | undefined}
  */
-export function getSkeletonInlineStyle(props: SkeletonInlineStyleProps): string | undefined {
-  const declarations: string[] = [];
+export function getSkeletonInlineStyle(props) {
+  /** @type {string[]} */
+  const declarations = [];
 
-  const dimension = (key: string, value: string | undefined): void => {
+  /**
+   * @param {string} key
+   * @param {string | undefined} value
+   * @returns {void}
+   */
+  const dimension = (key, value) => {
     if (value === undefined) return;
     const resolved = getSpacingValue(value);
     if (resolved !== undefined) {

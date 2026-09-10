@@ -5,25 +5,20 @@ import chipStyles from './chip.module.css';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import chipGroupStyles from './chipGroup.module.css';
 
-export type ChipSize = 'xsmall' | 'small' | 'medium' | 'large';
-export type ChipColor = 'primary' | 'positive' | 'negative';
+/** @typedef {'xsmall' | 'small' | 'medium' | 'large'} ChipSize */
+/** @typedef {'primary' | 'positive' | 'negative'} ChipColor */
 
-export type ChipColorVariant =
-  | 'unchecked'
-  | 'primaryChecked'
-  | 'positiveChecked'
-  | 'negativeChecked'
-  | 'uncheckedDisabled'
-  | 'primaryDisabled'
-  | 'positiveDisabled'
-  | 'negativeDisabled';
+/**
+ * @typedef {'unchecked' | 'primaryChecked' | 'positiveChecked' | 'negativeChecked' | 'uncheckedDisabled' | 'primaryDisabled' | 'positiveDisabled' | 'negativeDisabled'} ChipColorVariant
+ */
 
 // ── AnimatedChip (outer): border + scale animation ──
 
-export type AnimatedChipVariants = {
-  size?: ChipSize;
-  colorVariant?: ChipColorVariant;
-};
+/**
+ * @typedef {Object} AnimatedChipVariants
+ * @property {ChipSize} [size]
+ * @property {ChipColorVariant} [colorVariant]
+ */
 
 // Base class + shared outer border-width come from the chip module + utilities.
 const animatedChipBase = [chipStyles.animatedChip, utilityClasses['border-width-thin']].join(' ');
@@ -53,17 +48,22 @@ export const animatedChipCva = cva(animatedChipBase, {
   },
 });
 
-export function getAnimatedChipClasses(props: AnimatedChipVariants): string {
+/**
+ * @param {AnimatedChipVariants} props
+ * @returns {string}
+ */
+export function getAnimatedChipClasses(props) {
   return animatedChipCva(props);
 }
 
 // ── StyledChipWrapper (inner): background + inner border + hover ──
 
-export type ChipInnerVariants = {
-  size?: ChipSize;
-  colorVariant?: ChipColorVariant;
-  isDisabled?: boolean;
-};
+/**
+ * @typedef {Object} ChipInnerVariants
+ * @property {ChipSize} [size]
+ * @property {ChipColorVariant} [colorVariant]
+ * @property {boolean} [isDisabled]
+ */
 
 export const chipInnerCva = cva(chipStyles.chipInner, {
   variants: {
@@ -95,11 +95,16 @@ export const chipInnerCva = cva(chipStyles.chipInner, {
   },
 });
 
-export function getChipInnerClasses(props: ChipInnerVariants): string {
+/**
+ * @param {ChipInnerVariants} props
+ * @returns {string}
+ */
+export function getChipInnerClasses(props) {
   return chipInnerCva(props);
 }
 
-export function getChipTemplateClasses(): Record<string, string> {
+/** @returns {Record<string, string>} */
+export function getChipTemplateClasses() {
   return {
     chipWrapper: chipStyles.chipWrapper,
     label: chipStyles.label,
@@ -113,11 +118,13 @@ export function getChipTemplateClasses(): Record<string, string> {
   };
 }
 
-export function getChipColorVariant(
-  isChecked: boolean,
-  color: ChipColor | undefined,
-  isDisabled: boolean,
-): ChipColorVariant {
+/**
+ * @param {boolean} isChecked
+ * @param {ChipColor | undefined} color
+ * @param {boolean} isDisabled
+ * @returns {ChipColorVariant}
+ */
+export function getChipColorVariant(isChecked, color, isDisabled) {
   if (isDisabled) {
     if (!isChecked) return 'uncheckedDisabled';
     switch (color) {
@@ -144,31 +151,38 @@ export function getChipColorVariant(
   }
 }
 
-export function getChipTextColorToken(
-  isChecked: boolean,
-  color: ChipColor | undefined,
-  isDisabled: boolean,
-): string {
+/**
+ * @param {boolean} isChecked
+ * @param {ChipColor | undefined} color
+ * @param {boolean} isDisabled
+ * @returns {string}
+ */
+export function getChipTextColorToken(isChecked, color, isDisabled) {
   if (isDisabled) return 'interactive.text.gray.disabled';
   if (isChecked && color) return `interactive.text.${color}.normal`;
   return 'interactive.text.gray.subtle';
 }
 
-export function getChipIconColorToken(
-  isChecked: boolean,
-  color: ChipColor | undefined,
-  isDisabled: boolean,
-): string {
+/**
+ * @param {boolean} isChecked
+ * @param {ChipColor | undefined} color
+ * @param {boolean} isDisabled
+ * @returns {string}
+ */
+export function getChipIconColorToken(isChecked, color, isDisabled) {
   if (isDisabled) return 'interactive.icon.gray.disabled';
   if (isChecked && color) return `interactive.icon.${color}.normal`;
   return 'interactive.icon.gray.subtle';
 }
 
-export function getChipTextSizes(): {
-  fontSize: Record<ChipSize, 75 | 100 | 200>;
-  lineHeight: Record<ChipSize, 75 | 100 | 200>;
-  letterSpacing: Record<ChipSize, 25 | 50>;
-} {
+/**
+ * @returns {{
+ *   fontSize: Record<ChipSize, 75 | 100 | 200>,
+ *   lineHeight: Record<ChipSize, 75 | 100 | 200>,
+ *   letterSpacing: Record<ChipSize, 25 | 50>,
+ * }}
+ */
+export function getChipTextSizes() {
   return {
     fontSize: { xsmall: 75, small: 100, medium: 200, large: 200 },
     lineHeight: { xsmall: 75, small: 100, medium: 200, large: 200 },
@@ -176,16 +190,18 @@ export function getChipTextSizes(): {
   };
 }
 
-export function getChipIconSizes(): Record<ChipSize, 'small' | 'medium' | 'large'> {
+/** @returns {Record<ChipSize, 'small' | 'medium' | 'large'>} */
+export function getChipIconSizes() {
   return { xsmall: 'small', small: 'small', medium: 'medium', large: 'large' };
 }
 
 // ── ChipGroup styles ──
 
-export type ChipGroupVariants = {
-  size?: ChipSize;
-  labelPosition?: 'top' | 'left';
-};
+/**
+ * @typedef {Object} ChipGroupVariants
+ * @property {ChipSize} [size]
+ * @property {'top' | 'left'} [labelPosition]
+ */
 
 export const chipGroupFieldCva = cva(chipGroupStyles.chipGroupField, {
   variants: {
@@ -213,15 +229,24 @@ export const chipGroupGapCva = cva(chipGroupStyles.chipsContainer, {
   },
 });
 
-export function getChipGroupFieldClasses(props: { labelPosition?: 'top' | 'left' }): string {
+/**
+ * @param {{ labelPosition?: 'top' | 'left' }} props
+ * @returns {string}
+ */
+export function getChipGroupFieldClasses(props) {
   return chipGroupFieldCva(props);
 }
 
-export function getChipGroupGapClasses(props: { size?: ChipSize }): string {
+/**
+ * @param {{ size?: ChipSize }} props
+ * @returns {string}
+ */
+export function getChipGroupGapClasses(props) {
   return chipGroupGapCva(props);
 }
 
-export function getChipGroupTemplateClasses(): Record<string, string> {
+/** @returns {Record<string, string>} */
+export function getChipGroupTemplateClasses() {
   return {
     chipGroupField: chipGroupStyles.chipGroupField,
     groupLabel: chipGroupStyles.groupLabel,
@@ -236,8 +261,13 @@ export function getChipGroupTemplateClasses(): Record<string, string> {
   };
 }
 
-export function getChipGroupLabelSizeClass(size: ChipSize): string {
-  const map: Record<ChipSize, string> = {
+/**
+ * @param {ChipSize} size
+ * @returns {string}
+ */
+export function getChipGroupLabelSizeClass(size) {
+  /** @type {Record<ChipSize, string>} */
+  const map = {
     xsmall: chipGroupStyles.labelSmall,
     small: chipGroupStyles.labelMedium,
     medium: chipGroupStyles.labelLarge,
