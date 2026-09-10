@@ -10,7 +10,9 @@ export const utilityClasses = utilities;
 /**
  * Helper to get utility class name by key
  * Example: getUtilityClass('display-flex') -> returns the scoped class name
+ * @param {keyof typeof utilities} key
+ * @returns {string}
  */
-export function getUtilityClass(key: keyof typeof utilities): string {
+export function getUtilityClass(key) {
   return utilities[key];
 }
