@@ -21,10 +21,8 @@ export {
   getTopAddonClass,
   getBottomAddonClass,
 } from './avatar';
-export type {
-  AvatarWrapperVariants,
-  AvatarButtonVariants,
-  AvatarGroupVariants,
-  AvatarDensity,
-} from './avatar';
-export type { AvatarSlot } from './slots';
+/** @typedef {import('./avatar').AvatarWrapperVariants} AvatarWrapperVariants */
+/** @typedef {import('./avatar').AvatarButtonVariants} AvatarButtonVariants */
+/** @typedef {import('./avatar').AvatarGroupVariants} AvatarGroupVariants */
+/** @typedef {import('./avatar').AvatarDensity} AvatarDensity */
+/** @typedef {import('./slots').AvatarSlot} AvatarSlot */

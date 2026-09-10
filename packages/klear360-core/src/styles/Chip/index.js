@@ -16,11 +16,9 @@ export {
   getChipGroupTemplateClasses,
   getChipGroupLabelSizeClass,
 } from './chip';
-export type {
-  AnimatedChipVariants,
-  ChipInnerVariants,
-  ChipColorVariant,
-  ChipGroupVariants,
-  ChipSize,
-  ChipColor,
-} from './chip';
+/** @typedef {import('./chip').AnimatedChipVariants} AnimatedChipVariants */
+/** @typedef {import('./chip').ChipInnerVariants} ChipInnerVariants */
+/** @typedef {import('./chip').ChipColorVariant} ChipColorVariant */
+/** @typedef {import('./chip').ChipGroupVariants} ChipGroupVariants */
+/** @typedef {import('./chip').ChipSize} ChipSize */
+/** @typedef {import('./chip').ChipColor} ChipColor */

@@ -10,4 +10,5 @@ export {
   tooltipTitleClass,
   tooltipContentClass,
 } from './tooltip';
-export type { TooltipVariants, TooltipPlacementSide } from './tooltip';
+/** @typedef {import('./tooltip').TooltipVariants} TooltipVariants */
+/** @typedef {import('./tooltip').TooltipPlacementSide} TooltipPlacementSide */
