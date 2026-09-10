@@ -28,7 +28,10 @@
  * (inherited by the surface) instead of painting `border` or `box-shadow` on `root` directly.
  * Use `variant` and `backgroundColor` for surface fill; `secondary` has no border ring.
  *
- * @see getPrimaryBrandCssVars — checkout primary token bundle helper
- * @see SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES — exhaustive safe root token list
+ * See also: `getPrimaryBrandCssVars` (checkout primary token bundle helper) and
+ * `SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES` (exhaustive safe root token list).
+ * @template {string} Slot
+ * @typedef {Partial<Record<Slot, string>>} StyleOverride
  */
-export type StyleOverride<Slot extends string> = Partial<Record<Slot, string>>;
+
+export {};
