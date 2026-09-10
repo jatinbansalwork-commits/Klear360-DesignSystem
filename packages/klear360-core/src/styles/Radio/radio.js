@@ -4,16 +4,17 @@ import styles from './radio.module.css';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import groupStyles from './radioGroup.module.css';
 
-export type RadioSize = 'small' | 'medium' | 'large';
-export type RadioVariant = 'default' | 'disabled' | 'negative';
+/** @typedef {'small' | 'medium' | 'large'} RadioSize */
+/** @typedef {'default' | 'disabled' | 'negative'} RadioVariant */
 
 // ── RadioIcon wrapper: size + (variant × checked) compound colors ──
 
-export type RadioIconWrapperVariants = {
-  size?: RadioSize;
-  variant?: RadioVariant;
-  isChecked?: boolean;
-};
+/**
+ * @typedef {Object} RadioIconWrapperVariants
+ * @property {RadioSize} [size]
+ * @property {RadioVariant} [variant]
+ * @property {boolean} [isChecked]
+ */
 
 /**
  * CVA for the radio icon (circle) wrapper. `size` drives dimensions; the
@@ -52,15 +53,22 @@ export const radioIconWrapperStyles = cva(styles.iconWrapper, {
   },
 });
 
-export function getRadioIconWrapperClasses(props: RadioIconWrapperVariants): string {
+/**
+ * @param {RadioIconWrapperVariants} props
+ * @returns {string}
+ */
+export function getRadioIconWrapperClasses(props) {
   return radioIconWrapperStyles(props);
 }
 
 /**
  * Resolve the icon variant from disabled/negative flags.
  * Precedence matches React: negative wins over disabled.
+ * @param {boolean} [isDisabled]
+ * @param {boolean} [isNegative]
+ * @returns {RadioVariant}
  */
-export function getRadioIconVariant(isDisabled?: boolean, isNegative?: boolean): RadioVariant {
+export function getRadioIconVariant(isDisabled, isNegative) {
   if (isNegative) return 'negative';
   if (isDisabled) return 'disabled';
   return 'default';
@@ -81,7 +89,11 @@ export const radioTitleStyles = cva(styles.title, {
   },
 });
 
-export function getRadioTitleClasses(props: { size?: RadioSize }): string {
+/**
+ * @param {{ size?: RadioSize }} props
+ * @returns {string}
+ */
+export function getRadioTitleClasses(props) {
   return radioTitleStyles(props);
 }
 
@@ -100,7 +112,11 @@ export const radioSupportTextWrapperStyles = cva(styles.supportTextWrapper, {
   },
 });
 
-export function getRadioSupportTextWrapperClasses(props: { size?: RadioSize }): string {
+/**
+ * @param {{ size?: RadioSize }} props
+ * @returns {string}
+ */
+export function getRadioSupportTextWrapperClasses(props) {
   return radioSupportTextWrapperStyles(props);
 }
 
@@ -117,7 +133,11 @@ export const radioSupportTextStyles = cva(styles.supportText, {
   },
 });
 
-export function getRadioSupportTextClasses(props: { size?: RadioSize }): string {
+/**
+ * @param {{ size?: RadioSize }} props
+ * @returns {string}
+ */
+export function getRadioSupportTextClasses(props) {
   return radioSupportTextStyles(props);
 }
 
@@ -125,18 +145,19 @@ export function getRadioSupportTextClasses(props: { size?: RadioSize }): string 
  * Structural classes for the Radio template. Calling this from the Svelte
  * component prevents tree-shaking from dropping classes only referenced in
  * the template (label, input, dot, etc.).
+ * @returns {{
+ *   radioWrapper: string,
+ *   label: string,
+ *   column: string,
+ *   row: string,
+ *   input: string,
+ *   iconWrapper: string,
+ *   dot: string,
+ *   dotChecked: string,
+ *   dotCircle: string,
+ * }}
  */
-export function getRadioTemplateClasses(): {
-  radioWrapper: string;
-  label: string;
-  column: string;
-  row: string;
-  input: string;
-  iconWrapper: string;
-  dot: string;
-  dotChecked: string;
-  dotCircle: string;
-} {
+export function getRadioTemplateClasses() {
   return {
     radioWrapper: styles.radioWrapper,
     label: styles.label,
@@ -164,7 +185,11 @@ export const radioGroupFieldStyles = cva(groupStyles.radioGroupField, {
   },
 });
 
-export function getRadioGroupFieldClasses(props: { labelPosition?: 'top' | 'left' }): string {
+/**
+ * @param {{ labelPosition?: 'top' | 'left' }} props
+ * @returns {string}
+ */
+export function getRadioGroupFieldClasses(props) {
   return radioGroupFieldStyles(props);
 }
 
@@ -192,27 +217,35 @@ export const radioGroupItemsStyles = cva(groupStyles.itemsContainer, {
   },
 });
 
-export function getRadioGroupItemsClasses(props: {
-  orientation?: 'vertical' | 'horizontal';
-  size?: RadioSize;
-  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-}): string {
+/**
+ * @param {{
+ *   orientation?: 'vertical' | 'horizontal',
+ *   size?: RadioSize,
+ *   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+ * }} props
+ * @returns {string}
+ */
+export function getRadioGroupItemsClasses(props) {
   return radioGroupItemsStyles(props);
 }
 
-export function getRadioGroupLabelSizeClass(
-  size: RadioSize,
-  labelPosition: 'top' | 'left' = 'top',
-): string {
+/**
+ * @param {RadioSize} size
+ * @param {'top' | 'left'} [labelPosition]
+ * @returns {string}
+ */
+export function getRadioGroupLabelSizeClass(size, labelPosition = 'top') {
   if (labelPosition === 'left') {
-    const leftMap: Record<RadioSize, string> = {
+    /** @type {Record<RadioSize, string>} */
+    const leftMap = {
       small: `${groupStyles.labelLeft} ${groupStyles.labelLeftSmall}`,
       medium: `${groupStyles.labelLeft} ${groupStyles.labelLeftMedium}`,
       large: `${groupStyles.labelLeft} ${groupStyles.labelLeftLarge}`,
     };
     return leftMap[size];
   }
-  const map: Record<RadioSize, string> = {
+  /** @type {Record<RadioSize, string>} */
+  const map = {
     small: groupStyles.labelSmall,
     medium: groupStyles.labelMedium,
     large: groupStyles.labelLarge,
@@ -220,8 +253,13 @@ export function getRadioGroupLabelSizeClass(
   return map[size];
 }
 
-export function getRadioGroupHintTextClass(size: RadioSize): string {
-  const map: Record<RadioSize, string> = {
+/**
+ * @param {RadioSize} size
+ * @returns {string}
+ */
+export function getRadioGroupHintTextClass(size) {
+  /** @type {Record<RadioSize, string>} */
+  const map = {
     small: groupStyles.hintTextSmall,
     medium: groupStyles.hintTextMedium,
     large: groupStyles.hintTextLarge,
@@ -229,8 +267,13 @@ export function getRadioGroupHintTextClass(size: RadioSize): string {
   return map[size];
 }
 
-export function getRadioGroupHintMarginClass(size: RadioSize): string {
-  const map: Record<RadioSize, string> = {
+/**
+ * @param {RadioSize} size
+ * @returns {string}
+ */
+export function getRadioGroupHintMarginClass(size) {
+  /** @type {Record<RadioSize, string>} */
+  const map = {
     small: groupStyles.hintMarginSmall,
     medium: groupStyles.hintMarginMedium,
     large: groupStyles.hintMarginLarge,
@@ -238,16 +281,19 @@ export function getRadioGroupHintMarginClass(size: RadioSize): string {
   return map[size];
 }
 
-export function getRadioGroupTemplateClasses(): {
-  groupLabel: string;
-  necessityRequired: string;
-  necessityOptional: string;
-  helpText: string;
-  errorText: string;
-  hintWrapper: string;
-  hintIcon: string;
-  srOnly: string;
-} {
+/**
+ * @returns {{
+ *   groupLabel: string,
+ *   necessityRequired: string,
+ *   necessityOptional: string,
+ *   helpText: string,
+ *   errorText: string,
+ *   hintWrapper: string,
+ *   hintIcon: string,
+ *   srOnly: string,
+ * }}
+ */
+export function getRadioGroupTemplateClasses() {
   return {
     groupLabel: groupStyles.groupLabel,
     necessityRequired: groupStyles.necessityRequired,
