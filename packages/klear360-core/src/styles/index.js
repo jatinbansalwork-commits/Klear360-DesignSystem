@@ -1,8 +1,11 @@
 import './layers.css';
 
-export type { StyleOverride } from './shared/styleOverride';
+/**
+ * @template {string} Slot
+ * @typedef {import('./shared/styleOverride').StyleOverride<Slot>} StyleOverride
+ */
 export { baseTextStyles, getBaseTextClasses } from './BaseText';
-export type { BaseTextVariants } from './BaseText';
+/** @typedef {import('./BaseText').BaseTextVariants} BaseTextVariants */
 export {
   baseLinkStyles,
   getBaseLinkClasses,
@@ -14,25 +17,27 @@ export {
   getLinkTextSizes,
   getLinkIconSizeMap,
 } from './BaseLink';
-export type {
-  BaseLinkVariants,
-  LinkColor,
-  LinkVariant,
-  ActionStatesType,
-  ColorType,
-} from './BaseLink';
+/** @typedef {import('./BaseLink').BaseLinkVariants} BaseLinkVariants */
+/** @typedef {import('./BaseLink').LinkColor} LinkColor */
+/** @typedef {import('./BaseLink').LinkVariant} LinkVariant */
+/** @typedef {import('./BaseLink').ActionStatesType} ActionStatesType */
+/** @typedef {import('./BaseLink').ColorType} ColorType */
 export { codeStyles, getCodeClasses, getCodeFontSizeAndLineHeight, getCodeColor } from './Code';
-export type { CodeVariants, CodeSize } from './Code';
+/** @typedef {import('./Code').CodeVariants} CodeVariants */
+/** @typedef {import('./Code').CodeSize} CodeSize */
 export { getHeadingProps, validHeadingAsValues } from './Heading';
-export type {
-  HeadingSize,
-  HeadingWeight,
-  HeadingAs,
-  HeadingPropsResult,
-  HeadingSlot,
-} from './Heading';
+/** @typedef {import('./Heading').HeadingSize} HeadingSize */
+/** @typedef {import('./Heading').HeadingWeight} HeadingWeight */
+/** @typedef {import('./Heading').HeadingAs} HeadingAs */
+/** @typedef {import('./Heading').HeadingPropsResult} HeadingPropsResult */
+/** @typedef {import('./Heading').HeadingSlot} HeadingSlot */
 export { getTextProps, validTextAsValues } from './Text';
-export type { TextVariant, TextSize, TextWeight, TextAs, TextPropsResult, TextSlot } from './Text';
+/** @typedef {import('./Text').TextVariant} TextVariant */
+/** @typedef {import('./Text').TextSize} TextSize */
+/** @typedef {import('./Text').TextWeight} TextWeight */
+/** @typedef {import('./Text').TextAs} TextAs */
+/** @typedef {import('./Text').TextPropsResult} TextPropsResult */
+/** @typedef {import('./Text').TextSlot} TextSlot */
 export {
   buttonStyles,
   getButtonClasses,
@@ -58,26 +63,22 @@ export {
   getAccentBrandCssVars,
   SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES,
 } from './Button';
-export type {
-  ButtonVariants,
-  ButtonColor,
-  ButtonVariant,
-  ButtonSlot,
-  BrandCssVarsOptions,
-  AccentBrand,
-} from './Button';
+/** @typedef {import('./Button').ButtonVariants} ButtonVariants */
+/** @typedef {import('./Button').ButtonColor} ButtonColor */
+/** @typedef {import('./Button').ButtonVariant} ButtonVariant */
+/** @typedef {import('./Button').ButtonSlot} ButtonSlot */
+/** @typedef {import('./Button').BrandCssVarsOptions} BrandCssVarsOptions */
+/** @typedef {import('./Button').AccentBrand} AccentBrand */
 export {
   iconButtonStyles,
   getIconButtonClasses,
   getIconButtonTemplateClasses,
   highlightedButtonSizeMap,
 } from './IconButton';
-export type {
-  IconButtonVariants,
-  IconButtonEmphasis,
-  IconButtonSize,
-  IconButtonSlot,
-} from './IconButton';
+/** @typedef {import('./IconButton').IconButtonVariants} IconButtonVariants */
+/** @typedef {import('./IconButton').IconButtonEmphasis} IconButtonEmphasis */
+/** @typedef {import('./IconButton').IconButtonSize} IconButtonSize */
+/** @typedef {import('./IconButton').IconButtonSlot} IconButtonSlot */
 export { utilityClasses, getUtilityClass } from './utilities';
 // @ts-expect-error - CSS modules may not have type definitions in build
 export { default as utilities } from './utilities.module.css';
@@ -88,20 +89,20 @@ export {
   spinnerBoxClass,
   spinnerIconClass,
 } from './Spinner';
-export type { SpinnerVariants, SpinnerSize, SpinnerColor } from './Spinner';
+/** @typedef {import('./Spinner').SpinnerVariants} SpinnerVariants */
+/** @typedef {import('./Spinner').SpinnerSize} SpinnerSize */
+/** @typedef {import('./Spinner').SpinnerColor} SpinnerColor */
 export {
   subtleFontSizes,
   normalAmountSizes,
   currencyHardcodedSizes,
   amountLineHeights,
 } from './Amount';
-export type {
-  AmountTypeProps,
-  AmountBodyProps,
-  AmountDisplayProps,
-  AmountHeadingProps,
-  AmountSlot,
-} from './Amount';
+/** @typedef {import('./Amount').AmountTypeProps} AmountTypeProps */
+/** @typedef {import('./Amount').AmountBodyProps} AmountBodyProps */
+/** @typedef {import('./Amount').AmountDisplayProps} AmountDisplayProps */
+/** @typedef {import('./Amount').AmountHeadingProps} AmountHeadingProps */
+/** @typedef {import('./Amount').AmountSlot} AmountSlot */
 export {
   badgeStyles,
   getBadgeClasses,
@@ -118,7 +119,10 @@ export {
   getBadgeTextColorToken,
   getBadgeIconColorToken,
 } from './Badge';
-export type { BadgeVariants, BadgeSize, BadgeColor, BadgeEmphasis } from './Badge';
+/** @typedef {import('./Badge').BadgeVariants} BadgeVariants */
+/** @typedef {import('./Badge').BadgeSize} BadgeSize */
+/** @typedef {import('./Badge').BadgeColor} BadgeColor */
+/** @typedef {import('./Badge').BadgeEmphasis} BadgeEmphasis */
 export {
   counterStyles,
   getCounterClasses,
@@ -128,9 +132,13 @@ export {
   counterTextSizes,
   getCounterTextColorToken,
 } from './Counter';
-export type { CounterVariants, CounterSize, CounterColor, CounterEmphasis } from './Counter';
+/** @typedef {import('./Counter').CounterVariants} CounterVariants */
+/** @typedef {import('./Counter').CounterSize} CounterSize */
+/** @typedef {import('./Counter').CounterColor} CounterColor */
+/** @typedef {import('./Counter').CounterEmphasis} CounterEmphasis */
 export { dividerStyles, getDividerClasses } from './Divider';
-export type { DividerVariants, DividerSlot } from './Divider';
+/** @typedef {import('./Divider').DividerVariants} DividerVariants */
+/** @typedef {import('./Divider').DividerSlot} DividerSlot */
 export {
   counterInputContainerStyles,
   getCounterInputContainerClasses,
@@ -140,28 +148,25 @@ export {
   getCounterInputInputClasses,
   getCounterInputTemplateClasses,
 } from './CounterInput';
-export type {
-  CounterInputSize,
-  CounterInputEmphasis,
-  CounterInputButtonDirection,
-  CounterInputContainerVariants,
-  CounterInputButtonVariants,
-  CounterInputInputVariants,
-} from './CounterInput';
+/** @typedef {import('./CounterInput').CounterInputSize} CounterInputSize */
+/** @typedef {import('./CounterInput').CounterInputEmphasis} CounterInputEmphasis */
+/** @typedef {import('./CounterInput').CounterInputButtonDirection} CounterInputButtonDirection */
+/** @typedef {import('./CounterInput').CounterInputContainerVariants} CounterInputContainerVariants */
+/** @typedef {import('./CounterInput').CounterInputButtonVariants} CounterInputButtonVariants */
+/** @typedef {import('./CounterInput').CounterInputInputVariants} CounterInputInputVariants */
 export { switchTrackStyles, getSwitchClasses, getSwitchTemplateClasses } from './Switch';
-export type { SwitchSize, SwitchVariants } from './Switch';
+/** @typedef {import('./Switch').SwitchSize} SwitchSize */
+/** @typedef {import('./Switch').SwitchVariants} SwitchVariants */
 export {
   getAccordionWrapperClasses,
   getAccordionButtonClasses,
   getAccordionButtonBorderClasses,
   getAccordionTemplateClasses,
 } from './Accordion';
-export type {
-  AccordionWrapperVariants,
-  AccordionButtonVariants,
-  AccordionButtonBorderVariants,
-  AccordionSlot,
-} from './Accordion';
+/** @typedef {import('./Accordion').AccordionWrapperVariants} AccordionWrapperVariants */
+/** @typedef {import('./Accordion').AccordionButtonVariants} AccordionButtonVariants */
+/** @typedef {import('./Accordion').AccordionButtonBorderVariants} AccordionButtonBorderVariants */
+/** @typedef {import('./Accordion').AccordionSlot} AccordionSlot */
 export {
   getCollapsibleChevronClasses,
   getCollapsibleBodyClasses,
@@ -170,23 +175,19 @@ export {
   getCollapsibleInnerClasses,
   getCollapsibleTemplateClasses,
 } from './Collapsible';
-export type {
-  CollapsibleChevronVariants,
-  CollapsibleInnerVariants,
-  CollapsibleBodyInnerVariants,
-} from './Collapsible';
+/** @typedef {import('./Collapsible').CollapsibleChevronVariants} CollapsibleChevronVariants */
+/** @typedef {import('./Collapsible').CollapsibleInnerVariants} CollapsibleInnerVariants */
+/** @typedef {import('./Collapsible').CollapsibleBodyInnerVariants} CollapsibleBodyInnerVariants */
 export {
   skeletonStyles,
   skeletonClass,
   getSkeletonClasses,
   getSkeletonInlineStyle,
 } from './Skeleton';
-export type {
-  SkeletonVariants,
-  SkeletonBorderRadius,
-  SkeletonFlexProps,
-  SkeletonInlineStyleProps,
-} from './Skeleton';
+/** @typedef {import('./Skeleton').SkeletonVariants} SkeletonVariants */
+/** @typedef {import('./Skeleton').SkeletonBorderRadius} SkeletonBorderRadius */
+/** @typedef {import('./Skeleton').SkeletonFlexProps} SkeletonFlexProps */
+/** @typedef {import('./Skeleton').SkeletonInlineStyleProps} SkeletonInlineStyleProps */
 export {
   cardRootStyles,
   cardSurfaceStyles,
@@ -199,26 +200,24 @@ export {
   getCardTemplateClasses,
   isCardBackgroundColor,
 } from './Card';
-export type {
-  CardRootVariants,
-  CardSurfaceVariants,
-  CardBackgroundColor,
-  CardGrayBackgroundColor,
-  CardThemeBackgroundColor,
-  CardType,
-  CardHeaderVariants,
-  CardFooterVariants,
-  CardSlot,
-} from './Card';
+/** @typedef {import('./Card').CardRootVariants} CardRootVariants */
+/** @typedef {import('./Card').CardSurfaceVariants} CardSurfaceVariants */
+/** @typedef {import('./Card').CardBackgroundColor} CardBackgroundColor */
+/** @typedef {import('./Card').CardGrayBackgroundColor} CardGrayBackgroundColor */
+/** @typedef {import('./Card').CardThemeBackgroundColor} CardThemeBackgroundColor */
+/** @typedef {import('./Card').CardType} CardType */
+/** @typedef {import('./Card').CardHeaderVariants} CardHeaderVariants */
+/** @typedef {import('./Card').CardFooterVariants} CardFooterVariants */
+/** @typedef {import('./Card').CardSlot} CardSlot */
 export { appBarStyles, getAppBarClasses, getAppBarTemplateClasses } from './AppBar';
-export type { AppBarVariants } from './AppBar';
-export type { AppBarLeadingSlot } from './AppBarLeading';
+/** @typedef {import('./AppBar').AppBarVariants} AppBarVariants */
+/** @typedef {import('./AppBarLeading').AppBarLeadingSlot} AppBarLeadingSlot */
 export {
   getTrustBadgeTextColorToken,
   getTrustBadgeVariantClass,
   getTrustBadgeTemplateClasses,
 } from './TrustBadge';
-export type { TrustBadgeVariant } from './TrustBadge';
+/** @typedef {import('./TrustBadge').TrustBadgeVariant} TrustBadgeVariant */
 export {
   animatedChipCva,
   getAnimatedChipClasses,
@@ -237,14 +236,12 @@ export {
   getChipGroupTemplateClasses,
   getChipGroupLabelSizeClass,
 } from './Chip';
-export type {
-  AnimatedChipVariants,
-  ChipInnerVariants,
-  ChipColorVariant,
-  ChipGroupVariants,
-  ChipSize,
-  ChipColor,
-} from './Chip';
+/** @typedef {import('./Chip').AnimatedChipVariants} AnimatedChipVariants */
+/** @typedef {import('./Chip').ChipInnerVariants} ChipInnerVariants */
+/** @typedef {import('./Chip').ChipColorVariant} ChipColorVariant */
+/** @typedef {import('./Chip').ChipGroupVariants} ChipGroupVariants */
+/** @typedef {import('./Chip').ChipSize} ChipSize */
+/** @typedef {import('./Chip').ChipColor} ChipColor */
 export {
   checkboxIconCva,
   getCheckboxIconClasses,
@@ -269,18 +266,16 @@ export {
   getCheckboxGroupLabelSizeClass,
   getCheckboxGroupTemplateClasses,
 } from './Checkbox';
-export type {
-  CheckboxSize,
-  CheckboxIconVariant,
-  CheckboxIconVariants,
-  CheckboxSvgVariants,
-  CheckboxTitleVariants,
-  CheckboxSupportVariants,
-  CheckboxHintVariants,
-  CheckboxHintWrapperVariants,
-  CheckboxGroupFieldVariants,
-  CheckboxGroupOptionsVariants,
-} from './Checkbox';
+/** @typedef {import('./Checkbox').CheckboxSize} CheckboxSize */
+/** @typedef {import('./Checkbox').CheckboxIconVariant} CheckboxIconVariant */
+/** @typedef {import('./Checkbox').CheckboxIconVariants} CheckboxIconVariants */
+/** @typedef {import('./Checkbox').CheckboxSvgVariants} CheckboxSvgVariants */
+/** @typedef {import('./Checkbox').CheckboxTitleVariants} CheckboxTitleVariants */
+/** @typedef {import('./Checkbox').CheckboxSupportVariants} CheckboxSupportVariants */
+/** @typedef {import('./Checkbox').CheckboxHintVariants} CheckboxHintVariants */
+/** @typedef {import('./Checkbox').CheckboxHintWrapperVariants} CheckboxHintWrapperVariants */
+/** @typedef {import('./Checkbox').CheckboxGroupFieldVariants} CheckboxGroupFieldVariants */
+/** @typedef {import('./Checkbox').CheckboxGroupOptionsVariants} CheckboxGroupOptionsVariants */
 export {
   actionListWrapperCva,
   getActionListWrapperClasses,
@@ -288,7 +283,8 @@ export {
   getActionListItemClasses,
   getActionListTemplateClasses,
 } from './ActionList';
-export type { ActionListWrapperVariants, ActionListItemVariants } from './ActionList';
+/** @typedef {import('./ActionList').ActionListWrapperVariants} ActionListWrapperVariants */
+/** @typedef {import('./ActionList').ActionListItemVariants} ActionListItemVariants */
 export {
   alertStyles,
   getAlertClasses,
@@ -318,7 +314,9 @@ export {
   getAlertActionButtonVariant,
   getAlertLinkColor,
 } from './Alert';
-export type { AlertVariants, AlertColor, AlertEmphasis } from './Alert';
+/** @typedef {import('./Alert').AlertVariants} AlertVariants */
+/** @typedef {import('./Alert').AlertColor} AlertColor */
+/** @typedef {import('./Alert').AlertEmphasis} AlertEmphasis */
 export {
   announcementBannerStyles,
   getAnnouncementBannerClasses,
@@ -327,12 +325,10 @@ export {
   announcementBannerTextColorClass,
   announcementBannerIconColorClass,
 } from './AnnouncementBanner';
-export type {
-  AnnouncementBannerVariants,
-  AnnouncementBannerTheme,
-  AnnouncementBannerAlignment,
-  AnnouncementBannerSlot,
-} from './AnnouncementBanner';
+/** @typedef {import('./AnnouncementBanner').AnnouncementBannerVariants} AnnouncementBannerVariants */
+/** @typedef {import('./AnnouncementBanner').AnnouncementBannerTheme} AnnouncementBannerTheme */
+/** @typedef {import('./AnnouncementBanner').AnnouncementBannerAlignment} AnnouncementBannerAlignment */
+/** @typedef {import('./AnnouncementBanner').AnnouncementBannerSlot} AnnouncementBannerSlot */
 export {
   avatarWrapperStyles,
   getAvatarWrapperClasses,
@@ -352,13 +348,11 @@ export {
   getTopAddonClass,
   getBottomAddonClass,
 } from './Avatar';
-export type {
-  AvatarWrapperVariants,
-  AvatarButtonVariants,
-  AvatarGroupVariants,
-  AvatarDensity,
-  AvatarSlot,
-} from './Avatar';
+/** @typedef {import('./Avatar').AvatarWrapperVariants} AvatarWrapperVariants */
+/** @typedef {import('./Avatar').AvatarButtonVariants} AvatarButtonVariants */
+/** @typedef {import('./Avatar').AvatarGroupVariants} AvatarGroupVariants */
+/** @typedef {import('./Avatar').AvatarDensity} AvatarDensity */
+/** @typedef {import('./Avatar').AvatarSlot} AvatarSlot */
 export {
   breadcrumbNavClass,
   breadcrumbListClass,
@@ -391,7 +385,8 @@ export {
   tooltipTitleClass,
   tooltipContentClass,
 } from './Tooltip';
-export type { TooltipVariants, TooltipPlacementSide } from './Tooltip';
+/** @typedef {import('./Tooltip').TooltipVariants} TooltipVariants */
+/** @typedef {import('./Tooltip').TooltipPlacementSide} TooltipPlacementSide */
 export {
   toastStyles,
   getToastClasses,
@@ -423,11 +418,9 @@ export {
   MIN_TOAST_DESKTOP,
   PEEKS,
 } from './Toast';
-export type {
-  ToastVariants,
-  ToastColor as ToastColorVariant,
-  ToastType as ToastTypeVariant,
-} from './Toast';
+/** @typedef {import('./Toast').ToastVariants} ToastVariants */
+/** @typedef {import('./Toast').ToastColor} ToastColorVariant */
+/** @typedef {import('./Toast').ToastType} ToastTypeVariant */
 export {
   radioIconWrapperStyles,
   getRadioIconWrapperClasses,
@@ -448,7 +441,9 @@ export {
   getRadioGroupHintMarginClass,
   getRadioGroupTemplateClasses,
 } from './Radio';
-export type { RadioSize, RadioVariant, RadioIconWrapperVariants } from './Radio';
+/** @typedef {import('./Radio').RadioSize} RadioSize */
+/** @typedef {import('./Radio').RadioVariant} RadioVariant */
+/** @typedef {import('./Radio').RadioIconWrapperVariants} RadioIconWrapperVariants */
 export {
   BOTTOM_SHEET_EASING,
   BOTTOM_SHEET_Z_INDEX,
@@ -483,7 +478,8 @@ export {
   bottomSheetFooterInnerClass,
   bottomSheetBodyClass,
 } from './BottomSheet';
-export type { BottomSheetBodyPadding, BottomSheetBodyOverflow } from './BottomSheet';
+/** @typedef {import('./BottomSheet').BottomSheetBodyPadding} BottomSheetBodyPadding */
+/** @typedef {import('./BottomSheet').BottomSheetBodyOverflow} BottomSheetBodyOverflow */
 export {
   MODAL_Z_INDEX,
   getModalSurfaceClasses,
@@ -505,7 +501,8 @@ export {
   modalFooterDividerClass,
   modalFooterInnerClass,
 } from './Modal';
-export type { ModalSize, ModalBodyPadding } from './Modal';
+/** @typedef {import('./Modal').ModalSize} ModalSize */
+/** @typedef {import('./Modal').ModalBodyPadding} ModalBodyPadding */
 export { getTabsTemplateClasses } from './Tabs';
 export { getSegmentedControlTemplateClasses } from './SegmentedControl';
 export {
@@ -532,20 +529,19 @@ export {
   getFormHintClasses,
   getFormTemplateClasses,
 } from './Input';
-export type {
-  BaseInputSize,
-  BaseInputValidationState,
-  BaseInputValueComponentType,
-  BaseInputWrapperVariants,
-  BaseInputElementVariants,
-  FormSize,
-  FormLabelPosition,
-  FormHintType,
-} from './Input';
+/** @typedef {import('./Input').BaseInputSize} BaseInputSize */
+/** @typedef {import('./Input').BaseInputValidationState} BaseInputValidationState */
+/** @typedef {import('./Input').BaseInputValueComponentType} BaseInputValueComponentType */
+/** @typedef {import('./Input').BaseInputWrapperVariants} BaseInputWrapperVariants */
+/** @typedef {import('./Input').BaseInputElementVariants} BaseInputElementVariants */
+/** @typedef {import('./Input').FormSize} FormSize */
+/** @typedef {import('./Input').FormLabelPosition} FormLabelPosition */
+/** @typedef {import('./Input').FormHintType} FormHintType */
 export {
   inputGroupFieldCva,
   getInputGroupFieldClasses,
   getInputGroupHintIndentClass,
   getInputGroupTemplateClasses,
 } from './InputGroup';
-export type { InputGroupLabelPosition, InputGroupFieldVariants } from './InputGroup';
+/** @typedef {import('./InputGroup').InputGroupLabelPosition} InputGroupLabelPosition */
+/** @typedef {import('./InputGroup').InputGroupFieldVariants} InputGroupFieldVariants */
