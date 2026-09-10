@@ -2,15 +2,16 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './checkbox.module.css';
 
-export type CheckboxSize = 'small' | 'medium' | 'large';
-export type CheckboxIconVariant = 'default' | 'disabled' | 'negative';
+/** @typedef {'small' | 'medium' | 'large'} CheckboxSize */
+/** @typedef {'default' | 'disabled' | 'negative'} CheckboxIconVariant */
 
-export type CheckboxIconVariants = {
-  size?: CheckboxSize;
-  variant?: CheckboxIconVariant;
-  isChecked?: boolean;
-  isIndeterminate?: boolean;
-};
+/**
+ * @typedef {Object} CheckboxIconVariants
+ * @property {CheckboxSize} [size]
+ * @property {CheckboxIconVariant} [variant]
+ * @property {boolean} [isChecked]
+ * @property {boolean} [isIndeterminate]
+ */
 
 /**
  * Icon-wrapper (the visible box) classes. Combines `size` (width/height +
@@ -56,24 +57,31 @@ export const checkboxIconCva = cva(styles.icon, {
   },
 });
 
-export function getCheckboxIconClasses(props: CheckboxIconVariants): string {
+/**
+ * @param {CheckboxIconVariants} props
+ * @returns {string}
+ */
+export function getCheckboxIconClasses(props) {
   return checkboxIconCva(props);
 }
 
-/** Resolve the icon variant from disabled/negative flags (React precedence). */
-export function getCheckboxIconVariant(
-  isDisabled?: boolean,
-  isNegative?: boolean,
-): CheckboxIconVariant {
+/**
+ * Resolve the icon variant from disabled/negative flags (React precedence).
+ * @param {boolean} [isDisabled]
+ * @param {boolean} [isNegative]
+ * @returns {CheckboxIconVariant}
+ */
+export function getCheckboxIconVariant(isDisabled, isNegative) {
   if (isDisabled) return 'disabled';
   if (isNegative) return 'negative';
   return 'default';
 }
 
-export type CheckboxSvgVariants = {
-  size?: CheckboxSize;
-  isDisabled?: boolean;
-};
+/**
+ * @typedef {Object} CheckboxSvgVariants
+ * @property {CheckboxSize} [size]
+ * @property {boolean} [isDisabled]
+ */
 
 export const checkboxSvgCva = cva(styles.svg, {
   variants: {
@@ -93,14 +101,19 @@ export const checkboxSvgCva = cva(styles.svg, {
   },
 });
 
-export function getCheckboxSvgClasses(props: CheckboxSvgVariants): string {
+/**
+ * @param {CheckboxSvgVariants} props
+ * @returns {string}
+ */
+export function getCheckboxSvgClasses(props) {
   return checkboxSvgCva(props);
 }
 
-export type CheckboxTitleVariants = {
-  size?: CheckboxSize;
-  isDisabled?: boolean;
-};
+/**
+ * @typedef {Object} CheckboxTitleVariants
+ * @property {CheckboxSize} [size]
+ * @property {boolean} [isDisabled]
+ */
 
 export const checkboxTitleCva = cva(styles.title, {
   variants: {
@@ -120,17 +133,24 @@ export const checkboxTitleCva = cva(styles.title, {
   },
 });
 
-export function getCheckboxTitleClasses(props: CheckboxTitleVariants): string {
+/**
+ * @param {CheckboxTitleVariants} props
+ * @returns {string}
+ */
+export function getCheckboxTitleClasses(props) {
   return checkboxTitleCva(props);
 }
 
-export type CheckboxSupportVariants = {
-  size?: CheckboxSize;
-};
+/**
+ * @typedef {Object} CheckboxSupportVariants
+ * @property {CheckboxSize} [size]
+ */
 
-/** Support-text block wrapper — carries the size-keyed left spacing only.
+/**
+ * Support-text block wrapper — carries the size-keyed left spacing only.
  * Font styling lives on the inline `.support-text` child (see below) so the
- * wrapper can establish React's taller line box for correct vertical leading. */
+ * wrapper can establish React's taller line box for correct vertical leading.
+ */
 export const checkboxSupportCva = cva(styles.support, {
   variants: {
     size: {
@@ -144,7 +164,11 @@ export const checkboxSupportCva = cva(styles.support, {
   },
 });
 
-export function getCheckboxSupportClasses(props: CheckboxSupportVariants): string {
+/**
+ * @param {CheckboxSupportVariants} props
+ * @returns {string}
+ */
+export function getCheckboxSupportClasses(props) {
   return checkboxSupportCva(props);
 }
 
@@ -162,14 +186,19 @@ export const checkboxSupportTextCva = cva(styles['support-text'], {
   },
 });
 
-export function getCheckboxSupportTextClasses(props: CheckboxSupportVariants): string {
+/**
+ * @param {CheckboxSupportVariants} props
+ * @returns {string}
+ */
+export function getCheckboxSupportTextClasses(props) {
   return checkboxSupportTextCva(props);
 }
 
-export type CheckboxHintVariants = {
-  size?: CheckboxSize;
-  type?: 'help' | 'error';
-};
+/**
+ * @typedef {Object} CheckboxHintVariants
+ * @property {CheckboxSize} [size]
+ * @property {'help' | 'error'} [type]
+ */
 
 export const checkboxHintCva = cva(styles.hint, {
   variants: {
@@ -193,13 +222,18 @@ export const checkboxHintCva = cva(styles.hint, {
   },
 });
 
-export function getCheckboxHintClasses(props: CheckboxHintVariants): string {
+/**
+ * @param {CheckboxHintVariants} props
+ * @returns {string}
+ */
+export function getCheckboxHintClasses(props) {
   return checkboxHintCva(props);
 }
 
-export type CheckboxHintWrapperVariants = {
-  size?: CheckboxSize;
-};
+/**
+ * @typedef {Object} CheckboxHintWrapperVariants
+ * @property {CheckboxSize} [size]
+ */
 
 /**
  * Form-hint wrapper classes — combines the structural `hint-wrapper` (flex row)
@@ -218,24 +252,31 @@ export const checkboxHintWrapperCva = cva(styles['hint-wrapper'], {
   },
 });
 
-export function getCheckboxHintWrapperClasses(props: CheckboxHintWrapperVariants): string {
+/**
+ * @param {CheckboxHintWrapperVariants} props
+ * @returns {string}
+ */
+export function getCheckboxHintWrapperClasses(props) {
   return checkboxHintWrapperCva(props);
 }
 
-/** Get template/structural classes — call from Svelte to prevent tree-shaking. */
-export function getCheckboxTemplateClasses(): {
-  checkbox: string;
-  label: string;
-  field: string;
-  row: string;
-  input: string;
-  fade: string;
-  fadeShown: string;
-  fadeIn: string;
-  fadeOut: string;
-  hintWrapper: string;
-  hintIcon: string;
-} {
+/**
+ * Get template/structural classes — call from Svelte to prevent tree-shaking.
+ * @returns {{
+ *   checkbox: string,
+ *   label: string,
+ *   field: string,
+ *   row: string,
+ *   input: string,
+ *   fade: string,
+ *   fadeShown: string,
+ *   fadeIn: string,
+ *   fadeOut: string,
+ *   hintWrapper: string,
+ *   hintIcon: string,
+ * }}
+ */
+export function getCheckboxTemplateClasses() {
   return {
     checkbox: styles.checkbox,
     label: styles.label,
@@ -253,9 +294,10 @@ export function getCheckboxTemplateClasses(): {
 
 /* ───────────────────────── CheckboxGroup ───────────────────────── */
 
-export type CheckboxGroupFieldVariants = {
-  labelPosition?: 'top' | 'left';
-};
+/**
+ * @typedef {Object} CheckboxGroupFieldVariants
+ * @property {'top' | 'left'} [labelPosition]
+ */
 
 export const checkboxGroupFieldCva = cva(styles['group-field'], {
   variants: {
@@ -269,15 +311,20 @@ export const checkboxGroupFieldCva = cva(styles['group-field'], {
   },
 });
 
-export function getCheckboxGroupFieldClasses(props: CheckboxGroupFieldVariants): string {
+/**
+ * @param {CheckboxGroupFieldVariants} props
+ * @returns {string}
+ */
+export function getCheckboxGroupFieldClasses(props) {
   return checkboxGroupFieldCva(props);
 }
 
-export type CheckboxGroupOptionsVariants = {
-  orientation?: 'vertical' | 'horizontal';
-  size?: CheckboxSize;
-  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-};
+/**
+ * @typedef {Object} CheckboxGroupOptionsVariants
+ * @property {'vertical' | 'horizontal'} [orientation]
+ * @property {CheckboxSize} [size]
+ * @property {'nowrap' | 'wrap' | 'wrap-reverse'} [flexWrap]
+ */
 
 export const checkboxGroupOptionsCva = cva(styles.options, {
   variants: {
@@ -303,12 +350,21 @@ export const checkboxGroupOptionsCva = cva(styles.options, {
   },
 });
 
-export function getCheckboxGroupOptionsClasses(props: CheckboxGroupOptionsVariants): string {
+/**
+ * @param {CheckboxGroupOptionsVariants} props
+ * @returns {string}
+ */
+export function getCheckboxGroupOptionsClasses(props) {
   return checkboxGroupOptionsCva(props);
 }
 
-export function getCheckboxGroupLabelSizeClass(size: CheckboxSize): string {
-  const map: Record<CheckboxSize, string> = {
+/**
+ * @param {CheckboxSize} size
+ * @returns {string}
+ */
+export function getCheckboxGroupLabelSizeClass(size) {
+  /** @type {Record<CheckboxSize, string>} */
+  const map = {
     small: styles['group-label-small'],
     medium: styles['group-label-medium'],
     large: styles['group-label-large'],
@@ -316,21 +372,24 @@ export function getCheckboxGroupLabelSizeClass(size: CheckboxSize): string {
   return map[size];
 }
 
-/** Get group template/structural classes — call from Svelte to prevent tree-shaking. */
-export function getCheckboxGroupTemplateClasses(): {
-  groupLabel: string;
-  labelRow: string;
-  labelSuffix: string;
-  labelTrailing: string;
-  necessityRequired: string;
-  necessityOptional: string;
-  hint: string;
-  hintHelp: string;
-  hintError: string;
-  hintWrapper: string;
-  hintIcon: string;
-  srOnly: string;
-} {
+/**
+ * Get group template/structural classes — call from Svelte to prevent tree-shaking.
+ * @returns {{
+ *   groupLabel: string,
+ *   labelRow: string,
+ *   labelSuffix: string,
+ *   labelTrailing: string,
+ *   necessityRequired: string,
+ *   necessityOptional: string,
+ *   hint: string,
+ *   hintHelp: string,
+ *   hintError: string,
+ *   hintWrapper: string,
+ *   hintIcon: string,
+ *   srOnly: string,
+ * }}
+ */
+export function getCheckboxGroupTemplateClasses() {
   return {
     groupLabel: styles['group-label'],
     labelRow: styles['label-row'],

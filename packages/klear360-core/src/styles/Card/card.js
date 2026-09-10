@@ -5,10 +5,11 @@ import styles from './card.module.css';
 
 // --- CardRoot CVA ---
 
-export type CardRootVariants = {
-  borderRadius?: 'medium' | 'large' | 'xlarge';
-  asLabel?: boolean;
-};
+/**
+ * @typedef {Object} CardRootVariants
+ * @property {'medium' | 'large' | 'xlarge'} [borderRadius]
+ * @property {boolean} [asLabel]
+ */
 
 export const cardRootStyles = cva(styles.cardRoot, {
   variants: {
@@ -30,21 +31,16 @@ export const cardRootStyles = cva(styles.cardRoot, {
 
 // --- CardSurface CVA ---
 
-export type CardGrayBackgroundColor =
-  | 'surface.background.gray.subtle'
-  | 'surface.background.gray.moderate'
-  | 'surface.background.gray.intense';
+/**
+ * @typedef {'surface.background.gray.subtle' | 'surface.background.gray.moderate' | 'surface.background.gray.intense'} CardGrayBackgroundColor
+ */
 
 /** Colored surface tokens available only on `theme` variant. */
-export type CardThemeBackgroundColor =
-  | 'surface.background.primary.subtle'
-  | 'surface.background.primary.intense'
-  | 'surface.background.sea.subtle'
-  | 'surface.background.sea.intense'
-  | 'surface.background.cloud.subtle'
-  | 'surface.background.cloud.intense';
+/**
+ * @typedef {'surface.background.primary.subtle' | 'surface.background.primary.intense' | 'surface.background.sea.subtle' | 'surface.background.sea.intense' | 'surface.background.cloud.subtle' | 'surface.background.cloud.intense'} CardThemeBackgroundColor
+ */
 
-export type CardBackgroundColor = CardGrayBackgroundColor | CardThemeBackgroundColor;
+/** @typedef {CardGrayBackgroundColor | CardThemeBackgroundColor} CardBackgroundColor */
 
 /**
  * Visual treatment of the Card surface.
@@ -54,8 +50,8 @@ export type CardBackgroundColor = CardGrayBackgroundColor | CardThemeBackgroundC
  * - `secondary`: flat styling with `surface.background.gray.moderate` background.
  * - `theme`: primary elevation (white bottom inset lip, drop shadow)
  *   with black 2% top/bottom gradients and configurable backgroundColor.
+ * @typedef {'primary' | 'secondary' | 'theme'} CardType
  */
-export type CardType = 'primary' | 'secondary' | 'theme';
 
 /**
  * Resolves the effective surface background color for a given Card `type`.
@@ -63,11 +59,11 @@ export type CardType = 'primary' | 'secondary' | 'theme';
  * `primary` and `secondary` own their background and ignore the
  * `backgroundColor` prop. `theme` defers to the configurable
  * `backgroundColor` (defaulting to primary subtle when unset).
+ * @param {CardType} type
+ * @param {CardBackgroundColor} [backgroundColor]
+ * @returns {CardBackgroundColor}
  */
-export const getCardBackgroundColor = (
-  type: CardType,
-  backgroundColor?: CardBackgroundColor,
-): CardBackgroundColor => {
+export const getCardBackgroundColor = (type, backgroundColor) => {
   switch (type) {
     case 'secondary':
       return 'surface.background.gray.moderate';
@@ -79,12 +75,13 @@ export const getCardBackgroundColor = (
   }
 };
 
-export type CardSurfaceVariants = {
-  type?: CardType;
-  backgroundColor?: CardBackgroundColor;
-  padding?: 'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7';
-  borderRadius?: 'medium' | 'large' | 'xlarge';
-};
+/**
+ * @typedef {Object} CardSurfaceVariants
+ * @property {CardType} [type]
+ * @property {CardBackgroundColor} [backgroundColor]
+ * @property {'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7'} [padding]
+ * @property {'medium' | 'large' | 'xlarge'} [borderRadius]
+ */
 
 // `type` selects elevated (primary, theme) vs flat (secondary)
 // surface treatment in card.module.css. The deprecated `elevation` prop on
@@ -131,7 +128,8 @@ export const cardSurfaceStyles = cva(styles.cardSurface, {
   },
 });
 
-const CARD_SURFACE_BACKGROUND_COLOR_KEYS: readonly CardBackgroundColor[] = [
+/** @type {readonly CardBackgroundColor[]} */
+const CARD_SURFACE_BACKGROUND_COLOR_KEYS = [
   'surface.background.gray.subtle',
   'surface.background.gray.moderate',
   'surface.background.gray.intense',
@@ -143,7 +141,8 @@ const CARD_SURFACE_BACKGROUND_COLOR_KEYS: readonly CardBackgroundColor[] = [
   'surface.background.cloud.intense',
 ];
 
-export const CARD_SURFACE_BACKGROUND_UTILITY: Record<CardBackgroundColor, string> = {
+/** @type {Record<CardBackgroundColor, string>} */
+export const CARD_SURFACE_BACKGROUND_UTILITY = {
   'surface.background.gray.subtle': utilityClasses['background-surface-gray-subtle'],
   'surface.background.gray.moderate': utilityClasses['background-surface-gray-moderate'],
   'surface.background.gray.intense': utilityClasses['background-surface-gray-intense'],
@@ -157,23 +156,28 @@ export const CARD_SURFACE_BACKGROUND_UTILITY: Record<CardBackgroundColor, string
   'surface.background.cloud.intense': utilityClasses['background-surface-background-cloud-intense'],
 };
 
-export function getCardSurfaceBackgroundUtilityClass(backgroundColor: CardBackgroundColor): string {
+/**
+ * @param {CardBackgroundColor} backgroundColor
+ * @returns {string}
+ */
+export function getCardSurfaceBackgroundUtilityClass(backgroundColor) {
   return CARD_SURFACE_BACKGROUND_UTILITY[backgroundColor];
 }
 
-export function isCardBackgroundColor(value: string): value is CardBackgroundColor {
-  return (CARD_SURFACE_BACKGROUND_COLOR_KEYS as readonly string[]).includes(value);
+/**
+ * @param {string} value
+ * @returns {value is CardBackgroundColor}
+ */
+export function isCardBackgroundColor(value) {
+  return /** @type {readonly string[]} */ (CARD_SURFACE_BACKGROUND_COLOR_KEYS).includes(value);
 }
 
 /**
  * Pulls a {@link CardBackgroundColor} token out of a space-separated class string.
+ * @param {string | undefined} classNames
+ * @returns {{ backgroundColor?: CardBackgroundColor, remainingClassNames?: string }}
  */
-export function extractCardBackgroundColorFromClassNames(
-  classNames: string | undefined,
-): {
-  backgroundColor?: CardBackgroundColor;
-  remainingClassNames?: string;
-} {
+export function extractCardBackgroundColorFromClassNames(classNames) {
   const trimmed = classNames?.trim();
   if (!trimmed) {
     return {};
@@ -194,20 +198,25 @@ export function extractCardBackgroundColorFromClassNames(
   };
 }
 
-export type GetCardSurfaceClassesParams = {
-  type?: CardType;
-  backgroundColor?: CardBackgroundColor;
-  padding?: CardSurfaceVariants['padding'];
-  borderRadius?: CardSurfaceVariants['borderRadius'];
-};
+/**
+ * @typedef {Object} GetCardSurfaceClassesParams
+ * @property {CardType} [type]
+ * @property {CardBackgroundColor} [backgroundColor]
+ * @property {CardSurfaceVariants['padding']} [padding]
+ * @property {CardSurfaceVariants['borderRadius']} [borderRadius]
+ */
 
-/** Surface class list for {@link CardSurface}: CVA layout, type, and token background utilities. */
+/**
+ * Surface class list for {@link CardSurface}: CVA layout, type, and token background utilities.
+ * @param {GetCardSurfaceClassesParams} params
+ * @returns {string}
+ */
 export function getCardSurfaceClasses({
   type = 'primary',
   backgroundColor,
   padding = 'spacing.7',
   borderRadius = 'medium',
-}: GetCardSurfaceClassesParams): string {
+}) {
   return cardSurfaceStyles({
     type,
     backgroundColor: getCardBackgroundColor(type, backgroundColor),
@@ -218,10 +227,11 @@ export function getCardSurfaceClasses({
 
 // --- CardHeader ---
 
-export type CardHeaderVariants = {
-  paddingBottom?: 'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7';
-  marginBottom?: 'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7';
-};
+/**
+ * @typedef {Object} CardHeaderVariants
+ * @property {'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7'} [paddingBottom]
+ * @property {'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7'} [marginBottom]
+ */
 
 const cardHeaderWrapperStyles = cva(styles.cardHeader, {
   variants: {
@@ -253,12 +263,11 @@ const cardHeaderContentStyles = cva(styles.cardHeaderContent, {
   },
 });
 
-export function getCardHeaderClasses(
-  props: CardHeaderVariants,
-): {
-  wrapper: string;
-  content: string;
-} {
+/**
+ * @param {CardHeaderVariants} props
+ * @returns {{ wrapper: string, content: string }}
+ */
+export function getCardHeaderClasses(props) {
   return {
     wrapper: cardHeaderWrapperStyles({ marginBottom: props.marginBottom }),
     content: cardHeaderContentStyles({ paddingBottom: props.paddingBottom }),
@@ -267,11 +276,12 @@ export function getCardHeaderClasses(
 
 // --- CardFooter ---
 
-export type CardFooterVariants = {
-  paddingTop?: 'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7';
-  marginTop?: 'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7';
-  justifyEnd?: boolean;
-};
+/**
+ * @typedef {Object} CardFooterVariants
+ * @property {'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7'} [paddingTop]
+ * @property {'spacing.0' | 'spacing.3' | 'spacing.4' | 'spacing.5' | 'spacing.7'} [marginTop]
+ * @property {boolean} [justifyEnd]
+ */
 
 const cardFooterWrapperStyles = cva(styles.cardFooter, {
   variants: {
@@ -308,12 +318,11 @@ const cardFooterContentStyles = cva(styles.cardFooterContent, {
   },
 });
 
-export function getCardFooterClasses(
-  props: CardFooterVariants,
-): {
-  wrapper: string;
-  content: string;
-} {
+/**
+ * @param {CardFooterVariants} props
+ * @returns {{ wrapper: string, content: string }}
+ */
+export function getCardFooterClasses(props) {
   return {
     wrapper: cardFooterWrapperStyles({ marginTop: props.marginTop }),
     content: cardFooterContentStyles({
@@ -326,8 +335,9 @@ export function getCardFooterClasses(
 /**
  * Get template classes to prevent Svelte tree-shaking.
  * Call this function in component script blocks.
+ * @returns {Record<string, string>}
  */
-export function getCardTemplateClasses(): Record<string, string> {
+export function getCardTemplateClasses() {
   return {
     cardRoot: styles.cardRoot,
     cardSurface: styles.cardSurface,
