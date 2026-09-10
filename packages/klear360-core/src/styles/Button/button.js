@@ -3,52 +3,36 @@ import { utilityClasses } from '../utilities';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './button.module.css';
 
-export type ButtonVariants = {
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  color?:
-    | 'primary'
-    | 'white'
-    | 'positive'
-    | 'negative'
-    | 'information'
-    | 'notice'
-    | 'neutral'
-    | 'transparent';
-  size?: 'xsmall' | 'small' | 'medium' | 'large';
-  isDisabled?: boolean;
-  isFullWidth?: boolean;
-  isIconOnly?: boolean;
-};
+/**
+ * @typedef {Object} ButtonVariants
+ * @property {'primary' | 'secondary' | 'tertiary'} [variant]
+ * @property {'primary' | 'white' | 'positive' | 'negative' | 'information' | 'notice' | 'neutral' | 'transparent'} [color]
+ * @property {'xsmall' | 'small' | 'medium' | 'large'} [size]
+ * @property {boolean} [isDisabled]
+ * @property {boolean} [isFullWidth]
+ * @property {boolean} [isIconOnly]
+ */
 
-export type ButtonColor =
-  | 'primary'
-  | 'white'
-  | 'positive'
-  | 'negative'
-  | 'information'
-  | 'notice'
-  | 'neutral'
-  | 'transparent';
+/**
+ * @typedef {'primary' | 'white' | 'positive' | 'negative' | 'information' | 'notice' | 'neutral' | 'transparent'} ButtonColor
+ */
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+/** @typedef {'primary' | 'secondary' | 'tertiary'} ButtonVariant */
 
-export type ActionStatesType = 'default' | 'hover' | 'focus' | 'disabled';
+/** @typedef {'default' | 'hover' | 'focus' | 'disabled'} ActionStatesType */
 
 /**
  * Get background color token based on variant, color, and state
  * This generates the color token string that BaseText CVA uses for colors
+ * @param {{
+ *   variant: ButtonVariant,
+ *   color: ButtonColor,
+ *   state: ActionStatesType,
+ *   property: 'background' | 'border',
+ * }} params
+ * @returns {string}
  */
-export function getButtonBackgroundColorToken({
-  variant,
-  color,
-  state,
-  property,
-}: {
-  variant: ButtonVariant;
-  color: ButtonColor;
-  state: ActionStatesType;
-  property: 'background' | 'border';
-}): string {
+export function getButtonBackgroundColorToken({ variant, color, state, property }) {
   const _state = state === 'focus' || state === 'hover' ? 'highlighted' : state;
   const isBorder = property === 'border';
 
@@ -145,14 +129,10 @@ export function getButtonBackgroundColorToken({
  * cover recedes over it. This returns that rest color — the button's disabled-state
  * background, which the receding cover paints. It reuses the standard disabled
  * background token for the variant/color.
+ * @param {{ variant: ButtonVariant, color: ButtonColor }} params
+ * @returns {string}
  */
-export function getButtonProgressRestColorToken({
-  variant,
-  color,
-}: {
-  variant: ButtonVariant;
-  color: ButtonColor;
-}): string {
+export function getButtonProgressRestColorToken({ variant, color }) {
   return getButtonBackgroundColorToken({
     variant,
     color,
@@ -163,18 +143,15 @@ export function getButtonProgressRestColorToken({
 
 /**
  * Get text/icon color token based on variant, color, and state
+ * @param {{
+ *   variant: ButtonVariant,
+ *   color: ButtonColor,
+ *   state: ActionStatesType,
+ *   property: 'icon' | 'text',
+ * }} params
+ * @returns {string}
  */
-export function getButtonTextColorToken({
-  variant,
-  color,
-  state,
-  property,
-}: {
-  variant: ButtonVariant;
-  color: ButtonColor;
-  state: ActionStatesType;
-  property: 'icon' | 'text';
-}): string {
+export function getButtonTextColorToken({ variant, color, state, property }) {
   // Map state to color variant suffix
   const stateSuffix = state === 'disabled' ? 'disabled' : 'normal';
 
@@ -255,11 +232,12 @@ export function getButtonTextColorToken({
 /**
  * Get typography size mapping for buttons
  * These values correspond to BaseText utility classes
+ * @returns {{
+ *   fontSize: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>,
+ *   lineHeight: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>,
+ * }}
  */
-export function getButtonTextSizes(): {
-  fontSize: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>;
-  lineHeight: Record<'xsmall' | 'small' | 'medium' | 'large', 75 | 100 | 200>;
-} {
+export function getButtonTextSizes() {
   return {
     fontSize: {
       xsmall: 75,
@@ -278,8 +256,9 @@ export function getButtonTextSizes(): {
 
 /**
  * Get min height for buttons
+ * @returns {Record<'xsmall' | 'small' | 'medium' | 'large', number>}
  */
-export function getButtonMinHeight(): Record<'xsmall' | 'small' | 'medium' | 'large', number> {
+export function getButtonMinHeight() {
   return {
     xsmall: 28,
     small: 32,
@@ -290,29 +269,28 @@ export function getButtonMinHeight(): Record<'xsmall' | 'small' | 'medium' | 'la
 
 /**
  * Get icon size mapping for buttons
+ * @returns {Record<'xsmall' | 'small' | 'medium' | 'large', 'small' | 'medium'>}
  */
-export function getButtonIconSize(): Record<
-  'xsmall' | 'small' | 'medium' | 'large',
-  'small' | 'medium'
-> {
+export function getButtonIconSize() {
   return {
     xsmall: 'small',
     small: 'small',
     medium: 'medium',
     large: 'medium',
-  } as const;
+  };
 }
 
 /**
  * Get icon-only size mapping
+ * @returns {Record<'xsmall' | 'small' | 'medium' | 'large', 'medium'>}
  */
-export function getButtonIconOnlySize(): Record<'xsmall' | 'small' | 'medium' | 'large', 'medium'> {
+export function getButtonIconOnlySize() {
   return {
     xsmall: 'medium',
     small: 'medium',
     medium: 'medium',
     large: 'medium',
-  } as const;
+  };
 }
 
 export const buttonStyles = cva(styles.btn, {
@@ -381,8 +359,9 @@ export const liveRegionClass = styles['live-region'];
  * @example
  * const buttonClasses = getButtonTemplateClasses();
  * // Use: buttonClasses.content, buttonClasses.icon, etc.
+ * @returns {Record<string, string>}
  */
-export function getButtonTemplateClasses(): Record<string, string> {
+export function getButtonTemplateClasses() {
   return {
     content: buttonContentClass,
     icon: buttonIconClass,
@@ -395,15 +374,17 @@ export function getButtonTemplateClasses(): Record<string, string> {
     progressFill: progressFillClass,
     definiteLoading: definiteLoadingClass,
     liveRegion: liveRegionClass,
-  } as const;
+  };
 }
 
 /**
  * Generate all classes for Button component
  * This is the single source of truth for all Button styling
  * Everything is class-based - no data attributes or inline styles
+ * @param {ButtonVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getButtonClasses(props: ButtonVariants & { className?: string }): string {
+export function getButtonClasses(props) {
   const { className, ...cvaProps } = props;
 
   const classes = [buttonStyles(cvaProps), className].filter(Boolean).join(' ');
