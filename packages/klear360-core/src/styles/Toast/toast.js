@@ -4,13 +4,14 @@ import styles from './toast.module.css';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import containerStyles from './toastContainer.module.css';
 
-export type ToastColor = 'information' | 'negative' | 'neutral' | 'notice' | 'positive';
-export type ToastType = 'informational' | 'promotional';
+/** @typedef {'information' | 'negative' | 'neutral' | 'notice' | 'positive'} ToastColor */
+/** @typedef {'informational' | 'promotional'} ToastType */
 
-export type ToastVariants = {
-  type?: ToastType;
-  color?: ToastColor;
-};
+/**
+ * @typedef {Object} ToastVariants
+ * @property {ToastType} [type]
+ * @property {ToastColor} [color]
+ */
 
 /**
  * CVA wrapper for the toast root element.
@@ -43,10 +44,10 @@ export const toastStyles = cva(styles.toast, {
 /**
  * Build the toast root class string. Adds the enter/exit animation class
  * based on `isVisible`.
+ * @param {ToastVariants & { isVisible?: boolean, className?: string }} props
+ * @returns {string}
  */
-export function getToastClasses(
-  props: ToastVariants & { isVisible?: boolean; className?: string },
-): string {
+export function getToastClasses(props) {
   const { className, isVisible = true, ...cvaProps } = props;
   const animationClass = isVisible ? styles['toast-enter'] : styles['toast-exit'];
   return [toastStyles(cvaProps), animationClass, className].filter(Boolean).join(' ');
@@ -66,8 +67,9 @@ export const toastExitClass = styles['toast-exit'];
  * Aggregated structural classes. Call this from the Svelte component to
  * keep CSS class imports alive against the bundler's tree-shaker (CSS
  * modules export ESM objects, so unused individual exports get dropped).
+ * @returns {Record<string, string>}
  */
-export function getToastTemplateClasses(): Record<string, string> {
+export function getToastTemplateClasses() {
   return {
     toast: styles.toast,
     iconWrapper: toastIconWrapperClass,
@@ -76,7 +78,7 @@ export function getToastTemplateClasses(): Record<string, string> {
     dismissButton: toastDismissButtonClass,
     toastEnter: toastEnterClass,
     toastExit: toastExitClass,
-  } as const;
+  };
 }
 
 /**
@@ -84,8 +86,10 @@ export function getToastTemplateClasses(): Record<string, string> {
  *
  * Mirrors the React source: promotional toasts use the gray icon token,
  * informational toasts always use static-white regardless of color.
+ * @param {{ type: ToastType }} params
+ * @returns {string}
  */
-export function getToastIconColorToken({ type }: { type: ToastType }): string {
+export function getToastIconColorToken({ type }) {
   return type === 'promotional' ? 'surface.icon.gray.normal' : 'surface.icon.staticWhite.normal';
 }
 
@@ -95,8 +99,10 @@ export function getToastIconColorToken({ type }: { type: ToastType }): string {
  * Informational text is always rendered as static-white (the React source
  * wraps content in `<Text color="surface.text.staticWhite.normal">`).
  * Promotional toasts inherit text color from the consumer-supplied snippet.
+ * @param {{ type: ToastType }} params
+ * @returns {string}
  */
-export function getToastTextColorToken({ type }: { type: ToastType }): string {
+export function getToastTextColorToken({ type }) {
   return type === 'promotional' ? 'surface.text.gray.normal' : 'surface.text.staticWhite.normal';
 }
 
@@ -105,15 +111,13 @@ export function getToastTextColorToken({ type }: { type: ToastType }): string {
  *
  * Mirrors React: promotional uses secondary/primary, informational uses
  * tertiary/white.
+ * @param {{ type: ToastType }} params
+ * @returns {{
+ *   variant: 'primary' | 'secondary' | 'tertiary',
+ *   color: 'primary' | 'white' | 'positive' | 'negative',
+ * }}
  */
-export function getToastActionButtonProps({
-  type,
-}: {
-  type: ToastType;
-}): {
-  variant: 'primary' | 'secondary' | 'tertiary';
-  color: 'primary' | 'white' | 'positive' | 'negative';
-} {
+export function getToastActionButtonProps({ type }) {
   return type === 'promotional'
     ? { variant: 'secondary', color: 'primary' }
     : { variant: 'tertiary', color: 'white' };
@@ -142,13 +146,14 @@ export const toastWrapperClass = containerStyles['toast-wrapper'];
 /**
  * Aggregated container classes — same anti-tree-shake pattern as
  * `getToastTemplateClasses`.
+ * @returns {Record<string, string>}
  */
-export function getToastContainerTemplateClasses(): Record<string, string> {
+export function getToastContainerTemplateClasses() {
   return {
     container: toastContainerClass,
     hoverRegion: toastHoverRegionClass,
     wrapper: toastWrapperClass,
-  } as const;
+  };
 }
 
 /**
@@ -158,33 +163,15 @@ export function getToastContainerTemplateClasses(): Record<string, string> {
  * - Promo toast: always visible (1)
  * - Expanded stack: always visible (1)
  * - Otherwise: hidden (0)
+ * @param {{ index: number, isVisible: boolean, isExpanded: boolean, isPromotional: boolean }} params
+ * @returns {number}
  */
-export function getToastWrapperOpacity({
-  index,
-  isVisible,
-  isExpanded,
-  isPromotional,
-}: {
-  index: number;
-  isVisible: boolean;
-  isExpanded: boolean;
-  isPromotional: boolean;
-}): number {
+export function getToastWrapperOpacity({ index, isVisible, isExpanded, isPromotional }) {
   if (!isVisible) return 0;
   if (index < PEEKS + MAX_TOASTS) return 1;
   if (isPromotional || isExpanded) return 1;
   return 0;
 }
-
-type CalculateYProps = {
-  index: number;
-  toastsBefore: number;
-  isExpanded: boolean;
-  hasPromoToast: boolean;
-  promoToastHeight: number;
-  isPromotional: boolean;
-  heightsBefore: number[];
-};
 
 /**
  * Compute `(offset, scale)` for a toast at the given position in the stack.
@@ -196,6 +183,16 @@ type CalculateYProps = {
  * - Collapsed: peek offset (PEEK_GUTTER per toast)
  * - Lift offset by promo height when a promo toast is present
  * - Promo toasts always at the bottom (offset 0, scale 1)
+ * @param {{
+ *   index: number,
+ *   toastsBefore: number,
+ *   isExpanded: boolean,
+ *   hasPromoToast: boolean,
+ *   promoToastHeight: number,
+ *   isPromotional: boolean,
+ *   heightsBefore: number[],
+ * }} params
+ * @returns {{ offset: number, scale: number }}
  */
 export function calculateToastYPosition({
   index,
@@ -205,7 +202,7 @@ export function calculateToastYPosition({
   promoToastHeight,
   isPromotional,
   heightsBefore,
-}: CalculateYProps): { offset: number; scale: number } {
+}) {
   let scale = Math.max(0.7, 1 - toastsBefore * SCALE_FACTOR);
   if (index < MAX_TOASTS) {
     scale = 1;
