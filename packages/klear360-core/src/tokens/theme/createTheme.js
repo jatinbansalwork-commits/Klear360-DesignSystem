@@ -1,43 +1,31 @@
 import tinycolor from 'tinycolor2';
-import type { WCAG2Options, ColorInput } from 'tinycolor2';
 import { colors as globalColors, opacity } from '~tokens/global';
-import type { ColorChromaticScale } from '~tokens/global/colors';
 import { throwKlear360Error } from '~utils/logger';
 import merge from '~utils/lodashButBetter/merge';
-import type { DeepPartial } from '~utils/isPartialMatchObjectKeys';
 import klear360Theme from './klear360Theme';
 import overrideTheme from './overrideTheme';
-import type { ThemeTokens } from './theme';
 import { buildFontFaceCss } from '~utils/buildFontFaceCss';
 import { buildSurfaceColorOverrides, buildTypographyOverrides } from './createThemeOverrides';
-import type { CreateThemeConfig, CreateThemeResult } from './createThemeConfig';
 
-export type {
-  CreateThemeConfig,
-  CreateThemeFontFace,
-  CreateThemeFontFamilyOverride,
-  CreateThemeFontSizeOverride,
-  CreateThemeResult,
-  CreateThemeSurfaceBackgroundOverride,
-  CreateThemeSurfaceOverride,
-} from './createThemeConfig';
+export * from './createThemeConfig';
 
 // WCAG2ContrastOptions are the options used to determine if a color is readable
-const WCAG2ContrastOptions: WCAG2Options = {
+/** @type {import('tinycolor2').WCAG2Options} */
+const WCAG2ContrastOptions = {
   level: 'AAA',
   size: 'large',
 };
 
 /**
  * getColorWithOpacity
- * @param color - The color to add opacity to
- * @param opacity - The opacity to add to the color
- * @returns The color with the opacity added
+ * @param {import('tinycolor2').ColorInput} color - The color to add opacity to
+ * @param {number} opacity - The opacity to add to the color
+ * @returns {string} The color with the opacity added
  * @example
  * getColorWithOpacity('#fff', 0.5) // returns 'hsla(0, 0%, 100%, 0.5)'
  *
  **/
-const getColorWithOpacity = (color: ColorInput, opacity: number): string => {
+const getColorWithOpacity = (color, opacity) => {
   return tinycolor(color).setAlpha(opacity).toHslString();
 };
 
@@ -46,10 +34,10 @@ const getColorWithOpacity = (color: ColorInput, opacity: number): string => {
  * @description
  * Generates a chromatic color palette based on the base color passed in.
  * The base color is used to generate a palette of 11 colors, 5 shades lighter and 5 shades darker than the base color.
- * @param baseColorInput - The base color to generate the chromatic color palette from in hex, rgb, or hsl format
- * @returns Array of chromatic color palette
+ * @param {import('tinycolor2').ColorInput} baseColorInput - The base color to generate the chromatic color palette from in hex, rgb, or hsl format
+ * @returns {import('~tokens/global/colors').ColorChromaticScale} Array of chromatic color palette
  */
-const generateChromaticBrandColors = (baseColorInput: ColorInput): ColorChromaticScale => {
+const generateChromaticBrandColors = (baseColorInput) => {
   const baseColor = tinycolor(baseColorInput);
   const baseColorHslString = baseColor.toHslString();
   if (typeof __DEV__ !== 'undefined' && __DEV__) {
@@ -86,18 +74,19 @@ const generateChromaticBrandColors = (baseColorInput: ColorInput): ColorChromati
   const colorPalette = palette.reverse();
   const brandPrimaryColor = colorPalette[6];
 
-  const brandColors: ColorChromaticScale = {
-    '50': colorPalette[0],
-    '100': colorPalette[1],
-    '200': colorPalette[2],
-    '300': colorPalette[3],
-    '400': colorPalette[4],
-    '500': colorPalette[5],
-    '600': brandPrimaryColor,
-    '700': colorPalette[7],
-    '800': colorPalette[8],
-    '900': colorPalette[9],
-    '1000': colorPalette[10],
+  /** @type {import('~tokens/global/colors').ColorChromaticScale} */
+  const brandColors = {
+    50: colorPalette[0],
+    100: colorPalette[1],
+    200: colorPalette[2],
+    300: colorPalette[3],
+    400: colorPalette[4],
+    500: colorPalette[5],
+    600: brandPrimaryColor,
+    700: colorPalette[7],
+    800: colorPalette[8],
+    900: colorPalette[9],
+    1000: colorPalette[10],
     a50: getColorWithOpacity(brandPrimaryColor, opacity[100]),
     a150: getColorWithOpacity(brandPrimaryColor, opacity[100]),
     a100: getColorWithOpacity(brandPrimaryColor, opacity[200]),
@@ -110,13 +99,11 @@ const generateChromaticBrandColors = (baseColorInput: ColorInput): ColorChromati
 
 /**
  *
- * @param brandColors - The brand colors to use to override the light theme
+ * @param {import('~tokens/global/colors').ColorChromaticScale} brandColors - The brand colors to use to override the light theme
  * @description Returns overrides for the light theme with the brand colors passed in
- * @returns Overrides for the light theme with the custom brand colors
+ * @returns {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onLight']>} Overrides for the light theme with the custom brand colors
  */
-const getOnLightOverrides = (
-  brandColors: ColorChromaticScale,
-): DeepPartial<ThemeTokens['colors']['onLight']> => {
+const getOnLightOverrides = (brandColors) => {
   // Select the most readable color to use as the foreground color on top of surface color
   // For example: On Secondary Button where the background color is surface color, the text color should be either the brand color or dark color depending on which is more readable on top of that surface color
   const foregroundOnSurface = tinycolor.isReadable(
@@ -136,7 +123,8 @@ const getOnLightOverrides = (
     .toHslString();
 
   // Overrides for the light theme with the brand colors passed in
-  const lightThemeOverrides: DeepPartial<ThemeTokens['colors']['onLight']> = {
+  /** @type {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onLight']>} */
+  const lightThemeOverrides = {
     interactive: {
       background: {
         primary: {
@@ -215,13 +203,11 @@ const getOnLightOverrides = (
 
 /**
  *
- * @param brandColors - The brand colors to use to override the dark theme
+ * @param {import('~tokens/global/colors').ColorChromaticScale} brandColors - The brand colors to use to override the dark theme
  * @description Returns overrides for the dark theme with the brand colors passed in
- * @returns Overrides for the dark theme with the custom brand colors
+ * @returns {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onDark']>} Overrides for the dark theme with the custom brand colors
  */
-const getOnDarkOverrides = (
-  brandColors: ColorChromaticScale,
-): DeepPartial<ThemeTokens['colors']['onDark']> => {
+const getOnDarkOverrides = (brandColors) => {
   // Select the most readable color to use as the foreground color on top of surface color
   // For example: On Secondary Button where the background color is surface color, the text color should be either the brand color or dark color depending on which is more readable on top of that surface color
   const foregroundOnSurface = tinycolor.isReadable(
@@ -241,7 +227,8 @@ const getOnDarkOverrides = (
     .toHslString();
 
   // Overrides for the dark theme with the brand colors passed in
-  const darkThemeOverrides: DeepPartial<ThemeTokens['colors']['onDark']> = {
+  /** @type {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onDark']>} */
+  const darkThemeOverrides = {
     interactive: {
       background: {
         primary: {
@@ -314,9 +301,10 @@ const getOnDarkOverrides = (
 };
 
 /**
- * @param themeConfig - Brand color and optional global theme overrides
+ * @param {import('./createThemeConfig').CreateThemeConfig} themeConfig - Brand color and optional global theme overrides
  * @description
  * Creates Klear360 theme tokens from a brand color plus optional typography, surface, and radius overrides.
+ * @returns {import('./createThemeConfig').CreateThemeResult}
  * @example
  * const { theme, brandColors, fontFaceCSS } = createTheme({
  *   brandColor: '#19BEA2',
@@ -336,7 +324,7 @@ export const createTheme = ({
   fontSizeOverrides,
   fontSizeScaleFactor,
   surface,
-}: CreateThemeConfig): CreateThemeResult => {
+}) => {
   const chromaticBrandColors = generateChromaticBrandColors(brandColor);
   const brandedLightTheme = getOnLightOverrides(chromaticBrandColors);
   const brandedDarkTheme = getOnDarkOverrides(chromaticBrandColors);
@@ -353,12 +341,12 @@ export const createTheme = ({
       name: `custom-${tinycolor(brandColor).toHex()}`,
       colors: {
         onLight: merge(
-          {} as DeepPartial<ThemeTokens['colors']['onLight']>,
+          /** @type {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onLight']>} */ ({}),
           brandedLightTheme,
           surfaceColorOverrides?.onLight ?? {},
         ),
         onDark: merge(
-          {} as DeepPartial<ThemeTokens['colors']['onDark']>,
+          /** @type {import('~utils/isPartialMatchObjectKeys').DeepPartial<import('./theme').ThemeTokens['colors']['onDark']>} */ ({}),
           brandedDarkTheme,
           surfaceColorOverrides?.onDark ?? {},
         ),
