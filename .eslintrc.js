@@ -202,6 +202,18 @@ module.exports = {
       },
     },
     {
+      // TS-to-JSDoc migration: @typescript-eslint/explicit-function-return-type checks
+      // for actual TypeScript return-type annotation syntax, which JSDoc @returns
+      // comments can never satisfy (they're not part of the type-annotation AST node
+      // the rule inspects) - the rule would otherwise fire on every converted function
+      // regardless of how thoroughly it's JSDoc-documented. Add each migrating
+      // package's src/**/*.{js,jsx} here as its migration begins.
+      files: ['packages/klear360-core/src/**/*.{js,jsx}'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+    {
       // klear360 imports from sibling packages in monorepo
       files: ['packages/klear360/**/*.{ts,tsx,js}'],
       rules: {

@@ -1,25 +1,31 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-function cloneDeep<T>(source: T): T {
+/**
+ * @template T
+ * @param {T} source
+ * @returns {T}
+ */
+function cloneDeep(source) {
   if (source === null || typeof source !== 'object') {
     return source;
   }
 
   if (Array.isArray(source)) {
-    const newArray: any[] = [];
+    /** @type {any[]} */
+    const newArray = [];
     for (const item of source) {
       newArray.push(cloneDeep(item));
     }
-    return newArray as T;
+    return /** @type {T} */ (newArray);
   }
 
   if (typeof source === 'object') {
-    const newObject: Record<string, any> = {};
+    /** @type {Record<string, any>} */
+    const newObject = {};
     for (const key in source) {
       if (source.hasOwnProperty(key)) {
         newObject[key] = cloneDeep(source[key]);
       }
     }
-    return newObject as T;
+    return /** @type {T} */ (newObject);
   }
 
   return source;

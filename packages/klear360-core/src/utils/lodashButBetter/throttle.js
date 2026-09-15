@@ -1,10 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-function throttle(func: (...args: any[]) => void, wait: number): (...args: any[]) => void {
+/**
+ * @param {(...args: any[]) => void} func
+ * @param {number} wait
+ * @returns {(...args: any[]) => void}
+ */
+function throttle(func, wait) {
   let isThrottled = false;
-  let lastArgs: any[] | null = null;
+  /** @type {any[] | null} */
+  let lastArgs = null;
 
-  function wrapper(...args: any[]) {
+  /** @param {any[]} args */
+  function wrapper(...args) {
     if (isThrottled) {
       lastArgs = args;
       return;

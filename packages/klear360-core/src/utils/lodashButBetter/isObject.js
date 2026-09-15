@@ -1,5 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-function isObject(value: any): value is Record<string, any> {
+/**
+ * @param {any} value
+ * @returns {value is Record<string, any>}
+ */
+function isObject(value) {
   const type = typeof value;
   return value != null && (type === 'object' || type === 'function');
 }
