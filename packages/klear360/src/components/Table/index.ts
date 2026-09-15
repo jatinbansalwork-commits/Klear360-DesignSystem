@@ -6,6 +6,7 @@ export { TablePagination } from './TablePagination';
 export { TableToolbar, TableToolbarActions } from './TableToolbar';
 export type {
   TableProps,
+  TableColumnConfig,
   TableBodyProps,
   TableCellProps,
   TableData,

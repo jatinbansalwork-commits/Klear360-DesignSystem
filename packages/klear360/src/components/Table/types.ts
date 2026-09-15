@@ -109,12 +109,65 @@ type TableHeaderCellProps = {
 } & TableCellGridSpanningProps &
   DataAnalyticsAttribute;
 
-type TableProps<Item> = {
+/**
+ * Declarative column config, as an alternative to hand-writing TableHeader/TableBody JSX.
+ * Pass an array of these to Table's `columns` prop instead of `children` to have Table build
+ * the header row and body cells for you.
+ */
+type TableColumnConfig<Item> = {
   /**
-   * The children of the Table component should be a function that returns TableHeader, TableBody and TableFooter components.
-   * The function will be called with the tableData prop.
+   * Unique key for the column. Also used as the column's `headerKey` when `sortable` is true,
+   * so it lines up with the key you use in Table's `sortFunctions` prop.
    */
-  children: (tableData: TableNode<Item>[]) => React.ReactElement;
+  key: string;
+  /**
+   * Content rendered in the column's header cell.
+   */
+  header: React.ReactNode;
+  /**
+   * Renders a single row's cell content for this column.
+   */
+  render: (item: TableNode<Item>, index: number) => React.ReactNode;
+  /**
+   * Column width, passed through as a `grid-template-columns` track (e.g. `'120px'`, `'1fr'`,
+   * `'minmax(100px, 1fr)'`). Falls back to the same `minmax(100px, 1fr)` every column gets by
+   * default when omitted. Only takes effect when the Table's own `gridTemplateColumns` prop is
+   * not also set — an explicit `gridTemplateColumns` always wins, matching how that prop already
+   * behaves for hand-written columns.
+   */
+  width?: string;
+  /**
+   * Gives this column's header cell a `headerKey`, the existing hook Table's sorting already
+   * looks for. Sorting itself still requires a matching entry in the `sortFunctions` prop — this
+   * only wires the column up to participate if you provide one.
+   * @default false
+   */
+  sortable?: boolean;
+};
+
+type TableChildrenProps<Item> =
+  | {
+      /**
+       * The children of the Table component should be a function that returns TableHeader, TableBody and TableFooter components.
+       * The function will be called with the tableData prop.
+       *
+       * Use this or `columns`, not both.
+       */
+      children: (tableData: TableNode<Item>[]) => React.ReactElement;
+      columns?: never;
+    }
+  | {
+      children?: never;
+      /**
+       * Column config array, as an alternative to hand-writing TableHeader/TableBody JSX via
+       * `children`. Table builds the header row and body cells from this array instead.
+       *
+       * Use this or `children`, not both.
+       */
+      columns: TableColumnConfig<Item>[];
+    };
+
+type TableProps<Item> = TableChildrenProps<Item> & {
   /**
    * The data prop is an object with a nodes property that is an array of objects.
    * Each object in the array is a row in the table.
@@ -643,6 +696,7 @@ type VirtualizedWrapperProps = {
 
 export type {
   TableProps,
+  TableColumnConfig,
   Identifier,
   TableNode,
   TableData,

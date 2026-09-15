@@ -32,6 +32,8 @@ import type {
 } from './types';
 import { getTableBodyStyles } from './commonStyles';
 import { TableSurface } from './TableSurface.web';
+import { TableHeader, TableHeaderRow, TableHeaderCell } from './TableHeader';
+import { TableBody, TableRow, TableCell } from './TableBody';
 import { makeBorderSize, makeMotionTime, makeSpace } from '~utils';
 import { getComponentId, isValidAllowedChildren } from '~utils/isValidAllowedChildren';
 import { throwKlear360Error } from '~utils/logger';
@@ -175,6 +177,7 @@ const StyledSkeletonRow = styled(BaseBox)<{ $columns: number; $isHeader?: boolea
 
 const _Table = <Item,>({
   children,
+  columns,
   data,
   multiSelectTrigger = 'row',
   selectionType = 'none',
@@ -189,7 +192,7 @@ const _Table = <Item,>({
   pagination,
   height,
   showStripedRows,
-  gridTemplateColumns,
+  gridTemplateColumns: gridTemplateColumnsProp,
   isLoading = false,
   isRefreshing = false,
   showBorderedCells = false,
@@ -201,6 +204,47 @@ const _Table = <Item,>({
 }: TableProps<Item>): React.ReactElement => {
   const { theme, colorScheme } = useTheme();
   const { isInsideListView } = useListViewContext();
+
+  // When `columns` is used instead of `children`, build the equivalent TableHeader/TableBody
+  // tree from the column config, using the real Table sub-components so everything else
+  // (componentId-based header-cell counting, sorting hookup, etc.) works exactly as if the
+  // consumer had hand-written this JSX themselves.
+  const resolvedChildren = useMemo((): ((tableData: TableNode<Item>[]) => React.ReactElement) => {
+    if (children) {
+      return children;
+    }
+    return (tableData: TableNode<Item>[]): React.ReactElement => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            {columns.map((column) => (
+              <TableHeaderCell
+                key={column.key}
+                headerKey={column.sortable ? column.key : undefined}
+              >
+                {column.header}
+              </TableHeaderCell>
+            ))}
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={item.id} item={item}>
+              {columns.map((column) => (
+                <TableCell key={column.key}>{column.render(item, index)}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    );
+  }, [children, columns]);
+
+  // An explicit gridTemplateColumns prop always wins, matching how that prop already behaves
+  // for hand-written columns; otherwise derive one from each column's `width` when using `columns`.
+  const gridTemplateColumns =
+    gridTemplateColumnsProp ??
+    columns?.map((column) => column.width ?? 'minmax(100px, 1fr)').join(' ');
   const [selectedRows, setSelectedRows] = React.useState<TableNode<unknown>['id'][]>(
     selectionType !== 'none' ? defaultSelectedIds : [],
   );
@@ -213,7 +257,7 @@ const _Table = <Item,>({
     undefined,
   );
   const [hasHoverActions, setHasHoverActions] = React.useState(false);
-  const tableRootComponent = children([]);
+  const tableRootComponent = resolvedChildren([]);
   const isVirtualized = getComponentId(tableRootComponent) === ComponentIds.VirtualizedTable;
   // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
   const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || isFirstColumnSticky;
@@ -231,7 +275,7 @@ const _Table = <Item,>({
   });
 
   // Table Theme
-  const columnCount = getTableHeaderCellCount(children);
+  const columnCount = getTableHeaderCellCount(resolvedChildren);
   const firstColumnStickyHeaderCellCSS = isFirstColumnSticky
     ? `
   &:nth-of-type(1) {
@@ -690,7 +734,7 @@ const _Table = <Item,>({
               {...metaAttribute({ name: MetaConstants.Table })}
               {...makeAnalyticsAttribute(rest)}
             >
-              {children}
+              {resolvedChildren}
             </StyledReactTable>
             {pagination}
           </BaseBox>
