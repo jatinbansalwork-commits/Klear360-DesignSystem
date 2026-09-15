@@ -86,7 +86,6 @@ export const parameters = {
           'Stagger',
           'Recipes',
         ],
-        'Recipes',
       ],
     },
   },
