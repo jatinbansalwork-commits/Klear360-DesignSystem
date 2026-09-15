@@ -1,5 +1,4 @@
 import React from 'react';
-import type { ReactElement, Ref } from 'react';
 import { indicatorDotSizes, textSizeMapping } from './indicatorTokens';
 import { useTheme } from '~components/Klear360Provider';
 import BaseBox from '~components/Box/BaseBox';
@@ -7,56 +6,36 @@ import Svg from '~components/Icons/_Svg';
 import Circle from '~components/Icons/_Svg/Circle';
 import { Text } from '~components/Typography';
 import { getStringFromReactText } from '~src/utils/getStringChildren';
-import type {
-  DataAnalyticsAttribute,
-  Klear360ElementRef,
-  StringChildrenType,
-  TestID,
-} from '~utils/types';
-import type { FeedbackColors } from '~tokens/theme/theme';
 import { isReactNative } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { getStyledProps } from '~components/Box/styledProps';
-import type { StyledPropsKlear360 } from '~components/Box/styledProps';
 import { makeAccessible } from '~utils/makeAccessible';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 
-type IndicatorProps = {
-  /**
-   * Sets the color tone
-   *
-   * @default neutral
-   */
-  color?: FeedbackColors | 'primary';
+/**
+ * @typedef {{
+ *   color?: import('~tokens/theme/theme').FeedbackColors | 'primary',
+ *   emphasis?: 'subtle' | 'intense',
+ *   size?: 'small' | 'medium' | 'large',
+ *   children?: import('~utils/types').StringChildrenType,
+ *   accessibilityLabel?: string,
+ * } & import('~utils/types').TestID
+ *   & import('~utils/types').DataAnalyticsAttribute
+ *   & import('~components/Box/styledProps').StyledPropsKlear360} IndicatorProps
+ *
+ * - `color` — sets the color tone. Default `neutral`.
+ * - `emphasis` — sets the emphasis of the indicator; `intense` shows a background circle. Default `subtle`.
+ * - `size` — size of the indicator. Default `medium`.
+ * - `children` — a text label to show alongside the indicator dot.
+ * - `accessibilityLabel` — a11y label for screen readers.
+ */
 
-  /**
-   * Sets the emphasis of the indicator
-   *
-   * If set to intense it will show a background circle
-   *
-   * @default subtle
-   */
-  emphasis?: 'subtle' | 'intense';
-
-  /**
-   * Size of the indicator
-   *
-   * @default medium
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * A text label to show alongside the indicator dot
-   */
-  children?: StringChildrenType;
-  /**
-   * a11y label for screen readers
-   */
-  accessibilityLabel?: string;
-} & TestID &
-  DataAnalyticsAttribute &
-  StyledPropsKlear360;
-
+/**
+ * @param {IndicatorProps} props
+ * @param {React.Ref<import('~utils/types').Klear360ElementRef>} ref
+ * @returns {React.ReactElement}
+ */
 const _Indicator = (
   {
     accessibilityLabel,
@@ -66,9 +45,9 @@ const _Indicator = (
     emphasis = 'subtle',
     testID,
     ...rest
-  }: IndicatorProps,
-  ref: Ref<Klear360ElementRef>,
-): ReactElement => {
+  },
+  ref,
+) => {
   const { theme } = useTheme();
   const childrenString = getStringFromReactText(children);
   const isIntense = emphasis === 'intense';
@@ -93,8 +72,8 @@ const _Indicator = (
 
   return (
     <BaseBox
-      ref={ref as never}
-      display={(isWeb ? 'inline-flex' : 'flex') as never}
+      ref={/** @type {never} */ (ref)}
+      display={/** @type {never} */ (isWeb ? 'inline-flex' : 'flex')}
       {...a11yProps}
       {...metaAttribute({ name: MetaConstants.Indicator, testID })}
       {...getStyledProps(rest)}
@@ -130,5 +109,4 @@ const Indicator = assignWithoutSideEffects(React.forwardRef(_Indicator), {
   componentId: 'Indicator',
 });
 
-export type { IndicatorProps };
 export { Indicator };
