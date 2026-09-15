@@ -10,8 +10,9 @@ import { klear360Theme } from '~tokens/theme';
 import { Box } from '~components/Box';
 import type { HeadingProps } from '~components/Typography';
 import { Display, Heading } from '~components/Typography';
-import { AnnouncementIcon, FigmaIcon, FileTextIcon } from '~components/Icons';
+import { AnnouncementIcon, FileTextIcon } from '~components/Icons';
 import { Button } from '~components/Button';
+import { Badge } from '~components/Badge';
 
 const Subtitle = (props: HeadingProps): React.ReactElement => {
   return (
@@ -20,6 +21,9 @@ const Subtitle = (props: HeadingProps): React.ReactElement => {
 };
 
 type StoryPageWrapperTypes = {
+  // No longer rendered (the "View on Figma" button was removed), kept so the ~90 stories that
+  // already pass it don't need touching.
+  // eslint-disable-next-line react/no-unused-prop-types
   figmaURL?: string;
   codeUrl?: string;
   argTableComponent?: unknown;
@@ -95,19 +99,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
         </Box>
         <Box paddingBottom="spacing.4" display="flex" gap="spacing.4" marginBottom="spacing.6">
           {componentMetaInfo?.frameworks.react?.releasedIn ? (
-            <Button
-              href={`https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360%40${componentMetaInfo.frameworks.react.releasedIn}`}
-              variant="tertiary"
-              icon={AnnouncementIcon}
-              target="_blank"
-            >
-              Released In: v{componentMetaInfo.frameworks.react.releasedIn}
-            </Button>
-          ) : null}
-          {props.figmaURL ? (
-            <Button href={props.figmaURL} variant="tertiary" icon={FigmaIcon} target="_blank">
-              View on Figma
-            </Button>
+            <Badge icon={AnnouncementIcon}>Released In: v1.1</Badge>
           ) : null}
           {props.codeUrl ? (
             <Button href={props.codeUrl} variant="tertiary" icon={FileTextIcon} target="_blank">
