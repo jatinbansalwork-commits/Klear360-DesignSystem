@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import dedent from 'dedent';
 import { z } from 'zod';
 import { handleError } from '../utils/errorUtils.js';
@@ -63,7 +62,8 @@ const getChangelogToolSchema = {
     ),
 };
 
-const getChangelogToolCallback: ToolCallback<typeof getChangelogToolSchema> = async ({
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getChangelogToolSchema>} */
+const getChangelogToolCallback = async ({
   fromVersion,
   toVersion,
   isRange,
@@ -110,7 +110,7 @@ const getChangelogToolCallback: ToolCallback<typeof getChangelogToolSchema> = as
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: getChangelogToolName,
       mcpErrorMessage: `Failed to read changelog, ${error}`,

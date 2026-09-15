@@ -8,7 +8,6 @@ import {
   writeFileSync,
   readdirSync,
 } from 'fs';
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import {
   KLEAR360_SKILL_FILE_PATH,
@@ -21,7 +20,6 @@ import { hasOutdatedSkill } from '../utils/generalUtils.js';
 import { handleError } from '../utils/errorUtils.js';
 // eslint-disable-next-line import/no-cycle
 import { skillCreationInstructions } from '../utils/skillUtils.js';
-import type { McpToolResponse } from '../utils/types.js';
 
 const createKlear360SkillToolName = 'create_klear360_skill';
 
@@ -36,14 +34,13 @@ const createKlear360SkillToolSchema = {
     ),
 };
 
-// Core business logic function
-const createKlear360SkillCore = ({
-  currentProjectRootDirectory,
-  isHttpTransport = false,
-}: {
-  currentProjectRootDirectory: string;
-  isHttpTransport?: boolean;
-}): McpToolResponse => {
+/**
+ * @param {Object} params
+ * @param {string} params.currentProjectRootDirectory
+ * @param {boolean} [params.isHttpTransport]
+ * @returns {import('../utils/types.js').McpToolResponse}
+ */
+const createKlear360SkillCore = ({ currentProjectRootDirectory, isHttpTransport = false }) => {
   try {
     // For HTTP transport, return instructions instead of creating the file directly
     if (isHttpTransport) {
@@ -119,7 +116,7 @@ const createKlear360SkillCore = ({
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: createKlear360SkillToolName,
       errorObject: error,
@@ -127,20 +124,16 @@ const createKlear360SkillCore = ({
   }
 };
 
-// Callback for stdio transport
-const createKlear360SkillStdioCallback: ToolCallback<typeof createKlear360SkillToolSchema> = ({
-  currentProjectRootDirectory,
-}) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof createKlear360SkillToolSchema>} */
+const createKlear360SkillStdioCallback = ({ currentProjectRootDirectory }) => {
   return createKlear360SkillCore({
     currentProjectRootDirectory,
     isHttpTransport: false,
   });
 };
 
-// Callback for HTTP transport
-const createKlear360SkillHttpCallback: ToolCallback<typeof createKlear360SkillToolSchema> = ({
-  currentProjectRootDirectory,
-}) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof createKlear360SkillToolSchema>} */
+const createKlear360SkillHttpCallback = ({ currentProjectRootDirectory }) => {
   return createKlear360SkillCore({
     currentProjectRootDirectory,
     isHttpTransport: true,
