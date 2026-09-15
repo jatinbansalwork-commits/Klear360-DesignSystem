@@ -4,9 +4,10 @@ import styles from './appBar.module.css';
 
 // --- AppBar root CVA ---
 
-export type AppBarVariants = {
-  variant?: 'neutral' | 'subtle';
-};
+/**
+ * @typedef {Object} AppBarVariants
+ * @property {'neutral' | 'subtle'} [variant]
+ */
 
 /**
  * Resolves the AppBar root classes.
@@ -31,15 +32,20 @@ export const appBarStyles = cva(styles.appBar, {
   },
 });
 
-export const getAppBarClasses = (props: AppBarVariants): string => {
+/**
+ * @param {AppBarVariants} props
+ * @returns {string}
+ */
+export const getAppBarClasses = (props) => {
   return appBarStyles({ variant: props.variant });
 };
 
 /**
  * Get template classes to prevent Svelte tree-shaking.
  * Call this function in component script blocks that use these structural classes.
+ * @returns {Record<string, string>}
  */
-export function getAppBarTemplateClasses(): Record<string, string> {
+export function getAppBarTemplateClasses() {
   return {
     appBar: styles.appBar,
     appBarLeadingRow: styles.appBarLeadingRow,

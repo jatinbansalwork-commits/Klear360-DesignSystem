@@ -1,9 +1,8 @@
 import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './divider.module.css';
-import type { DividerVariants } from './types';
 
-export type { DividerVariants };
+/** @typedef {import('./types').DividerVariants} DividerVariants */
 
 export const dividerStyles = cva(styles.divider, {
   variants: {
@@ -37,8 +36,10 @@ export const dividerStyles = cva(styles.divider, {
 
 /**
  * Generate all classes for Divider component
+ * @param {DividerVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getDividerClasses(props: DividerVariants & { className?: string }): string {
+export function getDividerClasses(props) {
   const { className, ...cvaProps } = props;
   const classes = [dividerStyles(cvaProps), className].filter(Boolean).join(' ');
   return classes;

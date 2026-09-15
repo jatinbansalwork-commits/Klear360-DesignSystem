@@ -1,7 +1,8 @@
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './tabs.module.css';
 
-export const getTabsTemplateClasses = (): Record<string, string> => ({
+/** @returns {Record<string, string>} */
+export const getTabsTemplateClasses = () => ({
   tabsWrapper: styles.tabsWrapper,
   tabsHorizontal: styles.tabsHorizontal,
   tabsVertical: styles.tabsVertical,

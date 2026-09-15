@@ -1,23 +1,33 @@
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './trustBadge.module.css';
 
-export type TrustBadgeVariant = 'default' | 'icon-only';
+/**
+ * @typedef {'default' | 'icon-only'} TrustBadgeVariant
+ */
 
-/** Label text color token for the TrustBadge pill. */
-export const getTrustBadgeTextColorToken = (): 'surface.text.gray.subtle' => {
+/**
+ * Label text color token for the TrustBadge pill.
+ * @returns {'surface.text.gray.subtle'}
+ */
+export const getTrustBadgeTextColorToken = () => {
   return 'surface.text.gray.subtle';
 };
 
-/** Variant-specific root class. Pair with `trustBadge`. */
-export const getTrustBadgeVariantClass = (variant: TrustBadgeVariant): string => {
+/**
+ * Variant-specific root class. Pair with `trustBadge`.
+ * @param {TrustBadgeVariant} variant
+ * @returns {string}
+ */
+export const getTrustBadgeVariantClass = (variant) => {
   return variant === 'icon-only' ? styles.trustBadgeIconOnly : styles.trustBadgeWithPill;
 };
 
 /**
  * Get template classes to prevent Svelte tree-shaking of structural CSS-module classes.
  * Call this in component script blocks that reference these classes.
+ * @returns {Record<string, string>}
  */
-export function getTrustBadgeTemplateClasses(): Record<string, string> {
+export function getTrustBadgeTemplateClasses() {
   return {
     trustBadge: styles.trustBadge,
     trustBadgeWithPill: styles.trustBadgeWithPill,

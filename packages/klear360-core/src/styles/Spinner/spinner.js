@@ -3,13 +3,14 @@ import { cva } from 'class-variance-authority';
 import styles from './spinner.module.css';
 // import { utilityClasses } from '../utilities';
 
-export type SpinnerVariants = {
-  size?: 'medium' | 'large' | 'xlarge';
-  color?: 'primary' | 'white' | 'positive' | 'negative' | 'neutral';
-};
+/**
+ * @typedef {Object} SpinnerVariants
+ * @property {'medium' | 'large' | 'xlarge'} [size]
+ * @property {'primary' | 'white' | 'positive' | 'negative' | 'neutral'} [color]
+ */
 
-export type SpinnerSize = 'medium' | 'large' | 'xlarge';
-export type SpinnerColor = 'primary' | 'white' | 'positive' | 'negative' | 'neutral';
+/** @typedef {'medium' | 'large' | 'xlarge'} SpinnerSize */
+/** @typedef {'primary' | 'white' | 'positive' | 'negative' | 'neutral'} SpinnerColor */
 
 export const spinnerStyles = cva(styles.spinner, {
   variants: {
@@ -41,8 +42,10 @@ export const spinnerIconClass = styles['spinner-icon'];
  * Generate all classes for Spinner component
  * This is the single source of truth for all Spinner styling
  * Everything is class-based - no data attributes or inline styles
+ * @param {SpinnerVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getSpinnerClasses(props: SpinnerVariants & { className?: string }): string {
+export function getSpinnerClasses(props) {
   const { className, ...cvaProps } = props;
 
   const classes = [spinnerStyles(cvaProps), className].filter(Boolean).join(' ');

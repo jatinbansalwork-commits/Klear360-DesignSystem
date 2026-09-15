@@ -2,12 +2,13 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './switch.module.css';
 
-export type SwitchSize = 'small' | 'medium';
+/** @typedef {'small' | 'medium'} SwitchSize */
 
-export type SwitchVariants = {
-  size?: SwitchSize;
-  isChecked?: boolean;
-};
+/**
+ * @typedef {Object} SwitchVariants
+ * @property {SwitchSize} [size]
+ * @property {boolean} [isChecked]
+ */
 
 /**
  * CVA-based track styles. Combines `size` (drives width/height across breakpoints)
@@ -36,8 +37,10 @@ export const switchTrackStyles = cva(styles.track, {
 
 /**
  * Generate the combined class string for the Switch track element.
+ * @param {SwitchVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getSwitchClasses(props: SwitchVariants & { className?: string }): string {
+export function getSwitchClasses(props) {
   const { className, ...cvaProps } = props;
   return [switchTrackStyles(cvaProps), className].filter(Boolean).join(' ');
 }
@@ -50,22 +53,23 @@ export function getSwitchClasses(props: SwitchVariants & { className?: string })
  * @example
  * const switchClasses = getSwitchTemplateClasses();
  * // switchClasses.thumb, switchClasses.animatedThumb, switchClasses.thumbIcon
+ * @returns {{
+ *   switch: string,
+ *   label: string,
+ *   input: string,
+ *   track: string,
+ *   thumb: string,
+ *   animatedThumb: string,
+ *   thumbIcon: string,
+ *   sizeSmall: string,
+ *   sizeMedium: string,
+ *   checked: string,
+ *   unchecked: string,
+ *   pressed: string,
+ *   effectiveChecked: string,
+ * }}
  */
-export function getSwitchTemplateClasses(): {
-  switch: string;
-  label: string;
-  input: string;
-  track: string;
-  thumb: string;
-  animatedThumb: string;
-  thumbIcon: string;
-  sizeSmall: string;
-  sizeMedium: string;
-  checked: string;
-  unchecked: string;
-  pressed: string;
-  effectiveChecked: string;
-} {
+export function getSwitchTemplateClasses() {
   return {
     switch: styles.switch,
     label: styles.label,
