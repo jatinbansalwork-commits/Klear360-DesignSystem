@@ -1,28 +1,32 @@
-import type { FontSize, Typography } from '../../tokens/global';
+/** @typedef {'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge'} AmountSizes */
 
-export type AmountSizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge';
+/**
+ * @typedef {Object} AmountDisplayProps
+ * @property {'display'} [type]
+ * @property {Extract<AmountSizes, 'small' | 'medium' | 'large' | 'xlarge'>} [size]
+ */
 
-export type AmountDisplayProps = {
-  type?: 'display';
-  size?: Extract<AmountSizes, 'small' | 'medium' | 'large' | 'xlarge'>;
-};
+/**
+ * @typedef {Object} AmountHeadingProps
+ * @property {'heading'} [type]
+ * @property {Extract<AmountSizes, 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge'>} [size]
+ */
 
-export type AmountHeadingProps = {
-  type?: 'heading';
-  size?: Extract<AmountSizes, 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge'>;
-};
+/**
+ * @typedef {Object} AmountBodyProps
+ * @property {'body'} [type]
+ * @property {Extract<AmountSizes, 'xsmall' | 'small' | 'medium' | 'large'>} [size]
+ */
 
-export type AmountBodyProps = {
-  type?: 'body';
-  size?: Extract<AmountSizes, 'xsmall' | 'small' | 'medium' | 'large'>;
-};
+/** @typedef {AmountDisplayProps | AmountHeadingProps | AmountBodyProps} AmountTypeProps */
 
-export type AmountTypeProps = AmountDisplayProps | AmountHeadingProps | AmountBodyProps;
-
-const normalAmountSizes: Record<
-  'body' | 'heading' | 'display',
-  Partial<Record<NonNullable<AmountTypeProps['size']>, keyof FontSize>>
-> = {
+/**
+ * @type {Record<
+ *   'body' | 'heading' | 'display',
+ *   Partial<Record<NonNullable<AmountTypeProps['size']>, keyof import('../../tokens/global').FontSize>>
+ * >}
+ */
+const normalAmountSizes = {
   body: {
     xsmall: 25,
     small: 75,
@@ -52,11 +56,12 @@ const normalAmountSizes: Record<
  *
  * TODO: Reuse klear360-core common tokens across svelte and react codebases.
  * These tokens are currently duplicated — klear360-react should import and use these directly.
+ * @type {Record<
+ *   'body' | 'heading' | 'display',
+ *   Partial<Record<NonNullable<AmountTypeProps['size']>, { desktop: number, mobile: number }>>
+ * >}
  */
-const currencyHardcodedSizes: Record<
-  'body' | 'heading' | 'display',
-  Partial<Record<NonNullable<AmountTypeProps['size']>, { desktop: number; mobile: number }>>
-> = {
+const currencyHardcodedSizes = {
   body: {
     xsmall: { desktop: 10, mobile: 10 },
     small: { desktop: 10, mobile: 10 },
@@ -78,10 +83,13 @@ const currencyHardcodedSizes: Record<
   },
 };
 
-const subtleFontSizes: Record<
-  'body' | 'heading' | 'display',
-  Partial<Record<NonNullable<AmountTypeProps['size']>, keyof FontSize>>
-> = {
+/**
+ * @type {Record<
+ *   'body' | 'heading' | 'display',
+ *   Partial<Record<NonNullable<AmountTypeProps['size']>, keyof import('../../tokens/global').FontSize>>
+ * >}
+ */
+const subtleFontSizes = {
   body: {
     xsmall: normalAmountSizes.body.xsmall,
     small: normalAmountSizes.body.xsmall,
@@ -103,10 +111,13 @@ const subtleFontSizes: Record<
   },
 };
 
-const amountLineHeights: Record<
-  'body' | 'heading' | 'display',
-  Partial<Record<NonNullable<AmountTypeProps['size']>, keyof Typography['lineHeights']>>
-> = {
+/**
+ * @type {Record<
+ *   'body' | 'heading' | 'display',
+ *   Partial<Record<NonNullable<AmountTypeProps['size']>, keyof import('../../tokens/global').Typography['lineHeights']>>
+ * >}
+ */
+const amountLineHeights = {
   body: {
     xsmall: 25,
     small: 75,

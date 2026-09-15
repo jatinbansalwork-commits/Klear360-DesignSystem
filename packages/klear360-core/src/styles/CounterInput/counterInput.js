@@ -2,25 +2,28 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './counterInput.module.css';
 
-export type CounterInputSize = 'xsmall' | 'medium' | 'large';
-export type CounterInputEmphasis = 'subtle' | 'intense';
-export type CounterInputButtonDirection = 'decrement' | 'increment';
+/** @typedef {'xsmall' | 'medium' | 'large'} CounterInputSize */
+/** @typedef {'subtle' | 'intense'} CounterInputEmphasis */
+/** @typedef {'decrement' | 'increment'} CounterInputButtonDirection */
 
-export type CounterInputContainerVariants = {
-  size?: CounterInputSize;
-  emphasis?: CounterInputEmphasis;
-};
+/**
+ * @typedef {Object} CounterInputContainerVariants
+ * @property {CounterInputSize} [size]
+ * @property {CounterInputEmphasis} [emphasis]
+ */
 
-export type CounterInputButtonVariants = {
-  size?: CounterInputSize;
-  emphasis?: CounterInputEmphasis;
-  direction?: CounterInputButtonDirection;
-};
+/**
+ * @typedef {Object} CounterInputButtonVariants
+ * @property {CounterInputSize} [size]
+ * @property {CounterInputEmphasis} [emphasis]
+ * @property {CounterInputButtonDirection} [direction]
+ */
 
-export type CounterInputInputVariants = {
-  size?: CounterInputSize;
-  emphasis?: CounterInputEmphasis;
-};
+/**
+ * @typedef {Object} CounterInputInputVariants
+ * @property {CounterInputSize} [size]
+ * @property {CounterInputEmphasis} [emphasis]
+ */
 
 /**
  * Container styles. `size` drives width/height/radius, `emphasis` drives border
@@ -45,7 +48,11 @@ export const counterInputContainerStyles = cva(styles.container, {
   },
 });
 
-export function getCounterInputContainerClasses(props: CounterInputContainerVariants): string {
+/**
+ * @param {CounterInputContainerVariants} props
+ * @returns {string}
+ */
+export function getCounterInputContainerClasses(props) {
   return counterInputContainerStyles(props);
 }
 
@@ -76,7 +83,11 @@ export const counterInputButtonStyles = cva(styles.button, {
   },
 });
 
-export function getCounterInputButtonClasses(props: CounterInputButtonVariants): string {
+/**
+ * @param {CounterInputButtonVariants} props
+ * @returns {string}
+ */
+export function getCounterInputButtonClasses(props) {
   return counterInputButtonStyles(props);
 }
 
@@ -102,7 +113,11 @@ export const counterInputInputStyles = cva(styles.input, {
   },
 });
 
-export function getCounterInputInputClasses(props: CounterInputInputVariants): string {
+/**
+ * @param {CounterInputInputVariants} props
+ * @returns {string}
+ */
+export function getCounterInputInputClasses(props) {
   return counterInputInputStyles(props);
 }
 
@@ -114,20 +129,21 @@ export function getCounterInputInputClasses(props: CounterInputInputVariants): s
  * @example
  * const counterInputClasses = getCounterInputTemplateClasses();
  * // counterInputClasses.counterInput, counterInputClasses.controls
+ * @returns {{
+ *   counterInput: string,
+ *   layout: string,
+ *   layoutLeft: string,
+ *   controls: string,
+ *   inputWrapper: string,
+ *   animateSlideUp: string,
+ *   animateSlideDown: string,
+ *   progressBarWrapper: string,
+ *   progressBar: string,
+ *   progressBarSubtle: string,
+ *   progressBarIntense: string,
+ * }}
  */
-export function getCounterInputTemplateClasses(): {
-  counterInput: string;
-  layout: string;
-  layoutLeft: string;
-  controls: string;
-  inputWrapper: string;
-  animateSlideUp: string;
-  animateSlideDown: string;
-  progressBarWrapper: string;
-  progressBar: string;
-  progressBarSubtle: string;
-  progressBarIntense: string;
-} {
+export function getCounterInputTemplateClasses() {
   return {
     counterInput: styles['counter-input'],
     layout: styles.layout,
