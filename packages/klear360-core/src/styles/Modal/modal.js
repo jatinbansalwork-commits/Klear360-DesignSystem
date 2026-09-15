@@ -8,8 +8,8 @@ import styles from './modal.module.css';
  */
 export const MODAL_Z_INDEX = 1000;
 
-export type ModalSize = 'small' | 'medium' | 'large' | 'full';
-export type ModalBodyPadding = 'spacing.0' | 'spacing.6';
+/** @typedef {'small' | 'medium' | 'large' | 'full'} ModalSize */
+/** @typedef {'spacing.0' | 'spacing.6'} ModalBodyPadding */
 
 /**
  * CVA wrapper for the Modal surface. `size` selects the max-width (and, for
@@ -76,8 +76,9 @@ export const modalFooterInnerClass = styles.footerInner;
 /**
  * Aggregated class lookup. The Svelte component calls this to keep the CSS
  * imports alive against the bundler's tree-shaker.
+ * @returns {Record<string, string>}
  */
-export function getModalTemplateClasses(): Record<string, string> {
+export function getModalTemplateClasses() {
   return {
     wrapper: modalWrapperClass,
     backdrop: modalBackdropClass,
@@ -94,5 +95,5 @@ export function getModalTemplateClasses(): Record<string, string> {
     footer: modalFooterClass,
     footerDivider: modalFooterDividerClass,
     footerInner: modalFooterInnerClass,
-  } as const;
+  };
 }

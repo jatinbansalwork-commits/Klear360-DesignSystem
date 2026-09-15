@@ -24,11 +24,15 @@ export {
   getButtonIconSize,
   getButtonIconOnlySize,
 } from './button';
-export type { ButtonVariants, ButtonColor, ButtonVariant, ActionStatesType } from './button';
-export type { ButtonSlot } from './slots';
+/** @typedef {import('./button').ButtonVariants} ButtonVariants */
+/** @typedef {import('./button').ButtonColor} ButtonColor */
+/** @typedef {import('./button').ButtonVariant} ButtonVariant */
+/** @typedef {import('./button').ActionStatesType} ActionStatesType */
+/** @typedef {import('./slots').ButtonSlot} ButtonSlot */
 export {
   getPrimaryBrandCssVars,
   getAccentBrandCssVars,
   SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES,
 } from './brandCssVars';
-export type { BrandCssVarsOptions, AccentBrand } from './brandCssVars';
+/** @typedef {import('./brandCssVars').BrandCssVarsOptions} BrandCssVarsOptions */
+/** @typedef {import('./brandCssVars').AccentBrand} AccentBrand */

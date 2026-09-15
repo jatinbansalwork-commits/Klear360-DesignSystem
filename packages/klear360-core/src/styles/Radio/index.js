@@ -18,4 +18,6 @@ export {
   getRadioGroupHintMarginClass,
   getRadioGroupTemplateClasses,
 } from './radio';
-export type { RadioSize, RadioVariant, RadioIconWrapperVariants } from './radio';
+/** @typedef {import('./radio').RadioSize} RadioSize */
+/** @typedef {import('./radio').RadioVariant} RadioVariant */
+/** @typedef {import('./radio').RadioIconWrapperVariants} RadioIconWrapperVariants */

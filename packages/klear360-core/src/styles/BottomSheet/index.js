@@ -32,4 +32,5 @@ export {
   bottomSheetFooterInnerClass,
   bottomSheetBodyClass,
 } from './bottomSheet';
-export type { BottomSheetBodyPadding, BottomSheetBodyOverflow } from './bottomSheet';
+/** @typedef {import('./bottomSheet').BottomSheetBodyPadding} BottomSheetBodyPadding */
+/** @typedef {import('./bottomSheet').BottomSheetBodyOverflow} BottomSheetBodyOverflow */

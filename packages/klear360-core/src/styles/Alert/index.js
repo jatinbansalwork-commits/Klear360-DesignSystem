@@ -27,4 +27,6 @@ export {
   getAlertActionButtonVariant,
   getAlertLinkColor,
 } from './alert';
-export type { AlertVariants, AlertColor, AlertEmphasis } from './alert';
+/** @typedef {import('./alert').AlertVariants} AlertVariants */
+/** @typedef {import('./alert').AlertColor} AlertColor */
+/** @typedef {import('./alert').AlertEmphasis} AlertEmphasis */

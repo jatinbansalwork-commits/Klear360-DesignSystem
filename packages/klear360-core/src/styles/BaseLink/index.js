@@ -13,10 +13,8 @@ export {
   getLinkTextSizes,
   getLinkIconSizeMap,
 } from './baseLink';
-export type {
-  BaseLinkVariants,
-  LinkColor,
-  LinkVariant,
-  ActionStatesType,
-  ColorType,
-} from './baseLink';
+/** @typedef {import('./baseLink').BaseLinkVariants} BaseLinkVariants */
+/** @typedef {import('./baseLink').LinkColor} LinkColor */
+/** @typedef {import('./baseLink').LinkVariant} LinkVariant */
+/** @typedef {import('./baseLink').ActionStatesType} ActionStatesType */
+/** @typedef {import('./baseLink').ColorType} ColorType */

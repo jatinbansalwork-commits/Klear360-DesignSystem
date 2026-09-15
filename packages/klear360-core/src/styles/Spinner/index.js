@@ -9,4 +9,6 @@ export {
   spinnerBoxClass,
   spinnerIconClass,
 } from './spinner';
-export type { SpinnerVariants, SpinnerSize, SpinnerColor } from './spinner';
+/** @typedef {import('./spinner').SpinnerVariants} SpinnerVariants */
+/** @typedef {import('./spinner').SpinnerSize} SpinnerSize */
+/** @typedef {import('./spinner').SpinnerColor} SpinnerColor */

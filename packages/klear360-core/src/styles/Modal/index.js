@@ -19,4 +19,5 @@ export {
   modalFooterDividerClass,
   modalFooterInnerClass,
 } from './modal';
-export type { ModalSize, ModalBodyPadding } from './modal';
+/** @typedef {import('./modal').ModalSize} ModalSize */
+/** @typedef {import('./modal').ModalBodyPadding} ModalBodyPadding */
