@@ -1,32 +1,40 @@
-export type BrandCssVarsOptions = {
-  /** Brand fill color — hex, rgb/hsl, or `var(--merchant-*)` reference */
-  bg: string;
-  /** Hover / active / focus fill. Default: `color-mix(in srgb, bg 80%, black)` */
-  highlighted?: string;
-  /** Disabled fill. Default: `color-mix(in srgb, bg 18%, transparent)` */
-  disabled?: string;
-};
+/**
+ * @typedef {Object} BrandCssVarsOptions
+ * @property {string} bg Brand fill color — hex, rgb/hsl, or `var(--merchant-*)` reference
+ * @property {string} [highlighted] Hover / active / focus fill. Default: `color-mix(in srgb, bg 80%, black)`
+ * @property {string} [disabled] Disabled fill. Default: `color-mix(in srgb, bg 18%, transparent)`
+ */
 
-export type AccentBrand = 'primary' | 'positive' | 'negative';
+/** @typedef {'primary' | 'positive' | 'negative'} AccentBrand */
 
-const defaultHighlighted = (bg: string): string => `color-mix(in srgb, ${bg} 80%, black)`;
+/**
+ * @param {string} bg
+ * @returns {string}
+ */
+const defaultHighlighted = (bg) => `color-mix(in srgb, ${bg} 80%, black)`;
 
-const defaultDisabled = (bg: string): string => `color-mix(in srgb, ${bg} 18%, transparent)`;
+/**
+ * @param {string} bg
+ * @returns {string}
+ */
+const defaultDisabled = (bg) => `color-mix(in srgb, ${bg} 18%, transparent)`;
 
-const resolveBrandCssVarValues = ({
-  bg,
-  highlighted,
-  disabled,
-}: BrandCssVarsOptions): { bg: string; highlighted: string; disabled: string } => ({
+/**
+ * @param {BrandCssVarsOptions} options
+ * @returns {{ bg: string, highlighted: string, disabled: string }}
+ */
+const resolveBrandCssVarValues = ({ bg, highlighted, disabled }) => ({
   bg,
   highlighted: highlighted ?? defaultHighlighted(bg),
   disabled: disabled ?? defaultDisabled(bg),
 });
 
-const getInteractiveAccentCssVars = (
-  accent: AccentBrand,
-  opts: BrandCssVarsOptions,
-): Record<string, string> => {
+/**
+ * @param {AccentBrand} accent
+ * @param {BrandCssVarsOptions} opts
+ * @returns {Record<string, string>}
+ */
+const getInteractiveAccentCssVars = (accent, opts) => {
   const { bg, highlighted, disabled } = resolveBrandCssVarValues(opts);
 
   return {
@@ -47,7 +55,7 @@ const getInteractiveAccentCssVars = (
  * Checkout "stroke" on a filled CTA cannot be expressed as a simple border override; use
  * `variant="secondary"` for an outlined CTA, or accept the inset shadow frame.
  */
-export const SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES = [
+export const SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES = /** @type {const} */ ([
   '--interactive-background-primary-default',
   '--interactive-background-primary-highlighted',
   '--interactive-background-primary-disabled',
@@ -64,7 +72,7 @@ export const SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES = [
   '--interactive-border-negative-default',
   '--interactive-border-negative-highlighted',
   '--btn-progress-surface-backing',
-] as const;
+]);
 
 /**
  * Token bundle for a merchant-branded filled primary CTA (`color="primary"` +
@@ -80,18 +88,19 @@ export const SAFE_FILLED_BUTTON_ROOT_TOKEN_OVERRIDES = [
  * // Apply tokens on styleOverride.root class or ancestor inline style, plus:
  * // background-image: none;
  * ```
+ * @param {BrandCssVarsOptions} opts
+ * @returns {Record<string, string>}
  */
-export const getPrimaryBrandCssVars = (opts: BrandCssVarsOptions): Record<string, string> =>
-  getInteractiveAccentCssVars('primary', opts);
+export const getPrimaryBrandCssVars = (opts) => getInteractiveAccentCssVars('primary', opts);
 
 /**
  * Accent-aware token bundle for filled primary-variant buttons (`primary`, `positive`, `negative`).
  * For `primary`, delegates to {@link getPrimaryBrandCssVars}.
+ * @param {AccentBrand} accent
+ * @param {BrandCssVarsOptions} opts
+ * @returns {Record<string, string>}
  */
-export const getAccentBrandCssVars = (
-  accent: AccentBrand,
-  opts: BrandCssVarsOptions,
-): Record<string, string> => {
+export const getAccentBrandCssVars = (accent, opts) => {
   if (accent === 'primary') {
     return getPrimaryBrandCssVars(opts);
   }
