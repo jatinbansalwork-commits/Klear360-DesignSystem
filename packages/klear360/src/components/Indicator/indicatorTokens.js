@@ -1,10 +1,11 @@
 import { size as sizeToken } from '~tokens/global';
 
+/** @type {{ small: 'small', medium: 'medium', large: 'medium' }} */
 const textSizeMapping = {
   small: 'small',
   large: 'medium',
   medium: 'medium',
-} as const;
+};
 
 const indicatorDotSizes = {
   subtle: {
@@ -35,6 +36,6 @@ const indicatorDotSizes = {
       inner: sizeToken[12],
     },
   },
-} as const;
+};
 
 export { indicatorDotSizes, textSizeMapping };

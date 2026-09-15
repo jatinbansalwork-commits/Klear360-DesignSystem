@@ -126,6 +126,34 @@ argument like `React.createRef<HTMLDivElement>()` becomes a JSDoc-annotated plai
 const ref = React.createRef();
 ```
 
+## `as const` lookup objects
+
+A plain `const` object in checked JS does **not** narrow its property values to literal types the
+way `as const` did in TS — `{ small: 'small', medium: 'medium' }` infers as `Record<string, string>`,
+which breaks a downstream consumer expecting a specific literal union (e.g. a `size` prop typed
+`'small' | 'medium' | 'large'`). Give the object an explicit `@type` spelling out each literal value:
+
+```js
+/** @type {{ small: 'small', medium: 'medium', large: 'medium' }} */
+const textSizeMapping = { small: 'small', medium: 'medium', large: 'medium' };
+```
+
+Only do this for lookup objects whose literal-ness downstream code actually depends on (checked by
+running `typecheck` and seeing whether a consumer errors) — don't add it preemptively everywhere
+`as const` appeared in the original file.
+
+## Known lint flake on the full `yarn lint:klear360` run
+
+Running the *whole-package* lint (not a single file) is intermittently producing spurious
+`import/no-extraneous-dependencies` errors for `@klear/klear360-core` on unrelated files, with no
+correlation to the actual diff — the same files pass 100% clean every time when linted individually
+or in a small group. Confirmed non-deterministic across repeated identical runs (0 vs. 10 errors on
+back-to-back invocations with zero code changes in between). Root cause not isolated yet, but it
+reproduces independent of any component conversion and is very likely tied to the already-broken,
+uncommitted `packages/klear360-core` working-tree state left by unrelated concurrent work (several
+`klear360-core` token files are currently deleted on disk without replacement). If you hit this,
+verify by linting your specific changed files directly rather than trusting a single full-project run.
+
 ## Type-only islands
 
 Some files can't be expressed in JSDoc at all (recursive conditional types, template-literal path
