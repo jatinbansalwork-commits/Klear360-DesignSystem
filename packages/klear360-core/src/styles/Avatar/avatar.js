@@ -4,11 +4,12 @@ import styles from './avatar.module.css';
 
 // ===== Avatar outer wrapper CVA =====
 
-export type AvatarWrapperVariants = {
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-  variant?: 'circle' | 'square';
-  isInteractive?: boolean;
-};
+/**
+ * @typedef {Object} AvatarWrapperVariants
+ * @property {'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'} [size]
+ * @property {'circle' | 'square'} [variant]
+ * @property {boolean} [isInteractive]
+ */
 
 export const avatarWrapperStyles = cva(styles['avatar-wrapper'], {
   variants: {
@@ -42,19 +43,24 @@ export const avatarWrapperStyles = cva(styles['avatar-wrapper'], {
   },
 });
 
-export function getAvatarWrapperClasses(props: AvatarWrapperVariants): string {
+/**
+ * @param {AvatarWrapperVariants} props
+ * @returns {string}
+ */
+export function getAvatarWrapperClasses(props) {
   return avatarWrapperStyles(props);
 }
 
 // ===== AvatarButton inner element CVA =====
 
-export type AvatarButtonVariants = {
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-  variant?: 'circle' | 'square';
-  color?: 'primary' | 'positive' | 'negative' | 'notice' | 'information' | 'neutral';
-  isInteractive?: boolean;
-  isSelected?: boolean;
-};
+/**
+ * @typedef {Object} AvatarButtonVariants
+ * @property {'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'} [size]
+ * @property {'circle' | 'square'} [variant]
+ * @property {'primary' | 'positive' | 'negative' | 'notice' | 'information' | 'neutral'} [color]
+ * @property {boolean} [isInteractive]
+ * @property {boolean} [isSelected]
+ */
 
 export const avatarButtonStyles = cva(styles['avatar-btn'], {
   variants: {
@@ -102,29 +108,37 @@ export const avatarButtonStyles = cva(styles['avatar-btn'], {
   },
 });
 
-export function getAvatarButtonClasses(props: AvatarButtonVariants): string {
+/**
+ * @param {AvatarButtonVariants} props
+ * @returns {string}
+ */
+export function getAvatarButtonClasses(props) {
   return avatarButtonStyles(props);
 }
 
 /** Text color token for AvatarGroup overflow (+N) counter */
-export const avatarGroupOverflowTextColorToken = 'interactive.text.neutral.muted' as const;
+export const avatarGroupOverflowTextColorToken = /** @type {const} */ ('interactive.text.neutral.muted');
 
 /**
  * AvatarGroup overflow (+N) body text size mapping (avatar size → Text size).
  * All sizes use Body/Semibold; xlarge uses Heading/SmallSemibold separately.
  */
-export const avatarGroupOverflowTextSizeMapping = {
+export const avatarGroupOverflowTextSizeMapping = /** @type {const} */ ({
   xsmall: 'xsmall',
   small: 'xsmall',
   medium: 'small',
   large: 'medium',
-} as const;
+});
 
-export type AvatarGroupOverflowBodyTextSize = typeof avatarGroupOverflowTextSizeMapping[keyof typeof avatarGroupOverflowTextSizeMapping];
+/**
+ * @typedef {typeof avatarGroupOverflowTextSizeMapping[keyof typeof avatarGroupOverflowTextSizeMapping]} AvatarGroupOverflowBodyTextSize
+ */
 
-export function getAvatarGroupOverflowBodyTextSize(
-  size: Exclude<NonNullable<AvatarGroupVariants['size']>, 'xlarge'>,
-): AvatarGroupOverflowBodyTextSize {
+/**
+ * @param {Exclude<NonNullable<AvatarGroupVariants['size']>, 'xlarge'>} size
+ * @returns {AvatarGroupOverflowBodyTextSize}
+ */
+export function getAvatarGroupOverflowBodyTextSize(size) {
   return avatarGroupOverflowTextSizeMapping[size];
 }
 
@@ -136,10 +150,10 @@ export function getAvatarGroupOverflowBodyTextSize(
  * its distinct panel-style background. The override is intentionally not
  * exposed via `AvatarButtonVariants['color']` so the public type stays aligned
  * with React's `AvatarProps['color']`.
+ * @param {Pick<AvatarButtonVariants, 'size' | 'variant'>} props
+ * @returns {string}
  */
-export function getAvatarGroupOverflowButtonClasses(
-  props: Pick<AvatarButtonVariants, 'size' | 'variant'>,
-): string {
+export function getAvatarGroupOverflowButtonClasses(props) {
   return cx(
     avatarButtonStyles({
       ...props,
@@ -153,12 +167,13 @@ export function getAvatarGroupOverflowButtonClasses(
 
 // ===== AvatarGroup CVA =====
 
-export type AvatarDensity = 'compact' | 'normal' | 'comfortable';
+/** @typedef {'compact' | 'normal' | 'comfortable'} AvatarDensity */
 
-export type AvatarGroupVariants = {
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-  density?: AvatarDensity;
-};
+/**
+ * @typedef {Object} AvatarGroupVariants
+ * @property {'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'} [size]
+ * @property {AvatarDensity} [density]
+ */
 
 export const avatarGroupStyles = cva(styles['avatar-group'], {
   variants: {
@@ -204,7 +219,11 @@ export const avatarGroupStyles = cva(styles['avatar-group'], {
   },
 });
 
-export function getAvatarGroupClasses(props: AvatarGroupVariants): string {
+/**
+ * @param {AvatarGroupVariants} props
+ * @returns {string}
+ */
+export function getAvatarGroupClasses(props) {
   return avatarGroupStyles(props);
 }
 
@@ -213,46 +232,46 @@ export function getAvatarGroupClasses(props: AvatarGroupVariants): string {
 /**
  * Avatar icon size mapping (avatar size → icon size)
  */
-export const avatarIconSizeTokens = {
+export const avatarIconSizeTokens = /** @type {const} */ ({
   xsmall: 'small',
   small: 'medium',
   medium: 'medium',
   large: 'large',
   xlarge: 'xlarge',
-} as const;
+});
 
 /**
  * Avatar text size mapping (avatar size → text size)
  */
-export const avatarTextSizeMapping = {
+export const avatarTextSizeMapping = /** @type {const} */ ({
   xsmall: 'xsmall',
   small: 'xsmall',
   medium: 'small',
   large: 'medium',
   xlarge: 'medium',
-} as const;
+});
 
 /**
  * Avatar bottom addon size mapping (avatar size → icon size)
  */
-export const avatarToBottomAddonSize = {
+export const avatarToBottomAddonSize = /** @type {const} */ ({
   xsmall: 'xsmall',
   small: 'xsmall',
   medium: 'small',
   large: 'medium',
   xlarge: 'large',
-} as const;
+});
 
 /**
  * Avatar top addon (Indicator) size mapping
  */
-export const avatarToIndicatorSize = {
+export const avatarToIndicatorSize = /** @type {const} */ ({
   xsmall: 'small',
   small: 'small',
   medium: 'medium',
   large: 'medium',
   xlarge: 'large',
-} as const;
+});
 
 // ===== Template classes (prevent Svelte tree-shaking) =====
 
@@ -260,8 +279,9 @@ export const avatarToIndicatorSize = {
  * Get all Avatar component template classes as an object.
  * Use this function in Svelte components to prevent tree-shaking from removing
  * class imports that are only used in templates.
+ * @returns {Record<string, string>}
  */
-export function getAvatarTemplateClasses(): Record<string, string> {
+export function getAvatarTemplateClasses() {
   return {
     // Root + body wrapper
     avatarRoot: styles['avatar-root'],
@@ -304,24 +324,26 @@ export function getAvatarTemplateClasses(): Record<string, string> {
     groupDensityComfortableMedium: styles['group-density-comfortable-medium'],
     groupDensityComfortableLarge: styles['group-density-comfortable-large'],
     groupDensityComfortableXlarge: styles['group-density-comfortable-xlarge'],
-  } as const;
+  };
 }
 
 /**
  * Get the top addon position class for a given variant and size.
+ * @param {'circle' | 'square'} variant
+ * @param {'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'} size
+ * @returns {string}
  */
-export function getTopAddonClass(
-  variant: 'circle' | 'square',
-  size: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
-): string {
-  const key = `top-addon-${variant}-${size}` as keyof typeof styles;
+export function getTopAddonClass(variant, size) {
+  const key = /** @type {keyof typeof styles} */ (`top-addon-${variant}-${size}`);
   return styles[key] || '';
 }
 
 /**
  * Get the bottom addon position class for a given variant.
+ * @param {'circle' | 'square'} variant
+ * @returns {string}
  */
-export function getBottomAddonClass(variant: 'circle' | 'square'): string {
-  const key = `bottom-addon-${variant}` as keyof typeof styles;
+export function getBottomAddonClass(variant) {
+  const key = /** @type {keyof typeof styles} */ (`bottom-addon-${variant}`);
   return styles[key] || '';
 }
