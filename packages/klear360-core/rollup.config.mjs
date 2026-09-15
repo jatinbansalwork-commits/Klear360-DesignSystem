@@ -304,7 +304,7 @@ const config = () => {
 
   // Use named inputs so [name] in entryFileNames becomes 'tokens', 'utils', 'styles'
   const tokens = { tokens: 'src/tokens/index.ts' };
-  const utils = { utils: 'src/utils/index.ts' };
+  const utils = { utils: 'src/utils/index.js' };
   const styles = { styles: 'src/styles/index.ts' };
 
   if (framework === 'REACT') {
