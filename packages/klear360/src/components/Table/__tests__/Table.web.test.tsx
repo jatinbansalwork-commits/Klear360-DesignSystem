@@ -694,6 +694,154 @@ describe('<Table />', () => {
     expect(getAllByRole('row')[0]).toHaveTextContent('completed');
   });
 
+  it('should clear sort on the third click (removable sort)', () => {
+    const onSortChange = jest.fn();
+    const { getByLabelText, getAllByRole } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 5) }}
+        sortFunctions={{
+          AMOUNT: (array) => [...array].sort((a, b) => a.amount - b.amount),
+        }}
+        onSortChange={onSortChange}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const sortButton = getByLabelText('Toggle Sort');
+    fireEvent.click(sortButton); // ascending
+    fireEvent.click(sortButton); // descending
+    fireEvent.click(sortButton); // cleared back to unsorted
+
+    expect(onSortChange).toHaveBeenLastCalledWith({ sortKey: 'NONE', isSortReversed: false });
+    const rows = getAllByRole('row');
+    // Back to the original, unsorted insertion order.
+    expect(rows[0]).toHaveTextContent('100');
+    expect(rows[1]).toHaveTextContent('240');
+    expect(rows[2]).toHaveTextContent('120');
+    expect(rows[3]).toHaveTextContent('300');
+    expect(rows[4]).toHaveTextContent('200');
+  });
+
+  it('should presort via the initialSort prop on mount', () => {
+    const { getAllByRole } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 5) }}
+        sortFunctions={{
+          AMOUNT: (array) => [...array].sort((a, b) => a.amount - b.amount),
+        }}
+        initialSort={{ sortKey: 'AMOUNT', direction: 'asc' }}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const rows = getAllByRole('row');
+    expect(rows[0]).toHaveTextContent('100');
+    expect(rows[1]).toHaveTextContent('120');
+    expect(rows[2]).toHaveTextContent('200');
+    expect(rows[3]).toHaveTextContent('240');
+    expect(rows[4]).toHaveTextContent('300');
+  });
+
+  it('should support multi-column sort via shift-click, adding a secondary sort key', () => {
+    const { getAllByLabelText, getAllByRole } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 5) }}
+        sortFunctions={{
+          STATUS: (array) => [...array].sort((a, b) => a.status.localeCompare(b.status)),
+          AMOUNT: (array) => [...array].sort((a, b) => a.amount - b.amount),
+        }}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.status}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const [statusSortButton, amountSortButton] = getAllByLabelText('Toggle Sort');
+
+    // Primary: sort by STATUS ascending.
+    fireEvent.click(statusSortButton);
+    // Secondary: shift-click AMOUNT - added as a secondary key, STATUS stays primary.
+    fireEvent.click(amountSortButton, { shiftKey: true });
+
+    const rows = getAllByRole('row');
+    // completed (200, 300) < failed (120) < pending (100, 240), ties broken by AMOUNT ascending.
+    expect(rows[0]).toHaveTextContent('completed');
+    expect(rows[0]).toHaveTextContent('200');
+    expect(rows[1]).toHaveTextContent('completed');
+    expect(rows[1]).toHaveTextContent('300');
+    expect(rows[2]).toHaveTextContent('failed');
+    expect(rows[3]).toHaveTextContent('pending');
+    expect(rows[3]).toHaveTextContent('100');
+    expect(rows[4]).toHaveTextContent('pending');
+    expect(rows[4]).toHaveTextContent('240');
+
+    // Shift-clicking the secondary key again (AMOUNT) cycles just its own direction, without
+    // disturbing the primary (STATUS).
+    fireEvent.click(amountSortButton, { shiftKey: true });
+    const rowsAfterAmountDesc = getAllByRole('row');
+    expect(rowsAfterAmountDesc[0]).toHaveTextContent('completed');
+    expect(rowsAfterAmountDesc[0]).toHaveTextContent('300');
+    expect(rowsAfterAmountDesc[1]).toHaveTextContent('completed');
+    expect(rowsAfterAmountDesc[1]).toHaveTextContent('200');
+
+    // A third shift-click on AMOUNT removes just that key - STATUS-only order returns, with
+    // ties broken by original (stable) row order rather than by AMOUNT any more.
+    fireEvent.click(amountSortButton, { shiftKey: true });
+    const rowsAfterAmountRemoved = getAllByRole('row');
+    expect(rowsAfterAmountRemoved[0]).toHaveTextContent('completed');
+    expect(rowsAfterAmountRemoved[0]).toHaveTextContent('300');
+    expect(rowsAfterAmountRemoved[1]).toHaveTextContent('completed');
+    expect(rowsAfterAmountRemoved[1]).toHaveTextContent('200');
+  });
+
   it('should call onHover when mouse enters the row', async () => {
     const onHover = jest.fn();
     const user = userEvent.setup();

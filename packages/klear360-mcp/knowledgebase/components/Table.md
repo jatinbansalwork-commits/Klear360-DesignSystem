@@ -103,8 +103,17 @@ type TableProps<Item> = {
 
   /**
    * The sortFunctions prop is an object that has a key for each column that is sortable.
+   * Clicking a sortable header cycles ascending -> descending -> unsorted. Shift-clicking a
+   * different sortable header adds it as a secondary/tertiary sort key instead of replacing
+   * the current sort.
    **/
   sortFunctions?: Record<string, (array: TableNode<Item>[]) => TableNode<Item>[]>;
+
+  /**
+   * Sets the table's sort state on mount, so it renders already sorted by this column instead
+   * of requiring a click. `sortKey` must match a key in `sortFunctions`.
+   **/
+  initialSort?: { sortKey: string; direction: 'asc' | 'desc' };
 
   /**
    * The toolbar prop is a React element that is rendered above the table.
@@ -395,6 +404,9 @@ type TablePaginationProps = {
 - Use the function-as-children pattern: `<Table>{(tableData) => (<>...</>)}</Table>`.
 - Ensure every row object in `data.nodes` has a unique `id` field.
 - Use `sortFunctions` with matching `headerKey` props on `TableHeaderCell` for sortable columns.
+  Clicking cycles ascending -> descending -> unsorted (removable sort); shift-clicking a
+  different sortable column adds it as a secondary/tertiary key instead of replacing the sort.
+- Use `initialSort` to render the table already sorted on mount instead of requiring a click.
 - Use `isHeaderSticky` and `isFirstColumnSticky` for large datasets that need scroll anchoring.
 - Wrap in `ListView` when you need search and filter capabilities alongside the table.
 
@@ -404,7 +416,7 @@ type TablePaginationProps = {
 - Don't expect column reordering, resizing, or row expansion — these are out of scope.
 - Don't put arbitrary elements in the `toolbar` prop — only `TableToolbar` is accepted.
 - Don't use `Table` for key-value pair display — use `InfoGroup` instead.
-- Don't sort multiple columns simultaneously — only single-column sorting is supported.
+- Don't build a custom "clear sort" control — a third click on the same column already clears it.
 - Don't use `Table` on mobile for complex data — consider a list-based layout instead.
 
 ## Example

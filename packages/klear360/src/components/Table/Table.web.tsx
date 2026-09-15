@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { Table as ReactTable } from '@table-library/react-table-library/table';
 import { useTheme as useTableTheme } from '@table-library/react-table-library/theme';
 import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
-import { useSort } from '@table-library/react-table-library/sort';
+import { useSort, SortToggleType } from '@table-library/react-table-library/sort';
 import { usePagination } from '@table-library/react-table-library/pagination';
 import {
   SelectClickTypes,
@@ -26,9 +26,11 @@ import {
 import type {
   TableProps,
   TableNode,
+  TableData,
   Identifier,
   TablePaginationType,
   TableHeaderRowProps,
+  TableSortOrderEntry,
 } from './types';
 import { getTableBodyStyles } from './commonStyles';
 import { TableSurface } from './TableSurface.web';
@@ -185,6 +187,7 @@ const _Table = <Item,>({
   rowDensity = 'normal',
   onSortChange,
   sortFunctions,
+  initialSort,
   toolbar,
   pagination,
   height,
@@ -431,39 +434,134 @@ const _Table = <Item,>({
   }, []);
 
   // Sort Logic
+  //
+  // The underlying @table-library `useSort` only tracks a single { sortKey, reverse } pair, so
+  // it drives the PRIMARY (most significant) sort column only - including presort via its
+  // `state` initial value below, and the asc -> desc -> unsorted 3-click cycle via
+  // `SortToggleType.AlternateWithReset`. Secondary/tertiary columns (added via shift-click) are
+  // tracked separately in `secondarySort`, and we compose the final row order ourselves in
+  // `applySortEntries` instead of handing off to the library's own single-key sort modifier.
+  const [secondarySort, setSecondarySort] = React.useState<TableSortOrderEntry[]>([]);
+
   const handleSortChange: MiddlewareFunction = (_, state) => {
     onSortChange?.({
       sortKey: state.sortKey,
       isSortReversed: state.reverse,
     });
+    // The primary column was cleared (3rd click reset) - secondary/tertiary keys no longer have
+    // a primary to be secondary to, so the whole multi-sort resets back to unsorted too.
+    if (!state.sortKey || state.sortKey === 'NONE') {
+      setSecondarySort([]);
+    }
   };
 
   const sort = useSort(
     data,
     {
       onChange: handleSortChange,
+      state: initialSort
+        ? { sortKey: initialSort.sortKey, reverse: initialSort.direction === 'desc' }
+        : undefined,
     },
     {
       // @ts-expect-error ignore this, if sortFunctions is undefined, it will be ignored
       sortFns: sortFunctions,
+      sortToggleType: SortToggleType.AlternateWithReset,
     },
+  );
+
+  const activeSortEntries: TableSortOrderEntry[] = useMemo(() => {
+    const primaryKey = sort.state.sortKey;
+    const primary: TableSortOrderEntry[] =
+      primaryKey && primaryKey !== 'NONE'
+        ? [{ sortKey: primaryKey, direction: sort.state.reverse ? 'desc' : 'asc' }]
+        : [];
+    return [...primary, ...secondarySort];
+  }, [sort.state, secondarySort]);
+
+  const applySortEntries = useCallback(
+    (nodesToSort: TableNode<Item>[]): TableNode<Item>[] => {
+      if (!sortFunctions || activeSortEntries.length === 0) {
+        return nodesToSort;
+      }
+      // Compose least-significant first so the stable sort produces correct multi-key order -
+      // the primary (index 0) is applied last, so it wins ties among the other keys.
+      let sortedNodes = nodesToSort;
+      for (let i = activeSortEntries.length - 1; i >= 0; i -= 1) {
+        const entry = activeSortEntries[i];
+        const sortFn = sortFunctions[entry.sortKey];
+        if (!sortFn) continue;
+        sortedNodes = sortFn(sortedNodes);
+        if (entry.direction === 'desc') {
+          sortedNodes = [...sortedNodes].reverse();
+        }
+      }
+      // Recurse into grouped/tree children (if any) so nested rows sort the same way.
+      return sortedNodes.map((node) => {
+        const nodeWithChildren = node as TableNode<Item> & { nodes?: TableNode<Item>[] };
+        return Array.isArray(nodeWithChildren.nodes)
+          ? { ...node, nodes: applySortEntries(nodeWithChildren.nodes) }
+          : node;
+      });
+    },
+    [sortFunctions, activeSortEntries],
+  );
+
+  const sortedData: TableData<Item> = useMemo(
+    () => (activeSortEntries.length > 0 ? { nodes: applySortEntries(data.nodes) } : data),
+    [data, applySortEntries, activeSortEntries],
   );
 
   const currentSortedState: TableContextType<Item>['currentSortedState'] = useMemo(() => {
     return {
-      sortKey: sort.state.sortKey,
-      isSortReversed: sort.state.reverse,
+      sortKey: activeSortEntries[0]?.sortKey ?? '',
+      isSortReversed: activeSortEntries[0]?.direction === 'desc',
       sortableColumns: Object.keys(sortFunctions ?? {}),
+      sortOrder: activeSortEntries,
     };
-  }, [sort.state, sortFunctions]);
+  }, [activeSortEntries, sortFunctions]);
 
   const toggleSort = useCallback(
-    (sortKey: string): void => {
-      sort.fns.onToggleSort({
-        sortKey,
+    (sortKey: string, isMultiSort = false): void => {
+      if (!isMultiSort) {
+        // Plain click always means "sort only by this column" - replace the whole spec, cycling
+        // this column's own direction when it's already the (sole) active sort.
+        setSecondarySort([]);
+        sort.fns.onToggleSort({ sortKey });
+        return;
+      }
+
+      // Shift-click: toggle just this one key without disturbing the others.
+      if (sortKey === sort.state.sortKey) {
+        // It's the primary key - let useSort's own cycle handle it (asc -> desc -> unsorted).
+        // If it clears, handleSortChange resets secondarySort too.
+        sort.fns.onToggleSort({ sortKey });
+        return;
+      }
+
+      const secondaryIndex = secondarySort.findIndex((entry) => entry.sortKey === sortKey);
+      if (secondaryIndex === -1) {
+        if (!sort.state.sortKey || sort.state.sortKey === 'NONE') {
+          // No primary yet - this shift-click establishes it.
+          sort.fns.onToggleSort({ sortKey });
+        } else {
+          setSecondarySort((prev) => [...prev, { sortKey, direction: 'asc' }]);
+        }
+        return;
+      }
+
+      setSecondarySort((prev) => {
+        const entry = prev[secondaryIndex];
+        const nextDirection = entry.direction === 'asc' ? 'desc' : null;
+        if (nextDirection === null) {
+          return prev.filter((_, index) => index !== secondaryIndex);
+        }
+        return prev.map((sortEntry, index) =>
+          index === secondaryIndex ? { ...sortEntry, direction: nextDirection } : sortEntry,
+        );
       });
     },
-    [sort.fns],
+    [sort.fns, sort.state.sortKey, secondarySort],
   );
 
   // Pagination
@@ -552,7 +650,10 @@ const _Table = <Item,>({
       columnCount,
       gridTemplateColumns,
       isVirtualized,
-      tableData: data.nodes,
+      // sortedData.nodes (not the raw data.nodes) so virtualized tables - which render
+      // straight off this context value instead of through StyledReactTable's own pipeline -
+      // reflect the current sort too.
+      tableData: sortedData.nodes,
       isGrouped,
       tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
       checkboxDisplay,
@@ -585,7 +686,7 @@ const _Table = <Item,>({
       setHasHoverActions,
       multiSelectTrigger,
       isVirtualized,
-      data,
+      sortedData,
       isGrouped,
       checkboxDisplay,
     ],
@@ -672,11 +773,13 @@ const _Table = <Item,>({
             <StyledReactTable
               role="table"
               layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
-              data={data}
+              data={sortedData}
               // @ts-expect-error ignore this, theme clashes with styled-component's theme. We're using useTheme from klear360 to get actual theme
               theme={tableTheme}
               select={selectionType !== 'none' ? rowSelectConfig : null}
-              sort={sortFunctions ? sort : null}
+              // Sorting is applied ourselves above (`sortedData`) so it can compose multiple
+              // columns - the library's own single-key sort modifier is unused here.
+              sort={null}
               tree={isGrouped ? tree : null}
               $styledProps={{
                 height,
