@@ -175,6 +175,16 @@ module.exports = {
       },
     },
     {
+      // @typescript-eslint/explicit-function-return-type checks for TS return-type syntax only —
+      // it can't see a JSDoc @returns tag, so it would flag every JSDoc-typed .js/.jsx function as
+      // missing a return type even when one is documented. JSDoc @returns is the correct,
+      // idiomatic way to convey this in JS+JSDoc source, so the rule is redundant there.
+      files: ['**/src/**/*.{js,jsx}'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+    {
       // klear360-core uses path aliases that resolve to sibling packages
       // and has default exports that trigger false positives with export *
       files: ['packages/klear360-core/**/*.{ts,tsx,js}'],
