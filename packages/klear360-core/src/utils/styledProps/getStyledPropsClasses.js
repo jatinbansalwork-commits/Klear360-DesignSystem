@@ -4,23 +4,23 @@
  * Note: The theme.css must be imported globally for these classes to work
  */
 
-import type { StyledPropsKlear360 } from './getStyledProps';
 import { getSpacingValue } from './spacingUtils';
 
 /**
  * Converts a responsive value to a CSS value for the current breakpoint
+ * @template {string | number | string[]} T
+ * @param {T | {base?: T, xs?: T, s?: T, m?: T, l?: T, xl?: T} | undefined} value
+ * @param {'base' | 'xs' | 's' | 'm' | 'l' | 'xl'} [breakpoint]
+ * @returns {T | undefined}
  */
-const getResponsiveValue = <T extends string | number | string[]>(
-  value: T | { base?: T; xs?: T; s?: T; m?: T; l?: T; xl?: T } | undefined,
-  breakpoint: 'base' | 'xs' | 's' | 'm' | 'l' | 'xl' = 'base',
-): T | undefined => {
+const getResponsiveValue = (value, breakpoint = 'base') => {
   if (value === undefined || value === null) {
     return undefined;
   }
 
   if (typeof value === 'string' || typeof value === 'number' || Array.isArray(value)) {
     if (breakpoint === 'base') {
-      return value as T;
+      return /** @type {T} */ (value);
     }
     return undefined;
   }
@@ -30,16 +30,21 @@ const getResponsiveValue = <T extends string | number | string[]>(
 
 /**
  * Checks if a value is a spacing token (e.g., "spacing.3")
+ * @param {string} value
+ * @returns {boolean}
  */
-const isSpacingToken = (value: string): boolean => {
+const isSpacingToken = (value) => {
   return typeof value === 'string' && value.startsWith('spacing.');
 };
 
 /**
  * Converts spacing value to class name
  * Handles spacing tokens (spacing.0 to spacing.11) and arbitrary values
+ * @param {string | undefined} value
+ * @param {string} prefix
+ * @returns {string | undefined}
  */
-const spacingToClass = (value: string | undefined, prefix: string): string | undefined => {
+const spacingToClass = (value, prefix) => {
   if (!value) return undefined;
 
   // Handle spacing tokens (e.g., "spacing.3" -> "spacing-3")
@@ -65,13 +70,15 @@ const spacingToClass = (value: string | undefined, prefix: string): string | und
 /**
  * Converts styled props to CSS class names array
  * Returns both class names and any inline styles needed for arbitrary values
+ * @param {import('./getStyledProps').StyledPropsKlear360} styledProps
+ * @param {'base' | 'xs' | 's' | 'm' | 'l' | 'xl'} [breakpoint]
+ * @returns {{classes: string[], inlineStyles: Record<string, string | number>}}
  */
-export const getStyledPropsClasses = (
-  styledProps: StyledPropsKlear360,
-  breakpoint: 'base' | 'xs' | 's' | 'm' | 'l' | 'xl' = 'base',
-): { classes: string[]; inlineStyles: Record<string, string | number> } => {
-  const classes: string[] = [];
-  const inlineStyles: Record<string, string | number> = {};
+export const getStyledPropsClasses = (styledProps, breakpoint = 'base') => {
+  /** @type {string[]} */
+  const classes = [];
+  /** @type {Record<string, string | number>} */
+  const inlineStyles = {};
 
   // Display
   const display = getResponsiveValue(styledProps.display, breakpoint);

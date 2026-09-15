@@ -5,8 +5,10 @@
 
 /**
  * Checks if a value is a spacing token (e.g., "spacing.3")
+ * @param {string} value
+ * @returns {boolean}
  */
-const isSpacingToken = (value: string): boolean => {
+const isSpacingToken = (value) => {
   return typeof value === 'string' && value.startsWith('spacing.');
 };
 
@@ -18,10 +20,10 @@ const isSpacingToken = (value: string): boolean => {
  * - Percentage values (e.g., "50%") -> as is
  * - "auto" -> as is
  * - Arrays -> joins with space
+ * @param {string | string[] | undefined} spacingValue
+ * @returns {string | undefined}
  */
-export const getSpacingValue = (
-  spacingValue: string | string[] | undefined,
-): string | undefined => {
+export const getSpacingValue = (spacingValue) => {
   if (spacingValue === undefined || spacingValue === null) {
     return undefined;
   }
