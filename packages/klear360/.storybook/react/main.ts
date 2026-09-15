@@ -19,7 +19,9 @@ const config: StorybookConfig = {
         configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
       },
     },
-    reactDocgen: isDevelopment ? false : 'react-docgen-typescript',
+    // 'react-docgen' (not 'react-docgen-typescript') so Controls tables stay populated for
+    // components converted to .js+JSDoc, not just .tsx ones — see JSDOC_MIGRATION_GUIDE.md
+    reactDocgen: isDevelopment ? false : 'react-docgen',
   },
 
   refs: {

@@ -17,8 +17,10 @@ const stripColor = (str) => str.replace(/\x1B[[(?);]{0,2}(;?\d)*./g, '');
 
 /**
  * @param {string} sourceCode
+ * @param {'tsx' | 'jsx'} lang
  */
-function getTypeErrors(sourceCode) {
+function getTypeErrors(sourceCode, lang) {
+  const isJsx = lang === 'jsx';
   const project = new Project({
     // libFolderPath: '../node_modules/typescript/lib',
     compilerOptions: {
@@ -31,10 +33,14 @@ function getTypeErrors(sourceCode) {
       module: ts.ModuleKind.ESNext,
       moduleResolution: ts.ModuleResolutionKind.Bundler,
       noEmit: true,
+      // jsx examples are JS+JSDoc, so type errors need to come from JSDoc annotations
+      // the same way they do for a real converted component, not from stripped TS syntax
+      allowJs: isJsx,
+      checkJs: isJsx,
     },
   });
 
-  project.createSourceFile('index.tsx', sourceCode);
+  project.createSourceFile(isJsx ? 'index.jsx' : 'index.tsx', sourceCode);
 
   const diagnostics = project.getPreEmitDiagnostics();
 
@@ -47,7 +53,7 @@ function getTypeErrors(sourceCode) {
 
 const errors = [];
 // this might be slow but better than pulling in a markdown parser
-const codeBlockRegex = /```(tsx)\s*([\s\S]*?)```/g;
+const codeBlockRegex = /```(tsx|jsx)\s*([\s\S]*?)```/g;
 
 // Function to check if a code block is inside a comment
 function isCodeBlockInComment(content, blockStart) {
@@ -148,7 +154,7 @@ for (const file of filesToLint) {
   }
 
   for (const codeBlock of validCodeBlocks) {
-    const { typeErrors } = getTypeErrors(codeBlock.code);
+    const { typeErrors } = getTypeErrors(codeBlock.code, codeBlock.lang);
     if (typeErrors.length > 0) {
       addErrorsToMap(file, typeErrors, fileErrorsMap, codeBlock.markdownLineNumber);
     }

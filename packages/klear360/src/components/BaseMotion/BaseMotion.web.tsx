@@ -27,6 +27,7 @@ const _BaseMotionBox = (
     type = 'inout',
     motionTriggers = ['mount'],
     animateVisibility,
+    as,
     ...rest
   }: BaseMotionBoxProps,
   ref: React.Ref<Klear360ElementRef>,
@@ -51,6 +52,7 @@ const _BaseMotionBox = (
   return (
     <MotionDiv
       ref={ref as never}
+      {...(as !== undefined ? { as: as as never } : {})}
       viewport={{ amount: 0.8, once: true }}
       variants={motionVariants}
       {...animationVariables}

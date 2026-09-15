@@ -3,7 +3,7 @@ const ignores = ['/node_modules/'];
 module.exports = {
   preset: 'react-native',
   testPathIgnorePatterns: [...ignores, 'web.test', 'ssr.test'],
-  collectCoverageFrom: ['./src/**/*.native.{ts,tsx}'],
+  collectCoverageFrom: ['./src/**/*.native.{ts,tsx,js,jsx}'],
   coverageThreshold: {
     global: {
       branches: 75,
@@ -12,10 +12,21 @@ module.exports = {
       statements: 75,
     },
   },
-  moduleFileExtensions: ['native.ts', 'native.tsx', 'ts', 'tsx', 'js', 'json', 'node'],
-  testMatch: ['**/*.test.{ts,tsx}'],
+  moduleFileExtensions: [
+    'native.ts',
+    'native.tsx',
+    'native.js',
+    'native.jsx',
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node',
+  ],
+  testMatch: ['**/*.test.{ts,tsx,js,jsx}'],
   transform: {
-    '\\.(js|ts|tsx)?$': './jest-preprocess.js',
+    '\\.(js|jsx|ts|tsx)?$': './jest-preprocess.js',
   },
   testEnvironment: 'node', // Ref: https://github.com/callstack/react-native-testing-library/issues/896#issuecomment-1190249878
   transformIgnorePatterns: [
