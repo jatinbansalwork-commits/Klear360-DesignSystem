@@ -10,7 +10,7 @@ import { klear360Theme } from '~tokens/theme';
 import { Box } from '~components/Box';
 import type { HeadingProps } from '~components/Typography';
 import { Display, Heading } from '~components/Typography';
-import { AnnouncementIcon, FigmaIcon, FileTextIcon } from '~components/Icons';
+import { AnnouncementIcon, FileTextIcon } from '~components/Icons';
 import { Button } from '~components/Button';
 
 const Subtitle = (props: HeadingProps): React.ReactElement => {
@@ -20,6 +20,9 @@ const Subtitle = (props: HeadingProps): React.ReactElement => {
 };
 
 type StoryPageWrapperTypes = {
+  // No longer rendered (the "View on Figma" button was removed), kept so the ~90 stories that
+  // already pass it don't need touching.
+  // eslint-disable-next-line react/no-unused-prop-types
   figmaURL?: string;
   codeUrl?: string;
   argTableComponent?: unknown;
@@ -101,12 +104,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
               icon={AnnouncementIcon}
               target="_blank"
             >
-              Released In: v{componentMetaInfo.frameworks.react.releasedIn}
-            </Button>
-          ) : null}
-          {props.figmaURL ? (
-            <Button href={props.figmaURL} variant="tertiary" icon={FigmaIcon} target="_blank">
-              View on Figma
+              Released In: v1.1
             </Button>
           ) : null}
           {props.codeUrl ? (

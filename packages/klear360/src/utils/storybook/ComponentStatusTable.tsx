@@ -85,11 +85,9 @@ const ReleasedInLink = ({
   const ghUrl = framework === 'svelte' ? ghUrlSvelte : ghUrlReact;
 
   return version ? (
-    <Link
-      href={`${ghUrl}${version}`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >{`v${version}`}</Link>
+    <Link href={`${ghUrl}${version}`} rel="noopener noreferrer" target="_blank">
+      v1.1
+    </Link>
   ) : (
     <Text>-</Text>
   );
