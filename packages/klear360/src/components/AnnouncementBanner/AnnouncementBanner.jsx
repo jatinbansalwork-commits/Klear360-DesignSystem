@@ -1,19 +1,23 @@
 import React from 'react';
-import type { ReactElement } from 'react';
 
 import { StyledAnnouncementBanner } from './StyledAnnouncementBanner';
 import { getBannerIconColor, getBannerTextColor } from './styles';
-import type { AnnouncementBannerProps } from './types';
 import BaseBox from '~components/Box/BaseBox';
 import { Text } from '~components/Typography';
 import { useTheme } from '~components/Klear360Provider';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { getStyledProps } from '~components/Box/styledProps';
-import type { Klear360ElementRef } from '~utils/types';
 import { makeAccessible } from '~utils/makeAccessible';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 
+/** @typedef {import('./types').AnnouncementBannerProps} AnnouncementBannerProps */
+
+/**
+ * @param {AnnouncementBannerProps} props
+ * @param {React.Ref<import('~utils/types').Klear360ElementRef>} ref
+ * @returns {React.ReactElement}
+ */
 const _AnnouncementBanner = (
   {
     children,
@@ -22,9 +26,9 @@ const _AnnouncementBanner = (
     accessibilityLabel = 'Announcement',
     testID,
     ...rest
-  }: AnnouncementBannerProps,
-  ref: React.Ref<Klear360ElementRef>,
-): ReactElement => {
+  },
+  ref,
+) => {
   const { colorScheme } = useTheme();
   const isDark = colorScheme === 'dark';
 
@@ -35,7 +39,7 @@ const _AnnouncementBanner = (
 
   return (
     <StyledAnnouncementBanner
-      ref={ref as never}
+      ref={ref}
       isDark={isDark}
       alignment={alignment}
       {...a11yProps}
@@ -59,5 +63,4 @@ const AnnouncementBanner = assignWithoutSideEffects(React.forwardRef(_Announceme
   displayName: 'AnnouncementBanner',
 });
 
-export type { AnnouncementBannerProps };
 export { AnnouncementBanner };
