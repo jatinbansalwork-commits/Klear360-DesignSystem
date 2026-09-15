@@ -69,7 +69,7 @@ export const TableDrivenByColumnsConfig = (): React.ReactElement => {
       <Box paddingBottom="spacing.4">
         <Heading>Table Driven by Columns Config</Heading>
         <Text>
-          Instead of hand-writing TableHeader/TableBody JSX, pass a `columns` array and Table builds
+          Instead of hand-writing TableHeader/TableBody JSX, pass a columns array and Table builds
           the header row and body cells for you.
         </Text>
       </Box>
