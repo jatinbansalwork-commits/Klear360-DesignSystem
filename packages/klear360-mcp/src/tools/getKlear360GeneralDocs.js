@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { z } from 'zod';
-import type { ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { GENERAL_KNOWLEDGEBASE_DIRECTORY } from '../utils/tokens.js';
 import {
   commonKlear360MCPToolSchema,
@@ -12,7 +11,6 @@ import { getKlear360DocsList } from '../utils/generalUtils.js';
 import { handleError } from '../utils/errorUtils.js';
 import { getKlear360DocsResponseText } from '../utils/getKlear360DocsResponseText.js';
 import { shouldCreateOrUpdateSkill } from '../utils/skillUtils.js';
-import type { McpToolResponse } from '../utils/types.js';
 
 const klear360GeneralDocsList = getKlear360DocsList('general');
 
@@ -43,20 +41,22 @@ const getKlear360GeneralDocsHttpSchema = {
   ...httpTransportSkillVersionSchema,
 };
 
-// Core business logic function
+/**
+ * @param {Object} params
+ * @param {string} params.topicsList
+ * @param {string} [params.currentProjectRootDirectory]
+ * @param {boolean} [params.skipLocalSkillChecks]
+ * @param {string} [params.skillVersion]
+ * @param {'claude' | 'cursor' | 'unknown'} params.clientName
+ * @returns {import('../utils/types.js').McpToolResponse}
+ */
 const getKlear360GeneralDocsCore = ({
   topicsList,
   currentProjectRootDirectory,
   skipLocalSkillChecks = false,
   skillVersion = '0',
   clientName: _clientName,
-}: {
-  topicsList: string;
-  currentProjectRootDirectory?: string;
-  skipLocalSkillChecks?: boolean;
-  skillVersion?: string;
-  clientName: 'claude' | 'cursor' | 'unknown';
-}): McpToolResponse => {
+}) => {
   const topics = topicsList.split(',').map((s) => s.trim());
   const invalidTopics = topics.filter((topic) => !klear360GeneralDocsList.includes(topic));
   if (invalidTopics.length > 0) {
@@ -95,7 +95,7 @@ const getKlear360GeneralDocsCore = ({
         },
       ],
     };
-  } catch (error: unknown) {
+  } catch (error) {
     return handleError({
       toolName: getKlear360GeneralDocsToolName,
       errorObject: error,
@@ -103,10 +103,12 @@ const getKlear360GeneralDocsCore = ({
   }
 };
 
-// Callback for stdio transport
-const getKlear360GeneralDocsStdioCallback: ToolCallback<
-  typeof getKlear360GeneralDocsStdioSchema
-> = ({ topicsList, currentProjectRootDirectory, clientName }) => {
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getKlear360GeneralDocsStdioSchema>} */
+const getKlear360GeneralDocsStdioCallback = ({
+  topicsList,
+  currentProjectRootDirectory,
+  clientName,
+}) => {
   return getKlear360GeneralDocsCore({
     topicsList,
     currentProjectRootDirectory,
@@ -115,8 +117,8 @@ const getKlear360GeneralDocsStdioCallback: ToolCallback<
   });
 };
 
-// Callback for HTTP transport
-const getKlear360GeneralDocsHttpCallback: ToolCallback<typeof getKlear360GeneralDocsHttpSchema> = ({
+/** @type {import('@modelcontextprotocol/sdk/server/mcp.js').ToolCallback<typeof getKlear360GeneralDocsHttpSchema>} */
+const getKlear360GeneralDocsHttpCallback = ({
   topicsList,
   skillVersion,
   clientName,
