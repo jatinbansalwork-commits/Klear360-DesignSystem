@@ -1,7 +1,6 @@
-import type { ElevationWithColorModes } from './types';
-
 /** offset-x | offset-y | blur-radius | spread-radius | color, offset-x | offset-y | blur-radius | spread-radius | color */
-export const elevation: ElevationWithColorModes = {
+/** @type {import('./types').ElevationWithColorModes} */
+export const elevation = {
   // color: neutral.blueGrayLight.a1106
   onLight: {
     none: 'none',
