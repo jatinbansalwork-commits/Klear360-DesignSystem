@@ -1,6 +1,7 @@
 import { getPlatformType } from './getPlatformType';
 
-const isBrowser = (): boolean => {
+/** @returns {boolean} */
+const isBrowser = () => {
   return getPlatformType() === 'browser';
 };
 

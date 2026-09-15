@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 import { getPlatformType } from './getPlatformType';
 
-const isReactNative = (): boolean => {
+/** @returns {boolean} */
+const isReactNative = () => {
   return getPlatformType() === 'react-native';
 };
 

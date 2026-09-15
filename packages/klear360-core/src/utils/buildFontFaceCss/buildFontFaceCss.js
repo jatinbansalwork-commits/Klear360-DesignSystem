@@ -1,6 +1,8 @@
-import type { CreateThemeFontFace } from '~tokens/theme/createThemeConfig';
-
-const normalizeSrc = (src: string): string => {
+/**
+ * @param {string} src
+ * @returns {string}
+ */
+const normalizeSrc = (src) => {
   const trimmed = src.trim();
   if (trimmed.startsWith('url(')) {
     return trimmed;
@@ -8,7 +10,12 @@ const normalizeSrc = (src: string): string => {
   return `url(${JSON.stringify(trimmed)})`;
 };
 
-const srcWithFormat = (src: string, format?: string): string => {
+/**
+ * @param {string} src
+ * @param {string} [format]
+ * @returns {string}
+ */
+const srcWithFormat = (src, format) => {
   const url = normalizeSrc(src);
   if (!format || /\sformat\s*\(/i.test(src)) {
     return url;
@@ -18,8 +25,10 @@ const srcWithFormat = (src: string, format?: string): string => {
 
 /**
  * Build a CSS string of `@font-face` rules for custom merchant fonts.
+ * @param {import('~tokens/theme/createThemeConfig').CreateThemeFontFace[]} fontFaces
+ * @returns {string}
  */
-export const buildFontFaceCss = (fontFaces: CreateThemeFontFace[]): string => {
+export const buildFontFaceCss = (fontFaces) => {
   return fontFaces
     .map((face) => {
       const sources = (Array.isArray(face.src) ? face.src : [face.src])

@@ -1,14 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { logger } from '~utils/logger';
 import { accessibilityMap } from './accessibilityMap';
-import type { AccessibilityMap, AccessibilityProps } from './types';
 
-export const makeAccessible = (props: Partial<AccessibilityProps>): Record<string, unknown> => {
-  const newProps: Record<string, any> = {};
+/**
+ * @param {Partial<import('./types').AccessibilityProps>} props
+ * @returns {Record<string, unknown>}
+ */
+export const makeAccessible = (props) => {
+  /** @type {Record<string, any>} */
+  const newProps = {};
 
   // eslint-disable-next-line guard-for-in
   for (const key in props) {
-    const propKey = key as keyof AccessibilityMap;
+    const propKey = /** @type {keyof import('./types').AccessibilityMap} */ (key);
     const propValue = props[propKey];
     const accessibilityAttribute = accessibilityMap[propKey];
 
