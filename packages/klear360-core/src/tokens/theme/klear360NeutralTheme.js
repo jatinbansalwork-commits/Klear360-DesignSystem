@@ -9,9 +9,8 @@ import {
   elevation,
   opacity,
 } from '~tokens/global';
-import type { ThemeTokens, ColorsWithModes } from './theme';
-
-const colors: ColorsWithModes = {
+/** @type {import('./theme').ColorsWithModes} */
+const colors = {
   onLight: {
     surface: {
       background: {
@@ -1522,7 +1521,8 @@ const colors: ColorsWithModes = {
   },
 };
 
-const klear360NeutralTheme: ThemeTokens = {
+/** @type {import('./theme').ThemeTokens} */
+const klear360NeutralTheme = {
   name: 'klear360NeutralTheme',
   border,
   backdropBlur,
