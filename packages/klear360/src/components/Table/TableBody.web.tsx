@@ -21,6 +21,7 @@ import getIn from '~utils/lodashButBetter/get';
 import { Text } from '~components/Typography';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
+import { RadioIcon } from '~components/Radio/RadioIcon/RadioIcon';
 import { getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
 import BaseBox from '~components/Box/BaseBox';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
@@ -228,6 +229,51 @@ const TableCheckboxCell = ({
   );
 };
 
+// Visual per-row indicator for selectionType="single" selectionIndicator="radio" - RadioIcon is
+// the same presentational glyph <Radio> renders, used directly (rather than <Radio> itself)
+// since <Radio> requires a <RadioGroup> ancestor and each row here is an independent element.
+// The click/keyboard/ARIA handling below is written by hand for the same reason.
+const TableRadioCell = ({
+  isChecked,
+  onChange,
+  isDisabled,
+}: {
+  isChecked: boolean;
+  onChange: () => void;
+  isDisabled?: boolean;
+}): React.ReactElement => {
+  return (
+    <TableCell>
+      <BaseBox
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flex={1}
+        width={makeSize(checkboxCellWidth)}
+        tabIndex={isDisabled ? -1 : 0}
+        onClick={(e) => {
+          // Unlike TableCheckboxCell's <Checkbox>, RadioIcon is presentation-only (no input of
+          // its own to receive the click), so - rather than gating on e.target === e.currentTarget
+          // - any click anywhere in this 44px area (icon included) should toggle selection.
+          if (!isDisabled) {
+            onChange();
+          }
+          e.stopPropagation();
+        }}
+        onKeyDown={(e) => {
+          if (!isDisabled && (e.key === ' ' || e.key === 'Enter')) {
+            e.preventDefault();
+            onChange();
+          }
+        }}
+        {...makeAccessible({ role: 'radio', checked: isChecked, label: 'Select Row' })}
+      >
+        <RadioIcon isChecked={isChecked} isDisabled={isDisabled} size="medium" />
+      </BaseBox>
+    </TableCell>
+  );
+};
+
 const StyledRow = styled(Row)<{
   $isSelectable: boolean;
   $isHoverable: boolean;
@@ -353,6 +399,7 @@ const _TableRow = <Item,>({
 }: TableRowProps<Item>): React.ReactElement => {
   const {
     selectionType,
+    selectionIndicator,
     selectedRows,
     toggleRowSelectionById,
     setDisabledRows,
@@ -364,6 +411,7 @@ const _TableRow = <Item,>({
   } = useTableContext();
   const isSelectable = selectionType !== 'none';
   const isMultiSelect = selectionType === 'multiple';
+  const isSingleSelectWithRadio = selectionType === 'single' && selectionIndicator === 'radio';
   const isSelected = selectedRows?.includes(item.id);
   const hasHoverActions = Boolean(hoverActions);
   const isGroupHeader =
@@ -433,6 +481,13 @@ const _TableRow = <Item,>({
           onChange={() => !isDisabled && toggleRowSelectionById(item.id)}
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
+        />
+      )}
+      {isSingleSelectWithRadio && (
+        <TableRadioCell
+          isChecked={Boolean(isSelected)}
+          onChange={() => !isDisabled && toggleRowSelectionById(item.id)}
+          isDisabled={isDisabled}
         />
       )}
       {children}

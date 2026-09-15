@@ -178,7 +178,10 @@ const _Table = <Item,>({
   data,
   multiSelectTrigger = 'row',
   selectionType = 'none',
+  selectionIndicator = 'highlight',
   onSelectionChange,
+  onRowSelect,
+  onRowUnselect,
   isHeaderSticky,
   isFooterSticky,
   isFirstColumnSticky,
@@ -232,6 +235,11 @@ const _Table = <Item,>({
 
   // Table Theme
   const columnCount = getTableHeaderCellCount(children);
+  // Whether a leading selection-control column (checkbox or radio) precedes the data columns -
+  // used everywhere the checkbox column's width/offset already had to be accounted for, so the
+  // radio column (single-select opt-in) gets identical treatment.
+  const hasLeadingSelectionColumn =
+    selectionType === 'multiple' || (selectionType === 'single' && selectionIndicator === 'radio');
   const firstColumnStickyHeaderCellCSS = isFirstColumnSticky
     ? `
   &:nth-of-type(1) {
@@ -244,7 +252,7 @@ const _Table = <Item,>({
     z-index: 3 !important;
   }
   ${
-    selectionType === 'multiple' &&
+    hasLeadingSelectionColumn &&
     `&:nth-of-type(2) {
     left: ${checkboxCellWidth}px !important;
     position: sticky !important;
@@ -265,7 +273,7 @@ const _Table = <Item,>({
     z-index: 3 !important;
   }
   ${
-    selectionType === 'multiple' &&
+    hasLeadingSelectionColumn &&
     `&:nth-of-type(2) {
     left: ${checkboxCellWidth}px !important;
     position: sticky !important;
@@ -286,7 +294,7 @@ const _Table = <Item,>({
     z-index: 3 !important;
   }
   ${
-    selectionType === 'multiple' &&
+    hasLeadingSelectionColumn &&
     `&:nth-of-type(2) {
     left: ${checkboxCellWidth}px !important;
     position: sticky !important;
@@ -317,7 +325,7 @@ const _Table = <Item,>({
       gridTemplateColumns
         ? `${gridTemplateColumns} ${hasHoverActions ? lastHoverActionsColWidth : ''}`
         : ` ${
-            selectionType === 'multiple' ? 'min-content' : ''
+            hasLeadingSelectionColumn ? 'min-content' : ''
           } repeat(${columnCount},minmax(100px, 1fr)) ${
             hasHoverActions ? lastHoverActionsColWidth : ''
           } !important;`
@@ -348,11 +356,35 @@ const _Table = <Item,>({
   // Selection Logic
   const onSelectChange: MiddlewareFunction = (_, state): void => {
     const selectedIds: Identifier[] = state.id ? [state.id] : state.ids ?? [];
+    const previouslySelectedIds = selectedRows;
     setSelectedRows(selectedIds);
     onSelectionChange?.({
       selectedIds,
       values: data.nodes.filter((node) => selectedIds.includes(node.id)),
     });
+
+    // Discrete per-row callbacks, alongside (not instead of) the aggregate one above. Diffing
+    // against the previous selection covers every case uniformly - a plain row click, toggling
+    // the same row off, single-select swapping the selected row, and multi-select batch actions
+    // (select all / deselect all) firing once per row that actually changed.
+    if (onRowSelect || onRowUnselect) {
+      if (onRowSelect) {
+        selectedIds
+          .filter((id) => !previouslySelectedIds.includes(id))
+          .forEach((id) => {
+            const row = data.nodes.find((node) => node.id === id);
+            if (row) onRowSelect(row);
+          });
+      }
+      if (onRowUnselect) {
+        previouslySelectedIds
+          .filter((id) => !selectedIds.includes(id))
+          .forEach((id) => {
+            const row = data.nodes.find((node) => node.id === id);
+            if (row) onRowUnselect(row);
+          });
+      }
+    }
   };
 
   const rowSelectConfig = useRowSelect(
@@ -526,6 +558,7 @@ const _Table = <Item,>({
   const tableContext: TableContextType<Item> = useMemo(
     () => ({
       selectionType,
+      selectionIndicator,
       selectedRows,
       totalItems,
       toggleRowSelectionById,
@@ -559,6 +592,7 @@ const _Table = <Item,>({
     }),
     [
       selectionType,
+      selectionIndicator,
       selectedRows,
       totalItems,
       toggleRowSelectionById,

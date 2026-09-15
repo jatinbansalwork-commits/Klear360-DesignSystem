@@ -830,6 +830,165 @@ describe('<Table />', () => {
     expect(previousRow).toHaveAttribute('aria-selected', 'false');
   });
 
+  it('should render a radio indicator when selectionIndicator is "radio"', async () => {
+    const user = userEvent.setup();
+    const { getByText, getAllByRole } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 5) }} selectionType="single" selectionIndicator="radio">
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const radios = getAllByRole('radio');
+    expect(radios).toHaveLength(5);
+    expect(radios.every((radio) => radio.getAttribute('aria-checked') === 'false')).toBe(true);
+
+    const firstRow = getByText('klear01').closest('td');
+    if (firstRow) await user.click(firstRow);
+    expect(radios[0]).toHaveAttribute('aria-checked', 'true');
+    expect(radios[1]).toHaveAttribute('aria-checked', 'false');
+
+    const secondRow = getByText('klear02').closest('td');
+    if (secondRow) await user.click(secondRow);
+    expect(radios[0]).toHaveAttribute('aria-checked', 'false');
+    expect(radios[1]).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('should not render a radio indicator by default (selectionIndicator defaults to "highlight")', () => {
+    const { queryAllByRole } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 5) }} selectionType="single">
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    expect(queryAllByRole('radio')).toHaveLength(0);
+  });
+
+  it('should call discrete onRowSelect/onRowUnselect alongside onSelectionChange for single select', async () => {
+    const onSelectionChange = jest.fn();
+    const onRowSelect = jest.fn();
+    const onRowUnselect = jest.fn();
+    const user = userEvent.setup();
+    const { getByText } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 5) }}
+        selectionType="single"
+        onSelectionChange={onSelectionChange}
+        onRowSelect={onRowSelect}
+        onRowUnselect={onRowUnselect}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const firstRow = getByText('klear01').closest('td');
+    if (firstRow) await user.click(firstRow);
+    expect(onSelectionChange).toHaveBeenCalledWith({ values: [nodes[0]], selectedIds: ['1'] });
+    expect(onRowSelect).toHaveBeenCalledTimes(1);
+    expect(onRowSelect).toHaveBeenCalledWith(nodes[0]);
+    expect(onRowUnselect).not.toHaveBeenCalled();
+
+    const secondRow = getByText('klear02').closest('td');
+    if (secondRow) await user.click(secondRow);
+    expect(onRowSelect).toHaveBeenCalledTimes(2);
+    expect(onRowSelect).toHaveBeenLastCalledWith(nodes[1]);
+    expect(onRowUnselect).toHaveBeenCalledTimes(1);
+    expect(onRowUnselect).toHaveBeenCalledWith(nodes[0]);
+  });
+
+  it('should call discrete onRowSelect/onRowUnselect once per row for multi-select batch actions', async () => {
+    const onRowSelect = jest.fn();
+    const onRowUnselect = jest.fn();
+    const user = userEvent.setup();
+    const { getByText } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 5) }}
+        selectionType="multiple"
+        onRowSelect={onRowSelect}
+        onRowUnselect={onRowUnselect}
+        toolbar={<TableToolbar />}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const firstRow = getByText('klear01').closest('td');
+    if (firstRow) await user.click(firstRow);
+    const secondRow = getByText('klear02').closest('td');
+    if (secondRow) await user.click(secondRow);
+    expect(onRowSelect).toHaveBeenCalledTimes(2);
+    expect(onRowSelect).toHaveBeenNthCalledWith(1, nodes[0]);
+    expect(onRowSelect).toHaveBeenNthCalledWith(2, nodes[1]);
+    expect(onRowUnselect).not.toHaveBeenCalled();
+
+    const deselectButton = getByText('Deselect');
+    await user.click(deselectButton);
+    expect(onRowUnselect).toHaveBeenCalledTimes(2);
+    expect(onRowUnselect).toHaveBeenCalledWith(nodes[0]);
+    expect(onRowUnselect).toHaveBeenCalledWith(nodes[1]);
+  });
+
   it('should render table with multi select', async () => {
     const onSelectionChange = jest.fn();
     const user = userEvent.setup();

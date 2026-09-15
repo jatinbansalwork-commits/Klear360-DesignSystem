@@ -133,6 +133,18 @@ type TableProps<Item> = {
    **/
   selectionType?: 'none' | 'single' | 'multiple';
   /**
+   * When `selectionType` is `'single'`, controls how the currently-selected row is indicated.
+   *
+   * - `'highlight'` (default): no per-row control, just the existing click/highlight behavior.
+   * - `'radio'`: renders a radio-button indicator in a leading column, one per row, matching
+   *   the checkbox column `selectionType="multiple"` already renders.
+   *
+   * Has no effect when `selectionType` is `'none'` or `'multiple'`.
+   *
+   * @default 'highlight'
+   **/
+  selectionIndicator?: 'radio' | 'highlight';
+  /**
    * The onSelectionChange prop is a function that is called when the selection changes.
    * The function is called with an object that has a values property that is an array of the selected rows.
    **/
@@ -155,6 +167,18 @@ type TableProps<Item> = {
      */
     selectedIds: Identifier[];
   }) => void;
+  /**
+   * Called once per row that becomes selected, alongside (not instead of) `onSelectionChange`.
+   * Fires for every newly-selected row, including each one added in a single multi-select batch
+   * action (e.g. "select all").
+   **/
+  onRowSelect?: (row: TableNode<Item>) => void;
+  /**
+   * Called once per row that becomes unselected, alongside (not instead of) `onSelectionChange`.
+   * Fires for every newly-unselected row, including each one removed in a single multi-select
+   * batch action (e.g. "deselect all").
+   **/
+  onRowUnselect?: (row: TableNode<Item>) => void;
   /**
    * The isHeaderSticky prop determines whether the table header is sticky or not.
    * The default value is `false`.

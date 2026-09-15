@@ -243,11 +243,22 @@ const TableHeaderCellCheckbox = ({
   );
 };
 
+// Empty placeholder header cell matching the radio column's width - single-select has no
+// "select all" concept, so unlike TableHeaderCellCheckbox this renders no control, just spacing
+// to keep the header aligned with the per-row TableRadioCell column in the body.
+const TableHeaderCellRadioSpacer = (): React.ReactElement => {
+  return (
+    <TableHeaderCell headerKey="SELECT">
+      <BaseBox width={makeSize(checkboxCellWidth)} />
+    </TableHeaderCell>
+  );
+};
+
 const StyledHeaderRow = styled(HeaderRow)<{
   $showBorderedCells: boolean;
   $gridTemplateColumns: string | undefined;
   $hasHoverActions: boolean;
-  $selectionType: TableProps<unknown>['selectionType'];
+  $hasLeadingSelectionColumn: boolean;
   $columnCount: number;
   $isVirtualized?: boolean;
 }>(
@@ -256,7 +267,7 @@ const StyledHeaderRow = styled(HeaderRow)<{
     $showBorderedCells,
     $gridTemplateColumns,
     $hasHoverActions,
-    $selectionType,
+    $hasLeadingSelectionColumn,
     $columnCount,
     $isVirtualized,
   }) => ({
@@ -270,7 +281,7 @@ const StyledHeaderRow = styled(HeaderRow)<{
             gridTemplateColumns: $gridTemplateColumns
               ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
               : ` ${
-                  $selectionType === 'multiple' ? 'min-content' : ''
+                  $hasLeadingSelectionColumn ? 'min-content' : ''
                 } repeat(${$columnCount},minmax(100px, 1fr)) ${
                   $hasHoverActions ? 'min-content' : ''
                 } !important;`,
@@ -291,6 +302,7 @@ const _TableHeaderRow = ({
   const {
     disabledRows,
     selectionType,
+    selectionIndicator,
     selectedRows,
     totalItems,
     toggleAllRowsSelection,
@@ -302,6 +314,8 @@ const _TableHeaderRow = ({
     isVirtualized,
   } = useTableContext();
   const isMultiSelect = selectionType === 'multiple';
+  const isSingleSelectWithRadio = selectionType === 'single' && selectionIndicator === 'radio';
+  const hasLeadingSelectionColumn = isMultiSelect || isSingleSelectWithRadio;
   const isAllSelected = selectedRows && selectedRows.length === totalItems;
   const isIndeterminate = selectedRows && selectedRows.length > 0 && !isAllSelected;
   const isDisabled = disabledRows && disabledRows.length === totalItems;
@@ -319,7 +333,7 @@ const _TableHeaderRow = ({
       $showBorderedCells={showBorderedCells}
       $gridTemplateColumns={gridTemplateColumns}
       $hasHoverActions={hasHoverActions}
-      $selectionType={selectionType}
+      $hasLeadingSelectionColumn={hasLeadingSelectionColumn}
       $columnCount={columnCount}
       $isVirtualized={isVirtualized}
     >
@@ -331,6 +345,7 @@ const _TableHeaderRow = ({
           onChange={() => toggleAllRowsSelection()}
         />
       )}
+      {isSingleSelectWithRadio && <TableHeaderCellRadioSpacer />}
       {children}
       {hasHoverActions ? <TableHeaderCell _hasPadding={false}>Actions</TableHeaderCell> : null}
     </StyledHeaderRow>

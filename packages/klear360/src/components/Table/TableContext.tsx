@@ -13,6 +13,8 @@ import type {
 
 export type TableContextType<Item> = {
   selectionType?: TableProps<unknown>['selectionType'];
+  /** @see TableProps['selectionIndicator'] */
+  selectionIndicator: NonNullable<TableProps<unknown>['selectionIndicator']>;
   selectedRows?: TableNode['id'][];
   totalItems: number;
   toggleRowSelectionById: (id: TableNode['id']) => void;
@@ -55,6 +57,7 @@ export type TableContextType<Item> = {
 
 const TableContext = React.createContext<TableContextType<unknown>>({
   selectionType: 'none',
+  selectionIndicator: 'highlight',
   selectedRows: undefined,
   totalItems: 0,
   toggleRowSelectionById: () => {},

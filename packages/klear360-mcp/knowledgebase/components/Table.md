@@ -56,6 +56,16 @@ type TableProps<Item> = {
   selectionType?: 'none' | 'single' | 'multiple';
 
   /**
+   * When selectionType is 'single', controls how the selected row is indicated.
+   * 'highlight' (default) is just the existing click/highlight behavior with no per-row control.
+   * 'radio' renders a radio button in a leading column, one per row - the same column
+   * selectionType="multiple" already renders for its checkboxes.
+   * No effect when selectionType is 'none' or 'multiple'.
+   * @default 'highlight'
+   **/
+  selectionIndicator?: 'radio' | 'highlight';
+
+  /**
    * The onSelectionChange prop is a function that is called when the selection changes.
    **/
   onSelectionChange?: ({
@@ -65,6 +75,18 @@ type TableProps<Item> = {
     values: TableNode<Item>[];
     selectedIds: Identifier[];
   }) => void;
+
+  /**
+   * Called once per row that becomes selected, alongside (not instead of) onSelectionChange.
+   * Fires once per row for multi-select batch actions too (e.g. "select all").
+   **/
+  onRowSelect?: (row: TableNode<Item>) => void;
+
+  /**
+   * Called once per row that becomes unselected, alongside (not instead of) onSelectionChange.
+   * Fires once per row for multi-select batch actions too (e.g. "deselect all").
+   **/
+  onRowUnselect?: (row: TableNode<Item>) => void;
 
   /**
    * The isHeaderSticky prop determines whether the table header is sticky or not.
@@ -395,6 +417,8 @@ type TablePaginationProps = {
 - Use the function-as-children pattern: `<Table>{(tableData) => (<>...</>)}</Table>`.
 - Ensure every row object in `data.nodes` has a unique `id` field.
 - Use `sortFunctions` with matching `headerKey` props on `TableHeaderCell` for sortable columns.
+- Use `selectionIndicator="radio"` with `selectionType="single"` when the row selection needs a
+  visible per-row control, not just click/highlight.
 - Use `isHeaderSticky` and `isFirstColumnSticky` for large datasets that need scroll anchoring.
 - Wrap in `ListView` when you need search and filter capabilities alongside the table.
 
