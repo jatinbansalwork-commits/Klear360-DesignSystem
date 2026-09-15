@@ -1,17 +1,16 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { KNOWLEDGEBASE_DIRECTORY } from './tokens.js';
-import type { DocumentationType } from './generalUtils.js';
 
-const getKlear360DocsResponseText = ({
-  docsList,
-  documentationType,
-}: {
-  docsList: string;
-  documentationType: DocumentationType;
-}): string => {
+/**
+ * @param {Object} params
+ * @param {string} params.docsList
+ * @param {import('./generalUtils.js').DocumentationType} params.documentationType
+ * @returns {string}
+ */
+const getKlear360DocsResponseText = ({ docsList, documentationType }) => {
   // Parse the comma-separated string into an array of component names
-  const docNames = docsList.split(',').map((name: string) => name.trim());
+  const docNames = docsList.split(',').map((name) => name.trim());
 
   // Build the formatted documentation text
   let responseText = `Klear360 ${documentationType} documentation for: ${docsList}\n\n`;
@@ -24,7 +23,7 @@ const getKlear360DocsResponseText = ({
       const filePath = resolve(KNOWLEDGEBASE_DIRECTORY, documentationType, `${docName}.md`);
       const content = readFileSync(filePath, 'utf8');
       responseText += `${content}\n\n`;
-    } catch (error: unknown) {
+    } catch (error) {
       responseText += `⚠️ Error: Could not read documentation for ${docName} in ${documentationType}. The documentation may not exist or there may be an issue with the file.\n\n`;
     }
   }

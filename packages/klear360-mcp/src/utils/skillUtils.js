@@ -5,7 +5,6 @@ import { createKlear360SkillToolName } from '../tools/createKlear360Skill.js';
 import { SKILL_VERSION, CONSUMER_SKILL_RELATIVE_PATH } from './tokens.js';
 import { hasOutdatedSkill } from './generalUtils.js';
 import { handleError } from './errorUtils.js';
-import type { McpToolResponse } from './types.js';
 
 const bashScriptContent = `
   #!/bin/bash
@@ -28,11 +27,12 @@ const bashScriptContent = `
   fi
   `;
 
-const skillCreationInstructions = ({
-  currentProjectRootDirectory,
-}: {
-  currentProjectRootDirectory: string;
-}): string => `
+/**
+ * @param {Object} params
+ * @param {string} params.currentProjectRootDirectory
+ * @returns {string}
+ */
+const skillCreationInstructions = ({ currentProjectRootDirectory }) => `
 **Instructions:**
 
 1. Change to the working directory: \`cd "${currentProjectRootDirectory}"\`
@@ -54,37 +54,37 @@ ${bashScriptContent}
 
 /**
  * Checks if the skill file is missing based on version (for HTTP transport)
- * @param skillVersion - The version of the skill
- * @returns true if skill file is missing, false otherwise
+ * @param {string} skillVersion - The version of the skill
+ * @returns {boolean} true if skill file is missing, false otherwise
  */
-function isSkillFileMissing(skillVersion: string): boolean {
+function isSkillFileMissing(skillVersion) {
   return skillVersion === '0';
 }
 
 /**
  * Checks if the skill is outdated (version doesn't match the latest version)
- * @param skillVersion - The version of the skill
- * @returns true if skill is outdated, false otherwise
+ * @param {string} skillVersion - The version of the skill
+ * @returns {boolean} true if skill is outdated, false otherwise
  */
-function isSkillOutdated(skillVersion: string): boolean {
+function isSkillOutdated(skillVersion) {
   return skillVersion !== SKILL_VERSION;
 }
 
 /**
  * Checks if the klear360 skill should be created or updated. Returns instructions if needed.
  * This function checks both the file system and version numbers to determine if the skill needs attention.
- * @param skillVersion - The version of the skill
- * @param currentProjectRootDirectory - The working root directory of the consumer's project
- * @param skipLocalSkillChecks - If true, skip file system checks and only check versions (for HTTP transport)
- * @param toolName - The name of the tool calling this function (for error messages)
- * @returns Error/content format if skill needs attention, undefined otherwise
+ * @param {string} skillVersion - The version of the skill (defaults to '0')
+ * @param {string} currentProjectRootDirectory - The working root directory of the consumer's project
+ * @param {boolean} skipLocalSkillChecks - If true, skip file system checks and only check versions (for HTTP transport, defaults to false)
+ * @param {string} [toolName] - The name of the tool calling this function (for error messages)
+ * @returns {import('./types.js').McpToolResponse | undefined} Error/content format if skill needs attention, undefined otherwise
  */
 function shouldCreateOrUpdateSkill(
   skillVersion = '0',
-  currentProjectRootDirectory: string,
+  currentProjectRootDirectory,
   skipLocalSkillChecks = false,
-  toolName?: string,
-): McpToolResponse | undefined {
+  toolName,
+) {
   let isMissing = false;
 
   // Check file system first if directory is provided and skipLocalSkillChecks is false

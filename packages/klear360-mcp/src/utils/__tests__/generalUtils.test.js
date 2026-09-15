@@ -6,7 +6,8 @@ import { hasOutdatedSkill } from '../generalUtils.js';
 import { KLEAR360_SKILL_FILE_PATH, SKILL_VERSION_STRING } from '../tokens.js';
 
 describe('hasOutdatedSkill', () => {
-  let tmpFile: string;
+  /** @type {string} */
+  let tmpFile;
 
   afterEach(() => {
     if (tmpFile && fs.existsSync(tmpFile)) {
