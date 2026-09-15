@@ -3,6 +3,7 @@
   "version": "1.31.0",
   "description": "Model Context Protocol server for Klear360",
   "main": "dist/exports.js",
+  "types": "dist/exports.d.ts",
   "type": "module",
   "bin": "dist/server.js",
   "publishConfig": {

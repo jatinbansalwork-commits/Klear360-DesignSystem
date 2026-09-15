@@ -55,8 +55,13 @@ import {
   getChangelogToolSchema,
   getChangelogToolCallback,
 } from './tools/getChangelog.js';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const httpsServerTools = (server: McpServer): void => {
+
+/**
+ * @param {McpServer} server
+ * @returns {void}
+ */
+// eslint-disable-next-line no-unused-vars
+const httpsServerTools = (server) => {
   server.tool(
     createKlear360SkillToolName,
     createKlear360SkillToolDescription,
@@ -86,7 +91,11 @@ const httpsServerTools = (server: McpServer): void => {
   );
 };
 
-const stdioServerTools = (server: McpServer): void => {
+/**
+ * @param {McpServer} server
+ * @returns {void}
+ */
+const stdioServerTools = (server) => {
   server.tool(
     createKlear360SkillToolName,
     createKlear360SkillToolDescription,
@@ -115,11 +124,13 @@ const stdioServerTools = (server: McpServer): void => {
     getKlear360GeneralDocsStdioCallback,
   );
 };
-export const createServer = ({
-  transportType = 'stdio',
-}: {
-  transportType?: 'stdio' | 'http';
-}): McpServer => {
+
+/**
+ * @param {Object} params
+ * @param {'stdio' | 'http'} [params.transportType]
+ * @returns {McpServer}
+ */
+export const createServer = ({ transportType = 'stdio' }) => {
   const server = new McpServer({
     name: 'Klear360 MCP',
     version: getPackageJSONVersion(),

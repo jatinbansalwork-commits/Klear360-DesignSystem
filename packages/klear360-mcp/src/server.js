@@ -9,7 +9,7 @@ try {
   await server.connect(transport);
   // Why console.error? Checkout https://modelcontextprotocol.io/quickstart/server#logging-in-mcp-servers-2
   console.error('Klear360 MCP connected successfully.');
-} catch (error: unknown) {
+} catch (error) {
   console.error('Klear360 MCP Error', error);
   process.exit(1);
 }
