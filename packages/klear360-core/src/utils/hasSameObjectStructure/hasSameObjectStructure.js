@@ -1,11 +1,16 @@
 import isObject from '../lodashButBetter/isObject';
 import keys from '../lodashButBetter/keys';
 
-export interface ObjectWithKeys {
-  [key: string | number]: ObjectWithKeys | number | string;
-}
+/**
+ * @typedef {{[key: string | number]: ObjectWithKeys | number | string}} ObjectWithKeys
+ */
 
-const hasSameObjectStructure = (obj1: ObjectWithKeys, obj2: ObjectWithKeys): boolean => {
+/**
+ * @param {ObjectWithKeys} obj1
+ * @param {ObjectWithKeys} obj2
+ * @returns {boolean}
+ */
+const hasSameObjectStructure = (obj1, obj2) => {
   // Check if both objects are objects or not
   if (!isObject(obj1) || !isObject(obj2)) {
     return isObject(obj1) === isObject(obj2);
@@ -32,7 +37,12 @@ const hasSameObjectStructure = (obj1: ObjectWithKeys, obj2: ObjectWithKeys): boo
 
   // Recursively check the key structures of nested objects
   for (const key of keys1) {
-    if (!hasSameObjectStructure(obj1[key] as ObjectWithKeys, obj2[key] as ObjectWithKeys)) {
+    if (
+      !hasSameObjectStructure(
+        /** @type {ObjectWithKeys} */ (obj1[key]),
+        /** @type {ObjectWithKeys} */ (obj2[key]),
+      )
+    ) {
       return false;
     }
   }

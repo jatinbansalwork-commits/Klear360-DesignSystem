@@ -9,10 +9,11 @@ let counter = 0;
  * (e.g. compute once in a Svelte component's script body, which runs once per
  * instance).
  *
- * @param prefix optional prefix prepended to the generated id
- * @param idProp external id passed by the consumer; returned as-is when present
+ * @param {string} [prefix] optional prefix prepended to the generated id
+ * @param {string} [idProp] external id passed by the consumer; returned as-is when present
+ * @returns {string}
  */
-export const useId = (prefix?: string, idProp?: string): string => {
+export const useId = (prefix, idProp) => {
   if (idProp) {
     return idProp;
   }

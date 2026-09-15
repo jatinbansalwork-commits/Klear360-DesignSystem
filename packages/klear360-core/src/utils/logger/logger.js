@@ -1,28 +1,21 @@
-type LogType = 'error' | 'warn' | 'log';
-
-type LoggerOptions = {
-  message: string;
-  moduleName?: string;
-  type: LogType;
-};
-
-type ThrowKlear360ErrorOptions = {
-  message: string;
-  moduleName?: string;
-};
-
 const PREFIX = '[Klear360]:';
 
-const throwKlear360Error = ({ message, moduleName }: ThrowKlear360ErrorOptions): void | never => {
+/**
+ * @param {{message: string, moduleName?: string}} options
+ * @returns {void | never}
+ */
+const throwKlear360Error = ({ message, moduleName }) => {
   if (__DEV__) {
     const prefix = moduleName ? `[Klear360: ${moduleName}]:` : PREFIX;
     throw new Error(`${prefix} ${message}`);
   }
 };
 
-const getCommonLogger = (
-  type: LogType,
-): typeof console.log | typeof console.error | typeof console.warn => {
+/**
+ * @param {'error' | 'warn' | 'log'} type
+ * @returns {typeof console.log | typeof console.error | typeof console.warn}
+ */
+const getCommonLogger = (type) => {
   switch (type) {
     case 'error':
       return console.error;
@@ -34,7 +27,11 @@ const getCommonLogger = (
   }
 };
 
-const logger = ({ message, moduleName, type }: LoggerOptions): void => {
+/**
+ * @param {{message: string, moduleName?: string, type: 'error' | 'warn' | 'log'}} options
+ * @returns {void}
+ */
+const logger = ({ message, moduleName, type }) => {
   if (__DEV__) {
     const prefix = moduleName ? `[Klear360: ${moduleName}]:` : PREFIX;
     getCommonLogger(type)(`${prefix} ${message}`);
