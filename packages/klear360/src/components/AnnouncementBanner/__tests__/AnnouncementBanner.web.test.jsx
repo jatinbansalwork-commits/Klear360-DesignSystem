@@ -109,7 +109,8 @@ describe('<AnnouncementBanner />', () => {
   });
 
   it('should forward the ref', () => {
-    const ref = React.createRef<HTMLDivElement>();
+    /** @type {React.RefObject<HTMLDivElement>} */
+    const ref = React.createRef();
     renderWithTheme(
       <AnnouncementBanner ref={ref} testID="announcement-banner-test">
         Test
