@@ -6,9 +6,13 @@
     "**/*.native.tsx",
     "src/tokens/theme/__tests__",
     "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "**/*.test.js",
+    "**/*.test.jsx"
   ],
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "baseUrl": ".",
     "paths": {
       "~utils": ["src/utils"],
