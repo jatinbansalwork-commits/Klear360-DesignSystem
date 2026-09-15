@@ -67,10 +67,9 @@
     "packages/klear360/src",
     "packages/klear360/codemods",
     "packages/klear360-core/src",
-    "packages/klear360-svelte/src",
     "packages/klear360-mcp/knowledgebase"
   ],
-  "referenceScanExtensions": [".ts", ".tsx", ".js", ".jsx", ".svelte", ".json", ".md", ".mdx"],
+  "referenceScanExtensions": [".ts", ".tsx", ".js", ".jsx", ".json", ".md", ".mdx"],
 
   "verify": {
     "$comment_generated": [

@@ -2,8 +2,6 @@
 
 Core utilities and shared functionality for the Klear360 Design System. Contains shared logic consumed by `@klear/klear360` and other Klear360 packages.
 
-Important: This package is only used in `@klear/klear360-svelte` package right now and not in `@klear/klear360` package.
-
 ## Package Structure
 
 ```

@@ -10,8 +10,7 @@ Load the Agents Context File in your context whenever change is being made to th
 | ---------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | [klear360](./packages/klear360/)               | ./packages/klear360/CLAUDE.md or AGENTS.md        | The core Klear360 Design System package with cross-platform UI components for React Web and React Native                             |
 | [klear360-mcp](./packages/klear360-mcp/)       | ./packages/klear360-mcp/CLAUDE.md or AGENTS.md    | Model Context Protocol (MCP) server for AI-assisted development using Klear360 components                                            |
-| [klear360-core](./packages/klear360-core/)     | ./packages/klear360-core/CLAUDE.md or AGENTS.md   | Core utilities for Klear360 Design System (Only used in klear360-svelte as of now and not in klear360 package)                             |
-| [klear360-svelte](./packages/klear360-svelte/) | ./packages/klear360-svelte/CLAUDE.md or AGENTS.md | Svelte components for Klear360 Design System (changes here should only be made when explicitly asked by the user for svelte changes) |
+| [klear360-core](./packages/klear360-core/)     | ./packages/klear360-core/CLAUDE.md or AGENTS.md   | Core utilities for Klear360 Design System                             |
 
 .. And few other smaller packages related to klear360
 
