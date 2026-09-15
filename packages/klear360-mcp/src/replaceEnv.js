@@ -17,6 +17,10 @@ dotenv.config();
 // Use environment variables with defaults
 const NODE_ENV = process.env.NODE_ENV;
 
+/**
+ * @param {string} filePath
+ * @param {Array<{from: RegExp, to: string}>} replacements
+ */
 function replaceInFileSync(filePath, replacements) {
   try {
     let content = fs.readFileSync(filePath, 'utf8');

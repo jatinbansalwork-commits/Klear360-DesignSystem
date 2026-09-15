@@ -3,17 +3,18 @@
  * and their descriptions as values
  */
 
-type ParsedChangelog = {
-  [version: string]: string;
-};
+/**
+ * @typedef {Object.<string, string>} ParsedChangelog
+ */
 
 /**
  * Parses a changelog string in the format provided
- * @param changelogContent - The raw changelog content as a string
- * @returns Object with version numbers as keys and descriptions as values
+ * @param {string} changelogContent - The raw changelog content as a string
+ * @returns {ParsedChangelog} Object with version numbers as keys and descriptions as values
  */
-function parseChangelog(changelogContent: string): ParsedChangelog {
-  const result: ParsedChangelog = {};
+function parseChangelog(changelogContent) {
+  /** @type {ParsedChangelog} */
+  const result = {};
 
   // Split the content into lines for processing
   const lines = changelogContent.split('\n');
@@ -65,11 +66,11 @@ function parseChangelog(changelogContent: string): ParsedChangelog {
 
 /**
  * Compares two semantic versions
- * @param version1 - First version string (e.g., "12.0.0")
- * @param version2 - Second version string (e.g., "12.15.0")
- * @returns -1 if version1 < version2, 1 if version1 > version2, 0 if equal
+ * @param {string} version1 - First version string (e.g., "12.0.0")
+ * @param {string} version2 - Second version string (e.g., "12.15.0")
+ * @returns {number} -1 if version1 < version2, 1 if version1 > version2, 0 if equal
  */
-function compareVersions(version1: string, version2: string): number {
+function compareVersions(version1, version2) {
   const v1Parts = version1.split('.').map(Number);
   const v2Parts = version2.split('.').map(Number);
 
@@ -88,25 +89,26 @@ function compareVersions(version1: string, version2: string): number {
 
 /**
  * Checks if a version is within the specified range (inclusive)
- * @param version - Version to check
- * @param from - Starting version of the range
- * @param to - Ending version of the range
- * @returns True if version is within range, false otherwise
+ * @param {string} version - Version to check
+ * @param {string} from - Starting version of the range
+ * @param {string} to - Ending version of the range
+ * @returns {boolean} True if version is within range, false otherwise
  */
-function isVersionInRange(version: string, from: string, to: string): boolean {
+function isVersionInRange(version, from, to) {
   return compareVersions(version, from) >= 0 && compareVersions(version, to) <= 0;
 }
 
 /**
  * Gets changelog entries for versions within a specified range
- * @param changelogContent - The raw changelog content as a string
- * @param from - Starting version of the range (e.g., "12.0.0")
- * @param to - Ending version of the range (e.g., "12.15.0")
- * @returns Object with version numbers as keys and descriptions as values for versions in range
+ * @param {string} changelogContent - The raw changelog content as a string
+ * @param {string} from - Starting version of the range (e.g., "12.0.0")
+ * @param {string} [to] - Ending version of the range (e.g., "12.15.0")
+ * @returns {ParsedChangelog} Object with version numbers as keys and descriptions as values for versions in range
  */
-function getRangeChangelogs(changelogContent: string, from: string, to?: string): ParsedChangelog {
+function getRangeChangelogs(changelogContent, from, to) {
   const parsed = parseChangelog(changelogContent);
-  const result: ParsedChangelog = {};
+  /** @type {ParsedChangelog} */
+  const result = {};
 
   // if to is not provided, return only the changelog for the version
   if (!to) {
@@ -123,7 +125,11 @@ function getRangeChangelogs(changelogContent: string, from: string, to?: string)
   return result;
 }
 
-function stringifyChangelog(changelog: ParsedChangelog): string {
+/**
+ * @param {ParsedChangelog} changelog
+ * @returns {string}
+ */
+function stringifyChangelog(changelog) {
   return Object.entries(changelog)
     .map(([version, description]) => {
       return `\n## ${version}\n${description}`;
@@ -133,12 +139,10 @@ function stringifyChangelog(changelog: ParsedChangelog): string {
 
 /**
  * Gets the latest version from the changelog
- * @param changelogContent - The raw changelog content as a string
- * @returns Object with latest version and its description, or null if no versions found
+ * @param {string} changelogContent - The raw changelog content as a string
+ * @returns {{version: string, description: string} | null} Object with latest version and its description, or null if no versions found
  */
-function getLatestVersion(
-  changelogContent: string,
-): { version: string; description: string } | null {
+function getLatestVersion(changelogContent) {
   const parsed = parseChangelog(changelogContent);
   const versions = Object.keys(parsed);
 
