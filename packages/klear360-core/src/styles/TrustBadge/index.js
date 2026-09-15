@@ -4,4 +4,4 @@ export {
   getTrustBadgeTemplateClasses,
 } from './trustBadge';
 
-export type { TrustBadgeVariant } from './trustBadge';
+/** @typedef {import('./trustBadge').TrustBadgeVariant} TrustBadgeVariant */

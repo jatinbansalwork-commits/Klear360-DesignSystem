@@ -1,0 +1,5 @@
+/**
+ * @typedef {'root'} TextSlot
+ */
+
+export {};

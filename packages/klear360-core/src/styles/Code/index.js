@@ -3,4 +3,8 @@
 import './code.module.css';
 
 export { codeStyles, getCodeClasses, getCodeFontSizeAndLineHeight, getCodeColor } from './code';
-export type { CodeVariants, CodeSize, FontSize, LineHeight } from './code';
+
+/** @typedef {import('./code').CodeVariants} CodeVariants */
+/** @typedef {import('./code').CodeSize} CodeSize */
+/** @typedef {import('./code').FontSize} FontSize */
+/** @typedef {import('./code').LineHeight} LineHeight */

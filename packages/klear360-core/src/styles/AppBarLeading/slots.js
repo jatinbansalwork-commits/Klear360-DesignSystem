@@ -1,0 +1,5 @@
+/**
+ * @typedef {'title'} AppBarLeadingSlot
+ */
+
+export {};
