@@ -2,14 +2,15 @@ import { cva } from 'class-variance-authority';
 // @ts-expect-error - CSS modules may not have type definitions in build
 import styles from './alert.module.css';
 
-export type AlertColor = 'information' | 'negative' | 'neutral' | 'notice' | 'positive' | 'primary';
-export type AlertEmphasis = 'subtle' | 'intense';
+/** @typedef {'information' | 'negative' | 'neutral' | 'notice' | 'positive' | 'primary'} AlertColor */
+/** @typedef {'subtle' | 'intense'} AlertEmphasis */
 
-export type AlertVariants = {
-  color?: AlertColor;
-  emphasis?: AlertEmphasis;
-  isFullWidth?: boolean;
-};
+/**
+ * @typedef {Object} AlertVariants
+ * @property {AlertColor} [color]
+ * @property {AlertEmphasis} [emphasis]
+ * @property {boolean} [isFullWidth]
+ */
 
 /**
  * CVA-based alert styles
@@ -42,8 +43,10 @@ export const alertStyles = cva(styles.alert, {
 
 /**
  * Generate all classes for Alert component container
+ * @param {AlertVariants & { className?: string }} props
+ * @returns {string}
  */
-export function getAlertClasses(props: AlertVariants & { className?: string }): string {
+export function getAlertClasses(props) {
   const { className, ...cvaProps } = props;
   const classes = [alertStyles(cvaProps), className].filter(Boolean).join(' ');
   return classes;
@@ -74,8 +77,9 @@ export const alertCloseButtonDescriptionOnlyClass = styles['close-button-descrip
  * Get all Alert component template classes as an object.
  * Use this function in Svelte components to prevent tree-shaking from removing
  * class imports that are only used in templates.
+ * @returns {Record<string, string>}
  */
-export function getAlertTemplateClasses(): Record<string, string> {
+export function getAlertTemplateClasses() {
   return {
     alert: styles.alert,
     iconWrapper: alertIconWrapperClass,
@@ -97,26 +101,24 @@ export function getAlertTemplateClasses(): Record<string, string> {
     iconWrapperCenter: alertIconWrapperCenterClass,
     iconOffsetDescriptionOnly: alertIconOffsetDescriptionOnlyClass,
     closeButtonDescriptionOnly: alertCloseButtonDescriptionOnlyClass,
-  } as const;
+  };
 }
 
 /**
  * Get text color token based on emphasis
+ * @param {{ emphasis: AlertEmphasis }} params
+ * @returns {string}
  */
-export function getAlertTextColorToken({ emphasis }: { emphasis: AlertEmphasis }): string {
+export function getAlertTextColorToken({ emphasis }) {
   return emphasis === 'intense' ? 'surface.text.staticWhite.normal' : 'surface.text.gray.subtle';
 }
 
 /**
  * Get icon color token based on color and emphasis
+ * @param {{ color: AlertColor, emphasis: AlertEmphasis }} params
+ * @returns {string}
  */
-export function getAlertIconColorToken({
-  color,
-  emphasis,
-}: {
-  color: AlertColor;
-  emphasis: AlertEmphasis;
-}): string {
+export function getAlertIconColorToken({ color, emphasis }) {
   if (emphasis === 'intense') {
     return 'surface.icon.staticWhite.normal';
   }
@@ -131,30 +133,27 @@ export function getAlertIconColorToken({
  * */
 /**
  * Get primary action button color based on emphasis
+ * @param {{ color: AlertColor, emphasis: AlertEmphasis }} params
+ * @returns {'white' | 'primary'}
  */
-export function getAlertActionButtonColor({
-  emphasis,
-}: {
-  color: AlertColor;
-  emphasis: AlertEmphasis;
-}): 'white' | 'primary' {
+export function getAlertActionButtonColor({ emphasis }) {
   return emphasis === 'intense' ? 'white' : 'primary';
 }
 
 /**
  * Get primary action button variant based on emphasis
+ * @param {{ emphasis: AlertEmphasis }} params
+ * @returns {'primary' | 'secondary'}
  */
-export function getAlertActionButtonVariant({
-  emphasis,
-}: {
-  emphasis: AlertEmphasis;
-}): 'primary' | 'secondary' {
+export function getAlertActionButtonVariant({ emphasis }) {
   return emphasis === 'intense' ? 'primary' : 'secondary';
 }
 
 /**
  * Get secondary action (link) color based on emphasis
+ * @param {{ emphasis: AlertEmphasis }} params
+ * @returns {'white' | 'neutral'}
  */
-export function getAlertLinkColor({ emphasis }: { emphasis: AlertEmphasis }): 'white' | 'neutral' {
+export function getAlertLinkColor({ emphasis }) {
   return emphasis === 'intense' ? 'white' : 'neutral';
 }
