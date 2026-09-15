@@ -19,7 +19,6 @@ type ComponentStatusDataType = {
   platform?: 'web' | 'mobile' | 'all';
   frameworks: {
     react?: FrameworkStatus;
-    svelte?: FrameworkStatus;
   };
 }[];
 
@@ -34,9 +33,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.101.6',
         storybookLink: 'Components/Avatar/Avatar',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -48,9 +44,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.101.6',
         storybookLink: 'Components/Avatar/AvatarGroup',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -64,9 +57,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.41.0',
         storybookLink: 'Components/EmptyState',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -78,9 +68,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.36.0',
         storybookLink: 'Components/Card/SelectableCard',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -95,9 +82,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '6.2.0',
         storybookLink: 'Components/Dropdown/With Select',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -110,9 +94,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '1.1.0',
         storybookLink: 'Components/Alert',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -127,9 +108,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '1.0.0',
         storybookLink: 'Components/Badge',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -141,11 +119,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '0.11.0',
-        storybookLink: 'Components/Button',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Button',
       },
     },
@@ -161,9 +134,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '5.3.0',
         storybookLink: 'Components/Card',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -176,9 +146,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '0.13.0',
         storybookLink: 'Components/Checkbox/Checkbox',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -193,9 +160,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '0.13.0',
         storybookLink: 'Components/Checkbox/CheckboxGroup',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -208,9 +172,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '3.6.0',
         storybookLink: 'Components/Counter',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -225,9 +186,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '3.6.2',
         storybookLink: 'Components/IconButton',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -240,9 +198,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '3.7.0',
         storybookLink: 'Components/Indicator',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -257,9 +212,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.33.0',
         storybookLink: 'Components/InfoGroup',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -271,11 +223,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '0.13.0',
-        storybookLink: 'Components/Link',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Link',
       },
     },
@@ -291,9 +238,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '6.1.0',
         storybookLink: 'Components/List',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -307,9 +251,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '5.4.0',
         storybookLink: 'Components/ProgressBar',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -321,11 +262,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '2.2.0',
-        storybookLink: 'Components/Spinner',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Spinner',
       },
     },
@@ -341,9 +277,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '2.1.0',
         storybookLink: 'Components/Input/TextInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -356,9 +289,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '2.3.0',
         storybookLink: 'Components/Input/TextArea',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -373,9 +303,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '3.1.0',
         storybookLink: 'Components/Input/OTPInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -388,9 +315,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '2.5.0',
         storybookLink: 'Components/Input/PasswordInput',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -405,9 +329,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '1.0.0',
         storybookLink: 'Components/Radio & RadioGroup',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -420,9 +341,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '1.0.0',
         storybookLink: 'Components/Radio & RadioGroup',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -437,11 +355,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '0.4.0',
         storybookLink: 'Components/Typography/Text',
       },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
-        storybookLink: 'Components/Typography/Text',
-      },
     },
   },
   {
@@ -452,11 +365,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '0.6.0',
-        storybookLink: 'Components/Typography/Heading',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Typography/Heading',
       },
     },
@@ -472,9 +380,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '0.5.0',
         storybookLink: 'Components/Typography/Title',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -486,11 +391,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '3.0.0',
-        storybookLink: 'Components/Typography/Code',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Typography/Code',
       },
     },
@@ -506,9 +406,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '0.9.0',
         storybookLink: 'Components/Accessibility/SkipNav',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -521,9 +418,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '0.9.0',
         storybookLink: 'Components/Accessibility/VisuallyHidden',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -538,9 +432,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '6.2.0',
         storybookLink: 'Components/Dropdown/With Select',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -553,9 +444,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '6.2.0',
         storybookLink: 'Components/Dropdown/With Select',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -570,9 +458,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '6.5.0',
         storybookLink: 'Components/Layout Primitives (Box)/Layout Primitives Tutorial',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -586,9 +471,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '7.2.0',
         storybookLink: 'Components/BottomSheet',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -601,9 +483,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '9.3.0',
         storybookLink: 'Components/Tag',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -614,11 +493,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '6.7.0',
-        storybookLink: 'Components/Amount',
-      },
-      svelte: {
-        status: 'released',
-        releasedIn: '0.1.0',
         storybookLink: 'Components/Amount',
       },
     },
@@ -634,9 +508,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '8.5.0',
         storybookLink: 'Components/Switch',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -649,9 +520,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '8.9.0',
         storybookLink: 'Components/Tooltip',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -666,9 +534,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '8.12.0',
         storybookLink: 'Components/Accordion',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -681,9 +546,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '8.12.0',
         storybookLink: 'Components/Collapsible',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -698,9 +560,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '8.8.0',
         storybookLink: 'Components/Modal/SimpleModal',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -712,9 +571,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '8.14.0',
         storybookLink: 'Components/Divider',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -729,9 +585,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '10.4.0',
         storybookLink: 'Components/Chip/Chip',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -743,9 +596,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.6.0',
         storybookLink: 'Components/FileUpload',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -759,9 +609,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.4.0',
         storybookLink: 'Components/Drawer',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -773,9 +620,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'released',
         releasedIn: '5.3.0',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -790,9 +634,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '9.1.0',
         storybookLink: 'Components/Skeleton',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -805,9 +646,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '10.2.0',
         storybookLink: 'Components/Carousel',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -822,9 +660,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '10.16.0',
         storybookLink: 'Components/Tabs',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -837,9 +672,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '10.19.0',
         storybookLink: 'Components/Table',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -848,9 +680,6 @@ const componentData: ComponentStatusDataType = [
     frameworks: {
       react: {
         status: 'in-design',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -865,9 +694,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.22.0',
         storybookLink: 'Components/Menu',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -880,9 +706,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.23.0',
         storybookLink: 'Components/TopNav',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -897,9 +720,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.115.0',
         storybookLink: 'Components/TreeView',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -913,9 +733,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.21.0',
         storybookLink: 'Components/SideNav',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -927,9 +744,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.21.5',
         storybookLink: 'Components/DatePicker',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -944,9 +758,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '10.9.0',
         storybookLink: 'Components/Dropdown/With AutoComplete',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -958,9 +769,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.3.0',
         storybookLink: 'Components/Toast/Docs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -975,9 +783,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.17.0',
         storybookLink: 'Components/Input/SearchInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -990,9 +795,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.15.0',
         storybookLink: 'Components/StepGroup',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1004,9 +806,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.8.0',
         storybookLink: 'Components/ButtonGroup',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1021,9 +820,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '11.10.0',
         storybookLink: 'Components/Input/PhoneNumberInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1036,9 +832,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '11.5.0',
         storybookLink: 'Components/Breadcrumbs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1053,9 +846,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '10.10.0',
         storybookLink: 'Components/Popover',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1068,9 +858,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '10.18.0',
         storybookLink: 'Components/SpotlightPopoverTour/Docs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1085,9 +872,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Fade/Docs',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1100,9 +884,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Move/Docs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1117,9 +898,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Slide/Docs',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1132,9 +910,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Morph/Docs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1149,9 +924,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Scale/Docs',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1164,9 +936,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.0.0',
         storybookLink: 'Motion/AnimateInteractions/Docs',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1181,9 +950,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.0.0',
         storybookLink: 'Motion/Stagger/Docs',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1196,9 +962,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.32.0',
         storybookLink: 'Components/Input/InputGroup',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1210,9 +973,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.30.0',
         storybookLink: 'Components/Preview',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1227,9 +987,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.20.0',
         storybookLink: 'Components/Input/FilterChipSelectInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1241,9 +998,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.20.0',
         storybookLink: 'Components/Input/FilterChipDatePicker',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1258,9 +1012,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.20.0',
         storybookLink: 'Patterns/ListView',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1273,9 +1024,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.14.0',
         storybookLink: 'Components/QuickFilter',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1287,9 +1035,6 @@ const componentData: ComponentStatusDataType = [
         status: 'released',
         releasedIn: '12.11.0',
         storybookLink: 'Components/ChatMessage',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1304,9 +1049,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.49.7',
         storybookLink: 'Components/LineChart',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1318,9 +1060,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'in-development',
         storybookLink: 'Components/SankeyChart',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },
@@ -1335,9 +1074,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.54.0',
         storybookLink: 'Components/TimePicker',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1351,9 +1087,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.59.0',
         storybookLink: 'Components/CounterInput',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1366,9 +1099,6 @@ const componentData: ComponentStatusDataType = [
         releasedIn: '12.65.1',
         storybookLink: 'Components/Pagination',
       },
-      svelte: {
-        status: 'to-be-decided',
-      },
     },
   },
   {
@@ -1380,9 +1110,6 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'in-development',
         storybookLink: 'Components/FloatingActionButton',
-      },
-      svelte: {
-        status: 'to-be-decided',
       },
     },
   },

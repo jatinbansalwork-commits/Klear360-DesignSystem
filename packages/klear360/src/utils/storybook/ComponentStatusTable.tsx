@@ -177,9 +177,6 @@ const ComponentStatusTable = (): React.ReactElement => {
               <th style={{ width: '10%' }} align="center">
                 <Text weight="semibold">RN</Text>
               </th>
-              <th style={{ width: '10%' }} align="center">
-                <Text weight="semibold">Svelte</Text>
-              </th>
               <th align="right">
                 <Text weight="semibold">Released In</Text>
               </th>
@@ -188,15 +185,12 @@ const ComponentStatusTable = (): React.ReactElement => {
           <tbody>
             {sortedData.map((data) => {
               const reactData = data.frameworks.react;
-              const svelteData = data.frameworks.svelte;
               const reactStatus = reactData?.status ?? 'to-be-decided';
-              const svelteStatus = svelteData?.status ?? 'to-be-decided';
               const releasedIn = reactData?.releasedIn;
               const storybookLink = reactData?.storybookLink;
 
               const isAvailableOnWeb = data.platform === 'web' || data.platform === 'all';
               const isAvailableOnMobile = data.platform === 'mobile' || data.platform === 'all';
-              const isSvelteReleased = svelteStatus === 'released';
 
               return (
                 <tr key={data.name}>
@@ -224,13 +218,6 @@ const ComponentStatusTable = (): React.ReactElement => {
                   </td>
                   <td align="center">
                     {isAvailableOnMobile && reactStatus === 'released' ? (
-                      <CheckIcon color="feedback.icon.positive.intense" />
-                    ) : (
-                      <CloseIcon color="feedback.icon.negative.intense" />
-                    )}
-                  </td>
-                  <td align="center">
-                    {isSvelteReleased ? (
                       <CheckIcon color="feedback.icon.positive.intense" />
                     ) : (
                       <CloseIcon color="feedback.icon.negative.intense" />
