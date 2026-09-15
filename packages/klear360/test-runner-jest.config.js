@@ -9,8 +9,19 @@ const testRunnerConfig = getTestRunnerConfig();
  */
 module.exports = {
   ...jestConfig,
-  moduleFileExtensions: ['web.ts', 'web.tsx', 'ts', 'tsx', 'js', 'json', 'node'],
-  testMatch: ['**/*.test.stories.{ts,tsx}'],
+  moduleFileExtensions: [
+    'web.ts',
+    'web.tsx',
+    'web.js',
+    'web.jsx',
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node',
+  ],
+  testMatch: ['**/*.test.stories.{ts,tsx,js,jsx}'],
   testTimeout: 30000,
   moduleNameMapper: {
     '^\\~src/(.*)': '<rootDir>/src/$1',

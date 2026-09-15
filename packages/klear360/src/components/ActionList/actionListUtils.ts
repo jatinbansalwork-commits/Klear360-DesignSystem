@@ -110,7 +110,6 @@ const getActionListProperties = (
       }
 
       const clonedChild = React.cloneElement(child, {
-        // @ts-expect-error: TS doesn't understand the child's props
         _index: currentIndex,
       });
       return clonedChild;
@@ -142,7 +141,6 @@ const getActionListProperties = (
           index === lastActionListSectionIndex && !isActionListItemPresentAfterSection;
         const sectionChildValues: string[] = [];
         return React.cloneElement(child, {
-          // @ts-expect-error: TS doesn't understand the child's props
           children: React.Children.map(child.props.children, (childInSection) => {
             currentSection = child.props.title;
             sectionChildValues.push(childInSection.props.value);
