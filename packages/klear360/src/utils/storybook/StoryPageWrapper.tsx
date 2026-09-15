@@ -12,6 +12,7 @@ import type { HeadingProps } from '~components/Typography';
 import { Display, Heading } from '~components/Typography';
 import { AnnouncementIcon, FileTextIcon } from '~components/Icons';
 import { Button } from '~components/Button';
+import { Badge } from '~components/Badge';
 
 const Subtitle = (props: HeadingProps): React.ReactElement => {
   return (
@@ -98,14 +99,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
         </Box>
         <Box paddingBottom="spacing.4" display="flex" gap="spacing.4" marginBottom="spacing.6">
           {componentMetaInfo?.frameworks.react?.releasedIn ? (
-            <Button
-              href={`https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360%40${componentMetaInfo.frameworks.react.releasedIn}`}
-              variant="tertiary"
-              icon={AnnouncementIcon}
-              target="_blank"
-            >
-              Released In: v1.1
-            </Button>
+            <Badge icon={AnnouncementIcon}>Released In: v1.1</Badge>
           ) : null}
           {props.codeUrl ? (
             <Button href={props.codeUrl} variant="tertiary" icon={FileTextIcon} target="_blank">

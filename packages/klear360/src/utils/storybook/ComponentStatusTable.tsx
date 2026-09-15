@@ -18,7 +18,6 @@ import { Heading, Text } from '~components/Typography';
 import BaseBox from '~components/Box/BaseBox';
 import type { BadgeProps } from '~components/Badge';
 import { Badge } from '~components/Badge';
-import { Link } from '~components/Link';
 import { makeSpace } from '~utils/makeSpace';
 import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
 
@@ -71,26 +70,8 @@ const ComponentStatusBadge = ({ status }: { status: ComponentStatuses }): React.
   );
 };
 
-const ReleasedInLink = ({
-  version,
-  framework = 'react',
-}: {
-  version?: string;
-  framework?: 'react' | 'svelte';
-}): React.ReactElement => {
-  const ghUrlReact =
-    'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360%40';
-  const ghUrlSvelte =
-    'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360-svelte%40';
-  const ghUrl = framework === 'svelte' ? ghUrlSvelte : ghUrlReact;
-
-  return version ? (
-    <Link href={`${ghUrl}${version}`} rel="noopener noreferrer" target="_blank">
-      v1.1
-    </Link>
-  ) : (
-    <Text>-</Text>
-  );
+const ReleasedInLink = ({ version }: { version?: string }): React.ReactElement => {
+  return version ? <Text>v1.1</Text> : <Text>-</Text>;
 };
 
 /**
@@ -256,7 +237,7 @@ const ComponentStatusTable = (): React.ReactElement => {
                     )}
                   </td>
                   <td align="right">
-                    <ReleasedInLink version={releasedIn} framework="react" />
+                    <ReleasedInLink version={releasedIn} />
                   </td>
                 </tr>
               );
