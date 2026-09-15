@@ -9,6 +9,7 @@ import type {
   TableHeaderRowProps,
   TableNode as LocalTableNode,
   TableToolbarPlacement,
+  TableSortOrderEntry,
 } from './types';
 
 export type TableContextType<Item> = {
@@ -19,11 +20,19 @@ export type TableContextType<Item> = {
   toggleAllRowsSelection: () => void;
   deselectAllRows: () => void;
   rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-  toggleSort: (sortKey: string) => void;
+  /**
+   * Toggles sort on `sortKey`. Pass `isMultiSort: true` (a shift-click) to add/toggle this
+   * column as an additional sort key instead of replacing the current sort.
+   */
+  toggleSort: (sortKey: string, isMultiSort?: boolean) => void;
   currentSortedState: {
+    /** The primary (most significant) sort key, kept for backward compatibility - mirrors `sortOrder[0]?.sortKey`. */
     sortKey: string;
+    /** The primary sort key's direction - mirrors `sortOrder[0]?.direction === 'desc'`. */
     isSortReversed: boolean;
     sortableColumns?: string[];
+    /** The full active sort order, primary (most significant) first. Empty when unsorted. */
+    sortOrder: TableSortOrderEntry[];
   };
   setPaginationPage: (page: number) => void;
   setPaginationRowSize: (size: number) => void;
@@ -65,6 +74,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   currentSortedState: {
     sortKey: '',
     isSortReversed: false,
+    sortOrder: [],
   },
   setPaginationPage: () => {},
   setPaginationRowSize: () => {},

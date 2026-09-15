@@ -35,24 +35,44 @@ const SortButton = styled.button(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: makeSpace(theme.spacing[1]),
   transitionProperty: 'color, box-shadow',
   transitionDuration: castWebType(makeMotionTime(getIn(theme.motion, 'duration.quick'))),
   transitionTimingFunction: (theme.motion.easing.standard as unknown) as string,
   '&:focus-visible': getFocusRingStyles({ theme }),
 }));
 
+const PriorityBadge = styled(BaseBox)(({ theme }) => ({
+  minWidth: makeSize(14),
+  height: makeSize(14),
+  borderRadius: theme.border.radius.round,
+  backgroundColor: getIn(theme.colors, 'interactive.background.gray.faded'),
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingLeft: makeSpace(theme.spacing[1]),
+  paddingRight: makeSpace(theme.spacing[1]),
+}));
+
+/**
+ * `sortDirection` is this column's own state - 'none' is the unsorted state, distinct from
+ * 'asc'/'desc' (previously implied only by both arrows being muted). `priority` is this
+ * column's 1-based rank when it's part of a multi-column sort (2+ active keys) - omit it
+ * (or pass a falsy value) to keep the single-sort look unchanged.
+ */
 const SortIcon = ({
-  isSorted,
-  isSortReversed,
+  sortDirection,
+  priority,
 }: {
-  isSorted: boolean;
-  isSortReversed: boolean;
+  sortDirection: 'asc' | 'desc' | 'none';
+  priority?: number;
 }): React.ReactElement => {
   const { theme } = useTheme();
   const defaultColor = getIn(theme.colors, 'interactive.icon.gray.disabled');
   const activeColor = getIn(theme.colors, 'interactive.icon.gray.muted');
-  const upArrowColor = isSorted && isSortReversed ? activeColor : defaultColor;
-  const downArrowColor = isSorted && !isSortReversed ? activeColor : defaultColor;
+  // Preserves the existing mapping: descending highlights the up arrow, ascending the down arrow.
+  const upArrowColor = sortDirection === 'desc' ? activeColor : defaultColor;
+  const downArrowColor = sortDirection === 'asc' ? activeColor : defaultColor;
   return (
     <SortButton
       {...metaAttribute({ name: MetaConstants.TableSortButton })}
@@ -68,6 +88,13 @@ const SortIcon = ({
           d="M9.41 17.749a.817.817 0 0 0 1.18 0l4.166-4.286a.874.874 0 0 0 0-1.212.817.817 0 0 0-1.179 0L10 15.931l-3.577-3.68a.817.817 0 0 0-1.179 0 .874.874 0 0 0 0 1.212l4.167 4.286Z"
         />
       </svg>
+      {priority ? (
+        <PriorityBadge>
+          <Text size="small" color="surface.text.gray.muted">
+            {priority}
+          </Text>
+        </PriorityBadge>
+      ) : null}
     </SortButton>
   );
 };
@@ -166,6 +193,18 @@ const _TableHeaderCell = ({
   const hasRowSpan = Boolean(gridRowStart && gridRowEnd);
   const gridRowValue = hasRowSpan ? `${gridRowStart} / ${gridRowEnd}` : undefined;
 
+  const sortOrderIndex = currentSortedState.sortOrder.findIndex(
+    (entry) => entry.sortKey === headerKey,
+  );
+  const sortDirection: 'asc' | 'desc' | 'none' =
+    sortOrderIndex === -1 ? 'none' : currentSortedState.sortOrder[sortOrderIndex].direction;
+  // Only show the priority badge once there's an actual multi-column sort to disambiguate -
+  // a single sorted column keeps its existing, unbadged look.
+  const sortPriority =
+    currentSortedState.sortOrder.length > 1 && sortOrderIndex !== -1
+      ? sortOrderIndex + 1
+      : undefined;
+
   return (
     <StyledHeaderCell
       tabIndex={0}
@@ -178,9 +217,9 @@ const _TableHeaderCell = ({
       $rowDensity={headerRowDensity ?? rowDensity}
       $hasPadding={_hasPadding}
       $textAlign={textAlign}
-      onClick={() => {
+      onClick={(event: React.MouseEvent) => {
         if (isSortable) {
-          toggleSort(headerKey);
+          toggleSort(headerKey, event.shiftKey);
         }
       }}
       {...metaAttribute({ name: MetaConstants.TableHeaderCell })}
@@ -197,10 +236,7 @@ const _TableHeaderCell = ({
       </BaseBox>
       {isSortable && (
         <BaseBox paddingLeft="spacing.2" backgroundColor="transparent" flexShrink={0}>
-          <SortIcon
-            isSorted={currentSortedState.sortKey === headerKey}
-            isSortReversed={currentSortedState.isSortReversed}
-          />
+          <SortIcon sortDirection={sortDirection} priority={sortPriority} />
         </BaseBox>
       )}
     </StyledHeaderCell>

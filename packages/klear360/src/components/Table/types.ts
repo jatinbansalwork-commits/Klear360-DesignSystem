@@ -20,6 +20,18 @@ type TableBackgroundColors = `surface.background.gray.${DotNotationToken<
   Theme['colors']['surface']['background']['gray']
 >}`;
 
+type TableSortDirection = 'asc' | 'desc';
+
+/**
+ * One entry in the table's active sort order. When more than one column is sorted
+ * (via shift-click, see `TableProps['sortFunctions']`), index 0 is the primary/most
+ * significant column, index 1 is secondary, and so on.
+ */
+type TableSortOrderEntry = {
+  sortKey: string;
+  direction: TableSortDirection;
+};
+
 type RowHeightType = number | ((item: TableLibraryTableNode, index: number) => number);
 
 /**
@@ -95,7 +107,9 @@ type TableHeaderCellProps = {
   /**
    * The unique key of the column.
    * This is used to identify the column for sorting in sortFunctions prop of Table.
-   * Sorting is enabled only for columns whose key is present in sortableColumns prop of Table.
+   * Sorting is enabled only for columns whose key is present in the `sortFunctions` prop of Table.
+   * Click cycles asc → desc → unsorted; shift-click adds/toggles this column as an additional
+   * sort key without disturbing the others.
    **/
   headerKey?: string;
   /**
@@ -192,8 +206,18 @@ type TableProps<Item> = {
    * The value of each key is a function that is called when the column is sorted.
    * The function is called with an array of the rows in the table.
    * The function should return an array of the rows in the table.
+   *
+   * Clicking a sortable header cycles that column through ascending → descending → unsorted.
+   * Shift-clicking a header adds it as a secondary/tertiary sort key instead of replacing the
+   * current sort — see `TableHeaderCellProps['headerKey']` and the Table docs for the full
+   * interaction model.
    **/
   sortFunctions?: Record<string, (array: TableNode<Item>[]) => TableNode<Item>[]>;
+  /**
+   * Sets the table's sort state on mount, so it renders already sorted by this column instead
+   * of requiring a click. `sortKey` must match a key in `sortFunctions`.
+   **/
+  initialSort?: TableSortOrderEntry;
   /**
    * The toolbar prop is a React element that is rendered above the table.
    * The toolbar prop should be a `TableToolbar` component.
@@ -667,4 +691,6 @@ export type {
   VirtualizedWrapperProps,
   RowHeightType,
   TableCellGridSpanningProps,
+  TableSortDirection,
+  TableSortOrderEntry,
 };

@@ -23,5 +23,7 @@ export type {
   TableToolbarActionsProps,
   TableToolbarProps,
   Identifier,
+  TableSortDirection,
+  TableSortOrderEntry,
 } from './types';
 export { TableEditableCell, TableEditableDropdownCell } from './TableEditableCell';
