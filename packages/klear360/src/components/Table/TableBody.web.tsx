@@ -194,11 +194,13 @@ const TableCheckboxCell = ({
   onChange,
   isDisabled,
   isIndeterminate,
+  accessibilityLabel,
 }: {
   isChecked: CheckboxProps['isChecked'];
   onChange: CheckboxProps['onChange'];
   isDisabled?: boolean;
   isIndeterminate?: boolean;
+  accessibilityLabel: string;
 }): React.ReactElement => {
   return (
     <TableCell>
@@ -221,7 +223,7 @@ const TableCheckboxCell = ({
           isChecked={isChecked}
           onChange={onChange}
           isIndeterminate={isIndeterminate}
-          {...makeAccessible({ label: 'Select Row' })}
+          accessibilityLabel={accessibilityLabel}
         />
       </BaseBox>
     </TableCell>
@@ -433,6 +435,7 @@ const _TableRow = <Item,>({
           onChange={() => !isDisabled && toggleRowSelectionById(item.id)}
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
+          accessibilityLabel={`Select row ${item.id}`}
         />
       )}
       {children}
