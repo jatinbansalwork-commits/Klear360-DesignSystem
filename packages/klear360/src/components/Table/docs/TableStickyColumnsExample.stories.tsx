@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
-import { Table } from '../../Table';
+import { action } from 'storybook/actions';
+import { Table, TableToolbar, TableToolbarSearch } from '../../Table';
 import type { TableColumnConfig } from '../types';
 import { createTransactionTableData, formatDate, getTransactionStateColor } from './exampleData';
 import type { TransactionTableItem } from './exampleData';
@@ -62,12 +63,14 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
     header: 'Transaction ID',
     render: (item) => <Code size="medium">{item.transactionId}</Code>,
     width: '150px',
+    sortable: true,
   },
   {
     key: 'companyName',
     header: 'Company Name',
     render: (item) => item.companyName,
     width: '220px',
+    sortable: true,
   },
   {
     key: 'cbpTransactionNumber',
@@ -90,18 +93,21 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
       </Badge>
     ),
     width: '150px',
+    sortable: true,
   },
   {
     key: 'etd',
     header: 'ETD',
     render: (item) => formatDate(item.etd),
     width: '130px',
+    sortable: true,
   },
   {
     key: 'vesselName',
     header: 'Vessel Name',
     render: (item) => item.vesselName,
     width: '220px',
+    sortable: true,
   },
   {
     key: 'filingDate',
@@ -135,6 +141,35 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
   },
 ];
 
+// Same predicates power both the global search below and (if you add per-column headerKey
+// filter inputs) column filtering - see the Filtering API page for that half of the pattern.
+const filterFunctions = {
+  companyName: (item: TransactionTableItem, value: string) =>
+    item.companyName.toLowerCase().includes(value.toLowerCase()),
+  vesselName: (item: TransactionTableItem, value: string) =>
+    item.vesselName.toLowerCase().includes(value.toLowerCase()),
+  transactionState: (item: TransactionTableItem, value: string) =>
+    item.transactionState.toLowerCase().includes(value.toLowerCase()),
+};
+
+const sortFunctions = {
+  transactionId: (array: TransactionTableItem[]) =>
+    array.sort((a, b) => a.transactionId.localeCompare(b.transactionId)),
+  companyName: (array: TransactionTableItem[]) =>
+    array.sort((a, b) => a.companyName.localeCompare(b.companyName)),
+  transactionState: (array: TransactionTableItem[]) =>
+    array.sort((a, b) => a.transactionState.localeCompare(b.transactionState)),
+  etd: (array: TransactionTableItem[]) => array.sort((a, b) => a.etd.getTime() - b.etd.getTime()),
+  vesselName: (array: TransactionTableItem[]) =>
+    array.sort((a, b) => a.vesselName.localeCompare(b.vesselName)),
+};
+
+/**
+ * This is the design system's flagship, "kitchen sink" Table example - sticky columns, sorting,
+ * global search, and hover-highlighted action icons all together on one realistic dataset - so a
+ * developer evaluating Table can see how these features compose in one place instead of hunting
+ * across separate single-feature demos.
+ */
 export const StickyColumns = (): React.ReactElement => {
   return (
     <Box
@@ -148,7 +183,9 @@ export const StickyColumns = (): React.ReactElement => {
         <Text>
           Freeze the leading `Actions`, `Transaction ID`, and `Company Name` columns via
           `stickyColumnCount` and `stickyColumnWidths` so they stay in view while the remaining
-          columns scroll horizontally underneath.
+          columns scroll horizontally underneath - combined here with sorting and global search,
+          since a real table rarely uses just one feature at a time. (On mobile, sticky columns are
+          automatically disabled instead, so the table stays scrollable.)
         </Text>
       </Box>
       <Table
@@ -157,6 +194,15 @@ export const StickyColumns = (): React.ReactElement => {
         stickyColumnCount={3}
         stickyColumnWidths={['140px', '150px', '220px']}
         isHeaderSticky
+        sortFunctions={sortFunctions}
+        onSortChange={action('onSortChange')}
+        filterFunctions={filterFunctions}
+        onGlobalFilterValueChange={action('onGlobalFilterValueChange')}
+        toolbar={
+          <TableToolbar>
+            <TableToolbarSearch placeholder="Search company, vessel, or state" />
+          </TableToolbar>
+        }
       />
     </Box>
   );

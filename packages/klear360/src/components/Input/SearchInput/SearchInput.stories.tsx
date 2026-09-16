@@ -28,7 +28,7 @@ import {
   TableToolbar,
   TableToolbarActions,
 } from '~components/Table';
-import { Amount } from '~components/Amount';
+import { createTransactionTableData, formatDate } from '~components/Table/docs/exampleData';
 import {
   SettingsIcon,
   UserIcon,
@@ -500,28 +500,7 @@ SearchInputWithDisabledDropdown.storyName = 'With Dropdown Disabled';
 const SearchInputWithTableTemplate: StoryFn<typeof SearchInputComponent> = () => {
   const [searchTerm, setSearchTerm] = React.useState('');
 
-  type Item = {
-    id: string;
-    paymentId: string;
-    amount: number;
-    date: Date;
-    method: string;
-  };
-
-  const nodes: Item[] = [
-    ...Array.from({ length: 10 }, (_, i) => ({
-      id: (i + 1).toString(),
-      paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
-      amount: Number((Math.random() * 10000).toFixed(2)),
-      date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
-      method: ['Bank Transfer', 'Credit Card', 'UPI', 'PayPal'][Math.floor(i / 4)],
-      account: Math.floor(Math.random() * 1000000000).toString(),
-    })),
-  ];
-
-  const data: TableData<Item> = {
-    nodes,
-  };
+  const data = createTransactionTableData(10);
 
   return (
     <Table
@@ -533,46 +512,38 @@ const SearchInputWithTableTemplate: StoryFn<typeof SearchInputComponent> = () =>
               <SearchInputComponent
                 label="Search Transaction"
                 onChange={({ value }) => setSearchTerm(value as string)}
-                placeholder="Transaction method"
-                helpText='Search by "Credit Card", "UPI", "Paypal", etc.'
+                placeholder="Vessel name"
+                helpText='Search by vessel, e.g. "Maersk", "Oscar", "Envoy"'
               />
             </BaseBox>
           </TableToolbarActions>
         </TableToolbar>
       }
     >
-      {(tableData: Item[]) => (
+      {(tableData) => (
         <>
           <TableHeader>
             <TableHeaderRow>
-              <TableHeaderCell>ID</TableHeaderCell>
-              <TableHeaderCell>Amount</TableHeaderCell>
-              <TableHeaderCell>Date</TableHeaderCell>
-              <TableHeaderCell>Method</TableHeaderCell>
+              <TableHeaderCell>Transaction ID</TableHeaderCell>
+              <TableHeaderCell>Company Name</TableHeaderCell>
+              <TableHeaderCell>ETD</TableHeaderCell>
+              <TableHeaderCell>Vessel Name</TableHeaderCell>
             </TableHeaderRow>
           </TableHeader>
           <TableBody>
             {tableData
               // Filter item based on the search input value
               .filter((tableItem) =>
-                tableItem.method.toLowerCase().includes(searchTerm.toLowerCase()),
+                tableItem.vesselName.toLowerCase().includes(searchTerm.toLowerCase()),
               )
               .map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>
-                    {tableItem.date?.toLocaleDateString('en-IN', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })}
-                  </TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

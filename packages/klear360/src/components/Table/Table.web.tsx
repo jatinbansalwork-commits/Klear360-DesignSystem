@@ -355,15 +355,18 @@ const _Table = <Item,>({
   const tableRootComponent = resolvedChildren([]);
   const isVirtualized = getComponentId(tableRootComponent) === ComponentIds.VirtualizedTable;
 
+  const isMobile = useIsMobile();
+  const lastHoverActionsColWidth = isMobile ? '1fr' : '0px';
+
   // `isFirstColumnSticky` is shorthand for freezing a single leading column; `stickyColumnCount`
   // generalizes this to N leading columns (see `stickyColumnWidths` for why widths are required
   // beyond the first).
-  const stickyColumnCount = stickyColumnCountProp ?? (isFirstColumnSticky ? 1 : 0);
+  const requestedStickyColumnCount = stickyColumnCountProp ?? (isFirstColumnSticky ? 1 : 0);
 
   if (__DEV__) {
     if (
-      stickyColumnCount > 1 &&
-      (!stickyColumnWidths || stickyColumnWidths.length < stickyColumnCount)
+      requestedStickyColumnCount > 1 &&
+      (!stickyColumnWidths || stickyColumnWidths.length < requestedStickyColumnCount)
     ) {
       throwKlear360Error({
         message:
@@ -373,11 +376,14 @@ const _Table = <Item,>({
     }
   }
 
+  // Sticky columns are disabled on mobile: their combined width easily exceeds a phone's
+  // viewport (unlike desktop, where there's always a wide scrolling area left over), which would
+  // leave no visible area to scroll the rest of the table into view at all. Falling back to a
+  // plain horizontally-scrollable table keeps every column reachable.
+  const stickyColumnCount = isMobile ? 0 : requestedStickyColumnCount;
+
   // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
   const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || stickyColumnCount > 0;
-
-  const isMobile = useIsMobile();
-  const lastHoverActionsColWidth = isMobile ? '1fr' : '0px';
 
   const {
     isEntering: isRefreshSpinnerEntering,

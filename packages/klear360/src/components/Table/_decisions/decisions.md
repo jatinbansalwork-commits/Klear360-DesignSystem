@@ -739,6 +739,10 @@ Documented on its own page (`docs/APIStories/TableToolbarSearchAPI.stories.tsx`,
 
 This intentionally does not attempt to measure rendered column widths at runtime - pairing `stickyColumnWidths` with matching `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) keeps the computation simple, synchronous, and free of layout-thrashing measurement effects.
 
+## Disabled on mobile
+
+Sticky columns are automatically disabled below the `s` breakpoint (`useIsMobile`), regardless of `stickyColumnCount`/`isFirstColumnSticky`. A frozen column's width that's perfectly reasonable on desktop - where there's always a wide scrolling area left over - can easily exceed a phone's *entire* viewport width once multiple columns are frozen (e.g. the 3-column sticky example's ~510px vs. a 375px viewport). When that happens there is no visible area left to scroll the rest of the table into view at all, so the table becomes unusable rather than merely cramped. Falling back to a plain horizontally-scrollable table - the same graceful degradation `Table` already applies elsewhere on mobile (e.g. the hover-actions column) - keeps every column reachable at the cost of losing the frozen affordance specifically on small screens, which is the safer trade-off.
+
 # Virtualization
 
 Virtaulized table is a table component that renders only the visible rows and columns. This is useful when you have a large dataset and you want to render only the visible rows and columns to improve the performance of the table.

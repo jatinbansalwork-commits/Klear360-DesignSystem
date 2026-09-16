@@ -664,6 +664,54 @@ describe('<Table />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('disables sticky columns on mobile, where the frozen width would leave no room to scroll', () => {
+    // Simulate a mobile viewport by making the `xs` breakpoint's media query match - this is
+    // what `useIsMobile` (via `useBreakpoint`) checks internally. jsdom doesn't implement
+    // `matchMedia` at all, so it has to be assigned rather than spied on.
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (jest.fn((query: string) => ({
+      matches: query.includes('min-width: 320px') && query.includes('max-width: 479px'),
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })) as unknown) as typeof window.matchMedia;
+
+    const { getByText } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }} isFirstColumnSticky>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    // The first body cell should no longer be pinned with `position: sticky` on mobile - a
+    // frozen column's width would otherwise easily exceed the whole viewport, leaving no
+    // scrollable area to reach the rest of the table at all.
+    const firstBodyCell = getByText(nodes[0].paymentId).closest('td');
+    expect(firstBodyCell).not.toHaveStyle({ position: 'sticky' });
+
+    window.matchMedia = originalMatchMedia;
+  });
+
   it('should render table with sorting', () => {
     const onSortChange = jest.fn();
     const { getByLabelText, getAllByRole } = renderWithTheme(
