@@ -117,8 +117,64 @@ exports[`<Table /> should accept data-analytics-* props 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -247,7 +303,7 @@ exports[`<Table /> should accept data-analytics-* props 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -271,64 +327,8 @@ exports[`<Table /> should accept data-analytics-* props 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -394,7 +394,7 @@ exports[`<Table /> should accept data-analytics-* props 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -1301,8 +1301,64 @@ exports[`<Table /> should render table 1`] = `
   overflow-wrap: break-word;
 }
 
-.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
-  overflow: auto !important;
+.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
+  border-top: none;
+}
+
+.c9.c9.c9.c9.c9 th:last-child {
+  border-right: none;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
@@ -1431,7 +1487,7 @@ exports[`<Table /> should render table 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -1455,6 +1511,10 @@ exports[`<Table /> should render table 1`] = `
   z-index: 2;
 }
 
+.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
+  overflow: auto !important;
+}
+
 .c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -1472,8 +1532,8 @@ exports[`<Table /> should render table 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -1499,66 +1559,6 @@ exports[`<Table /> should render table 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
-  border-top: none;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c9.c9.c9.c9.c9 th:last-child {
-  border-right: none;
 }
 
 .c4.c4.c4.c4.c4 {
@@ -1639,7 +1639,7 @@ exports[`<Table /> should render table 1`] = `
       </div>
       <table
         aria-multiselectable="false"
-        class="c7 css-10wb9yr-Table"
+        class="c7 css-c924kw-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -1654,7 +1654,7 @@ exports[`<Table /> should render table 1`] = `
             class="tr c9 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c10 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -2927,19 +2927,6 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
   border-bottom: 1px solid hsla(214,32%,91%,1);
 }
 
-.c6.c6.c6.c6.c6 {
-  padding: 1px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-}
-
 .c12.c12.c12.c12.c12 {
   color: hsla(215,25%,27%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
@@ -2995,304 +2982,6 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
   letter-spacing: -0.15600000000000003px;
   margin: 0;
   padding: 0;
-}
-
-.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
-  overflow: auto !important;
-}
-
-.c4.c4.c4.c4.c4 {
-  opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
-  border: none;
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 tr:last-child .cell-wrapper {
-  border-bottom: none;
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected .cell-wrapper-base,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected .cell-wrapper-base {
-  background-color: hsla(222,47%,11%,0.09);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base {
-  background-color: hsla(222,47%,11%,0.09);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions {
-  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
-  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
-  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base {
-  background-color: hsla(222,47%,11%,0.09);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions {
-  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
-  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
-  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base {
-  background-color: hsla(222,47%,11%,0.09);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions {
-  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
-  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.06) 10.08%,hsla(222,47%,11%,0.06) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
-  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-}
-
-.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15 {
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-}
-
-.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15 > div:first-child {
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
-}
-
-.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 {
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  background-color: transparent;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 48px;
-  height: 100%;
-  width: 100%;
-  border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-}
-
-.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22 {
-  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
-  background-color: transparent;
-  padding-left: 0px;
-  padding-right: 0px;
-  min-height: 48px;
-  height: 100%;
-  width: 100%;
-  border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-}
-
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 {
-  background-color: transparent;
-}
-
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 .cell-wrapper {
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-right-color: hsla(222,47%,11%,0.12);
-}
-
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 td:last-child .cell-wrapper {
-  border-right: none;
-}
-
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14:focus {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 {
-  background-color: hsla(222,47%,11%,0.06);
-}
-
-.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 tr:last-child th {
-  border-bottom: none;
-}
-
-.c29.c29.c29.c29.c29 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c29.c29.c29.c29.c29 th:last-child {
-  border-right: none;
-}
-
-.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30 {
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-}
-
-.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30 > div {
-  background-color: hsla(222,47%,11%,0.06);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
-  justify-content: left;
-}
-
-.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
-  border-top: none;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c9.c9.c9.c9.c9 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c9.c9.c9.c9.c9 th:last-child {
-  border-right: none;
 }
 
 .c27.c27.c27.c27.c27 {
@@ -3494,6 +3183,317 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
   width: 100%;
 }
 
+.c6.c6.c6.c6.c6 {
+  padding: 1px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+}
+
+.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
+  border-top: none;
+}
+
+.c9.c9.c9.c9.c9 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c9.c9.c9.c9.c9 th:last-child {
+  border-right: none;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
+  border: none;
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 tr:last-child .cell-wrapper {
+  border-bottom: none;
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected .cell-wrapper-base,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected .cell-wrapper-base {
+  background-color: hsla(222,47%,11%,0.09);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base {
+  background-color: hsla(222,47%,11%,0.09);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions {
+  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
+  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
+  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base {
+  background-color: hsla(222,47%,11%,0.09);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions {
+  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
+  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
+  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base {
+  background-color: hsla(222,47%,11%,0.09);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions {
+  background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
+  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.06) 10.08%,hsla(222,47%,11%,0.06) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-single-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3,
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 .row-select-selected:active:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
+  background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.09) 10.08%,hsla(222,47%,11%,0.09) 100%);
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+}
+
+.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15 {
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+}
+
+.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15 > div:first-child {
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15.c15:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
+}
+
+.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 {
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  background-color: transparent;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 48px;
+  height: 100%;
+  width: 100%;
+  border-bottom-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+}
+
+.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22.c22 {
+  -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
+  background-color: transparent;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-height: 48px;
+  height: 100%;
+  width: 100%;
+  border-bottom-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 {
+  background-color: transparent;
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 .cell-wrapper {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: hsla(222,47%,11%,0.126);
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 td:last-child .cell-wrapper {
+  border-right: none;
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14:focus {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
+}
+
+.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
+  overflow: auto !important;
+}
+
+.c4.c4.c4.c4.c4 {
+  opacity: 1;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
+}
+
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 {
+  background-color: hsla(222,47%,11%,0.06);
+}
+
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 tr:last-child th {
+  border-bottom: none;
+}
+
+.c29.c29.c29.c29.c29 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c29.c29.c29.c29.c29 th:last-child {
+  border-right: none;
+}
+
+.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30 {
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+}
+
+.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30.c30 > div {
+  background-color: hsla(222,47%,11%,0.06);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 48px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: left;
+  -webkit-justify-content: left;
+  -ms-flex-pack: left;
+  justify-content: left;
+}
+
 .c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20:focus-visible {
   outline: 1px solid;
 }
@@ -3618,7 +3618,7 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
             class="tr c9 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c10 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -4432,8 +4432,70 @@ exports[`<Table /> should render table with column spanning 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -4562,7 +4624,7 @@ exports[`<Table /> should render table with column spanning 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -4573,7 +4635,7 @@ exports[`<Table /> should render table with column spanning 1`] = `
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 .cell-wrapper {
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
 }
 
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 td:last-child .cell-wrapper {
@@ -4592,70 +4654,8 @@ exports[`<Table /> should render table with column spanning 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -4718,7 +4718,7 @@ exports[`<Table /> should render table with column spanning 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -5236,8 +5236,64 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
   padding: 0;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -5366,7 +5422,7 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -5390,6 +5446,10 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
   z-index: 2;
 }
 
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
+}
+
 .c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -5407,8 +5467,8 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -5434,66 +5494,6 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -5556,7 +5556,7 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -6311,8 +6311,64 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
   padding: 0;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -6441,7 +6497,7 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -6465,6 +6521,10 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
   z-index: 2;
 }
 
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
+}
+
 .c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -6482,8 +6542,8 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -6509,66 +6569,6 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -6631,7 +6631,7 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -7386,8 +7386,70 @@ exports[`<Table /> should render table with footer spanning 1`] = `
   padding: 0;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -7516,7 +7578,7 @@ exports[`<Table /> should render table with footer spanning 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -7527,7 +7589,7 @@ exports[`<Table /> should render table with footer spanning 1`] = `
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 .cell-wrapper {
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
 }
 
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 td:last-child .cell-wrapper {
@@ -7546,6 +7608,10 @@ exports[`<Table /> should render table with footer spanning 1`] = `
   z-index: 2;
 }
 
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
+}
+
 .c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -7556,7 +7622,7 @@ exports[`<Table /> should render table with footer spanning 1`] = `
 
 .c17.c17.c17.c17.c17 th {
   border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
   border-right-style: solid;
 }
 
@@ -7569,8 +7635,8 @@ exports[`<Table /> should render table with footer spanning 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -7596,72 +7662,6 @@ exports[`<Table /> should render table with footer spanning 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -7724,7 +7724,7 @@ exports[`<Table /> should render table with footer spanning 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -8240,8 +8240,70 @@ exports[`<Table /> should render table with grouping 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -8370,7 +8432,7 @@ exports[`<Table /> should render table with grouping 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -8426,70 +8488,8 @@ exports[`<Table /> should render table with grouping 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -8552,7 +8552,7 @@ exports[`<Table /> should render table with grouping 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -9003,50 +9003,6 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   border-bottom: 1px solid hsla(214,32%,91%,1);
 }
 
-.c16.c16.c16.c16.c16 {
-  color: hsla(215,25%,27%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: -0.15600000000000003px;
-  -moz-letter-spacing: -0.15600000000000003px;
-  -ms-letter-spacing: -0.15600000000000003px;
-  letter-spacing: -0.15600000000000003px;
-  margin: 0;
-  padding: 0;
-}
-
-.c24.c24.c24.c24.c24 {
-  color: hsla(218,50%,6%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: -0.18200000000000002px;
-  -moz-letter-spacing: -0.18200000000000002px;
-  -ms-letter-spacing: -0.18200000000000002px;
-  letter-spacing: -0.18200000000000002px;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow-wrap: break-word;
-}
-
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
-}
-
 .c27.c27.c27.c27.c27 {
   position: relative;
   display: -webkit-box;
@@ -9111,6 +9067,46 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
 .c14.c14.c14.c14.c14 {
   -webkit-animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
   animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
+}
+
+.c16.c16.c16.c16.c16 {
+  color: hsla(215,25%,27%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.0625rem;
+  -webkit-letter-spacing: -0.15600000000000003px;
+  -moz-letter-spacing: -0.15600000000000003px;
+  -ms-letter-spacing: -0.15600000000000003px;
+  letter-spacing: -0.15600000000000003px;
+  margin: 0;
+  padding: 0;
+}
+
+.c24.c24.c24.c24.c24 {
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
 }
 
 .c9.c9.c9.c9.c9 {
@@ -9196,6 +9192,72 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   -webkit-transition-duration: 80ms;
   transition-duration: 80ms;
+}
+
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c17.c17.c17.c17.c17.c17.c17.c17.c17.c17.c17.c17.c17.c17.c17 {
@@ -9328,7 +9390,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -9498,70 +9560,8 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -9654,7 +9654,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -10715,8 +10715,70 @@ exports[`<Table /> should render table with header spanning 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -10845,7 +10907,7 @@ exports[`<Table /> should render table with header spanning 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -10856,7 +10918,7 @@ exports[`<Table /> should render table with header spanning 1`] = `
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 .cell-wrapper {
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
 }
 
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 td:last-child .cell-wrapper {
@@ -10875,70 +10937,8 @@ exports[`<Table /> should render table with header spanning 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -11001,7 +11001,7 @@ exports[`<Table /> should render table with header spanning 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -11423,7 +11423,7 @@ exports[`<Table /> should render table with isLoading 1`] = `
   padding-top: 8px;
   padding-bottom: 8px;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   gap: 12px;
   -webkit-align-items: center;
@@ -11440,7 +11440,7 @@ exports[`<Table /> should render table with isLoading 1`] = `
   padding-top: 12px;
   padding-bottom: 12px;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   gap: 12px;
   -webkit-align-items: center;
@@ -11855,19 +11855,6 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   border-bottom: 1px solid hsla(214,32%,91%,1);
 }
 
-.c6.c6.c6.c6.c6 {
-  padding: 1px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-}
-
 .c12.c12.c12.c12.c12 {
   color: hsla(215,25%,27%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
@@ -11925,14 +11912,77 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   padding: 0;
 }
 
-.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
-  overflow: auto !important;
+.c6.c6.c6.c6.c6 {
+  padding: 1px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
 }
 
-.c4.c4.c4.c4.c4 {
-  opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
+.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
+  border-top: none;
+}
+
+.c9.c9.c9.c9.c9 th:last-child {
+  border-right: none;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
@@ -12061,7 +12111,7 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -12085,6 +12135,16 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   z-index: 2;
 }
 
+.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
+  overflow: auto !important;
+}
+
+.c4.c4.c4.c4.c4 {
+  opacity: 1;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
+}
+
 .c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -12102,8 +12162,8 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -12129,66 +12189,6 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
-  border-top: none;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c9.c9.c9.c9.c9 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -12299,7 +12299,7 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
             class="tr c9 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c10 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -13096,7 +13096,7 @@ exports[`<Table /> should render table with multi select 1`] = `
 }
 
 .c8.c8.c8.c8.c8 {
-  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-color: hsla(222,47%,11%,0.126);
   border-left-style: solid;
 }
 
@@ -13135,6 +13135,72 @@ exports[`<Table /> should render table with multi select 1`] = `
   border-left: 1px solid hsla(214,32%,91%,1);
   border-right: 1px solid hsla(214,32%,91%,1);
   border-bottom: 1px solid hsla(214,32%,91%,1);
+}
+
+.c41.c41.c41.c41.c41 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: hsla(0,0%,100%,0);
+  border-color: hsla(215,20%,65%,1);
+  padding-top: 0;
+}
+
+.c23.c23.c23.c23.c23 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: hsla(198,100%,18%,1);
+  border-color: hsla(198,100%,18%,1);
+  padding-top: 0;
+}
+
+.c25.c25.c25.c25.c25 {
+  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+}
+
+.c24.c24.c24.c24.c24 {
+  -webkit-animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
+  animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
 }
 
 .c26.c26.c26.c26.c26 {
@@ -13266,76 +13332,6 @@ exports[`<Table /> should render table with multi select 1`] = `
   padding: 0;
 }
 
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
-  overflow: auto !important;
-}
-
-.c41.c41.c41.c41.c41 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-width: 1.5px;
-  border-style: solid;
-  margin: 2px;
-  border-radius: 4px;
-  background-color: hsla(0,0%,100%,0);
-  border-color: hsla(215,20%,65%,1);
-  padding-top: 0;
-}
-
-.c23.c23.c23.c23.c23 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-width: 1.5px;
-  border-style: solid;
-  margin: 2px;
-  border-radius: 4px;
-  background-color: hsla(198,100%,18%,1);
-  border-color: hsla(198,100%,18%,1);
-  padding-top: 0;
-}
-
-.c25.c25.c25.c25.c25 {
-  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-}
-
-.c24.c24.c24.c24.c24 {
-  -webkit-animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
-  animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
-}
-
 .c19.c19.c19.c19.c19 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13419,6 +13415,115 @@ exports[`<Table /> should render table with multi select 1`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   -webkit-transition-duration: 80ms;
   transition-duration: 80ms;
+}
+
+.c10.c10.c10.c10.c10 {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  margin-left: 8px;
+}
+
+.c10.c10.c10.c10.c10 .content-container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10:focus-visible .content-container {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+}
+
+.c10.c10.c10.c10.c10 * {
+  -webkit-transition-property: color,fill;
+  transition-property: color,fill;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+}
+
+.c9.c9.c9.c9.c9 {
+  border-width: 0;
+  border-left-style: solid;
+  border-left-width: 1.5px;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
+  border-top: none;
+}
+
+.c15.c15.c15.c15.c15 th:last-child {
+  border-right: none;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27 {
@@ -13551,7 +13656,7 @@ exports[`<Table /> should render table with multi select 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -13632,113 +13737,8 @@ exports[`<Table /> should render table with multi select 1`] = `
   z-index: 2;
 }
 
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
-  border-top: none;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c15.c15.c15.c15.c15 th:last-child {
-  border-right: none;
-}
-
-.c9.c9.c9.c9.c9 {
-  border-width: 0;
-  border-left-style: solid;
-  border-left-width: 1.5px;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
-}
-
-.c10.c10.c10.c10.c10 {
-  padding: 0;
-  background-color: transparent;
-  outline: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 8px;
-  -webkit-transition-property: box-shadow;
-  transition-property: box-shadow;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  margin-left: 8px;
-}
-
-.c10.c10.c10.c10.c10 .content-container {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  border-radius: 4px;
-}
-
-.c10.c10.c10.c10.c10:focus-visible .content-container {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-}
-
-.c10.c10.c10.c10.c10 * {
-  -webkit-transition-property: color,fill;
-  transition-property: color,fill;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
+  overflow: auto !important;
 }
 
 .c4.c4.c4.c4.c4 {
@@ -13908,7 +13908,7 @@ exports[`<Table /> should render table with multi select 1`] = `
       </div>
       <table
         aria-multiselectable="true"
-        class="c13 css-1ut1flt-Table"
+        class="c13 css-rzumxs-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -13923,7 +13923,7 @@ exports[`<Table /> should render table with multi select 1`] = `
             class="tr c15 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c16 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -13961,7 +13961,7 @@ exports[`<Table /> should render table with multi select 1`] = `
                             data-klear360-component="base-box"
                           >
                             <input
-                              aria-checked="mixed"
+                              aria-checked="false"
                               aria-disabled="false"
                               aria-invalid="false"
                               aria-required="false"
@@ -15841,7 +15841,7 @@ exports[`<Table /> should render table with multi select 2`] = `
 }
 
 .c8.c8.c8.c8.c8 {
-  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-color: hsla(222,47%,11%,0.126);
   border-left-style: solid;
 }
 
@@ -15880,6 +15880,72 @@ exports[`<Table /> should render table with multi select 2`] = `
   border-left: 1px solid hsla(214,32%,91%,1);
   border-right: 1px solid hsla(214,32%,91%,1);
   border-bottom: 1px solid hsla(214,32%,91%,1);
+}
+
+.c41.c41.c41.c41.c41 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: hsla(0,0%,100%,0);
+  border-color: hsla(215,20%,65%,1);
+  padding-top: 0;
+}
+
+.c23.c23.c23.c23.c23 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: hsla(198,100%,18%,1);
+  border-color: hsla(198,100%,18%,1);
+  padding-top: 0;
+}
+
+.c25.c25.c25.c25.c25 {
+  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+}
+
+.c24.c24.c24.c24.c24 {
+  -webkit-animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
+  animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
 }
 
 .c26.c26.c26.c26.c26 {
@@ -16011,76 +16077,6 @@ exports[`<Table /> should render table with multi select 2`] = `
   padding: 0;
 }
 
-.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
-  overflow: auto !important;
-}
-
-.c41.c41.c41.c41.c41 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-width: 1.5px;
-  border-style: solid;
-  margin: 2px;
-  border-radius: 4px;
-  background-color: hsla(0,0%,100%,0);
-  border-color: hsla(215,20%,65%,1);
-  padding-top: 0;
-}
-
-.c23.c23.c23.c23.c23 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-width: 1.5px;
-  border-style: solid;
-  margin: 2px;
-  border-radius: 4px;
-  background-color: hsla(198,100%,18%,1);
-  border-color: hsla(198,100%,18%,1);
-  padding-top: 0;
-}
-
-.c25.c25.c25.c25.c25 {
-  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-}
-
-.c24.c24.c24.c24.c24 {
-  -webkit-animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
-  animation: byNIqG-450290765 160ms cubic-bezier(0,0,0.2,1);
-}
-
 .c19.c19.c19.c19.c19 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -16164,6 +16160,115 @@ exports[`<Table /> should render table with multi select 2`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   -webkit-transition-duration: 80ms;
   transition-duration: 80ms;
+}
+
+.c10.c10.c10.c10.c10 {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  margin-left: 8px;
+}
+
+.c10.c10.c10.c10.c10 .content-container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10:focus-visible .content-container {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+}
+
+.c10.c10.c10.c10.c10 * {
+  -webkit-transition-property: color,fill;
+  transition-property: color,fill;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+}
+
+.c9.c9.c9.c9.c9 {
+  border-width: 0;
+  border-left-style: solid;
+  border-left-width: 1.5px;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
+  border-top: none;
+}
+
+.c15.c15.c15.c15.c15 th:last-child {
+  border-right: none;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27 {
@@ -16296,7 +16401,7 @@ exports[`<Table /> should render table with multi select 2`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -16377,113 +16482,8 @@ exports[`<Table /> should render table with multi select 2`] = `
   z-index: 2;
 }
 
-.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
-  border-top: none;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c15.c15.c15.c15.c15 th:last-child {
-  border-right: none;
-}
-
-.c9.c9.c9.c9.c9 {
-  border-width: 0;
-  border-left-style: solid;
-  border-left-width: 1.5px;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
-}
-
-.c10.c10.c10.c10.c10 {
-  padding: 0;
-  background-color: transparent;
-  outline: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 8px;
-  -webkit-transition-property: box-shadow;
-  transition-property: box-shadow;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  margin-left: 8px;
-}
-
-.c10.c10.c10.c10.c10 .content-container {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  border-radius: 4px;
-}
-
-.c10.c10.c10.c10.c10:focus-visible .content-container {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-}
-
-.c10.c10.c10.c10.c10 * {
-  -webkit-transition-property: color,fill;
-  transition-property: color,fill;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
+.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
+  overflow: auto !important;
 }
 
 .c4.c4.c4.c4.c4 {
@@ -16653,7 +16653,7 @@ exports[`<Table /> should render table with multi select 2`] = `
       </div>
       <table
         aria-multiselectable="true"
-        class="c13 css-1ut1flt-Table"
+        class="c13 css-rzumxs-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -16668,7 +16668,7 @@ exports[`<Table /> should render table with multi select 2`] = `
             class="tr c15 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c16 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -18621,6 +18621,39 @@ exports[`<Table /> should render table with multi select 3`] = `
   border-bottom: 1px solid hsla(214,32%,91%,1);
 }
 
+.c17.c17.c17.c17.c17 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: hsla(0,0%,100%,0);
+  border-color: hsla(215,20%,65%,1);
+  padding-top: 0;
+}
+
+.c18.c18.c18.c18.c18 {
+  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
+}
+
 .c6.c6.c6.c6.c6 {
   color: hsla(218,50%,6%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
@@ -18732,43 +18765,6 @@ exports[`<Table /> should render table with multi select 3`] = `
   opacity: 0.64;
 }
 
-.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
-  overflow: auto !important;
-}
-
-.c17.c17.c17.c17.c17 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-width: 1.5px;
-  border-style: solid;
-  margin: 2px;
-  border-radius: 4px;
-  background-color: hsla(0,0%,100%,0);
-  border-color: hsla(215,20%,65%,1);
-  padding-top: 0;
-}
-
-.c18.c18.c18.c18.c18 {
-  -webkit-animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-  animation: gYwSSW-450290765 160ms cubic-bezier(0.17,0,1,1);
-}
-
 .c13.c13.c13.c13.c13 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -18814,6 +18810,66 @@ exports[`<Table /> should render table with multi select 3`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   -webkit-transition-duration: 80ms;
   transition-duration: 80ms;
+}
+
+.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
+  border-top: none;
+}
+
+.c9.c9.c9.c9.c9 th:last-child {
+  border-right: none;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20.c20 {
@@ -18946,7 +19002,7 @@ exports[`<Table /> should render table with multi select 3`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -19027,64 +19083,8 @@ exports[`<Table /> should render table with multi select 3`] = `
   z-index: 2;
 }
 
-.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
-  border-top: none;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c9.c9.c9.c9.c9 th:last-child {
-  border-right: none;
+.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
+  overflow: auto !important;
 }
 
 .c4.c4.c4.c4.c4 {
@@ -19215,7 +19215,7 @@ exports[`<Table /> should render table with multi select 3`] = `
       </div>
       <table
         aria-multiselectable="true"
-        class="c7 css-1ut1flt-Table"
+        class="c7 css-rzumxs-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -19230,7 +19230,7 @@ exports[`<Table /> should render table with multi select 3`] = `
             class="tr c9 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c10 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -21072,8 +21072,64 @@ exports[`<Table /> should render table with nested expandable content 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -21202,7 +21258,7 @@ exports[`<Table /> should render table with nested expandable content 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -21226,64 +21282,8 @@ exports[`<Table /> should render table with nested expandable content 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -21346,7 +21346,7 @@ exports[`<Table /> should render table with nested expandable content 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -21766,8 +21766,70 @@ exports[`<Table /> should render table with row spanning 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th {
+  border-right-width: 1px;
+  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-style: solid;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -21920,7 +21982,7 @@ exports[`<Table /> should render table with row spanning 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -21931,7 +21993,7 @@ exports[`<Table /> should render table with row spanning 1`] = `
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 .cell-wrapper {
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
 }
 
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 td:last-child .cell-wrapper {
@@ -21950,70 +22012,8 @@ exports[`<Table /> should render table with row spanning 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th {
-  border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
-  border-right-style: solid;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -22076,7 +22076,7 @@ exports[`<Table /> should render table with row spanning 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -22528,8 +22528,64 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
   padding: 0;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -22687,6 +22743,10 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
   z-index: 2;
 }
 
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
+}
+
 .c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -22704,8 +22764,8 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -22731,66 +22791,6 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -22853,7 +22853,7 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -23608,8 +23608,64 @@ exports[`<Table /> should render table with single select 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -23742,7 +23798,7 @@ exports[`<Table /> should render table with single select 1`] = `
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -23823,64 +23879,8 @@ exports[`<Table /> should render table with single select 1`] = `
   z-index: 2;
 }
 
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
 }
 
 @media screen and (min-width:320px) {
@@ -23973,7 +23973,7 @@ exports[`<Table /> should render table with single select 1`] = `
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-xub1mw-HEADER_CELL_CONTAINER_STYLE-HeaderCell"
@@ -24128,7 +24128,7 @@ exports[`<Table /> should render table with single select 1`] = `
         >
           <tr
             aria-selected="true"
-            class="tr tr-body row-select row-select-clickable row-select-single-selected c10 clickable css-14p8z18-getRowContainerStyle-Row"
+            class="tr tr-body row-select row-select-clickable row-select-selected c10 clickable css-14p8z18-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -25117,9 +25117,64 @@ exports[`<Table /> should render table with sticky header, footer & first column
   padding: 0;
 }
 
-.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
-  overflow: auto !important;
-  height: 300px;
+.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
+  border-top: none;
+}
+
+.c5.c5.c5.c5.c5 th:last-child {
+  border-right: none;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
+  display: block;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  height: 100%;
+  background-color: hsla(0,0%,100%,1);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
+  border-bottom-style: solid;
+  border-top-style: solid;
+  cursor: auto;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
+  background-color: hsla(210,40%,98%,1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  min-height: 36px;
+}
+
+.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: -4px;
+  -webkit-transition-property: outline-width;
+  transition-property: outline-width;
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  z-index: 2;
 }
 
 .c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9.c9 {
@@ -25248,7 +25303,7 @@ exports[`<Table /> should render table with sticky header, footer & first column
   height: 100%;
   width: 100%;
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -25272,6 +25327,11 @@ exports[`<Table /> should render table with sticky header, footer & first column
   z-index: 2;
 }
 
+.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3.c3 {
+  overflow: auto !important;
+  height: 300px;
+}
+
 .c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16.c16 {
   background-color: hsla(222,47%,11%,0.06);
 }
@@ -25289,8 +25349,8 @@ exports[`<Table /> should render table with sticky header, footer & first column
   background-color: hsla(0,0%,100%,1);
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
   border-top-style: solid;
 }
@@ -25316,66 +25376,6 @@ exports[`<Table /> should render table with sticky header, footer & first column
   -webkit-justify-content: left;
   -ms-flex-pack: left;
   justify-content: left;
-}
-
-.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4.c4 tr:first-child th {
-  border-top: none;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 {
-  display: block;
-  -webkit-box-pack: initial;
-  -webkit-justify-content: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  height: 100%;
-  background-color: hsla(0,0%,100%,1);
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
-  border-top-color: hsla(222,47%,11%,0.12);
-  border-bottom-style: solid;
-  border-top-style: solid;
-  cursor: auto;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6 > div {
-  background-color: hsla(210,40%,98%,1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  min-height: 36px;
-}
-
-.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6.c6:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: -4px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-}
-
-.c5.c5.c5.c5.c5 th:last-child {
-  border-right: none;
 }
 
 @media screen and (min-width:320px) {
@@ -25438,7 +25438,7 @@ exports[`<Table /> should render table with sticky header, footer & first column
             class="tr c5 tr-header css-jxklud-getHeaderRowContainerStyle-HeaderRow"
             data-klear360-component="table-header-row"
             data-table-library_tr-header=""
-            role="rowheader"
+            role="row"
           >
             <th
               class="th c6 css-z57ohf-HEADER_CELL_CONTAINER_STYLE-HeaderCell"

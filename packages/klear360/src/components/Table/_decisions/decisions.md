@@ -56,6 +56,7 @@ A table component helps in displaying data in a grid format, through rows and co
 ## Features
 
 - Column Sorting
+- Column Filtering & Search (global + per-column)
 - Row Selection - Single & Multiple
 - Pagination
 - Bulk Actions Toolbar
@@ -71,8 +72,6 @@ We don't have enough use-cases for the following features at Klear and hence sco
 
 - Column Reordering
 - Column Resizing
-- Column Filtering
-- Search
 - Row Expansion
 - Nested Tables
 - Hiding Columns
@@ -182,7 +181,8 @@ We don't have enough use-cases for the following features at Klear and hence sco
 | ------------------ | --------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | data               | TableData                                     | `undefined` | This contains the actual data to be rendered in the table which would be retrieved from some API                                                                                                                                                                                                                                         | ✅       |
 | children           | `(tableData: TableData) => React.ReactNode[]` | undefined   | Expects a function that returns Table composition components like `TableHeader`, `TableBody` & `TableFooter`. The function provides the tableData as an argument which can be used to render the table. The provided tableData will update based on pagination and sort states.                                                          | ✅       |
-| selectionType      | `single`, `multiple`                          | `single`    | This defines the type of selection that is allowed in the table. Possible values are 'single' & 'multiple'                                                                                                                                                                                                                               |
+| selectionType      | `none`, `single`, `multiple`                  | `none`      | This defines the type of selection that is allowed in the table. Possible values are 'none', 'single' & 'multiple'                                                                                                                                                                                                                       |
+| filterFunctions    | `FilterFunctionsType`                         | `undefined` | This is an object that contains the filter predicates for each column. The key of the object should be the `headerKey` of the column and the value is a function that takes in an item and the current filter value and returns whether the item should be kept. A column will be made automatically filterable by adding its headerKey here — same convention as `sortFunctions`. |
 | onSelectionChange  | `SelectionChangeEvent`                        | `undefined` | This is a callback function that is called when the selection changes. It is called with the selected items as an array                                                                                                                                                                                                                  |
 | sortFunctions      | `SortFunctionsType`                           | `undefined` | This is an object that contains the sort functions for each column. The key of the object should be the `headerKey` of the column and the value is a function that takes in an array of items and returns a sorted array of items. A column will be made automatically sortable by adding its headerKey along with a sort function here. |
 | onSortChange       | `SortChangeEvent`                             | `undefined` | This is a callback function that is called when the sort changes. It is called with the headerKey & sortType as arguments                                                                                                                                                                                                                |
@@ -691,6 +691,35 @@ While evaluating multiple libraries we identified 3 categories:
 
 - We will be following the [WAI-ARIA Table Practices](https://www.w3.org/WAI/ARIA/apg/patterns/table/) to ensure our table is accessible
 - We will be using native HTML elements like `<table>`, `<thead>`, `<tbody>`, `<tfoot>`, `<tr>`, `<th>` & `<td>` to ensure our table is accessible
+
+# Filtering & Search
+
+Filtering was originally scoped out for lack of use-cases (see [Out of scope](#out-of-scope) history). A competitive audit against other table libraries (e.g. PrimeReact's DataTable/TreeTable) identified filtering as our biggest capability gap, so it has since been added.
+
+## API design
+
+A column becomes filterable purely by having its `headerKey` present in a new `filterFunctions` map — this mirrors the existing `sortFunctions` pattern exactly, so there's no new prop needed on `TableHeaderCell` and no new mental model for consumers who already know how sorting works.
+
+Two independent filter inputs share the same predicates:
+
+- **Column filters** — one text input per filterable column, auto-rendered inline in a second header row (not hidden behind a popover or menu). A row must satisfy **all** active column filters (AND).
+- **Global search** — a single `TableToolbarSearch` input (see below) checked against every filterable column's predicate. A row matches if **any** filterable column matches (OR).
+
+Column filters and global search combine with AND between them (matches every active column filter, and the global term if set) — the same convention PrimeReact uses.
+
+State follows one consistent controlled/uncontrolled/onChange triple (`columnFilterValues`/`defaultColumnFilterValues`/`onColumnFilterValuesChange`, `globalFilterValue`/`defaultGlobalFilterValue`/`onGlobalFilterValueChange`), established as the pattern going forward — this is deliberately not retrofitted onto the older, less consistent sort/selection controllability rules.
+
+## Why inline inputs instead of a filter menu/popover
+
+Klear's table intentionally keeps a lean feature surface (see [Table Library Evaluation](#table-library-evaluation)) — no match-mode dropdowns or AND/OR constraint builder, just plain substring/custom-predicate text matching. Inline, always-visible inputs also make filterable columns discoverable at a glance, rather than requiring a user to open a menu per column to find out a column is filterable.
+
+## `TableToolbarSearch`
+
+A dedicated component (alongside `TableToolbarActions`) so global search is documented and adoptable independently of the rest of the filtering feature, matching how `TableToolbar`'s other slots are each their own component.
+
+## Out of scope (within filtering)
+
+- Full keyboard grid navigation (roving tabindex, arrow-key cell movement) — the filter/search inputs are plain native `<input>`s and are already reachable via standard Tab order, but grid-style arrow-key navigation across cells is a separate, larger piece of infrastructure planned as a future follow-up.
 
 # Virtualization
 

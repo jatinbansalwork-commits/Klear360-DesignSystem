@@ -116,6 +116,36 @@ type TableProps<Item> = {
   initialSort?: { sortKey: string; direction: 'asc' | 'desc' };
 
   /**
+   * Per-row predicate for a filterable column. Return `true` to keep the row. A column becomes
+   * filterable purely by having its `headerKey` present here — mirrors `sortFunctions`. A
+   * filter row auto-renders in the header with one text input per filterable column (AND across
+   * columns). The same predicates are reused for global search via `globalFilterValue`/
+   * `TableToolbarSearch` (OR across columns).
+   **/
+  filterFunctions?: Record<string, (item: TableNode<Item>, filterValue: string) => boolean>;
+
+  /** Column filter values keyed by headerKey. Passing this makes it controlled. */
+  columnFilterValues?: Record<string, string>;
+
+  /** Initial column filter values for uncontrolled usage. */
+  defaultColumnFilterValues?: Record<string, string>;
+
+  /** Callback fired when any column filter value changes. */
+  onColumnFilterValuesChange?: (values: Record<string, string>) => void;
+
+  /**
+   * Global search value, checked against every filterable column's `filterFunctions` predicate.
+   * Passing this makes it controlled. Typically driven by a `TableToolbarSearch` in the toolbar.
+   */
+  globalFilterValue?: string;
+
+  /** Initial global filter value for uncontrolled usage. */
+  defaultGlobalFilterValue?: string;
+
+  /** Callback fired when the global filter value changes. */
+  onGlobalFilterValueChange?: (value: string) => void;
+
+  /**
    * The toolbar prop is a React element that is rendered above the table.
    **/
   toolbar?: React.ReactElement;
@@ -335,6 +365,18 @@ type TableToolbarProps = {
   placement?: 'inline' | 'overlay';
 };
 
+// TableToolbarSearch component props
+type TableToolbarSearchProps = {
+  /**
+   * @default 'Search'
+   */
+  placeholder?: string;
+  /**
+   * @default 'Search table'
+   */
+  accessibilityLabel?: string;
+};
+
 // TablePagination component props
 type TablePaginationProps = {
   /**
@@ -408,12 +450,18 @@ type TablePaginationProps = {
   different sortable column adds it as a secondary/tertiary key instead of replacing the sort.
 - Use `initialSort` to render the table already sorted on mount instead of requiring a click.
 - Use `isHeaderSticky` and `isFirstColumnSticky` for large datasets that need scroll anchoring.
-- Wrap in `ListView` when you need search and filter capabilities alongside the table.
+- Use `filterFunctions` with matching `headerKey` props on `TableHeaderCell` for filterable columns
+  — a compact filter input auto-renders inline in the header, no extra JSX required.
+- Add a `TableToolbarSearch` inside `TableToolbar` for global search across every filterable
+  column (reuses the same `filterFunctions` predicates as column filters).
 
 **Don't**
 
 - Don't use static JSX children — `Table` requires the function-as-children pattern.
 - Don't expect column reordering, resizing, or row expansion — these are out of scope.
+- Don't expect full keyboard grid navigation (roving tabindex, arrow-key cell movement) — filter
+  inputs are plain native inputs reachable via Tab, but grid-style arrow-key navigation isn't
+  built yet.
 - Don't put arbitrary elements in the `toolbar` prop — only `TableToolbar` is accepted.
 - Don't use `Table` for key-value pair display — use `InfoGroup` instead.
 - Don't build a custom "clear sort" control — a third click on the same column already clears it.
@@ -936,6 +984,68 @@ Row and column spanning for complex layouts with merged cells. Use for grouping 
 <TableFooterCell gridColumnStart={1} gridColumnEnd={3}>
   Total
 </TableFooterCell>
+```
+
+### Table Filtering & Search Pattern
+
+Per-column filters and global search share the same `filterFunctions` predicates. A column becomes
+filterable purely by having its `headerKey` present in `filterFunctions` — a compact filter input
+auto-renders in the header, no extra JSX needed. `TableToolbarSearch` inside `TableToolbar` adds
+global search across every filterable column.
+
+```tsx
+import {
+  Table,
+  TableHeader,
+  TableHeaderRow,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableToolbar,
+  TableToolbarSearch,
+  TableNode,
+} from '@klear/klear360/components';
+
+type Item = { id: string; name: string; status: string };
+
+const filterFunctions = {
+  NAME: (item: TableNode<Item>, value: string) =>
+    item.name.toLowerCase().includes(value.toLowerCase()),
+  STATUS: (item: TableNode<Item>, value: string) =>
+    item.status.toLowerCase().includes(value.toLowerCase()),
+};
+
+const FilterableTable = ({ nodes }: { nodes: Item[] }) => (
+  <Table
+    data={{ nodes }}
+    filterFunctions={filterFunctions}
+    toolbar={
+      <TableToolbar>
+        <TableToolbarSearch placeholder="Search all columns" />
+      </TableToolbar>
+    }
+  >
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+            <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={index} item={item}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
 ```
 
 ### Table Grouping Pattern

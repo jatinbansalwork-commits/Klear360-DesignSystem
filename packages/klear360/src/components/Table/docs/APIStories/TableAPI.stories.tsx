@@ -1,11 +1,12 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import type { TableData, TableProps } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TableFooter, TableFooterRow, TableFooterCell } from '../../TableFooter';
 import { TablePagination } from '../../TablePagination';
-import { TableToolbarActions, TableToolbar } from '../../TableToolbar';
+import { TableToolbarActions, TableToolbar, TableToolbarSearch } from '../../TableToolbar';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
@@ -30,6 +31,21 @@ export default {
       },
     },
     sortFunctions: {
+      control: {
+        disable: true,
+      },
+    },
+    filterFunctions: {
+      control: {
+        disable: true,
+      },
+    },
+    columnFilterValues: {
+      control: {
+        disable: true,
+      },
+    },
+    defaultColumnFilterValues: {
       control: {
         disable: true,
       },
@@ -105,12 +121,15 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
     >
       <TableComponent
         height="400px"
-        onSelectionChange={({ values }) => console.log('Selected Rows:', values)}
+        onSelectionChange={({ values }) => action('onSelectionChange')(values)}
         onSortChange={({ sortKey, isSortReversed }) =>
-          console.log('Sort Key:', sortKey, 'Sort Reversed:', isSortReversed)
+          action('onSortChange')({ sortKey, isSortReversed })
         }
+        onGlobalFilterValueChange={action('onGlobalFilterValueChange')}
+        onColumnFilterValuesChange={action('onColumnFilterValuesChange')}
         toolbar={
           <TableToolbar>
+            <TableToolbarSearch placeholder="Search all columns" />
             <TableToolbarActions>
               <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
                 Export
@@ -121,9 +140,9 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         }
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
           />
@@ -138,6 +157,10 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
           DATE: (array) => array.sort((a, b) => a.date.getTime() - b.date.getTime()),
           METHOD: (array) => array.sort((a, b) => a.method.localeCompare(b.method)),
           STATUS: (array) => array.sort((a, b) => a.status.localeCompare(b.status)),
+        }}
+        filterFunctions={{
+          METHOD: (item, value) => item.method.toLowerCase().includes(value.toLowerCase()),
+          STATUS: (item, value) => item.status.toLowerCase().includes(value.toLowerCase()),
         }}
       >
         {(tableData) => (

@@ -17,6 +17,7 @@ import { Text } from '~components/Typography';
 import { castWebType, makeMotionTime, makeSize, makeSpace } from '~utils';
 import { makeAccessible } from '~utils/makeAccessible';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
+import { getComponentId } from '~utils/isValidAllowedChildren';
 import BaseBox from '~components/Box/BaseBox';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { useTheme } from '~components/Klear360Provider';
@@ -24,6 +25,7 @@ import getIn from '~utils/lodashButBetter/get';
 import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { size } from '~tokens/global';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { SearchInput } from '~components/Input/SearchInput';
 
 const SortButton = styled.button(({ theme }) => ({
   cursor: 'pointer',
@@ -110,8 +112,141 @@ const StyledHeader = styled(Header)<{ $tableToolbarPlacement: TableToolbarPlacem
   }),
 );
 
+const StyledFilterHeaderCell = styled(HeaderCell)<{
+  $backgroundColor: TableBackgroundColors;
+}>(({ theme, $backgroundColor }) => ({
+  '&&&': {
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+    backgroundColor: getIn(theme.colors, $backgroundColor),
+    borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
+    borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
+    borderBottomStyle: 'solid',
+    paddingLeft: makeSpace(getIn(theme, tableRow.paddingLeft.compact)),
+    paddingRight: makeSpace(getIn(theme, tableRow.paddingRight.compact)),
+    paddingTop: makeSpace(getIn(theme.spacing, '2')),
+    paddingBottom: makeSpace(getIn(theme.spacing, '2')),
+  },
+}));
+
+const StyledHeaderRow = styled(HeaderRow)<{
+  $showBorderedCells: boolean;
+  $gridTemplateColumns: string | undefined;
+  $hasHoverActions: boolean;
+  $selectionType: TableProps<unknown>['selectionType'];
+  $columnCount: number;
+  $isVirtualized?: boolean;
+}>(
+  ({
+    theme,
+    $showBorderedCells,
+    $gridTemplateColumns,
+    $hasHoverActions,
+    $selectionType,
+    $columnCount,
+    $isVirtualized,
+  }) => ({
+    '& th': $showBorderedCells
+      ? {
+          borderRightWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
+          borderRightColor: getIn(theme.colors, tableRow.borderColor),
+          borderRightStyle: 'solid',
+          ...($isVirtualized && {
+            display: 'grid',
+            gridTemplateColumns: $gridTemplateColumns
+              ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
+              : ` ${
+                  $selectionType === 'multiple' ? 'min-content' : ''
+                } repeat(${$columnCount},minmax(100px, 1fr)) ${
+                  $hasHoverActions ? 'min-content' : ''
+                } !important;`,
+          }),
+        }
+      : undefined,
+    '& th:last-child ': {
+      borderRight: 'none',
+    },
+  }),
+);
+
+/**
+ * A column's `headerKey` + rendered label, extracted from the real header row's
+ * `TableHeaderCell` children (in order) - so the filter row below can render matching cells
+ * without the consumer having to declare the column list a second time.
+ */
+const getHeaderCellsMeta = (
+  headerRow: React.ReactNode,
+): { headerKey?: string; label: React.ReactNode }[] => {
+  const headerRowElement = React.Children.toArray(headerRow)[0];
+  if (!React.isValidElement(headerRowElement)) return [];
+  return React.Children.toArray((headerRowElement.props as TableHeaderRowProps).children)
+    .filter((cell) => getComponentId(cell) === ComponentIds.TableHeaderCell)
+    .map((cell) => {
+      const cellProps = (React.isValidElement(cell) ? cell.props : {}) as TableHeaderCellProps;
+      return { headerKey: cellProps.headerKey, label: cellProps.children };
+    });
+};
+
+/**
+ * Auto-injected second header row rendering a compact search input for every column whose
+ * `headerKey` is present in `filterFunctions` (see `TableProps['filterFunctions']`) - no extra
+ * JSX required from consumers. Non-filterable columns (and the leading checkbox / trailing
+ * hover-actions columns, when present) render as empty cells purely to keep grid alignment.
+ */
+const TableHeaderFilterRow = ({
+  headerRow,
+}: {
+  headerRow: React.ReactNode;
+}): React.ReactElement => {
+  const {
+    filterableColumns,
+    columnFilterValues,
+    setColumnFilterValue,
+    backgroundColor,
+    selectionType,
+    hasHoverActions,
+  } = useTableContext();
+  const cellsMeta = getHeaderCellsMeta(headerRow);
+
+  return (
+    // See the real header row's own `role="row"` override below for why this is explicit.
+    <StyledHeaderRow
+      role="row"
+      $showBorderedCells={false}
+      $gridTemplateColumns={undefined}
+      $hasHoverActions={false}
+      $selectionType={selectionType}
+      $columnCount={0}
+      {...metaAttribute({ name: MetaConstants.TableHeaderRow })}
+    >
+      {selectionType === 'multiple' && (
+        <StyledFilterHeaderCell $backgroundColor={backgroundColor} />
+      )}
+      {cellsMeta.map(({ headerKey, label }, index) => {
+        const isFilterable = headerKey && filterableColumns.includes(headerKey);
+        const labelText = typeof label === 'string' ? label : headerKey ?? `Column ${index + 1}`;
+        return (
+          <StyledFilterHeaderCell key={headerKey ?? index} $backgroundColor={backgroundColor}>
+            {isFilterable && headerKey ? (
+              <SearchInput
+                size="small"
+                value={columnFilterValues[headerKey] ?? ''}
+                onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
+                placeholder={`Filter ${labelText}`}
+                accessibilityLabel={`Filter by ${labelText}`}
+              />
+            ) : null}
+          </StyledFilterHeaderCell>
+        );
+      })}
+      {hasHoverActions && <StyledFilterHeaderCell $backgroundColor={backgroundColor} />}
+    </StyledHeaderRow>
+  );
+};
+
 const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactElement => {
-  const { tableToolbarPlacement } = useTableContext();
+  const { tableToolbarPlacement, filterableColumns } = useTableContext();
 
   return (
     <StyledHeader
@@ -120,6 +255,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
       {...makeAnalyticsAttribute(rest)}
     >
       {children}
+      {filterableColumns.length > 0 && <TableHeaderFilterRow headerRow={children} />}
     </StyledHeader>
   );
 };
@@ -279,46 +415,6 @@ const TableHeaderCellCheckbox = ({
   );
 };
 
-const StyledHeaderRow = styled(HeaderRow)<{
-  $showBorderedCells: boolean;
-  $gridTemplateColumns: string | undefined;
-  $hasHoverActions: boolean;
-  $selectionType: TableProps<unknown>['selectionType'];
-  $columnCount: number;
-  $isVirtualized?: boolean;
-}>(
-  ({
-    theme,
-    $showBorderedCells,
-    $gridTemplateColumns,
-    $hasHoverActions,
-    $selectionType,
-    $columnCount,
-    $isVirtualized,
-  }) => ({
-    '& th': $showBorderedCells
-      ? {
-          borderRightWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
-          borderRightColor: getIn(theme.colors, tableRow.borderColor),
-          borderRightStyle: 'solid',
-          ...($isVirtualized && {
-            display: 'grid',
-            gridTemplateColumns: $gridTemplateColumns
-              ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
-              : ` ${
-                  $selectionType === 'multiple' ? 'min-content' : ''
-                } repeat(${$columnCount},minmax(100px, 1fr)) ${
-                  $hasHoverActions ? 'min-content' : ''
-                } !important;`,
-          }),
-        }
-      : undefined,
-    '& th:last-child ': {
-      borderRight: 'none',
-    },
-  }),
-);
-
 const _TableHeaderRow = ({
   children,
   rowDensity,
@@ -348,8 +444,12 @@ const _TableHeaderRow = ({
   setHeaderRowDensity('compact');
 
   return (
+    // `@table-library`'s own `HeaderRow` defaults its `role` prop to `"rowheader"` internally -
+    // a WAI-ARIA *cell* role, not valid for an entire row - so it must be explicitly overridden
+    // to `"row"` here rather than merely omitted (omitting it lets the library's own bad default
+    // through unchanged).
     <StyledHeaderRow
-      role="rowheader"
+      role="row"
       {...metaAttribute({ name: MetaConstants.TableHeaderRow })}
       {...makeAnalyticsAttribute(rest)}
       $showBorderedCells={showBorderedCells}

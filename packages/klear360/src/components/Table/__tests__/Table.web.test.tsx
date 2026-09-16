@@ -1,11 +1,13 @@
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 import { Table } from '../Table';
 import { TableBody, TableCell, TableRow, TableVirtualizedWrapper } from '../TableBody';
 import { TableFooter, TableFooterCell, TableFooterRow } from '../TableFooter';
 import { TableHeader, TableHeaderCell, TableHeaderRow } from '../TableHeader';
-import { TableToolbar } from '../TableToolbar';
+import { TableToolbar, TableToolbarSearch } from '../TableToolbar';
+import type { TableProps } from '../types';
 import { TablePagination } from '../TablePagination';
 import { TableEditableCell } from '../TableEditableCell';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
@@ -13,6 +15,15 @@ import { Amount } from '~components/Amount';
 import { Box } from '~components/Box';
 import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
+import { Klear360Provider } from '~components/Klear360Provider';
+import { klear360Theme } from '~tokens/theme';
+
+// `renderWithTheme` wraps only the initial render; rerenders need the provider again
+const withTheme = (ui: React.ReactElement): React.ReactElement => (
+  <Klear360Provider themeTokens={klear360Theme} colorScheme="light">
+    {ui}
+  </Klear360Provider>
+);
 
 type Item = {
   id: string;
@@ -282,7 +293,7 @@ const spanningNodes = [
 
 describe('<Table />', () => {
   it('should render table', () => {
-    const { container, getAllByRole } = renderWithTheme(
+    const { container, getAllByRole, queryAllByRole } = renderWithTheme(
       <Table data={{ nodes: nodes.slice(0, 5) }} toolbar={<TableToolbar />}>
         {(tableData) => (
           <>
@@ -323,11 +334,15 @@ describe('<Table />', () => {
       </Table>,
     );
     expect(container).toMatchSnapshot();
-    expect(getAllByRole('row')).toHaveLength(5);
+    // 5 body rows + 1 header row - the header row correctly has role="row" (see the
+    // role="rowheader" bug fix in TableHeader.web.tsx), so it's included here too.
+    expect(getAllByRole('row')).toHaveLength(6);
     expect(getAllByRole('rowgroup')).toHaveLength(3);
     expect(getAllByRole('columnheader')).toHaveLength(6);
     expect(getAllByRole('cell')).toHaveLength(30);
-    expect(getAllByRole('rowheader')).toHaveLength(1);
+    // role="rowheader" no longer appears anywhere - it was a WAI-ARIA *cell* role incorrectly
+    // applied to the header row itself.
+    expect(queryAllByRole('rowheader')).toHaveLength(0);
     expect(getAllByRole('rowfooter')).toHaveLength(1);
     expect(getAllByRole('columnfooter')).toHaveLength(6);
   });
@@ -687,11 +702,11 @@ describe('<Table />', () => {
     const sortButton = getByLabelText('Toggle Sort');
     expect(sortButton).toBeInTheDocument();
     fireEvent.click(sortButton);
-    expect(getAllByRole('row')[0]).toHaveTextContent('pending');
+    expect(getAllByRole('row')[1]).toHaveTextContent('pending');
     expect(onSortChange).toHaveBeenCalledWith({ sortKey: 'STATUS', isSortReversed: false });
     fireEvent.click(sortButton);
     expect(onSortChange).toHaveBeenCalledWith({ sortKey: 'STATUS', isSortReversed: true });
-    expect(getAllByRole('row')[0]).toHaveTextContent('completed');
+    expect(getAllByRole('row')[1]).toHaveTextContent('completed');
   });
 
   it('should clear sort on the third click (removable sort)', () => {
@@ -729,7 +744,7 @@ describe('<Table />', () => {
     fireEvent.click(sortButton); // cleared back to unsorted
 
     expect(onSortChange).toHaveBeenLastCalledWith({ sortKey: 'NONE', isSortReversed: false });
-    const rows = getAllByRole('row');
+    const rows = getAllByRole('row').slice(1); // drop the header row
     // Back to the original, unsorted insertion order.
     expect(rows[0]).toHaveTextContent('100');
     expect(rows[1]).toHaveTextContent('240');
@@ -766,7 +781,7 @@ describe('<Table />', () => {
       </Table>,
     );
 
-    const rows = getAllByRole('row');
+    const rows = getAllByRole('row').slice(1); // drop the header row
     expect(rows[0]).toHaveTextContent('100');
     expect(rows[1]).toHaveTextContent('120');
     expect(rows[2]).toHaveTextContent('200');
@@ -811,7 +826,7 @@ describe('<Table />', () => {
     // Secondary: shift-click AMOUNT - added as a secondary key, STATUS stays primary.
     fireEvent.click(amountSortButton, { shiftKey: true });
 
-    const rows = getAllByRole('row');
+    const rows = getAllByRole('row').slice(1); // drop the header row
     // completed (200, 300) < failed (120) < pending (100, 240), ties broken by AMOUNT ascending.
     expect(rows[0]).toHaveTextContent('completed');
     expect(rows[0]).toHaveTextContent('200');
@@ -826,7 +841,7 @@ describe('<Table />', () => {
     // Shift-clicking the secondary key again (AMOUNT) cycles just its own direction, without
     // disturbing the primary (STATUS).
     fireEvent.click(amountSortButton, { shiftKey: true });
-    const rowsAfterAmountDesc = getAllByRole('row');
+    const rowsAfterAmountDesc = getAllByRole('row').slice(1); // drop the header row
     expect(rowsAfterAmountDesc[0]).toHaveTextContent('completed');
     expect(rowsAfterAmountDesc[0]).toHaveTextContent('300');
     expect(rowsAfterAmountDesc[1]).toHaveTextContent('completed');
@@ -835,7 +850,7 @@ describe('<Table />', () => {
     // A third shift-click on AMOUNT removes just that key - STATUS-only order returns, with
     // ties broken by original (stable) row order rather than by AMOUNT any more.
     fireEvent.click(amountSortButton, { shiftKey: true });
-    const rowsAfterAmountRemoved = getAllByRole('row');
+    const rowsAfterAmountRemoved = getAllByRole('row').slice(1); // drop the header row
     expect(rowsAfterAmountRemoved[0]).toHaveTextContent('completed');
     expect(rowsAfterAmountRemoved[0]).toHaveTextContent('300');
     expect(rowsAfterAmountRemoved[1]).toHaveTextContent('completed');
@@ -1240,12 +1255,12 @@ describe('<Table />', () => {
 
     // Check if page size picker works
     const selectInput = getByRole('combobox', { name: 'Select items per page' });
-    expect(getAllByRole('row')).toHaveLength(10);
+    expect(getAllByRole('row')).toHaveLength(11);
     expect(selectInput).toBeInTheDocument();
     await user.click(selectInput);
     await waitFor(() => expect(getByRole('listbox')).toBeVisible());
     await user.click(getByRole('option', { name: '25' }));
-    expect(getAllByRole('row')).toHaveLength(25);
+    expect(getAllByRole('row')).toHaveLength(26);
     await user.click(goForward5PagesButton);
     expect(onPageChange).toHaveBeenLastCalledWith({ page: 5 });
     const goBack5PagesButton = getByLabelText('Go back 5 pages');
@@ -1743,5 +1758,277 @@ describe('<Table />', () => {
 
     expect(getByText('Expanded details for Flipkart')).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  describe('filtering', () => {
+    const filterFunctions = {
+      STATUS: (item: Item, value: string) =>
+        item.status.toLowerCase().includes(value.toLowerCase()),
+      NAME: (item: Item, value: string) => item.name.toLowerCase().includes(value.toLowerCase()),
+      AMOUNT: (item: Item, value: string) => item.amount.toString().includes(value),
+    };
+
+    const renderFilterableTable = (
+      extraProps: Partial<Omit<TableProps<Item>, 'children' | 'columns' | 'data'>> = {},
+    ): RenderResult =>
+      renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 5) }}
+          filterFunctions={filterFunctions}
+          {...extraProps}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                  <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+                  <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow item={item} key={index}>
+                    <TableCell>{item.status}</TableCell>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+
+    it('renders a filter input only for columns present in filterFunctions', () => {
+      const { getAllByRole, getByRole } = renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 5) }}
+          filterFunctions={{ STATUS: filterFunctions.STATUS }}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                  {/* No headerKey - not filterable, so no filter input for this column. */}
+                  <TableHeaderCell>Name</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow item={item} key={index}>
+                    <TableCell>{item.status}</TableCell>
+                    <TableCell>{item.name}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+      expect(getByRole('textbox', { name: 'Filter by Status' })).toBeInTheDocument();
+      // Exactly one filter input rendered - the Name column has no headerKey/filterFunctions
+      // entry, so its filter-row cell stays empty (present only to keep grid alignment).
+      expect(getAllByRole('textbox')).toHaveLength(1);
+    });
+
+    it('does not render a filter row when filterFunctions is not passed', () => {
+      const { queryByRole } = renderWithTheme(
+        <Table data={{ nodes: nodes.slice(0, 5) }}>
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Status</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow item={item} key={index}>
+                    <TableCell>{item.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+      expect(queryByRole('textbox')).not.toBeInTheDocument();
+    });
+
+    it('filters rows by a single column (AND across multiple active column filters)', async () => {
+      const user = userEvent.setup();
+      const { getByRole, queryByText } = renderFilterableTable();
+
+      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      expect(queryByText('John Doe')).toBeInTheDocument(); // klear01, pending
+      expect(queryByText('Jane Doe')).toBeInTheDocument(); // klear02, pending
+      expect(queryByText('Alice Smith')).not.toBeInTheDocument(); // klear03, failed
+      expect(queryByText('Bob Smith')).not.toBeInTheDocument(); // klear04, completed
+
+      // Adding a second column filter narrows further (AND, not OR).
+      await user.type(getByRole('textbox', { name: 'Filter by Name' }), 'jane');
+      expect(queryByText('Jane Doe')).toBeInTheDocument();
+      expect(queryByText('John Doe')).not.toBeInTheDocument();
+    });
+
+    it('global filter matches if any filterable column matches (OR across columns)', async () => {
+      const user = userEvent.setup();
+      const { getByRole, queryByText } = renderFilterableTable({
+        toolbar: (
+          <TableToolbar>
+            <TableToolbarSearch />
+          </TableToolbar>
+        ),
+      });
+
+      await user.type(getByRole('textbox', { name: 'Search table' }), 'alice');
+      expect(queryByText('Alice Smith')).toBeInTheDocument(); // matches NAME
+      expect(queryByText('Jane Doe')).not.toBeInTheDocument();
+      expect(queryByText('Bob Smith')).not.toBeInTheDocument();
+    });
+
+    it('combines column filters (AND) with the global filter (OR across columns)', async () => {
+      const user = userEvent.setup();
+      const { getByRole, queryByText } = renderFilterableTable({
+        toolbar: (
+          <TableToolbar>
+            <TableToolbarSearch />
+          </TableToolbar>
+        ),
+      });
+
+      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      await user.type(getByRole('textbox', { name: 'Search table' }), 'jane');
+      expect(queryByText('Jane Doe')).toBeInTheDocument();
+      expect(queryByText('John Doe')).not.toBeInTheDocument();
+    });
+
+    it('is a controlled component via columnFilterValues/globalFilterValue', () => {
+      const { getByRole, queryByText, rerender } = renderFilterableTable({
+        columnFilterValues: { STATUS: 'completed' },
+      });
+      expect(queryByText('Bob Smith')).toBeInTheDocument(); // completed
+      expect(queryByText('Alice Smith')).not.toBeInTheDocument(); // failed
+
+      rerender(
+        withTheme(
+          <Table
+            data={{ nodes: nodes.slice(0, 5) }}
+            filterFunctions={filterFunctions}
+            columnFilterValues={{ STATUS: 'pending' }}
+          >
+            {(tableData) => (
+              <>
+                <TableHeader>
+                  <TableHeaderRow>
+                    <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                    <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+                    <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+                  </TableHeaderRow>
+                </TableHeader>
+                <TableBody>
+                  {tableData.map((item, index) => (
+                    <TableRow item={item} key={index}>
+                      <TableCell>{item.status}</TableCell>
+                      <TableCell>{item.name}</TableCell>
+                      <TableCell>{item.amount}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </>
+            )}
+          </Table>,
+        ),
+      );
+      expect(queryByText('John Doe')).toBeInTheDocument(); // now pending
+      expect(queryByText('Bob Smith')).not.toBeInTheDocument();
+      // Controlled - typing in the (now-uncontrolled-looking) filter input shouldn't be needed;
+      // this just confirms the input reflects the controlled value.
+      expect(getByRole('textbox', { name: 'Filter by Status' })).toHaveValue('pending');
+    });
+
+    it('filtering composes with sorting (filter first, then sort the remaining rows)', async () => {
+      const user = userEvent.setup();
+      const { getByLabelText, getByRole, getAllByRole } = renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 5) }}
+          filterFunctions={filterFunctions}
+          sortFunctions={{ AMOUNT: (array) => [...array].sort((a, b) => a.amount - b.amount) }}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                  <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow item={item} key={index}>
+                    <TableCell>{item.status}</TableCell>
+                    <TableCell>{item.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+
+      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      // Only klear01 (100) and klear02 (240) are "pending" - AMOUNT is the only sortable column.
+      fireEvent.click(getByLabelText('Toggle Sort'));
+
+      // Skip the main header row and the filter row - only the 2 filtered body rows remain.
+      const rows = getAllByRole('row').slice(2);
+      expect(rows).toHaveLength(2);
+      expect(rows[0]).toHaveTextContent('100');
+      expect(rows[1]).toHaveTextContent('240');
+    });
+
+    it('reflects the filtered count in the toolbar and select-all only selects filtered rows', () => {
+      const onSelectionChange = jest.fn();
+      const { getByRole, getByText, getAllByRole } = renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 5) }}
+          filterFunctions={filterFunctions}
+          selectionType="multiple"
+          onSelectionChange={onSelectionChange}
+          toolbar={<TableToolbar />}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow item={item} key={index}>
+                    <TableCell>{item.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+
+      fireEvent.change(getByRole('textbox', { name: 'Filter by Status' }), {
+        target: { value: 'pending' },
+      });
+      // 2 of 5 rows match "pending" (klear01, klear02).
+      expect(getByText('Showing 1-2 Items')).toBeInTheDocument();
+
+      // The header "select all" checkbox is the first checkbox in DOM order.
+      fireEvent.click(getAllByRole('checkbox')[0]);
+      // "Select all" only selects the 2 currently-filtered ("pending") rows, not all 5.
+      const [{ selectedIds }] = onSelectionChange.mock.calls.at(-1);
+      expect(selectedIds.sort()).toEqual(['1', '2']);
+    });
   });
 });

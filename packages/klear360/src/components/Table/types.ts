@@ -105,11 +105,12 @@ type TableHeaderCellProps = {
    **/
   children: string | React.ReactNode;
   /**
-   * The unique key of the column.
-   * This is used to identify the column for sorting in sortFunctions prop of Table.
+   * The unique key of the column - identifies it for both sorting and filtering.
    * Sorting is enabled only for columns whose key is present in the `sortFunctions` prop of Table.
    * Click cycles asc → desc → unsorted; shift-click adds/toggles this column as an additional
    * sort key without disturbing the others.
+   * Filtering is enabled only for columns whose key is present in the `filterFunctions` prop of
+   * Table - a compact search input then renders automatically in this column's header.
    **/
   headerKey?: string;
   /**
@@ -337,6 +338,46 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    * @default 'always'
    */
   checkboxDisplay?: 'always' | 'on-hover';
+  /**
+   * Per-row predicate for a filterable column, keyed by `headerKey`. Return `true` to keep the
+   * row. A column becomes filterable purely by having its `headerKey` present here — mirrors how
+   * `sortFunctions` makes a column sortable. Table renders a compact search input in that
+   * column's header (below the sortable header row) automatically, with no extra JSX needed.
+   *
+   * The same predicate is reused for `globalFilterValue`: a row matches the global filter if
+   * *any* filterable column's predicate matches it. Column filters combine with AND (a row must
+   * satisfy every active column filter); the global filter then narrows further with OR across
+   * all filterable columns.
+   **/
+  filterFunctions?: Record<string, (item: TableNode<Item>, filterValue: string) => boolean>;
+  /**
+   * Values for each active column filter, keyed by `headerKey`. Passing this prop makes column
+   * filtering controlled - Table will not manage this state on its own.
+   **/
+  columnFilterValues?: Record<string, string>;
+  /**
+   * Seeds the column filter values on mount (uncontrolled). Ignored if `columnFilterValues` is
+   * also passed.
+   **/
+  defaultColumnFilterValues?: Record<string, string>;
+  /**
+   * Called whenever a column filter's value changes, with the full updated map.
+   **/
+  onColumnFilterValuesChange?: (values: Record<string, string>) => void;
+  /**
+   * Value of the global search - checked against every filterable column via its
+   * `filterFunctions` predicate. Passing this prop makes it controlled.
+   **/
+  globalFilterValue?: string;
+  /**
+   * Seeds the global search value on mount (uncontrolled). Ignored if `globalFilterValue` is
+   * also passed.
+   **/
+  defaultGlobalFilterValue?: string;
+  /**
+   * Called whenever the global search value changes.
+   **/
+  onGlobalFilterValueChange?: (value: string) => void;
 } & DataAnalyticsAttribute &
   StyledPropsKlear360;
 
@@ -623,6 +664,19 @@ type TableToolbarProps = {
   placement?: TableToolbarPlacement;
 } & DataAnalyticsAttribute;
 
+type TableToolbarSearchProps = {
+  /**
+   * Placeholder text for the search input.
+   * @default 'Search'
+   */
+  placeholder?: string;
+  /**
+   * Accessible label for the search input, for assistive technology.
+   * @default 'Search table'
+   */
+  accessibilityLabel?: string;
+} & DataAnalyticsAttribute;
+
 type TableToolbarActionsProps = {
   children?: React.ReactNode;
 } & StyledPropsKlear360 &
@@ -738,6 +792,7 @@ export type {
   TablePaginationProps,
   TableToolbarProps,
   TableToolbarActionsProps,
+  TableToolbarSearchProps,
   TableToolbarPlacement,
   TableBackgroundColors,
   TablePaginationType,

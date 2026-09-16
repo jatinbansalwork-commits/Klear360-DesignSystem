@@ -60,6 +60,12 @@ export type TableContextType<Item> = {
   tableToolbarPlacement: TableToolbarPlacement;
   /** @see TableProps['checkboxDisplay'] */
   checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
+  globalFilterValue: string;
+  setGlobalFilterValue: (value: string) => void;
+  columnFilterValues: Record<string, string>;
+  setColumnFilterValue: (key: string, value: string) => void;
+  /** headerKeys present in `filterFunctions` — mirrors `currentSortedState.sortableColumns`. */
+  filterableColumns: string[];
 };
 
 const TableContext = React.createContext<TableContextType<unknown>>({
@@ -95,6 +101,11 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   isGrouped: false,
   tableToolbarPlacement: 'inline',
   checkboxDisplay: 'always',
+  globalFilterValue: '',
+  setGlobalFilterValue: () => {},
+  columnFilterValues: {},
+  setColumnFilterValue: () => {},
+  filterableColumns: [],
 });
 
 const useTableContext = <Item,>(): TableContextType<Item> => {
