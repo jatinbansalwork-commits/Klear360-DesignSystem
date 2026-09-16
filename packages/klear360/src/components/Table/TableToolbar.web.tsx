@@ -57,7 +57,10 @@ const _TableToolbarSearch = ({
 }: TableToolbarSearchProps): React.ReactElement => {
   const { globalFilterValue, setGlobalFilterValue } = useTableContext();
   return (
-    <BaseBox width="240px" {...makeAnalyticsAttribute(rest)}>
+    // Grows to use the toolbar's empty space (rather than sitting at a fixed 240px, which reads
+    // as an afterthought squeezed next to TableToolbarActions) while staying readable on mobile
+    // and not crowding out actions on very wide toolbars.
+    <BaseBox flex={1} minWidth="200px" maxWidth="400px" {...makeAnalyticsAttribute(rest)}>
       <SearchInput
         size="small"
         value={globalFilterValue}

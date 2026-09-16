@@ -90,7 +90,8 @@ type TableProps<Item> = {
    * of the table scrolls horizontally. `isFirstColumnSticky` is shorthand for
    * `stickyColumnCount={1}` and needs no `stickyColumnWidths`. Freezing more than one column
    * requires `stickyColumnWidths`, since offsets are computed from known widths rather than
-   * measured at render time.
+   * measured at render time. Automatically disabled on mobile (the frozen width can easily
+   * exceed a phone's entire viewport, leaving no room to scroll to the rest of the table).
    * @default isFirstColumnSticky ? 1 : 0
    **/
   stickyColumnCount?: number;
@@ -493,6 +494,9 @@ type TablePaginationProps = {
 - Don't use `Table` for key-value pair display — use `InfoGroup` instead.
 - Don't build a custom "clear sort" control — a third click on the same column already clears it.
 - Don't use `Table` on mobile for complex data — consider a list-based layout instead.
+- Don't rely on `stickyColumnCount`/`isFirstColumnSticky` being visible on mobile — Table
+  disables sticky columns below the `s` breakpoint automatically, since the frozen width can
+  exceed the entire viewport there.
 
 ## Example
 
