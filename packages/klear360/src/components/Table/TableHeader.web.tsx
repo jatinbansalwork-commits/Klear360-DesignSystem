@@ -237,13 +237,18 @@ const TableHeaderFilterRow = ({
             $backgroundColor={backgroundColor}
           >
             {isFilterable && headerKey ? (
-              <SearchInput
-                size="small"
-                value={columnFilterValues[headerKey] ?? ''}
-                onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
-                placeholder={`Filter ${labelText}`}
-                accessibilityLabel={`Filter by ${labelText}`}
-              />
+              // `SearchInput` has no intrinsic width of its own, so without this it renders at its
+              // content-driven flex-item width and can overflow past this cell's fixed column width
+              // (most visibly for sticky columns, where it then overlaps the scrolling column next to it).
+              <BaseBox width="100%">
+                <SearchInput
+                  size="small"
+                  value={columnFilterValues[headerKey] ?? ''}
+                  onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
+                  placeholder={`Filter ${labelText}`}
+                  accessibilityLabel={`Filter by ${labelText}`}
+                />
+              </BaseBox>
             ) : null}
           </StyledFilterHeaderCell>
         );
@@ -271,6 +276,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
 };
 
 const TableHeader = assignWithoutSideEffects(_TableHeader, {
+  displayName: 'TableHeader',
   componentId: ComponentIds.TableHeader,
 });
 
@@ -390,6 +396,7 @@ const _TableHeaderCell = ({
 };
 
 const TableHeaderCell = assignWithoutSideEffects(_TableHeaderCell, {
+  displayName: 'TableHeaderCell',
   componentId: ComponentIds.TableHeaderCell,
 });
 
@@ -484,6 +491,7 @@ const _TableHeaderRow = ({
 };
 
 const TableHeaderRow = assignWithoutSideEffects(_TableHeaderRow, {
+  displayName: 'TableHeaderRow',
   componentId: ComponentIds.TableHeaderRow,
 });
 

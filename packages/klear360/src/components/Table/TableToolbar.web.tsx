@@ -42,6 +42,7 @@ const _TableToolbarActions = ({
 };
 
 const TableToolbarActions = assignWithoutSideEffects(_TableToolbarActions, {
+  displayName: 'TableToolbarActions',
   componentId: ComponentIds.TableToolbarActions,
 });
 
@@ -73,6 +74,7 @@ const _TableToolbarSearch = ({
 };
 
 const TableToolbarSearch = assignWithoutSideEffects(_TableToolbarSearch, {
+  displayName: 'TableToolbarSearch',
   componentId: ComponentIds.TableToolbarSearch,
 });
 
@@ -153,6 +155,7 @@ const _TableToolbar = ({
 };
 
 const TableToolbar = assignWithoutSideEffects(_TableToolbar, {
+  displayName: 'TableToolbar',
   componentId: ComponentIds.TableToolbar,
 });
 
