@@ -241,7 +241,7 @@
   --feedback-text-negative-subtle: hsla(2, 100%, 90%, 1);
   --feedback-text-negative-intense: hsla(3, 69%, 51%, 1);
   --feedback-text-notice-subtle: hsla(36, 93%, 84%, 1);
-  --feedback-text-notice-intense: hsla(34, 94%, 35%, 1);
+  --feedback-text-notice-intense: hsla(35, 99%, 27%, 1);
   --feedback-text-information-subtle: hsla(193, 31%, 77%, 1);
   --feedback-text-information-intense: hsla(196, 98%, 18%, 1);
   --feedback-text-neutral-subtle: hsla(215, 16%, 47%, 1);
@@ -251,7 +251,7 @@
   --feedback-icon-negative-subtle: hsla(2, 100%, 90%, 1);
   --feedback-icon-negative-intense: hsla(3, 69%, 51%, 1);
   --feedback-icon-notice-subtle: hsla(36, 93%, 84%, 1);
-  --feedback-icon-notice-intense: hsla(34, 94%, 35%, 1);
+  --feedback-icon-notice-intense: hsla(35, 99%, 27%, 1);
   --feedback-icon-information-subtle: hsla(193, 31%, 77%, 1);
   --feedback-icon-information-intense: hsla(196, 98%, 18%, 1);
   --feedback-icon-neutral-subtle: hsla(215, 16%, 47%, 1);

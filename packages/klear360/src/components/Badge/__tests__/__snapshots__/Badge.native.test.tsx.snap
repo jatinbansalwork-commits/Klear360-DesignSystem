@@ -2664,7 +2664,7 @@ exports[`<Badge /> should render subtle emphasis notice color Badge 1`] = `
           style={
             [
               {
-                "color": "hsla(34, 94%, 35%, 1)",
+                "color": "hsla(35, 99%, 27%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2772,7 +2772,7 @@ exports[`<Badge /> should render subtle emphasis notice color Badge 2`] = `
           style={
             [
               {
-                "color": "hsla(34, 94%, 35%, 1)",
+                "color": "hsla(35, 99%, 27%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",

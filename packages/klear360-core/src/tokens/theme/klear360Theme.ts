@@ -169,7 +169,7 @@ const colors: ColorsWithModes = {
         },
         notice: {
           subtle: globalColors.chromatic.cider[100],
-          intense: globalColors.chromatic.cider[700],
+          intense: globalColors.chromatic.cider[800],
         },
         information: {
           subtle: globalColors.chromatic.sapphire[100],
@@ -191,7 +191,7 @@ const colors: ColorsWithModes = {
         },
         notice: {
           subtle: globalColors.chromatic.cider[100],
-          intense: globalColors.chromatic.cider[700],
+          intense: globalColors.chromatic.cider[800],
         },
         information: {
           subtle: globalColors.chromatic.sapphire[100],
