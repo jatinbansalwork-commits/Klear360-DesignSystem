@@ -237,13 +237,21 @@ const TableHeaderFilterRow = ({
             $backgroundColor={backgroundColor}
           >
             {isFilterable && headerKey ? (
-              <SearchInput
-                size="small"
-                value={columnFilterValues[headerKey] ?? ''}
-                onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
-                placeholder={`Filter ${labelText}`}
-                accessibilityLabel={`Filter by ${labelText}`}
-              />
+              // `SearchInput` has no intrinsic width of its own, so without `flex={1}` it renders at
+              // its content-driven flex-item width and can overflow past this cell's fixed column
+              // width (most visibly for sticky columns, where it then overlaps the scrolling column
+              // next to it). `marginX` leaves room for `SearchInput`'s own focus-ring/border box-shadow
+              // to render - this cell's inner content box clips overflow, so at a flush 100% width the
+              // ring has nowhere to paint and disappears entirely.
+              <BaseBox flex={1} marginX="spacing.1">
+                <SearchInput
+                  size="small"
+                  value={columnFilterValues[headerKey] ?? ''}
+                  onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
+                  placeholder={`Filter ${labelText}`}
+                  accessibilityLabel={`Filter by ${labelText}`}
+                />
+              </BaseBox>
             ) : null}
           </StyledFilterHeaderCell>
         );
@@ -271,6 +279,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
 };
 
 const TableHeader = assignWithoutSideEffects(_TableHeader, {
+  displayName: 'TableHeader',
   componentId: ComponentIds.TableHeader,
 });
 
@@ -390,6 +399,7 @@ const _TableHeaderCell = ({
 };
 
 const TableHeaderCell = assignWithoutSideEffects(_TableHeaderCell, {
+  displayName: 'TableHeaderCell',
   componentId: ComponentIds.TableHeaderCell,
 });
 
@@ -484,6 +494,7 @@ const _TableHeaderRow = ({
 };
 
 const TableHeaderRow = assignWithoutSideEffects(_TableHeaderRow, {
+  displayName: 'TableHeaderRow',
   componentId: ComponentIds.TableHeaderRow,
 });
 

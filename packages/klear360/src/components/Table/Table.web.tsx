@@ -448,7 +448,9 @@ const _Table = <Item,>({
     }
     --data-table-library_grid-template-columns: ${
       gridTemplateColumns
-        ? `${gridTemplateColumns} ${hasHoverActions ? lastHoverActionsColWidth : ''}`
+        ? `${selectionType === 'multiple' ? 'min-content' : ''} ${gridTemplateColumns} ${
+            hasHoverActions ? lastHoverActionsColWidth : ''
+          }`
         : ` ${
             selectionType === 'multiple' ? 'min-content' : ''
           } repeat(${columnCount},minmax(100px, 1fr)) ${
@@ -965,6 +967,7 @@ const _Table = <Item,>({
   );
 };
 const Table = assignWithoutSideEffects(_Table, {
+  displayName: 'Table',
   componentId: ComponentIds.Table,
 });
 
