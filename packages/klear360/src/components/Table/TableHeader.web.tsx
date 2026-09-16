@@ -418,7 +418,7 @@ const TableHeaderCellCheckbox = ({
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
           onChange={onChange}
-          {...makeAccessible({ label: 'Select All Rows' })}
+          accessibilityLabel="Select all rows"
         />
       </BaseBox>
     </TableHeaderCell>
