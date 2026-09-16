@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { ComponentIds } from './componentIds';
 import { tableToolbar } from './tokens';
 import { useTableContext } from './TableContext';
-import type { TableToolbarProps, TableToolbarActionsProps } from './types';
+import type { TableToolbarProps, TableToolbarActionsProps, TableToolbarSearchProps } from './types';
+import { SearchInput } from '~components/Input/SearchInput';
 import { makeMotionTime, makeSize } from '~utils';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import getIn from '~utils/lodashButBetter/get';
@@ -42,6 +43,34 @@ const _TableToolbarActions = ({
 
 const TableToolbarActions = assignWithoutSideEffects(_TableToolbarActions, {
   componentId: ComponentIds.TableToolbarActions,
+});
+
+/**
+ * TableToolbarSearch renders a search input wired to the Table's global filter state (see
+ * `TableProps['globalFilterValue']`/`filterFunctions`). Place it as a `TableToolbar` child,
+ * alongside `TableToolbarActions` if present.
+ */
+const _TableToolbarSearch = ({
+  placeholder = 'Search',
+  accessibilityLabel = 'Search table',
+  ...rest
+}: TableToolbarSearchProps): React.ReactElement => {
+  const { globalFilterValue, setGlobalFilterValue } = useTableContext();
+  return (
+    <BaseBox width="240px" {...makeAnalyticsAttribute(rest)}>
+      <SearchInput
+        size="small"
+        value={globalFilterValue}
+        onChange={({ value }) => setGlobalFilterValue(value ?? '')}
+        placeholder={placeholder}
+        accessibilityLabel={accessibilityLabel}
+      />
+    </BaseBox>
+  );
+};
+
+const TableToolbarSearch = assignWithoutSideEffects(_TableToolbarSearch, {
+  componentId: ComponentIds.TableToolbarSearch,
 });
 
 const ToolbarWrapper = styled(BaseBox)(({ theme }) => ({
@@ -124,4 +153,4 @@ const TableToolbar = assignWithoutSideEffects(_TableToolbar, {
   componentId: ComponentIds.TableToolbar,
 });
 
-export { TableToolbar, TableToolbarActions };
+export { TableToolbar, TableToolbarActions, TableToolbarSearch };

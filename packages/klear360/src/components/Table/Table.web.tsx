@@ -203,6 +203,13 @@ const _Table = <Item,>({
   backgroundColor = tableBackgroundColor,
   isGrouped = false,
   checkboxDisplay = 'always',
+  filterFunctions,
+  columnFilterValues: columnFilterValuesProp,
+  defaultColumnFilterValues = {},
+  onColumnFilterValuesChange,
+  globalFilterValue: globalFilterValueProp,
+  defaultGlobalFilterValue = '',
+  onGlobalFilterValueChange,
   ...rest
 }: TableProps<Item>): React.ReactElement => {
   const { theme, colorScheme } = useTheme();
@@ -248,6 +255,88 @@ const _Table = <Item,>({
   const gridTemplateColumns =
     gridTemplateColumnsProp ??
     columns?.map((column) => column.width ?? 'minmax(100px, 1fr)').join(' ');
+
+  // Filter Logic
+  //
+  // Applied to `data.nodes` before everything else (selection, sort, pagination all derive
+  // from `filteredData` below), so the pipeline is
+  // data -> filteredData -> sortedData -> rendered/paginated. A column becomes filterable purely
+  // by having its headerKey present in `filterFunctions` (same convention as `sortFunctions`),
+  // and the global filter reuses those same per-column predicates with OR instead of AND.
+  const [internalGlobalFilterValue, setInternalGlobalFilterValue] = React.useState(
+    defaultGlobalFilterValue,
+  );
+  const globalFilterValue = globalFilterValueProp ?? internalGlobalFilterValue;
+
+  const setGlobalFilterValue = useCallback(
+    (value: string): void => {
+      if (globalFilterValueProp === undefined) {
+        setInternalGlobalFilterValue(value);
+      }
+      onGlobalFilterValueChange?.(value);
+    },
+    [globalFilterValueProp, onGlobalFilterValueChange],
+  );
+
+  const [internalColumnFilterValues, setInternalColumnFilterValues] = React.useState<
+    Record<string, string>
+  >(defaultColumnFilterValues);
+  const columnFilterValues = columnFilterValuesProp ?? internalColumnFilterValues;
+
+  const setColumnFilterValue = useCallback(
+    (key: string, value: string): void => {
+      const nextValues = { ...columnFilterValues, [key]: value };
+      if (columnFilterValuesProp === undefined) {
+        setInternalColumnFilterValues(nextValues);
+      }
+      onColumnFilterValuesChange?.(nextValues);
+    },
+    [columnFilterValues, columnFilterValuesProp, onColumnFilterValuesChange],
+  );
+
+  const filterableColumns = useMemo(() => Object.keys(filterFunctions ?? {}), [filterFunctions]);
+
+  const activeColumnFilters = useMemo(
+    () => Object.entries(columnFilterValues).filter(([, value]) => Boolean(value)),
+    [columnFilterValues],
+  );
+
+  const applyFilters = useCallback(
+    (nodesToFilter: TableNode<Item>[]): TableNode<Item>[] => {
+      if (!filterFunctions || (activeColumnFilters.length === 0 && !globalFilterValue)) {
+        return nodesToFilter;
+      }
+      return nodesToFilter
+        .filter((node) => {
+          const passesColumnFilters = activeColumnFilters.every(([key, value]) => {
+            const filterFn = filterFunctions[key];
+            return filterFn ? filterFn(node, value) : true;
+          });
+          if (!passesColumnFilters) return false;
+          if (!globalFilterValue) return true;
+          return Object.values(filterFunctions).some((filterFn) =>
+            filterFn(node, globalFilterValue),
+          );
+        })
+        .map((node) => {
+          // Recurse into grouped/tree children (if any) so nested rows filter the same way.
+          const nodeWithChildren = node as TableNode<Item> & { nodes?: TableNode<Item>[] };
+          return Array.isArray(nodeWithChildren.nodes)
+            ? { ...node, nodes: applyFilters(nodeWithChildren.nodes) }
+            : node;
+        });
+    },
+    [filterFunctions, activeColumnFilters, globalFilterValue],
+  );
+
+  const filteredData: TableData<Item> = useMemo(
+    () =>
+      activeColumnFilters.length > 0 || globalFilterValue
+        ? { nodes: applyFilters(data.nodes) }
+        : data,
+    [data, applyFilters, activeColumnFilters, globalFilterValue],
+  );
+
   const [selectedRows, setSelectedRows] = React.useState<TableNode<unknown>['id'][]>(
     selectionType !== 'none' ? defaultSelectedIds : [],
   );
@@ -388,9 +477,10 @@ const _Table = <Item,>({
   });
 
   useEffect(() => {
-    // Get the total number of items
-    setTotalItems(data.nodes.length);
-  }, [data.nodes]);
+    // Get the total number of items - reflects the filtered set so pagination/toolbar/select-all
+    // all agree on "how many rows are there right now".
+    setTotalItems(filteredData.nodes.length);
+  }, [filteredData.nodes]);
 
   // Selection Logic
   const onSelectChange: MiddlewareFunction = (_, state): void => {
@@ -450,14 +540,16 @@ const _Table = <Item,>({
       } else if (isGrouped) {
         rowSelectConfig.fns.onToggleAll({});
       } else {
-        const ids = data.nodes
+        // Only the currently filtered/visible rows - matching "select all" meaning "select
+        // everything you can currently see", not everything that ever existed in `data`.
+        const ids = filteredData.nodes
           .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
           .filter(Boolean) as Identifier[];
 
         rowSelectConfig.fns.onAddAll(ids);
       }
     },
-    [rowSelectConfig.fns, data.nodes, selectedRows, disabledRows],
+    [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows],
   );
 
   const tree = useTree(
@@ -552,8 +644,9 @@ const _Table = <Item,>({
   );
 
   const sortedData: TableData<Item> = useMemo(
-    () => (activeSortEntries.length > 0 ? { nodes: applySortEntries(data.nodes) } : data),
-    [data, applySortEntries, activeSortEntries],
+    () =>
+      activeSortEntries.length > 0 ? { nodes: applySortEntries(filteredData.nodes) } : filteredData,
+    [filteredData, applySortEntries, activeSortEntries],
   );
 
   const currentSortedState: TableContextType<Item>['currentSortedState'] = useMemo(() => {
@@ -619,7 +712,7 @@ const _Table = <Item,>({
       : undefined;
 
   const paginationConfig = usePagination(
-    data,
+    filteredData,
     {
       state: {
         page: 0,
@@ -701,6 +794,11 @@ const _Table = <Item,>({
       isGrouped,
       tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
       checkboxDisplay,
+      globalFilterValue,
+      setGlobalFilterValue,
+      columnFilterValues,
+      setColumnFilterValue,
+      filterableColumns,
     }),
     [
       selectionType,
@@ -733,6 +831,11 @@ const _Table = <Item,>({
       sortedData,
       isGrouped,
       checkboxDisplay,
+      globalFilterValue,
+      setGlobalFilterValue,
+      columnFilterValues,
+      setColumnFilterValue,
+      filterableColumns,
     ],
   );
 

@@ -3,7 +3,7 @@ export { TableHeader, TableHeaderCell, TableHeaderRow } from './TableHeader';
 export { TableBody, TableCell, TableRow } from './TableBody';
 export { TableFooter, TableFooterCell, TableFooterRow } from './TableFooter';
 export { TablePagination } from './TablePagination';
-export { TableToolbar, TableToolbarActions } from './TableToolbar';
+export { TableToolbar, TableToolbarActions, TableToolbarSearch } from './TableToolbar';
 export type {
   TableProps,
   TableColumnConfig,
@@ -22,6 +22,7 @@ export type {
   TablePaginationProps,
   TableRowProps,
   TableToolbarActionsProps,
+  TableToolbarSearchProps,
   TableToolbarProps,
   Identifier,
   TableSortDirection,

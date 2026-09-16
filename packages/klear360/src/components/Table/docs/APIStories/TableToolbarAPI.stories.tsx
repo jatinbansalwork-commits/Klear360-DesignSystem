@@ -1,10 +1,11 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import type { TableData } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TablePagination } from '../../TablePagination';
-import { TableToolbarActions, TableToolbar } from '../../TableToolbar';
+import { TableToolbarActions, TableToolbar, TableToolbarSearch } from '../../TableToolbar';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
@@ -83,7 +84,7 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
       <TableComponent
         data={data}
         selectionType="multiple"
-        onSelectionChange={({ values }) => console.log('Selected Rows:', values)}
+        onSelectionChange={({ values }) => action('onSelectionChange')(values)}
         sortFunctions={{
           ID: (array) => array.sort((a, b) => Number(a.id) - Number(b.id)),
           AMOUNT: (array) => array.sort((a, b) => a.amount - b.amount),
@@ -94,10 +95,15 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
           STATUS: (array) => array.sort((a, b) => a.status.localeCompare(b.status)),
         }}
         onSortChange={({ sortKey, isSortReversed }) =>
-          console.log('Sort Key:', sortKey, 'Sort Reversed:', isSortReversed)
+          action('onSortChange')({ sortKey, isSortReversed })
         }
+        filterFunctions={{
+          METHOD: (item, value) => item.method.toLowerCase().includes(value.toLowerCase()),
+          STATUS: (item, value) => item.status.toLowerCase().includes(value.toLowerCase()),
+        }}
         toolbar={
           <TableToolbar {...args}>
+            <TableToolbarSearch placeholder="Search all columns" />
             <TableToolbarActions>
               <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
                 Export
@@ -108,9 +114,9 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         }
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
           />
