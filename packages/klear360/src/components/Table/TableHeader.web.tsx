@@ -221,13 +221,21 @@ const TableHeaderFilterRow = ({
       {...metaAttribute({ name: MetaConstants.TableHeaderRow })}
     >
       {selectionType === 'multiple' && (
-        <StyledFilterHeaderCell $backgroundColor={backgroundColor} />
+        // Purely a grid-alignment spacer (no filter for the checkbox column) - excluded from the
+        // accessibility tree rather than announced as an empty column header.
+        <StyledFilterHeaderCell role="presentation" $backgroundColor={backgroundColor} />
       )}
       {cellsMeta.map(({ headerKey, label }, index) => {
         const isFilterable = headerKey && filterableColumns.includes(headerKey);
         const labelText = typeof label === 'string' ? label : headerKey ?? `Column ${index + 1}`;
         return (
-          <StyledFilterHeaderCell key={headerKey ?? index} $backgroundColor={backgroundColor}>
+          <StyledFilterHeaderCell
+            key={headerKey ?? index}
+            // Non-filterable columns render an empty spacer cell to keep grid alignment - give it
+            // `role="presentation"` so it isn't announced as an empty column header.
+            role={isFilterable ? undefined : 'presentation'}
+            $backgroundColor={backgroundColor}
+          >
             {isFilterable && headerKey ? (
               <SearchInput
                 size="small"
@@ -240,7 +248,9 @@ const TableHeaderFilterRow = ({
           </StyledFilterHeaderCell>
         );
       })}
-      {hasHoverActions && <StyledFilterHeaderCell $backgroundColor={backgroundColor} />}
+      {hasHoverActions && (
+        <StyledFilterHeaderCell role="presentation" $backgroundColor={backgroundColor} />
+      )}
     </StyledHeaderRow>
   );
 };

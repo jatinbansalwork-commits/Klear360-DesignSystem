@@ -14,7 +14,7 @@ import { Box } from '~components/Box';
 import { Amount } from '~components/Amount';
 
 const meta: Meta<TableProps<unknown>> = {
-  title: 'Components/Table/Grouping',
+  title: 'Components/Table/Examples/Grouping',
   component: Table,
   parameters: {
     docs: {

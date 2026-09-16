@@ -5,10 +5,9 @@ import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TableToolbar, TableToolbarSearch } from '../../TableToolbar';
-import { createTableData, getStatusColor } from '../exampleData';
+import { createTransactionTableData, getTransactionStateColor } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
-import { Amount } from '~components/Amount';
 import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 
@@ -50,12 +49,13 @@ export default {
   },
 } as Meta<TableProps<unknown>>;
 
-const data = createTableData(30);
+const data = createTransactionTableData(30);
 
 const filterFunctions = {
-  NAME: (item, value) => item.name.toLowerCase().includes(value.toLowerCase()),
-  STATUS: (item, value) => item.status.toLowerCase().includes(value.toLowerCase()),
-  METHOD: (item, value) => item.method.toLowerCase().includes(value.toLowerCase()),
+  COMPANY_NAME: (item, value) => item.companyName.toLowerCase().includes(value.toLowerCase()),
+  TRANSACTION_STATE: (item, value) =>
+    item.transactionState.toLowerCase().includes(value.toLowerCase()),
+  VESSEL_NAME: (item, value) => item.vesselName.toLowerCase().includes(value.toLowerCase()),
 };
 
 const FilteringTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
@@ -83,29 +83,28 @@ const FilteringTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
-                <TableHeaderCell headerKey="METHOD">Method</TableHeaderCell>
-                <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="VESSEL_NAME">Vessel Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
-                  <TableCell>{tableItem.name}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -118,4 +117,4 @@ const FilteringTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
 
 export const TableFiltering = FilteringTemplate.bind({});
 // Need to do this because of storybook's weird naming convention, More details here: https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy#single-story-hoisting
-TableFiltering.storyName = 'Table Filtering';
+TableFiltering.storyName = 'TableFiltering';

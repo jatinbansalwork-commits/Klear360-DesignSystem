@@ -88,6 +88,10 @@ export default {
       options: [10, 25, 50],
       description: 'Current page size when controlled.',
     },
+    pageSizeOptions: {
+      control: false,
+      description: 'The page size choices shown in the page size picker.',
+    },
     showPageSizePicker: {
       control: 'boolean',
       description: 'Whether to show the page size picker.',
@@ -118,7 +122,7 @@ export default {
 
 const PaginationTemplate: StoryFn<typeof PaginationComponent> = ({ ...args }) => {
   const [selectedPage, setSelectedPage] = useState(1);
-  const [pageSize, setPageSize] = useState<10 | 25 | 50>(10);
+  const [pageSize, setPageSize] = useState<number>(10);
   const totalItems = 1000;
 
   return (
@@ -129,7 +133,7 @@ const PaginationTemplate: StoryFn<typeof PaginationComponent> = ({ ...args }) =>
         pageSize={pageSize}
         totalPages={totalItems / pageSize}
         onSelectedPageChange={({ page }) => setSelectedPage(page)}
-        onPageSizeChange={({ pageSize }) => setPageSize(pageSize as 10 | 25 | 50)}
+        onPageSizeChange={({ pageSize }) => setPageSize(pageSize)}
       />
     </Box>
   );
@@ -145,7 +149,7 @@ Default.args = {
 
 const ControlledExample = (): React.ReactElement => {
   const [selectedPage, setSelectedPage] = useState(1);
-  const [pageSize, setPageSize] = useState<10 | 25 | 50>(10);
+  const [pageSize, setPageSize] = useState<number>(10);
   const totalItems = 1000;
 
   return (
@@ -158,7 +162,7 @@ const ControlledExample = (): React.ReactElement => {
         selectedPage={selectedPage}
         pageSize={pageSize}
         onSelectedPageChange={({ page }) => setSelectedPage(page)}
-        onPageSizeChange={({ pageSize: newSize }) => setPageSize(newSize as 10 | 25 | 50)}
+        onPageSizeChange={({ pageSize: newSize }) => setPageSize(newSize)}
         showPageSizePicker
         showPageNumberSelector
         showLabel

@@ -9,10 +9,9 @@ import {
   TableRow,
   TableCell,
 } from '../../Table';
-import { createTableData, formatDate, getStatusColor } from './exampleData';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from './exampleData';
 import { Box } from '~components/Box';
 import { Code, Heading, Text } from '~components/Typography';
-import { Amount } from '~components/Amount';
 import { Badge } from '~components/Badge';
 
 const TableMeta: Meta = {
@@ -33,13 +32,15 @@ const TableMeta: Meta = {
 };
 
 const sortFunctions = {
-  PAYMENT_ID: (array) => [...array].sort((a, b) => a.paymentId.localeCompare(b.paymentId)),
-  AMOUNT: (array) => [...array].sort((a, b) => a.amount - b.amount),
-  DATE: (array) => [...array].sort((a, b) => a.date.getTime() - b.date.getTime()),
-  STATUS: (array) => [...array].sort((a, b) => a.status.localeCompare(b.status)),
+  TRANSACTION_ID: (array) =>
+    [...array].sort((a, b) => a.transactionId.localeCompare(b.transactionId)),
+  COMPANY_NAME: (array) => [...array].sort((a, b) => a.companyName.localeCompare(b.companyName)),
+  ETD: (array) => [...array].sort((a, b) => a.etd.getTime() - b.etd.getTime()),
+  TRANSACTION_STATE: (array) =>
+    [...array].sort((a, b) => a.transactionState.localeCompare(b.transactionState)),
 };
 
-const multiColumnSortData = createTableData(15);
+const multiColumnSortData = createTransactionTableData(15);
 
 export const MultiColumnSort = (): React.ReactElement => {
   return (
@@ -63,27 +64,28 @@ export const MultiColumnSort = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell headerKey="PAYMENT_ID">ID</TableHeaderCell>
-                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
-                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
-                <TableHeaderCell headerKey="DATE">Date</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_ID">Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="ETD">ETD</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
                   <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -94,7 +96,7 @@ export const MultiColumnSort = (): React.ReactElement => {
   );
 };
 
-const presortData = createTableData(15);
+const presortData = createTransactionTableData(15);
 
 export const Presort = (): React.ReactElement => {
   return (
@@ -107,40 +109,41 @@ export const Presort = (): React.ReactElement => {
       <Box paddingBottom="spacing.4">
         <Heading>Presort</Heading>
         <Text>
-          The initialSort prop sorts the table on mount - here by Amount, descending - instead of
+          The initialSort prop sorts the table on mount - here by ETD, descending - instead of
           requiring a first click.
         </Text>
       </Box>
       <Table
         data={presortData}
         sortFunctions={sortFunctions}
-        initialSort={{ sortKey: 'AMOUNT', direction: 'desc' }}
+        initialSort={{ sortKey: 'ETD', direction: 'desc' }}
       >
         {(tableData) => (
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell headerKey="PAYMENT_ID">ID</TableHeaderCell>
-                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
-                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
-                <TableHeaderCell headerKey="DATE">Date</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_ID">Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="ETD">ETD</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
                   <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

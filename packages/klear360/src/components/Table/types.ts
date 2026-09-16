@@ -235,9 +235,25 @@ type TableProps<Item> = TableChildrenProps<Item> & {
   isFooterSticky?: boolean;
   /**
    * The isFirstColumnSticky prop determines whether the first column is sticky or not.
-   * The default value is `false`.
+   * The default value is `false`. Equivalent to `stickyColumnCount={1}`.
    **/
   isFirstColumnSticky?: boolean;
+  /**
+   * Number of leading columns (left to right, after any multi-select checkbox column) to freeze
+   * while the rest of the table scrolls horizontally. `isFirstColumnSticky` is shorthand for
+   * `stickyColumnCount={1}` and needs no `stickyColumnWidths`. Freezing more than one column
+   * requires `stickyColumnWidths`, since the sticky offsets are computed from known widths rather
+   * than measured at render time.
+   * @default isFirstColumnSticky ? 1 : 0
+   **/
+  stickyColumnCount?: number;
+  /**
+   * Explicit pixel width (e.g. `'160px'`) for each of the leading `stickyColumnCount` columns, in
+   * order. Required when `stickyColumnCount` is greater than `1`. Pair these with matching
+   * `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) so
+   * the sticky offsets line up with what's actually rendered.
+   **/
+  stickyColumnWidths?: string[];
   /**
    * The rowDensity prop determines the density of the table.
    * The rowDensity prop can be 'compact', 'normal', or'comfortable'.
@@ -561,7 +577,7 @@ type TablePaginationCommonProps = {
    * @default 10
    * consider using virtualization for large page sizes
    **/
-  defaultPageSize?: 10 | 25 | 50;
+  defaultPageSize?: number;
   /**
    * The current page. Passing this prop will make the component controlled and will not update the page on its own.
    **/
@@ -571,6 +587,11 @@ type TablePaginationCommonProps = {
    * Callback function that is called when the page size is changed
    */
   onPageSizeChange?: ({ pageSize }: { pageSize: number }) => void;
+  /**
+   * The page size choices shown in the page size picker.
+   * @default [10, 25, 50]
+   */
+  pageSizeOptions?: number[];
   /**
    * Whether to show the page size picker. It will be always be hidden on mobile.
    * Page size picker controls how rows are shown per page.

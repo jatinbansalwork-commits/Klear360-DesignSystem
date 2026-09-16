@@ -80,9 +80,27 @@ type TableProps<Item> = {
 
   /**
    * The isFirstColumnSticky prop determines whether the first column is sticky or not.
+   * Equivalent to `stickyColumnCount={1}`.
    * @default false
    **/
   isFirstColumnSticky?: boolean;
+
+  /**
+   * Number of leading columns (after any multi-select checkbox column) to freeze while the rest
+   * of the table scrolls horizontally. `isFirstColumnSticky` is shorthand for
+   * `stickyColumnCount={1}` and needs no `stickyColumnWidths`. Freezing more than one column
+   * requires `stickyColumnWidths`, since offsets are computed from known widths rather than
+   * measured at render time.
+   * @default isFirstColumnSticky ? 1 : 0
+   **/
+  stickyColumnCount?: number;
+
+  /**
+   * Explicit pixel width (e.g. `'160px'`) for each of the leading `stickyColumnCount` columns, in
+   * order. Required when `stickyColumnCount` is greater than `1`. Pair these with matching
+   * `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`).
+   **/
+  stickyColumnWidths?: string[];
 
   /**
    * The rowDensity prop determines the density of the table.
@@ -383,7 +401,13 @@ type TablePaginationProps = {
    * The default page size.
    * @default 10
    **/
-  defaultPageSize?: 10 | 25 | 50;
+  defaultPageSize?: number;
+
+  /**
+   * The page size choices shown in the page size picker. Not limited to 10/25/50.
+   * @default [10, 25, 50]
+   **/
+  pageSizeOptions?: number[];
 
   /**
    * The current page. Passing this prop will make the component controlled.
@@ -450,6 +474,9 @@ type TablePaginationProps = {
   different sortable column adds it as a secondary/tertiary key instead of replacing the sort.
 - Use `initialSort` to render the table already sorted on mount instead of requiring a click.
 - Use `isHeaderSticky` and `isFirstColumnSticky` for large datasets that need scroll anchoring.
+- Use `stickyColumnCount` (with `stickyColumnWidths`) instead of `isFirstColumnSticky` when more
+  than one leading column - e.g. an actions column plus an identifier column - needs to stay
+  frozen while a wide table scrolls horizontally.
 - Use `filterFunctions` with matching `headerKey` props on `TableHeaderCell` for filterable columns
   — a compact filter input auto-renders inline in the header, no extra JSX required.
 - Add a `TableToolbarSearch` inside `TableToolbar` for global search across every filterable
@@ -1046,6 +1073,32 @@ const FilterableTable = ({ nodes }: { nodes: Item[] }) => (
     )}
   </Table>
 );
+```
+
+### Table Multi-Column Sticky Pattern
+
+Freeze more than one leading column (e.g. an actions column plus an identifier column) while the
+remaining columns scroll horizontally underneath - use `columns` with explicit `width`s for the
+frozen columns so `stickyColumnWidths` lines up with what's actually rendered.
+
+```tsx
+import { Table, TableColumnConfig } from '@klear/klear360/components';
+
+type Item = { id: string; transactionId: string; companyName: string; vesselName: string };
+
+const columns: TableColumnConfig<Item>[] = [
+  { key: 'transactionId', header: 'Transaction ID', render: (item) => item.transactionId, width: '150px' },
+  { key: 'companyName', header: 'Company Name', render: (item) => item.companyName, width: '220px' },
+  { key: 'vesselName', header: 'Vessel Name', render: (item) => item.vesselName, width: '220px' },
+  // ...more scrolling columns
+];
+
+<Table
+  data={data}
+  columns={columns}
+  stickyColumnCount={2}
+  stickyColumnWidths={['150px', '220px']}
+/>;
 ```
 
 ### Table Grouping Pattern

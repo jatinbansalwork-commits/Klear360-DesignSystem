@@ -14,6 +14,7 @@ const _TablePagination = ({
   onPageChange,
   onPageSizeChange,
   defaultPageSize = tablePagination.defaultPageSize,
+  pageSizeOptions,
   showPageSizePicker = true,
   showPageNumberSelector = false,
   showLabel,
@@ -155,8 +156,9 @@ const _TablePagination = ({
         defaultSelectedPage={1}
         onSelectedPageChange={handlePageChange}
         defaultPageSize={defaultPageSize}
-        pageSize={currentPageSize as 10 | 25 | 50}
+        pageSize={currentPageSize}
         onPageSizeChange={handlePageSizeChange}
+        pageSizeOptions={pageSizeOptions}
         showPageSizePicker={showPageSizePicker}
         showPageNumberSelector={showPageNumberSelector}
         showLabel={showLabel}

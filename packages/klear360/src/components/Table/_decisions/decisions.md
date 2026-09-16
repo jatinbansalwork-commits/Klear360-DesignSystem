@@ -194,7 +194,9 @@ We don't have enough use-cases for the following features at Klear and hence sco
 | toolbar            | `React.ReactElement`                          | `undefined` | Expects the TableToolbar Component                                                                                                                                                                                                                                                                                                       |
 | isStickyHeader     | `boolean`                                     | `false`     | This defines whether the table header should be sticky or not                                                                                                                                                                                                                                                                            |
 | isStickyFooter     | `boolean`                                     | `false`     | This defines whether the table footer should be sticky or not                                                                                                                                                                                                                                                                            |
-| isStickyFistColumn | `boolean`                                     | `false`     | This defines whether the first column of the table should be sticky or not                                                                                                                                                                                                                                                               |
+| isStickyFistColumn | `boolean`                                     | `false`     | This defines whether the first column of the table should be sticky or not. Equivalent to `stickyColumnCount={1}`.                                                                                                                                                                                                                       |
+| stickyColumnCount  | `number`                                      | `0`         | Number of leading columns (after any multi-select checkbox column) to freeze while the rest of the table scrolls horizontally. Freezing more than one column requires `stickyColumnWidths`, since offsets are computed from known widths rather than measured at render time.                                                          |
+| stickyColumnWidths | `string[]`                                    | `undefined` | Explicit pixel width for each of the leading `stickyColumnCount` columns, in order. Pair these with matching `width`s on the same columns (via the `columns` config or `gridTemplateColumns`).                                                                                                                                          |
 | surfaceLevel       | `1`, `2`, `3`                                 | `2`         | This defines the surface level of the table. Possible values are `1`, `2` & `3`                                                                                                                                                                                                                                                          |
 
 ##### `TableData`
@@ -310,7 +312,8 @@ type SelectionChangeEvent = (selectedItems: TableNode[]) => void;
 | Prop               | Type                  | Default                          | Description                                                                                                                                                           | Required |
 | ------------------ | --------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | currentPage        | `number`              | undefined                        | This defines the current page of the table. If you pass currentPage, this becomes a controlled component and you will have to manage page selection state on your own |          |
-| defaultPageSize    | `number`              | 10 (to be confirmed with design) | This defines the default number of items to be shown per page                                                                                                         |          |
+| defaultPageSize    | `number`              | `10`                              | This defines the default number of items to be shown per page                                                                                                         |          |
+| pageSizeOptions    | `number[]`            | `[10, 25, 50]`                    | The page size choices shown in the page size picker. Not limited to the default three values.                                                                        |          |
 | label              | `string`              | undefined                        | This defines the label to be shown in the pagination                                                                                                                  |
 | showLabel          | `boolean`             | `false`                          | This defines whether the label should be shown or not                                                                                                                 |
 | showPageSizePicker | `boolean`             | `false`                          | This defines whether the page size picker should be shown or not                                                                                                      |
@@ -691,6 +694,7 @@ While evaluating multiple libraries we identified 3 categories:
 
 - We will be following the [WAI-ARIA Table Practices](https://www.w3.org/WAI/ARIA/apg/patterns/table/) to ensure our table is accessible
 - We will be using native HTML elements like `<table>`, `<thead>`, `<tbody>`, `<tfoot>`, `<tr>`, `<th>` & `<td>` to ensure our table is accessible
+- Verified against axe-core (via the Storybook a11y addon) - a few real, pre-existing bugs were found and fixed rather than worked around: the root `<table>` unconditionally carried `aria-multiselectable`, which isn't a valid attribute outside `grid`/`listbox`/`tree`/`tablist`/`treegrid` roles; the underlying `@table-library/react-table-library`'s header and footer rows/cells default to non-existent roles (`rowheader` on the header row, `rowfooter`/`columnfooter` on the footer row/cells - none of these are real WAI-ARIA roles) that the library doesn't always let callers override via props, so a couple are corrected on the real DOM node via a `ref` + layout effect instead. Column-filter placeholder cells with no content use `role="presentation"` rather than being announced as empty headers.
 
 # Filtering & Search
 
@@ -720,6 +724,20 @@ A dedicated component (alongside `TableToolbarActions`) so global search is docu
 ## Out of scope (within filtering)
 
 - Full keyboard grid navigation (roving tabindex, arrow-key cell movement) — the filter/search inputs are plain native `<input>`s and are already reachable via standard Tab order, but grid-style arrow-key navigation across cells is a separate, larger piece of infrastructure planned as a future follow-up.
+
+## `TableToolbarSearch` API docs
+
+Documented on its own page (`docs/APIStories/TableToolbarSearchAPI.stories.tsx`, under `Components/Table/API`) rather than only inside the `TableFiltering`/`TableToolbar` demo pages, so a developer scanning the sidebar for "how do I add search" finds it directly instead of having to already know it lives inside another component's story.
+
+# Sticky Columns
+
+`isFirstColumnSticky` only ever froze a single leading column (plus the multi-select checkbox column, when present). Real usage - e.g. a transaction table with `Actions`/`Transaction ID`/`Company Name` frozen while a dozen more columns scroll underneath - needs more than one.
+
+## API design
+
+`stickyColumnCount` generalizes `isFirstColumnSticky` to N leading columns; `isFirstColumnSticky` is kept as shorthand for `stickyColumnCount={1}` (fully backward compatible - existing usage needs no changes). Freezing more than one column requires `stickyColumnWidths`, an explicit pixel width per frozen column, because the sticky `left` offset for each column is the cumulative sum of the widths of the columns before it - there's no way to compute that without knowing the widths. This mirrors how the existing single-column implementation already hardcodes the multi-select checkbox's width as a known constant; `stickyColumnWidths` just generalizes "known width" to consumer-declared widths instead of a hardcoded one.
+
+This intentionally does not attempt to measure rendered column widths at runtime - pairing `stickyColumnWidths` with matching `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) keeps the computation simple, synchronous, and free of layout-thrashing measurement effects.
 
 # Virtualization
 
