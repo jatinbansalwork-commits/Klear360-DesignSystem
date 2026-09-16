@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Table as ReactTable } from '@table-library/react-table-library/table';
 import { useTheme as useTableTheme } from '@table-library/react-table-library/theme';
 import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
@@ -49,7 +49,6 @@ import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { useTheme } from '~components/Klear360Provider';
 import getIn from '~utils/lodashButBetter/get';
-import { makeAccessible } from '~utils/makeAccessible';
 import { useIsMobile } from '~utils/useIsMobile';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
@@ -187,6 +186,8 @@ const _Table = <Item,>({
   isHeaderSticky,
   isFooterSticky,
   isFirstColumnSticky,
+  stickyColumnCount: stickyColumnCountProp,
+  stickyColumnWidths,
   rowDensity = 'normal',
   onSortChange,
   sortFunctions,
@@ -337,6 +338,8 @@ const _Table = <Item,>({
     [data, applyFilters, activeColumnFilters, globalFilterValue],
   );
 
+  const tableElementRef = useRef<HTMLTableElement | null>(null);
+
   const [selectedRows, setSelectedRows] = React.useState<TableNode<unknown>['id'][]>(
     selectionType !== 'none' ? defaultSelectedIds : [],
   );
@@ -351,8 +354,27 @@ const _Table = <Item,>({
   const [hasHoverActions, setHasHoverActions] = React.useState(false);
   const tableRootComponent = resolvedChildren([]);
   const isVirtualized = getComponentId(tableRootComponent) === ComponentIds.VirtualizedTable;
+
+  // `isFirstColumnSticky` is shorthand for freezing a single leading column; `stickyColumnCount`
+  // generalizes this to N leading columns (see `stickyColumnWidths` for why widths are required
+  // beyond the first).
+  const stickyColumnCount = stickyColumnCountProp ?? (isFirstColumnSticky ? 1 : 0);
+
+  if (__DEV__) {
+    if (
+      stickyColumnCount > 1 &&
+      (!stickyColumnWidths || stickyColumnWidths.length < stickyColumnCount)
+    ) {
+      throwKlear360Error({
+        message:
+          '`stickyColumnWidths` must provide a pixel width for each of the `stickyColumnCount` columns when freezing more than one column.',
+        moduleName: 'Table',
+      });
+    }
+  }
+
   // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
-  const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || isFirstColumnSticky;
+  const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || stickyColumnCount > 0;
 
   const isMobile = useIsMobile();
   const lastHoverActionsColWidth = isMobile ? '1fr' : '0px';
@@ -368,69 +390,38 @@ const _Table = <Item,>({
 
   // Table Theme
   const columnCount = getTableHeaderCellCount(resolvedChildren);
-  const firstColumnStickyHeaderCellCSS = isFirstColumnSticky
-    ? `
-  &:nth-of-type(1) {
-    left: 0 !important;
+
+  // Shared by header/body/footer cells - freezes the leading `stickyColumnCount` columns (plus
+  // the multi-select checkbox column, when present) at their cumulative left offset, computed
+  // from `stickyColumnWidths` rather than measured at render time.
+  const stickyColumnsCSS = useMemo(() => {
+    if (stickyColumnCount < 1) return '';
+
+    const isMultiSelect = selectionType === 'multiple';
+    const stickyRule = (domIndex: number, left: number): string => `
+  &:nth-of-type(${domIndex}) {
+    left: ${left}px !important;
     position: sticky !important;
     z-index: ${firstColumnStickyZIndex} !important;
   }
-  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
-  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
+  /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
+  &:nth-of-type(${domIndex}).${classes.HAS_ROW_SPANNING} {
     z-index: 3 !important;
-  }
-  ${
-    selectionType === 'multiple' &&
-    `&:nth-of-type(2) {
-    left: ${checkboxCellWidth}px !important;
-    position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
-  }
-  `
-  }`
-    : '';
-  const firstColumnStickyFooterCellCSS = isFirstColumnSticky
-    ? `
-  &:nth-of-type(1) {
-    left: 0 !important;
-    position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
-  }
-  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
-  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
-    z-index: 3 !important;
-  }
-  ${
-    selectionType === 'multiple' &&
-    `&:nth-of-type(2) {
-    left: ${checkboxCellWidth}px !important;
-    position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
-  }
-  `
-  }`
-    : '';
-  const firstColumnStickyBodyCellCSS = isFirstColumnSticky
-    ? `
-  &:nth-of-type(1) {
-    left: 0 !important;
-    position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
-  }
-  /* Higher z-index for sticky first column cells that also span rows to prevent stacking issues */
-  &:nth-of-type(1).${classes.HAS_ROW_SPANNING} {
-    z-index: 3 !important;
-  }
-  ${
-    selectionType === 'multiple' &&
-    `&:nth-of-type(2) {
-    left: ${checkboxCellWidth}px !important;
-    position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
-  }
-  `
-  }`
-    : '';
+  }`;
+
+    const rules: string[] = [];
+    let cumulativeLeft = 0;
+    if (isMultiSelect) {
+      rules.push(stickyRule(1, 0));
+      cumulativeLeft = checkboxCellWidth;
+    }
+    for (let i = 0; i < stickyColumnCount; i += 1) {
+      const domIndex = i + 1 + (isMultiSelect ? 1 : 0);
+      rules.push(stickyRule(domIndex, cumulativeLeft));
+      cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
+    }
+    return rules.join('\n');
+  }, [stickyColumnCount, selectionType, stickyColumnWidths]);
 
   const tableTheme = useTableTheme({
     Table: `
@@ -464,15 +455,15 @@ const _Table = <Item,>({
     position: ${shouldHeaderBeSticky ? 'sticky' : 'relative'};
 
     top: ${shouldHeaderBeSticky ? '0' : undefined};
-    ${firstColumnStickyHeaderCellCSS}
+    ${stickyColumnsCSS}
     `,
     Cell: `
-    ${firstColumnStickyBodyCellCSS}
+    ${stickyColumnsCSS}
     `,
     FooterCell: `
     position: ${isFooterSticky ? 'sticky' : 'relative'};
     bottom: ${isFooterSticky ? '0' : undefined};
-    ${firstColumnStickyFooterCellCSS}
+    ${stickyColumnsCSS}
     `,
   });
 
@@ -568,6 +559,21 @@ const _Table = <Item,>({
       tree.fns.onToggleAll({ ids: [] });
     }
   }, []);
+
+  // @table-library's own footer row/cells hard-code `role="rowfooter"`/`role="columnfooter"` -
+  // neither is a real WAI-ARIA role (there is no "footer cell" role; `cell`/`row` are what the
+  // `table` pattern already uses for the body) - and both are applied after spreading incoming
+  // props, so they can't be overridden via a `role` prop the way the header row's bad default
+  // can. Corrected on the real DOM nodes instead, after every render (idempotent - a no-op once
+  // already fixed).
+  useIsomorphicLayoutEffect(() => {
+    tableElementRef.current
+      ?.querySelectorAll('[role="rowfooter"]')
+      .forEach((node) => node.setAttribute('role', 'row'));
+    tableElementRef.current
+      ?.querySelectorAll('[role="columnfooter"]')
+      .forEach((node) => node.setAttribute('role', 'cell'));
+  });
 
   // Sort Logic
   //
@@ -918,6 +924,7 @@ const _Table = <Item,>({
             {/* wrapping toolbar in BaseBox and passing the same analytics attributes as of table because in analytics POV, events triggered are from table */}
             <BaseBox {...makeAnalyticsAttribute(rest)}>{toolbar}</BaseBox>
             <StyledReactTable
+              ref={tableElementRef}
               role="table"
               layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
               data={sortedData}
@@ -936,7 +943,9 @@ const _Table = <Item,>({
                 showStripedRows,
               }}
               pagination={hasPagination ? paginationConfig : null}
-              {...makeAccessible({ multiSelectable: selectionType === 'multiple' })}
+              // No `aria-multiselectable` here - it's only a valid ARIA attribute on
+              // grid/listbox/tree/tablist/treegrid roles, not `role="table"`; per-row
+              // checkboxes already expose selection state individually.
               {...metaAttribute({ name: MetaConstants.Table })}
               {...makeAnalyticsAttribute(rest)}
             >

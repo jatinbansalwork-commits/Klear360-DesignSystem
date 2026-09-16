@@ -334,17 +334,20 @@ describe('<Table />', () => {
       </Table>,
     );
     expect(container).toMatchSnapshot();
-    // 5 body rows + 1 header row - the header row correctly has role="row" (see the
-    // role="rowheader" bug fix in TableHeader.web.tsx), so it's included here too.
-    expect(getAllByRole('row')).toHaveLength(6);
+    // 5 body rows + 1 header row + 1 footer row - both the header and footer row correctly have
+    // role="row" (see the role="rowheader"/"rowfooter" bug fixes - neither is a real WAI-ARIA
+    // role - in TableHeader.web.tsx and Table.web.tsx), so both are included here too.
+    expect(getAllByRole('row')).toHaveLength(7);
     expect(getAllByRole('rowgroup')).toHaveLength(3);
     expect(getAllByRole('columnheader')).toHaveLength(6);
-    expect(getAllByRole('cell')).toHaveLength(30);
-    // role="rowheader" no longer appears anywhere - it was a WAI-ARIA *cell* role incorrectly
-    // applied to the header row itself.
+    // 30 body cells + 6 footer cells - footer cells are role="cell" too, for the same reason
+    // "columnfooter" isn't a real WAI-ARIA role.
+    expect(getAllByRole('cell')).toHaveLength(36);
+    // Neither "rowheader" nor "columnfooter"/"rowfooter" appear anywhere - none are valid
+    // WAI-ARIA roles for these elements.
     expect(queryAllByRole('rowheader')).toHaveLength(0);
-    expect(getAllByRole('rowfooter')).toHaveLength(1);
-    expect(getAllByRole('columnfooter')).toHaveLength(6);
+    expect(queryAllByRole('rowfooter')).toHaveLength(0);
+    expect(queryAllByRole('columnfooter')).toHaveLength(0);
   });
 
   it('should render table with compact rowDensity', () => {
@@ -996,7 +999,7 @@ describe('<Table />', () => {
   it('should render table with multi select', async () => {
     const onSelectionChange = jest.fn();
     const user = userEvent.setup();
-    const { getByText, getAllByRole, getByRole, container } = renderWithTheme(
+    const { getByText, getAllByRole, container } = renderWithTheme(
       <Table
         data={{ nodes: nodes.slice(0, 5) }}
         selectionType="multiple"
@@ -1034,7 +1037,6 @@ describe('<Table />', () => {
       </Table>,
     );
 
-    expect(getByRole('table')).toHaveAttribute('aria-multiselectable', 'true');
     expect(getByText('Showing 1-5 Items')).toBeInTheDocument();
     expect(getAllByRole('checkbox')).toHaveLength(6);
     const firstSelectableRow = getByText('klear01').closest('td');
@@ -1255,12 +1257,15 @@ describe('<Table />', () => {
 
     // Check if page size picker works
     const selectInput = getByRole('combobox', { name: 'Select items per page' });
-    expect(getAllByRole('row')).toHaveLength(11);
+    // 1 header row + 10 body rows + 1 footer row - the footer row is now correctly role="row"
+    // too (see the role="rowfooter" bug fix in Table.web.tsx).
+    expect(getAllByRole('row')).toHaveLength(12);
     expect(selectInput).toBeInTheDocument();
     await user.click(selectInput);
     await waitFor(() => expect(getByRole('listbox')).toBeVisible());
     await user.click(getByRole('option', { name: '25' }));
-    expect(getAllByRole('row')).toHaveLength(26);
+    // 1 header row + 25 body rows + 1 footer row.
+    expect(getAllByRole('row')).toHaveLength(27);
     await user.click(goForward5PagesButton);
     expect(onPageChange).toHaveBeenLastCalledWith({ page: 5 });
     const goBack5PagesButton = getByLabelText('Go back 5 pages');

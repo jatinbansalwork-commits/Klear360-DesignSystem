@@ -13,10 +13,9 @@ import {
   TablePagination,
 } from '../../Table';
 import type { TableData } from '../types';
-import { createTableData, formatDate, getStatusColor } from './exampleData';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from './exampleData';
 import { Box } from '~components/Box';
 import { Code, Heading, Text } from '~components/Typography';
-import { Amount } from '~components/Amount';
 import { Badge } from '~components/Badge';
 import { Button } from '~components/Button';
 import { useTheme } from '~components/Klear360Provider';
@@ -38,7 +37,7 @@ const TableMeta: Meta = {
   },
 };
 
-const clientSidePaginationTableData = createTableData(100);
+const clientSidePaginationTableData = createTransactionTableData(100);
 
 export const TableWithClientSidePagination = (): React.ReactElement => {
   const { platform } = useTheme();
@@ -55,7 +54,8 @@ export const TableWithClientSidePagination = (): React.ReactElement => {
         <Heading>Table with Client Side Pagination</Heading>
         <Text>
           (Tip: Expand the window width. It shows a minimalistic version of pagination on mWeb and a
-          full fledged version on dWeb.)
+          full fledged version on dWeb.) The page size picker also demonstrates `pageSizeOptions`,
+          which can include values beyond the default 10/25/50 - here 20 and 100.
         </Text>
       </Box>
       <Table
@@ -76,6 +76,7 @@ export const TableWithClientSidePagination = (): React.ReactElement => {
           <TablePagination
             onPageChange={console.log}
             defaultPageSize={10}
+            pageSizeOptions={[10, 20, 50, 100]}
             onPageSizeChange={console.log}
             showPageSizePicker
             showPageNumberSelector
@@ -86,27 +87,28 @@ export const TableWithClientSidePagination = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

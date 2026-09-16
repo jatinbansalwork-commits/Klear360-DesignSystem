@@ -40,7 +40,7 @@ type MerchantData = {
 };
 
 const TableMeta: Meta = {
-  title: 'Components/Table/Nesting',
+  title: 'Components/Table/Examples/Nesting',
   component: TableComponent,
   parameters: {
     docs: {

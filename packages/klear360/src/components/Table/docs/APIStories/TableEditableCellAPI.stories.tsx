@@ -1,5 +1,5 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
-import type { TableProps, TableData, TableEditableCellProps } from '../../index';
+import type { TableProps, TableEditableCellProps } from '../../index';
 import {
   Table as TableComponent,
   TableHeader,
@@ -12,6 +12,7 @@ import {
   TableFooterRow,
   TableFooterCell,
 } from '../../index';
+import { createTransactionTableData, formatDate } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Code } from '~components/Typography';
@@ -58,45 +59,7 @@ export default {
   },
 } as Meta<typeof TableEditableCell>;
 
-const nodes: Item[] = [
-  ...Array.from({ length: 5 }, (_, i) => ({
-    id: (i + 1).toString(),
-    paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
-    amount: Number((Math.random() * 10000).toFixed(2)),
-    status: ['Completed', 'Pending', 'Failed'][Math.floor(Math.random() * 3)],
-    date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
-    type: ['Payout', 'Refund'][Math.floor(Math.random() * 2)],
-    method: ['Bank Transfer', 'Credit Card', 'PayPal'][Math.floor(Math.random() * 3)],
-    bank: ['HDFC', 'ICICI', 'SBI'][Math.floor(Math.random() * 3)],
-    account: Math.floor(Math.random() * 1000000000).toString(),
-    name: [
-      'John Doe',
-      'Jane Doe',
-      'Bob Smith',
-      'Alice Smith',
-      'John Smith',
-      'Jane Smith',
-      'Bob Doe',
-      'Alice Doe',
-    ][Math.floor(Math.random() * 8)],
-  })),
-];
-
-type Item = {
-  id: string;
-  paymentId: string;
-  amount: number;
-  status: string;
-  date: Date;
-  type: string;
-  method: string;
-  bank: string;
-  account: string;
-  name: string;
-};
-const data: TableData<Item> = {
-  nodes,
-};
+const data = createTransactionTableData(5);
 
 type TableTemplateProps = TableEditableCellProps & { rowDensity: TableProps<never>['rowDensity'] };
 
@@ -113,65 +76,59 @@ const TableTemplate: StoryFn<TableTemplateProps> = ({ rowDensity, ...args }) => 
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Account</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>Username</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
                   <TableEditableCell
                     {...args}
-                    accessibilityLabel="Amount"
-                    defaultValue={`${tableItem.amount}`}
+                    accessibilityLabel="Company Name"
+                    defaultValue={tableItem.companyName}
                   />
                   <TableEditableCell
-                    accessibilityLabel="Amount"
+                    accessibilityLabel="Username"
                     validationState="error"
-                    placeholder="Account number"
-                    errorText="Account number is invalid"
+                    placeholder="Username"
+                    errorText="Username is invalid"
                   />
                   <TableEditableDropdownCell selectionType="multiple">
                     <AutoComplete
-                      accessibilityLabel="Method"
+                      accessibilityLabel="Vessel Name"
                       validationState={args.validationState}
-                      errorText="Invalid Method"
-                      successText="Valid Method"
+                      errorText="Invalid Vessel Name"
+                      successText="Valid Vessel Name"
                     />
                     <DropdownOverlay>
                       <ActionList>
-                        <ActionListItem title="Mumbai" value="mumbai" />
-                        <ActionListItem title="Pune" value="pune" />
-                        <ActionListItem title="Bangalore" value="bangalore" />
+                        <ActionListItem title="Maersk Essex" value="maersk-essex" />
+                        <ActionListItem title="Ever Envoy" value="ever-envoy" />
+                        <ActionListItem title="MSC Oscar" value="msc-oscar" />
                       </ActionList>
                     </DropdownOverlay>
                   </TableEditableDropdownCell>
-                  <TableCell>
-                    {tableItem.date?.toLocaleDateString('en-IN', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })}
-                  </TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableEditableDropdownCell>
                     <SelectInput
                       validationState={args.validationState}
-                      accessibilityLabel="Status"
-                      errorText="Invalid Status"
-                      successText="Valid Status"
+                      accessibilityLabel="Transaction State"
+                      errorText="Invalid Transaction State"
+                      successText="Valid Transaction State"
                     />
                     <DropdownOverlay>
                       <ActionList>
-                        <ActionListItem title="Pending" value="pending" />
-                        <ActionListItem title="Completed" value="completed" />
-                        <ActionListItem title="Failed" value="failed" />
+                        <ActionListItem title="Sent" value="sent" />
+                        <ActionListItem title="In Process" value="in-process" />
+                        <ActionListItem title="Accepted" value="accepted" />
                       </ActionList>
                     </DropdownOverlay>
                   </TableEditableDropdownCell>

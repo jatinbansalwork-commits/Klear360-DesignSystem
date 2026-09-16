@@ -1,11 +1,11 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
-import type { TableData } from '../../types';
+import { action } from 'storybook/actions';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
+import { createTransactionTableData } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
-import { Amount } from '~components/Amount';
 import { Code } from '~components/Typography';
 import { Link } from '~components/Link';
 import { CopyIcon, TrashIcon } from '~components/Icons';
@@ -40,45 +40,7 @@ export default {
   },
 } as Meta<typeof TableRow>;
 
-const nodes: Item[] = [
-  ...Array.from({ length: 5 }, (_, i) => ({
-    id: (i + 1).toString(),
-    paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
-    amount: Number((Math.random() * 10000).toFixed(2)),
-    status: ['Completed', 'Pending', 'Failed'][Math.floor(Math.random() * 3)],
-    date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
-    type: ['Payout', 'Refund'][Math.floor(Math.random() * 2)],
-    method: ['Bank Transfer', 'Credit Card', 'PayPal'][Math.floor(Math.random() * 3)],
-    bank: ['HDFC', 'ICICI', 'SBI'][Math.floor(Math.random() * 3)],
-    account: Math.floor(Math.random() * 1000000000).toString(),
-    name: [
-      'John Doe',
-      'Jane Doe',
-      'Bob Smith',
-      'Alice Smith',
-      'John Smith',
-      'Jane Smith',
-      'Bob Doe',
-      'Alice Doe',
-    ][Math.floor(Math.random() * 8)],
-  })),
-];
-
-type Item = {
-  id: string;
-  paymentId: string;
-  amount: number;
-  status: string;
-  date: Date;
-  type: string;
-  method: string;
-  bank: string;
-  account: string;
-  name: string;
-};
-const data: TableData<Item> = {
-  nodes,
-};
+const data = createTransactionTableData(5);
 
 const TableTemplate: StoryFn<typeof TableRow> = ({ ...args }) => {
   return (
@@ -93,8 +55,8 @@ const TableTemplate: StoryFn<typeof TableRow> = ({ ...args }) => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
                 <TableHeaderCell>Action</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
@@ -111,28 +73,26 @@ const TableTemplate: StoryFn<typeof TableRow> = ({ ...args }) => {
                           accessibilityLabel="Copy"
                           isHighlighted
                           icon={CopyIcon}
-                          onClick={() => console.log('copy', tableItem)}
+                          onClick={() => action('copy')(tableItem)}
                         />
                         <IconButton
                           accessibilityLabel="Delete"
                           isHighlighted
                           icon={TrashIcon}
-                          onClick={() => console.log('delete', tableItem)}
+                          onClick={() => action('delete')(tableItem)}
                         />
                       </>
                     }
                   >
                     <TableCell>
-                      <Code size="medium">{tableItem.paymentId}</Code>
+                      <Code size="medium">{tableItem.transactionId}</Code>
                     </TableCell>
-                    <TableCell>
-                      <Amount value={tableItem.amount} />
-                    </TableCell>
+                    <TableCell>{tableItem.companyName}</TableCell>
 
                     <TableCell>
                       <Box display="flex" gap="spacing.3">
                         <Link
-                          onClick={() => console.log('copy')}
+                          onClick={() => action('copy')()}
                           isDisabled={args.isDisabled}
                           variant="button"
                           icon={CopyIcon}
@@ -140,7 +100,7 @@ const TableTemplate: StoryFn<typeof TableRow> = ({ ...args }) => {
                           Copy
                         </Link>
                         <Link
-                          onClick={() => console.log('delete')}
+                          onClick={() => action('delete')()}
                           isDisabled={args.isDisabled}
                           variant="button"
                           icon={TrashIcon}

@@ -36,7 +36,7 @@ export type PaginationProps = {
    * Page size controls how items are shown per page.
    * @default 10
    */
-  defaultPageSize?: 10 | 25 | 50;
+  defaultPageSize?: number;
 
   /**
    * Current page size when controlled.
@@ -44,12 +44,18 @@ export type PaginationProps = {
    * When not provided, the component manages page size internally.
    * @default 10
    */
-  pageSize?: 10 | 25 | 50;
+  pageSize?: number;
 
   /**
    * Callback function that is called when the page size is changed.
    */
   onPageSizeChange?: ({ pageSize }: { pageSize: number }) => void;
+
+  /**
+   * The page size choices shown in the page size picker.
+   * @default [10, 25, 50]
+   */
+  pageSizeOptions?: number[];
 
   /**
    * Whether to show the page size picker. It will be always hidden on mobile.

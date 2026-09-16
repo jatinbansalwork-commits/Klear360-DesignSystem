@@ -2,11 +2,10 @@ import React from 'react';
 import type { Meta } from '@storybook/react-vite';
 import { Table } from '../../Table';
 import type { TableColumnConfig } from '../types';
-import { createTableData, formatDate, getStatusColor } from './exampleData';
-import type { TableExampleItem } from './exampleData';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from './exampleData';
+import type { TransactionTableItem } from './exampleData';
 import { Box } from '~components/Box';
 import { Heading, Text, Code } from '~components/Typography';
-import { Amount } from '~components/Amount';
 import { Badge } from '~components/Badge';
 
 const TableMeta: Meta = {
@@ -26,32 +25,32 @@ const TableMeta: Meta = {
   },
 };
 
-const columnsExampleData = createTableData(5);
+const columnsExampleData = createTransactionTableData(5);
 
-const columns: TableColumnConfig<TableExampleItem>[] = [
+const columns: TableColumnConfig<TransactionTableItem>[] = [
   {
-    key: 'paymentId',
-    header: 'ID',
-    render: (item) => <Code size="medium">{item.paymentId}</Code>,
+    key: 'transactionId',
+    header: 'Transaction ID',
+    render: (item) => <Code size="medium">{item.transactionId}</Code>,
     sortable: true,
   },
   {
-    key: 'amount',
-    header: 'Amount',
-    render: (item) => <Amount value={item.amount} />,
+    key: 'companyName',
+    header: 'Company Name',
+    render: (item) => item.companyName,
     sortable: true,
   },
   {
-    key: 'date',
-    header: 'Date',
-    render: (item) => formatDate(item.date),
+    key: 'etd',
+    header: 'ETD',
+    render: (item) => formatDate(item.etd),
   },
   {
-    key: 'status',
-    header: 'Status',
+    key: 'transactionState',
+    header: 'Transaction State',
     render: (item) => (
-      <Badge size="medium" color={getStatusColor(item.status)}>
-        {item.status}
+      <Badge size="medium" color={getTransactionStateColor(item.transactionState)}>
+        {item.transactionState}
       </Badge>
     ),
     width: '150px',
@@ -77,8 +76,9 @@ export const TableDrivenByColumnsConfig = (): React.ReactElement => {
         data={columnsExampleData}
         columns={columns}
         sortFunctions={{
-          paymentId: (array) => array.sort((a, b) => a.paymentId.localeCompare(b.paymentId)),
-          amount: (array) => array.sort((a, b) => a.amount - b.amount),
+          transactionId: (array) =>
+            array.sort((a, b) => a.transactionId.localeCompare(b.transactionId)),
+          companyName: (array) => array.sort((a, b) => a.companyName.localeCompare(b.companyName)),
         }}
       />
     </Box>

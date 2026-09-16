@@ -9,8 +9,7 @@ Pagination is a navigation component that allows users to navigate through multi
 ## Important Constraints
 
 - Pages are 1-indexed externally (1 is the first page, 2 is the second page, etc.) - the `selectedPage` and `defaultSelectedPage` props use 1-based indexing
-- `pageSize` can only be one of: `10`, `25`, or `50`
-- `defaultPageSize` can only be one of: `10`, `25`, or `50`
+- `pageSize`/`defaultPageSize` accept any `number` - the page size picker shows `pageSizeOptions` (default `[10, 25, 50]`), which can include other values (e.g. `20`, `100`)
 - When both `selectedPage` and `defaultSelectedPage` are provided, `selectedPage` takes precedence (controlled mode)
 - When both `pageSize` and `defaultPageSize` are provided, `pageSize` takes precedence (controlled mode)
 - `showPageSizePicker`, `showPageNumberSelector`, and `showLabel` are always hidden on mobile devices
@@ -60,7 +59,7 @@ type PaginationCommonProps = {
    * Page size controls how items are shown per page.
    * @default 10
    */
-  defaultPageSize?: 10 | 25 | 50;
+  defaultPageSize?: number;
 
   /**
    * Current page size when controlled.
@@ -68,12 +67,18 @@ type PaginationCommonProps = {
    * When not provided, the component manages page size internally.
    * @default 10
    */
-  pageSize?: 10 | 25 | 50;
+  pageSize?: number;
 
   /**
    * Callback function that is called when the page size is changed.
    */
   onPageSizeChange?: ({ pageSize }: { pageSize: number }) => void;
+
+  /**
+   * The page size choices shown in the page size picker.
+   * @default [10, 25, 50]
+   */
+  pageSizeOptions?: number[];
 
   /**
    * Whether to show the page size picker. It will be always hidden on mobile.
@@ -126,11 +131,11 @@ type PaginationProps = PaginationCommonProps & {
 - Use controlled mode (`selectedPage` + `onSelectedPageChange`) when page state needs to sync with URL or external state.
 - Enable `showPageNumbers` for better navigation when there are many pages.
 - Enable `showPageSizePicker` when users should control items per page.
+- Use `pageSizeOptions` to offer page sizes beyond the default 10/25/50 (e.g. `[10, 20, 50, 100]`).
 
 **Don't**
 
 - Don't use `Pagination` for switching between content views — use `Tabs` instead.
-- Don't use custom page size values — only 10, 25, and 50 are supported.
 - Don't rely on `showPageSizePicker`, `showPageNumbers`, or `showLabel` being visible on mobile — they are automatically hidden on small screens.
 - Don't use 0-based page indexing — pages are 1-indexed externally.
 - Don't use `Pagination` when infinite scroll would provide a better user experience for browsing content.
@@ -147,7 +152,7 @@ import { useState } from 'react';
 
 function ControlledPaginationExample() {
   const [selectedPage, setSelectedPage] = useState(1);
-  const [pageSize, setPageSize] = useState<10 | 25 | 50>(10);
+  const [pageSize, setPageSize] = useState(10);
   const totalItems = 1000;
   const totalPages = Math.ceil(totalItems / pageSize);
 
@@ -157,7 +162,8 @@ function ControlledPaginationExample() {
       selectedPage={selectedPage}
       pageSize={pageSize}
       onSelectedPageChange={({ page }) => setSelectedPage(page)}
-      onPageSizeChange={({ pageSize }) => setPageSize(pageSize as 10 | 25 | 50)}
+      onPageSizeChange={({ pageSize }) => setPageSize(pageSize)}
+      pageSizeOptions={[10, 20, 50, 100]}
       showPageSizePicker
       showPageNumberSelector
       showLabel

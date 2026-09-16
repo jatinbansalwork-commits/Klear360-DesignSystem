@@ -1,12 +1,11 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
-import type { TableData } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TableFooter, TableFooterRow, TableFooterCell } from '../../TableFooter';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
-import { Amount } from '~components/Amount';
 import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 
@@ -34,45 +33,7 @@ export default {
   },
 } as Meta<typeof TableFooter>;
 
-const nodes: Item[] = [
-  ...Array.from({ length: 5 }, (_, i) => ({
-    id: (i + 1).toString(),
-    paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
-    amount: Number((Math.random() * 10000).toFixed(2)),
-    status: ['Completed', 'Pending', 'Failed'][Math.floor(Math.random() * 3)],
-    date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
-    type: ['Payout', 'Refund'][Math.floor(Math.random() * 2)],
-    method: ['Bank Transfer', 'Credit Card', 'PayPal'][Math.floor(Math.random() * 3)],
-    bank: ['HDFC', 'ICICI', 'SBI'][Math.floor(Math.random() * 3)],
-    account: Math.floor(Math.random() * 1000000000).toString(),
-    name: [
-      'John Doe',
-      'Jane Doe',
-      'Bob Smith',
-      'Alice Smith',
-      'John Smith',
-      'Jane Smith',
-      'Bob Doe',
-      'Alice Doe',
-    ][Math.floor(Math.random() * 8)],
-  })),
-];
-
-type Item = {
-  id: string;
-  paymentId: string;
-  amount: number;
-  status: string;
-  date: Date;
-  type: string;
-  method: string;
-  bank: string;
-  account: string;
-  name: string;
-};
-const data: TableData<Item> = {
-  nodes,
-};
+const data = createTransactionTableData(5);
 
 const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
   return (
@@ -87,46 +48,30 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Account</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>Username</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{tableItem.account}</TableCell>
-                  <TableCell>
-                    {tableItem.date?.toLocaleDateString('en-IN', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })}
-                  </TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{tableItem.username}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                   <TableCell>
                     <Badge
                       size="medium"
-                      color={
-                        tableItem.status === 'Completed'
-                          ? 'positive'
-                          : tableItem.status === 'Pending'
-                          ? 'notice'
-                          : tableItem.status === 'Failed'
-                          ? 'negative'
-                          : 'default'
-                      }
+                      color={getTransactionStateColor(tableItem.transactionState)}
                     >
-                      {tableItem.status}
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>

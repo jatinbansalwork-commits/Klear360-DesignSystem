@@ -11,7 +11,7 @@ import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 
 export default {
-  title: 'Components/Table/Spanning',
+  title: 'Components/Table/Examples/Spanning',
   component: TableComponent,
   parameters: {
     docs: {
