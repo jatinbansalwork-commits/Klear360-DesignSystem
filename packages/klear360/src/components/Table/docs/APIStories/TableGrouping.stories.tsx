@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -216,7 +217,7 @@ export const TableGroupingWithSelection: StoryFn<TableProps<unknown>> = () => {
   const [ignoredSelectedIds, setIgnoredSelectedIds] = useState<Identifier[]>([]);
 
   const handleSelectionChange = ({ selectedIds }: { selectedIds: Identifier[] }): void => {
-    console.log('selectedIds', selectedIds);
+    action('onSelectionChange')(selectedIds);
     setIgnoredSelectedIds(selectedIds);
   };
 
@@ -239,7 +240,7 @@ export const TableGroupingWithDisabledRows: StoryFn<TableProps<unknown>> = () =>
   const [ignoredSelectedIds, setIgnoredSelectedIds] = useState<Identifier[]>([]);
 
   const handleSelectionChange = ({ selectedIds }: { selectedIds: Identifier[] }): void => {
-    console.log('selectedIds', selectedIds);
+    action('onSelectionChange')(selectedIds);
     setIgnoredSelectedIds(selectedIds);
   };
 

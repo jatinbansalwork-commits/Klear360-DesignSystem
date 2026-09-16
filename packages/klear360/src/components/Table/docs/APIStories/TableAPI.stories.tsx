@@ -60,6 +60,90 @@ export default {
         disable: true,
       },
     },
+    onGlobalFilterValueChange: {
+      control: {
+        disable: true,
+      },
+    },
+    onColumnFilterValuesChange: {
+      control: {
+        disable: true,
+      },
+    },
+    isGrouped: {
+      description:
+        'The isGrouped prop determines whether the table has grouped data with parent-child relationships or not. When true, enables tree-aware selection where selecting a parent automatically selects all children. The default value is `false`.',
+    },
+    checkboxDisplay: {
+      description:
+        'Controls when the row-level selection checkbox is visible. `\'always\'` (default): checkbox is always visible. Fully backward-compatible. `\'on-hover\'`: checkbox is hidden by default and appears when the row is hovered. Once a row is selected the checkbox stays visible so the user can deselect it. The header "select-all" checkbox is **not** affected by this prop - it is always visible. Only applies when `selectionType="multiple"`.',
+      options: ['always', 'on-hover'],
+      control: {
+        type: 'radio',
+      },
+    },
+    multiSelectTrigger: {
+      description: 'Selection mode determines how the table rows can be selected.',
+      options: ['checkbox', 'row'],
+      control: {
+        type: 'radio',
+      },
+    },
+    stickyColumnCount: {
+      description:
+        'Number of leading columns (left to right, after any multi-select checkbox column) to freeze while the rest of the table scrolls horizontally. `isFirstColumnSticky` is shorthand for `stickyColumnCount={1}` and needs no `stickyColumnWidths`. Freezing more than one column requires `stickyColumnWidths`, since the sticky offsets are computed from known widths rather than measured at render time.',
+    },
+    stickyColumnWidths: {
+      description:
+        "Explicit pixel width (e.g. `'160px'`) for each of the leading `stickyColumnCount` columns, in order. Required when `stickyColumnCount` is greater than `1`. Pair these with matching `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) so the sticky offsets line up with what's actually rendered.",
+      control: {
+        disable: true,
+      },
+    },
+    backgroundColor: {
+      description: 'The backgroundColor prop determines the background color of the table.',
+    },
+    showStripedRows: {
+      description:
+        'The showStripedRows prop determines whether the table should have striped rows or not. The default value is `false`.',
+    },
+    gridTemplateColumns: {
+      description:
+        'The gridTemplateColumns prop determines the grid-template-columns CSS property of the table. The default value is `repeat(N,minmax(100px, 1fr))` where N is the column count.',
+    },
+    isLoading: {
+      description:
+        'The isLoading prop determines whether the table is loading or not. The default value is `false`.',
+    },
+    isRefreshing: {
+      description:
+        'The isRefreshing prop determines whether the table is refreshing or not. The default value is `false`.',
+    },
+    showBorderedCells: {
+      description:
+        'The showBorderedCells prop determines whether the table should have bordered cells or not.',
+    },
+    defaultSelectedIds: {
+      description:
+        'An array of default selected row ids. This will be used to set the initial selected rows.',
+      control: {
+        disable: true,
+      },
+    },
+    initialSort: {
+      description:
+        "Sets the table's sort state on mount, so it renders already sorted by this column instead of requiring a click. `sortKey` must match a key in `sortFunctions`.",
+      control: {
+        disable: true,
+      },
+    },
+    columns: {
+      description:
+        'Column config array, as an alternative to hand-writing TableHeader/TableBody JSX via `children`. Table builds the header row and body cells from this array instead. Use this or `children`, not both.',
+      control: {
+        disable: true,
+      },
+    },
   },
   parameters: {
     docs: {

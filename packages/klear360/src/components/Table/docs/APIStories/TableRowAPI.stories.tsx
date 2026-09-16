@@ -67,6 +67,8 @@ const TableTemplate: StoryFn<typeof TableRow> = ({ ...args }) => {
                     key={index}
                     {...args}
                     item={tableItem}
+                    onHover={({ item }) => action('onHover')(item)}
+                    onClick={({ item }) => action('onClick')(item)}
                     hoverActions={
                       <>
                         <IconButton

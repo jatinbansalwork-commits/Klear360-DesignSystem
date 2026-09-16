@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -59,7 +60,11 @@ export const MultiColumnSort = (): React.ReactElement => {
           column&apos;s priority once more than one is active.
         </Text>
       </Box>
-      <Table data={multiColumnSortData} sortFunctions={sortFunctions}>
+      <Table
+        data={multiColumnSortData}
+        sortFunctions={sortFunctions}
+        onSortChange={action('onSortChange')}
+      >
         {(tableData) => (
           <>
             <TableHeader>
@@ -117,6 +122,7 @@ export const Presort = (): React.ReactElement => {
         data={presortData}
         sortFunctions={sortFunctions}
         initialSort={{ sortKey: 'ETD', direction: 'desc' }}
+        onSortChange={action('onSortChange')}
       >
         {(tableData) => (
           <>

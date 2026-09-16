@@ -1,5 +1,6 @@
 import React from 'react';
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import type { TableData, TableProps } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
@@ -368,7 +369,7 @@ export const ColumnSpanWithSelection: StoryFn<typeof TableComponent> = () => {
         data={klearData}
         showBorderedCells
         selectionType="multiple"
-        onSelectionChange={({ selectedIds }) => console.log('Selected:', selectedIds)}
+        onSelectionChange={({ selectedIds }) => action('onSelectionChange')(selectedIds)}
       >
         {(tableData) => (
           <>

@@ -1,4 +1,5 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import type { TableData, TableProps } from '../types';
 import {
   Table as TableComponent,
@@ -117,7 +118,7 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         {...args}
         data={data}
         defaultSelectedIds={['1', '3']}
-        onSelectionChange={console.log}
+        onSelectionChange={action('onSelectionChange')}
         isFirstColumnSticky
         selectionType="single"
         toolbar={
@@ -139,9 +140,9 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         }}
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
           />
@@ -174,7 +175,7 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
                         isHighlighted
                         accessibilityLabel="Approve"
                         onClick={() => {
-                          console.log('Approved', tableItem.id);
+                          action('approve')(tableItem.id);
                         }}
                       />
                       <IconButton
@@ -182,13 +183,13 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
                         isHighlighted
                         accessibilityLabel="Reject"
                         onClick={() => {
-                          console.log('Rejected', tableItem.id);
+                          action('reject')(tableItem.id);
                         }}
                       />
                     </>
                   }
                   onClick={() => {
-                    console.log('where');
+                    action('onRowClick')(tableItem.id);
                   }}
                 >
                   <TableCell>

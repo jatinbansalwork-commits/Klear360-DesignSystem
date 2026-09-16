@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -137,7 +138,7 @@ export const TableWithCustomCellComponents = (): React.ReactElement => {
                       <Text weight="semibold">{headerCell.title}</Text>
                       <Tooltip content={headerCell.tooltip}>
                         <IconButton
-                          onClick={() => console.log('info clicked')}
+                          onClick={() => action('infoClicked')()}
                           accessibilityLabel="info"
                           icon={InfoIcon}
                         />
@@ -752,7 +753,7 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
           <TablePagination
             onPageChange={handlePageChange}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
             currentPage={currentPage}

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -74,10 +75,10 @@ export const TableWithClientSidePagination = (): React.ReactElement => {
         }
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
             pageSizeOptions={[10, 20, 50, 100]}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
           />

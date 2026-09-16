@@ -5,6 +5,7 @@ import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader'
 import { TableRow, TableCell, TableVirtualizedWrapper, TableBody } from '../../TableBody';
 import { TableToolbarActions, TableToolbar } from '../../TableToolbar';
 import { createTransactionTableData, formatDate, getTransactionStateColor } from '../exampleData';
+import type { TransactionTableItem } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Code } from '~components/Typography';
@@ -69,7 +70,7 @@ const TableTemplate: StoryFn<typeof TableComponent> = () => {
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
-              {(tableItem: Item, index) => (
+              {(tableItem: TransactionTableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
                     <Code size="medium">{tableItem.transactionId}</Code>

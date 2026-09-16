@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
@@ -180,7 +181,7 @@ const TableNestingTemplate = ({ withSorting = false }: { withSorting?: boolean }
         {...(withSorting && {
           sortFunctions,
           onSortChange: ({ sortKey, isSortReversed }) =>
-            console.log('Sort:', sortKey, 'Reversed:', isSortReversed),
+            action('onSortChange')({ sortKey, isSortReversed }),
         })}
       >
         {(tableData) => (

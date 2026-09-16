@@ -1,5 +1,6 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
 import React from 'react';
+import { action } from 'storybook/actions';
 import type { TableData, TableProps } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
@@ -119,7 +120,7 @@ const StripedTableContent = (): React.ReactElement => (
       data={data}
       showStripedRows
       selectionType="multiple"
-      onSelectionChange={({ selectedIds }) => console.log('Selected:', selectedIds)}
+      onSelectionChange={({ selectedIds }) => action('onSelectionChange')(selectedIds)}
       toolbar={
         <TableToolbar title="Showing 1-8 Items">
           <TableToolbarActions>
@@ -132,9 +133,9 @@ const StripedTableContent = (): React.ReactElement => (
       }
       pagination={
         <TablePagination
-          onPageChange={console.log}
+          onPageChange={action('onPageChange')}
           defaultPageSize={10}
-          onPageSizeChange={console.log}
+          onPageSizeChange={action('onPageSizeChange')}
           showPageSizePicker
           showPageNumberSelector
         />
