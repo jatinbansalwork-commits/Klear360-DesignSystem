@@ -176,6 +176,7 @@ const TableEditableDropdownCell = (
 };
 
 const TableEditableCell = assignWithoutSideEffects(_TableEditableCell, {
+  displayName: 'TableEditableCell',
   componentId: ComponentIds.TableEditableCell,
 });
 

@@ -171,6 +171,7 @@ const _TablePagination = ({
 };
 
 const TablePagination = assignWithoutSideEffects(_TablePagination, {
+  displayName: 'TablePagination',
   componentId: ComponentIds.TablePagination,
 });
 

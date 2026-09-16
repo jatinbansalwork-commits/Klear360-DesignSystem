@@ -76,6 +76,7 @@ const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.R
 };
 
 const TableBody = assignWithoutSideEffects(_TableBody, {
+  displayName: 'TableBody',
   componentId: ComponentIds.TableBody,
 });
 
@@ -186,6 +187,7 @@ const _TableCell = ({
 };
 
 const TableCell = assignWithoutSideEffects(_TableCell, {
+  displayName: 'TableCell',
   componentId: ComponentIds.TableCell,
 });
 
@@ -510,10 +512,12 @@ const _Virtulized = <Item,>({
 };
 
 const TableRow = assignWithoutSideEffects(_TableRow, {
+  displayName: 'TableRow',
   componentId: ComponentIds.TableRow,
 });
 
 const TableVirtualizedWrapper = assignWithoutSideEffects(_Virtulized, {
+  displayName: 'TableVirtualizedWrapper',
   componentId: ComponentIds.VirtualizedTable,
 });
 export { TableBody, TableRow, TableCell, TableVirtualizedWrapper };
