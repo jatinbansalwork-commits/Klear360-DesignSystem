@@ -237,10 +237,13 @@ const TableHeaderFilterRow = ({
             $backgroundColor={backgroundColor}
           >
             {isFilterable && headerKey ? (
-              // `SearchInput` has no intrinsic width of its own, so without this it renders at its
-              // content-driven flex-item width and can overflow past this cell's fixed column width
-              // (most visibly for sticky columns, where it then overlaps the scrolling column next to it).
-              <BaseBox width="100%">
+              // `SearchInput` has no intrinsic width of its own, so without `flex={1}` it renders at
+              // its content-driven flex-item width and can overflow past this cell's fixed column
+              // width (most visibly for sticky columns, where it then overlaps the scrolling column
+              // next to it). `marginX` leaves room for `SearchInput`'s own focus-ring/border box-shadow
+              // to render - this cell's inner content box clips overflow, so at a flush 100% width the
+              // ring has nowhere to paint and disappears entirely.
+              <BaseBox flex={1} marginX="spacing.1">
                 <SearchInput
                   size="small"
                   value={columnFilterValues[headerKey] ?? ''}
