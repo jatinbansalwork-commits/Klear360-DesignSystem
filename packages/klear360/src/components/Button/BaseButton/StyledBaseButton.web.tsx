@@ -31,6 +31,9 @@ const StyledBaseButton = styled.button
   return {
     ...getStyledBaseButtonStyles(props),
     display: 'inline-flex',
+    // Buttons grow to fit their label rather than wrapping it onto a second line - matches
+    // how every other button in the design system behaves, and how buttons behave generally.
+    whiteSpace: 'nowrap',
     backgroundImage: mouseGradient,
     transitionProperty: 'background-color, background-image, box-shadow',
     transitionTimingFunction: getIn(props.theme.motion, props.motionEasing),

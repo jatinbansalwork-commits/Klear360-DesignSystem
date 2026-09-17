@@ -71,7 +71,7 @@ exports[`Tabs should render 1`] = `
 
 .c12.c12.c12.c12.c12 {
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -1001,7 +1001,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
 
 .c12.c12.c12.c12.c12 {
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -1471,7 +1471,7 @@ exports[`Tabs should render with size 1`] = `
 
 .c12.c12.c12.c12.c12 {
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -1911,7 +1911,7 @@ exports[`Tabs should render with vertical orientation 1`] = `
   height: auto;
   width: 0px;
   border-width: 1px;
-  border-color: hsla(222,47%,11%,0.12);
+  border-color: hsla(222,47%,11%,0.126);
   border-style: solid;
 }
 
@@ -2404,7 +2404,7 @@ exports[`Tabs should support adding data-analytics attribute 1`] = `
 
 .c12.c12.c12.c12.c12 {
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 

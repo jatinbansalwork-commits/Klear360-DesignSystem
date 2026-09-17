@@ -3410,6 +3410,7 @@ exports[`<ProgressBar /> should update the progress value appropriately 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3700,6 +3701,7 @@ exports[`<ProgressBar /> should update the progress value appropriately 2`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3999,6 +4001,7 @@ exports[`<ProgressBar /> should update the progress value appropriately 3`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -4315,6 +4318,7 @@ exports[`<ProgressBar /> should update the progress value appropriately 4`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;

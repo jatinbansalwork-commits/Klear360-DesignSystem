@@ -11,6 +11,7 @@ export type {
   TableCellProps,
   TableData,
   TableEditableCellProps,
+  TableEditableSearchCellProps,
   TableEditableDropdownCellProps,
   TableFooterCellProps,
   TableFooterProps,
@@ -29,3 +30,4 @@ export type {
   TableSortOrderEntry,
 } from './types';
 export { TableEditableCell, TableEditableDropdownCell } from './TableEditableCell';
+export { TableEditableSearchCell } from './TableEditableSearchCell';

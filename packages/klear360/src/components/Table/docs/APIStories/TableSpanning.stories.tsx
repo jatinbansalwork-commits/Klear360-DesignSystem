@@ -12,6 +12,7 @@ import { Box } from '~components/Box';
 
 export default {
   title: 'Components/Table/Examples/Spanning',
+  tags: ['autodocs'],
   component: TableComponent,
   parameters: {
     docs: {

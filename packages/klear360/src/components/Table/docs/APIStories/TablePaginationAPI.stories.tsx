@@ -15,7 +15,8 @@ import { Badge } from '~components/Badge';
 import { useTheme } from '~components/Klear360Provider';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/TablePagination',
+  tags: ['autodocs'],
   component: TablePagination,
   parameters: {
     docs: {
@@ -63,10 +64,17 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Payout</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Payout
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }

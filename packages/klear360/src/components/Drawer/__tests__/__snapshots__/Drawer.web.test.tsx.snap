@@ -74,7 +74,7 @@ exports[`Drawer DrawerFooter renders a Drawer with footer 1`] = `
 }
 
 .c10.c10.c10.c10.c10 {
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -257,6 +257,7 @@ exports[`Drawer DrawerFooter renders a Drawer with footer 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -679,7 +680,7 @@ exports[`Drawer renders a Drawer 1`] = `
 }
 
 .c27.c27.c27.c27.c27 {
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 
@@ -930,6 +931,7 @@ exports[`Drawer renders a Drawer 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1332,7 +1334,7 @@ exports[`Drawer should render a Drawer with a custom header 1`] = `
 }
 
 .c10.c10.c10.c10.c10 {
-  border-bottom-color: hsla(222,47%,11%,0.12);
+  border-bottom-color: hsla(222,47%,11%,0.126);
   border-bottom-style: solid;
 }
 

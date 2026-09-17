@@ -21,16 +21,12 @@ import { useTheme } from '~components/Klear360Provider';
 
 const TableMeta: Meta = {
   title: 'Components/Table/Examples/Sticky Columns',
+  tags: ['autodocs'],
   component: Table,
   parameters: {
     viewMode: 'story',
     options: {
       showPanel: false,
-    },
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: true,
-      },
     },
     chromatic: { disableSnapshot: true },
   },
@@ -221,10 +217,17 @@ export const StickyColumns = (): React.ReactElement => {
             selectedTitle={`${selectedCount} Transaction${selectedCount > 1 ? 's' : ''} Selected`}
           >
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Mark as Reviewed</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Mark as Reviewed
+              </Button>
             </TableToolbarActions>
             <TableToolbarSearch placeholder="Search company, vessel, or state" />
           </TableToolbar>

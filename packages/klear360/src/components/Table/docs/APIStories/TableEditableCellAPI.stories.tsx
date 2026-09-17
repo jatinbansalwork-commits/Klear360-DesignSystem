@@ -22,7 +22,8 @@ import { ActionList, ActionListItem } from '~components/ActionList';
 import { DropdownOverlay } from '~components/Dropdown';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/TableEditableCell',
+  tags: ['autodocs'],
   component: TableEditableCell,
   args: {},
   argTypes: {

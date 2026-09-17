@@ -76,8 +76,7 @@ GlobalSearch.play = async () => {
   const { getByRole, getAllByRole, queryByText } = within(document.body);
   const searchInput = getByRole('textbox', { name: 'Search table' });
 
-  // 4 body rows + 1 sortable header row + 1 filter row (auto-rendered since NAME/STATUS/METHOD
-  // are all filterable).
+  // 4 body rows + 1 sortable header row + 1 auto-injected per-column filter row.
   await expect(getAllByRole('row')).toHaveLength(6);
 
   await userEvent.type(searchInput, 'jane');

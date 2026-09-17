@@ -15,7 +15,8 @@ import { IconButton } from '~components/Button/IconButton';
 import { CopyIcon, TrashIcon } from '~components/Icons';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/Table Striped Rows',
+  tags: ['autodocs'],
   component: TableComponent,
   args: {
     showStripedRows: true,
@@ -55,10 +56,10 @@ export const TableStripedSelection: StoryFn<typeof TableComponent> = () => (
       toolbar={
         <TableToolbar title="Showing 1-8 Items">
           <TableToolbarActions>
-            <Button variant="secondary" marginRight="spacing.3">
+            <Button size="small" variant="secondary" marginRight="spacing.3">
               Export
             </Button>
-            <Button>Payout</Button>
+            <Button size="small">Payout</Button>
           </TableToolbarActions>
         </TableToolbar>
       }
