@@ -299,6 +299,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
 };
 
 const TableHeader = assignWithoutSideEffects(_TableHeader, {
+  displayName: 'TableHeader',
   componentId: ComponentIds.TableHeader,
 });
 
@@ -418,6 +419,7 @@ const _TableHeaderCell = ({
 };
 
 const TableHeaderCell = assignWithoutSideEffects(_TableHeaderCell, {
+  displayName: 'TableHeaderCell',
   componentId: ComponentIds.TableHeaderCell,
 });
 
@@ -446,7 +448,7 @@ const TableHeaderCellCheckbox = ({
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
           onChange={onChange}
-          {...makeAccessible({ label: 'Select All Rows' })}
+          accessibilityLabel="Select all rows"
         />
       </BaseBox>
     </TableHeaderCell>
@@ -512,6 +514,7 @@ const _TableHeaderRow = ({
 };
 
 const TableHeaderRow = assignWithoutSideEffects(_TableHeaderRow, {
+  displayName: 'TableHeaderRow',
   componentId: ComponentIds.TableHeaderRow,
 });
 

@@ -76,6 +76,7 @@ const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.R
 };
 
 const TableBody = assignWithoutSideEffects(_TableBody, {
+  displayName: 'TableBody',
   componentId: ComponentIds.TableBody,
 });
 
@@ -186,6 +187,7 @@ const _TableCell = ({
 };
 
 const TableCell = assignWithoutSideEffects(_TableCell, {
+  displayName: 'TableCell',
   componentId: ComponentIds.TableCell,
 });
 
@@ -194,11 +196,13 @@ const TableCheckboxCell = ({
   onChange,
   isDisabled,
   isIndeterminate,
+  accessibilityLabel,
 }: {
   isChecked: CheckboxProps['isChecked'];
   onChange: CheckboxProps['onChange'];
   isDisabled?: boolean;
   isIndeterminate?: boolean;
+  accessibilityLabel: string;
 }): React.ReactElement => {
   return (
     <TableCell>
@@ -221,7 +225,7 @@ const TableCheckboxCell = ({
           isChecked={isChecked}
           onChange={onChange}
           isIndeterminate={isIndeterminate}
-          {...makeAccessible({ label: 'Select Row' })}
+          accessibilityLabel={accessibilityLabel}
         />
       </BaseBox>
     </TableCell>
@@ -433,6 +437,7 @@ const _TableRow = <Item,>({
           onChange={() => !isDisabled && toggleRowSelectionById(item.id)}
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
+          accessibilityLabel={`Select row ${item.id}`}
         />
       )}
       {children}
@@ -510,10 +515,12 @@ const _Virtulized = <Item,>({
 };
 
 const TableRow = assignWithoutSideEffects(_TableRow, {
+  displayName: 'TableRow',
   componentId: ComponentIds.TableRow,
 });
 
 const TableVirtualizedWrapper = assignWithoutSideEffects(_Virtulized, {
+  displayName: 'TableVirtualizedWrapper',
   componentId: ComponentIds.VirtualizedTable,
 });
 export { TableBody, TableRow, TableCell, TableVirtualizedWrapper };

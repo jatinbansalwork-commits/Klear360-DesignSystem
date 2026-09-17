@@ -41,6 +41,7 @@ const _TableFooter = ({ children, ...rest }: TableFooterProps): React.ReactEleme
 };
 
 const TableFooter = assignWithoutSideEffects(_TableFooter, {
+  displayName: 'TableFooter',
   componentId: ComponentIds.TableFooter,
 });
 
@@ -73,6 +74,7 @@ const _TableFooterRow = ({ children, ...rest }: TableFooterRowProps): React.Reac
 };
 
 const TableFooterRow = assignWithoutSideEffects(_TableFooterRow, {
+  displayName: 'TableFooterRow',
   componentId: ComponentIds.TableFooterRow,
 });
 
@@ -145,6 +147,7 @@ const _TableFooterCell = ({
 };
 
 const TableFooterCell = assignWithoutSideEffects(_TableFooterCell, {
+  displayName: 'TableFooterCell',
   componentId: ComponentIds.TableFooterCell,
 });
 

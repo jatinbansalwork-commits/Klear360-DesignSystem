@@ -979,6 +979,7 @@ const _Table = <Item,>({
   );
 };
 const Table = assignWithoutSideEffects(_Table, {
+  displayName: 'Table',
   componentId: ComponentIds.Table,
 });
 

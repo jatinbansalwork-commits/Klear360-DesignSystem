@@ -23,6 +23,7 @@ import { makeSize, useTheme } from '~utils';
 import { getInnerMotionRef, getOuterMotionRef } from '~utils/getMotionRefs';
 import type { MotionMetaProp } from '~components/BaseMotion';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { makeAccessible } from '~utils/makeAccessible';
 
 type OnChange = ({
   isChecked,
@@ -112,6 +113,12 @@ type CheckboxProps = {
    *
    */
   tabIndex?: number;
+  /**
+   * Provides an accessible label for the checkbox that sets the `aria-label` prop for screen
+   * readers. Use this when the checkbox has no visible `children` label (e.g. a standalone
+   * selection checkbox) - unnecessary when `children` already provides one.
+   */
+  accessibilityLabel?: string;
 } & TestID &
   DataAnalyticsAttribute &
   StyledPropsKlear360 &
@@ -135,6 +142,7 @@ const _Checkbox: React.ForwardRefRenderFunction<Klear360ElementRef, CheckboxProp
     tabIndex,
     testID,
     _motionMeta,
+    accessibilityLabel,
     ...rest
   },
   ref,
@@ -235,7 +243,13 @@ const _Checkbox: React.ForwardRefRenderFunction<Klear360ElementRef, CheckboxProp
     >
       <SelectorLabel
         componentName={MetaConstants.CheckboxLabel}
-        inputProps={state.isReactNative ? inputProps : {}}
+        inputProps={
+          state.isReactNative
+            ? // accessibility label for react-native needs to be added here since there's no
+              // text children when the checkbox has no visible `children` label
+              { ...inputProps, ...makeAccessible({ label: accessibilityLabel }) }
+            : {}
+        }
         style={{ cursor: isDisabled ? 'not-allowed' : 'pointer' }}
       >
         <BaseBox display="flex" flexDirection="column">
@@ -247,6 +261,7 @@ const _Checkbox: React.ForwardRefRenderFunction<Klear360ElementRef, CheckboxProp
               hasError={_hasError}
               inputProps={inputProps}
               tabIndex={tabIndex}
+              accessibilityLabel={accessibilityLabel}
               ref={getInnerMotionRef({ _motionMeta, ref })}
               {...makeAnalyticsAttribute(rest)}
             />
