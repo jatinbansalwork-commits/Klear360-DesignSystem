@@ -320,7 +320,7 @@ exports[`<Chip /> should accept data-analytics-* 1`] = `
     data-klear360-component="base-box"
   >
     <div
-      aria-labelledby="chip-group-233-label"
+      aria-labelledby="chip-group-205-label"
       class="c0"
       data-analytics-chip-group="fruits"
       data-klear360-component="chip-group"
@@ -365,7 +365,7 @@ exports[`<Chip /> should accept data-analytics-* 1`] = `
                 >
                   <input
                     aria-checked="false"
-                    aria-describedby="radio-234-helptext-235"
+                    aria-describedby="radio-206-helptext-207"
                     aria-disabled="false"
                     aria-invalid="false"
                     aria-required="false"
@@ -420,7 +420,7 @@ exports[`<Chip /> should accept data-analytics-* 1`] = `
                 >
                   <input
                     aria-checked="false"
-                    aria-describedby="radio-236-helptext-237"
+                    aria-describedby="radio-208-helptext-209"
                     aria-disabled="false"
                     aria-invalid="false"
                     aria-required="false"
@@ -1785,7 +1785,7 @@ exports[`<Chip /> should render chip with leading element 1`] = `
     data-klear360-component="base-box"
   >
     <div
-      aria-labelledby="chip-group-242-label"
+      aria-labelledby="chip-group-214-label"
       class="c0"
       data-klear360-component="chip-group"
       role="radiogroup"
@@ -1829,7 +1829,7 @@ exports[`<Chip /> should render chip with leading element 1`] = `
                 >
                   <input
                     aria-checked="false"
-                    aria-describedby="radio-243-helptext-244"
+                    aria-describedby="radio-215-helptext-216"
                     aria-disabled="false"
                     aria-invalid="false"
                     aria-required="false"
@@ -1893,7 +1893,7 @@ exports[`<Chip /> should render chip with leading element 1`] = `
                 >
                   <input
                     aria-checked="false"
-                    aria-describedby="radio-245-helptext-246"
+                    aria-describedby="radio-217-helptext-218"
                     aria-disabled="false"
                     aria-invalid="false"
                     aria-required="false"
@@ -2248,7 +2248,7 @@ exports[`<Chip /> should render chip with leading element and no children 1`] = 
     data-klear360-component="base-box"
   >
     <div
-      aria-labelledby="chip-group-251-label"
+      aria-labelledby="chip-group-223-label"
       class="c0"
       data-klear360-component="chip-group"
       role="radiogroup"
@@ -2292,7 +2292,7 @@ exports[`<Chip /> should render chip with leading element and no children 1`] = 
                 >
                   <input
                     aria-checked="false"
-                    aria-describedby="radio-252-helptext-253"
+                    aria-describedby="radio-224-helptext-225"
                     aria-disabled="false"
                     aria-invalid="false"
                     aria-required="false"

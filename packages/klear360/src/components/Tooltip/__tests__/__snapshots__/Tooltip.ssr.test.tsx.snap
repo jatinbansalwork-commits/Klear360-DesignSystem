@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tooltip /> should render Tooltip ssr 1`] = `"<div id="root"><button type="button" data-klear360-component="button" role="button" class="StyledBaseButtonweb__StyledBaseButton-wokdk0-0 bkfrfg"><div data-klear360-component="base-box" class="BaseBox-bksIuc AnimatedButtonContentweb__AnimatedButtonContent-sc-1g6ocf4-0  iUsIiL"><div data-klear360-component="base-box" class="BaseBox-bksIuc BaseButton__ButtonContent-sc-1xhzv77-0 jbTreI kmXDWf"><div class="StyledBaseText-foUshD kThtDu" data-klear360-component="base-text">Hello world</div></div></div></button></div>"`;
+exports[`<Tooltip /> should render Tooltip ssr 1`] = `"<div id="root"><button type="button" data-klear360-component="button" role="button" class="StyledBaseButtonweb__StyledBaseButton-wokdk0-0 RauLC"><div data-klear360-component="base-box" class="BaseBox-bksIuc AnimatedButtonContentweb__AnimatedButtonContent-sc-1g6ocf4-0  iUsIiL"><div data-klear360-component="base-box" class="BaseBox-bksIuc BaseButton__ButtonContent-sc-1xhzv77-0 jbTreI kmXDWf"><div class="StyledBaseText-foUshD kThtDu" data-klear360-component="base-text">Hello world</div></div></div></button></div>"`;
 
 exports[`<Tooltip /> should render Tooltip ssr 2`] = `
 .c2.c2.c2.c2.c2 {
@@ -72,6 +72,7 @@ exports[`<Tooltip /> should render Tooltip ssr 2`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;

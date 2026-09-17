@@ -12,7 +12,8 @@ import { Badge } from '~components/Badge';
 import { Button } from '~components/Button';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/VirtualizedTable',
+  tags: ['autodocs'],
   component: TableVirtualizedWrapper,
   args: {},
   argTypes: {
@@ -48,10 +49,10 @@ const TableTemplate: StoryFn<typeof TableComponent> = () => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3">
+              <Button size="small" variant="secondary" marginRight="spacing.3">
                 Export
               </Button>
-              <Button>Payout</Button>
+              <Button size="small">Payout</Button>
             </TableToolbarActions>
           </TableToolbar>
         }

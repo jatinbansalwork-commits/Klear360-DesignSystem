@@ -123,10 +123,10 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         toolbar={
           <TableToolbar title="Showing 1-10 [Items]" selectedTitle="Showing 1-10 [Items]">
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.2">
+              <Button size="small" variant="secondary" marginRight="spacing.2">
                 Export
               </Button>
-              <Button>Refund</Button>
+              <Button size="small">Refund</Button>
             </TableToolbarActions>
           </TableToolbar>
         }

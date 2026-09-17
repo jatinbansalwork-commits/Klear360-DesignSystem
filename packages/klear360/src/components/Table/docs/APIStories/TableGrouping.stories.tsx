@@ -15,6 +15,7 @@ import { Amount } from '~components/Amount';
 
 const meta: Meta<TableProps<unknown>> = {
   title: 'Components/Table/Examples/Grouping',
+  tags: ['autodocs'],
   component: Table,
   parameters: {
     docs: {

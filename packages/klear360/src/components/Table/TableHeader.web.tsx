@@ -25,7 +25,9 @@ import getIn from '~utils/lodashButBetter/get';
 import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { size } from '~tokens/global';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
-import { SearchInput } from '~components/Input/SearchInput';
+import { BaseInput } from '~components/Input/BaseInput';
+import { CloseIcon, SearchIcon } from '~components/Icons';
+import { IconButton } from '~components/Button/IconButton';
 
 const SortButton = styled.button(({ theme }) => ({
   cursor: 'pointer',
@@ -123,10 +125,17 @@ const StyledFilterHeaderCell = styled(HeaderCell)<{
     borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
     borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
     borderBottomStyle: 'solid',
-    paddingLeft: makeSpace(getIn(theme, tableRow.paddingLeft.compact)),
-    paddingRight: makeSpace(getIn(theme, tableRow.paddingRight.compact)),
+    // No horizontal cell padding here - the input already carries its own inset (see the
+    // `marginX` on its wrapping BaseBox below), matching TableEditableCell's flush-cell
+    // convention. Padding on both would stack (previously 12px cell + 12px icon-slot padding
+    // = 24px before the icon, noticeably more than TableEditableCell's 16px).
+    paddingLeft: 0,
+    paddingRight: 0,
     paddingTop: makeSpace(getIn(theme.spacing, '2')),
     paddingBottom: makeSpace(getIn(theme.spacing, '2')),
+    // The input itself renders flush/borderless (`isTableInputCell`) same as TableEditableCell,
+    // so the cell - not the input - is what shows the focus ring while typing/clearing.
+    '&:focus-within': getFocusRingStyles({ theme, negativeOffset: true }),
   },
 }));
 
@@ -206,6 +215,7 @@ const TableHeaderFilterRow = ({
     backgroundColor,
     selectionType,
     hasHoverActions,
+    showBorderedCells,
   } = useTableContext();
   const cellsMeta = getHeaderCellsMeta(headerRow);
 
@@ -213,7 +223,7 @@ const TableHeaderFilterRow = ({
     // See the real header row's own `role="row"` override below for why this is explicit.
     <StyledHeaderRow
       role="row"
-      $showBorderedCells={false}
+      $showBorderedCells={showBorderedCells}
       $gridTemplateColumns={undefined}
       $hasHoverActions={false}
       $selectionType={selectionType}
@@ -237,13 +247,31 @@ const TableHeaderFilterRow = ({
             $backgroundColor={backgroundColor}
           >
             {isFilterable && headerKey ? (
-              <SearchInput
-                size="small"
-                value={columnFilterValues[headerKey] ?? ''}
-                onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
-                placeholder={`Filter ${labelText}`}
-                accessibilityLabel={`Filter by ${labelText}`}
-              />
+              // Flush/borderless input filling the cell edge-to-edge (`isTableInputCell`), same
+              // treatment as TableEditableCell's body-row inputs - the cell's own `:focus-within`
+              // (see StyledFilterHeaderCell) shows the ring instead of the input itself.
+              <BaseBox flex={1} marginX="spacing.2">
+                <BaseInput
+                  isTableInputCell
+                  id={`table-header-filter-${headerKey}`}
+                  size="small"
+                  value={columnFilterValues[headerKey] ?? ''}
+                  onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
+                  placeholder={`Filter ${labelText}`}
+                  accessibilityLabel={`Filter by ${labelText}`}
+                  leadingIcon={SearchIcon}
+                  trailingInteractionElement={
+                    columnFilterValues[headerKey] ? (
+                      <IconButton
+                        size="medium"
+                        icon={CloseIcon}
+                        accessibilityLabel={`Clear ${labelText} filter`}
+                        onClick={() => setColumnFilterValue(headerKey, '')}
+                      />
+                    ) : undefined
+                  }
+                />
+              </BaseBox>
             ) : null}
           </StyledFilterHeaderCell>
         );

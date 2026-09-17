@@ -90,7 +90,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   setPaginationType: () => {},
   backgroundColor: 'surface.background.gray.intense',
   setHeaderRowDensity: () => {},
-  showBorderedCells: false,
+  showBorderedCells: true,
   hasHoverActions: false,
   setHasHoverActions: () => {},
   multiSelectTrigger: 'row',

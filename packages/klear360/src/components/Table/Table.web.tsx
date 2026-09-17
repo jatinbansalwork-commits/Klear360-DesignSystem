@@ -21,6 +21,7 @@ import {
   refreshWrapperZIndex,
   tableBackgroundColor,
   tablePagination,
+  tableRow,
   classes,
 } from './tokens';
 import type {
@@ -199,7 +200,7 @@ const _Table = <Item,>({
   gridTemplateColumns: gridTemplateColumnsProp,
   isLoading = false,
   isRefreshing = false,
-  showBorderedCells = false,
+  showBorderedCells = true,
   defaultSelectedIds = [],
   backgroundColor = tableBackgroundColor,
   isGrouped = false,
@@ -404,11 +405,20 @@ const _Table = <Item,>({
     if (stickyColumnCount < 1) return '';
 
     const isMultiSelect = selectionType === 'multiple';
-    const stickyRule = (domIndex: number, left: number): string => `
+    // The last frozen column's own `border-right` (on `.cell-wrapper`, see TableBody/TableHeader)
+    // is unreliable once scrolled - it sits behind the scrolling column that slides underneath in
+    // the same stacking context, so it can get visually clipped at the sticky boundary. A
+    // `box-shadow` is painted as part of the sticky cell itself instead of relying on layout to
+    // keep a border pixel uncovered, so it stays visible at any scroll position.
+    const lastStickyBoxShadow = showBorderedCells
+      ? `box-shadow: 1px 0 0 0 ${getIn(theme.colors, tableRow.borderColor)} !important;`
+      : '';
+    const stickyRule = (domIndex: number, left: number, isLastSticky: boolean): string => `
   &:nth-of-type(${domIndex}) {
     left: ${left}px !important;
     position: sticky !important;
     z-index: ${firstColumnStickyZIndex} !important;
+    ${isLastSticky ? lastStickyBoxShadow : ''}
   }
   /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
   &:nth-of-type(${domIndex}).${classes.HAS_ROW_SPANNING} {
@@ -418,16 +428,18 @@ const _Table = <Item,>({
     const rules: string[] = [];
     let cumulativeLeft = 0;
     if (isMultiSelect) {
-      rules.push(stickyRule(1, 0));
+      // The checkbox column is always followed by at least one more sticky column here (the
+      // `stickyColumnCount < 1` case already returned above), so it's never the last sticky one.
+      rules.push(stickyRule(1, 0, false));
       cumulativeLeft = checkboxCellWidth;
     }
     for (let i = 0; i < stickyColumnCount; i += 1) {
       const domIndex = i + 1 + (isMultiSelect ? 1 : 0);
-      rules.push(stickyRule(domIndex, cumulativeLeft));
+      rules.push(stickyRule(domIndex, cumulativeLeft, i === stickyColumnCount - 1));
       cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
     }
     return rules.join('\n');
-  }, [stickyColumnCount, selectionType, stickyColumnWidths]);
+  }, [stickyColumnCount, selectionType, stickyColumnWidths, showBorderedCells, theme]);
 
   const tableTheme = useTableTheme({
     Table: `
@@ -448,7 +460,9 @@ const _Table = <Item,>({
     }
     --data-table-library_grid-template-columns: ${
       gridTemplateColumns
-        ? `${gridTemplateColumns} ${hasHoverActions ? lastHoverActionsColWidth : ''}`
+        ? `${selectionType === 'multiple' ? 'min-content' : ''} ${gridTemplateColumns} ${
+            hasHoverActions ? lastHoverActionsColWidth : ''
+          }`
         : ` ${
             selectionType === 'multiple' ? 'min-content' : ''
           } repeat(${columnCount},minmax(100px, 1fr)) ${

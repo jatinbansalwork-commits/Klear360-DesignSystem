@@ -13,7 +13,8 @@ import { IconButton } from '~components/Button/IconButton';
 import { CopyIcon, TrashIcon } from '~components/Icons';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/Table Hover Actions',
+  tags: ['autodocs'],
   component: TableHeaderRow,
   args: {},
   argTypes: {

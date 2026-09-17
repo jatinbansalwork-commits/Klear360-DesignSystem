@@ -15,7 +15,8 @@ import { getStyledPropsArgTypes } from '~components/Box/BaseBox/storybookArgType
 import { useTheme } from '~components/Klear360Provider';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/TableToolbarActions',
+  tags: ['autodocs'],
   component: TableToolbarActions,
   argTypes: {
     ...getStyledPropsArgTypes(),
@@ -66,10 +67,17 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions {...args}>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Payout</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Payout
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }

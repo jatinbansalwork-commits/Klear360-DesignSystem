@@ -325,6 +325,7 @@ type TableProps<Item> = TableChildrenProps<Item> & {
   isRefreshing?: boolean;
   /**
    * The showBorderedCells prop determines whether the table should have bordered cells or not.
+   * The default value is `true`.
    **/
   showBorderedCells?: boolean;
   /**
@@ -523,6 +524,29 @@ type TableEditableCellProps = Pick<
 > & {
   accessibilityLabel: NonNullable<BaseInputProps['accessibilityLabel']>;
   inputType?: Extract<BaseInputProps['type'], 'text' | 'number' | 'email' | 'tel' | 'url'>;
+};
+
+/**
+ * TableEditableSearchCell is TableEditableCell with a search affordance: a leading
+ * magnifying-glass icon (matching `TableToolbarSearch`/the column-filter input) and a clear
+ * button that appears once there's a value, mirroring `SearchInput`'s clear behaviour. It's a
+ * plain typed input - value changes are still delivered through `onChange` - there's no
+ * dropdown or suggestion list.
+ */
+type TableEditableSearchCellProps = Omit<
+  TableEditableCellProps,
+  'leadingIcon' | 'trailingButton'
+> & {
+  /**
+   * Toggle the visibility of the leading search icon.
+   *
+   * @default true
+   */
+  showSearchIcon?: boolean;
+  /**
+   * Called when the clear button is clicked, in addition to the input being cleared.
+   */
+  onClearButtonClick?: () => void;
 };
 
 type TableEditableDropdownCellProps = Pick<
@@ -806,6 +830,7 @@ export type {
   TableRowProps,
   TableCellProps,
   TableEditableCellProps,
+  TableEditableSearchCellProps,
   TableEditableDropdownCellProps,
   TableFooterProps,
   TableFooterRowProps,

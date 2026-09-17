@@ -35,16 +35,12 @@ import { useTheme } from '~components/Klear360Provider';
 
 const TableMeta: Meta = {
   title: 'Components/Table/Examples',
+  tags: ['autodocs'],
   component: Table,
   parameters: {
     viewMode: 'story',
     options: {
       showPanel: false,
-    },
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: true,
-      },
     },
     chromatic: { disableSnapshot: true },
   },
@@ -408,10 +404,17 @@ export const MultiSelectableTableWithToolbar = (): React.ReactElement => {
             } Selected`}
           >
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -467,10 +470,17 @@ export const MultiSelectableWithZebraStripes = (): React.ReactElement => {
         toolbar={
           <TableToolbar title="Showing Recent Transactions">
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -526,10 +536,17 @@ export const TableWithDisabledRows = (): React.ReactElement => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -668,10 +685,17 @@ export const TableWithIsLoading = (): React.ReactElement => {
           toolbar={
             <TableToolbar>
               <TableToolbarActions>
-                <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+                <Button
+                  size="small"
+                  variant="secondary"
+                  marginRight="spacing.3"
+                  isFullWidth={onMobile}
+                >
                   Export
                 </Button>
-                <Button isFullWidth={onMobile}>Refund</Button>
+                <Button size="small" isFullWidth={onMobile}>
+                  Refund
+                </Button>
               </TableToolbarActions>
             </TableToolbar>
           }
@@ -741,10 +765,17 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }

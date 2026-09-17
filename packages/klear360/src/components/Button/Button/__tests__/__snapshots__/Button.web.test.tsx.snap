@@ -28,6 +28,7 @@ exports[`<Button /> should render button with default properties 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -177,6 +178,7 @@ exports[`<Button /> should render button with full width 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -326,6 +328,7 @@ exports[`<Button /> should render button with icon with default iconPosition 1`]
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -522,6 +525,7 @@ exports[`<Button /> should render button with icon with right iconPosition 1`] =
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -717,6 +721,7 @@ exports[`<Button /> should render disabled button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -864,6 +869,7 @@ exports[`<Button /> should render disabled negative color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1012,6 +1018,7 @@ exports[`<Button /> should render disabled negative color secondary button 1`] =
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1161,6 +1168,7 @@ exports[`<Button /> should render disabled positive color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1309,6 +1317,7 @@ exports[`<Button /> should render disabled positive color secondary button 1`] =
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1458,6 +1467,7 @@ exports[`<Button /> should render disabled primary color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1606,6 +1616,7 @@ exports[`<Button /> should render disabled primary color secondary button 1`] = 
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1756,6 +1767,7 @@ exports[`<Button /> should render disabled primary color tertiary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1905,6 +1917,7 @@ exports[`<Button /> should render disabled white color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2053,6 +2066,7 @@ exports[`<Button /> should render disabled white color secondary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2203,6 +2217,7 @@ exports[`<Button /> should render disabled white color tertiary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2353,6 +2368,7 @@ exports[`<Button /> should render large size button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(72px 72px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2502,6 +2518,7 @@ exports[`<Button /> should render medium size button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2651,6 +2668,7 @@ exports[`<Button /> should render negative color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2800,6 +2818,7 @@ exports[`<Button /> should render negative color secondary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2949,6 +2968,7 @@ exports[`<Button /> should render positive color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3098,6 +3118,7 @@ exports[`<Button /> should render positive color secondary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3247,6 +3268,7 @@ exports[`<Button /> should render primary color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3396,6 +3418,7 @@ exports[`<Button /> should render primary color secondary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3545,6 +3568,7 @@ exports[`<Button /> should render primary color tertiary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3694,6 +3718,7 @@ exports[`<Button /> should render small size button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(56px 56px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3843,6 +3868,7 @@ exports[`<Button /> should render white color primary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3992,6 +4018,7 @@ exports[`<Button /> should render white color secondary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -4141,6 +4168,7 @@ exports[`<Button /> should render white color tertiary button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -4290,6 +4318,7 @@ exports[`<Button /> should render xsmall size button 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(48px 48px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;

@@ -10,7 +10,8 @@ import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/TableHeader',
+  tags: ['autodocs'],
   component: TableHeader,
   args: {},
   argTypes: {

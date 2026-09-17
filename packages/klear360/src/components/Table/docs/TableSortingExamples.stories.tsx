@@ -16,16 +16,12 @@ import { Badge } from '~components/Badge';
 
 const TableMeta: Meta = {
   title: 'Components/Table/Examples/Sorting',
+  tags: ['autodocs'],
   component: Table,
   parameters: {
     viewMode: 'story',
     options: {
       showPanel: false,
-    },
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: true,
-      },
     },
     chromatic: { disableSnapshot: true },
   },

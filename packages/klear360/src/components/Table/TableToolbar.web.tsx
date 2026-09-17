@@ -19,6 +19,14 @@ import { useTheme } from '~components/Klear360Provider';
 /**
  * TableToolbarActions is a component that is used to render actions in the TableToolbar.
  * It is a flex container that will render its children in a row on desktop and a column on mobile.
+ *
+ * Action buttons never shrink below their natural (single-line) width - `flexShrink={0}` here
+ * means that once the toolbar runs out of horizontal room, the whole actions block wraps onto
+ * its own line (the toolbar row itself is `flexWrap: wrap`) instead of individual buttons being
+ * squeezed narrower than their label, which wraps that label onto two lines.
+ *
+ * Use `size="small"` buttons here so their height (32px) matches `TableToolbarSearch`'s - both
+ * resolve to the same underlying size token when `size="small"`.
  * @param children - any react element
  * @param styledProps - accepts all of the styled props from Box
  */
@@ -32,6 +40,7 @@ const _TableToolbarActions = ({
     <BaseBox
       display="flex"
       flex={onMobile ? 1 : 0}
+      flexShrink={0}
       justifyContent={onMobile ? 'flex-start' : 'flex-end'}
       {...getStyledProps(rest)}
       {...makeAnalyticsAttribute(rest)}
