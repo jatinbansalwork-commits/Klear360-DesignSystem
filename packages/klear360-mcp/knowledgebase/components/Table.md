@@ -9,6 +9,9 @@ A table component that displays data in a grid format through rows and columns o
 ## Important Constraints
 
 - `Table` `toolbar` prop only accepts `TableToolbar` component
+- `expandedRowIds`/row-expansion chevrons only apply to `isGrouped` tables (group-header rows)
+- A `filterConfig` entry needs a matching `filterFunctions` entry for that column to actually filter rows - `filterConfig` alone only controls which input renders
+- In a grouped multi-row header (multiple `TableHeaderRow`s), `isHeaderSticky` combined with column filtering isn't fully supported yet - the filter row's own sticky offset doesn't account for a preceding group row
 
 ## TypeScript Types
 
@@ -104,6 +107,28 @@ type TableProps<Item> = {
   stickyColumnWidths?: string[];
 
   /**
+   * The isLastColumnSticky prop determines whether the last column is sticky or not.
+   * Equivalent to `trailingStickyColumnCount={1}`.
+   * @default false
+   **/
+  isLastColumnSticky?: boolean;
+
+  /**
+   * Number of trailing columns (right to left, before any hover-actions column) to freeze while
+   * the rest of the table scrolls horizontally. Composable with `stickyColumnCount` - a table can
+   * freeze leading columns, trailing columns, or both. Automatically disabled on mobile, same as
+   * `stickyColumnCount`.
+   * @default isLastColumnSticky ? 1 : 0
+   **/
+  trailingStickyColumnCount?: number;
+
+  /**
+   * Explicit pixel width for each of the trailing `trailingStickyColumnCount` columns, in
+   * left-to-right order. Required when `trailingStickyColumnCount` is greater than `1`.
+   **/
+  trailingStickyColumnWidths?: string[];
+
+  /**
    * The rowDensity prop determines the density of the table.
    * @default 'normal'
    **/
@@ -138,19 +163,38 @@ type TableProps<Item> = {
    * Per-row predicate for a filterable column. Return `true` to keep the row. A column becomes
    * filterable purely by having its `headerKey` present here — mirrors `sortFunctions`. A
    * filter row auto-renders in the header with one text input per filterable column (AND across
-   * columns). The same predicates are reused for global search via `globalFilterValue`/
-   * `TableToolbarSearch` (OR across columns).
+   * columns), or a dropdown/multiselect picker for a column also present in `filterConfig`. The
+   * same predicates are reused for global search via `globalFilterValue`/`TableToolbarSearch` (OR
+   * across columns). `filterValue` is a plain `string` for ordinary columns, or `string[]` for a
+   * `filterConfig`'d column (the selected option values).
    **/
-  filterFunctions?: Record<string, (item: TableNode<Item>, filterValue: string) => boolean>;
+  filterFunctions?: Record<
+    string,
+    (item: TableNode<Item>, filterValue: string | string[]) => boolean
+  >;
 
-  /** Column filter values keyed by headerKey. Passing this makes it controlled. */
-  columnFilterValues?: Record<string, string>;
+  /**
+   * Renders a dropdown (`type: 'dropdown'`, single value) or multiselect (`type: 'multiselect'`,
+   * multiple values) picker in a filterable column's header instead of the default text input —
+   * keyed by `headerKey`, same convention as `filterFunctions`. The column must also have a
+   * matching entry in `filterFunctions` to actually filter rows.
+   **/
+  filterConfig?: Record<
+    string,
+    { type: 'dropdown' | 'multiselect'; options: { label: string; value: string }[] }
+  >;
+
+  /**
+   * Column filter values keyed by headerKey. A plain `string` for ordinary columns, or `string[]`
+   * for a `filterConfig`'d column. Passing this makes it controlled.
+   */
+  columnFilterValues?: Record<string, string | string[]>;
 
   /** Initial column filter values for uncontrolled usage. */
-  defaultColumnFilterValues?: Record<string, string>;
+  defaultColumnFilterValues?: Record<string, string | string[]>;
 
   /** Callback fired when any column filter value changes. */
-  onColumnFilterValuesChange?: (values: Record<string, string>) => void;
+  onColumnFilterValuesChange?: (values: Record<string, string | string[]>) => void;
 
   /**
    * Global search value, checked against every filterable column's `filterFunctions` predicate.
@@ -217,12 +261,39 @@ type TableProps<Item> = {
    * The backgroundColor prop determines the background color of the table.
    **/
   backgroundColor?: string | 'transparent';
+
+  /**
+   * Whether the table has grouped data with parent-child relationships. Enables tree-aware
+   * selection (selecting a parent selects all children) and, per group-header row, an automatic
+   * expand/collapse chevron (see `expandedRowIds`).
+   * @default false
+   **/
+  isGrouped?: boolean;
+
+  /**
+   * Ids of the group-header rows (parent rows with children, see `isGrouped`) that are currently
+   * expanded. Passing this makes row expansion controlled.
+   **/
+  expandedRowIds?: Identifier[];
+
+  /**
+   * Seeds the expanded row ids on mount (uncontrolled).
+   * @default every group-header row id (all groups start expanded)
+   **/
+  defaultExpandedRowIds?: Identifier[];
+
+  /** Callback fired when a group-header row is expanded or collapsed. */
+  onExpandedRowIdsChange?: (ids: Identifier[]) => void;
 };
 
 // TableHeader component props
 type TableHeaderProps = {
   /**
-   * The children of TableHeader should be TableHeaderRow
+   * The children of TableHeader should be TableHeaderRow. Usually a single row, but more than
+   * one is supported for a grouped multi-row header (e.g. a "Shipment" label row spanning
+   * `ID`/`Status` above the real column row) — the LAST TableHeaderRow is always the leaf/column
+   * row that lines up with body columns; earlier rows use TableHeaderCell's `gridColumnStart`/
+   * `gridColumnEnd` to span the leaf columns they group.
    **/
   children: React.ReactNode;
 };
@@ -1079,22 +1150,52 @@ const FilterableTable = ({ nodes }: { nodes: Item[] }) => (
 );
 ```
 
+A column can also opt into a dropdown/multiselect picker instead of the default text input, via
+`filterConfig` (keyed by `headerKey`, same convention as `filterFunctions`):
+
+```tsx
+const filterFunctionsWithDropdown = {
+  ...filterFunctions,
+  STATUS: (item: TableNode<Item>, value: string | string[]) =>
+    Array.isArray(value) ? value.includes(item.status) : true,
+};
+
+<Table
+  data={{ nodes }}
+  filterFunctions={filterFunctionsWithDropdown}
+  filterConfig={{
+    STATUS: {
+      type: 'multiselect', // or 'dropdown' for a single value
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Inactive', value: 'inactive' },
+      ],
+    },
+  }}
+>
+  {/* ...same TableHeader/TableBody as above */}
+</Table>;
+```
+
 ### Table Multi-Column Sticky Pattern
 
 Freeze more than one leading column (e.g. an actions column plus an identifier column) while the
 remaining columns scroll horizontally underneath - use `columns` with explicit `width`s for the
-frozen columns so `stickyColumnWidths` lines up with what's actually rendered.
+frozen columns so `stickyColumnWidths` lines up with what's actually rendered. Trailing columns
+(e.g. a pinned `Actions` column on the right) freeze the same way via `trailingStickyColumnCount`/
+`trailingStickyColumnWidths` - the two sides are independent and composable.
 
 ```tsx
 import { Table, TableColumnConfig } from '@klear/klear360/components';
 
-type Item = { id: string; transactionId: string; companyName: string; vesselName: string };
+type Item = { id: string; transactionId: string; companyName: string; vesselName: string; actions: never };
 
 const columns: TableColumnConfig<Item>[] = [
   { key: 'transactionId', header: 'Transaction ID', render: (item) => item.transactionId, width: '150px' },
   { key: 'companyName', header: 'Company Name', render: (item) => item.companyName, width: '220px' },
   { key: 'vesselName', header: 'Vessel Name', render: (item) => item.vesselName, width: '220px' },
   // ...more scrolling columns
+  { key: 'actions', header: 'Actions', render: renderRowActions, width: '140px' },
 ];
 
 <Table
@@ -1102,17 +1203,31 @@ const columns: TableColumnConfig<Item>[] = [
   columns={columns}
   stickyColumnCount={2}
   stickyColumnWidths={['150px', '220px']}
+  trailingStickyColumnCount={1}
+  trailingStickyColumnWidths={['140px']}
 />;
 ```
 
 ### Table Grouping Pattern
 
 Hierarchical grouped data with automatic tree structure. Use for categorized data with parent-child relationships.
+Every group-header row (a `treeXLevel === 0` row with children) automatically gets an
+expand/collapse chevron - no extra JSX needed. By default every group starts expanded, matching
+the always-expanded look of a plain grouped table; pass `expandedRowIds`/`onExpandedRowIdsChange`
+to control which groups are expanded, or `defaultExpandedRowIds` to seed a different initial state.
 
 ```jsx
 const TableGroupingExample = () => {
+  const [expandedRowIds, setExpandedRowIds] = useState(['group-1']); // only this group starts open
+
   return (
-    <Table data={groupedData} isGrouped showBorderedCells>
+    <Table
+      data={groupedData}
+      isGrouped
+      showBorderedCells
+      expandedRowIds={expandedRowIds}
+      onExpandedRowIdsChange={setExpandedRowIds}
+    >
       {(tableData) => (
         <>
           <TableHeader>
@@ -1146,4 +1261,30 @@ const TableGroupingExample = () => {
     </Table>
   );
 };
+```
+
+### Table Grouped Multi-Row Header Pattern
+
+`TableHeader` can contain more than one `TableHeaderRow` - a group-label row (spanning leaf
+columns via `gridColumnStart`/`gridColumnEnd`) above the real leaf/column row. The LAST
+`TableHeaderRow` is always the leaf row - that's the one `sortFunctions`/`filterFunctions` keys
+and body columns line up with.
+
+```tsx
+<TableHeader>
+  <TableHeaderRow>
+    <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+      Shipment
+    </TableHeaderCell>
+    <TableHeaderCell gridColumnStart={3} gridColumnEnd={5}>
+      Financials
+    </TableHeaderCell>
+  </TableHeaderRow>
+  <TableHeaderRow>
+    <TableHeaderCell>ID</TableHeaderCell>
+    <TableHeaderCell>Status</TableHeaderCell>
+    <TableHeaderCell>Amount</TableHeaderCell>
+    <TableHeaderCell>Currency</TableHeaderCell>
+  </TableHeaderRow>
+</TableHeader>
 ```

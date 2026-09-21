@@ -252,7 +252,7 @@ export const StickyColumns = (): React.ReactElement => {
 // this feature, so it gets its own dedicated example.
 const trailingActionsColumns: TableColumnConfig<TransactionTableItem>[] = [
   ...columns.filter((column) => column.key !== 'actions'),
-  columns.find((column) => column.key === 'actions') as TableColumnConfig<TransactionTableItem>,
+  columns.find((column) => column.key === 'actions')!,
 ];
 
 /**

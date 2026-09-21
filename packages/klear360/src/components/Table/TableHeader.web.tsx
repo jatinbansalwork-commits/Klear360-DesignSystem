@@ -323,7 +323,7 @@ const TableHeaderFilterRow = ({
                   size="small"
                   value={
                     typeof columnFilterValues[headerKey] === 'string'
-                      ? (columnFilterValues[headerKey] as string)
+                      ? columnFilterValues[headerKey]
                       : ''
                   }
                   onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
