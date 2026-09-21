@@ -3211,6 +3211,19 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
   width: 100%;
 }
 
+.c6.c6.c6.c6.c6 {
+  padding: 1px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+}
+
 .c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
   border-top: none;
 }
@@ -3445,19 +3458,6 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
   -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   z-index: 2;
-}
-
-.c6.c6.c6.c6.c6 {
-  padding: 1px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
 }
 
 .c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
@@ -13078,6 +13078,19 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   padding: 0;
 }
 
+.c6.c6.c6.c6.c6 {
+  padding: 1px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
+}
+
 .c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8.c8 tr:first-child th {
   border-top: none;
 }
@@ -13298,19 +13311,6 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
   -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
   z-index: 2;
-}
-
-.c6.c6.c6.c6.c6 {
-  padding: 1px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
-  animation: eoUyJr-450290765 960ms cubic-bezier(0.5,0,0.3,1.5) infinite;
 }
 
 .c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7.c7 {
@@ -14600,6 +14600,55 @@ exports[`<Table /> should render table with multi select 1`] = `
   transition-duration: 80ms;
 }
 
+.c10.c10.c10.c10.c10 {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  margin-left: 8px;
+}
+
+.c10.c10.c10.c10.c10 .content-container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10:focus-visible .content-container {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+}
+
+.c10.c10.c10.c10.c10 * {
+  -webkit-transition-property: color,fill;
+  transition-property: color,fill;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+}
+
+.c9.c9.c9.c9.c9 {
+  border-width: 0;
+  border-left-style: solid;
+  border-left-width: 1.5px;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
 .c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
   border-top: none;
 }
@@ -14885,55 +14934,6 @@ exports[`<Table /> should render table with multi select 1`] = `
 
 .c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
   overflow: auto !important;
-}
-
-.c10.c10.c10.c10.c10 {
-  padding: 0;
-  background-color: transparent;
-  outline: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 8px;
-  -webkit-transition-property: box-shadow;
-  transition-property: box-shadow;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  margin-left: 8px;
-}
-
-.c10.c10.c10.c10.c10 .content-container {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  border-radius: 4px;
-}
-
-.c10.c10.c10.c10.c10:focus-visible .content-container {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-}
-
-.c10.c10.c10.c10.c10 * {
-  -webkit-transition-property: color,fill;
-  transition-property: color,fill;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-}
-
-.c9.c9.c9.c9.c9 {
-  border-width: 0;
-  border-left-style: solid;
-  border-left-width: 1.5px;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
 }
 
 .c4.c4.c4.c4.c4 {
@@ -17362,6 +17362,55 @@ exports[`<Table /> should render table with multi select 2`] = `
   transition-duration: 80ms;
 }
 
+.c10.c10.c10.c10.c10 {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+  margin-left: 8px;
+}
+
+.c10.c10.c10.c10.c10 .content-container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 4px;
+}
+
+.c10.c10.c10.c10.c10:focus-visible .content-container {
+  outline: 4px solid hsla(198,100%,18%,0.18);
+  outline-offset: 1px;
+}
+
+.c10.c10.c10.c10.c10 * {
+  -webkit-transition-property: color,fill;
+  transition-property: color,fill;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  -webkit-transition-duration: 80ms;
+  transition-duration: 80ms;
+}
+
+.c9.c9.c9.c9.c9 {
+  border-width: 0;
+  border-left-style: solid;
+  border-left-width: 1.5px;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
 .c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14.c14 tr:first-child th {
   border-top: none;
 }
@@ -17647,55 +17696,6 @@ exports[`<Table /> should render table with multi select 2`] = `
 
 .c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13.c13 {
   overflow: auto !important;
-}
-
-.c10.c10.c10.c10.c10 {
-  padding: 0;
-  background-color: transparent;
-  outline: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 8px;
-  -webkit-transition-property: box-shadow;
-  transition-property: box-shadow;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  margin-left: 8px;
-}
-
-.c10.c10.c10.c10.c10 .content-container {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  border-radius: 4px;
-}
-
-.c10.c10.c10.c10.c10:focus-visible .content-container {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-}
-
-.c10.c10.c10.c10.c10 * {
-  -webkit-transition-property: color,fill;
-  transition-property: color,fill;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-}
-
-.c9.c9.c9.c9.c9 {
-  border-width: 0;
-  border-left-style: solid;
-  border-left-width: 1.5px;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
 }
 
 .c4.c4.c4.c4.c4 {

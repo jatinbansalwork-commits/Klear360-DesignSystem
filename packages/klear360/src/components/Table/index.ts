@@ -7,6 +7,7 @@ export { TableToolbar, TableToolbarActions, TableToolbarSearch } from './TableTo
 export type {
   TableProps,
   TableColumnConfig,
+  TableColumnFilterConfig,
   TableBodyProps,
   TableCellProps,
   TableData,

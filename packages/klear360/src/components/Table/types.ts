@@ -183,6 +183,21 @@ type TableColumnConfig<Item> = {
   sortable?: boolean;
 };
 
+/**
+ * Configures a filterable column (see `TableProps['filterFunctions']`) to render a dropdown or
+ * multiselect picker in its header instead of the default text input.
+ */
+type TableColumnFilterConfig = {
+  /**
+   * `'dropdown'` allows a single selected option; `'multiselect'` allows any number.
+   */
+  type: 'dropdown' | 'multiselect';
+  /**
+   * The options offered in the picker.
+   */
+  options: { label: string; value: string }[];
+};
+
 type TableChildrenProps<Item> =
   | {
       /**
@@ -420,28 +435,44 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    * Per-row predicate for a filterable column, keyed by `headerKey`. Return `true` to keep the
    * row. A column becomes filterable purely by having its `headerKey` present here — mirrors how
    * `sortFunctions` makes a column sortable. Table renders a compact search input in that
-   * column's header (below the sortable header row) automatically, with no extra JSX needed.
+   * column's header (below the sortable header row) automatically, with no extra JSX needed - or,
+   * for a column also present in `filterConfig`, a dropdown/multiselect picker instead.
+   *
+   * The filter value passed to the predicate is a plain `string` for ordinary (text) filterable
+   * columns, or `string[]` for a column configured via `filterConfig` (the selected option
+   * values).
    *
    * The same predicate is reused for `globalFilterValue`: a row matches the global filter if
    * *any* filterable column's predicate matches it. Column filters combine with AND (a row must
    * satisfy every active column filter); the global filter then narrows further with OR across
    * all filterable columns.
    **/
-  filterFunctions?: Record<string, (item: TableNode<Item>, filterValue: string) => boolean>;
+  filterFunctions?: Record<
+    string,
+    (item: TableNode<Item>, filterValue: string | string[]) => boolean
+  >;
   /**
-   * Values for each active column filter, keyed by `headerKey`. Passing this prop makes column
-   * filtering controlled - Table will not manage this state on its own.
+   * Renders a dropdown (single-select) or multiselect picker in a filterable column's header,
+   * instead of the default text input - keyed by `headerKey`, same convention as
+   * `filterFunctions`. The column must also have a matching entry in `filterFunctions` to
+   * actually filter rows; this only controls which input renders.
    **/
-  columnFilterValues?: Record<string, string>;
+  filterConfig?: Record<string, TableColumnFilterConfig>;
+  /**
+   * Values for each active column filter, keyed by `headerKey`. A plain `string` for ordinary
+   * (text) filterable columns, or `string[]` for a column configured via `filterConfig`. Passing
+   * this prop makes column filtering controlled - Table will not manage this state on its own.
+   **/
+  columnFilterValues?: Record<string, string | string[]>;
   /**
    * Seeds the column filter values on mount (uncontrolled). Ignored if `columnFilterValues` is
    * also passed.
    **/
-  defaultColumnFilterValues?: Record<string, string>;
+  defaultColumnFilterValues?: Record<string, string | string[]>;
   /**
    * Called whenever a column filter's value changes, with the full updated map.
    **/
-  onColumnFilterValuesChange?: (values: Record<string, string>) => void;
+  onColumnFilterValuesChange?: (values: Record<string, string | string[]>) => void;
   /**
    * Value of the global search - checked against every filterable column via its
    * `filterFunctions` predicate. Passing this prop makes it controlled.
@@ -895,6 +926,7 @@ type VirtualizedWrapperProps = {
 export type {
   TableProps,
   TableColumnConfig,
+  TableColumnFilterConfig,
   Identifier,
   TableNode,
   TableData,

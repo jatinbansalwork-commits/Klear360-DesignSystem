@@ -10,6 +10,7 @@ import type {
   TableBackgroundColors,
   TableProps,
   TableToolbarPlacement,
+  TableColumnFilterConfig,
 } from './types';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
@@ -28,6 +29,9 @@ import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { BaseInput } from '~components/Input/BaseInput';
 import { CloseIcon, SearchIcon } from '~components/Icons';
 import { IconButton } from '~components/Button/IconButton';
+import { Dropdown, DropdownOverlay } from '~components/Dropdown';
+import { SelectInput } from '~components/Input/DropdownInputTriggers';
+import { ActionList, ActionListItem } from '~components/ActionList';
 
 const SortButton = styled.button(({ theme }) => ({
   cursor: 'pointer',
@@ -205,10 +209,56 @@ const getHeaderCellsMeta = (
 };
 
 /**
+ * Renders a filterable column's dropdown/multiselect picker (see `TableProps['filterConfig']`),
+ * in place of the default text input - same composition `TableEditableDropdownCell` already uses
+ * for body cells (`Dropdown` + `DropdownOverlay` + `ActionList`), just driven by the column's
+ * `filterConfig.options` instead of consumer-authored `ActionListItem`s, and controlled by the
+ * filter row's own `columnFilterValues` state instead of being uncontrolled.
+ */
+const TableHeaderFilterDropdownCell = ({
+  headerKey,
+  config,
+  value,
+  labelText,
+  onChange,
+}: {
+  headerKey: string;
+  config: TableColumnFilterConfig;
+  value: string | string[] | undefined;
+  labelText: string;
+  onChange: (value: string | string[]) => void;
+}): React.ReactElement => {
+  const isMultiselect = config.type === 'multiselect';
+  return (
+    <BaseBox flex={1} marginX="spacing.2">
+      <Dropdown selectionType={isMultiselect ? 'multiple' : 'single'} _width="100%">
+        <SelectInput
+          testID={`table-header-filter-${headerKey}`}
+          size="small"
+          value={value ?? (isMultiselect ? [] : '')}
+          onChange={({ values }) => onChange(isMultiselect ? values : values[0] ?? '')}
+          placeholder={`Filter ${labelText}`}
+          accessibilityLabel={`Filter by ${labelText}`}
+        />
+        <DropdownOverlay>
+          <ActionList>
+            {config.options.map((option) => (
+              <ActionListItem key={option.value} title={option.label} value={option.value} />
+            ))}
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>
+    </BaseBox>
+  );
+};
+
+/**
  * Auto-injected second header row rendering a compact search input for every column whose
  * `headerKey` is present in `filterFunctions` (see `TableProps['filterFunctions']`) - no extra
- * JSX required from consumers. Non-filterable columns (and the leading checkbox / trailing
- * hover-actions columns, when present) render as empty cells purely to keep grid alignment.
+ * JSX required from consumers. A column also present in `filterConfig` renders a dropdown/
+ * multiselect picker (see `TableHeaderFilterDropdownCell`) instead. Non-filterable columns (and
+ * the leading checkbox / trailing hover-actions columns, when present) render as empty cells
+ * purely to keep grid alignment.
  */
 const TableHeaderFilterRow = ({
   headerRow,
@@ -219,6 +269,7 @@ const TableHeaderFilterRow = ({
     filterableColumns,
     columnFilterValues,
     setColumnFilterValue,
+    filterConfig,
     backgroundColor,
     selectionType,
     hasHoverActions,
@@ -253,7 +304,15 @@ const TableHeaderFilterRow = ({
             role={isFilterable ? undefined : 'presentation'}
             $backgroundColor={backgroundColor}
           >
-            {isFilterable && headerKey ? (
+            {isFilterable && headerKey && filterConfig[headerKey] ? (
+              <TableHeaderFilterDropdownCell
+                headerKey={headerKey}
+                config={filterConfig[headerKey]}
+                value={columnFilterValues[headerKey]}
+                labelText={labelText}
+                onChange={(value) => setColumnFilterValue(headerKey, value)}
+              />
+            ) : isFilterable && headerKey ? (
               // Flush/borderless input filling the cell edge-to-edge (`isTableInputCell`), same
               // treatment as TableEditableCell's body-row inputs - the cell's own `:focus-within`
               // (see StyledFilterHeaderCell) shows the ring instead of the input itself.
@@ -262,7 +321,11 @@ const TableHeaderFilterRow = ({
                   isTableInputCell
                   id={`table-header-filter-${headerKey}`}
                   size="small"
-                  value={columnFilterValues[headerKey] ?? ''}
+                  value={
+                    typeof columnFilterValues[headerKey] === 'string'
+                      ? (columnFilterValues[headerKey] as string)
+                      : ''
+                  }
                   onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
                   placeholder={`Filter ${labelText}`}
                   accessibilityLabel={`Filter by ${labelText}`}

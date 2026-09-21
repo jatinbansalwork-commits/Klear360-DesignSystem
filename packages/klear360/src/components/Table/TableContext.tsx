@@ -10,6 +10,7 @@ import type {
   TableNode as LocalTableNode,
   TableToolbarPlacement,
   TableSortOrderEntry,
+  TableColumnFilterConfig,
 } from './types';
 
 export type TableContextType<Item> = {
@@ -66,10 +67,12 @@ export type TableContextType<Item> = {
   checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
   globalFilterValue: string;
   setGlobalFilterValue: (value: string) => void;
-  columnFilterValues: Record<string, string>;
-  setColumnFilterValue: (key: string, value: string) => void;
+  columnFilterValues: Record<string, string | string[]>;
+  setColumnFilterValue: (key: string, value: string | string[]) => void;
   /** headerKeys present in `filterFunctions` — mirrors `currentSortedState.sortableColumns`. */
   filterableColumns: string[];
+  /** @see TableProps['filterConfig'] */
+  filterConfig: Record<string, TableColumnFilterConfig>;
 };
 
 const TableContext = React.createContext<TableContextType<unknown>>({
@@ -113,6 +116,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   columnFilterValues: {},
   setColumnFilterValue: () => {},
   filterableColumns: [],
+  filterConfig: {},
 });
 
 const useTableContext = <Item,>(): TableContextType<Item> => {

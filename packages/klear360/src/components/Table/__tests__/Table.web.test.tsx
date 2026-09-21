@@ -2139,11 +2139,14 @@ describe('<Table />', () => {
   });
 
   describe('filtering', () => {
+    const asString = (value: string | string[]): string => (typeof value === 'string' ? value : '');
     const filterFunctions = {
-      STATUS: (item: Item, value: string) =>
-        item.status.toLowerCase().includes(value.toLowerCase()),
-      NAME: (item: Item, value: string) => item.name.toLowerCase().includes(value.toLowerCase()),
-      AMOUNT: (item: Item, value: string) => item.amount.toString().includes(value),
+      STATUS: (item: Item, value: string | string[]) =>
+        item.status.toLowerCase().includes(asString(value).toLowerCase()),
+      NAME: (item: Item, value: string | string[]) =>
+        item.name.toLowerCase().includes(asString(value).toLowerCase()),
+      AMOUNT: (item: Item, value: string | string[]) =>
+        item.amount.toString().includes(asString(value)),
     };
 
     const renderFilterableTable = (
@@ -2325,6 +2328,87 @@ describe('<Table />', () => {
       // Controlled - typing in the (now-uncontrolled-looking) filter input shouldn't be needed;
       // this just confirms the input reflects the controlled value.
       expect(getByRole('textbox', { name: 'Filter by Status' })).toHaveValue('pending');
+    });
+
+    const statusFilterConfig = {
+      STATUS: {
+        type: 'dropdown' as const,
+        options: [
+          { label: 'Pending', value: 'pending' },
+          { label: 'Failed', value: 'failed' },
+          { label: 'Completed', value: 'completed' },
+        ],
+      },
+    };
+
+    it('renders a dropdown picker (not a text input) for a column present in filterConfig', () => {
+      const { getByRole, queryByRole } = renderFilterableTable({
+        filterConfig: statusFilterConfig,
+      });
+
+      expect(getByRole('combobox', { name: 'Filter by Status' })).toBeInTheDocument();
+      expect(queryByRole('textbox', { name: 'Filter by Status' })).not.toBeInTheDocument();
+      // The other filterable columns (no filterConfig entry) keep the plain text input.
+      expect(getByRole('textbox', { name: 'Filter by Name' })).toBeInTheDocument();
+    });
+
+    // Driving the dropdown open (click -> select an option) goes through `@floating-ui/react`'s
+    // `autoUpdate` positioning, which never settles under jsdom (zero-sized layout rects) - a
+    // pre-existing limitation of this test environment, not specific to Table (the same happens
+    // for any Dropdown/ActionList interaction test here). These two tests instead drive the
+    // dropdown/multiselect filter the same way the text-filter "controlled component" test above
+    // does: via the controlled `columnFilterValues` prop - which still exercises the real
+    // filtering logic (string vs. string[] handling in `applyFilters`) end-to-end.
+    // `nodes.slice(0, 5)` (ids 1-5) has repeating names (e.g. two "John Doe" rows, ids 1 and 5,
+    // with different statuses) - `amount` is the only field unique per row in this slice, so
+    // assertions below key off it rather than `name`.
+    it('a controlled string columnFilterValues filters rows for a dropdown-type column', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: statusFilterConfig,
+        columnFilterValues: { STATUS: 'completed' },
+      });
+
+      expect(queryByText('300')).toBeInTheDocument(); // id 4, completed
+      expect(queryByText('200')).toBeInTheDocument(); // id 5, completed
+      expect(queryByText('100')).not.toBeInTheDocument(); // id 1, pending
+      expect(queryByText('120')).not.toBeInTheDocument(); // id 3, failed
+    });
+
+    it('a controlled string[] columnFilterValues filters rows for a multiselect-type column', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        filterFunctions: {
+          ...filterFunctions,
+          STATUS: (item: Item, value: string | string[]) =>
+            Array.isArray(value) ? value.includes(item.status) : true,
+        },
+        columnFilterValues: { STATUS: ['pending', 'completed'] },
+      });
+
+      expect(queryByText('100')).toBeInTheDocument(); // id 1, pending
+      expect(queryByText('300')).toBeInTheDocument(); // id 4, completed
+      expect(queryByText('120')).not.toBeInTheDocument(); // id 3, failed
+    });
+
+    it('treats an empty selected-values array as no active filter (not "match nothing")', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        filterFunctions: {
+          ...filterFunctions,
+          STATUS: (item: Item, value: string | string[]) =>
+            Array.isArray(value) ? value.includes(item.status) : true,
+        },
+        columnFilterValues: { STATUS: [] },
+      });
+
+      // An empty selection means the filter isn't active - all 5 rows should still show.
+      expect(queryByText('100')).toBeInTheDocument();
+      expect(queryByText('120')).toBeInTheDocument();
+      expect(queryByText('300')).toBeInTheDocument();
     });
 
     it('filtering composes with sorting (filter first, then sort the remaining rows)', async () => {

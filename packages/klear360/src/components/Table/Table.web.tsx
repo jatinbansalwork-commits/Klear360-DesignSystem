@@ -219,6 +219,7 @@ const _Table = <Item,>({
   onExpandedRowIdsChange,
   checkboxDisplay = 'always',
   filterFunctions,
+  filterConfig = {},
   columnFilterValues: columnFilterValuesProp,
   defaultColumnFilterValues = {},
   onColumnFilterValuesChange,
@@ -294,12 +295,12 @@ const _Table = <Item,>({
   );
 
   const [internalColumnFilterValues, setInternalColumnFilterValues] = React.useState<
-    Record<string, string>
+    Record<string, string | string[]>
   >(defaultColumnFilterValues);
   const columnFilterValues = columnFilterValuesProp ?? internalColumnFilterValues;
 
   const setColumnFilterValue = useCallback(
-    (key: string, value: string): void => {
+    (key: string, value: string | string[]): void => {
       const nextValues = { ...columnFilterValues, [key]: value };
       if (columnFilterValuesProp === undefined) {
         setInternalColumnFilterValues(nextValues);
@@ -312,7 +313,10 @@ const _Table = <Item,>({
   const filterableColumns = useMemo(() => Object.keys(filterFunctions ?? {}), [filterFunctions]);
 
   const activeColumnFilters = useMemo(
-    () => Object.entries(columnFilterValues).filter(([, value]) => Boolean(value)),
+    () =>
+      Object.entries(columnFilterValues).filter(([, value]) =>
+        Array.isArray(value) ? value.length > 0 : Boolean(value),
+      ),
     [columnFilterValues],
   );
 
@@ -926,6 +930,7 @@ const _Table = <Item,>({
       columnFilterValues,
       setColumnFilterValue,
       filterableColumns,
+      filterConfig,
     }),
     [
       selectionType,
@@ -966,6 +971,7 @@ const _Table = <Item,>({
       columnFilterValues,
       setColumnFilterValue,
       filterableColumns,
+      filterConfig,
     ],
   );
 

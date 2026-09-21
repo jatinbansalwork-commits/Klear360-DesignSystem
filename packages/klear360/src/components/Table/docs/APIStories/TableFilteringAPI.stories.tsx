@@ -119,3 +119,71 @@ const FilteringTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
 export const TableFiltering = FilteringTemplate.bind({});
 // Need to do this because of storybook's weird naming convention, More details here: https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy#single-story-hoisting
 TableFiltering.storyName = 'TableFiltering';
+
+const transactionStateOptions = [
+  { label: 'Sent', value: 'SENT' },
+  { label: 'In Process', value: 'IN PROCESS' },
+  { label: 'Rejected', value: 'REJECTED' },
+  { label: 'New', value: 'NEW' },
+  { label: 'Retransmit', value: 'RETRANSMIT' },
+  { label: 'Accepted', value: 'ACCEPTED' },
+];
+
+/**
+ * `filterConfig` renders a dropdown/multiselect picker instead of the default text input, for
+ * any column also opted into `filterFunctions` (here, `TRANSACTION_STATE` picks a single value;
+ * `COMPANY_NAME` and `VESSEL_NAME` keep their plain text inputs since they're absent from
+ * `filterConfig`).
+ */
+export const TableFilteringWithDropdown: StoryFn<typeof TableComponent> = () => {
+  return (
+    <Box
+      backgroundColor="surface.background.gray.intense"
+      padding="spacing.5"
+      overflow="auto"
+      minHeight="400px"
+    >
+      <TableComponent
+        height="400px"
+        data={data}
+        filterFunctions={filterFunctions}
+        filterConfig={{
+          TRANSACTION_STATE: { type: 'dropdown', options: transactionStateOptions },
+        }}
+        onColumnFilterValuesChange={action('onColumnFilterValuesChange')}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="VESSEL_NAME">Vessel Name</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow key={index} item={tableItem}>
+                  <TableCell>
+                    <Code size="medium">{tableItem.transactionId}</Code>
+                  </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </TableComponent>
+    </Box>
+  );
+};
