@@ -1753,6 +1753,84 @@ describe('<Table />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('should render table with a grouped multi-row header', () => {
+    const { container, getAllByRole } = renderWithTheme(
+      <Table data={{ nodes: spanningNodes }} showBorderedCells>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+                  Transaction
+                </TableHeaderCell>
+                <TableHeaderCell gridColumnStart={3} gridColumnEnd={4}>
+                  Amount
+                </TableHeaderCell>
+              </TableHeaderRow>
+              <TableHeaderRow>
+                <TableHeaderCell headerKey="merchant">Merchant</TableHeaderCell>
+                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>{item.merchant}</TableCell>
+                  <TableCell>{item.method}</TableCell>
+                  <TableCell>{item.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    // `columnCount` (and everything derived from it, e.g. body cell count) must come from the
+    // LEAF row (3 columns), not the group row (2 columns) - each body row should still render
+    // exactly 3 cells.
+    expect(getAllByRole('cell')).toHaveLength(spanningNodes.length * 3);
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders exactly one "select all" checkbox in a grouped multi-row header with multi-select', () => {
+    const { getAllByRole } = renderWithTheme(
+      <Table data={{ nodes: spanningNodes }} selectionType="multiple" showBorderedCells>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+                  Transaction
+                </TableHeaderCell>
+                <TableHeaderCell gridColumnStart={3} gridColumnEnd={4}>
+                  Amount
+                </TableHeaderCell>
+              </TableHeaderRow>
+              <TableHeaderRow>
+                <TableHeaderCell>Merchant</TableHeaderCell>
+                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>{item.merchant}</TableCell>
+                  <TableCell>{item.method}</TableCell>
+                  <TableCell>{item.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    expect(getAllByRole('checkbox', { name: 'Select all rows' })).toHaveLength(1);
+  });
+
   it('should render table with footer spanning', () => {
     const { container } = renderWithTheme(
       <Table data={{ nodes: spanningNodes }} showBorderedCells>

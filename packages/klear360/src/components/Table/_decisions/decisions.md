@@ -770,6 +770,24 @@ Indentation remains disabled (flat appearance, `treeYLevel: undefined`) - unchan
 
 Built on `@table-library/react-table-library`'s existing `useTree` (already used for grouped/tree-aware selection) - previously wired with `clickType: undefined` and a forced `onToggleAll` on mount to keep every group permanently expanded, since expand/collapse wasn't yet a supported feature. Real toggling reuses the same `state`/`onChange`/manual-`fns` pattern already used for row selection's `rowSelectConfig` in this file, with `TreeExpandClickTypes.ButtonClick` opting out of the library's own row-click auto-wiring (toggling is done manually via the chevron's `onClick`, exactly like `SelectClickTypes` is already handled for selection).
 
+# Grouped Multi-Row Column Headers
+
+Real usage groups related leaf columns under a shared label spanning multiple columns (e.g. "Shipment" over `ID`/`Status`, "Financials" over `Amount`/`Currency`) - a second, higher-level header row above the normal column header row.
+
+## API design
+
+No new props - `TableHeader` simply accepts more than one `TableHeaderRow` child instead of exactly one. By convention **the last `TableHeaderRow` is always the leaf/column row** (the one that lines up 1:1 with body columns and with `sortFunctions`/`filterFunctions` keys); any row(s) before it are group-label rows, whose cells use the already-existing `gridColumnStart`/`gridColumnEnd` (`TableCellGridSpanningProps`, previously only demonstrated for single-row header/body spanning - see `TableSpanning.stories.tsx`) to span the leaf columns they group. No `gridRowStart`/`gridRowEnd` is needed on either row - the table's cells already share one continuous CSS grid across every row in the table (headers, body, and footer alike, per the existing row-spanning support), so a second `TableHeaderRow` simply auto-places into the next grid row the same way a second body row would.
+
+## Implementation
+
+The two internal spots that previously assumed exactly one `TableHeaderRow` - `getTableHeaderCellCount` (`Table.web.tsx`, derives `columnCount`/`gridTemplateColumns`) and `getHeaderCellsMeta` (`TableHeader.web.tsx`, backs the auto-injected filter row) - now both explicitly resolve the **last** `TableHeaderRow` among `TableHeader`'s children instead of implicitly taking the first (or only) one, so they keep reading the real leaf columns regardless of how many group rows precede it.
+
+`TableHeader` decorates each row (internal-only props, not part of the public API) with whether it's the leaf row and its stacked sticky-`top` offset (a fixed 36px per row, matching the header's already-fixed compact row height) so `isHeaderSticky` continues to work correctly with a multi-row header - each row's cells stick below the row(s) above them instead of overlapping at `top: 0`. The multi-select "select all" checkbox and the hover-actions column placeholder are likewise rendered only on the leaf row (an empty alignment spacer takes their place on group-label rows) so they aren't duplicated once per header row.
+
+## Out of scope (within this change)
+
+- The auto-injected filter row's own sticky offset isn't adjusted for a preceding group row - combining grouped headers with both `isHeaderSticky` and column filtering at once is a narrower combination left for a future pass if real usage needs it.
+
 # Virtualization
 
 Virtaulized table is a table component that renders only the visible rows and columns. This is useful when you have a large dataset and you want to render only the visible rows and columns to improve the performance of the table.

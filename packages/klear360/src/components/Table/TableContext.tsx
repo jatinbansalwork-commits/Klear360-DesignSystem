@@ -49,6 +49,8 @@ export type TableContextType<Item> = {
   headerRowDensity?: TableHeaderRowProps['rowDensity'];
   setHeaderRowDensity: React.Dispatch<React.SetStateAction<TableHeaderRowProps['rowDensity']>>;
   showBorderedCells: NonNullable<TableProps<unknown>['showBorderedCells']>;
+  /** Whether the header is currently rendered sticky (see `TableProps['isHeaderSticky']`, and sticky columns which force it on too). */
+  shouldHeaderBeSticky: boolean;
   hasHoverActions: boolean;
   setHasHoverActions: (hasHoverActions: boolean) => void;
   multiSelectTrigger?: TableProps<unknown>['multiSelectTrigger'];
@@ -93,6 +95,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   backgroundColor: 'surface.background.gray.intense',
   setHeaderRowDensity: () => {},
   showBorderedCells: true,
+  shouldHeaderBeSticky: false,
   hasHoverActions: false,
   setHasHoverActions: () => {},
   multiSelectTrigger: 'row',

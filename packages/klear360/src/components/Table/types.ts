@@ -97,6 +97,22 @@ type TableHeaderRowProps = {
    * The header row is now always compact (36px height) regardless of this prop value.
    **/
   rowDensity?: TableProps<unknown>['rowDensity'];
+  /**
+   * Set internally by `TableHeader` when it contains more than one `TableHeaderRow` (grouped
+   * multi-row headers) - `false` on every row except the last, which is always the leaf/column
+   * row. Not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _isLeafHeaderRow?: boolean;
+  /**
+   * Set internally by `TableHeader` for grouped multi-row headers - this row's distance in pixels
+   * from the top of the header, so its cells' sticky `top` (when `Table`'s `isHeaderSticky` is
+   * set) stacks below the row(s) above it instead of overlapping them.
+   *
+   * @private
+   */
+  _stickyTopOffsetPx?: number;
 } & DataAnalyticsAttribute;
 
 type TableHeaderCellProps = {
@@ -121,6 +137,13 @@ type TableHeaderCellProps = {
   textAlign?: 'left' | 'center' | 'right';
 
   _hasPadding?: boolean;
+  /**
+   * Set internally by `TableHeaderRow` for grouped multi-row headers, mirroring
+   * `TableHeaderRowProps['_stickyTopOffsetPx']`. Not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _stickyTopOffsetPx?: number;
 } & TableCellGridSpanningProps &
   DataAnalyticsAttribute;
 

@@ -67,6 +67,12 @@ const rowSelectType: Record<
 // Get the number of TableHeaderCell components.
 // This is very complicated but the only way to iterate through the structure and get number of header cells.
 // Assuming number of header cells is the same as number of columns
+//
+// `TableHeader` may contain more than one `TableHeaderRow` (grouped multi-row headers - earlier
+// rows are group-label rows spanning leaf columns via `gridColumnStart`/`gridColumnEnd`). By
+// convention the LAST `TableHeaderRow` is always the leaf/column row that lines up 1:1 with body
+// columns, so that's the one counted here - not the first, which would undercount/miscount when a
+// group row precedes it.
 const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): number => {
   const tableRootComponent = children([]);
   if (tableRootComponent && React.isValidElement(tableRootComponent)) {
@@ -81,11 +87,12 @@ const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): nu
       const tableHeaderChildrenArray = React.isValidElement(tableHeader)
         ? React.Children.toArray(tableHeader.props.children)
         : null;
-      const tableHeaderRow = tableHeaderChildrenArray?.find(
+      const tableHeaderRows = tableHeaderChildrenArray?.filter(
         (child) => getComponentId(child) === ComponentIds.TableHeaderRow,
       );
-      const tableHeaderRowChildrenArray = React.isValidElement(tableHeaderRow)
-        ? React.Children.toArray(tableHeaderRow.props.children)
+      const leafTableHeaderRow = tableHeaderRows?.[tableHeaderRows.length - 1];
+      const tableHeaderRowChildrenArray = React.isValidElement(leafTableHeaderRow)
+        ? React.Children.toArray(leafTableHeaderRow.props.children)
         : null;
       const tableHeaderCells = tableHeaderRowChildrenArray
         ? tableHeaderRowChildrenArray.filter(
@@ -898,6 +905,7 @@ const _Table = <Item,>({
       headerRowDensity,
       setHeaderRowDensity,
       showBorderedCells,
+      shouldHeaderBeSticky,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
@@ -943,6 +951,7 @@ const _Table = <Item,>({
       headerRowDensity,
       setHeaderRowDensity,
       showBorderedCells,
+      shouldHeaderBeSticky,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
