@@ -57,6 +57,8 @@ export type TableContextType<Item> = {
   isVirtualized?: boolean;
   tableData: LocalTableNode<Item>[];
   isGrouped: boolean;
+  expandedRowIds: TableNode['id'][];
+  toggleRowExpansionById: (id: TableNode['id']) => void;
   tableToolbarPlacement: TableToolbarPlacement;
   /** @see TableProps['checkboxDisplay'] */
   checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
@@ -99,6 +101,8 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   isVirtualized: false,
   tableData: [],
   isGrouped: false,
+  expandedRowIds: [],
+  toggleRowExpansionById: () => {},
   tableToolbarPlacement: 'inline',
   checkboxDisplay: 'always',
   globalFilterValue: '',

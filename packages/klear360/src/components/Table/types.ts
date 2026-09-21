@@ -255,6 +255,27 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    **/
   stickyColumnWidths?: string[];
   /**
+   * The isLastColumnSticky prop determines whether the last column is sticky or not.
+   * The default value is `false`. Equivalent to `trailingStickyColumnCount={1}`.
+   **/
+  isLastColumnSticky?: boolean;
+  /**
+   * Number of trailing columns (right to left, before any hover-actions column) to freeze while
+   * the rest of the table scrolls horizontally. `isLastColumnSticky` is shorthand for
+   * `trailingStickyColumnCount={1}` and needs no `trailingStickyColumnWidths`. Freezing more than
+   * one column requires `trailingStickyColumnWidths`, since the sticky offsets are computed from
+   * known widths rather than measured at render time.
+   * @default isLastColumnSticky ? 1 : 0
+   **/
+  trailingStickyColumnCount?: number;
+  /**
+   * Explicit pixel width (e.g. `'160px'`) for each of the trailing `trailingStickyColumnCount`
+   * columns, in left-to-right order. Required when `trailingStickyColumnCount` is greater than
+   * `1`. Pair these with matching `width`s on the same columns (via the `columns` config's
+   * `width` or `gridTemplateColumns`) so the sticky offsets line up with what's actually rendered.
+   **/
+  trailingStickyColumnWidths?: string[];
+  /**
    * The rowDensity prop determines the density of the table.
    * The rowDensity prop can be 'compact', 'normal', or'comfortable'.
    * The default value is `normal`.
@@ -342,6 +363,23 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    * The default value is `false`.
    **/
   isGrouped?: boolean;
+  /**
+   * Ids of the group-header rows (parent rows with children, see `isGrouped`) that are currently
+   * expanded. Passing this prop makes row expansion controlled - Table will not manage this state
+   * on its own.
+   **/
+  expandedRowIds?: Identifier[];
+  /**
+   * Seeds the expanded row ids on mount (uncontrolled). Ignored if `expandedRowIds` is also
+   * passed.
+   * @default every group-header row id (all groups start expanded)
+   **/
+  defaultExpandedRowIds?: Identifier[];
+  /**
+   * Called whenever a group-header row is expanded or collapsed, with the full updated list of
+   * expanded row ids.
+   **/
+  onExpandedRowIdsChange?: (ids: Identifier[]) => void;
   /**
    * Controls when the row-level selection checkbox is visible.
    *
@@ -487,6 +525,20 @@ type TableCellProps = {
    * @private
    */
   _hasPadding?: boolean;
+  /**
+   * Renders the row-expansion chevron before this cell's content. Set internally by `TableRow` on
+   * its first cell child when the row is a group header (see `TableProps['isGrouped']` /
+   * `expandedRowIds`) - not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _isGroupExpandCell?: boolean;
+  /**
+   * The id of the group-header row this cell belongs to, passed alongside `_isGroupExpandCell`.
+   *
+   * @private
+   */
+  _groupRowId?: Identifier;
   /**
    * The backgroundColor prop determines the background color of the table cell.
    * The default value is `transparent`.

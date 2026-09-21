@@ -712,6 +712,139 @@ describe('<Table />', () => {
     window.matchMedia = originalMatchMedia;
   });
 
+  it('should render table with a trailing sticky column', () => {
+    const { getByText } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }} isLastColumnSticky>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const lastBodyCell = getByText(String(nodes[0].amount)).closest('td');
+    expect(lastBodyCell).toHaveStyle({ position: 'sticky', right: '0px' });
+  });
+
+  it('should render table with both leading and trailing sticky columns', () => {
+    const { getByText, getAllByText } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 3) }}
+        stickyColumnCount={1}
+        trailingStickyColumnCount={1}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Status</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                  <TableCell>{tableItem.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const firstBodyCell = getByText(nodes[0].paymentId).closest('td');
+    const lastBodyCell = getAllByText(nodes[0].status)[0].closest('td');
+    expect(firstBodyCell).toHaveStyle({ position: 'sticky', left: '0px' });
+    expect(lastBodyCell).toHaveStyle({ position: 'sticky', right: '0px' });
+  });
+
+  it('disables trailing sticky columns on mobile, same as leading sticky columns', () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (jest.fn((query: string) => ({
+      matches: query.includes('min-width: 320px') && query.includes('max-width: 479px'),
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })) as unknown) as typeof window.matchMedia;
+
+    const { getByText } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }} isLastColumnSticky>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const lastBodyCell = getByText(String(nodes[0].amount)).closest('td');
+    expect(lastBodyCell).not.toHaveStyle({ position: 'sticky' });
+
+    window.matchMedia = originalMatchMedia;
+  });
+
+  it('throws in dev mode when trailingStickyColumnCount > 1 without matching trailingStickyColumnWidths', () => {
+    expect(() =>
+      renderWithTheme(
+        <Table data={{ nodes: nodes.slice(0, 3) }} trailingStickyColumnCount={2}>
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Payment ID</TableHeaderCell>
+                  <TableHeaderCell>Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((tableItem, index) => (
+                  <TableRow item={tableItem} key={index}>
+                    <TableCell>{tableItem.paymentId}</TableCell>
+                    <TableCell>{tableItem.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      ),
+    ).toThrow('`trailingStickyColumnWidths` must provide a pixel width');
+  });
+
   it('should render table with sorting', () => {
     const onSortChange = jest.fn();
     const { getByLabelText, getAllByRole } = renderWithTheme(
@@ -1769,6 +1902,120 @@ describe('<Table />', () => {
     });
 
     expect(container).toMatchSnapshot();
+  });
+
+  const renderGroupedTable = (
+    props: Pick<
+      TableProps<typeof groupedNodes[number]>,
+      'selectionType' | 'onSelectionChange' | 'expandedRowIds' | 'onExpandedRowIdsChange'
+    > = {},
+  ): RenderResult =>
+    renderWithTheme(
+      <Table data={{ nodes: groupedNodes }} isGrouped {...props}>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Name</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell
+                    gridColumnStart={item.treeXLevel === 0 ? 1 : undefined}
+                    gridColumnEnd={item.treeXLevel === 0 ? 3 : undefined}
+                  >
+                    {item.name}
+                  </TableCell>
+                  {item.treeXLevel !== 0 && <TableCell>{item.amount}</TableCell>}
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+  it('renders every group expanded by default (uncontrolled, no defaultExpandedRowIds)', () => {
+    const { getByText } = renderGroupedTable();
+
+    expect(getByText('Child 1-1')).toBeInTheDocument();
+    expect(getByText('Child 1-2')).toBeInTheDocument();
+    expect(getByText('Child 2-1')).toBeInTheDocument();
+  });
+
+  it('collapses/expands a group on chevron click (uncontrolled)', async () => {
+    const user = userEvent.setup();
+    const { getByLabelText, queryByText } = renderGroupedTable();
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(queryByText('Child 1-1')).not.toBeInTheDocument();
+    expect(queryByText('Child 1-2')).not.toBeInTheDocument();
+    // Untouched group stays expanded.
+    expect(queryByText('Child 2-1')).toBeInTheDocument();
+
+    await user.click(getByLabelText('Expand row group1'));
+    expect(queryByText('Child 1-1')).toBeInTheDocument();
+    expect(queryByText('Child 1-2')).toBeInTheDocument();
+  });
+
+  it('supports controlled expandedRowIds via onExpandedRowIdsChange', async () => {
+    const onExpandedRowIdsChange = jest.fn();
+    const user = userEvent.setup();
+    const { getByLabelText, queryByText, rerender } = renderGroupedTable({
+      expandedRowIds: ['group1', 'group2'],
+      onExpandedRowIdsChange,
+    });
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(onExpandedRowIdsChange).toHaveBeenCalledWith(['group2']);
+
+    // Feeding the callback's value back in as `expandedRowIds` (the expected controlled usage)
+    // keeps the table in sync - e.g. across a re-render triggered by new `data`.
+    rerender(
+      withTheme(
+        <Table data={{ nodes: groupedNodes }} isGrouped expandedRowIds={['group2']}>
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Name</TableHeaderCell>
+                  <TableHeaderCell>Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item) => (
+                  <TableRow key={item.id} item={item}>
+                    <TableCell
+                      gridColumnStart={item.treeXLevel === 0 ? 1 : undefined}
+                      gridColumnEnd={item.treeXLevel === 0 ? 3 : undefined}
+                    >
+                      {item.name}
+                    </TableCell>
+                    {item.treeXLevel !== 0 && <TableCell>{item.amount}</TableCell>}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      ),
+    );
+    expect(queryByText('Child 1-1')).not.toBeInTheDocument();
+  });
+
+  it('does not trigger row selection when clicking the expand chevron', async () => {
+    const onSelectionChange = jest.fn();
+    const user = userEvent.setup();
+    const { getByLabelText } = renderGroupedTable({
+      selectionType: 'multiple',
+      onSelectionChange,
+    });
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(onSelectionChange).not.toHaveBeenCalled();
   });
 
   // Nesting Tests

@@ -9,7 +9,7 @@ import {
   SelectTypes,
   useRowSelect,
 } from '@table-library/react-table-library/select';
-import { useTree } from '@table-library/react-table-library/tree';
+import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree';
 import styled from 'styled-components';
 import usePresence from 'use-presence';
 import type { TableContextType } from './TableContext';
@@ -189,6 +189,9 @@ const _Table = <Item,>({
   isFirstColumnSticky,
   stickyColumnCount: stickyColumnCountProp,
   stickyColumnWidths,
+  isLastColumnSticky,
+  trailingStickyColumnCount: trailingStickyColumnCountProp,
+  trailingStickyColumnWidths,
   rowDensity = 'normal',
   onSortChange,
   sortFunctions,
@@ -204,6 +207,9 @@ const _Table = <Item,>({
   defaultSelectedIds = [],
   backgroundColor = tableBackgroundColor,
   isGrouped = false,
+  expandedRowIds: expandedRowIdsProp,
+  defaultExpandedRowIds,
+  onExpandedRowIdsChange,
   checkboxDisplay = 'always',
   filterFunctions,
   columnFilterValues: columnFilterValuesProp,
@@ -363,6 +369,8 @@ const _Table = <Item,>({
   // generalizes this to N leading columns (see `stickyColumnWidths` for why widths are required
   // beyond the first).
   const requestedStickyColumnCount = stickyColumnCountProp ?? (isFirstColumnSticky ? 1 : 0);
+  const requestedTrailingStickyColumnCount =
+    trailingStickyColumnCountProp ?? (isLastColumnSticky ? 1 : 0);
 
   if (__DEV__) {
     if (
@@ -375,6 +383,17 @@ const _Table = <Item,>({
         moduleName: 'Table',
       });
     }
+    if (
+      requestedTrailingStickyColumnCount > 1 &&
+      (!trailingStickyColumnWidths ||
+        trailingStickyColumnWidths.length < requestedTrailingStickyColumnCount)
+    ) {
+      throwKlear360Error({
+        message:
+          '`trailingStickyColumnWidths` must provide a pixel width for each of the `trailingStickyColumnCount` columns when freezing more than one column.',
+        moduleName: 'Table',
+      });
+    }
   }
 
   // Sticky columns are disabled on mobile: their combined width easily exceeds a phone's
@@ -382,9 +401,11 @@ const _Table = <Item,>({
   // leave no visible area to scroll the rest of the table into view at all. Falling back to a
   // plain horizontally-scrollable table keeps every column reachable.
   const stickyColumnCount = isMobile ? 0 : requestedStickyColumnCount;
+  const trailingStickyColumnCount = isMobile ? 0 : requestedTrailingStickyColumnCount;
 
-  // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
-  const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || stickyColumnCount > 0;
+  // Need to make header is sticky if first/last column is sticky otherwise that header cell will not be sticky
+  const shouldHeaderBeSticky =
+    isVirtualized || isHeaderSticky || stickyColumnCount > 0 || trailingStickyColumnCount > 0;
 
   const {
     isEntering: isRefreshSpinnerEntering,
@@ -402,7 +423,7 @@ const _Table = <Item,>({
   // the multi-select checkbox column, when present) at their cumulative left offset, computed
   // from `stickyColumnWidths` rather than measured at render time.
   const stickyColumnsCSS = useMemo(() => {
-    if (stickyColumnCount < 1) return '';
+    if (stickyColumnCount < 1 && trailingStickyColumnCount < 1) return '';
 
     const isMultiSelect = selectionType === 'multiple';
     // The last frozen column's own `border-right` (on `.cell-wrapper`, see TableBody/TableHeader)
@@ -427,9 +448,9 @@ const _Table = <Item,>({
 
     const rules: string[] = [];
     let cumulativeLeft = 0;
-    if (isMultiSelect) {
-      // The checkbox column is always followed by at least one more sticky column here (the
-      // `stickyColumnCount < 1` case already returned above), so it's never the last sticky one.
+    if (isMultiSelect && stickyColumnCount > 0) {
+      // The checkbox column is always followed by at least one more sticky column here (guarded
+      // by `stickyColumnCount > 0` above), so it's never the last sticky one.
       rules.push(stickyRule(1, 0, false));
       cumulativeLeft = checkboxCellWidth;
     }
@@ -438,8 +459,51 @@ const _Table = <Item,>({
       rules.push(stickyRule(domIndex, cumulativeLeft, i === stickyColumnCount - 1));
       cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
     }
+
+    if (trailingStickyColumnCount > 0) {
+      // The trailing column that borders the scrolling region is the *first* trailing-sticky
+      // column (closest to the middle of the table), unlike the leading case where it's the
+      // last - hence the box-shadow goes on `i === 0` here.
+      const trailingStickyRule = (
+        domIndexFromEnd: number,
+        right: number,
+        isFirstTrailingSticky: boolean,
+      ): string => `
+  &:nth-last-of-type(${domIndexFromEnd}) {
+    right: ${right}px !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+    ${isFirstTrailingSticky ? lastStickyBoxShadow : ''}
+  }
+  /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
+  &:nth-last-of-type(${domIndexFromEnd}).${classes.HAS_ROW_SPANNING} {
+    z-index: 3 !important;
+  }`;
+
+      // The hover-actions column (when present) is always the very last DOM column and is
+      // already its own `position: sticky; right: 0` (see TableBody's `hasHoverActions` styles) -
+      // skip over it so trailing sticky columns sit correctly to its left instead of fighting it
+      // for the same spot.
+      const trailingDomOffset = hasHoverActions ? 1 : 0;
+      let cumulativeRight = 0;
+      for (let i = 0; i < trailingStickyColumnCount; i += 1) {
+        const domIndexFromEnd = i + 1 + trailingDomOffset;
+        rules.push(trailingStickyRule(domIndexFromEnd, cumulativeRight, i === 0));
+        cumulativeRight += Number.parseFloat(trailingStickyColumnWidths?.[i] ?? '0');
+      }
+    }
+
     return rules.join('\n');
-  }, [stickyColumnCount, selectionType, stickyColumnWidths, showBorderedCells, theme]);
+  }, [
+    stickyColumnCount,
+    trailingStickyColumnCount,
+    selectionType,
+    stickyColumnWidths,
+    trailingStickyColumnWidths,
+    hasHoverActions,
+    showBorderedCells,
+    theme,
+  ]);
 
   const tableTheme = useTableTheme({
     Table: `
@@ -563,22 +627,49 @@ const _Table = <Item,>({
     [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows],
   );
 
+  // Row expansion (group-header rows only, see `isGrouped`).
+  //
+  // Uncontrolled default seeds every group-header id as expanded, so tables that don't pass
+  // `expandedRowIds`/`defaultExpandedRowIds` keep today's "always fully expanded" look.
+  const [internalExpandedRowIds, setInternalExpandedRowIds] = React.useState<Identifier[]>(
+    () =>
+      defaultExpandedRowIds ??
+      data.nodes
+        .filter((node) => (((node as unknown) as { nodes?: unknown[] }).nodes?.length ?? 0) > 0)
+        .map((node) => node.id),
+  );
+  const expandedRowIds = expandedRowIdsProp ?? internalExpandedRowIds;
+
+  const handleTreeChange: MiddlewareFunction = (_, state): void => {
+    const nextExpandedRowIds: Identifier[] = state.ids ?? [];
+    if (expandedRowIdsProp === undefined) {
+      setInternalExpandedRowIds(nextExpandedRowIds);
+    }
+    onExpandedRowIdsChange?.(nextExpandedRowIds);
+  };
+
   const tree = useTree(
     isGrouped ? data : { nodes: [] },
-    {},
     {
-      // Disable row click expand/collapse (fallback enables unwanted expand/collapse on row click)
-      clickType: undefined,
+      onChange: handleTreeChange,
+      state: { ids: expandedRowIds },
+    },
+    {
+      // Toggling is done manually (see `toggleRowExpansionById`) via a dedicated disclosure
+      // control rather than the library auto-wiring row clicks - `ButtonClick` just opts out of
+      // that auto-wiring, matching how `SelectClickTypes` is handled for row selection above.
+      clickType: TreeExpandClickTypes.ButtonClick,
       // Disable all indentation for flat appearance
       treeYLevel: undefined,
     },
   );
 
-  useIsomorphicLayoutEffect(() => {
-    if (isGrouped && tree?.fns.onToggleAll) {
-      tree.fns.onToggleAll({ ids: [] });
-    }
-  }, []);
+  const toggleRowExpansionById = useMemo(
+    () => (id: Identifier): void => {
+      tree.fns.onToggleById(id);
+    },
+    [tree.fns],
+  );
 
   // @table-library's own footer row/cells hard-code `role="rowfooter"`/`role="columnfooter"` -
   // neither is a real WAI-ARIA role (there is no "footer cell" role; `cell`/`row` are what the
@@ -818,6 +909,8 @@ const _Table = <Item,>({
       // reflect the current sort too.
       tableData: sortedData.nodes,
       isGrouped,
+      expandedRowIds,
+      toggleRowExpansionById,
       tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
       checkboxDisplay,
       globalFilterValue,
@@ -856,6 +949,8 @@ const _Table = <Item,>({
       isVirtualized,
       sortedData,
       isGrouped,
+      expandedRowIds,
+      toggleRowExpansionById,
       checkboxDisplay,
       globalFilterValue,
       setGlobalFilterValue,

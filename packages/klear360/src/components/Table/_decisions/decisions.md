@@ -58,10 +58,11 @@ A table component helps in displaying data in a grid format, through rows and co
 - Column Sorting
 - Column Filtering & Search (global + per-column)
 - Row Selection - Single & Multiple
+- Row Expansion (grouped/parent-child rows)
 - Pagination
 - Bulk Actions Toolbar
 - Horizontally Scrollable
-- Sticky Columns
+- Sticky Columns (leading and trailing)
 - Sticky Header
 - Sticky Footer
 - Cell Density - Normal & Comfortable
@@ -72,7 +73,6 @@ We don't have enough use-cases for the following features at Klear and hence sco
 
 - Column Reordering
 - Column Resizing
-- Row Expansion
 - Nested Tables
 - Hiding Columns
 - Editable Rows
@@ -197,6 +197,9 @@ We don't have enough use-cases for the following features at Klear and hence sco
 | isStickyFistColumn | `boolean`                                     | `false`     | This defines whether the first column of the table should be sticky or not. Equivalent to `stickyColumnCount={1}`.                                                                                                                                                                                                                       |
 | stickyColumnCount  | `number`                                      | `0`         | Number of leading columns (after any multi-select checkbox column) to freeze while the rest of the table scrolls horizontally. Freezing more than one column requires `stickyColumnWidths`, since offsets are computed from known widths rather than measured at render time.                                                          |
 | stickyColumnWidths | `string[]`                                    | `undefined` | Explicit pixel width for each of the leading `stickyColumnCount` columns, in order. Pair these with matching `width`s on the same columns (via the `columns` config or `gridTemplateColumns`).                                                                                                                                          |
+| isLastColumnSticky | `boolean`                                     | `false`     | This defines whether the last column of the table should be sticky or not. Equivalent to `trailingStickyColumnCount={1}`.                                                                                                                                                                                                                |
+| trailingStickyColumnCount | `number`                                | `0`         | Number of trailing columns (right to left, before any hover-actions column) to freeze while the rest of the table scrolls horizontally. Freezing more than one column requires `trailingStickyColumnWidths`.                                                                                                                            |
+| trailingStickyColumnWidths | `string[]`                             | `undefined` | Explicit pixel width for each of the trailing `trailingStickyColumnCount` columns, in left-to-right order. Pair these with matching `width`s on the same columns (via the `columns` config or `gridTemplateColumns`).                                                                                                                   |
 | surfaceLevel       | `1`, `2`, `3`                                 | `2`         | This defines the surface level of the table. Possible values are `1`, `2` & `3`                                                                                                                                                                                                                                                          |
 
 ##### `TableData`
@@ -742,6 +745,30 @@ This intentionally does not attempt to measure rendered column widths at runtime
 ## Disabled on mobile
 
 Sticky columns are automatically disabled below the `s` breakpoint (`useIsMobile`), regardless of `stickyColumnCount`/`isFirstColumnSticky`. A frozen column's width that's perfectly reasonable on desktop - where there's always a wide scrolling area left over - can easily exceed a phone's *entire* viewport width once multiple columns are frozen (e.g. the 3-column sticky example's ~510px vs. a 375px viewport). When that happens there is no visible area left to scroll the rest of the table into view at all, so the table becomes unusable rather than merely cramped. Falling back to a plain horizontally-scrollable table - the same graceful degradation `Table` already applies elsewhere on mobile (e.g. the hover-actions column) - keeps every column reachable at the cost of losing the frozen affordance specifically on small screens, which is the safer trade-off.
+
+## Trailing (right-pinned) sticky columns
+
+Real usage - e.g. pinning an `Actions` column to the right so it's always reachable regardless of how far a wide table scrolls - needs freezing from the trailing edge too, not just the leading one.
+
+`trailingStickyColumnCount`/`trailingStickyColumnWidths` generalize the exact same "cumulative offset from known widths" approach used for leading sticky columns, just anchored to `right` instead of `left`, with `isLastColumnSticky` as the single-column shorthand (mirrors `isFirstColumnSticky`). The two sides are independent and composable - a table can freeze leading columns, trailing columns, or both at once.
+
+When `Table`'s existing hover-actions column (see `TableRow`'s `hoverActions` prop) is also present, it remains its own separate `right: 0` sticky mechanism (visible only on hover) - trailing sticky columns are computed to sit just to its left rather than compete with it for the same position, so the two features can be used together without conflict. Disabled on mobile for the same reason as leading sticky columns.
+
+# Row Expansion
+
+Row Expansion was originally scoped out for lack of use-cases (see [Out of scope](#out-of-scope) history). Real usage - parent-child shipment rows in grouped tables, where a user needs to hide/reveal a shipment's line items rather than always seeing every row - identified this as a real gap, so it has since been added for grouped (`isGrouped`) tables.
+
+## API design
+
+`expandedRowIds`/`defaultExpandedRowIds`/`onExpandedRowIdsChange` follows the same controlled/uncontrolled/onChange triple already established for filtering (`columnFilterValues` etc.). `defaultExpandedRowIds` defaults to every group-header row id when omitted, so existing `isGrouped` tables that don't pass either prop keep their previous "always fully expanded" look - this is purely additive, not a behavior change for existing consumers.
+
+A chevron disclosure control is rendered automatically inside a group-header row's first cell (no extra JSX required, same "automatic based on existing props" convention as the filter row) - not as a separate always-present column, so tables that don't use `isGrouped` see no layout change at all. Clicking it stops event propagation so it doesn't also trigger row selection/row-click when `selectionType` is set.
+
+Indentation remains disabled (flat appearance, `treeYLevel: undefined`) - unchanged from the prior always-expanded look. Adding visual indentation for nested levels is a separate, future visual decision, not part of this change.
+
+## Implementation
+
+Built on `@table-library/react-table-library`'s existing `useTree` (already used for grouped/tree-aware selection) - previously wired with `clickType: undefined` and a forced `onToggleAll` on mount to keep every group permanently expanded, since expand/collapse wasn't yet a supported feature. Real toggling reuses the same `state`/`onChange`/manual-`fns` pattern already used for row selection's `rowSelectConfig` in this file, with `TreeExpandClickTypes.ButtonClick` opting out of the library's own row-click auto-wiring (toggling is done manually via the chevron's `onClick`, exactly like `SelectClickTypes` is already handled for selection).
 
 # Virtualization
 
