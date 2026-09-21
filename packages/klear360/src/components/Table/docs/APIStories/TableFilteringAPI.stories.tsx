@@ -52,11 +52,21 @@ export default {
 
 const data = createTransactionTableData(30);
 
+// A predicate whose column may be `filterConfig`'d receives a plain `string` from both a
+// dropdown-type column's own filter AND from global search, or a `string[]` from a
+// multiselect-type column's own filter (never from global search, which is always plain text) -
+// so it must handle both shapes. Falling back to a normal substring match for the string case
+// (rather than e.g. unconditionally returning `true`) keeps the column correctly excluded from
+// global search matches once the value is a `string[]` that doesn't actually apply here.
+const matchesStringOrArray = (itemValue: string, filterValue: string | string[]): boolean =>
+  Array.isArray(filterValue)
+    ? filterValue.includes(itemValue)
+    : itemValue.toLowerCase().includes(filterValue.toLowerCase());
+
 const filterFunctions = {
-  COMPANY_NAME: (item, value) => item.companyName.toLowerCase().includes(value.toLowerCase()),
-  TRANSACTION_STATE: (item, value) =>
-    item.transactionState.toLowerCase().includes(value.toLowerCase()),
-  VESSEL_NAME: (item, value) => item.vesselName.toLowerCase().includes(value.toLowerCase()),
+  COMPANY_NAME: (item, value) => matchesStringOrArray(item.companyName, value),
+  TRANSACTION_STATE: (item, value) => matchesStringOrArray(item.transactionState, value),
+  VESSEL_NAME: (item, value) => matchesStringOrArray(item.vesselName, value),
 };
 
 const FilteringTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
@@ -130,10 +140,14 @@ const transactionStateOptions = [
 ];
 
 /**
- * `filterConfig` renders a dropdown/multiselect picker instead of the default text input, for
- * any column also opted into `filterFunctions` (here, `TRANSACTION_STATE` picks a single value;
- * `COMPANY_NAME` and `VESSEL_NAME` keep their plain text inputs since they're absent from
- * `filterConfig`).
+ * `filterConfig` renders a dropdown (single value) picker instead of the default text input, for
+ * any column also opted into `filterFunctions` (`COMPANY_NAME` and `VESSEL_NAME` keep their plain
+ * text inputs since they're absent from `filterConfig`). Global search (`TableToolbarSearch`) is
+ * included here too, to demonstrate that it still works correctly alongside a `filterConfig`'d
+ * column - see `matchesStringOrArray` above for why the shared predicate needs to handle a plain
+ * `string` (from both this column's own dropdown value and from global search) as well as a
+ * `string[]` (from a multiselect-type column's own filter, see `TableFilteringWithMultiselect`
+ * below).
  */
 export const TableFilteringWithDropdown: StoryFn<typeof TableComponent> = () => {
   return (
@@ -150,6 +164,73 @@ export const TableFilteringWithDropdown: StoryFn<typeof TableComponent> = () => 
         filterConfig={{
           TRANSACTION_STATE: { type: 'dropdown', options: transactionStateOptions },
         }}
+        toolbar={
+          <TableToolbar>
+            <TableToolbarSearch placeholder="Search all columns" />
+          </TableToolbar>
+        }
+        onColumnFilterValuesChange={action('onColumnFilterValuesChange')}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="VESSEL_NAME">Vessel Name</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow key={index} item={tableItem}>
+                  <TableCell>
+                    <Code size="medium">{tableItem.transactionId}</Code>
+                  </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </TableComponent>
+    </Box>
+  );
+};
+
+/**
+ * `type: 'multiselect'` allows picking any number of values - `columnFilterValues.TRANSACTION_STATE`
+ * is a `string[]` here (vs. a plain `string` for the `type: 'dropdown'` story above).
+ */
+export const TableFilteringWithMultiselect: StoryFn<typeof TableComponent> = () => {
+  return (
+    <Box
+      backgroundColor="surface.background.gray.intense"
+      padding="spacing.5"
+      overflow="auto"
+      minHeight="400px"
+    >
+      <TableComponent
+        height="400px"
+        data={data}
+        filterFunctions={filterFunctions}
+        filterConfig={{
+          TRANSACTION_STATE: { type: 'multiselect', options: transactionStateOptions },
+        }}
+        toolbar={
+          <TableToolbar>
+            <TableToolbarSearch placeholder="Search all columns" />
+          </TableToolbar>
+        }
         onColumnFilterValuesChange={action('onColumnFilterValuesChange')}
       >
         {(tableData) => (

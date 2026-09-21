@@ -9092,7 +9092,7 @@ exports[`<Table /> should render table with grouping 1`] = `
   padding: 0;
 }
 
-.c17.c17.c17.c17.c17 {
+.c18.c18.c18.c18.c18 {
   color: hsla(218,50%,6%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
@@ -9115,7 +9115,7 @@ exports[`<Table /> should render table with grouping 1`] = `
   overflow-wrap: break-word;
 }
 
-.c16.c16.c16.c16.c16 {
+.c17.c17.c17.c17.c17 {
   border: none;
   cursor: pointer;
   padding: 0;
@@ -9142,12 +9142,12 @@ exports[`<Table /> should render table with grouping 1`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
 }
 
-.c16.c16.c16.c16.c16:hover:not([disabled]) {
+.c17.c17.c17.c17.c17:hover:not([disabled]) {
   color: hsla(218,50%,6%,1);
   background-color: transparent;
 }
 
-.c16.c16.c16.c16.c16:focus-visible {
+.c17.c17.c17.c17.c17:focus-visible {
   outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
@@ -9161,7 +9161,7 @@ exports[`<Table /> should render table with grouping 1`] = `
   background-color: transparent;
 }
 
-.c16.c16.c16.c16.c16:active {
+.c17.c17.c17.c17.c17:active {
   color: hsla(218,50%,6%,1);
 }
 
@@ -9361,6 +9361,34 @@ exports[`<Table /> should render table with grouping 1`] = `
   border-bottom-style: solid;
 }
 
+.c16.c16.c16.c16.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
 .c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10.c10 {
   background-color: transparent;
 }
@@ -9389,19 +9417,19 @@ exports[`<Table /> should render table with grouping 1`] = `
   background-color: hsla(210,40%,98%,1);
 }
 
-.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 {
+.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19 {
   background-color: transparent;
 }
 
-.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 .cell-wrapper {
+.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19 .cell-wrapper {
   border: none;
 }
 
-.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 td:last-child .cell-wrapper {
+.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19 td:last-child .cell-wrapper {
   border-right: none;
 }
 
-.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18:focus {
+.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19.c19:focus {
   outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: -4px;
   -webkit-transition-property: outline-width;
@@ -9593,33 +9621,38 @@ exports[`<Table /> should render table with grouping 1`] = `
                       data-klear360-component="base-box"
                       pointer-events="auto"
                     >
-                      <button
-                        aria-label="Collapse row group1"
-                        class="c16"
-                        data-klear360-component="icon-button"
-                        type="button"
+                      <div
+                        class=" c16"
+                        data-klear360-component="base-box"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class=""
-                          data-klear360-component="icon"
-                          fill="none"
-                          height="12px"
-                          viewBox="0 0 24 24"
-                          width="12px"
+                        <button
+                          aria-label="Collapse row group1"
+                          class="c17"
+                          data-klear360-component="icon-button"
+                          type="button"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                            data-klear360-component="svg-path"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            aria-hidden="true"
+                            class=""
+                            data-klear360-component="icon"
+                            fill="none"
+                            height="12px"
+                            viewBox="0 0 24 24"
+                            width="12px"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z"
+                              data-klear360-component="svg-path"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <p
-                      class="c17"
+                      class="c18"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -9635,7 +9668,7 @@ exports[`<Table /> should render table with grouping 1`] = `
           </tr>
           <tr
             aria-selected="false"
-            class="tr tr-body row-tree row-tree-leaf c18 clickable css-1cw1scs-getRowContainerStyle-Row"
+            class="tr tr-body row-tree row-tree-leaf c19 clickable css-1cw1scs-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -9658,7 +9691,7 @@ exports[`<Table /> should render table with grouping 1`] = `
                     pointer-events="auto"
                   >
                     <p
-                      class="c17"
+                      class="c18"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -9693,7 +9726,7 @@ exports[`<Table /> should render table with grouping 1`] = `
           </tr>
           <tr
             aria-selected="false"
-            class="tr tr-body row-tree row-tree-leaf c18 clickable css-1cw1scs-getRowContainerStyle-Row"
+            class="tr tr-body row-tree row-tree-leaf c19 clickable css-1cw1scs-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -9716,7 +9749,7 @@ exports[`<Table /> should render table with grouping 1`] = `
                     pointer-events="auto"
                   >
                     <p
-                      class="c17"
+                      class="c18"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -9779,33 +9812,38 @@ exports[`<Table /> should render table with grouping 1`] = `
                       data-klear360-component="base-box"
                       pointer-events="auto"
                     >
-                      <button
-                        aria-label="Collapse row group2"
-                        class="c16"
-                        data-klear360-component="icon-button"
-                        type="button"
+                      <div
+                        class=" c16"
+                        data-klear360-component="base-box"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class=""
-                          data-klear360-component="icon"
-                          fill="none"
-                          height="12px"
-                          viewBox="0 0 24 24"
-                          width="12px"
+                        <button
+                          aria-label="Collapse row group2"
+                          class="c17"
+                          data-klear360-component="icon-button"
+                          type="button"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                            data-klear360-component="svg-path"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            aria-hidden="true"
+                            class=""
+                            data-klear360-component="icon"
+                            fill="none"
+                            height="12px"
+                            viewBox="0 0 24 24"
+                            width="12px"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z"
+                              data-klear360-component="svg-path"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <p
-                      class="c17"
+                      class="c18"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -9821,7 +9859,7 @@ exports[`<Table /> should render table with grouping 1`] = `
           </tr>
           <tr
             aria-selected="false"
-            class="tr tr-body row-tree row-tree-leaf c18 clickable css-1cw1scs-getRowContainerStyle-Row"
+            class="tr tr-body row-tree row-tree-leaf c19 clickable css-1cw1scs-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -9844,7 +9882,7 @@ exports[`<Table /> should render table with grouping 1`] = `
                     pointer-events="auto"
                   >
                     <p
-                      class="c17"
+                      class="c18"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -10025,7 +10063,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   border-bottom: 1px solid hsla(214,32%,91%,1);
 }
 
-.c29.c29.c29.c29.c29 {
+.c30.c30.c30.c30.c30 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -10108,7 +10146,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   padding: 0;
 }
 
-.c26.c26.c26.c26.c26 {
+.c27.c27.c27.c27.c27 {
   color: hsla(218,50%,6%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
@@ -10140,7 +10178,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   margin-bottom: 2px;
 }
 
-.c28.c28.c28.c28.c28 {
+.c29.c29.c29.c29.c29 {
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
@@ -10157,7 +10195,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   word-wrap: normal;
 }
 
-.c28.c28.c28.c28.c28:focus-visible + div {
+.c29.c29.c29.c29.c29:focus-visible + div {
   outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
@@ -10169,7 +10207,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   z-index: 2;
 }
 
-.c28.c28.c28.c28.c28:hover + div {
+.c29.c29.c29.c29.c29:hover + div {
   border-color: hsla(215,20%,65%,1);
   background-color: hsla(222,47%,11%,0.06);
   -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
@@ -10216,7 +10254,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   transition-duration: 80ms;
 }
 
-.c25.c25.c25.c25.c25 {
+.c26.c26.c26.c26.c26 {
   border: none;
   cursor: pointer;
   padding: 0;
@@ -10243,12 +10281,12 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   transition-timing-function: cubic-bezier(0.3,0,0.2,1);
 }
 
-.c25.c25.c25.c25.c25:hover:not([disabled]) {
+.c26.c26.c26.c26.c26:hover:not([disabled]) {
   color: hsla(218,50%,6%,1);
   background-color: transparent;
 }
 
-.c25.c25.c25.c25.c25:focus-visible {
+.c26.c26.c26.c26.c26:focus-visible {
   outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
@@ -10262,7 +10300,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   background-color: transparent;
 }
 
-.c25.c25.c25.c25.c25:active {
+.c26.c26.c26.c26.c26:active {
   color: hsla(218,50%,6%,1);
 }
 
@@ -10466,6 +10504,34 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   border-bottom-style: solid;
 }
 
+.c25.c25.c25.c25.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
+}
+
 .c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18.c18 {
   background-color: transparent;
 }
@@ -10551,76 +10617,76 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
   background-color: hsla(210,40%,98%,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27 {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 {
   background-color: transparent;
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27 .cell-wrapper {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 .cell-wrapper {
   border: none;
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27 td:last-child .cell-wrapper {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28 td:last-child .cell-wrapper {
   border-right: none;
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:hover:not(.disabled-row) .cell-wrapper-base {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:hover:not(.disabled-row) .cell-wrapper-base {
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   cursor: pointer;
   background-color: hsla(222,47%,11%,0.06);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:hover:not(.disabled-row) .cell-wrapper-base .hover-actions {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:hover:not(.disabled-row) .cell-wrapper-base .hover-actions {
   background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
   background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:hover:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
   background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.06) 10.08%,hsla(222,47%,11%,0.06) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:focus:not(.disabled-row) .cell-wrapper-base {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:focus:not(.disabled-row) .cell-wrapper-base {
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   background-color: hsla(0,0%,100%,0);
   cursor: pointer;
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:focus:not(.disabled-row) .cell-wrapper-base .hover-actions {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:focus:not(.disabled-row) .cell-wrapper-base .hover-actions {
   background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,1) 10.08%,hsla(0,0%,100%,1) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-2 {
   background: linear-gradient(90deg,transparent 0%,hsla(222,47%,11%,0.06) 10.08%,hsla(222,47%,11%,0.06) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:focus:not(.disabled-row) .cell-wrapper-base .hover-actions-layer-3 {
   background: linear-gradient(90deg,transparent 0%,hsla(0,0%,100%,0) 10.08%,hsla(0,0%,100%,0) 100%);
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:active:not(.disabled-row) .cell-wrapper-base {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:active:not(.disabled-row) .cell-wrapper-base {
   -webkit-transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   transition: background-color 160ms cubic-bezier(0.3,0,0.2,1);
   background-color: hsla(222,47%,11%,0.06);
   cursor: pointer;
 }
 
-.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27.c27:focus {
+.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28.c28:focus {
   outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: -4px;
   -webkit-transition-property: outline-width;
@@ -11050,33 +11116,38 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                       data-klear360-component="base-box"
                       pointer-events="auto"
                     >
-                      <button
-                        aria-label="Collapse row group1"
-                        class="c25"
-                        data-klear360-component="icon-button"
-                        type="button"
+                      <div
+                        class=" c25"
+                        data-klear360-component="base-box"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class=""
-                          data-klear360-component="icon"
-                          fill="none"
-                          height="12px"
-                          viewBox="0 0 24 24"
-                          width="12px"
+                        <button
+                          aria-label="Collapse row group1"
+                          class="c26"
+                          data-klear360-component="icon-button"
+                          type="button"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                            data-klear360-component="svg-path"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            aria-hidden="true"
+                            class=""
+                            data-klear360-component="icon"
+                            fill="none"
+                            height="12px"
+                            viewBox="0 0 24 24"
+                            width="12px"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z"
+                              data-klear360-component="svg-path"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <p
-                      class="c26"
+                      class="c27"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -11092,7 +11163,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
           </tr>
           <tr
             aria-selected="true"
-            class="tr tr-body row-select row-select-clickable row-select-selected row-tree row-tree-leaf c27 clickable css-1l5bonh-getRowContainerStyle-Row"
+            class="tr tr-body row-select row-select-clickable row-select-selected row-tree row-tree-leaf c28 clickable css-1l5bonh-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -11232,7 +11303,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                     pointer-events="none"
                   >
                     <p
-                      class="c26"
+                      class="c27"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -11267,7 +11338,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
           </tr>
           <tr
             aria-selected="true"
-            class="tr tr-body row-select row-select-clickable row-select-selected row-tree row-tree-leaf c27 clickable css-1l5bonh-getRowContainerStyle-Row"
+            class="tr tr-body row-select row-select-clickable row-select-selected row-tree row-tree-leaf c28 clickable css-1l5bonh-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -11407,7 +11478,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                     pointer-events="none"
                   >
                     <p
-                      class="c26"
+                      class="c27"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -11491,13 +11562,13 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                                 aria-invalid="false"
                                 aria-label="Select row group2"
                                 aria-required="false"
-                                class="c28"
+                                class="c29"
                                 role="checkbox"
                                 type="checkbox"
                                 value=""
                               />
                               <div
-                                class="c29"
+                                class="c30"
                                 data-klear360-component="checkbox-icon-wrapper"
                               >
                                 <div
@@ -11565,33 +11636,38 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                       data-klear360-component="base-box"
                       pointer-events="auto"
                     >
-                      <button
-                        aria-label="Collapse row group2"
-                        class="c25"
-                        data-klear360-component="icon-button"
-                        type="button"
+                      <div
+                        class=" c25"
+                        data-klear360-component="base-box"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class=""
-                          data-klear360-component="icon"
-                          fill="none"
-                          height="12px"
-                          viewBox="0 0 24 24"
-                          width="12px"
+                        <button
+                          aria-label="Collapse row group2"
+                          class="c26"
+                          data-klear360-component="icon-button"
+                          type="button"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                            data-klear360-component="svg-path"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            aria-hidden="true"
+                            class=""
+                            data-klear360-component="icon"
+                            fill="none"
+                            height="12px"
+                            viewBox="0 0 24 24"
+                            width="12px"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z"
+                              data-klear360-component="svg-path"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <p
-                      class="c26"
+                      class="c27"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >
@@ -11607,7 +11683,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
           </tr>
           <tr
             aria-selected="false"
-            class="tr tr-body row-select row-select-clickable row-tree row-tree-leaf c27 clickable css-1l5bonh-getRowContainerStyle-Row"
+            class="tr tr-body row-select row-select-clickable row-tree row-tree-leaf c28 clickable css-1l5bonh-getRowContainerStyle-Row"
             data-klear360-component="table-row"
             data-table-library_tr-body=""
             role="row"
@@ -11656,13 +11732,13 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                                 aria-invalid="false"
                                 aria-label="Select row child2-1"
                                 aria-required="false"
-                                class="c28"
+                                class="c29"
                                 role="checkbox"
                                 type="checkbox"
                                 value=""
                               />
                               <div
-                                class="c29"
+                                class="c30"
                                 data-klear360-component="checkbox-icon-wrapper"
                               >
                                 <div
@@ -11725,7 +11801,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
                     pointer-events="none"
                   >
                     <p
-                      class="c26"
+                      class="c27"
                       data-klear360-component="text"
                       letter-spacing="50"
                     >

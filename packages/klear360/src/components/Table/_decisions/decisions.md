@@ -727,7 +727,13 @@ The "no match-mode dropdowns" statement above is about *match-mode* pickers — 
 
 A filterable column (`headerKey` present in `filterFunctions`, as before) additionally present in the new `filterConfig` map (keyed by `headerKey`, same convention) renders a dropdown (`type: 'dropdown'`, single value) or multiselect (`type: 'multiselect'`, multiple values) picker in its header cell instead of the default text input - built from the column's declared `options`. A column absent from `filterConfig` keeps today's plain text input, so the lean, all-text default is unchanged unless a consumer opts in.
 
-This generalizes `columnFilterValues` from `Record<string, string>` to `Record<string, string | string[]>` (a plain filterable column still only ever stores a `string`; only a `filterConfig`'d column stores `string[]`) and widens `filterFunctions`' predicate signature to accept `string | string[]` for the same reason - both are additive/widening changes, so existing text-only `filterFunctions` consumers are source-compatible (a predicate typed to take only `string` needs updating to `string | string[]`, but its behavior for `filterConfig`-free columns, which only ever receive `string`, doesn't change).
+This generalizes `columnFilterValues` from `Record<string, string>` to `Record<string, string | string[]>`. A plain (text) column and a `type: 'dropdown'` column both only ever store a `string` (dropdown is single-value, same shape as text); only a `type: 'multiselect'` column stores `string[]`. `filterFunctions`' predicate signature widens to accept `string | string[]` for the same reason - both are additive/widening changes, so existing text-only `filterFunctions` consumers are source-compatible (a predicate typed to take only `string` needs updating to `string | string[]`, but its behavior for `filterConfig`-free columns, which only ever receive `string`, doesn't change).
+
+### Writing a predicate for a `filterConfig`'d column
+
+The same predicate map (`filterFunctions`) backs three call sites: a column's own filter row input, `globalFilterValue` (always plain text, regardless of the column's own filter type), and recursively for nested/grouped rows. A predicate for a `type: 'multiselect'` column therefore receives a `string[]` from its own filter but a plain `string` from global search, and must handle both - `Array.isArray(filterValue) ? filterValue.includes(item.someField) : item.someField.toLowerCase().includes(filterValue.toLowerCase())` is the recommended shape (fall back to an ordinary substring match for the string case, matching how a plain text column already behaves).
+
+**Do not** default the string-input branch to `true` (`Array.isArray(v) ? v.includes(x) : true`) - because the global filter is `Object.values(filterFunctions).some(...)` (OR across columns), a predicate that unconditionally returns `true` for a plain string makes *every* row match *any* global search term the moment that column is present, silently breaking global search for the whole table. This was caught during this feature's own review: the first draft of the Storybook example used exactly this pattern, and a regression test (`Table.web.test.tsx`, "filtering" describe block) was added to guard against reintroducing it.
 
 ### Implementation
 
@@ -779,11 +785,17 @@ Row Expansion was originally scoped out for lack of use-cases (see [Out of scope
 
 A chevron disclosure control is rendered automatically inside a group-header row's first cell (no extra JSX required, same "automatic based on existing props" convention as the filter row) - not as a separate always-present column, so tables that don't use `isGrouped` see no layout change at all. Clicking it stops event propagation so it doesn't also trigger row selection/row-click when `selectionType` is set.
 
+The chevron itself is a single `ChevronRightIcon` rotated 90° when expanded (rather than swapping between a "right" and a "down" icon), transitioning on `theme.motion.duration.quick`/`theme.motion.easing.standard` - the same rotate+transition convention `TreeViewChevron` and `Collapsible`'s `CollapsibleChevronIcon` already use independently for the identical expand/collapse concept elsewhere in this codebase. `CollapsibleChevronIcon`/`CollapsibleButton` themselves aren't reusable here - both require being rendered inside a `Collapsible` provider tree (`useCollapsible()` context) - but the underlying rotate/transition styling convention they (and `TreeViewChevron`) establish is, and this reuses it rather than inventing a new one.
+
 Indentation remains disabled (flat appearance, `treeYLevel: undefined`) - unchanged from the prior always-expanded look. Adding visual indentation for nested levels is a separate, future visual decision, not part of this change.
 
 ## Implementation
 
 Built on `@table-library/react-table-library`'s existing `useTree` (already used for grouped/tree-aware selection) - previously wired with `clickType: undefined` and a forced `onToggleAll` on mount to keep every group permanently expanded, since expand/collapse wasn't yet a supported feature. Real toggling reuses the same `state`/`onChange`/manual-`fns` pattern already used for row selection's `rowSelectConfig` in this file, with `TreeExpandClickTypes.ButtonClick` opting out of the library's own row-click auto-wiring (toggling is done manually via the chevron's `onClick`, exactly like `SelectClickTypes` is already handled for selection).
+
+## Known limitation: virtualization
+
+`isGrouped` combined with `TableVirtualizedWrapper` is not a supported combination - this predates row expansion and isn't introduced by it. The virtualized row list is built directly from `tableData` (the sorted/filtered nodes) rather than going through `ReactTable`'s own tree-flattening, so it doesn't consult `expandedRowIds`/the tree's collapse state at all; a collapsed group's children would still be included in the virtualized list. No existing story or test exercises `isGrouped` + virtualization together, so this was already effectively unsupported before this change. Flagged here rather than silently left implicit, since it's the one combination row expansion doesn't correctly extend to.
 
 # Grouped Multi-Row Column Headers
 

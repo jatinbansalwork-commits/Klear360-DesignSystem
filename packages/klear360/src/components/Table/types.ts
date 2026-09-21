@@ -438,9 +438,13 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    * column's header (below the sortable header row) automatically, with no extra JSX needed - or,
    * for a column also present in `filterConfig`, a dropdown/multiselect picker instead.
    *
-   * The filter value passed to the predicate is a plain `string` for ordinary (text) filterable
-   * columns, or `string[]` for a column configured via `filterConfig` (the selected option
-   * values).
+   * The filter value passed to the predicate is a plain `string` for an ordinary (text) column or
+   * a `filterConfig` `type: 'dropdown'` column (a single selected value), or `string[]` for a
+   * `filterConfig` `type: 'multiselect'` column (the selected values). A predicate whose column
+   * may be `type: 'multiselect'` should check `Array.isArray(filterValue)`, since the same
+   * predicate also receives a plain `string` from `globalFilterValue` (global search is always
+   * plain text, regardless of the column's own filter type) - see the "Dropdown & multiselect
+   * filters" section of the Table decisions doc for the recommended fallback.
    *
    * The same predicate is reused for `globalFilterValue`: a row matches the global filter if
    * *any* filterable column's predicate matches it. Column filters combine with AND (a row must
@@ -459,9 +463,10 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    **/
   filterConfig?: Record<string, TableColumnFilterConfig>;
   /**
-   * Values for each active column filter, keyed by `headerKey`. A plain `string` for ordinary
-   * (text) filterable columns, or `string[]` for a column configured via `filterConfig`. Passing
-   * this prop makes column filtering controlled - Table will not manage this state on its own.
+   * Values for each active column filter, keyed by `headerKey`. A plain `string` for an ordinary
+   * (text) column or a `filterConfig` `type: 'dropdown'` column, or `string[]` for a
+   * `type: 'multiselect'` column. Passing this prop makes column filtering controlled - Table
+   * will not manage this state on its own.
    **/
   columnFilterValues?: Record<string, string | string[]>;
   /**

@@ -11,7 +11,9 @@ A table component that displays data in a grid format through rows and columns o
 - `Table` `toolbar` prop only accepts `TableToolbar` component
 - `expandedRowIds`/row-expansion chevrons only apply to `isGrouped` tables (group-header rows)
 - A `filterConfig` entry needs a matching `filterFunctions` entry for that column to actually filter rows - `filterConfig` alone only controls which input renders
+- A `filterFunctions` predicate for a `type: 'multiselect'` column receives a plain `string` from global search (never default that branch to `true` - see `filterFunctions` below)
 - In a grouped multi-row header (multiple `TableHeaderRow`s), `isHeaderSticky` combined with column filtering isn't fully supported yet - the filter row's own sticky offset doesn't account for a preceding group row
+- `isGrouped` + a virtualized table (`TableVirtualizedWrapper`) is not a supported combination today - the virtualized row list is built from the sorted/filtered data directly and does not consult the tree's expand/collapse state, so collapsed children would still be included
 
 ## TypeScript Types
 
@@ -165,8 +167,14 @@ type TableProps<Item> = {
    * filter row auto-renders in the header with one text input per filterable column (AND across
    * columns), or a dropdown/multiselect picker for a column also present in `filterConfig`. The
    * same predicates are reused for global search via `globalFilterValue`/`TableToolbarSearch` (OR
-   * across columns). `filterValue` is a plain `string` for ordinary columns, or `string[]` for a
-   * `filterConfig`'d column (the selected option values).
+   * across columns) — global search always passes a plain `string`, regardless of the column's
+   * own filter type. `filterValue` is a plain `string` for an ordinary column or a `filterConfig`
+   * `type: 'dropdown'` column, or `string[]` for a `type: 'multiselect'` column. A predicate for a
+   * possibly-multiselect column must handle both, e.g.
+   * `Array.isArray(v) ? v.includes(item.field) : item.field.toLowerCase().includes(v.toLowerCase())`
+   * — do NOT default the string branch to `true`, since global search is `.some(...)` (OR) across
+   * every filterable column's predicate: a predicate that unconditionally returns `true` for a
+   * plain string makes every row match any global search term.
    **/
   filterFunctions?: Record<
     string,
@@ -185,8 +193,9 @@ type TableProps<Item> = {
   >;
 
   /**
-   * Column filter values keyed by headerKey. A plain `string` for ordinary columns, or `string[]`
-   * for a `filterConfig`'d column. Passing this makes it controlled.
+   * Column filter values keyed by headerKey. A plain `string` for an ordinary column or a
+   * `filterConfig` `type: 'dropdown'` column, or `string[]` for a `type: 'multiselect'` column.
+   * Passing this makes it controlled.
    */
   columnFilterValues?: Record<string, string | string[]>;
 
@@ -1156,8 +1165,13 @@ A column can also opt into a dropdown/multiselect picker instead of the default 
 ```tsx
 const filterFunctionsWithDropdown = {
   ...filterFunctions,
+  // Falls back to a substring match for the plain-string case (global search, or this column's
+  // own `type: 'dropdown'` value) - never default that branch to `true`, or global search will
+  // match every row the moment this column is present (see "Important Constraints" above).
   STATUS: (item: TableNode<Item>, value: string | string[]) =>
-    Array.isArray(value) ? value.includes(item.status) : true,
+    Array.isArray(value)
+      ? value.includes(item.status)
+      : item.status.toLowerCase().includes(value.toLowerCase()),
 };
 
 <Table

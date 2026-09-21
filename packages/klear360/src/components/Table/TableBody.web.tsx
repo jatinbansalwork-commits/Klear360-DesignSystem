@@ -21,7 +21,7 @@ import getIn from '~utils/lodashButBetter/get';
 import { Text } from '~components/Typography';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
-import { getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
+import { castWebType, getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
 import BaseBox from '~components/Box/BaseBox';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
@@ -31,7 +31,7 @@ import { makeAccessible } from '~utils/makeAccessible';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { IconButton } from '~components/Button/IconButton';
-import { ChevronDownIcon, ChevronRightIcon } from '~components/Icons';
+import { ChevronRightIcon } from '~components/Icons';
 import { getComponentId } from '~utils/isValidAllowedChildren';
 const StyledBody = styled(Body)<{
   $isSelectable: boolean;
@@ -129,6 +129,21 @@ export const CellWrapper = styled(BaseBox)<{
   };
 });
 
+// Rotates a single chevron glyph rather than swapping between two icon components - same
+// rotate+transition convention already used for TreeView's expand/collapse affordance
+// (TreeViewChevron.web.tsx) and Collapsible's (CollapsibleChevronIcon.web.tsx), both driven by
+// the same theme motion tokens.
+const StyledExpandChevron = styled(BaseBox)<{ $isExpanded: boolean }>(({ theme, $isExpanded }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transform: $isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+  transformOrigin: 'center center',
+  transitionProperty: 'transform',
+  transitionDuration: castWebType(makeMotionTime(theme.motion.duration.quick)),
+  transitionTimingFunction: castWebType(theme.motion.easing.standard),
+}));
+
 const _TableCell = ({
   children,
   textAlign,
@@ -193,14 +208,16 @@ const _TableCell = ({
               pointerEvents="auto"
               onClick={(event: React.MouseEvent) => event.stopPropagation()}
             >
-              <IconButton
-                size="small"
-                icon={isExpanded ? ChevronDownIcon : ChevronRightIcon}
-                accessibilityLabel={
-                  isExpanded ? `Collapse row ${_groupRowId}` : `Expand row ${_groupRowId}`
-                }
-                onClick={() => toggleRowExpansionById(_groupRowId)}
-              />
+              <StyledExpandChevron $isExpanded={isExpanded}>
+                <IconButton
+                  size="small"
+                  icon={ChevronRightIcon}
+                  accessibilityLabel={
+                    isExpanded ? `Collapse row ${_groupRowId}` : `Expand row ${_groupRowId}`
+                  }
+                  onClick={() => toggleRowExpansionById(_groupRowId)}
+                />
+              </StyledExpandChevron>
             </BaseBox>
           ) : null}
           {isChildrenString ? (

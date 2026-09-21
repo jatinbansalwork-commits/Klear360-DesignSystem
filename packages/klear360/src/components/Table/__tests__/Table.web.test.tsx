@@ -2140,9 +2140,18 @@ describe('<Table />', () => {
 
   describe('filtering', () => {
     const asString = (value: string | string[]): string => (typeof value === 'string' ? value : '');
+    // STATUS is the column used with `filterConfig` (dropdown/multiselect) below, so its
+    // predicate must handle a `string[]` (its own multiselect filter) as well as a plain `string`
+    // (its own dropdown filter, or global search - which is always plain text regardless of the
+    // column's own filter type). Falling back to a substring match (not unconditionally `true`)
+    // for the string branch matters: global search is `.some(...)` across every filterable
+    // column's predicate, so a predicate that always returns `true` for a string would make every
+    // row match any global search term the moment this column is present.
     const filterFunctions = {
       STATUS: (item: Item, value: string | string[]) =>
-        item.status.toLowerCase().includes(asString(value).toLowerCase()),
+        Array.isArray(value)
+          ? value.includes(item.status)
+          : item.status.toLowerCase().includes(value.toLowerCase()),
       NAME: (item: Item, value: string | string[]) =>
         item.name.toLowerCase().includes(asString(value).toLowerCase()),
       AMOUNT: (item: Item, value: string | string[]) =>
@@ -2379,11 +2388,6 @@ describe('<Table />', () => {
         filterConfig: {
           STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
         },
-        filterFunctions: {
-          ...filterFunctions,
-          STATUS: (item: Item, value: string | string[]) =>
-            Array.isArray(value) ? value.includes(item.status) : true,
-        },
         columnFilterValues: { STATUS: ['pending', 'completed'] },
       });
 
@@ -2397,11 +2401,6 @@ describe('<Table />', () => {
         filterConfig: {
           STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
         },
-        filterFunctions: {
-          ...filterFunctions,
-          STATUS: (item: Item, value: string | string[]) =>
-            Array.isArray(value) ? value.includes(item.status) : true,
-        },
         columnFilterValues: { STATUS: [] },
       });
 
@@ -2409,6 +2408,61 @@ describe('<Table />', () => {
       expect(queryByText('100')).toBeInTheDocument();
       expect(queryByText('120')).toBeInTheDocument();
       expect(queryByText('300')).toBeInTheDocument();
+    });
+
+    it('global search still works correctly when a multiselect-type column is present (regression)', () => {
+      // Guards against a predicate for a `filterConfig`'d column defaulting its plain-string
+      // branch to `true` - since global search is OR-across-columns, that would make every row
+      // match any search term the moment such a column exists, breaking global search entirely.
+      // Driven via the controlled `globalFilterValue` prop (same reasoning as the dropdown-value
+      // tests above) rather than typing into `TableToolbarSearch`, to exercise the filtering logic
+      // directly without going through a mounted Dropdown's interaction plumbing.
+      const { queryByText, rerender } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        globalFilterValue: 'zzz-does-not-exist',
+      });
+
+      expect(queryByText('100')).not.toBeInTheDocument();
+      expect(queryByText('120')).not.toBeInTheDocument();
+      expect(queryByText('300')).not.toBeInTheDocument();
+
+      // A real match still works (global search still finds rows via the STATUS column's string
+      // fallback, not just via NAME/AMOUNT).
+      rerender(
+        withTheme(
+          <Table
+            data={{ nodes: nodes.slice(0, 5) }}
+            filterFunctions={filterFunctions}
+            filterConfig={{ STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' } }}
+            globalFilterValue="pending"
+          >
+            {(tableData) => (
+              <>
+                <TableHeader>
+                  <TableHeaderRow>
+                    <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                    <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+                    <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+                  </TableHeaderRow>
+                </TableHeader>
+                <TableBody>
+                  {tableData.map((item, index) => (
+                    <TableRow item={item} key={index}>
+                      <TableCell>{item.status}</TableCell>
+                      <TableCell>{item.name}</TableCell>
+                      <TableCell>{item.amount}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </>
+            )}
+          </Table>,
+        ),
+      );
+      expect(queryByText('100')).toBeInTheDocument();
+      expect(queryByText('300')).not.toBeInTheDocument();
     });
 
     it('filtering composes with sorting (filter first, then sort the remaining rows)', async () => {
