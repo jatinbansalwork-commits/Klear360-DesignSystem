@@ -613,3 +613,62 @@ export const RowColumnSpanWithStickyFirstColumn: StoryFn<typeof TableComponent> 
     </Box>
   );
 };
+
+/**
+ * A true grouped multi-row header - unlike `HeaderSpan` above (a single header row where one
+ * cell spans several columns), `TableHeader` here has TWO `TableHeaderRow`s: a group-label row
+ * ("Transaction" / "Charges") spanning the leaf columns beneath it via `gridColumnStart`/
+ * `gridColumnEnd`, and the real leaf/column row below it. The leaf row is always the LAST
+ * `TableHeaderRow` - that's the one `sortFunctions`/`filterFunctions` keys and body columns line
+ * up with.
+ */
+export const GroupedHeaders: StoryFn<typeof TableComponent> = () => {
+  return (
+    <Box backgroundColor="surface.background.gray.intense" padding="spacing.5" overflow="auto">
+      <TableComponent data={klearData} showBorderedCells>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+                  Transaction
+                </TableHeaderCell>
+                <TableHeaderCell gridColumnStart={3} gridColumnEnd={7}>
+                  Charges
+                </TableHeaderCell>
+              </TableHeaderRow>
+              <TableHeaderRow>
+                <TableHeaderCell>Merchant</TableHeaderCell>
+                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Fee</TableHeaderCell>
+                <TableHeaderCell>GST</TableHeaderCell>
+                <TableHeaderCell>Settlement</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item, index) => (
+                <TableRow key={index} item={item}>
+                  <TableCell>{item?.merchant}</TableCell>
+                  <TableCell>{item?.method}</TableCell>
+                  <TableCell>
+                    <Amount value={item?.amount} isAffixSubtle={false} />
+                  </TableCell>
+                  <TableCell>
+                    <Amount value={item?.fee} isAffixSubtle={false} />
+                  </TableCell>
+                  <TableCell>
+                    <Amount value={item?.gst} isAffixSubtle={false} />
+                  </TableCell>
+                  <TableCell>
+                    <Amount value={item?.settlement} isAffixSubtle={false} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </TableComponent>
+    </Box>
+  );
+};

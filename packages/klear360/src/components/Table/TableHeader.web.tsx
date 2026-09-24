@@ -10,6 +10,7 @@ import type {
   TableBackgroundColors,
   TableProps,
   TableToolbarPlacement,
+  TableColumnFilterConfig,
 } from './types';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
@@ -28,6 +29,9 @@ import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { BaseInput } from '~components/Input/BaseInput';
 import { CloseIcon, SearchIcon } from '~components/Icons';
 import { IconButton } from '~components/Button/IconButton';
+import { Dropdown, DropdownOverlay } from '~components/Dropdown';
+import { SelectInput } from '~components/Input/DropdownInputTriggers';
+import { ActionList, ActionListItem } from '~components/ActionList';
 
 const SortButton = styled.button(({ theme }) => ({
   cursor: 'pointer',
@@ -183,13 +187,20 @@ const StyledHeaderRow = styled(HeaderRow)<{
  * A column's `headerKey` + rendered label, extracted from the real header row's
  * `TableHeaderCell` children (in order) - so the filter row below can render matching cells
  * without the consumer having to declare the column list a second time.
+ *
+ * `headerRow` may contain more than one `TableHeaderRow` (grouped multi-row headers) - the LAST
+ * one is always the leaf/column row that lines up 1:1 with body columns, so that's the one used
+ * here (see `getTableHeaderCellCount` in `Table.web.tsx` for the same convention).
  */
 const getHeaderCellsMeta = (
   headerRow: React.ReactNode,
 ): { headerKey?: string; label: React.ReactNode }[] => {
-  const headerRowElement = React.Children.toArray(headerRow)[0];
-  if (!React.isValidElement(headerRowElement)) return [];
-  return React.Children.toArray((headerRowElement.props as TableHeaderRowProps).children)
+  const headerRowElements = React.Children.toArray(headerRow).filter(
+    (child) => getComponentId(child) === ComponentIds.TableHeaderRow,
+  );
+  const leafHeaderRowElement = headerRowElements[headerRowElements.length - 1];
+  if (!React.isValidElement(leafHeaderRowElement)) return [];
+  return React.Children.toArray((leafHeaderRowElement.props as TableHeaderRowProps).children)
     .filter((cell) => getComponentId(cell) === ComponentIds.TableHeaderCell)
     .map((cell) => {
       const cellProps = (React.isValidElement(cell) ? cell.props : {}) as TableHeaderCellProps;
@@ -198,10 +209,63 @@ const getHeaderCellsMeta = (
 };
 
 /**
+ * Renders a filterable column's dropdown/multiselect picker (see `TableProps['filterConfig']`),
+ * in place of the default text input - same composition `TableEditableDropdownCell` already uses
+ * for body cells (`Dropdown` + `DropdownOverlay` + `ActionList`), just driven by the column's
+ * `filterConfig.options` instead of consumer-authored `ActionListItem`s, and controlled by the
+ * filter row's own `columnFilterValues` state instead of being uncontrolled.
+ *
+ * `isTableInputCell` + a leading `SearchIcon` match this to its plain-text sibling below
+ * (`BaseInput isTableInputCell leadingIcon={SearchIcon}`) - same borderless, cell-edge-flush look,
+ * same icon treatment - rather than `SelectInput`'s normal bordered, button-like appearance, which
+ * read as visually inconsistent sitting next to a plain search box in the same filter row.
+ */
+const TableHeaderFilterDropdownCell = ({
+  headerKey,
+  config,
+  value,
+  labelText,
+  onChange,
+}: {
+  headerKey: string;
+  config: TableColumnFilterConfig;
+  value: string | string[] | undefined;
+  labelText: string;
+  onChange: (value: string | string[]) => void;
+}): React.ReactElement => {
+  const isMultiselect = config.type === 'multiselect';
+  return (
+    <BaseBox flex={1} marginX="spacing.2">
+      <Dropdown selectionType={isMultiselect ? 'multiple' : 'single'} _width="100%">
+        <SelectInput
+          testID={`table-header-filter-${headerKey}`}
+          size="small"
+          isTableInputCell
+          icon={SearchIcon}
+          value={value ?? (isMultiselect ? [] : '')}
+          onChange={({ values }) => onChange(isMultiselect ? values : values[0] ?? '')}
+          placeholder={`Filter ${labelText}`}
+          accessibilityLabel={`Filter by ${labelText}`}
+        />
+        <DropdownOverlay>
+          <ActionList>
+            {config.options.map((option) => (
+              <ActionListItem key={option.value} title={option.label} value={option.value} />
+            ))}
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>
+    </BaseBox>
+  );
+};
+
+/**
  * Auto-injected second header row rendering a compact search input for every column whose
  * `headerKey` is present in `filterFunctions` (see `TableProps['filterFunctions']`) - no extra
- * JSX required from consumers. Non-filterable columns (and the leading checkbox / trailing
- * hover-actions columns, when present) render as empty cells purely to keep grid alignment.
+ * JSX required from consumers. A column also present in `filterConfig` renders a dropdown/
+ * multiselect picker (see `TableHeaderFilterDropdownCell`) instead. Non-filterable columns (and
+ * the leading checkbox / trailing hover-actions columns, when present) render as empty cells
+ * purely to keep grid alignment.
  */
 const TableHeaderFilterRow = ({
   headerRow,
@@ -212,6 +276,7 @@ const TableHeaderFilterRow = ({
     filterableColumns,
     columnFilterValues,
     setColumnFilterValue,
+    filterConfig,
     backgroundColor,
     selectionType,
     hasHoverActions,
@@ -246,7 +311,15 @@ const TableHeaderFilterRow = ({
             role={isFilterable ? undefined : 'presentation'}
             $backgroundColor={backgroundColor}
           >
-            {isFilterable && headerKey ? (
+            {isFilterable && headerKey && filterConfig[headerKey] ? (
+              <TableHeaderFilterDropdownCell
+                headerKey={headerKey}
+                config={filterConfig[headerKey]}
+                value={columnFilterValues[headerKey]}
+                labelText={labelText}
+                onChange={(value) => setColumnFilterValue(headerKey, value)}
+              />
+            ) : isFilterable && headerKey ? (
               // Flush/borderless input filling the cell edge-to-edge (`isTableInputCell`), same
               // treatment as TableEditableCell's body-row inputs - the cell's own `:focus-within`
               // (see StyledFilterHeaderCell) shows the ring instead of the input itself.
@@ -255,7 +328,11 @@ const TableHeaderFilterRow = ({
                   isTableInputCell
                   id={`table-header-filter-${headerKey}`}
                   size="small"
-                  value={columnFilterValues[headerKey] ?? ''}
+                  value={
+                    typeof columnFilterValues[headerKey] === 'string'
+                      ? columnFilterValues[headerKey]
+                      : ''
+                  }
                   onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
                   placeholder={`Filter ${labelText}`}
                   accessibilityLabel={`Filter by ${labelText}`}
@@ -283,8 +360,35 @@ const TableHeaderFilterRow = ({
   );
 };
 
+// Header rows are always rendered at the compact density (36px), regardless of `rowDensity` - see
+// the `rowDensity` deprecation note on `TableHeaderRowProps`. Grouped multi-row headers use this
+// fixed height to stack each row's sticky `top` below the one(s) above it.
+const HEADER_ROW_HEIGHT_PX = Number(tableRow.minHeight.compact);
+
 const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactElement => {
   const { tableToolbarPlacement, filterableColumns } = useTableContext();
+
+  // `TableHeader` may contain more than one `TableHeaderRow` (grouped multi-row headers - earlier
+  // rows are group-label rows spanning leaf columns via `gridColumnStart`/`gridColumnEnd`, see
+  // `TableCellGridSpanningProps`). By convention the LAST row is always the leaf/column row -
+  // decorate each row with that fact and its stacked sticky offset so `TableHeaderRow` doesn't
+  // need consumers to declare either explicitly.
+  const childrenArray = React.Children.toArray(children);
+  const headerRowIndices = childrenArray.reduce<number[]>((indices, child, index) => {
+    if (getComponentId(child) === ComponentIds.TableHeaderRow) indices.push(index);
+    return indices;
+  }, []);
+  const isMultiRowHeader = headerRowIndices.length > 1;
+  const decoratedChildren = isMultiRowHeader
+    ? childrenArray.map((child, index) => {
+        const rowPosition = headerRowIndices.indexOf(index);
+        if (rowPosition === -1 || !React.isValidElement(child)) return child;
+        return React.cloneElement(child, {
+          _isLeafHeaderRow: rowPosition === headerRowIndices.length - 1,
+          _stickyTopOffsetPx: rowPosition * HEADER_ROW_HEIGHT_PX,
+        } as Partial<TableHeaderRowProps>);
+      })
+    : children;
 
   return (
     <StyledHeader
@@ -292,7 +396,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
       {...metaAttribute({ name: MetaConstants.TableHeader })}
       {...makeAnalyticsAttribute(rest)}
     >
-      {children}
+      {decoratedChildren}
       {filterableColumns.length > 0 && <TableHeaderFilterRow headerRow={children} />}
     </StyledHeader>
   );
@@ -310,43 +414,60 @@ const StyledHeaderCell = styled(HeaderCell)<{
   $hasPadding: boolean;
   $textAlign: 'left' | 'center' | 'right';
   $gridRow?: string;
-}>(({ theme, $isSortable, $backgroundColor, $rowDensity, $hasPadding, $textAlign, $gridRow }) => ({
-  '&&&': {
-    display: $textAlign ? 'flex' : 'block',
-    justifyContent: $textAlign ? 'space-between' : 'initial',
-    height: '100%',
-    backgroundColor: getIn(theme.colors, $backgroundColor),
-    borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
-    borderTopWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
-    borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
-    borderTopColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
-    borderBottomStyle: 'solid',
-    borderTopStyle: 'solid',
-    cursor: $isSortable ? 'pointer' : 'auto',
-    gridRow: $gridRow,
-    '> div': {
-      backgroundColor: getIn(theme.colors, tableHeader.backgroundColor),
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: $textAlign ? $textAlign : 'space-between',
-      alignItems: 'center',
+  $stickyTopOffsetPx?: number;
+}>(
+  ({
+    theme,
+    $isSortable,
+    $backgroundColor,
+    $rowDensity,
+    $hasPadding,
+    $textAlign,
+    $gridRow,
+    $stickyTopOffsetPx,
+  }) => ({
+    '&&&': {
+      display: $textAlign ? 'flex' : 'block',
+      justifyContent: $textAlign ? 'space-between' : 'initial',
       height: '100%',
-      paddingLeft: $hasPadding
-        ? makeSpace(getIn(theme, tableRow.paddingLeft[$rowDensity]))
-        : undefined,
-      paddingRight: $hasPadding
-        ? makeSpace(getIn(theme, tableRow.paddingRight[$rowDensity]))
-        : undefined,
-      minHeight: makeSize(getIn(size, tableRow.minHeight[$rowDensity])),
+      backgroundColor: getIn(theme.colors, $backgroundColor),
+      borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
+      borderTopWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
+      borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
+      borderTopColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      cursor: $isSortable ? 'pointer' : 'auto',
+      gridRow: $gridRow,
+      // Grouped multi-row headers only - stacks this row's sticky position below the row(s) above
+      // it (each fixed at the compact 36px header row height) instead of every row independently
+      // sticking to `top: 0` and overlapping each other.
+      ...($stickyTopOffsetPx ? { top: `${$stickyTopOffsetPx}px` } : {}),
+      '> div': {
+        backgroundColor: getIn(theme.colors, tableHeader.backgroundColor),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: $textAlign ? $textAlign : 'space-between',
+        alignItems: 'center',
+        height: '100%',
+        paddingLeft: $hasPadding
+          ? makeSpace(getIn(theme, tableRow.paddingLeft[$rowDensity]))
+          : undefined,
+        paddingRight: $hasPadding
+          ? makeSpace(getIn(theme, tableRow.paddingRight[$rowDensity]))
+          : undefined,
+        minHeight: makeSize(getIn(size, tableRow.minHeight[$rowDensity])),
+      },
+      '&:focus-visible': getFocusRingStyles({ theme, negativeOffset: true }),
     },
-    '&:focus-visible': getFocusRingStyles({ theme, negativeOffset: true }),
-  },
-}));
+  }),
+);
 
 const _TableHeaderCell = ({
   children,
   headerKey,
   _hasPadding = true,
+  _stickyTopOffsetPx,
   textAlign,
   gridColumnStart,
   gridColumnEnd,
@@ -392,6 +513,7 @@ const _TableHeaderCell = ({
       $rowDensity={headerRowDensity ?? rowDensity}
       $hasPadding={_hasPadding}
       $textAlign={textAlign}
+      $stickyTopOffsetPx={_stickyTopOffsetPx}
       onClick={(event: React.MouseEvent) => {
         if (isSortable) {
           toggleSort(headerKey, event.shiftKey);
@@ -458,6 +580,8 @@ const TableHeaderCellCheckbox = ({
 const _TableHeaderRow = ({
   children,
   rowDensity,
+  _isLeafHeaderRow = true,
+  _stickyTopOffsetPx,
   ...rest
 }: TableHeaderRowProps): React.ReactElement => {
   const {
@@ -465,6 +589,7 @@ const _TableHeaderRow = ({
     selectionType,
     selectedRows,
     totalItems,
+    tableData,
     toggleAllRowsSelection,
     setHeaderRowDensity,
     showBorderedCells,
@@ -472,16 +597,46 @@ const _TableHeaderRow = ({
     gridTemplateColumns,
     columnCount,
     isVirtualized,
+    shouldHeaderBeSticky,
   } = useTableContext();
   const isMultiSelect = selectionType === 'multiple';
-  const isAllSelected = selectedRows && selectedRows.length === totalItems;
-  const isIndeterminate = selectedRows && selectedRows.length > 0 && !isAllSelected;
+  // Containment against the currently-visible rows (`tableData`), not a `selectedRows.length ===
+  // totalItems` count comparison - `totalItems` tracks whatever `data` currently holds, which for
+  // server-side pagination is only the current page, not every row that's ever been selected
+  // across other pages. A count comparison against that would show this page as "indeterminate"
+  // (or worse, get cleared entirely by `toggleAllRowsSelection`) purely because *other* pages have
+  // selections, even when none of *this* page's rows are selected. See the Selection Across Pages
+  // example.
+  const visibleRowIds = React.useMemo(() => tableData.map((item) => item.id), [tableData]);
+  const selectedRowIds = selectedRows ?? [];
+  const isAllSelected =
+    visibleRowIds.length > 0 && visibleRowIds.every((id) => selectedRowIds.includes(id));
+  const isIndeterminate = !isAllSelected && visibleRowIds.some((id) => selectedRowIds.includes(id));
   const isDisabled = disabledRows && disabledRows.length === totalItems;
 
   // Note: The rowDensity prop is deprecated (see types.ts for @deprecated documentation).
   // Header row is always compact (36px height) regardless of the rowDensity value passed.
   // This prop will be removed in a future major version.
   setHeaderRowDensity('compact');
+
+  // `top: Npx` only makes sense to apply once this row's cells are actually `position: sticky`
+  // (see `StyledHeaderCell`'s theme-driven `position`) - on a non-sticky `position: relative` cell
+  // it would instead permanently shift the row down by that many pixels.
+  const cellStickyTopOffsetPx =
+    shouldHeaderBeSticky && _stickyTopOffsetPx ? _stickyTopOffsetPx : undefined;
+
+  // Grouped multi-row headers (see `TableHeader`'s row decoration) only ever need the
+  // checkbox/hover-actions placeholder cells once, on the leaf row - otherwise every group-label
+  // row above it would also render its own "select all" checkbox / Actions placeholder.
+  const decoratedChildren = cellStickyTopOffsetPx
+    ? React.Children.map(children, (child) =>
+        getComponentId(child) === ComponentIds.TableHeaderCell && React.isValidElement(child)
+          ? React.cloneElement(child, {
+              _stickyTopOffsetPx: cellStickyTopOffsetPx,
+            } as Partial<TableHeaderCellProps>)
+          : child,
+      )
+    : children;
 
   return (
     // `@table-library`'s own `HeaderRow` defaults its `role` prop to `"rowheader"` internally -
@@ -499,16 +654,30 @@ const _TableHeaderRow = ({
       $columnCount={columnCount}
       $isVirtualized={isVirtualized}
     >
-      {isMultiSelect && (
-        <TableHeaderCellCheckbox
-          isChecked={isAllSelected}
-          isDisabled={isDisabled}
-          isIndeterminate={isIndeterminate}
-          onChange={() => toggleAllRowsSelection()}
-        />
-      )}
-      {children}
-      {hasHoverActions ? <TableHeaderCell _hasPadding={false}>Actions</TableHeaderCell> : null}
+      {isMultiSelect &&
+        (_isLeafHeaderRow ? (
+          <TableHeaderCellCheckbox
+            isChecked={isAllSelected}
+            isDisabled={isDisabled}
+            isIndeterminate={isIndeterminate}
+            onChange={() => toggleAllRowsSelection()}
+          />
+        ) : (
+          // Group-label rows (grouped multi-row headers) don't repeat the "select all" checkbox -
+          // an empty spacer cell keeps this row's columns aligned with the leaf row below it,
+          // which does reserve a real column for it.
+          <TableHeaderCell _hasPadding={false}>{null}</TableHeaderCell>
+        ))}
+      {decoratedChildren}
+      {hasHoverActions ? (
+        _isLeafHeaderRow ? (
+          <TableHeaderCell _hasPadding={false}>Actions</TableHeaderCell>
+        ) : (
+          // Same alignment spacer as the checkbox column above, for the trailing hover-actions
+          // column on group-label rows.
+          <TableHeaderCell _hasPadding={false}>{null}</TableHeaderCell>
+        )
+      ) : null}
     </StyledHeaderRow>
   );
 };

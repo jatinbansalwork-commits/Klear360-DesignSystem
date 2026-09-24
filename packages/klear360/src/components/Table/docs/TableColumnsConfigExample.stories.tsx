@@ -14,9 +14,6 @@ const TableMeta: Meta = {
   component: Table,
   parameters: {
     viewMode: 'story',
-    options: {
-      showPanel: false,
-    },
     chromatic: { disableSnapshot: true },
   },
 };

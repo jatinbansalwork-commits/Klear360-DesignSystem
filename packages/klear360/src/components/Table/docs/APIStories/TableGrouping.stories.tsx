@@ -12,6 +12,7 @@ import {
 import type { TableProps, Identifier } from '../../types';
 import { Box } from '~components/Box';
 import { Amount } from '~components/Amount';
+import { Button } from '~components/Button';
 
 const meta: Meta<TableProps<unknown>> = {
   title: 'Components/Table/Examples/Grouping',
@@ -262,5 +263,80 @@ export const TableGroupingWithDisabledRows: StoryFn<TableProps<unknown>> = () =>
 };
 
 TableGroupingWithDisabledRows.storyName = 'Table Grouping with Disabled Rows';
+
+/**
+ * Every grouped table gets a per-group expand/collapse chevron automatically (see the other
+ * stories above) - all groups start expanded unless `defaultExpandedRowIds` says otherwise. This
+ * story demonstrates the fully controlled form (`expandedRowIds`/`onExpandedRowIdsChange`),
+ * driving it from an "Expand All"/"Collapse All" toolbar action outside the table itself.
+ */
+export const TableGroupingWithControlledExpansion: StoryFn<TableProps<unknown>> = () => {
+  const allGroupIds = sampleData.nodes.map((node) => node.id);
+  const [expandedRowIds, setExpandedRowIds] = useState<Identifier[]>(allGroupIds);
+
+  return (
+    <Box display="flex" flexDirection="column" gap="spacing.4">
+      <Box display="flex" gap="spacing.3">
+        <Button size="small" variant="secondary" onClick={() => setExpandedRowIds(allGroupIds)}>
+          Expand All
+        </Button>
+        <Button size="small" variant="secondary" onClick={() => setExpandedRowIds([])}>
+          Collapse All
+        </Button>
+      </Box>
+      <Table
+        data={sampleData}
+        isGrouped
+        showBorderedCells
+        expandedRowIds={expandedRowIds}
+        onExpandedRowIdsChange={setExpandedRowIds}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Fees</TableHeaderCell>
+                <TableHeaderCell>Total</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item, index) => (
+                <TableRow key={index} item={item}>
+                  <TableCell
+                    gridColumnStart={
+                      (item as { treeXLevel?: number }).treeXLevel === 0 ? 1 : undefined
+                    }
+                    gridColumnEnd={
+                      (item as { treeXLevel?: number }).treeXLevel === 0 ? 5 : undefined
+                    }
+                  >
+                    {item.method}
+                  </TableCell>
+                  {(item as { treeXLevel?: number }).treeXLevel !== 0 && (
+                    <>
+                      <TableCell>
+                        <Amount value={item.amount} isAffixSubtle={false} />
+                      </TableCell>
+                      <TableCell>
+                        <Amount value={item.fees} isAffixSubtle={false} />
+                      </TableCell>
+                      <TableCell>
+                        <Amount value={item.total} isAffixSubtle={false} />
+                      </TableCell>
+                    </>
+                  )}
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>
+    </Box>
+  );
+};
+
+TableGroupingWithControlledExpansion.storyName = 'Table Grouping with Controlled Expansion';
 
 export default meta;

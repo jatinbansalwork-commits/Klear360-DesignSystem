@@ -9,7 +9,7 @@ import {
   SelectTypes,
   useRowSelect,
 } from '@table-library/react-table-library/select';
-import { useTree } from '@table-library/react-table-library/tree';
+import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree';
 import styled from 'styled-components';
 import usePresence from 'use-presence';
 import type { TableContextType } from './TableContext';
@@ -67,6 +67,12 @@ const rowSelectType: Record<
 // Get the number of TableHeaderCell components.
 // This is very complicated but the only way to iterate through the structure and get number of header cells.
 // Assuming number of header cells is the same as number of columns
+//
+// `TableHeader` may contain more than one `TableHeaderRow` (grouped multi-row headers - earlier
+// rows are group-label rows spanning leaf columns via `gridColumnStart`/`gridColumnEnd`). By
+// convention the LAST `TableHeaderRow` is always the leaf/column row that lines up 1:1 with body
+// columns, so that's the one counted here - not the first, which would undercount/miscount when a
+// group row precedes it.
 const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): number => {
   const tableRootComponent = children([]);
   if (tableRootComponent && React.isValidElement(tableRootComponent)) {
@@ -81,11 +87,12 @@ const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): nu
       const tableHeaderChildrenArray = React.isValidElement(tableHeader)
         ? React.Children.toArray(tableHeader.props.children)
         : null;
-      const tableHeaderRow = tableHeaderChildrenArray?.find(
+      const tableHeaderRows = tableHeaderChildrenArray?.filter(
         (child) => getComponentId(child) === ComponentIds.TableHeaderRow,
       );
-      const tableHeaderRowChildrenArray = React.isValidElement(tableHeaderRow)
-        ? React.Children.toArray(tableHeaderRow.props.children)
+      const leafTableHeaderRow = tableHeaderRows?.[tableHeaderRows.length - 1];
+      const tableHeaderRowChildrenArray = React.isValidElement(leafTableHeaderRow)
+        ? React.Children.toArray(leafTableHeaderRow.props.children)
         : null;
       const tableHeaderCells = tableHeaderRowChildrenArray
         ? tableHeaderRowChildrenArray.filter(
@@ -189,6 +196,9 @@ const _Table = <Item,>({
   isFirstColumnSticky,
   stickyColumnCount: stickyColumnCountProp,
   stickyColumnWidths,
+  isLastColumnSticky,
+  trailingStickyColumnCount: trailingStickyColumnCountProp,
+  trailingStickyColumnWidths,
   rowDensity = 'normal',
   onSortChange,
   sortFunctions,
@@ -204,8 +214,12 @@ const _Table = <Item,>({
   defaultSelectedIds = [],
   backgroundColor = tableBackgroundColor,
   isGrouped = false,
+  expandedRowIds: expandedRowIdsProp,
+  defaultExpandedRowIds,
+  onExpandedRowIdsChange,
   checkboxDisplay = 'always',
   filterFunctions,
+  filterConfig = {},
   columnFilterValues: columnFilterValuesProp,
   defaultColumnFilterValues = {},
   onColumnFilterValuesChange,
@@ -233,6 +247,7 @@ const _Table = <Item,>({
               <TableHeaderCell
                 key={column.key}
                 headerKey={column.sortable ? column.key : undefined}
+                textAlign={column.textAlign}
               >
                 {column.header}
               </TableHeaderCell>
@@ -243,7 +258,9 @@ const _Table = <Item,>({
           {tableData.map((item, index) => (
             <TableRow key={item.id} item={item}>
               {columns.map((column) => (
-                <TableCell key={column.key}>{column.render(item, index)}</TableCell>
+                <TableCell key={column.key} textAlign={column.textAlign}>
+                  {column.render(item, index)}
+                </TableCell>
               ))}
             </TableRow>
           ))}
@@ -281,12 +298,12 @@ const _Table = <Item,>({
   );
 
   const [internalColumnFilterValues, setInternalColumnFilterValues] = React.useState<
-    Record<string, string>
+    Record<string, string | string[]>
   >(defaultColumnFilterValues);
   const columnFilterValues = columnFilterValuesProp ?? internalColumnFilterValues;
 
   const setColumnFilterValue = useCallback(
-    (key: string, value: string): void => {
+    (key: string, value: string | string[]): void => {
       const nextValues = { ...columnFilterValues, [key]: value };
       if (columnFilterValuesProp === undefined) {
         setInternalColumnFilterValues(nextValues);
@@ -299,7 +316,10 @@ const _Table = <Item,>({
   const filterableColumns = useMemo(() => Object.keys(filterFunctions ?? {}), [filterFunctions]);
 
   const activeColumnFilters = useMemo(
-    () => Object.entries(columnFilterValues).filter(([, value]) => Boolean(value)),
+    () =>
+      Object.entries(columnFilterValues).filter(([, value]) =>
+        Array.isArray(value) ? value.length > 0 : Boolean(value),
+      ),
     [columnFilterValues],
   );
 
@@ -363,6 +383,8 @@ const _Table = <Item,>({
   // generalizes this to N leading columns (see `stickyColumnWidths` for why widths are required
   // beyond the first).
   const requestedStickyColumnCount = stickyColumnCountProp ?? (isFirstColumnSticky ? 1 : 0);
+  const requestedTrailingStickyColumnCount =
+    trailingStickyColumnCountProp ?? (isLastColumnSticky ? 1 : 0);
 
   if (__DEV__) {
     if (
@@ -375,6 +397,17 @@ const _Table = <Item,>({
         moduleName: 'Table',
       });
     }
+    if (
+      requestedTrailingStickyColumnCount > 1 &&
+      (!trailingStickyColumnWidths ||
+        trailingStickyColumnWidths.length < requestedTrailingStickyColumnCount)
+    ) {
+      throwKlear360Error({
+        message:
+          '`trailingStickyColumnWidths` must provide a pixel width for each of the `trailingStickyColumnCount` columns when freezing more than one column.',
+        moduleName: 'Table',
+      });
+    }
   }
 
   // Sticky columns are disabled on mobile: their combined width easily exceeds a phone's
@@ -382,9 +415,11 @@ const _Table = <Item,>({
   // leave no visible area to scroll the rest of the table into view at all. Falling back to a
   // plain horizontally-scrollable table keeps every column reachable.
   const stickyColumnCount = isMobile ? 0 : requestedStickyColumnCount;
+  const trailingStickyColumnCount = isMobile ? 0 : requestedTrailingStickyColumnCount;
 
-  // Need to make header is sticky if first column is sticky otherwise the first header cell will not be sticky
-  const shouldHeaderBeSticky = isVirtualized || isHeaderSticky || stickyColumnCount > 0;
+  // Need to make header is sticky if first/last column is sticky otherwise that header cell will not be sticky
+  const shouldHeaderBeSticky =
+    isVirtualized || isHeaderSticky || stickyColumnCount > 0 || trailingStickyColumnCount > 0;
 
   const {
     isEntering: isRefreshSpinnerEntering,
@@ -402,7 +437,7 @@ const _Table = <Item,>({
   // the multi-select checkbox column, when present) at their cumulative left offset, computed
   // from `stickyColumnWidths` rather than measured at render time.
   const stickyColumnsCSS = useMemo(() => {
-    if (stickyColumnCount < 1) return '';
+    if (stickyColumnCount < 1 && trailingStickyColumnCount < 1) return '';
 
     const isMultiSelect = selectionType === 'multiple';
     // The last frozen column's own `border-right` (on `.cell-wrapper`, see TableBody/TableHeader)
@@ -427,9 +462,9 @@ const _Table = <Item,>({
 
     const rules: string[] = [];
     let cumulativeLeft = 0;
-    if (isMultiSelect) {
-      // The checkbox column is always followed by at least one more sticky column here (the
-      // `stickyColumnCount < 1` case already returned above), so it's never the last sticky one.
+    if (isMultiSelect && stickyColumnCount > 0) {
+      // The checkbox column is always followed by at least one more sticky column here (guarded
+      // by `stickyColumnCount > 0` above), so it's never the last sticky one.
       rules.push(stickyRule(1, 0, false));
       cumulativeLeft = checkboxCellWidth;
     }
@@ -438,8 +473,51 @@ const _Table = <Item,>({
       rules.push(stickyRule(domIndex, cumulativeLeft, i === stickyColumnCount - 1));
       cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
     }
+
+    if (trailingStickyColumnCount > 0) {
+      // The trailing column that borders the scrolling region is the *first* trailing-sticky
+      // column (closest to the middle of the table), unlike the leading case where it's the
+      // last - hence the box-shadow goes on `i === 0` here.
+      const trailingStickyRule = (
+        domIndexFromEnd: number,
+        right: number,
+        isFirstTrailingSticky: boolean,
+      ): string => `
+  &:nth-last-of-type(${domIndexFromEnd}) {
+    right: ${right}px !important;
+    position: sticky !important;
+    z-index: ${firstColumnStickyZIndex} !important;
+    ${isFirstTrailingSticky ? lastStickyBoxShadow : ''}
+  }
+  /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
+  &:nth-last-of-type(${domIndexFromEnd}).${classes.HAS_ROW_SPANNING} {
+    z-index: 3 !important;
+  }`;
+
+      // The hover-actions column (when present) is always the very last DOM column and is
+      // already its own `position: sticky; right: 0` (see TableBody's `hasHoverActions` styles) -
+      // skip over it so trailing sticky columns sit correctly to its left instead of fighting it
+      // for the same spot.
+      const trailingDomOffset = hasHoverActions ? 1 : 0;
+      let cumulativeRight = 0;
+      for (let i = 0; i < trailingStickyColumnCount; i += 1) {
+        const domIndexFromEnd = i + 1 + trailingDomOffset;
+        rules.push(trailingStickyRule(domIndexFromEnd, cumulativeRight, i === 0));
+        cumulativeRight += Number.parseFloat(trailingStickyColumnWidths?.[i] ?? '0');
+      }
+    }
+
     return rules.join('\n');
-  }, [stickyColumnCount, selectionType, stickyColumnWidths, showBorderedCells, theme]);
+  }, [
+    stickyColumnCount,
+    trailingStickyColumnCount,
+    selectionType,
+    stickyColumnWidths,
+    trailingStickyColumnWidths,
+    hasHoverActions,
+    showBorderedCells,
+    theme,
+  ]);
 
   const tableTheme = useTableTheme({
     Table: `
@@ -546,39 +624,84 @@ const _Table = <Item,>({
 
   const toggleAllRowsSelection = useMemo(
     () => (): void => {
-      if (selectedRows.length > 0) {
-        rowSelectConfig.fns.onRemoveAll();
-      } else if (isGrouped) {
-        rowSelectConfig.fns.onToggleAll({});
-      } else {
-        // Only the currently filtered/visible rows - matching "select all" meaning "select
-        // everything you can currently see", not everything that ever existed in `data`.
-        const ids = filteredData.nodes
-          .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
-          .filter(Boolean) as Identifier[];
+      if (isGrouped) {
+        // Tree-aware select-all/deselect-all - unrelated to the cross-page fix below, left as
+        // before (grouped tables aren't paginated server-side).
+        if (selectedRows.length > 0) {
+          rowSelectConfig.fns.onRemoveAll();
+        } else {
+          rowSelectConfig.fns.onToggleAll({});
+        }
+        return;
+      }
 
-        rowSelectConfig.fns.onAddAll(ids);
+      // Scoped to the currently filtered/visible rows, not `selectedRows` as a whole - matching
+      // "select all" meaning "select/deselect everything you can currently see". With
+      // server-side pagination, `selectedRows` can already contain ids from *other* pages;
+      // `onRemoveAll()`/`onAddAll()` operate on every selected id regardless of page, so using
+      // them here would wipe out (or double-count towards) selections the user made elsewhere.
+      // `onAddByIds`/`onRemoveByIds` only ever touch this page's ids, leaving other pages' picks
+      // intact - see the Selection Across Pages example for why this matters.
+      const visibleSelectableIds = filteredData.nodes
+        .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
+        .filter(Boolean) as Identifier[];
+      const isAllVisibleSelected =
+        visibleSelectableIds.length > 0 &&
+        visibleSelectableIds.every((id) => selectedRows.includes(id));
+
+      if (isAllVisibleSelected) {
+        rowSelectConfig.fns.onRemoveByIds(visibleSelectableIds);
+      } else {
+        const idsToAdd = visibleSelectableIds.filter((id) => !selectedRows.includes(id));
+        rowSelectConfig.fns.onAddByIds(idsToAdd, {});
       }
     },
-    [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows],
+    [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows, isGrouped],
   );
+
+  // Row expansion (group-header rows only, see `isGrouped`).
+  //
+  // Uncontrolled default seeds every group-header id as expanded, so tables that don't pass
+  // `expandedRowIds`/`defaultExpandedRowIds` keep today's "always fully expanded" look.
+  const [internalExpandedRowIds, setInternalExpandedRowIds] = React.useState<Identifier[]>(
+    () =>
+      defaultExpandedRowIds ??
+      data.nodes
+        .filter((node) => (((node as unknown) as { nodes?: unknown[] }).nodes?.length ?? 0) > 0)
+        .map((node) => node.id),
+  );
+  const expandedRowIds = expandedRowIdsProp ?? internalExpandedRowIds;
+
+  const handleTreeChange: MiddlewareFunction = (_, state): void => {
+    const nextExpandedRowIds: Identifier[] = state.ids ?? [];
+    if (expandedRowIdsProp === undefined) {
+      setInternalExpandedRowIds(nextExpandedRowIds);
+    }
+    onExpandedRowIdsChange?.(nextExpandedRowIds);
+  };
 
   const tree = useTree(
     isGrouped ? data : { nodes: [] },
-    {},
     {
-      // Disable row click expand/collapse (fallback enables unwanted expand/collapse on row click)
-      clickType: undefined,
+      onChange: handleTreeChange,
+      state: { ids: expandedRowIds },
+    },
+    {
+      // Toggling is done manually (see `toggleRowExpansionById`) via a dedicated disclosure
+      // control rather than the library auto-wiring row clicks - `ButtonClick` just opts out of
+      // that auto-wiring, matching how `SelectClickTypes` is handled for row selection above.
+      clickType: TreeExpandClickTypes.ButtonClick,
       // Disable all indentation for flat appearance
       treeYLevel: undefined,
     },
   );
 
-  useIsomorphicLayoutEffect(() => {
-    if (isGrouped && tree?.fns.onToggleAll) {
-      tree.fns.onToggleAll({ ids: [] });
-    }
-  }, []);
+  const toggleRowExpansionById = useMemo(
+    () => (id: Identifier): void => {
+      tree.fns.onToggleById(id);
+    },
+    [tree.fns],
+  );
 
   // @table-library's own footer row/cells hard-code `role="rowfooter"`/`role="columnfooter"` -
   // neither is a real WAI-ARIA role (there is no "footer cell" role; `cell`/`row` are what the
@@ -807,6 +930,7 @@ const _Table = <Item,>({
       headerRowDensity,
       setHeaderRowDensity,
       showBorderedCells,
+      shouldHeaderBeSticky,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
@@ -818,6 +942,8 @@ const _Table = <Item,>({
       // reflect the current sort too.
       tableData: sortedData.nodes,
       isGrouped,
+      expandedRowIds,
+      toggleRowExpansionById,
       tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
       checkboxDisplay,
       globalFilterValue,
@@ -825,6 +951,7 @@ const _Table = <Item,>({
       columnFilterValues,
       setColumnFilterValue,
       filterableColumns,
+      filterConfig,
     }),
     [
       selectionType,
@@ -850,18 +977,22 @@ const _Table = <Item,>({
       headerRowDensity,
       setHeaderRowDensity,
       showBorderedCells,
+      shouldHeaderBeSticky,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
       isVirtualized,
       sortedData,
       isGrouped,
+      expandedRowIds,
+      toggleRowExpansionById,
       checkboxDisplay,
       globalFilterValue,
       setGlobalFilterValue,
       columnFilterValues,
       setColumnFilterValue,
       filterableColumns,
+      filterConfig,
     ],
   );
 

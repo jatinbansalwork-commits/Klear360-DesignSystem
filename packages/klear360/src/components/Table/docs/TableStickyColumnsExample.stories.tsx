@@ -25,9 +25,6 @@ const TableMeta: Meta = {
   component: Table,
   parameters: {
     viewMode: 'story',
-    options: {
-      showPanel: false,
-    },
     chromatic: { disableSnapshot: true },
   },
 };
@@ -240,8 +237,56 @@ export const StickyColumns = (): React.ReactElement => {
             showPageNumberSelector
             onPageChange={action('onPageChange')}
             onPageSizeChange={action('onPageSizeChange')}
+            showLabel
           />
         }
+      />
+    </Box>
+  );
+};
+
+// Same columns as `StickyColumns`, but with `actions` moved to the end - pinning an Actions
+// column to the trailing edge (rather than leading) is the more common real-world pattern for
+// this feature, so it gets its own dedicated example.
+const trailingActionsColumns: TableColumnConfig<TransactionTableItem>[] = [
+  ...columns.filter((column) => column.key !== 'actions'),
+  columns.find((column) => column.key === 'actions')!,
+];
+
+/**
+ * Demonstrates `trailingStickyColumnCount`/`trailingStickyColumnWidths` - freezing the trailing
+ * `Actions` column to the right edge while combined with the existing leading sticky columns
+ * (`Transaction ID`, `Company Name`), so both edges stay pinned while everything else scrolls
+ * underneath.
+ */
+export const TrailingStickyColumns = (): React.ReactElement => {
+  return (
+    <Box
+      backgroundColor="surface.background.gray.intense"
+      padding="spacing.5"
+      overflow="auto"
+      minHeight="400px"
+    >
+      <Box paddingBottom="spacing.4">
+        <Heading>Trailing Sticky Columns</Heading>
+        <Text>
+          Freeze `Transaction ID` and `Company Name` on the left (`stickyColumnCount` /
+          `stickyColumnWidths`) and `Actions` on the right (`trailingStickyColumnCount` /
+          `trailingStickyColumnWidths`) at the same time, so the columns that matter most stay in
+          view no matter how wide the table scrolls. (Disabled on mobile, same as leading sticky
+          columns.)
+        </Text>
+      </Box>
+      <Table
+        data={stickyColumnsExampleData}
+        columns={trailingActionsColumns}
+        stickyColumnCount={2}
+        stickyColumnWidths={['150px', '220px']}
+        trailingStickyColumnCount={1}
+        trailingStickyColumnWidths={['140px']}
+        isHeaderSticky
+        sortFunctions={sortFunctions}
+        onSortChange={action('onSortChange')}
       />
     </Box>
   );

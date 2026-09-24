@@ -1,4 +1,5 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import type { TableData, TableProps } from '../types';
 import {
   Table as TableComponent,
@@ -117,7 +118,7 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         {...args}
         data={data}
         defaultSelectedIds={['1', '3']}
-        onSelectionChange={console.log}
+        onSelectionChange={action('onSelectionChange')}
         isFirstColumnSticky
         selectionType="single"
         toolbar={
@@ -139,11 +140,12 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
         }}
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
+            showLabel
           />
         }
       >
@@ -173,23 +175,17 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
                         icon={CheckIcon}
                         isHighlighted
                         accessibilityLabel="Approve"
-                        onClick={() => {
-                          console.log('Approved', tableItem.id);
-                        }}
+                        onClick={() => action('onApprove')(tableItem.id)}
                       />
                       <IconButton
                         icon={CloseIcon}
                         isHighlighted
                         accessibilityLabel="Reject"
-                        onClick={() => {
-                          console.log('Rejected', tableItem.id);
-                        }}
+                        onClick={() => action('onReject')(tableItem.id)}
                       />
                     </>
                   }
-                  onClick={() => {
-                    console.log('where');
-                  }}
+                  onClick={() => action('onRowClick')(tableItem.id)}
                 >
                   <TableCell>
                     <Code size="medium">{tableItem.paymentId}</Code>

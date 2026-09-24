@@ -27,6 +27,19 @@ type TransactionTableItem = {
   mbl: string;
   hbl: string;
   countryOfExport: string;
+  // The fields below aren't needed by most Table docs/examples (hence living after the original
+  // set rather than being reshuffled in) - they exist so a genuinely wide table (15-20+ columns,
+  // see TableWideDatasetExample) still uses this one shared dataset instead of forking a new one.
+  portOfLoading: string;
+  portOfDischarge: string;
+  containerNumber: string;
+  grossWeightKg: number;
+  hsCode: string;
+  brokerName: string;
+  entryType: string;
+  invoiceNumber: string;
+  currency: string;
+  incoterm: string;
 };
 
 const transactionStates = ['SENT', 'IN PROCESS', 'REJECTED', 'NEW', 'RETRANSMIT', 'ACCEPTED'];
@@ -60,6 +73,31 @@ const countriesOfExport = [
   'BE - Belgium',
   'VN - Vietnam',
 ];
+const portsOfLoading = [
+  'Busan',
+  'Laem Chabang',
+  'Singapore',
+  'Kaohsiung',
+  'Shenzhen',
+  'Nhava Sheva',
+];
+const portsOfDischarge = [
+  'Los Angeles',
+  'Long Beach',
+  'Savannah',
+  'New York',
+  'Houston',
+  'Oakland',
+];
+const hsCodes = ['8471.30', '6109.10', '9403.60', '3926.90', '8517.62', '4202.92'];
+const brokerNames = [
+  'Pacific Gateway Brokers',
+  'Continental Customs Co',
+  'Harborline Trade Services',
+];
+const entryTypes = ['Formal', 'Informal'];
+const currencies = ['USD', 'EUR', 'GBP'];
+const incoterms = ['FOB', 'CIF', 'EXW', 'DDP'];
 
 const randomDate = (): Date =>
   new Date(2025, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
@@ -81,6 +119,16 @@ const createTransactionTableNodes = (count: number): TransactionTableItem[] =>
       mbl: `MEDU${Math.floor(Math.random() * 9000000) + 1000000}`,
       hbl: `SGN${Math.floor(Math.random() * 900000) + 100000}`,
       countryOfExport: pickRandom(countriesOfExport),
+      portOfLoading: pickRandom(portsOfLoading),
+      portOfDischarge: pickRandom(portsOfDischarge),
+      containerNumber: `MSCU${Math.floor(Math.random() * 9000000) + 1000000}`,
+      grossWeightKg: Math.floor(Math.random() * 18000) + 500,
+      hsCode: pickRandom(hsCodes),
+      brokerName: pickRandom(brokerNames),
+      entryType: pickRandom(entryTypes),
+      invoiceNumber: `INV-${Math.floor(Math.random() * 900000) + 100000}`,
+      currency: pickRandom(currencies),
+      incoterm: pickRandom(incoterms),
     };
   });
 
@@ -95,10 +143,23 @@ const getTransactionStateColor = (state: string): BadgeProps['color'] => {
   return 'neutral';
 };
 
+// `label`/`value` pairs for every `transactionStates` entry above - the one place that mapping is
+// spelled out, so every example whose `transactionState` column filter renders as a dropdown
+// (`filterConfig: { type: 'multiselect' }`) offers the exact same options in the exact same order.
+const transactionStateOptions = transactionStates.map((state) => ({
+  label: state
+    .toLowerCase()
+    .split(' ')
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' '),
+  value: state,
+}));
+
 export {
   formatDate,
   createTransactionTableNodes,
   createTransactionTableData,
   getTransactionStateColor,
+  transactionStateOptions,
 };
 export type { TransactionTableItem };

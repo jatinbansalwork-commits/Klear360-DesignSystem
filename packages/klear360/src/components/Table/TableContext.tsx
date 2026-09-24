@@ -10,6 +10,7 @@ import type {
   TableNode as LocalTableNode,
   TableToolbarPlacement,
   TableSortOrderEntry,
+  TableColumnFilterConfig,
 } from './types';
 
 export type TableContextType<Item> = {
@@ -49,6 +50,8 @@ export type TableContextType<Item> = {
   headerRowDensity?: TableHeaderRowProps['rowDensity'];
   setHeaderRowDensity: React.Dispatch<React.SetStateAction<TableHeaderRowProps['rowDensity']>>;
   showBorderedCells: NonNullable<TableProps<unknown>['showBorderedCells']>;
+  /** Whether the header is currently rendered sticky (see `TableProps['isHeaderSticky']`, and sticky columns which force it on too). */
+  shouldHeaderBeSticky: boolean;
   hasHoverActions: boolean;
   setHasHoverActions: (hasHoverActions: boolean) => void;
   multiSelectTrigger?: TableProps<unknown>['multiSelectTrigger'];
@@ -57,15 +60,19 @@ export type TableContextType<Item> = {
   isVirtualized?: boolean;
   tableData: LocalTableNode<Item>[];
   isGrouped: boolean;
+  expandedRowIds: TableNode['id'][];
+  toggleRowExpansionById: (id: TableNode['id']) => void;
   tableToolbarPlacement: TableToolbarPlacement;
   /** @see TableProps['checkboxDisplay'] */
   checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
   globalFilterValue: string;
   setGlobalFilterValue: (value: string) => void;
-  columnFilterValues: Record<string, string>;
-  setColumnFilterValue: (key: string, value: string) => void;
+  columnFilterValues: Record<string, string | string[]>;
+  setColumnFilterValue: (key: string, value: string | string[]) => void;
   /** headerKeys present in `filterFunctions` — mirrors `currentSortedState.sortableColumns`. */
   filterableColumns: string[];
+  /** @see TableProps['filterConfig'] */
+  filterConfig: Record<string, TableColumnFilterConfig>;
 };
 
 const TableContext = React.createContext<TableContextType<unknown>>({
@@ -91,6 +98,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   backgroundColor: 'surface.background.gray.intense',
   setHeaderRowDensity: () => {},
   showBorderedCells: true,
+  shouldHeaderBeSticky: false,
   hasHoverActions: false,
   setHasHoverActions: () => {},
   multiSelectTrigger: 'row',
@@ -99,6 +107,8 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   isVirtualized: false,
   tableData: [],
   isGrouped: false,
+  expandedRowIds: [],
+  toggleRowExpansionById: () => {},
   tableToolbarPlacement: 'inline',
   checkboxDisplay: 'always',
   globalFilterValue: '',
@@ -106,6 +116,7 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   columnFilterValues: {},
   setColumnFilterValue: () => {},
   filterableColumns: [],
+  filterConfig: {},
 });
 
 const useTableContext = <Item,>(): TableContextType<Item> => {

@@ -712,6 +712,139 @@ describe('<Table />', () => {
     window.matchMedia = originalMatchMedia;
   });
 
+  it('should render table with a trailing sticky column', () => {
+    const { getByText } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }} isLastColumnSticky>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const lastBodyCell = getByText(String(nodes[0].amount)).closest('td');
+    expect(lastBodyCell).toHaveStyle({ position: 'sticky', right: '0px' });
+  });
+
+  it('should render table with both leading and trailing sticky columns', () => {
+    const { getByText, getAllByText } = renderWithTheme(
+      <Table
+        data={{ nodes: nodes.slice(0, 3) }}
+        stickyColumnCount={1}
+        trailingStickyColumnCount={1}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Status</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                  <TableCell>{tableItem.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const firstBodyCell = getByText(nodes[0].paymentId).closest('td');
+    const lastBodyCell = getAllByText(nodes[0].status)[0].closest('td');
+    expect(firstBodyCell).toHaveStyle({ position: 'sticky', left: '0px' });
+    expect(lastBodyCell).toHaveStyle({ position: 'sticky', right: '0px' });
+  });
+
+  it('disables trailing sticky columns on mobile, same as leading sticky columns', () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (jest.fn((query: string) => ({
+      matches: query.includes('min-width: 320px') && query.includes('max-width: 479px'),
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })) as unknown) as typeof window.matchMedia;
+
+    const { getByText } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }} isLastColumnSticky>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    const lastBodyCell = getByText(String(nodes[0].amount)).closest('td');
+    expect(lastBodyCell).not.toHaveStyle({ position: 'sticky' });
+
+    window.matchMedia = originalMatchMedia;
+  });
+
+  it('throws in dev mode when trailingStickyColumnCount > 1 without matching trailingStickyColumnWidths', () => {
+    expect(() =>
+      renderWithTheme(
+        <Table data={{ nodes: nodes.slice(0, 3) }} trailingStickyColumnCount={2}>
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Payment ID</TableHeaderCell>
+                  <TableHeaderCell>Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((tableItem, index) => (
+                  <TableRow item={tableItem} key={index}>
+                    <TableCell>{tableItem.paymentId}</TableCell>
+                    <TableCell>{tableItem.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      ),
+    ).toThrow('`trailingStickyColumnWidths` must provide a pixel width');
+  });
+
   it('should render table with sorting', () => {
     const onSortChange = jest.fn();
     const { getByLabelText, getAllByRole } = renderWithTheme(
@@ -1620,6 +1753,84 @@ describe('<Table />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('should render table with a grouped multi-row header', () => {
+    const { container, getAllByRole } = renderWithTheme(
+      <Table data={{ nodes: spanningNodes }} showBorderedCells>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+                  Transaction
+                </TableHeaderCell>
+                <TableHeaderCell gridColumnStart={3} gridColumnEnd={4}>
+                  Amount
+                </TableHeaderCell>
+              </TableHeaderRow>
+              <TableHeaderRow>
+                <TableHeaderCell headerKey="merchant">Merchant</TableHeaderCell>
+                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>{item.merchant}</TableCell>
+                  <TableCell>{item.method}</TableCell>
+                  <TableCell>{item.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    // `columnCount` (and everything derived from it, e.g. body cell count) must come from the
+    // LEAF row (3 columns), not the group row (2 columns) - each body row should still render
+    // exactly 3 cells.
+    expect(getAllByRole('cell')).toHaveLength(spanningNodes.length * 3);
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders exactly one "select all" checkbox in a grouped multi-row header with multi-select', () => {
+    const { getAllByRole } = renderWithTheme(
+      <Table data={{ nodes: spanningNodes }} selectionType="multiple" showBorderedCells>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+                  Transaction
+                </TableHeaderCell>
+                <TableHeaderCell gridColumnStart={3} gridColumnEnd={4}>
+                  Amount
+                </TableHeaderCell>
+              </TableHeaderRow>
+              <TableHeaderRow>
+                <TableHeaderCell>Merchant</TableHeaderCell>
+                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>{item.merchant}</TableCell>
+                  <TableCell>{item.method}</TableCell>
+                  <TableCell>{item.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+    expect(getAllByRole('checkbox', { name: 'Select all rows' })).toHaveLength(1);
+  });
+
   it('should render table with footer spanning', () => {
     const { container } = renderWithTheme(
       <Table data={{ nodes: spanningNodes }} showBorderedCells>
@@ -1771,6 +1982,120 @@ describe('<Table />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  const renderGroupedTable = (
+    props: Pick<
+      TableProps<typeof groupedNodes[number]>,
+      'selectionType' | 'onSelectionChange' | 'expandedRowIds' | 'onExpandedRowIdsChange'
+    > = {},
+  ): RenderResult =>
+    renderWithTheme(
+      <Table data={{ nodes: groupedNodes }} isGrouped {...props}>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Name</TableHeaderCell>
+                <TableHeaderCell>Amount</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell
+                    gridColumnStart={item.treeXLevel === 0 ? 1 : undefined}
+                    gridColumnEnd={item.treeXLevel === 0 ? 3 : undefined}
+                  >
+                    {item.name}
+                  </TableCell>
+                  {item.treeXLevel !== 0 && <TableCell>{item.amount}</TableCell>}
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+
+  it('renders every group expanded by default (uncontrolled, no defaultExpandedRowIds)', () => {
+    const { getByText } = renderGroupedTable();
+
+    expect(getByText('Child 1-1')).toBeInTheDocument();
+    expect(getByText('Child 1-2')).toBeInTheDocument();
+    expect(getByText('Child 2-1')).toBeInTheDocument();
+  });
+
+  it('collapses/expands a group on chevron click (uncontrolled)', async () => {
+    const user = userEvent.setup();
+    const { getByLabelText, queryByText } = renderGroupedTable();
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(queryByText('Child 1-1')).not.toBeInTheDocument();
+    expect(queryByText('Child 1-2')).not.toBeInTheDocument();
+    // Untouched group stays expanded.
+    expect(queryByText('Child 2-1')).toBeInTheDocument();
+
+    await user.click(getByLabelText('Expand row group1'));
+    expect(queryByText('Child 1-1')).toBeInTheDocument();
+    expect(queryByText('Child 1-2')).toBeInTheDocument();
+  });
+
+  it('supports controlled expandedRowIds via onExpandedRowIdsChange', async () => {
+    const onExpandedRowIdsChange = jest.fn();
+    const user = userEvent.setup();
+    const { getByLabelText, queryByText, rerender } = renderGroupedTable({
+      expandedRowIds: ['group1', 'group2'],
+      onExpandedRowIdsChange,
+    });
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(onExpandedRowIdsChange).toHaveBeenCalledWith(['group2']);
+
+    // Feeding the callback's value back in as `expandedRowIds` (the expected controlled usage)
+    // keeps the table in sync - e.g. across a re-render triggered by new `data`.
+    rerender(
+      withTheme(
+        <Table data={{ nodes: groupedNodes }} isGrouped expandedRowIds={['group2']}>
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Name</TableHeaderCell>
+                  <TableHeaderCell>Amount</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item) => (
+                  <TableRow key={item.id} item={item}>
+                    <TableCell
+                      gridColumnStart={item.treeXLevel === 0 ? 1 : undefined}
+                      gridColumnEnd={item.treeXLevel === 0 ? 3 : undefined}
+                    >
+                      {item.name}
+                    </TableCell>
+                    {item.treeXLevel !== 0 && <TableCell>{item.amount}</TableCell>}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      ),
+    );
+    expect(queryByText('Child 1-1')).not.toBeInTheDocument();
+  });
+
+  it('does not trigger row selection when clicking the expand chevron', async () => {
+    const onSelectionChange = jest.fn();
+    const user = userEvent.setup();
+    const { getByLabelText } = renderGroupedTable({
+      selectionType: 'multiple',
+      onSelectionChange,
+    });
+
+    await user.click(getByLabelText('Collapse row group1'));
+    expect(onSelectionChange).not.toHaveBeenCalled();
+  });
+
   // Nesting Tests
   it('should render table with nested expandable content', () => {
     const { container, getByText } = renderWithTheme(
@@ -1814,11 +2139,23 @@ describe('<Table />', () => {
   });
 
   describe('filtering', () => {
+    const asString = (value: string | string[]): string => (typeof value === 'string' ? value : '');
+    // STATUS is the column used with `filterConfig` (dropdown/multiselect) below, so its
+    // predicate must handle a `string[]` (its own multiselect filter) as well as a plain `string`
+    // (its own dropdown filter, or global search - which is always plain text regardless of the
+    // column's own filter type). Falling back to a substring match (not unconditionally `true`)
+    // for the string branch matters: global search is `.some(...)` across every filterable
+    // column's predicate, so a predicate that always returns `true` for a string would make every
+    // row match any global search term the moment this column is present.
     const filterFunctions = {
-      STATUS: (item: Item, value: string) =>
-        item.status.toLowerCase().includes(value.toLowerCase()),
-      NAME: (item: Item, value: string) => item.name.toLowerCase().includes(value.toLowerCase()),
-      AMOUNT: (item: Item, value: string) => item.amount.toString().includes(value),
+      STATUS: (item: Item, value: string | string[]) =>
+        Array.isArray(value)
+          ? value.includes(item.status)
+          : item.status.toLowerCase().includes(value.toLowerCase()),
+      NAME: (item: Item, value: string | string[]) =>
+        item.name.toLowerCase().includes(asString(value).toLowerCase()),
+      AMOUNT: (item: Item, value: string | string[]) =>
+        item.amount.toString().includes(asString(value)),
     };
 
     const renderFilterableTable = (
@@ -2000,6 +2337,132 @@ describe('<Table />', () => {
       // Controlled - typing in the (now-uncontrolled-looking) filter input shouldn't be needed;
       // this just confirms the input reflects the controlled value.
       expect(getByRole('textbox', { name: 'Filter by Status' })).toHaveValue('pending');
+    });
+
+    const statusFilterConfig = {
+      STATUS: {
+        type: 'dropdown' as const,
+        options: [
+          { label: 'Pending', value: 'pending' },
+          { label: 'Failed', value: 'failed' },
+          { label: 'Completed', value: 'completed' },
+        ],
+      },
+    };
+
+    it('renders a dropdown picker (not a text input) for a column present in filterConfig', () => {
+      const { getByRole, queryByRole } = renderFilterableTable({
+        filterConfig: statusFilterConfig,
+      });
+
+      expect(getByRole('combobox', { name: 'Filter by Status' })).toBeInTheDocument();
+      expect(queryByRole('textbox', { name: 'Filter by Status' })).not.toBeInTheDocument();
+      // The other filterable columns (no filterConfig entry) keep the plain text input.
+      expect(getByRole('textbox', { name: 'Filter by Name' })).toBeInTheDocument();
+    });
+
+    // Driving the dropdown open (click -> select an option) goes through `@floating-ui/react`'s
+    // `autoUpdate` positioning, which never settles under jsdom (zero-sized layout rects) - a
+    // pre-existing limitation of this test environment, not specific to Table (the same happens
+    // for any Dropdown/ActionList interaction test here). These two tests instead drive the
+    // dropdown/multiselect filter the same way the text-filter "controlled component" test above
+    // does: via the controlled `columnFilterValues` prop - which still exercises the real
+    // filtering logic (string vs. string[] handling in `applyFilters`) end-to-end.
+    // `nodes.slice(0, 5)` (ids 1-5) has repeating names (e.g. two "John Doe" rows, ids 1 and 5,
+    // with different statuses) - `amount` is the only field unique per row in this slice, so
+    // assertions below key off it rather than `name`.
+    it('a controlled string columnFilterValues filters rows for a dropdown-type column', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: statusFilterConfig,
+        columnFilterValues: { STATUS: 'completed' },
+      });
+
+      expect(queryByText('300')).toBeInTheDocument(); // id 4, completed
+      expect(queryByText('200')).toBeInTheDocument(); // id 5, completed
+      expect(queryByText('100')).not.toBeInTheDocument(); // id 1, pending
+      expect(queryByText('120')).not.toBeInTheDocument(); // id 3, failed
+    });
+
+    it('a controlled string[] columnFilterValues filters rows for a multiselect-type column', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        columnFilterValues: { STATUS: ['pending', 'completed'] },
+      });
+
+      expect(queryByText('100')).toBeInTheDocument(); // id 1, pending
+      expect(queryByText('300')).toBeInTheDocument(); // id 4, completed
+      expect(queryByText('120')).not.toBeInTheDocument(); // id 3, failed
+    });
+
+    it('treats an empty selected-values array as no active filter (not "match nothing")', () => {
+      const { queryByText } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        columnFilterValues: { STATUS: [] },
+      });
+
+      // An empty selection means the filter isn't active - all 5 rows should still show.
+      expect(queryByText('100')).toBeInTheDocument();
+      expect(queryByText('120')).toBeInTheDocument();
+      expect(queryByText('300')).toBeInTheDocument();
+    });
+
+    it('global search still works correctly when a multiselect-type column is present (regression)', () => {
+      // Guards against a predicate for a `filterConfig`'d column defaulting its plain-string
+      // branch to `true` - since global search is OR-across-columns, that would make every row
+      // match any search term the moment such a column exists, breaking global search entirely.
+      // Driven via the controlled `globalFilterValue` prop (same reasoning as the dropdown-value
+      // tests above) rather than typing into `TableToolbarSearch`, to exercise the filtering logic
+      // directly without going through a mounted Dropdown's interaction plumbing.
+      const { queryByText, rerender } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' },
+        },
+        globalFilterValue: 'zzz-does-not-exist',
+      });
+
+      expect(queryByText('100')).not.toBeInTheDocument();
+      expect(queryByText('120')).not.toBeInTheDocument();
+      expect(queryByText('300')).not.toBeInTheDocument();
+
+      // A real match still works (global search still finds rows via the STATUS column's string
+      // fallback, not just via NAME/AMOUNT).
+      rerender(
+        withTheme(
+          <Table
+            data={{ nodes: nodes.slice(0, 5) }}
+            filterFunctions={filterFunctions}
+            filterConfig={{ STATUS: { ...statusFilterConfig.STATUS, type: 'multiselect' } }}
+            globalFilterValue="pending"
+          >
+            {(tableData) => (
+              <>
+                <TableHeader>
+                  <TableHeaderRow>
+                    <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                    <TableHeaderCell headerKey="NAME">Name</TableHeaderCell>
+                    <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
+                  </TableHeaderRow>
+                </TableHeader>
+                <TableBody>
+                  {tableData.map((item, index) => (
+                    <TableRow item={item} key={index}>
+                      <TableCell>{item.status}</TableCell>
+                      <TableCell>{item.name}</TableCell>
+                      <TableCell>{item.amount}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </>
+            )}
+          </Table>,
+        ),
+      );
+      expect(queryByText('100')).toBeInTheDocument();
+      expect(queryByText('300')).not.toBeInTheDocument();
     });
 
     it('filtering composes with sorting (filter first, then sort the remaining rows)', async () => {

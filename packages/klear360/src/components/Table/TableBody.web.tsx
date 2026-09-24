@@ -21,7 +21,7 @@ import getIn from '~utils/lodashButBetter/get';
 import { Text } from '~components/Typography';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
-import { getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
+import { castWebType, getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
 import BaseBox from '~components/Box/BaseBox';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
@@ -30,6 +30,9 @@ import { size } from '~tokens/global';
 import { makeAccessible } from '~utils/makeAccessible';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
+import { IconButton } from '~components/Button/IconButton';
+import { ChevronRightIcon } from '~components/Icons';
+import { getComponentId } from '~utils/isValidAllowedChildren';
 const StyledBody = styled(Body)<{
   $isSelectable: boolean;
   $showStripedRows: boolean;
@@ -126,10 +129,27 @@ export const CellWrapper = styled(BaseBox)<{
   };
 });
 
+// Rotates a single chevron glyph rather than swapping between two icon components - same
+// rotate+transition convention already used for TreeView's expand/collapse affordance
+// (TreeViewChevron.web.tsx) and Collapsible's (CollapsibleChevronIcon.web.tsx), both driven by
+// the same theme motion tokens.
+const StyledExpandChevron = styled(BaseBox)<{ $isExpanded: boolean }>(({ theme, $isExpanded }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transform: $isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+  transformOrigin: 'center center',
+  transitionProperty: 'transform',
+  transitionDuration: castWebType(makeMotionTime(theme.motion.duration.quick)),
+  transitionTimingFunction: castWebType(theme.motion.easing.standard),
+}));
+
 const _TableCell = ({
   children,
   textAlign,
   _hasPadding,
+  _isGroupExpandCell,
+  _groupRowId,
   gridColumnStart,
   gridColumnEnd,
   gridRowStart,
@@ -137,8 +157,16 @@ const _TableCell = ({
   ...rest
 }: TableCellProps): React.ReactElement => {
   const isChildrenString = typeof children === 'string';
-  const { selectionType, rowDensity, showStripedRows, backgroundColor } = useTableContext();
+  const {
+    selectionType,
+    rowDensity,
+    showStripedRows,
+    backgroundColor,
+    expandedRowIds,
+    toggleRowExpansionById,
+  } = useTableContext();
   const isSelectable = selectionType !== 'none';
+  const isExpanded = _groupRowId !== undefined && expandedRowIds.includes(_groupRowId);
 
   const hasRowSpan = Boolean(gridRowStart && gridRowEnd);
   const gridRowValue = hasRowSpan ? `${gridRowStart} / ${gridRowEnd}` : undefined;
@@ -173,6 +201,25 @@ const _TableCell = ({
           position="relative"
           {...metaAttribute({ name: MetaConstants.TableCellWrapper })}
         >
+          {_isGroupExpandCell && _groupRowId !== undefined ? (
+            <BaseBox
+              flexShrink={0}
+              marginRight="spacing.2"
+              pointerEvents="auto"
+              onClick={(event: React.MouseEvent) => event.stopPropagation()}
+            >
+              <StyledExpandChevron $isExpanded={isExpanded}>
+                <IconButton
+                  size="small"
+                  icon={ChevronRightIcon}
+                  accessibilityLabel={
+                    isExpanded ? `Collapse row ${_groupRowId}` : `Expand row ${_groupRowId}`
+                  }
+                  onClick={() => toggleRowExpansionById(_groupRowId)}
+                />
+              </StyledExpandChevron>
+            </BaseBox>
+          ) : null}
           {isChildrenString ? (
             <Text color="surface.text.gray.subtle" size="medium" truncateAfterLines={1}>
               {children}
@@ -397,6 +444,28 @@ const _TableRow = <Item,>({
 
   const { isAllSelected, isIndeterminate } = getGroupSelectionState;
 
+  // Group-header rows get a row-expansion chevron rendered inside their first cell, rather than
+  // a dedicated always-present column - this decorates that one child (whichever `TableCell` the
+  // consumer authored first) with the private props `TableCell` needs to render it, without
+  // consumers having to write any extra JSX themselves (mirrors the existing `getComponentId`
+  // child-walking convention used elsewhere in Table).
+  const decoratedChildren = useMemo(() => {
+    if (!isGroupHeader) return children;
+    const childrenArray = React.Children.toArray(children);
+    const firstCellIndex = childrenArray.findIndex(
+      (child) => getComponentId(child) === ComponentIds.TableCell,
+    );
+    if (firstCellIndex === -1) return children;
+    return childrenArray.map((child, index) =>
+      index === firstCellIndex && React.isValidElement(child)
+        ? React.cloneElement(child, {
+            _isGroupExpandCell: true,
+            _groupRowId: item.id,
+          } as Partial<TableCellProps>)
+        : child,
+    );
+  }, [children, isGroupHeader, item.id]);
+
   useEffect(() => {
     if (isDisabled) {
       setDisabledRows((prev) => [...prev, item.id]);
@@ -440,7 +509,7 @@ const _TableRow = <Item,>({
           accessibilityLabel={`Select row ${item.id}`}
         />
       )}
-      {children}
+      {decoratedChildren}
       {hoverActions ? (
         <TableCell _hasPadding={false}>
           <BaseBox

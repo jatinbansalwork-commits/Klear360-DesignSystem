@@ -10,14 +10,14 @@ Badges are used to show small amount of color coded metadata, which are ideal fo
 
 ## API
 
-| Prop       | Type                                                      | Default     | Description                                              | Required |
-| ---------- | --------------------------------------------------------- | ----------- | -------------------------------------------------------- | -------- |
-| children   | `string`                                                  | `undefined` | The label to be rendered within the badge.               | ✅       |
-| variant    | `positive`,`negative`, `notice`, `information`, `neutral` | `neutral`   | The variant of the badge to be rendered.                 |          |
-| contrast   | `low`, `high`                                             | `low`       | The contrast of the badge to be rendered.                |          |
-| size       | `medium`, `small`                                         | `medium`    | The size of the badge to be rendered.                    |          |
+| Prop       | Type                                                      | Default     | Description                                                 | Required |
+| ---------- | --------------------------------------------------------- | ----------- | ----------------------------------------------------------- | -------- |
+| children   | `string`                                                  | `undefined` | The label to be rendered within the badge.                  | ✅       |
+| variant    | `positive`,`negative`, `notice`, `information`, `neutral` | `neutral`   | The variant of the badge to be rendered.                    |          |
+| contrast   | `low`, `high`                                             | `low`       | The contrast of the badge to be rendered.                   |          |
+| size       | `medium`, `small`                                         | `medium`    | The size of the badge to be rendered.                       |          |
 | icon       | `Icon`                                                    | `undefined` | The Klear360 `Icon` component to be rendered for the badge. |          |
-| fontWeight | `bold`, `regular`                                         | `regular`   | The font weight of the badge's font.                     |          |
+| fontWeight | `bold`, `regular`                                         | `regular`   | The font weight of the badge's font.                        |          |
 
 ### Sample Usage
 
@@ -26,12 +26,30 @@ import { Badge, InfoIcon } from '@klear/components';
 
 <Badge variant="positive" contrast="high" icon={InfoIcon} size="large" fontWeight="bold">
   New
-</Badge>
+</Badge>;
 ```
 
 ## Difference between `Badge` vs `Tag` vs `Chip`
 
 <img width="100%" src="./badge-differentiation.png" alt="Differences between Chip, Tag, and Badge components" />
+
+## Recommended minimum size inside table cells
+
+`size="medium"` (and `size="large"`) render their label as `Text` `variant="body" size="small"` -
+12px, the same size ordinary table-cell body text uses. `size="xsmall"`/`size="small"` render as
+`Text` `variant="body" size="xsmall"` instead - 10px, smaller than the data sitting right next to
+it in the same row. That reads backwards: a badge is meant to draw the eye, not recede below the
+text around it.
+
+`size="medium"` is already Badge's own default, so this is mainly a risk when a consumer
+deliberately reaches for a **smaller** Badge to visually match a denser table (e.g.
+`rowDensity="compact"`) - the row being compact doesn't mean the badge inside it should drop below
+12px text; a 20px-tall `size="medium"` badge (`badgeHeight.medium`) still fits comfortably inside
+even a 36px compact row. Treat `size="medium"` as the floor for any Badge placed inside a table
+cell regardless of `rowDensity`, and reserve `size="xsmall"`/`size="small"` for contexts where the
+badge sits next to equally small (or no) adjacent text. See `TableCompactDensityMultilineExample`
+(`Components/Table/Examples/Compact Density Multiline` in Storybook) for this shown inside a real
+compact-density table.
 
 ## Open Questions
 
