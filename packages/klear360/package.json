@@ -206,7 +206,6 @@
     "@storybook/addon-ondevice-backgrounds": "^10.2.3",
     "@storybook/addon-ondevice-controls": "^10.2.3",
     "@storybook/addon-ondevice-notes": "^10.2.3",
-    "@storybook/addon-vitest": "^10.2.16",
     "@storybook/icons": "^2.0.1",
     "@storybook/react-native": "^10.2.3",
     "@storybook/react-vite": "10.2.16",
@@ -305,8 +304,7 @@
     "typescript": "5.9.3",
     "vite": "^6.0.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^3.2.4",
-    "@vitest/browser": "^3.2.4",
+    "vitest": "^4.1.11",
     "wait-on": "7.2.0",
     "tweakpane": "4.0.5"
   },
