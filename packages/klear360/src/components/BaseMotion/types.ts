@@ -22,7 +22,7 @@ type MotionVariantsType = {
 type MotionDelay = keyof Delay | { enter: keyof Delay; exit: keyof Delay };
 
 type BaseMotionBoxProps = {
-  as?: React.ReactElement;
+  as?: React.ElementType;
   children: React.ReactElement;
 
   /**

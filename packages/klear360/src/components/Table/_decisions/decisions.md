@@ -56,11 +56,13 @@ A table component helps in displaying data in a grid format, through rows and co
 ## Features
 
 - Column Sorting
+- Column Filtering & Search (global + per-column)
 - Row Selection - Single & Multiple
+- Row Expansion (grouped/parent-child rows)
 - Pagination
 - Bulk Actions Toolbar
 - Horizontally Scrollable
-- Sticky Columns
+- Sticky Columns (leading and trailing)
 - Sticky Header
 - Sticky Footer
 - Cell Density - Normal & Comfortable
@@ -71,9 +73,6 @@ We don't have enough use-cases for the following features at Klear and hence sco
 
 - Column Reordering
 - Column Resizing
-- Column Filtering
-- Search
-- Row Expansion
 - Nested Tables
 - Hiding Columns
 - Editable Rows
@@ -178,24 +177,31 @@ We don't have enough use-cases for the following features at Klear and hence sco
 
 #### Table
 
-| Prop               | Type                                          | Default     | Description                                                                                                                                                                                                                                                                                                                              | Required |
-| ------------------ | --------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| data               | TableData                                     | `undefined` | This contains the actual data to be rendered in the table which would be retrieved from some API                                                                                                                                                                                                                                         | ✅       |
-| children           | `(tableData: TableData) => React.ReactNode[]` | undefined   | Expects a function that returns Table composition components like `TableHeader`, `TableBody` & `TableFooter`. The function provides the tableData as an argument which can be used to render the table. The provided tableData will update based on pagination and sort states.                                                          | ✅       |
-| selectionType      | `single`, `multiple`                          | `single`    | This defines the type of selection that is allowed in the table. Possible values are 'single' & 'multiple'                                                                                                                                                                                                                               |
-| onSelectionChange  | `SelectionChangeEvent`                        | `undefined` | This is a callback function that is called when the selection changes. It is called with the selected items as an array                                                                                                                                                                                                                  |
-| sortFunctions      | `SortFunctionsType`                           | `undefined` | This is an object that contains the sort functions for each column. The key of the object should be the `headerKey` of the column and the value is a function that takes in an array of items and returns a sorted array of items. A column will be made automatically sortable by adding its headerKey along with a sort function here. |
-| onSortChange       | `SortChangeEvent`                             | `undefined` | This is a callback function that is called when the sort changes. It is called with the headerKey & sortType as arguments                                                                                                                                                                                                                |
-| isLoading          | `boolean`                                     | `false`     | This defines whether the table is in a loading state or not                                                                                                                                                                                                                                                                              |
-| isRefreshing       | `boolean`                                     | `false`     | This defines whether the table is in a refreshing state or not                                                                                                                                                                                                                                                                           |
-| rowDensity         | `normal`, `comfortable`                       | `normal`    | This defines the density of the cells in the table. Possible values are 'normal' & 'comfortable'                                                                                                                                                                                                                                         |
-| showStripedRows    | `boolean`                                     | `false`     | This defines whether the table should show zebra stripes or not                                                                                                                                                                                                                                                                          |
-| pagination         | `React.ReactElement`                          | `undefined` | Expects the TablePagination Component                                                                                                                                                                                                                                                                                                    |
-| toolbar            | `React.ReactElement`                          | `undefined` | Expects the TableToolbar Component                                                                                                                                                                                                                                                                                                       |
-| isStickyHeader     | `boolean`                                     | `false`     | This defines whether the table header should be sticky or not                                                                                                                                                                                                                                                                            |
-| isStickyFooter     | `boolean`                                     | `false`     | This defines whether the table footer should be sticky or not                                                                                                                                                                                                                                                                            |
-| isStickyFistColumn | `boolean`                                     | `false`     | This defines whether the first column of the table should be sticky or not                                                                                                                                                                                                                                                               |
-| surfaceLevel       | `1`, `2`, `3`                                 | `2`         | This defines the surface level of the table. Possible values are `1`, `2` & `3`                                                                                                                                                                                                                                                          |
+| Prop                       | Type                                          | Default     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              | Required |
+| -------------------------- | --------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| data                       | TableData                                     | `undefined` | This contains the actual data to be rendered in the table which would be retrieved from some API                                                                                                                                                                                                                                                                                                                                                         | ✅       |
+| children                   | `(tableData: TableData) => React.ReactNode[]` | undefined   | Expects a function that returns Table composition components like `TableHeader`, `TableBody` & `TableFooter`. The function provides the tableData as an argument which can be used to render the table. The provided tableData will update based on pagination and sort states.                                                                                                                                                                          | ✅       |
+| selectionType              | `none`, `single`, `multiple`                  | `none`      | This defines the type of selection that is allowed in the table. Possible values are 'none', 'single' & 'multiple'                                                                                                                                                                                                                                                                                                                                       |
+| filterFunctions            | `FilterFunctionsType`                         | `undefined` | This is an object that contains the filter predicates for each column. The key of the object should be the `headerKey` of the column and the value is a function that takes in an item and the current filter value (`string`, or `string[]` for a column also present in `filterConfig`) and returns whether the item should be kept. A column will be made automatically filterable by adding its headerKey here — same convention as `sortFunctions`. |
+| filterConfig               | `Record<string, TableColumnFilterConfig>`     | `undefined` | Renders a dropdown (`type: 'dropdown'`) or multiselect (`type: 'multiselect'`) picker in a filterable column's header instead of the default text input, keyed by `headerKey`. Each entry also needs an `options: { label, value }[]` list.                                                                                                                                                                                                              |
+| onSelectionChange          | `SelectionChangeEvent`                        | `undefined` | This is a callback function that is called when the selection changes. It is called with the selected items as an array                                                                                                                                                                                                                                                                                                                                  |
+| sortFunctions              | `SortFunctionsType`                           | `undefined` | This is an object that contains the sort functions for each column. The key of the object should be the `headerKey` of the column and the value is a function that takes in an array of items and returns a sorted array of items. A column will be made automatically sortable by adding its headerKey along with a sort function here.                                                                                                                 |
+| onSortChange               | `SortChangeEvent`                             | `undefined` | This is a callback function that is called when the sort changes. It is called with the headerKey & sortType as arguments                                                                                                                                                                                                                                                                                                                                |
+| isLoading                  | `boolean`                                     | `false`     | This defines whether the table is in a loading state or not                                                                                                                                                                                                                                                                                                                                                                                              |
+| isRefreshing               | `boolean`                                     | `false`     | This defines whether the table is in a refreshing state or not                                                                                                                                                                                                                                                                                                                                                                                           |
+| rowDensity                 | `normal`, `comfortable`                       | `normal`    | This defines the density of the cells in the table. Possible values are 'normal' & 'comfortable'                                                                                                                                                                                                                                                                                                                                                         |
+| showStripedRows            | `boolean`                                     | `false`     | This defines whether the table should show zebra stripes or not                                                                                                                                                                                                                                                                                                                                                                                          |
+| pagination                 | `React.ReactElement`                          | `undefined` | Expects the TablePagination Component                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| toolbar                    | `React.ReactElement`                          | `undefined` | Expects the TableToolbar Component                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| isStickyHeader             | `boolean`                                     | `false`     | This defines whether the table header should be sticky or not                                                                                                                                                                                                                                                                                                                                                                                            |
+| isStickyFooter             | `boolean`                                     | `false`     | This defines whether the table footer should be sticky or not                                                                                                                                                                                                                                                                                                                                                                                            |
+| isStickyFistColumn         | `boolean`                                     | `false`     | This defines whether the first column of the table should be sticky or not. Equivalent to `stickyColumnCount={1}`.                                                                                                                                                                                                                                                                                                                                       |
+| stickyColumnCount          | `number`                                      | `0`         | Number of leading columns (after any multi-select checkbox column) to freeze while the rest of the table scrolls horizontally. Freezing more than one column requires `stickyColumnWidths`, since offsets are computed from known widths rather than measured at render time.                                                                                                                                                                            |
+| stickyColumnWidths         | `string[]`                                    | `undefined` | Explicit pixel width for each of the leading `stickyColumnCount` columns, in order. Pair these with matching `width`s on the same columns (via the `columns` config or `gridTemplateColumns`).                                                                                                                                                                                                                                                           |
+| isLastColumnSticky         | `boolean`                                     | `false`     | This defines whether the last column of the table should be sticky or not. Equivalent to `trailingStickyColumnCount={1}`.                                                                                                                                                                                                                                                                                                                                |
+| trailingStickyColumnCount  | `number`                                      | `0`         | Number of trailing columns (right to left, before any hover-actions column) to freeze while the rest of the table scrolls horizontally. Freezing more than one column requires `trailingStickyColumnWidths`.                                                                                                                                                                                                                                             |
+| trailingStickyColumnWidths | `string[]`                                    | `undefined` | Explicit pixel width for each of the trailing `trailingStickyColumnCount` columns, in left-to-right order. Pair these with matching `width`s on the same columns (via the `columns` config or `gridTemplateColumns`).                                                                                                                                                                                                                                    |
+| surfaceLevel               | `1`, `2`, `3`                                 | `2`         | This defines the surface level of the table. Possible values are `1`, `2` & `3`                                                                                                                                                                                                                                                                                                                                                                          |
 
 ##### `TableData`
 
@@ -307,15 +313,16 @@ type SelectionChangeEvent = (selectedItems: TableNode[]) => void;
 
 #### TablePagination
 
-| Prop               | Type                  | Default                          | Description                                                                                                                                                           | Required |
-| ------------------ | --------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| currentPage        | `number`              | undefined                        | This defines the current page of the table. If you pass currentPage, this becomes a controlled component and you will have to manage page selection state on your own |          |
-| defaultPageSize    | `number`              | 10 (to be confirmed with design) | This defines the default number of items to be shown per page                                                                                                         |          |
-| label              | `string`              | undefined                        | This defines the label to be shown in the pagination                                                                                                                  |
-| showLabel          | `boolean`             | `false`                          | This defines whether the label should be shown or not                                                                                                                 |
-| showPageSizePicker | `boolean`             | `false`                          | This defines whether the page size picker should be shown or not                                                                                                      |
-| onPageChange       | `PageChangeEvent`     | undefined                        | This is a callback function that is called when the currentPage changes                                                                                               |
-| onPageSizeChange   | `PageSizeChangeEvent` | undefined                        | This is a callback function that is called when the pageSize changes                                                                                                  |
+| Prop               | Type                  | Default        | Description                                                                                                                                                           | Required |
+| ------------------ | --------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| currentPage        | `number`              | undefined      | This defines the current page of the table. If you pass currentPage, this becomes a controlled component and you will have to manage page selection state on your own |          |
+| defaultPageSize    | `number`              | `10`           | This defines the default number of items to be shown per page                                                                                                         |          |
+| pageSizeOptions    | `number[]`            | `[10, 25, 50]` | The page size choices shown in the page size picker. Not limited to the default three values.                                                                         |          |
+| label              | `string`              | undefined      | This defines the label to be shown in the pagination                                                                                                                  |
+| showLabel          | `boolean`             | `false`        | This defines whether the label should be shown or not                                                                                                                 |
+| showPageSizePicker | `boolean`             | `false`        | This defines whether the page size picker should be shown or not                                                                                                      |
+| onPageChange       | `PageChangeEvent`     | undefined      | This is a callback function that is called when the currentPage changes                                                                                               |
+| onPageSizeChange   | `PageSizeChangeEvent` | undefined      | This is a callback function that is called when the pageSize changes                                                                                                  |
 
 ##### `PageChangeEvent`
 
@@ -691,6 +698,122 @@ While evaluating multiple libraries we identified 3 categories:
 
 - We will be following the [WAI-ARIA Table Practices](https://www.w3.org/WAI/ARIA/apg/patterns/table/) to ensure our table is accessible
 - We will be using native HTML elements like `<table>`, `<thead>`, `<tbody>`, `<tfoot>`, `<tr>`, `<th>` & `<td>` to ensure our table is accessible
+- Verified against axe-core (via the Storybook a11y addon) - a few real, pre-existing bugs were found and fixed rather than worked around: the root `<table>` unconditionally carried `aria-multiselectable`, which isn't a valid attribute outside `grid`/`listbox`/`tree`/`tablist`/`treegrid` roles; the underlying `@table-library/react-table-library`'s header and footer rows/cells default to non-existent roles (`rowheader` on the header row, `rowfooter`/`columnfooter` on the footer row/cells - none of these are real WAI-ARIA roles) that the library doesn't always let callers override via props, so a couple are corrected on the real DOM node via a `ref` + layout effect instead. Column-filter placeholder cells with no content use `role="presentation"` rather than being announced as empty headers.
+
+# Filtering & Search
+
+Filtering was originally scoped out for lack of use-cases (see [Out of scope](#out-of-scope) history). A competitive audit against other table libraries (e.g. PrimeReact's DataTable/TreeTable) identified filtering as our biggest capability gap, so it has since been added.
+
+## API design
+
+A column becomes filterable purely by having its `headerKey` present in a new `filterFunctions` map — this mirrors the existing `sortFunctions` pattern exactly, so there's no new prop needed on `TableHeaderCell` and no new mental model for consumers who already know how sorting works.
+
+Two independent filter inputs share the same predicates:
+
+- **Column filters** — one text input per filterable column, auto-rendered inline in a second header row (not hidden behind a popover or menu). A row must satisfy **all** active column filters (AND).
+- **Global search** — a single `TableToolbarSearch` input (see below) checked against every filterable column's predicate. A row matches if **any** filterable column matches (OR).
+
+Column filters and global search combine with AND between them (matches every active column filter, and the global term if set) — the same convention PrimeReact uses.
+
+State follows one consistent controlled/uncontrolled/onChange triple (`columnFilterValues`/`defaultColumnFilterValues`/`onColumnFilterValuesChange`, `globalFilterValue`/`defaultGlobalFilterValue`/`onGlobalFilterValueChange`), established as the pattern going forward — this is deliberately not retrofitted onto the older, less consistent sort/selection controllability rules.
+
+## Why inline inputs instead of a filter menu/popover
+
+Klear's table intentionally keeps a lean feature surface (see [Table Library Evaluation](#table-library-evaluation)) — no match-mode dropdowns or AND/OR constraint builder, just plain substring/custom-predicate text matching. Inline, always-visible inputs also make filterable columns discoverable at a glance, rather than requiring a user to open a menu per column to find out a column is filterable.
+
+## Dropdown & multiselect filters
+
+The "no match-mode dropdowns" statement above is about _match-mode_ pickers — an operator selector like contains/starts-with/equals, or an AND/OR constraint builder. It was never a statement about _value_ pickers. Selecting one or more known values for a column (e.g. Status = `Pending` or `Pending`/`Completed`) is a distinct, real gap - a competitive audit need identified it the same way the original text-filtering gap was identified - so it's been added as an opt-in per-column addition, not a change to the default experience.
+
+A filterable column (`headerKey` present in `filterFunctions`, as before) additionally present in the new `filterConfig` map (keyed by `headerKey`, same convention) renders a dropdown (`type: 'dropdown'`, single value) or multiselect (`type: 'multiselect'`, multiple values) picker in its header cell instead of the default text input - built from the column's declared `options`. A column absent from `filterConfig` keeps today's plain text input, so the lean, all-text default is unchanged unless a consumer opts in.
+
+This generalizes `columnFilterValues` from `Record<string, string>` to `Record<string, string | string[]>`. A plain (text) column and a `type: 'dropdown'` column both only ever store a `string` (dropdown is single-value, same shape as text); only a `type: 'multiselect'` column stores `string[]`. `filterFunctions`' predicate signature widens to accept `string | string[]` for the same reason - both are additive/widening changes, so existing text-only `filterFunctions` consumers are source-compatible (a predicate typed to take only `string` needs updating to `string | string[]`, but its behavior for `filterConfig`-free columns, which only ever receive `string`, doesn't change).
+
+### Writing a predicate for a `filterConfig`'d column
+
+The same predicate map (`filterFunctions`) backs three call sites: a column's own filter row input, `globalFilterValue` (always plain text, regardless of the column's own filter type), and recursively for nested/grouped rows. A predicate for a `type: 'multiselect'` column therefore receives a `string[]` from its own filter but a plain `string` from global search, and must handle both - `Array.isArray(filterValue) ? filterValue.includes(item.someField) : item.someField.toLowerCase().includes(filterValue.toLowerCase())` is the recommended shape (fall back to an ordinary substring match for the string case, matching how a plain text column already behaves).
+
+**Do not** default the string-input branch to `true` (`Array.isArray(v) ? v.includes(x) : true`) - because the global filter is `Object.values(filterFunctions).some(...)` (OR across columns), a predicate that unconditionally returns `true` for a plain string makes _every_ row match _any_ global search term the moment that column is present, silently breaking global search for the whole table. This was caught during this feature's own review: the first draft of the Storybook example used exactly this pattern, and a regression test (`Table.web.test.tsx`, "filtering" describe block) was added to guard against reintroducing it.
+
+### Implementation
+
+Reuses the exact composition `TableEditableDropdownCell` already established for body-cell dropdowns - `Dropdown` + `DropdownOverlay` + `ActionList`/`ActionListItem`, built from `filterConfig[headerKey].options` instead of consumer-authored `ActionListItem`s - just driven by `SelectInput` (the compact, `BaseInput`-styled trigger from `~components/Input/DropdownInputTriggers`) rather than a free-text input, and controlled by the filter row's own `columnFilterValues`/`setColumnFilterValue` instead of being uncontrolled. `SelectInput`'s own `value`/`onChange` already speaks `string | string[]` natively, so no extra adapter layer is needed between it and the widened filter state.
+
+An empty selected-values array (`[]`, a multiselect column with nothing picked) is treated as "no active filter" - same as an empty string for a text column - not "match nothing"; this required a small fix in `activeColumnFilters`'s truthiness check (`Boolean([])` is `true` in JS, unlike `Boolean('')`).
+
+## `TableToolbarSearch`
+
+A dedicated component (alongside `TableToolbarActions`) so global search is documented and adoptable independently of the rest of the filtering feature, matching how `TableToolbar`'s other slots are each their own component.
+
+## Out of scope (within filtering)
+
+- Full keyboard grid navigation (roving tabindex, arrow-key cell movement) — the filter/search inputs are plain native `<input>`s and are already reachable via standard Tab order, but grid-style arrow-key navigation across cells is a separate, larger piece of infrastructure planned as a future follow-up.
+
+## `TableToolbarSearch` API docs
+
+Documented on its own page (`docs/APIStories/TableToolbarSearchAPI.stories.tsx`, under `Components/Table/API`) rather than only inside the `TableFiltering`/`TableToolbar` demo pages, so a developer scanning the sidebar for "how do I add search" finds it directly instead of having to already know it lives inside another component's story.
+
+# Sticky Columns
+
+`isFirstColumnSticky` only ever froze a single leading column (plus the multi-select checkbox column, when present). Real usage - e.g. a transaction table with `Actions`/`Transaction ID`/`Company Name` frozen while a dozen more columns scroll underneath - needs more than one.
+
+## API design
+
+`stickyColumnCount` generalizes `isFirstColumnSticky` to N leading columns; `isFirstColumnSticky` is kept as shorthand for `stickyColumnCount={1}` (fully backward compatible - existing usage needs no changes). Freezing more than one column requires `stickyColumnWidths`, an explicit pixel width per frozen column, because the sticky `left` offset for each column is the cumulative sum of the widths of the columns before it - there's no way to compute that without knowing the widths. This mirrors how the existing single-column implementation already hardcodes the multi-select checkbox's width as a known constant; `stickyColumnWidths` just generalizes "known width" to consumer-declared widths instead of a hardcoded one.
+
+This intentionally does not attempt to measure rendered column widths at runtime - pairing `stickyColumnWidths` with matching `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) keeps the computation simple, synchronous, and free of layout-thrashing measurement effects.
+
+## Disabled on mobile
+
+Sticky columns are automatically disabled below the `s` breakpoint (`useIsMobile`), regardless of `stickyColumnCount`/`isFirstColumnSticky`. A frozen column's width that's perfectly reasonable on desktop - where there's always a wide scrolling area left over - can easily exceed a phone's _entire_ viewport width once multiple columns are frozen (e.g. the 3-column sticky example's ~510px vs. a 375px viewport). When that happens there is no visible area left to scroll the rest of the table into view at all, so the table becomes unusable rather than merely cramped. Falling back to a plain horizontally-scrollable table - the same graceful degradation `Table` already applies elsewhere on mobile (e.g. the hover-actions column) - keeps every column reachable at the cost of losing the frozen affordance specifically on small screens, which is the safer trade-off.
+
+## Trailing (right-pinned) sticky columns
+
+Real usage - e.g. pinning an `Actions` column to the right so it's always reachable regardless of how far a wide table scrolls - needs freezing from the trailing edge too, not just the leading one.
+
+`trailingStickyColumnCount`/`trailingStickyColumnWidths` generalize the exact same "cumulative offset from known widths" approach used for leading sticky columns, just anchored to `right` instead of `left`, with `isLastColumnSticky` as the single-column shorthand (mirrors `isFirstColumnSticky`). The two sides are independent and composable - a table can freeze leading columns, trailing columns, or both at once.
+
+When `Table`'s existing hover-actions column (see `TableRow`'s `hoverActions` prop) is also present, it remains its own separate `right: 0` sticky mechanism (visible only on hover) - trailing sticky columns are computed to sit just to its left rather than compete with it for the same position, so the two features can be used together without conflict. Disabled on mobile for the same reason as leading sticky columns.
+
+# Row Expansion
+
+Row Expansion was originally scoped out for lack of use-cases (see [Out of scope](#out-of-scope) history). Real usage - parent-child shipment rows in grouped tables, where a user needs to hide/reveal a shipment's line items rather than always seeing every row - identified this as a real gap, so it has since been added for grouped (`isGrouped`) tables.
+
+## API design
+
+`expandedRowIds`/`defaultExpandedRowIds`/`onExpandedRowIdsChange` follows the same controlled/uncontrolled/onChange triple already established for filtering (`columnFilterValues` etc.). `defaultExpandedRowIds` defaults to every group-header row id when omitted, so existing `isGrouped` tables that don't pass either prop keep their previous "always fully expanded" look - this is purely additive, not a behavior change for existing consumers.
+
+A chevron disclosure control is rendered automatically inside a group-header row's first cell (no extra JSX required, same "automatic based on existing props" convention as the filter row) - not as a separate always-present column, so tables that don't use `isGrouped` see no layout change at all. Clicking it stops event propagation so it doesn't also trigger row selection/row-click when `selectionType` is set.
+
+The chevron itself is a single `ChevronRightIcon` rotated 90° when expanded (rather than swapping between a "right" and a "down" icon), transitioning on `theme.motion.duration.quick`/`theme.motion.easing.standard` - the same rotate+transition convention `TreeViewChevron` and `Collapsible`'s `CollapsibleChevronIcon` already use independently for the identical expand/collapse concept elsewhere in this codebase. `CollapsibleChevronIcon`/`CollapsibleButton` themselves aren't reusable here - both require being rendered inside a `Collapsible` provider tree (`useCollapsible()` context) - but the underlying rotate/transition styling convention they (and `TreeViewChevron`) establish is, and this reuses it rather than inventing a new one.
+
+Indentation remains disabled (flat appearance, `treeYLevel: undefined`) - unchanged from the prior always-expanded look. Adding visual indentation for nested levels is a separate, future visual decision, not part of this change.
+
+## Implementation
+
+Built on `@table-library/react-table-library`'s existing `useTree` (already used for grouped/tree-aware selection) - previously wired with `clickType: undefined` and a forced `onToggleAll` on mount to keep every group permanently expanded, since expand/collapse wasn't yet a supported feature. Real toggling reuses the same `state`/`onChange`/manual-`fns` pattern already used for row selection's `rowSelectConfig` in this file, with `TreeExpandClickTypes.ButtonClick` opting out of the library's own row-click auto-wiring (toggling is done manually via the chevron's `onClick`, exactly like `SelectClickTypes` is already handled for selection).
+
+## Known limitation: virtualization
+
+`isGrouped` combined with `TableVirtualizedWrapper` is not a supported combination - this predates row expansion and isn't introduced by it. The virtualized row list is built directly from `tableData` (the sorted/filtered nodes) rather than going through `ReactTable`'s own tree-flattening, so it doesn't consult `expandedRowIds`/the tree's collapse state at all; a collapsed group's children would still be included in the virtualized list. No existing story or test exercises `isGrouped` + virtualization together, so this was already effectively unsupported before this change. Flagged here rather than silently left implicit, since it's the one combination row expansion doesn't correctly extend to.
+
+# Grouped Multi-Row Column Headers
+
+Real usage groups related leaf columns under a shared label spanning multiple columns (e.g. "Shipment" over `ID`/`Status`, "Financials" over `Amount`/`Currency`) - a second, higher-level header row above the normal column header row.
+
+## API design
+
+No new props - `TableHeader` simply accepts more than one `TableHeaderRow` child instead of exactly one. By convention **the last `TableHeaderRow` is always the leaf/column row** (the one that lines up 1:1 with body columns and with `sortFunctions`/`filterFunctions` keys); any row(s) before it are group-label rows, whose cells use the already-existing `gridColumnStart`/`gridColumnEnd` (`TableCellGridSpanningProps`, previously only demonstrated for single-row header/body spanning - see `TableSpanning.stories.tsx`) to span the leaf columns they group. No `gridRowStart`/`gridRowEnd` is needed on either row - the table's cells already share one continuous CSS grid across every row in the table (headers, body, and footer alike, per the existing row-spanning support), so a second `TableHeaderRow` simply auto-places into the next grid row the same way a second body row would.
+
+## Implementation
+
+The two internal spots that previously assumed exactly one `TableHeaderRow` - `getTableHeaderCellCount` (`Table.web.tsx`, derives `columnCount`/`gridTemplateColumns`) and `getHeaderCellsMeta` (`TableHeader.web.tsx`, backs the auto-injected filter row) - now both explicitly resolve the **last** `TableHeaderRow` among `TableHeader`'s children instead of implicitly taking the first (or only) one, so they keep reading the real leaf columns regardless of how many group rows precede it.
+
+`TableHeader` decorates each row (internal-only props, not part of the public API) with whether it's the leaf row and its stacked sticky-`top` offset (a fixed 36px per row, matching the header's already-fixed compact row height) so `isHeaderSticky` continues to work correctly with a multi-row header - each row's cells stick below the row(s) above them instead of overlapping at `top: 0`. The multi-select "select all" checkbox and the hover-actions column placeholder are likewise rendered only on the leaf row (an empty alignment spacer takes their place on group-label rows) so they aren't duplicated once per header row.
+
+## Out of scope (within this change)
+
+- The auto-injected filter row's own sticky offset isn't adjusted for a preceding group row - combining grouped headers with both `isHeaderSticky` and column filtering at once is a narrower combination left for a future pass if real usage needs it.
 
 # Virtualization
 
@@ -711,7 +834,6 @@ also their is high chance of bugs and performance issues in the implementation o
 ## Props
 
 most of props are same as Table component. we have added following table component.
-
 
 but their is a change in children prop of Table component. In virtualized table we need to pass a component named TableVirtulized that takes TableHeader, TableBody components.
 VirtualizedTable is a wrapper on top of react-table-library's [Virtualized](https://github.com/table-library/react-table-library/blob/master/src/virtualized/Virtualized.tsx) component. It provides a simple API to create a virtualized table.
@@ -822,3 +944,52 @@ type VirtualizedWrapperProps<Item> = {
   children: React.ReactNode;
 };
 ```
+
+# Row Density & Vertical Cell Padding
+
+Real usage rendering two stacked `Badge`s in one cell (a status plus a secondary label) at `rowDensity="compact"` surfaced the badges sitting almost flush against the row's top/bottom border - measured at ~1.5px above the first badge and ~2.5px below the second, against the `spacing.4`/12px this same table already uses for horizontal cell padding. This raised the question of whether `TableCell` was ever designed to support multi-line/stacked content, or whether compact density specifically assumes single-line content only.
+
+## Root cause
+
+`tableRow` in `tokens.ts` defines `paddingLeft`/`paddingRight` (constant `spacing.4` across all three densities) and `minHeight` (`compact: 36px`, `normal: 48px`, `comfortable: 60px`) - there is no `paddingTop`/`paddingBottom` token at any density. `TableCell`'s wrapper centers its content vertically (`alignItems: center`) inside whatever height the row ends up being; for single-line content shorter than `minHeight`, the unused space above and below reads as padding even though none is actually applied - it's centering slack, not a real reserved margin.
+
+The row's CSS grid track isn't clipped to `minHeight` - like any other tall cell content (see the Empty States example's spanning row), it grows to fit taller content. But since there's no padding to grow _into_, a grown row's border sits almost exactly at the content's own edges regardless of density. Compact is simply where this shows up soonest, because its 36px `minHeight` leaves the least slack before typical multi-line content (two badges, or a title-plus-subtitle) exceeds it - normal (48px) and comfortable (60px) have the identical zero-vertical-padding root cause and will show the same flush-against-the-border result once _their_ content is tall enough, they just tolerate more before it becomes visible.
+
+## Is this intentional?
+
+No - it's a real gap, not a deliberate compact-density constraint. Nothing in `TableCell`, `CellWrapper`, or the density tokens encodes an assumption that cell content is single-line; the centering-only approach simply never needed to reserve real padding because nothing exercised multi-line content against it until now. There's no design rationale on record (in this doc or in the token comments) for "compact rows must only ever hold one line" - it's an untested edge case, not a decision.
+
+## Decision: consumer-supplied padding, not a shared token change
+
+Two ways to close this were considered:
+
+- **(a) The consumer adds their own vertical padding** to the content they render into a cell (e.g. `paddingY="spacing.2"` on the `Box` wrapping stacked content), as a documented recipe.
+- **(b) `TableCell`/`rowDensity` reserves a minimum vertical padding itself**, so stacked content never touches the border by default.
+
+Going with **(a)**. `rowDensity="compact"` exists specifically so a consumer can fit more rows on screen at once - that's the entire point of choosing it over `normal`/`comfortable`. Reserving padding inside `TableCell` at the shared-token level, even a small one, either (i) grows every existing compact-density row's `minHeight` retroactively (a visual change across every table already shipped on compact density, the vast majority of which hold single-line content and were never affected by this gap in the first place), or (ii) only reserves padding conditionally in some way `TableCell` can't actually determine (it has no way to know whether a given cell's content is one line or several - that's information only the consumer's `render` function has). Multi-line/stacked cell content at compact density is the exception, not the common case; asking that consumer to add one `paddingY` to their own content is a one-line fix scoped exactly to the row that needs it, versus a shared change that would tax every compact table for a problem most of them don't have.
+
+See `TableCompactDensityMultilineExample.stories.tsx` (`CompactDensityMultilineGap` for the unpadded case, measured; `CompactDensityMultilineRecipe` for the fix) for the recipe in practice.
+
+For the specific, very common case of a title plus a secondary line of text (a name plus a note, a
+company plus a compliance flag), `TableTitleDescriptionCell` productionizes this recipe rather than
+leaving every consumer to hand-roll it: real `paddingY` baked in, plus a choice between clamping the
+description to N lines with a hover tooltip for the full text (`descriptionBehavior="truncate"`,
+the default - see the row-density decisions doc's "Badge size inside compact rows" neighbor section
+and `TableTitleDescriptionExample.stories.tsx` for how the tooltip only appears when text is
+actually cut off) or letting the row grow to fit the full paragraph
+(`descriptionBehavior="wrap"`). Reach for the manual `paddingY` recipe above only for content this
+component doesn't fit (anything that isn't a single title + single description line).
+
+## Badge size inside compact rows
+
+A related, separate pitfall at any density but most tempting at `rowDensity="compact"`: `Badge`
+`size="xsmall"`/`size="small"` render their label at 10px (`Text` `variant="body" size="xsmall"`),
+smaller than the 12px `Text` `size="small"` ordinary table-cell content already uses - so a status
+badge ends up reading smaller than the data next to it, the opposite of what a badge is for. It's
+an easy trap specifically in a compact table, where reaching for the smallest `Badge` size can feel
+like it matches the row density - it doesn't need to, and shouldn't: `Badge`'s own default,
+`size="medium"`, already renders at the matching 12px and its 20px height fits inside even a 36px
+compact row without issue. Treat `size="medium"` as the floor for any `Badge` in a table cell,
+independent of `rowDensity`. See `Badge`'s own decisions doc (`Recommended minimum size inside table cells`) for the full writeup, and `CompactDensityBadgeSizeMismatch`/
+`CompactDensityBadgeSizeRecipe` in `TableCompactDensityMultilineExample.stories.tsx` for this shown
+side by side with ordinary cell text.

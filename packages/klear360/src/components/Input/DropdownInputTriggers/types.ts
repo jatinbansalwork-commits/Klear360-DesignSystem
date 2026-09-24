@@ -36,6 +36,17 @@ type DropdownInputTriggersCommonProps = Pick<
 > & {
   icon?: IconComponent;
   /**
+   * Renders without a visible border/background and fills its container edge-to-edge, the same
+   * borderless treatment `BaseInput`'s own `isTableInputCell` prop gives a plain text input -
+   * independent of `TableEditableCellContext` (which additionally forces an id/size/trailing-icon
+   * bundle meant specifically for `TableEditableCell`'s body-row inputs). Use this directly when
+   * you want the borderless look outside that system - e.g. Table's auto-injected column-filter
+   * row uses it so a dropdown/multiselect filter matches its plain-text sibling instead of
+   * showing its normal bordered, button-like appearance.
+   * @default false
+   */
+  isTableInputCell?: boolean;
+  /**
    * Controlled value of the Select. Use it in combination of `onChange`.
    *
    * Check out [Controlled Dropdown Documentation](https://klear360.klear.com/?path=/story/components-dropdown-with-select--controlled-dropdown&globals=measureEnabled:false) for example.

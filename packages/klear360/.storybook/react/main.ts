@@ -19,18 +19,9 @@ const config: StorybookConfig = {
         configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
       },
     },
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      shouldRemoveUndefinedFromOptional: true,
-      propFilter: (prop) => {
-        if (prop.parent) {
-          return !prop.parent.fileName.includes('node_modules');
-        }
-
-        return true;
-      },
-    },
+    // 'react-docgen' (not 'react-docgen-typescript') so Controls tables stay populated for
+    // components converted to .js+JSDoc, not just .tsx ones — see JSDOC_MIGRATION_GUIDE.md
+    reactDocgen: isDevelopment ? false : 'react-docgen',
   },
 
   refs: {

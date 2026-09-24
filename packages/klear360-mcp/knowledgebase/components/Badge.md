@@ -10,6 +10,13 @@ Badges are small, color-coded UI elements used to display concise metadata, desi
 
 - `children` prop is required and must contain text content
 - `icon` prop only accepts `IconComponent`
+- `size="xsmall"`/`"small"` render the label at 10px text; `size="medium"` (the default) and
+  `"large"` render at 12px - the same size ordinary `Text size="small"` body content uses. Inside a
+  table cell (or anywhere else the badge sits next to body text), use `size="medium"` or larger -
+  `"xsmall"`/`"small"` make the badge read smaller than the text around it, backwards for something
+  meant to draw attention. This applies at any row density, including `rowDensity="compact"` -
+  `size="medium"` is only 20px tall and fits a 36px compact row with room to spare, so there's no
+  space actually saved by sizing it down.
 
 ## TypeScript Types
 
@@ -64,13 +71,19 @@ type BadgeProps = {
 - Use `emphasis="intense"` when the badge needs to stand out prominently (e.g. critical status); use `emphasis="subtle"` for secondary or supportive metadata.
 - Keep badge labels short (1–2 words) — the text auto-truncates with a tooltip on overflow.
 - Pair an `icon` with the label to reinforce meaning at a glance (e.g. `CheckCircleIcon` with a "Success" badge).
-- Use `size="small"` or `size="xsmall"` when embedding badges inside dense UI like table rows or list items; use `size="medium"` or `size="large"` for standalone callouts.
+- Use `size="medium"` (the default) as the floor inside dense UI like table rows or list items too
+  - it still reads compact next to body text, unlike `"xsmall"`/`"small"`, which render smaller
+  than the 12px body text typically next to them. Reserve `"xsmall"`/`"small"` for places the badge
+  sits next to equally small (or no) text, not as a default "dense UI" choice.
 
 **Don't**
 
 - Don't use `Badge` for interactive elements — use `Tag` (removable/selectable metadata) or `Chip` (user-driven filter/action) instead.
 - Don't use `Badge` as a clickable button or link — it is purely informational.
 - Don't use icon-only badges without text — `children` (text) is always required.
+- Don't reach for `size="xsmall"`/`"small"` just because the surrounding UI (a table at
+  `rowDensity="compact"`, a dense list) is itself small - see the constraint above for why that
+  makes the badge read smaller than its neighbors instead of drawing attention.
 - Don't use long sentences as badge labels — keep text concise and use title case or sentence case consistently.
 - Don't rely solely on `color` to convey meaning — always include a text label (and optionally an icon) for accessibility.
 - Don't mix `emphasis="intense"` badges alongside `emphasis="subtle"` for items of equal importance — keep emphasis consistent within the same visual group.

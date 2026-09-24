@@ -1,20 +1,21 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
-import type { TableData } from '../../types';
+import { action } from 'storybook/actions';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TablePagination } from '../../TablePagination';
-import { TableToolbarActions, TableToolbar } from '../../TableToolbar';
+import { TableToolbarActions, TableToolbar, TableToolbarSearch } from '../../TableToolbar';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from '../exampleData';
 import StoryPageWrapper from '~utils/storybook/StoryPageWrapper';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
-import { Amount } from '~components/Amount';
 import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 import { useTheme } from '~components/Klear360Provider';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/TableToolbar',
+  tags: ['autodocs'],
   component: TableToolbar,
   parameters: {
     docs: {
@@ -29,45 +30,7 @@ export default {
   },
 } as Meta<typeof TableToolbar>;
 
-const nodes: Item[] = [
-  ...Array.from({ length: 20 }, (_, i) => ({
-    id: (i + 1).toString(),
-    paymentId: `klear${Math.floor(Math.random() * 1000000)}`,
-    amount: Number((Math.random() * 10000).toFixed(2)),
-    status: ['Completed', 'Pending', 'Failed'][Math.floor(Math.random() * 3)],
-    date: new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
-    type: ['Payout', 'Refund'][Math.floor(Math.random() * 2)],
-    method: ['Bank Transfer', 'Credit Card', 'PayPal'][Math.floor(Math.random() * 3)],
-    bank: ['HDFC', 'ICICI', 'SBI'][Math.floor(Math.random() * 3)],
-    account: Math.floor(Math.random() * 1000000000).toString(),
-    name: [
-      'John Doe',
-      'Jane Doe',
-      'Bob Smith',
-      'Alice Smith',
-      'John Smith',
-      'Jane Smith',
-      'Bob Doe',
-      'Alice Doe',
-    ][Math.floor(Math.random() * 8)],
-  })),
-];
-
-type Item = {
-  id: string;
-  paymentId: string;
-  amount: number;
-  status: string;
-  date: Date;
-  type: string;
-  method: string;
-  bank: string;
-  account: string;
-  name: string;
-};
-const data: TableData<Item> = {
-  nodes,
-};
+const data = createTransactionTableData(20);
 
 const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
   const { platform } = useTheme();
@@ -83,34 +46,48 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
       <TableComponent
         data={data}
         selectionType="multiple"
-        onSelectionChange={({ values }) => console.log('Selected Rows:', values)}
+        onSelectionChange={({ values }) => action('onSelectionChange')(values)}
         sortFunctions={{
-          ID: (array) => array.sort((a, b) => Number(a.id) - Number(b.id)),
-          AMOUNT: (array) => array.sort((a, b) => a.amount - b.amount),
-          ACCOUNT: (array) => array.sort((a, b) => Number(a.account) - Number(b.account)),
-          PAYMENT_ID: (array) => array.sort((a, b) => a.paymentId.localeCompare(b.paymentId)),
-          DATE: (array) => array.sort((a, b) => a.date.getTime() - b.date.getTime()),
-          METHOD: (array) => array.sort((a, b) => a.method.localeCompare(b.method)),
-          STATUS: (array) => array.sort((a, b) => a.status.localeCompare(b.status)),
+          TRANSACTION_ID: (array) =>
+            array.sort((a, b) => a.transactionId.localeCompare(b.transactionId)),
+          COMPANY_NAME: (array) => array.sort((a, b) => a.companyName.localeCompare(b.companyName)),
+          USERNAME: (array) => array.sort((a, b) => a.username.localeCompare(b.username)),
+          ETD: (array) => array.sort((a, b) => a.etd.getTime() - b.etd.getTime()),
+          VESSEL_NAME: (array) => array.sort((a, b) => a.vesselName.localeCompare(b.vesselName)),
+          TRANSACTION_STATE: (array) =>
+            array.sort((a, b) => a.transactionState.localeCompare(b.transactionState)),
         }}
         onSortChange={({ sortKey, isSortReversed }) =>
-          console.log('Sort Key:', sortKey, 'Sort Reversed:', isSortReversed)
+          action('onSortChange')({ sortKey, isSortReversed })
         }
+        filterFunctions={{
+          VESSEL_NAME: (item, value) => item.vesselName.toLowerCase().includes(value.toLowerCase()),
+          TRANSACTION_STATE: (item, value) =>
+            item.transactionState.toLowerCase().includes(value.toLowerCase()),
+        }}
         toolbar={
           <TableToolbar {...args}>
+            <TableToolbarSearch placeholder="Search all columns" />
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Payout</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Payout
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
           />
@@ -120,46 +97,30 @@ const TableTemplate: StoryFn<typeof TableComponent> = ({ ...args }) => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell headerKey="PAYMENT_ID">ID</TableHeaderCell>
-                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
-                <TableHeaderCell headerKey="ACCOUNT">Account</TableHeaderCell>
-                <TableHeaderCell headerKey="DATE">Date</TableHeaderCell>
-                <TableHeaderCell headerKey="METHOD">Method</TableHeaderCell>
-                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_ID">Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="USERNAME">Username</TableHeaderCell>
+                <TableHeaderCell headerKey="ETD">ETD</TableHeaderCell>
+                <TableHeaderCell headerKey="VESSEL_NAME">Vessel Name</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{tableItem.account}</TableCell>
-                  <TableCell>
-                    {tableItem.date?.toLocaleDateString('en-IN', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })}
-                  </TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{tableItem.username}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                   <TableCell>
                     <Badge
                       size="medium"
-                      color={
-                        tableItem.status === 'Completed'
-                          ? 'positive'
-                          : tableItem.status === 'Pending'
-                          ? 'notice'
-                          : tableItem.status === 'Failed'
-                          ? 'negative'
-                          : 'default'
-                      }
+                      color={getTransactionStateColor(tableItem.transactionState)}
                     >
-                      {tableItem.status}
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>

@@ -15,7 +15,8 @@ import { Klear360Provider } from '~components/Klear360Provider';
 import { klear360Theme } from '~tokens/theme';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/Table Figma Example',
+  tags: ['autodocs'],
   component: TableComponent,
 } as Meta<TableProps<unknown>>;
 
@@ -123,10 +124,10 @@ const StripedTableContent = (): React.ReactElement => (
       toolbar={
         <TableToolbar title="Showing 1-8 Items">
           <TableToolbarActions>
-            <Button variant="secondary" marginRight="spacing.3">
+            <Button size="small" variant="secondary" marginRight="spacing.3">
               Export
             </Button>
-            <Button>Payout</Button>
+            <Button size="small">Payout</Button>
           </TableToolbarActions>
         </TableToolbar>
       }

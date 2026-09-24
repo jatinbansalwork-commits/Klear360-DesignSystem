@@ -27,7 +27,7 @@ import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useControllableState } from '~utils/useControllable';
 import { getStyledProps } from '~components/Box/styledProps';
 
-const pageSizeOptions: NonNullable<PaginationProps['defaultPageSize']>[] = [10, 25, 50];
+const defaultPageSizeOptions: number[] = [10, 25, 50];
 
 const PageSelectionButton = styled.button.attrs(() => {
   return {
@@ -160,6 +160,7 @@ const _Pagination = ({
   pageSize: controlledPageSize,
   pageSizeLabel = 'items / page',
   onPageSizeChange,
+  pageSizeOptions = defaultPageSizeOptions,
   showPageSizePicker = false,
   showPageNumberSelector = false,
   showLabel = false,
@@ -188,7 +189,7 @@ const _Pagination = ({
     },
   });
 
-  const [internalPageSize, setInternalPageSize] = useControllableState<10 | 25 | 50>({
+  const [internalPageSize, setInternalPageSize] = useControllableState<number>({
     defaultValue: defaultPageSize,
     value: controlledPageSize,
     onChange: (pageSize) => {
@@ -238,7 +239,7 @@ const _Pagination = ({
   );
 
   const handlePageSizeChange = useCallback(
-    (pageSize: 10 | 25 | 50): void => {
+    (pageSize: number): void => {
       if (isDisabled) return;
       setInternalPageSize(() => pageSize);
     },
@@ -292,7 +293,7 @@ const _Pagination = ({
                 labelPosition="inside-input"
                 placeholder=""
                 onChange={({ values }) => {
-                  handlePageSizeChange(Number(values[0]) as 10 | 25 | 50);
+                  handlePageSizeChange(Number(values[0]));
                 }}
                 value={internalPageSize.toString()}
                 isDisabled={isDisabled}

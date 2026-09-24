@@ -128,12 +128,19 @@ const _BaseDropdownInputTrigger = (
   );
 
   const tableInputProps: Partial<BaseInputProps> = {
-    isTableInputCell: rowDensityToIsTableInputCellMapping[rowDensity],
     id: 'table-editable-cell-input',
     size: tableEditableCellRowDensityToInputSizeMap[rowDensity],
     trailingIcon: validationStateToInputTrailingIconMap[props.validationState ?? 'none'],
     showHintsAsTooltip: true,
   };
+
+  // Separate from `tableInputProps` above (rather than folded into it) so a consumer can opt into
+  // just the borderless visual - `props.isTableInputCell` - without also picking up that bundle's
+  // other `TableEditableCell`-specific side effects (the hardcoded `id`, the row-density-driven
+  // `size`/`trailingIcon`), which don't apply outside that system.
+  const isTableInputCell =
+    props.isTableInputCell ??
+    (isInsideTableEditableCell ? rowDensityToIsTableInputCellMapping[rowDensity] : undefined);
 
   const isValidationStateNone =
     props.validationState === 'none' || props.validationState === undefined;
@@ -255,6 +262,7 @@ const _BaseDropdownInputTrigger = (
         )
       }
       {...(isInsideTableEditableCell ? tableInputProps : undefined)}
+      isTableInputCell={isTableInputCell}
       // When AutoComplete is present inside DropdownOverlay, the floating ui adds tabIndex -1 internally. We override it with tabIndex 0 here
       tabIndex={isAutoCompleteInHeader ? 0 : undefined}
     />

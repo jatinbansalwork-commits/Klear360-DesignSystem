@@ -11,7 +11,11 @@ import { makeTypographySize } from '../../src/utils';
         const colorScheme = context.store.globals.globals.colorScheme;
         return (
           <DocsContainer context={context}>
-            <Klear360Provider key={colorScheme} themeTokens={klear360Theme} colorScheme={colorScheme}>
+            <Klear360Provider
+              key={colorScheme}
+              themeTokens={klear360Theme}
+              colorScheme={colorScheme}
+            >
               {children}
             </Klear360Provider>
           </DocsContainer>
@@ -76,7 +80,7 @@ export const Typography = () => {
             <tr key={key}>
               <td>{`theme.typography.fonts.size.${key}`}</td>
               <td style={{ fontSize: makeTypographySize(value), padding: '16px' }}>
-                Era of rising Fintech
+                Era of rising Klearnow
               </td>
             </tr>
           ))}
