@@ -27,6 +27,15 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
+// packages/klear360-svelte is optional - not every branch/checkout has it (e.g. it's absent
+// entirely on cursor/klear360-rebrand-cleanup). Without this guard, execSync's `cwd` pointing at
+// a directory that doesn't exist fails with a misleading "spawnSync /bin/sh ENOENT" instead of
+// a clear message, and there's nothing to build or copy anyway.
+if (!fs.existsSync(svelteStorybookDir)) {
+  console.log('✓ No klear360-svelte package found, skipping Svelte Storybook build.');
+  process.exit(0);
+}
+
 // Check if svelte storybook is already built (e.g., by CI)
 // If storybook-static exists, skip build and just copy
 const shouldSkipBuild = fs.existsSync(svelteDistDir);
