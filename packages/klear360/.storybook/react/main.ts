@@ -19,9 +19,28 @@ const config: StorybookConfig = {
         configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
       },
     },
-    // 'react-docgen' (not 'react-docgen-typescript') so Controls tables stay populated for
-    // components converted to .js+JSDoc, not just .tsx ones — see JSDOC_MIGRATION_GUIDE.md
-    reactDocgen: isDevelopment ? false : 'react-docgen',
+    // 'react-docgen-typescript' (not plain 'react-docgen') - this package has zero .jsx/JS+JSDoc
+    // components today (that migration lives entirely on separate, unmerged ts-to-jsdoc/* branches),
+    // and react-docgen-typescript extracts real TS union types (Controls renders a proper select
+    // instead of a freeform text input) and doc comments far more completely than plain react-docgen
+    // does for the ~2000 .tsx components that make up the whole library right now. Revisit this
+    // once JS+JSDoc components actually land here - react-docgen-typescript can't parse those at all.
+    //
+    // Always on (not gated behind `isDevelopment`, unlike `typescript.check` above) - without this,
+    // Controls silently fall back to one generic freeform text input per arg, which is what local
+    // `yarn react:storybook` was shipping until now.
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) => {
+        if (prop.parent) {
+          return !prop.parent.fileName.includes('node_modules');
+        }
+
+        return true;
+      },
+    },
   },
 
   refs: {
