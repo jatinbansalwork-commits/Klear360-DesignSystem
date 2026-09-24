@@ -43,26 +43,22 @@ const TableMeta: Meta = {
 };
 
 // ---------------------------------------------------------------------------
-// Dummy data - avatar images and compliance notes, matching the exact recipes
+// Dummy data - avatar colors and compliance notes, matching the exact recipes
 // TableAvatarCellExample / TableTitleDescriptionExample already verified in isolation.
 // ---------------------------------------------------------------------------
 
 const hashString = (value: string): number =>
   Math.abs(value.split('').reduce((hash, char) => hash * 31 + char.charCodeAt(0), 0));
 
-const AVATAR_PALETTE = ['#2F6FED', '#E8590C', '#2B8A3E', '#9C36B5', '#0C8599', '#C2255C'];
+// `Avatar` already generates its own initials from `name` and colors itself from this token-based
+// enum when no `src` is given - no image, no hand-rolled initials/color logic needed here. Only
+// picking a deterministic one of Avatar's own `color` values per username, the same way the old
+// hash-based hex palette picked a fake photo color, just through the component's real API instead
+// of a parallel SVG-data-URI generator.
+const AVATAR_COLORS = ['primary', 'information', 'positive', 'notice', 'negative'] as const;
 
-const makeAvatarSrc = (seed: string): string => {
-  const color = AVATAR_PALETTE[hashString(seed) % AVATAR_PALETTE.length];
-  const initials = seed
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="400" height="400" fill="${color}"/><text x="200" y="245" font-family="sans-serif" font-size="150" font-weight="600" fill="white" text-anchor="middle">${initials}</text></svg>`;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-};
+const pickAvatarColor = (seed: string): typeof AVATAR_COLORS[number] =>
+  AVATAR_COLORS[hashString(seed) % AVATAR_COLORS.length];
 
 const complianceNotes = [
   'Declared HS code did not match the commercial invoice description; broker sign-off required.',
@@ -197,14 +193,15 @@ const columnDefs: ColumnDef[] = [
     ),
   },
   {
-    // Avatar Cells pattern (TableAvatarCellExample) - Avatar already constrains its own <img>
-    // correctly, no hand-rolled sizing needed.
+    // Avatar Cells pattern (TableAvatarCellExample) - unlike that story's `src`-based columns
+    // (there to demonstrate sizing an oversized *source image*), this one has no photo to show, so
+    // it leans on Avatar's own no-`src` initials fallback instead of faking one.
     key: 'filedBy',
     header: 'Filed By',
     width: '190px',
     render: (item) => (
       <Box display="flex" alignItems="center" gap="spacing.3">
-        <Avatar size="small" name={item.username} src={makeAvatarSrc(item.username)} />
+        <Avatar size="small" name={item.username} color={pickAvatarColor(item.username)} />
         <Text size="small">{item.username}</Text>
       </Box>
     ),
@@ -275,7 +272,10 @@ const EMPTY_ROW_PLACEHOLDER = { id: '__empty__' } as TableNode<TransactionTableI
 
 const LEGEND: { label: string; detail: string }[] = [
   { label: 'Transaction ID', detail: 'Linkable Cells - a real anchor, cmd/ctrl-click works.' },
-  { label: 'Filed By', detail: 'Avatar Cells - a large source image correctly constrained.' },
+  {
+    label: 'Filed By',
+    detail: "Avatar Cells - no photo, so it uses Avatar's own initials fallback.",
+  },
   {
     label: 'Company / Compliance Note',
     detail: 'Title + Description Cells - 2-line clamp with a hover tooltip when truncated.',
