@@ -1769,7 +1769,7 @@ exports[`<TextArea /> should support adding data-analytics attribute to the text
       >
         <label
           data-klear360-component="form-label"
-          for="textarea-1189-input-1190"
+          for="textarea-1183-input-1184"
           style="width: 100%; flex-shrink: 0; margin-right: 0px;"
         >
           <div
@@ -1827,7 +1827,7 @@ exports[`<TextArea /> should support adding data-analytics attribute to the text
             class="c10"
             data-analytics-name="text-area"
             data-klear360-component="styled-base-input"
-            id="textarea-1189-input-1190"
+            id="textarea-1183-input-1184"
             rows="2"
             type="text"
           />

@@ -91,7 +91,11 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.{ts,tsx}'],
+      // .ts/.tsx keep their existing repo-wide scope; .js/.jsx are widened only under src/, since
+      // that's the only place JSDoc-typed source will ever live — root-level CJS tooling scripts
+      // (plopfile.js, scripts/*.js, *.config.js, etc.) were never part of any tsconfig's "include"
+      // and stay on the plain (non-type-aware) base parser, same as before this migration
+      files: ['**/*.{ts,tsx}', '**/src/**/*.{js,jsx}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         tsconfigRootDir: __dirname,
@@ -116,7 +120,7 @@ module.exports = {
         'react/jsx-filename-extension': [
           'error',
           {
-            extensions: ['.ts', '.tsx'],
+            extensions: ['.ts', '.tsx', '.js', '.jsx'],
           },
         ],
         'babel/new-cap': ['error', { capIsNewExceptionPattern: '^styled.' }],

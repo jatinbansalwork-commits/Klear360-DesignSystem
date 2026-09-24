@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tour /> should render Tour ssr 1`] = `"<div id="root"><div data-klear360-component="box" class="BaseBox-bksIuc"><button type="button" data-klear360-component="button" role="button" class="StyledBaseButtonweb__StyledBaseButton-wokdk0-0 jxVVXN"><div data-klear360-component="base-box" class="BaseBox-bksIuc AnimatedButtonContentweb__AnimatedButtonContent-sc-1g6ocf4-0  iUsIiL"><div data-klear360-component="base-box" class="BaseBox-bksIuc BaseButton__ButtonContent-sc-1xhzv77-0 jbTreI kmXDWf"><div class="StyledBaseText-foUshD kThtDu" data-klear360-component="base-text">Open Tour</div></div></div></button><div data-klear360-component="box" class="BaseBox-bksIuc">Some other content inside</div><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Trigger 1</p></div><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Trigger 2</p></div></div></div>"`;
+exports[`<Tour /> should render Tour ssr 1`] = `"<div id="root"><div data-klear360-component="box" class="BaseBox-bksIuc"><button type="button" data-klear360-component="button" role="button" class="StyledBaseButtonweb__StyledBaseButton-wokdk0-0 hVxpDD"><div data-klear360-component="base-box" class="BaseBox-bksIuc AnimatedButtonContentweb__AnimatedButtonContent-sc-1g6ocf4-0  iUsIiL"><div data-klear360-component="base-box" class="BaseBox-bksIuc BaseButton__ButtonContent-sc-1xhzv77-0 jbTreI kmXDWf"><div class="StyledBaseText-foUshD kThtDu" data-klear360-component="base-text">Open Tour</div></div></div></button><div data-klear360-component="box" class="BaseBox-bksIuc">Some other content inside</div><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Trigger 1</p></div><div data-klear360-component="box" class="BaseBox-bksIuc"><p letter-spacing="50" class="StyledBaseText-foUshD caApCk" data-klear360-component="text">Trigger 2</p></div></div></div>"`;
 
 exports[`<Tour /> should render Tour ssr 2`] = `
 .c2.c2.c2.c2.c2 {
@@ -89,6 +89,7 @@ exports[`<Tour /> should render Tour ssr 2`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: radial-gradient(64px 64px at var(--mouse-x,0%) var(--mouse-y,0%),hsla(0,0%,100%,0.18) 0%,transparent 100%);
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;

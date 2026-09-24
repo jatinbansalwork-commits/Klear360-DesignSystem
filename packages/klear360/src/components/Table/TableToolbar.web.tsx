@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { ComponentIds } from './componentIds';
 import { tableToolbar } from './tokens';
 import { useTableContext } from './TableContext';
-import type { TableToolbarProps, TableToolbarActionsProps } from './types';
+import type { TableToolbarProps, TableToolbarActionsProps, TableToolbarSearchProps } from './types';
+import { SearchInput } from '~components/Input/SearchInput';
 import { makeMotionTime, makeSize } from '~utils';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import getIn from '~utils/lodashButBetter/get';
@@ -18,6 +19,14 @@ import { useTheme } from '~components/Klear360Provider';
 /**
  * TableToolbarActions is a component that is used to render actions in the TableToolbar.
  * It is a flex container that will render its children in a row on desktop and a column on mobile.
+ *
+ * Action buttons never shrink below their natural (single-line) width - `flexShrink={0}` here
+ * means that once the toolbar runs out of horizontal room, the whole actions block wraps onto
+ * its own line (the toolbar row itself is `flexWrap: wrap`) instead of individual buttons being
+ * squeezed narrower than their label, which wraps that label onto two lines.
+ *
+ * Use `size="small"` buttons here so their height (32px) matches `TableToolbarSearch`'s - both
+ * resolve to the same underlying size token when `size="small"`.
  * @param children - any react element
  * @param styledProps - accepts all of the styled props from Box
  */
@@ -31,6 +40,7 @@ const _TableToolbarActions = ({
     <BaseBox
       display="flex"
       flex={onMobile ? 1 : 0}
+      flexShrink={0}
       justifyContent={onMobile ? 'flex-start' : 'flex-end'}
       {...getStyledProps(rest)}
       {...makeAnalyticsAttribute(rest)}
@@ -41,7 +51,40 @@ const _TableToolbarActions = ({
 };
 
 const TableToolbarActions = assignWithoutSideEffects(_TableToolbarActions, {
+  displayName: 'TableToolbarActions',
   componentId: ComponentIds.TableToolbarActions,
+});
+
+/**
+ * TableToolbarSearch renders a search input wired to the Table's global filter state (see
+ * `TableProps['globalFilterValue']`/`filterFunctions`). Place it as a `TableToolbar` child,
+ * alongside `TableToolbarActions` if present.
+ */
+const _TableToolbarSearch = ({
+  placeholder = 'Search',
+  accessibilityLabel = 'Search table',
+  ...rest
+}: TableToolbarSearchProps): React.ReactElement => {
+  const { globalFilterValue, setGlobalFilterValue } = useTableContext();
+  return (
+    // Grows to use the toolbar's empty space (rather than sitting at a fixed 240px, which reads
+    // as an afterthought squeezed next to TableToolbarActions) while staying readable on mobile
+    // and not crowding out actions on very wide toolbars.
+    <BaseBox flex={1} minWidth="200px" maxWidth="400px" {...makeAnalyticsAttribute(rest)}>
+      <SearchInput
+        size="small"
+        value={globalFilterValue}
+        onChange={({ value }) => setGlobalFilterValue(value ?? '')}
+        placeholder={placeholder}
+        accessibilityLabel={accessibilityLabel}
+      />
+    </BaseBox>
+  );
+};
+
+const TableToolbarSearch = assignWithoutSideEffects(_TableToolbarSearch, {
+  displayName: 'TableToolbarSearch',
+  componentId: ComponentIds.TableToolbarSearch,
 });
 
 const ToolbarWrapper = styled(BaseBox)(({ theme }) => ({
@@ -121,7 +164,8 @@ const _TableToolbar = ({
 };
 
 const TableToolbar = assignWithoutSideEffects(_TableToolbar, {
+  displayName: 'TableToolbar',
   componentId: ComponentIds.TableToolbar,
 });
 
-export { TableToolbar, TableToolbarActions };
+export { TableToolbar, TableToolbarActions, TableToolbarSearch };

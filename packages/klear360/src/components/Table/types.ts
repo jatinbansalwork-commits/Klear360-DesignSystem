@@ -20,6 +20,18 @@ type TableBackgroundColors = `surface.background.gray.${DotNotationToken<
   Theme['colors']['surface']['background']['gray']
 >}`;
 
+type TableSortDirection = 'asc' | 'desc';
+
+/**
+ * One entry in the table's active sort order. When more than one column is sorted
+ * (via shift-click, see `TableProps['sortFunctions']`), index 0 is the primary/most
+ * significant column, index 1 is secondary, and so on.
+ */
+type TableSortOrderEntry = {
+  sortKey: string;
+  direction: TableSortDirection;
+};
+
 type RowHeightType = number | ((item: TableLibraryTableNode, index: number) => number);
 
 /**
@@ -85,6 +97,22 @@ type TableHeaderRowProps = {
    * The header row is now always compact (36px height) regardless of this prop value.
    **/
   rowDensity?: TableProps<unknown>['rowDensity'];
+  /**
+   * Set internally by `TableHeader` when it contains more than one `TableHeaderRow` (grouped
+   * multi-row headers) - `false` on every row except the last, which is always the leaf/column
+   * row. Not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _isLeafHeaderRow?: boolean;
+  /**
+   * Set internally by `TableHeader` for grouped multi-row headers - this row's distance in pixels
+   * from the top of the header, so its cells' sticky `top` (when `Table`'s `isHeaderSticky` is
+   * set) stacks below the row(s) above it instead of overlapping them.
+   *
+   * @private
+   */
+  _stickyTopOffsetPx?: number;
 } & DataAnalyticsAttribute;
 
 type TableHeaderCellProps = {
@@ -93,9 +121,12 @@ type TableHeaderCellProps = {
    **/
   children: string | React.ReactNode;
   /**
-   * The unique key of the column.
-   * This is used to identify the column for sorting in sortFunctions prop of Table.
-   * Sorting is enabled only for columns whose key is present in sortableColumns prop of Table.
+   * The unique key of the column - identifies it for both sorting and filtering.
+   * Sorting is enabled only for columns whose key is present in the `sortFunctions` prop of Table.
+   * Click cycles asc → desc → unsorted; shift-click adds/toggles this column as an additional
+   * sort key without disturbing the others.
+   * Filtering is enabled only for columns whose key is present in the `filterFunctions` prop of
+   * Table - a compact search input then renders automatically in this column's header.
    **/
   headerKey?: string;
   /**
@@ -106,15 +137,96 @@ type TableHeaderCellProps = {
   textAlign?: 'left' | 'center' | 'right';
 
   _hasPadding?: boolean;
+  /**
+   * Set internally by `TableHeaderRow` for grouped multi-row headers, mirroring
+   * `TableHeaderRowProps['_stickyTopOffsetPx']`. Not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _stickyTopOffsetPx?: number;
 } & TableCellGridSpanningProps &
   DataAnalyticsAttribute;
 
-type TableProps<Item> = {
+/**
+ * Declarative column config, as an alternative to hand-writing TableHeader/TableBody JSX.
+ * Pass an array of these to Table's `columns` prop instead of `children` to have Table build
+ * the header row and body cells for you.
+ */
+type TableColumnConfig<Item> = {
   /**
-   * The children of the Table component should be a function that returns TableHeader, TableBody and TableFooter components.
-   * The function will be called with the tableData prop.
+   * Unique key for the column. Also used as the column's `headerKey` when `sortable` is true,
+   * so it lines up with the key you use in Table's `sortFunctions` prop.
    */
-  children: (tableData: TableNode<Item>[]) => React.ReactElement;
+  key: string;
+  /**
+   * Content rendered in the column's header cell.
+   */
+  header: React.ReactNode;
+  /**
+   * Renders a single row's cell content for this column.
+   */
+  render: (item: TableNode<Item>, index: number) => React.ReactNode;
+  /**
+   * Column width, passed through as a `grid-template-columns` track (e.g. `'120px'`, `'1fr'`,
+   * `'minmax(100px, 1fr)'`). Falls back to the same `minmax(100px, 1fr)` every column gets by
+   * default when omitted. Only takes effect when the Table's own `gridTemplateColumns` prop is
+   * not also set — an explicit `gridTemplateColumns` always wins, matching how that prop already
+   * behaves for hand-written columns.
+   */
+  width?: string;
+  /**
+   * Gives this column's header cell a `headerKey`, the existing hook Table's sorting already
+   * looks for. Sorting itself still requires a matching entry in the `sortFunctions` prop — this
+   * only wires the column up to participate if you provide one.
+   * @default false
+   */
+  sortable?: boolean;
+  /**
+   * Content alignment for both this column's header cell and its body cells - passed straight
+   * through to `TableHeaderCell`/`TableCell`'s own `textAlign` prop, which already supports it.
+   * @default 'left'
+   */
+  textAlign?: 'left' | 'center' | 'right';
+};
+
+/**
+ * Configures a filterable column (see `TableProps['filterFunctions']`) to render a dropdown or
+ * multiselect picker in its header instead of the default text input.
+ */
+type TableColumnFilterConfig = {
+  /**
+   * `'dropdown'` allows a single selected option; `'multiselect'` allows any number.
+   */
+  type: 'dropdown' | 'multiselect';
+  /**
+   * The options offered in the picker.
+   */
+  options: { label: string; value: string }[];
+};
+
+type TableChildrenProps<Item> =
+  | {
+      /**
+       * The children of the Table component should be a function that returns TableHeader, TableBody and TableFooter components.
+       * The function will be called with the tableData prop.
+       *
+       * Use this or `columns`, not both.
+       */
+      children: (tableData: TableNode<Item>[]) => React.ReactElement;
+      columns?: never;
+    }
+  | {
+      children?: never;
+      /**
+       * Column config array, as an alternative to hand-writing TableHeader/TableBody JSX via
+       * `children`. Table builds the header row and body cells from this array instead.
+       *
+       * Use this or `children`, not both.
+       */
+      columns: TableColumnConfig<Item>[];
+    };
+
+type TableProps<Item> = TableChildrenProps<Item> & {
   /**
    * The data prop is an object with a nodes property that is an array of objects.
    * Each object in the array is a row in the table.
@@ -167,9 +279,46 @@ type TableProps<Item> = {
   isFooterSticky?: boolean;
   /**
    * The isFirstColumnSticky prop determines whether the first column is sticky or not.
-   * The default value is `false`.
+   * The default value is `false`. Equivalent to `stickyColumnCount={1}`.
    **/
   isFirstColumnSticky?: boolean;
+  /**
+   * Number of leading columns (left to right, after any multi-select checkbox column) to freeze
+   * while the rest of the table scrolls horizontally. `isFirstColumnSticky` is shorthand for
+   * `stickyColumnCount={1}` and needs no `stickyColumnWidths`. Freezing more than one column
+   * requires `stickyColumnWidths`, since the sticky offsets are computed from known widths rather
+   * than measured at render time.
+   * @default isFirstColumnSticky ? 1 : 0
+   **/
+  stickyColumnCount?: number;
+  /**
+   * Explicit pixel width (e.g. `'160px'`) for each of the leading `stickyColumnCount` columns, in
+   * order. Required when `stickyColumnCount` is greater than `1`. Pair these with matching
+   * `width`s on the same columns (via the `columns` config's `width` or `gridTemplateColumns`) so
+   * the sticky offsets line up with what's actually rendered.
+   **/
+  stickyColumnWidths?: string[];
+  /**
+   * The isLastColumnSticky prop determines whether the last column is sticky or not.
+   * The default value is `false`. Equivalent to `trailingStickyColumnCount={1}`.
+   **/
+  isLastColumnSticky?: boolean;
+  /**
+   * Number of trailing columns (right to left, before any hover-actions column) to freeze while
+   * the rest of the table scrolls horizontally. `isLastColumnSticky` is shorthand for
+   * `trailingStickyColumnCount={1}` and needs no `trailingStickyColumnWidths`. Freezing more than
+   * one column requires `trailingStickyColumnWidths`, since the sticky offsets are computed from
+   * known widths rather than measured at render time.
+   * @default isLastColumnSticky ? 1 : 0
+   **/
+  trailingStickyColumnCount?: number;
+  /**
+   * Explicit pixel width (e.g. `'160px'`) for each of the trailing `trailingStickyColumnCount`
+   * columns, in left-to-right order. Required when `trailingStickyColumnCount` is greater than
+   * `1`. Pair these with matching `width`s on the same columns (via the `columns` config's
+   * `width` or `gridTemplateColumns`) so the sticky offsets line up with what's actually rendered.
+   **/
+  trailingStickyColumnWidths?: string[];
   /**
    * The rowDensity prop determines the density of the table.
    * The rowDensity prop can be 'compact', 'normal', or'comfortable'.
@@ -192,8 +341,18 @@ type TableProps<Item> = {
    * The value of each key is a function that is called when the column is sorted.
    * The function is called with an array of the rows in the table.
    * The function should return an array of the rows in the table.
+   *
+   * Clicking a sortable header cycles that column through ascending → descending → unsorted.
+   * Shift-clicking a header adds it as a secondary/tertiary sort key instead of replacing the
+   * current sort — see `TableHeaderCellProps['headerKey']` and the Table docs for the full
+   * interaction model.
    **/
   sortFunctions?: Record<string, (array: TableNode<Item>[]) => TableNode<Item>[]>;
+  /**
+   * Sets the table's sort state on mount, so it renders already sorted by this column instead
+   * of requiring a click. `sortKey` must match a key in `sortFunctions`.
+   **/
+  initialSort?: TableSortOrderEntry;
   /**
    * The toolbar prop is a React element that is rendered above the table.
    * The toolbar prop should be a `TableToolbar` component.
@@ -231,6 +390,7 @@ type TableProps<Item> = {
   isRefreshing?: boolean;
   /**
    * The showBorderedCells prop determines whether the table should have bordered cells or not.
+   * The default value is `true`.
    **/
   showBorderedCells?: boolean;
   /**
@@ -248,6 +408,23 @@ type TableProps<Item> = {
    **/
   isGrouped?: boolean;
   /**
+   * Ids of the group-header rows (parent rows with children, see `isGrouped`) that are currently
+   * expanded. Passing this prop makes row expansion controlled - Table will not manage this state
+   * on its own.
+   **/
+  expandedRowIds?: Identifier[];
+  /**
+   * Seeds the expanded row ids on mount (uncontrolled). Ignored if `expandedRowIds` is also
+   * passed.
+   * @default every group-header row id (all groups start expanded)
+   **/
+  defaultExpandedRowIds?: Identifier[];
+  /**
+   * Called whenever a group-header row is expanded or collapsed, with the full updated list of
+   * expanded row ids.
+   **/
+  onExpandedRowIdsChange?: (ids: Identifier[]) => void;
+  /**
    * Controls when the row-level selection checkbox is visible.
    *
    * - `'always'` (default): checkbox is always visible. Fully backward-compatible.
@@ -260,6 +437,67 @@ type TableProps<Item> = {
    * @default 'always'
    */
   checkboxDisplay?: 'always' | 'on-hover';
+  /**
+   * Per-row predicate for a filterable column, keyed by `headerKey`. Return `true` to keep the
+   * row. A column becomes filterable purely by having its `headerKey` present here — mirrors how
+   * `sortFunctions` makes a column sortable. Table renders a compact search input in that
+   * column's header (below the sortable header row) automatically, with no extra JSX needed - or,
+   * for a column also present in `filterConfig`, a dropdown/multiselect picker instead.
+   *
+   * The filter value passed to the predicate is a plain `string` for an ordinary (text) column or
+   * a `filterConfig` `type: 'dropdown'` column (a single selected value), or `string[]` for a
+   * `filterConfig` `type: 'multiselect'` column (the selected values). A predicate whose column
+   * may be `type: 'multiselect'` should check `Array.isArray(filterValue)`, since the same
+   * predicate also receives a plain `string` from `globalFilterValue` (global search is always
+   * plain text, regardless of the column's own filter type) - see the "Dropdown & multiselect
+   * filters" section of the Table decisions doc for the recommended fallback.
+   *
+   * The same predicate is reused for `globalFilterValue`: a row matches the global filter if
+   * *any* filterable column's predicate matches it. Column filters combine with AND (a row must
+   * satisfy every active column filter); the global filter then narrows further with OR across
+   * all filterable columns.
+   **/
+  filterFunctions?: Record<
+    string,
+    (item: TableNode<Item>, filterValue: string | string[]) => boolean
+  >;
+  /**
+   * Renders a dropdown (single-select) or multiselect picker in a filterable column's header,
+   * instead of the default text input - keyed by `headerKey`, same convention as
+   * `filterFunctions`. The column must also have a matching entry in `filterFunctions` to
+   * actually filter rows; this only controls which input renders.
+   **/
+  filterConfig?: Record<string, TableColumnFilterConfig>;
+  /**
+   * Values for each active column filter, keyed by `headerKey`. A plain `string` for an ordinary
+   * (text) column or a `filterConfig` `type: 'dropdown'` column, or `string[]` for a
+   * `type: 'multiselect'` column. Passing this prop makes column filtering controlled - Table
+   * will not manage this state on its own.
+   **/
+  columnFilterValues?: Record<string, string | string[]>;
+  /**
+   * Seeds the column filter values on mount (uncontrolled). Ignored if `columnFilterValues` is
+   * also passed.
+   **/
+  defaultColumnFilterValues?: Record<string, string | string[]>;
+  /**
+   * Called whenever a column filter's value changes, with the full updated map.
+   **/
+  onColumnFilterValuesChange?: (values: Record<string, string | string[]>) => void;
+  /**
+   * Value of the global search - checked against every filterable column via its
+   * `filterFunctions` predicate. Passing this prop makes it controlled.
+   **/
+  globalFilterValue?: string;
+  /**
+   * Seeds the global search value on mount (uncontrolled). Ignored if `globalFilterValue` is
+   * also passed.
+   **/
+  defaultGlobalFilterValue?: string;
+  /**
+   * Called whenever the global search value changes.
+   **/
+  onGlobalFilterValueChange?: (value: string) => void;
 } & DataAnalyticsAttribute &
   StyledPropsKlear360;
 
@@ -353,11 +591,52 @@ type TableCellProps = {
    */
   _hasPadding?: boolean;
   /**
+   * Renders the row-expansion chevron before this cell's content. Set internally by `TableRow` on
+   * its first cell child when the row is a group header (see `TableProps['isGrouped']` /
+   * `expandedRowIds`) - not meant to be passed directly by consumers.
+   *
+   * @private
+   */
+  _isGroupExpandCell?: boolean;
+  /**
+   * The id of the group-header row this cell belongs to, passed alongside `_isGroupExpandCell`.
+   *
+   * @private
+   */
+  _groupRowId?: Identifier;
+  /**
    * The backgroundColor prop determines the background color of the table cell.
    * The default value is `transparent`.
    **/
   backgroundColor?: TableBackgroundColors | 'transparent';
 } & TableCellGridSpanningProps &
+  DataAnalyticsAttribute;
+
+type TableTitleDescriptionCellProps = {
+  /**
+   * The cell's primary, always-visible line.
+   */
+  title: React.ReactNode;
+  /**
+   * Secondary text rendered below `title`. Nothing renders for this line when omitted.
+   */
+  description?: string;
+  /**
+   * How `description` behaves once it's longer than fits:
+   * - `'truncate'` clamps it to `descriptionLines`, and shows the full text as a native tooltip
+   *   on hover when it's actually cut off (`useTruncationTitle` - the same mechanism `Badge`
+   *   already uses internally for its own truncated label).
+   * - `'wrap'` never clamps - the row grows to fit the full paragraph instead, with no tooltip
+   *   (nothing is ever hidden, so there's nothing for a tooltip to reveal).
+   * @default 'truncate'
+   */
+  descriptionBehavior?: 'truncate' | 'wrap';
+  /**
+   * Number of lines `description` clamps to when `descriptionBehavior` is `'truncate'`.
+   * @default 2
+   */
+  descriptionLines?: number;
+} & TestID &
   DataAnalyticsAttribute;
 
 type TableEditableCellProps = Pick<
@@ -389,6 +668,29 @@ type TableEditableCellProps = Pick<
 > & {
   accessibilityLabel: NonNullable<BaseInputProps['accessibilityLabel']>;
   inputType?: Extract<BaseInputProps['type'], 'text' | 'number' | 'email' | 'tel' | 'url'>;
+};
+
+/**
+ * TableEditableSearchCell is TableEditableCell with a search affordance: a leading
+ * magnifying-glass icon (matching `TableToolbarSearch`/the column-filter input) and a clear
+ * button that appears once there's a value, mirroring `SearchInput`'s clear behaviour. It's a
+ * plain typed input - value changes are still delivered through `onChange` - there's no
+ * dropdown or suggestion list.
+ */
+type TableEditableSearchCellProps = Omit<
+  TableEditableCellProps,
+  'leadingIcon' | 'trailingButton'
+> & {
+  /**
+   * Toggle the visibility of the leading search icon.
+   *
+   * @default true
+   */
+  showSearchIcon?: boolean;
+  /**
+   * Called when the clear button is clicked, in addition to the input being cleared.
+   */
+  onClearButtonClick?: () => void;
 };
 
 type TableEditableDropdownCellProps = Pick<
@@ -443,7 +745,7 @@ type TablePaginationCommonProps = {
    * @default 10
    * consider using virtualization for large page sizes
    **/
-  defaultPageSize?: 10 | 25 | 50;
+  defaultPageSize?: number;
   /**
    * The current page. Passing this prop will make the component controlled and will not update the page on its own.
    **/
@@ -453,6 +755,11 @@ type TablePaginationCommonProps = {
    * Callback function that is called when the page size is changed
    */
   onPageSizeChange?: ({ pageSize }: { pageSize: number }) => void;
+  /**
+   * The page size choices shown in the page size picker.
+   * @default [10, 25, 50]
+   */
+  pageSizeOptions?: number[];
   /**
    * Whether to show the page size picker. It will be always be hidden on mobile.
    * Page size picker controls how rows are shown per page.
@@ -544,6 +851,19 @@ type TableToolbarProps = {
    * Defaults to `inline`.
    */
   placement?: TableToolbarPlacement;
+} & DataAnalyticsAttribute;
+
+type TableToolbarSearchProps = {
+  /**
+   * Placeholder text for the search input.
+   * @default 'Search'
+   */
+  placeholder?: string;
+  /**
+   * Accessible label for the search input, for assistive technology.
+   * @default 'Search table'
+   */
+  accessibilityLabel?: string;
 } & DataAnalyticsAttribute;
 
 type TableToolbarActionsProps = {
@@ -643,6 +963,8 @@ type VirtualizedWrapperProps = {
 
 export type {
   TableProps,
+  TableColumnConfig,
+  TableColumnFilterConfig,
   Identifier,
   TableNode,
   TableData,
@@ -652,7 +974,9 @@ export type {
   TableBodyProps,
   TableRowProps,
   TableCellProps,
+  TableTitleDescriptionCellProps,
   TableEditableCellProps,
+  TableEditableSearchCellProps,
   TableEditableDropdownCellProps,
   TableFooterProps,
   TableFooterRowProps,
@@ -660,6 +984,7 @@ export type {
   TablePaginationProps,
   TableToolbarProps,
   TableToolbarActionsProps,
+  TableToolbarSearchProps,
   TableToolbarPlacement,
   TableBackgroundColors,
   TablePaginationType,
@@ -667,4 +992,6 @@ export type {
   VirtualizedWrapperProps,
   RowHeightType,
   TableCellGridSpanningProps,
+  TableSortDirection,
+  TableSortOrderEntry,
 };

@@ -89,6 +89,8 @@
     "react-dom": "18.2.0",
     "react": "18.2.0",
     "@types/react": "18.2.24",
+    "@types/node": "20.12.6",
+    "**/@types/react-native": "0.72.2",
     "@types/styled-components": "5.1.34",
     "styled-components": "^5",
     "framer-motion": "11.12.0",

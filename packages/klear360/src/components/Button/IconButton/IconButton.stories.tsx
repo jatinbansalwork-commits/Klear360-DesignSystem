@@ -37,6 +37,53 @@ const Page = (): ReactElement => {
         export default App;
         `}
       </Sandbox>
+      <Title>Touch Target Size (Accessibility)</Title>
+      <Text size="medium">
+        The minimal usage above is intentionally the smallest valid `IconButton` - just the required
+        props - but it should rarely be the *final* usage. Without `isHighlighted` or
+        `emphasis="moderate"`, no `width`/`height` is applied to the button at all, so its clickable
+        area collapses to the icon glyph&apos;s own rendered size - 12x12px at `size="small"`,
+        16x16px at `size="medium"` - well under{' '}
+        <a
+          href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
+          target="_blank"
+          rel="noreferrer"
+        >
+          WCAG 2.2&apos;s 24x24px minimum target size (SC 2.5.8)
+        </a>
+        . `IconButton` warns about this in development (console) whenever it detects the combination
+        - not an error, since a bare `IconButton` is correct when it&apos;s already nested inside
+        another control with its own adequate hit area (an input&apos;s trailing slot, for example),
+        but easy to miss otherwise, especially in a dense UI like a table action column. See
+        Table&apos;s <code>Components/Table/Examples/Action Column</code> story (
+        <code>TableActionColumnExample.stories.tsx</code>) for that exact scenario applied.
+      </Text>
+      <Text size="medium">
+        Pass one of the following to get a properly-sized hit box - both add invisible padding
+        around the icon (a real, 24x24px+ clickable square), not just a visual change:
+      </Text>
+      <Sandbox showConsole>
+        {`
+        import { IconButton, CloseIcon } from '@klear/klear360/components';
+
+        function App() {
+          return (
+            <IconButton
+              icon={CloseIcon}
+              accessibilityLabel="Close"
+              onClick={() => console.log('Clicked')}
+              // Either of these gives the button a real 24x24px (size="small") or
+              // 32x32px (size="medium") hit box - isHighlighted also adds a hover/focus
+              // background; emphasis="moderate" additionally keeps that background
+              // persistent at rest (for icons on a busy or colored surface).
+              isHighlighted
+            />
+          )
+        }
+
+        export default App;
+        `}
+      </Sandbox>
     </StoryPageWrapper>
   );
 };

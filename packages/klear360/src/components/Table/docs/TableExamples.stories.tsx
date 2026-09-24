@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -17,11 +18,10 @@ import {
   TableEditableDropdownCell,
   TablePagination,
 } from '../../Table';
-import type { TableExampleItem } from './exampleData';
-import { createTableData, formatDate, getStatusColor } from './exampleData';
+import type { TransactionTableItem } from './exampleData';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from './exampleData';
 import { Box } from '~components/Box';
 import { Code, Heading, Text } from '~components/Typography';
-import { Amount } from '~components/Amount';
 import { Badge } from '~components/Badge';
 import { Button } from '~components/Button';
 import { IconButton } from '~components/Button/IconButton';
@@ -36,17 +36,10 @@ import { useTheme } from '~components/Klear360Provider';
 
 const TableMeta: Meta = {
   title: 'Components/Table/Examples',
+  tags: ['autodocs'],
   component: Table,
   parameters: {
     viewMode: 'story',
-    options: {
-      showPanel: false,
-    },
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: true,
-      },
-    },
     chromatic: { disableSnapshot: true },
   },
 };
@@ -76,7 +69,7 @@ const ExampleWrapper = ({
   );
 };
 
-const basicTableData = createTableData(5);
+const basicTableData = createTransactionTableData(5);
 
 export const BasicTable = (): React.ReactElement => {
   return (
@@ -86,19 +79,19 @@ export const BasicTable = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
-                  <TableCell>{tableItem.paymentId}</TableCell>
-                  <TableCell>{`₹${tableItem.amount.toString()}`}</TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
+                  <TableCell>{tableItem.transactionId}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -109,14 +102,14 @@ export const BasicTable = (): React.ReactElement => {
   );
 };
 
-const customCellTableData = createTableData(5);
+const customCellTableData = createTransactionTableData(5);
 
 export const TableWithCustomCellComponents = (): React.ReactElement => {
   const headerCells = [
-    { title: 'ID', tooltip: 'Payment ID of the transaction' },
-    { title: 'Amount', tooltip: 'Amount transacted' },
-    { title: 'Date', tooltip: 'Creation date of the transaction' },
-    { title: 'Status', tooltip: 'Current status of the transaction' },
+    { title: 'Transaction ID', tooltip: 'Unique identifier of the transaction' },
+    { title: 'Company Name', tooltip: 'Company the transaction belongs to' },
+    { title: 'ETD', tooltip: 'Estimated time of departure' },
+    { title: 'Transaction State', tooltip: 'Current state of the transaction' },
   ];
 
   return (
@@ -138,7 +131,7 @@ export const TableWithCustomCellComponents = (): React.ReactElement => {
                       <Text weight="semibold">{headerCell.title}</Text>
                       <Tooltip content={headerCell.tooltip}>
                         <IconButton
-                          onClick={() => console.log('info clicked')}
+                          onClick={() => action('onInfoClick')(headerCell.title)}
                           accessibilityLabel="info"
                           icon={InfoIcon}
                         />
@@ -152,15 +145,16 @@ export const TableWithCustomCellComponents = (): React.ReactElement => {
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -173,7 +167,7 @@ export const TableWithCustomCellComponents = (): React.ReactElement => {
   );
 };
 
-const sortableTableData = createTableData(5);
+const sortableTableData = createTransactionTableData(5);
 
 export const SortableTable = (): React.ReactElement => {
   return (
@@ -181,38 +175,41 @@ export const SortableTable = (): React.ReactElement => {
       <Table
         data={sortableTableData}
         sortFunctions={{
-          PAYMENT_ID: (array) =>
-            array.sort((first, second) => first.paymentId.localeCompare(second.paymentId)),
-          AMOUNT: (array) => array.sort((first, second) => first.amount - second.amount),
-          DATE: (array) =>
-            array.sort((first, second) => first.date.getTime() - second.date.getTime()),
-          STATUS: (array) =>
-            array.sort((first, second) => first.status.localeCompare(second.status)),
+          TRANSACTION_ID: (array) =>
+            array.sort((first, second) => first.transactionId.localeCompare(second.transactionId)),
+          COMPANY_NAME: (array) =>
+            array.sort((first, second) => first.companyName.localeCompare(second.companyName)),
+          ETD: (array) => array.sort((first, second) => first.etd.getTime() - second.etd.getTime()),
+          TRANSACTION_STATE: (array) =>
+            array.sort((first, second) =>
+              first.transactionState.localeCompare(second.transactionState),
+            ),
         }}
       >
         {(tableData) => (
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell headerKey="PAYMENT_ID">ID</TableHeaderCell>
-                <TableHeaderCell headerKey="AMOUNT">Amount</TableHeaderCell>
-                <TableHeaderCell headerKey="DATE">Date</TableHeaderCell>
-                <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_ID">Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="ETD">ETD</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -225,13 +222,12 @@ export const SortableTable = (): React.ReactElement => {
   );
 };
 
-const stickyHeaderFooterTableData = createTableData(20);
+const stickyHeaderFooterTableData = createTransactionTableData(20);
 
 export const TableWithStickyHeaderAndFooter = (): React.ReactElement => {
-  const totalAmount = stickyHeaderFooterTableData.nodes.reduce(
-    (accumulator, node) => accumulator + node.amount,
-    0,
-  );
+  const acceptedCount = stickyHeaderFooterTableData.nodes.filter(
+    (node) => node.transactionState === 'ACCEPTED',
+  ).length;
 
   return (
     <ExampleWrapper title="Table with Sticky Header & Sticky Footer">
@@ -240,27 +236,28 @@ export const TableWithStickyHeaderAndFooter = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -268,10 +265,8 @@ export const TableWithStickyHeaderAndFooter = (): React.ReactElement => {
               <TableFooterRow>
                 <TableFooterCell>Total</TableFooterCell>
                 <TableFooterCell>-</TableFooterCell>
+                <TableFooterCell>{acceptedCount} Accepted</TableFooterCell>
                 <TableFooterCell>-</TableFooterCell>
-                <TableFooterCell>
-                  <Amount value={totalAmount} />
-                </TableFooterCell>
               </TableFooterRow>
             </TableFooter>
           </>
@@ -281,7 +276,7 @@ export const TableWithStickyHeaderAndFooter = (): React.ReactElement => {
   );
 };
 
-const stickyFirstColumnTableData = createTableData(20);
+const stickyFirstColumnTableData = createTransactionTableData(20);
 
 export const TableWithStickyFirstColumn = (): React.ReactElement => {
   return (
@@ -291,33 +286,34 @@ export const TableWithStickyFirstColumn = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Name</TableHeaderCell>
-                <TableHeaderCell>Account</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>Username</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
+                <TableHeaderCell>Shipment #</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
-                  <TableCell>{tableItem.name}</TableCell>
-                  <TableCell>{tableItem.account}</TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{tableItem.username}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
+                  <TableCell>{tableItem.shipmentNumber}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -328,10 +324,12 @@ export const TableWithStickyFirstColumn = (): React.ReactElement => {
   );
 };
 
-const singleSelectableTableData = createTableData(5);
+const singleSelectableTableData = createTransactionTableData(5);
 
 export const SingleSelectableTable = (): React.ReactElement => {
-  const [selectedItem, setSelectedItem] = React.useState<TableExampleItem | undefined>(undefined);
+  const [selectedItem, setSelectedItem] = React.useState<TransactionTableItem | undefined>(
+    undefined,
+  );
 
   return (
     <ExampleWrapper title="Single Selectable Table">
@@ -344,25 +342,26 @@ export const SingleSelectableTable = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -373,13 +372,13 @@ export const SingleSelectableTable = (): React.ReactElement => {
       </Table>
       <Box marginTop="spacing.3" display="flex" flexDirection="row" gap="spacing.2">
         <Text weight="semibold">Selected Row ID:</Text>
-        <Text>{selectedItem?.paymentId}</Text>
+        <Text>{selectedItem?.transactionId}</Text>
       </Box>
     </ExampleWrapper>
   );
 };
 
-const multiSelectableTableData = createTableData(5);
+const multiSelectableTableData = createTransactionTableData(5);
 
 export const MultiSelectableTableWithToolbar = (): React.ReactElement => {
   const [selectedItemsCount, setSelectedItemsCount] = React.useState(0);
@@ -403,10 +402,17 @@ export const MultiSelectableTableWithToolbar = (): React.ReactElement => {
             } Selected`}
           >
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -415,25 +421,26 @@ export const MultiSelectableTableWithToolbar = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -446,7 +453,7 @@ export const MultiSelectableTableWithToolbar = (): React.ReactElement => {
   );
 };
 
-const zebraStripesTableData = createTableData(5);
+const zebraStripesTableData = createTransactionTableData(5);
 
 export const MultiSelectableWithZebraStripes = (): React.ReactElement => {
   const { platform } = useTheme();
@@ -461,10 +468,17 @@ export const MultiSelectableWithZebraStripes = (): React.ReactElement => {
         toolbar={
           <TableToolbar title="Showing Recent Transactions">
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -473,25 +487,26 @@ export const MultiSelectableWithZebraStripes = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -504,7 +519,7 @@ export const MultiSelectableWithZebraStripes = (): React.ReactElement => {
   );
 };
 
-const disabledRowsTableData = createTableData(10);
+const disabledRowsTableData = createTransactionTableData(10);
 
 export const TableWithDisabledRows = (): React.ReactElement => {
   const { platform } = useTheme();
@@ -519,10 +534,17 @@ export const TableWithDisabledRows = (): React.ReactElement => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -531,8 +553,8 @@ export const TableWithDisabledRows = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
                 <TableHeaderCell>Action</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
@@ -542,11 +564,9 @@ export const TableWithDisabledRows = (): React.ReactElement => {
                 return (
                   <TableRow key={index} item={tableItem} isDisabled={isDisabled}>
                     <TableCell>
-                      <Code size="medium">{tableItem.paymentId}</Code>
+                      <Code size="medium">{tableItem.transactionId}</Code>
                     </TableCell>
-                    <TableCell>
-                      <Amount value={tableItem.amount} />
-                    </TableCell>
+                    <TableCell>{tableItem.companyName}</TableCell>
                     <TableCell>
                       <Box display="flex" gap="spacing.3">
                         <Link isDisabled={isDisabled} variant="button" icon={CopyIcon}>
@@ -568,7 +588,7 @@ export const TableWithDisabledRows = (): React.ReactElement => {
   );
 };
 
-const backgroundColorTableData = createTableData(5);
+const backgroundColorTableData = createTransactionTableData(5);
 type BackgroundEmphasis = 'subtle' | 'moderate' | 'intense';
 
 export const TableWithBackgroundColor = (): React.ReactElement => {
@@ -603,19 +623,19 @@ export const TableWithBackgroundColor = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
-                  <TableCell>{tableItem.paymentId}</TableCell>
-                  <TableCell>{`₹${tableItem.amount.toString()}`}</TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>{tableItem.method}</TableCell>
+                  <TableCell>{tableItem.transactionId}</TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                  <TableCell>{tableItem.vesselName}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -634,7 +654,7 @@ export const TableWithBackgroundColor = (): React.ReactElement => {
   );
 };
 
-const isLoadingTableData = createTableData(100);
+const isLoadingTableData = createTransactionTableData(100);
 
 export const TableWithIsLoading = (): React.ReactElement => {
   const { platform } = useTheme();
@@ -663,10 +683,17 @@ export const TableWithIsLoading = (): React.ReactElement => {
           toolbar={
             <TableToolbar>
               <TableToolbarActions>
-                <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+                <Button
+                  size="small"
+                  variant="secondary"
+                  marginRight="spacing.3"
+                  isFullWidth={onMobile}
+                >
                   Export
                 </Button>
-                <Button isFullWidth={onMobile}>Refund</Button>
+                <Button size="small" isFullWidth={onMobile}>
+                  Refund
+                </Button>
               </TableToolbarActions>
             </TableToolbar>
           }
@@ -675,23 +702,24 @@ export const TableWithIsLoading = (): React.ReactElement => {
             <>
               <TableHeader>
                 <TableHeaderRow>
-                  <TableHeaderCell>ID</TableHeaderCell>
-                  <TableHeaderCell>Amount</TableHeaderCell>
-                  <TableHeaderCell>Status</TableHeaderCell>
+                  <TableHeaderCell>Transaction ID</TableHeaderCell>
+                  <TableHeaderCell>Company Name</TableHeaderCell>
+                  <TableHeaderCell>Transaction State</TableHeaderCell>
                 </TableHeaderRow>
               </TableHeader>
               <TableBody>
                 {tableData.map((tableItem, index) => (
                   <TableRow key={index} item={tableItem}>
                     <TableCell>
-                      <Code size="medium">{tableItem.paymentId}</Code>
+                      <Code size="medium">{tableItem.transactionId}</Code>
                     </TableCell>
+                    <TableCell>{tableItem.companyName}</TableCell>
                     <TableCell>
-                      <Amount value={tableItem.amount} />
-                    </TableCell>
-                    <TableCell>
-                      <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                        {tableItem.status}
+                      <Badge
+                        size="medium"
+                        color={getTransactionStateColor(tableItem.transactionState)}
+                      >
+                        {tableItem.transactionState}
                       </Badge>
                     </TableCell>
                   </TableRow>
@@ -705,7 +733,7 @@ export const TableWithIsLoading = (): React.ReactElement => {
   );
 };
 
-const isRefreshingTableData = createTableData(100);
+const isRefreshingTableData = createTransactionTableData(100);
 
 export const TableWithIsRefreshing = (): React.ReactElement => {
   const { platform } = useTheme();
@@ -735,10 +763,17 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
         toolbar={
           <TableToolbar>
             <TableToolbarActions>
-              <Button variant="secondary" marginRight="spacing.3" isFullWidth={onMobile}>
+              <Button
+                size="small"
+                variant="secondary"
+                marginRight="spacing.3"
+                isFullWidth={onMobile}
+              >
                 Export
               </Button>
-              <Button isFullWidth={onMobile}>Refund</Button>
+              <Button size="small" isFullWidth={onMobile}>
+                Refund
+              </Button>
             </TableToolbarActions>
           </TableToolbar>
         }
@@ -746,10 +781,11 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
           <TablePagination
             onPageChange={handlePageChange}
             defaultPageSize={10}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
             currentPage={currentPage}
+            showLabel
           />
         }
       >
@@ -757,25 +793,26 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Status</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Transaction State</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableCell>
-                    <Code size="medium">{tableItem.paymentId}</Code>
+                    <Code size="medium">{tableItem.transactionId}</Code>
                   </TableCell>
+                  <TableCell>{tableItem.companyName}</TableCell>
+                  <TableCell>{formatDate(tableItem.etd)}</TableCell>
                   <TableCell>
-                    <Amount value={tableItem.amount} />
-                  </TableCell>
-                  <TableCell>{formatDate(tableItem.date)}</TableCell>
-                  <TableCell>
-                    <Badge size="medium" color={getStatusColor(tableItem.status)}>
-                      {tableItem.status}
+                    <Badge
+                      size="medium"
+                      color={getTransactionStateColor(tableItem.transactionState)}
+                    >
+                      {tableItem.transactionState}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -788,7 +825,7 @@ export const TableWithIsRefreshing = (): React.ReactElement => {
   );
 };
 
-const editableCellsTableData = createTableData(5);
+const editableCellsTableData = createTransactionTableData(5);
 
 export const TableWithEditableCells = (): React.ReactElement => {
   return (
@@ -798,37 +835,37 @@ export const TableWithEditableCells = (): React.ReactElement => {
           <>
             <TableHeader>
               <TableHeaderRow>
-                <TableHeaderCell>ID</TableHeaderCell>
-                <TableHeaderCell>Date</TableHeaderCell>
-                <TableHeaderCell>Amount</TableHeaderCell>
-                <TableHeaderCell>Method</TableHeaderCell>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell>ETD</TableHeaderCell>
+                <TableHeaderCell>Company Name</TableHeaderCell>
+                <TableHeaderCell>Vessel Name</TableHeaderCell>
               </TableHeaderRow>
             </TableHeader>
             <TableBody>
               {tableData.map((tableItem, index) => (
                 <TableRow key={index} item={tableItem}>
                   <TableEditableCell
-                    placeholder="Enter ID"
-                    accessibilityLabel="ID"
+                    placeholder="Enter Transaction ID"
+                    accessibilityLabel="Transaction ID"
                     validationState="error"
-                    errorText="ID Cannot be empty"
+                    errorText="Transaction ID cannot be empty"
                   />
-                  <TableEditableCell placeholder="Enter Date" accessibilityLabel="Date" />
+                  <TableEditableCell placeholder="Enter ETD" accessibilityLabel="ETD" />
                   <TableEditableCell
-                    placeholder="Enter Amount"
-                    accessibilityLabel="Amount"
-                    defaultValue={`${tableItem.amount}`}
+                    placeholder="Enter Company Name"
+                    accessibilityLabel="Company Name"
+                    defaultValue={tableItem.companyName}
                     validationState="success"
-                    successText="Amount is valid"
+                    successText="Company Name is valid"
                   />
                   <TableEditableDropdownCell>
-                    <AutoComplete accessibilityLabel="Method" />
+                    <AutoComplete accessibilityLabel="Vessel Name" />
                     <DropdownOverlay>
                       <ActionList>
-                        <ActionListItem title="UPI" value="upi" />
-                        <ActionListItem title="Credit Card" value="credit" />
-                        <ActionListItem title="Debit Card" value="debit" />
-                        <ActionListItem title="Cash" value="cash" />
+                        <ActionListItem title="Maersk Essex" value="maersk-essex" />
+                        <ActionListItem title="Ever Envoy" value="ever-envoy" />
+                        <ActionListItem title="MSC Oscar" value="msc-oscar" />
+                        <ActionListItem title="Wan Hai 512" value="wan-hai-512" />
                       </ActionList>
                     </DropdownOverlay>
                   </TableEditableDropdownCell>

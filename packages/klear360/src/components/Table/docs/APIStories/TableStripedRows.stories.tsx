@@ -1,20 +1,22 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
-import type { TableData, TableProps } from '../../types';
+import { action } from 'storybook/actions';
+import type { TableProps } from '../../types';
 import { Table as TableComponent } from '../../Table';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from '../../TableHeader';
 import { TableBody, TableRow, TableCell } from '../../TableBody';
 import { TableToolbarActions, TableToolbar } from '../../TableToolbar';
 import { TablePagination } from '../../TablePagination';
+import { createTransactionTableData, formatDate, getTransactionStateColor } from '../exampleData';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
-import { Amount } from '~components/Amount';
 import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 import { IconButton } from '~components/Button/IconButton';
 import { CopyIcon, TrashIcon } from '~components/Icons';
 
 export default {
-  title: 'Components/Table/API',
+  title: 'Components/Table/API/Table Striped Rows',
+  tags: ['autodocs'],
   component: TableComponent,
   args: {
     showStripedRows: true,
@@ -37,94 +39,7 @@ export default {
   },
 } as Meta<TableProps<unknown>>;
 
-type Item = {
-  id: string;
-  paymentId: string;
-  amount: number;
-  status: string;
-  date: Date;
-  method: string;
-  account: string;
-};
-
-const nodes: Item[] = [
-  {
-    id: '1',
-    paymentId: 'klear001',
-    amount: 1000,
-    status: 'Completed',
-    date: new Date(2024, 0, 15),
-    method: 'Bank Transfer',
-    account: '1234567890',
-  },
-  {
-    id: '2',
-    paymentId: 'klear002',
-    amount: 2500,
-    status: 'Pending',
-    date: new Date(2024, 0, 16),
-    method: 'Credit Card',
-    account: '0987654321',
-  },
-  {
-    id: '3',
-    paymentId: 'klear003',
-    amount: 500,
-    status: 'Failed',
-    date: new Date(2024, 0, 17),
-    method: 'PayPal',
-    account: '1122334455',
-  },
-  {
-    id: '4',
-    paymentId: 'klear004',
-    amount: 3000,
-    status: 'Completed',
-    date: new Date(2024, 0, 18),
-    method: 'Bank Transfer',
-    account: '5566778899',
-  },
-  {
-    id: '5',
-    paymentId: 'klear005',
-    amount: 750,
-    status: 'Pending',
-    date: new Date(2024, 0, 19),
-    method: 'Credit Card',
-    account: '9988776655',
-  },
-  {
-    id: '6',
-    paymentId: 'klear006',
-    amount: 1200,
-    status: 'Completed',
-    date: new Date(2024, 0, 20),
-    method: 'PayPal',
-    account: '4433221100',
-  },
-  {
-    id: '7',
-    paymentId: 'klear007',
-    amount: 800,
-    status: 'Failed',
-    date: new Date(2024, 0, 21),
-    method: 'Bank Transfer',
-    account: '1357924680',
-  },
-  {
-    id: '8',
-    paymentId: 'klear008',
-    amount: 1500,
-    status: 'Completed',
-    date: new Date(2024, 0, 22),
-    method: 'Credit Card',
-    account: '2468013579',
-  },
-];
-
-const data: TableData<Item> = {
-  nodes,
-};
+const data = createTransactionTableData(8);
 
 export const TableStripedSelection: StoryFn<typeof TableComponent> = () => (
   <Box
@@ -137,22 +52,22 @@ export const TableStripedSelection: StoryFn<typeof TableComponent> = () => (
       data={data}
       showStripedRows
       selectionType="multiple"
-      onSelectionChange={({ selectedIds }) => console.log('Selected:', selectedIds)}
+      onSelectionChange={({ selectedIds }) => action('onSelectionChange')(selectedIds)}
       toolbar={
         <TableToolbar title="Showing 1-8 Items">
           <TableToolbarActions>
-            <Button variant="secondary" marginRight="spacing.3">
+            <Button size="small" variant="secondary" marginRight="spacing.3">
               Export
             </Button>
-            <Button>Payout</Button>
+            <Button size="small">Payout</Button>
           </TableToolbarActions>
         </TableToolbar>
       }
       pagination={
         <TablePagination
-          onPageChange={console.log}
+          onPageChange={action('onPageChange')}
           defaultPageSize={10}
-          onPageSizeChange={console.log}
+          onPageSizeChange={action('onPageSizeChange')}
           showPageSizePicker
           showPageNumberSelector
         />
@@ -162,46 +77,27 @@ export const TableStripedSelection: StoryFn<typeof TableComponent> = () => (
         <>
           <TableHeader>
             <TableHeaderRow>
-              <TableHeaderCell>Payment ID</TableHeaderCell>
-              <TableHeaderCell>Amount</TableHeaderCell>
-              <TableHeaderCell>Account</TableHeaderCell>
-              <TableHeaderCell>Date</TableHeaderCell>
-              <TableHeaderCell>Method</TableHeaderCell>
-              <TableHeaderCell>Status</TableHeaderCell>
+              <TableHeaderCell>Transaction ID</TableHeaderCell>
+              <TableHeaderCell>Company Name</TableHeaderCell>
+              <TableHeaderCell>Username</TableHeaderCell>
+              <TableHeaderCell>ETD</TableHeaderCell>
+              <TableHeaderCell>Vessel Name</TableHeaderCell>
+              <TableHeaderCell>Transaction State</TableHeaderCell>
             </TableHeaderRow>
           </TableHeader>
           <TableBody>
             {tableData.map((tableItem) => (
               <TableRow key={tableItem.id} item={tableItem}>
                 <TableCell>
-                  <Code size="medium">{tableItem.paymentId}</Code>
+                  <Code size="medium">{tableItem.transactionId}</Code>
                 </TableCell>
+                <TableCell>{tableItem.companyName}</TableCell>
+                <TableCell>{tableItem.username}</TableCell>
+                <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                <TableCell>{tableItem.vesselName}</TableCell>
                 <TableCell>
-                  <Amount value={tableItem.amount} />
-                </TableCell>
-                <TableCell>{tableItem.account}</TableCell>
-                <TableCell>
-                  {tableItem.date?.toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })}
-                </TableCell>
-                <TableCell>{tableItem.method}</TableCell>
-                <TableCell>
-                  <Badge
-                    size="medium"
-                    color={
-                      tableItem.status === 'Completed'
-                        ? 'positive'
-                        : tableItem.status === 'Pending'
-                        ? 'notice'
-                        : tableItem.status === 'Failed'
-                        ? 'negative'
-                        : 'neutral'
-                    }
-                  >
-                    {tableItem.status}
+                  <Badge size="medium" color={getTransactionStateColor(tableItem.transactionState)}>
+                    {tableItem.transactionState}
                   </Badge>
                 </TableCell>
               </TableRow>
@@ -226,52 +122,33 @@ export const TableStripedSelectionNoToolbarNoPagination: StoryFn<typeof TableCom
       data={data}
       showStripedRows
       selectionType="multiple"
-      onSelectionChange={({ selectedIds }) => console.log('Selected:', selectedIds)}
+      onSelectionChange={({ selectedIds }) => action('onSelectionChange')(selectedIds)}
     >
       {(tableData) => (
         <>
           <TableHeader>
             <TableHeaderRow>
-              <TableHeaderCell>Payment ID</TableHeaderCell>
-              <TableHeaderCell>Amount</TableHeaderCell>
-              <TableHeaderCell>Account</TableHeaderCell>
-              <TableHeaderCell>Date</TableHeaderCell>
-              <TableHeaderCell>Method</TableHeaderCell>
-              <TableHeaderCell>Status</TableHeaderCell>
+              <TableHeaderCell>Transaction ID</TableHeaderCell>
+              <TableHeaderCell>Company Name</TableHeaderCell>
+              <TableHeaderCell>Username</TableHeaderCell>
+              <TableHeaderCell>ETD</TableHeaderCell>
+              <TableHeaderCell>Vessel Name</TableHeaderCell>
+              <TableHeaderCell>Transaction State</TableHeaderCell>
             </TableHeaderRow>
           </TableHeader>
           <TableBody>
             {tableData.map((tableItem) => (
               <TableRow key={tableItem.id} item={tableItem}>
                 <TableCell>
-                  <Code size="medium">{tableItem.paymentId}</Code>
+                  <Code size="medium">{tableItem.transactionId}</Code>
                 </TableCell>
+                <TableCell>{tableItem.companyName}</TableCell>
+                <TableCell>{tableItem.username}</TableCell>
+                <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                <TableCell>{tableItem.vesselName}</TableCell>
                 <TableCell>
-                  <Amount value={tableItem.amount} />
-                </TableCell>
-                <TableCell>{tableItem.account}</TableCell>
-                <TableCell>
-                  {tableItem.date?.toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })}
-                </TableCell>
-                <TableCell>{tableItem.method}</TableCell>
-                <TableCell>
-                  <Badge
-                    size="medium"
-                    color={
-                      tableItem.status === 'Completed'
-                        ? 'positive'
-                        : tableItem.status === 'Pending'
-                        ? 'notice'
-                        : tableItem.status === 'Failed'
-                        ? 'negative'
-                        : 'neutral'
-                    }
-                  >
-                    {tableItem.status}
+                  <Badge size="medium" color={getTransactionStateColor(tableItem.transactionState)}>
+                    {tableItem.transactionState}
                   </Badge>
                 </TableCell>
               </TableRow>
@@ -296,18 +173,18 @@ export const TableStripedHoverNoSelection: StoryFn<typeof TableComponent> = () =
       data={data}
       showStripedRows
       selectionType="multiple"
-      onSelectionChange={({ selectedIds }) => console.log('Selected:', selectedIds)}
+      onSelectionChange={({ selectedIds }) => action('onSelectionChange')(selectedIds)}
     >
       {(tableData) => (
         <>
           <TableHeader>
             <TableHeaderRow>
-              <TableHeaderCell>Payment ID</TableHeaderCell>
-              <TableHeaderCell>Amount</TableHeaderCell>
-              <TableHeaderCell>Account</TableHeaderCell>
-              <TableHeaderCell>Date</TableHeaderCell>
-              <TableHeaderCell>Method</TableHeaderCell>
-              <TableHeaderCell>Status</TableHeaderCell>
+              <TableHeaderCell>Transaction ID</TableHeaderCell>
+              <TableHeaderCell>Company Name</TableHeaderCell>
+              <TableHeaderCell>Username</TableHeaderCell>
+              <TableHeaderCell>ETD</TableHeaderCell>
+              <TableHeaderCell>Vessel Name</TableHeaderCell>
+              <TableHeaderCell>Transaction State</TableHeaderCell>
             </TableHeaderRow>
           </TableHeader>
           <TableBody>
@@ -321,46 +198,27 @@ export const TableStripedHoverNoSelection: StoryFn<typeof TableComponent> = () =
                       accessibilityLabel="Copy"
                       isHighlighted
                       icon={CopyIcon}
-                      onClick={() => console.log('copy', tableItem)}
+                      onClick={() => action('copy')(tableItem)}
                     />
                     <IconButton
                       accessibilityLabel="Delete"
                       isHighlighted
                       icon={TrashIcon}
-                      onClick={() => console.log('delete', tableItem)}
+                      onClick={() => action('delete')(tableItem)}
                     />
                   </>
                 }
               >
                 <TableCell>
-                  <Code size="medium">{tableItem.paymentId}</Code>
+                  <Code size="medium">{tableItem.transactionId}</Code>
                 </TableCell>
+                <TableCell>{tableItem.companyName}</TableCell>
+                <TableCell>{tableItem.username}</TableCell>
+                <TableCell>{formatDate(tableItem.etd)}</TableCell>
+                <TableCell>{tableItem.vesselName}</TableCell>
                 <TableCell>
-                  <Amount value={tableItem.amount} />
-                </TableCell>
-                <TableCell>{tableItem.account}</TableCell>
-                <TableCell>
-                  {tableItem.date?.toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })}
-                </TableCell>
-                <TableCell>{tableItem.method}</TableCell>
-                <TableCell>
-                  <Badge
-                    size="medium"
-                    color={
-                      tableItem.status === 'Completed'
-                        ? 'positive'
-                        : tableItem.status === 'Pending'
-                        ? 'notice'
-                        : tableItem.status === 'Failed'
-                        ? 'negative'
-                        : 'neutral'
-                    }
-                  >
-                    {tableItem.status}
+                  <Badge size="medium" color={getTransactionStateColor(tableItem.transactionState)}>
+                    {tableItem.transactionState}
                   </Badge>
                 </TableCell>
               </TableRow>

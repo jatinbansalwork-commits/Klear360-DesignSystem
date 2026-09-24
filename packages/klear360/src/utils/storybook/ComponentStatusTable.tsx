@@ -18,7 +18,6 @@ import { Heading, Text } from '~components/Typography';
 import BaseBox from '~components/Box/BaseBox';
 import type { BadgeProps } from '~components/Badge';
 import { Badge } from '~components/Badge';
-import { Link } from '~components/Link';
 import { makeSpace } from '~utils/makeSpace';
 import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
 
@@ -71,28 +70,8 @@ const ComponentStatusBadge = ({ status }: { status: ComponentStatuses }): React.
   );
 };
 
-const ReleasedInLink = ({
-  version,
-  framework = 'react',
-}: {
-  version?: string;
-  framework?: 'react' | 'svelte';
-}): React.ReactElement => {
-  const ghUrlReact =
-    'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360%40';
-  const ghUrlSvelte =
-    'https://github.com/jatinbansalwork-commits/Klear360-DesignSystem/releases/tag/%40klear%2Fklear360-svelte%40';
-  const ghUrl = framework === 'svelte' ? ghUrlSvelte : ghUrlReact;
-
-  return version ? (
-    <Link
-      href={`${ghUrl}${version}`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >{`v${version}`}</Link>
-  ) : (
-    <Text>-</Text>
-  );
+const ReleasedInLink = ({ version }: { version?: string }): React.ReactElement => {
+  return version ? <Text>v1.1</Text> : <Text>-</Text>;
 };
 
 /**
@@ -198,9 +177,6 @@ const ComponentStatusTable = (): React.ReactElement => {
               <th style={{ width: '10%' }} align="center">
                 <Text weight="semibold">RN</Text>
               </th>
-              <th style={{ width: '10%' }} align="center">
-                <Text weight="semibold">Svelte</Text>
-              </th>
               <th align="right">
                 <Text weight="semibold">Released In</Text>
               </th>
@@ -209,15 +185,12 @@ const ComponentStatusTable = (): React.ReactElement => {
           <tbody>
             {sortedData.map((data) => {
               const reactData = data.frameworks.react;
-              const svelteData = data.frameworks.svelte;
               const reactStatus = reactData?.status ?? 'to-be-decided';
-              const svelteStatus = svelteData?.status ?? 'to-be-decided';
               const releasedIn = reactData?.releasedIn;
               const storybookLink = reactData?.storybookLink;
 
               const isAvailableOnWeb = data.platform === 'web' || data.platform === 'all';
               const isAvailableOnMobile = data.platform === 'mobile' || data.platform === 'all';
-              const isSvelteReleased = svelteStatus === 'released';
 
               return (
                 <tr key={data.name}>
@@ -250,15 +223,8 @@ const ComponentStatusTable = (): React.ReactElement => {
                       <CloseIcon color="feedback.icon.negative.intense" />
                     )}
                   </td>
-                  <td align="center">
-                    {isSvelteReleased ? (
-                      <CheckIcon color="feedback.icon.positive.intense" />
-                    ) : (
-                      <CloseIcon color="feedback.icon.negative.intense" />
-                    )}
-                  </td>
                   <td align="right">
-                    <ReleasedInLink version={releasedIn} framework="react" />
+                    <ReleasedInLink version={releasedIn} />
                   </td>
                 </tr>
               );

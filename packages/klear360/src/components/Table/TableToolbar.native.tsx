@@ -11,4 +11,8 @@ const TableToolbarActions = (props: unknown): React.ReactElement => {
   return <Text>Table Component is not available for Native mobile apps.</Text>;
 };
 
-export { TableToolbar, TableToolbarActions };
+const TableToolbarSearch = (props: unknown): React.ReactElement => {
+  return <Text>Table Component is not available for Native mobile apps.</Text>;
+};
+
+export { TableToolbar, TableToolbarActions, TableToolbarSearch };

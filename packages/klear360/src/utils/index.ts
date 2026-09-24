@@ -16,5 +16,6 @@ export * from './makeSurfaceStyles';
 
 export * from './toTitleCase';
 export * from './usePrevious';
+export * from './useTruncationTitle';
 
 export { default as useTheme, ThemeContext } from '~components/Klear360Provider/useTheme';
