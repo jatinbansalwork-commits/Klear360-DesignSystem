@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import {
   Table,
   TableHeader,
@@ -26,9 +27,6 @@ const TableMeta: Meta = {
   component: Table,
   parameters: {
     viewMode: 'story',
-    options: {
-      showPanel: false,
-    },
     chromatic: { disableSnapshot: true },
   },
 };
@@ -77,12 +75,13 @@ export const TableWithClientSidePagination = (): React.ReactElement => {
         }
         pagination={
           <TablePagination
-            onPageChange={console.log}
+            onPageChange={action('onPageChange')}
             defaultPageSize={10}
             pageSizeOptions={[10, 20, 50, 100]}
-            onPageSizeChange={console.log}
+            onPageSizeChange={action('onPageSizeChange')}
             showPageSizePicker
             showPageNumberSelector
+            showLabel
           />
         }
       >
@@ -186,6 +185,7 @@ export const TableWithServerSidePagination = (): React.ReactElement => {
             paginationType="server"
             onPageChange={handlePageChange}
             totalItemCount={dataCount}
+            showLabel
           />
         }
       >

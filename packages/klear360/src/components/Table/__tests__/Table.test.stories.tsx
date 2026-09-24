@@ -12,6 +12,7 @@ import {
   TableCell,
 } from '../';
 import { TableToolbar, TableToolbarSearch } from '../TableToolbar';
+import { TablePagination } from '../TablePagination';
 
 type Item = {
   id: string;
@@ -148,4 +149,175 @@ Accessibility.play = async () => {
   await expect(statusFilter).toHaveFocus();
   await userEvent.tab();
   await expect(methodFilter).toHaveFocus();
+};
+
+const statusOptions = [
+  { label: 'Completed', value: 'Completed' },
+  { label: 'Pending', value: 'Pending' },
+  { label: 'Failed', value: 'Failed' },
+];
+
+const DropdownFilterTable = (): React.ReactElement => (
+  <Table<Item>
+    data={{ nodes }}
+    filterFunctions={{
+      STATUS: (item: Item, value: string | string[]) =>
+        Array.isArray(value) ? value.includes(item.status) : true,
+    }}
+    filterConfig={{ STATUS: { type: 'multiselect', options: statusOptions } }}
+  >
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell>Name</TableHeaderCell>
+            <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+            <TableHeaderCell>Method</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={index} item={item}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.status}</TableCell>
+              <TableCell>{item.method}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
+
+export const DropdownFilter: StoryFn = (): React.ReactElement => <DropdownFilterTable />;
+
+/**
+ * A `filterConfig`'d column renders `TableHeaderFilterDropdownCell` (a `combobox`, exact-match
+ * multiselect) instead of the plain-text filter `ColumnFilter` above exercises - so unlike that
+ * one, "Failed" never matches "fail" typed into a text box; only the exact option ticked in the
+ * picker.
+ */
+DropdownFilter.play = async () => {
+  const { getByRole, queryByText } = within(document.body);
+  const statusFilter = getByRole('combobox', { name: 'Filter by Status' });
+
+  await userEvent.click(statusFilter);
+  await userEvent.click(getByRole('option', { name: 'Completed' }));
+
+  await expect(queryByText('John Doe')).toBeInTheDocument();
+  await expect(queryByText('Alice Smith')).toBeInTheDocument();
+  await expect(queryByText('Jane Doe')).not.toBeInTheDocument();
+  await expect(queryByText('Bob Smith')).not.toBeInTheDocument();
+
+  // Multiselect - a second ticked option widens the match rather than narrowing it further.
+  await userEvent.click(getByRole('option', { name: 'Pending' }));
+  await expect(queryByText('Jane Doe')).toBeInTheDocument();
+};
+
+type GroupItem = { id: string; name: string; nodes: GroupItem[] | null };
+
+const groupedNodes: GroupItem[] = [
+  {
+    id: 'group-a',
+    name: 'Group A',
+    nodes: [
+      { id: 'a1', name: 'Item A1', nodes: null },
+      { id: 'a2', name: 'Item A2', nodes: null },
+    ],
+  },
+  { id: 'group-b', name: 'Group B', nodes: [{ id: 'b1', name: 'Item B1', nodes: null }] },
+];
+
+const GroupedTable = (): React.ReactElement => (
+  <Table<GroupItem> data={{ nodes: groupedNodes }} isGrouped>
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell>Name</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={index} item={item}>
+              <TableCell>{item.name}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
+
+export const GroupedRowExpandCollapse: StoryFn = (): React.ReactElement => <GroupedTable />;
+
+/**
+ * Every group starts expanded (`defaultExpandedRowIds` defaults to every group id) - collapsing
+ * one group hides only its own children, both toggles keyboard-reachable via their own
+ * `Expand row <id>` / `Collapse row <id>` accessible name.
+ */
+GroupedRowExpandCollapse.play = async () => {
+  const { getByRole, queryByText } = within(document.body);
+
+  await expect(queryByText('Item A1')).toBeInTheDocument();
+  await expect(queryByText('Item A2')).toBeInTheDocument();
+
+  await userEvent.click(getByRole('button', { name: 'Collapse row group-a' }));
+  await expect(queryByText('Item A1')).not.toBeInTheDocument();
+  await expect(queryByText('Item A2')).not.toBeInTheDocument();
+  // Group B is untouched by collapsing Group A.
+  await expect(queryByText('Item B1')).toBeInTheDocument();
+
+  await userEvent.click(getByRole('button', { name: 'Expand row group-a' }));
+  await expect(queryByText('Item A1')).toBeInTheDocument();
+};
+
+type PaginationItem = { id: string; name: string };
+
+const paginationNodes: PaginationItem[] = Array.from({ length: 5 }, (_, index) => ({
+  id: String(index + 1),
+  name: `Row ${index + 1}`,
+}));
+
+const PaginationTable = (): React.ReactElement => (
+  <Table<PaginationItem>
+    data={{ nodes: paginationNodes }}
+    pagination={<TablePagination defaultPageSize={2} showPageNumberSelector showLabel />}
+  >
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell>Name</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={index} item={item}>
+              <TableCell>{item.name}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
+
+export const PaginationTotalCount: StoryFn = (): React.ReactElement => <PaginationTable />;
+
+/**
+ * `showLabel` (the prop every existing Table pagination doc example was missing, leaving the
+ * total row count silently unrendered everywhere) surfaces "Showing X-Y Items" next to the page
+ * controls, and it updates as the current page changes.
+ */
+PaginationTotalCount.play = async () => {
+  const { getByRole, getByText } = within(document.body);
+
+  await expect(getByText('Showing 1-2 Items')).toBeInTheDocument();
+
+  await userEvent.click(getByRole('button', { name: 'Page 2' }));
+  await expect(getByText('Showing 3-4 Items')).toBeInTheDocument();
+
+  await userEvent.click(getByRole('button', { name: 'Page 3' }));
+  await expect(getByText('Showing 5-5 Items')).toBeInTheDocument();
 };

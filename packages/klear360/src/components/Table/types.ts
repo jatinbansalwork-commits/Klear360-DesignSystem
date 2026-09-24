@@ -181,6 +181,12 @@ type TableColumnConfig<Item> = {
    * @default false
    */
   sortable?: boolean;
+  /**
+   * Content alignment for both this column's header cell and its body cells - passed straight
+   * through to `TableHeaderCell`/`TableCell`'s own `textAlign` prop, which already supports it.
+   * @default 'left'
+   */
+  textAlign?: 'left' | 'center' | 'right';
 };
 
 /**
@@ -606,6 +612,33 @@ type TableCellProps = {
 } & TableCellGridSpanningProps &
   DataAnalyticsAttribute;
 
+type TableTitleDescriptionCellProps = {
+  /**
+   * The cell's primary, always-visible line.
+   */
+  title: React.ReactNode;
+  /**
+   * Secondary text rendered below `title`. Nothing renders for this line when omitted.
+   */
+  description?: string;
+  /**
+   * How `description` behaves once it's longer than fits:
+   * - `'truncate'` clamps it to `descriptionLines`, and shows the full text as a native tooltip
+   *   on hover when it's actually cut off (`useTruncationTitle` - the same mechanism `Badge`
+   *   already uses internally for its own truncated label).
+   * - `'wrap'` never clamps - the row grows to fit the full paragraph instead, with no tooltip
+   *   (nothing is ever hidden, so there's nothing for a tooltip to reveal).
+   * @default 'truncate'
+   */
+  descriptionBehavior?: 'truncate' | 'wrap';
+  /**
+   * Number of lines `description` clamps to when `descriptionBehavior` is `'truncate'`.
+   * @default 2
+   */
+  descriptionLines?: number;
+} & TestID &
+  DataAnalyticsAttribute;
+
 type TableEditableCellProps = Pick<
   BaseInputProps,
   | 'validationState'
@@ -941,6 +974,7 @@ export type {
   TableBodyProps,
   TableRowProps,
   TableCellProps,
+  TableTitleDescriptionCellProps,
   TableEditableCellProps,
   TableEditableSearchCellProps,
   TableEditableDropdownCellProps,

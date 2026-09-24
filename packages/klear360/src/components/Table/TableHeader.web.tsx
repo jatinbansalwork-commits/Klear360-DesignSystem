@@ -214,6 +214,11 @@ const getHeaderCellsMeta = (
  * for body cells (`Dropdown` + `DropdownOverlay` + `ActionList`), just driven by the column's
  * `filterConfig.options` instead of consumer-authored `ActionListItem`s, and controlled by the
  * filter row's own `columnFilterValues` state instead of being uncontrolled.
+ *
+ * `isTableInputCell` + a leading `SearchIcon` match this to its plain-text sibling below
+ * (`BaseInput isTableInputCell leadingIcon={SearchIcon}`) - same borderless, cell-edge-flush look,
+ * same icon treatment - rather than `SelectInput`'s normal bordered, button-like appearance, which
+ * read as visually inconsistent sitting next to a plain search box in the same filter row.
  */
 const TableHeaderFilterDropdownCell = ({
   headerKey,
@@ -235,6 +240,8 @@ const TableHeaderFilterDropdownCell = ({
         <SelectInput
           testID={`table-header-filter-${headerKey}`}
           size="small"
+          isTableInputCell
+          icon={SearchIcon}
           value={value ?? (isMultiselect ? [] : '')}
           onChange={({ values }) => onChange(isMultiselect ? values : values[0] ?? '')}
           placeholder={`Filter ${labelText}`}
@@ -582,6 +589,7 @@ const _TableHeaderRow = ({
     selectionType,
     selectedRows,
     totalItems,
+    tableData,
     toggleAllRowsSelection,
     setHeaderRowDensity,
     showBorderedCells,
@@ -592,8 +600,18 @@ const _TableHeaderRow = ({
     shouldHeaderBeSticky,
   } = useTableContext();
   const isMultiSelect = selectionType === 'multiple';
-  const isAllSelected = selectedRows && selectedRows.length === totalItems;
-  const isIndeterminate = selectedRows && selectedRows.length > 0 && !isAllSelected;
+  // Containment against the currently-visible rows (`tableData`), not a `selectedRows.length ===
+  // totalItems` count comparison - `totalItems` tracks whatever `data` currently holds, which for
+  // server-side pagination is only the current page, not every row that's ever been selected
+  // across other pages. A count comparison against that would show this page as "indeterminate"
+  // (or worse, get cleared entirely by `toggleAllRowsSelection`) purely because *other* pages have
+  // selections, even when none of *this* page's rows are selected. See the Selection Across Pages
+  // example.
+  const visibleRowIds = React.useMemo(() => tableData.map((item) => item.id), [tableData]);
+  const selectedRowIds = selectedRows ?? [];
+  const isAllSelected =
+    visibleRowIds.length > 0 && visibleRowIds.every((id) => selectedRowIds.includes(id));
+  const isIndeterminate = !isAllSelected && visibleRowIds.some((id) => selectedRowIds.includes(id));
   const isDisabled = disabledRows && disabledRows.length === totalItems;
 
   // Note: The rowDensity prop is deprecated (see types.ts for @deprecated documentation).

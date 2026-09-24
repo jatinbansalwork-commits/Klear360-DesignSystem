@@ -14,6 +14,12 @@ A table component that displays data in a grid format through rows and columns o
 - A `filterFunctions` predicate for a `type: 'multiselect'` column receives a plain `string` from global search (never default that branch to `true` - see `filterFunctions` below)
 - In a grouped multi-row header (multiple `TableHeaderRow`s), `isHeaderSticky` combined with column filtering isn't fully supported yet - the filter row's own sticky offset doesn't account for a preceding group row
 - `isGrouped` + a virtualized table (`TableVirtualizedWrapper`) is not a supported combination today - the virtualized row list is built from the sorted/filtered data directly and does not consult the tree's expand/collapse state, so collapsed children would still be included
+- `TableCell` has no vertical padding at any `rowDensity` - only `alignItems: center` - so multi-line/stacked cell content can touch the row border once it's taller than the row's `minHeight`; use `TableTitleDescriptionCell` or your own `paddingY`
+- The `columns` config's auto-built `TableHeaderCell` only gets a `headerKey` when `sortable: true` - a column meant to be filterable-but-not-sortable via `columns` needs `sortable: true` too (even with no real sort function) or `headerKey` never gets set and the filter row never renders an input for it
+- `onSortChange` reports only the primary sort key - shift-click secondary/tertiary sort has no equivalent callback, so it can't be wired into a server-side sort
+- With `selectionType="multiple"` and server-side pagination, read `selectedIds` (not the deprecated `values`, which is derived from `data.nodes` and silently drops any selected row not on the current page) from `onSelectionChange` to track selection across pages
+- `Badge` `size="xsmall"`/`"small"` render at 10px text, smaller than the 12px `Text size="small"` typically used for table cell content - use `size="medium"` (Badge's own default) or larger inside a table cell
+- An `IconButton` with neither `isHighlighted` nor `emphasis="moderate"` has no `width`/`height` applied, so its clickable area is only as big as the icon glyph - under WCAG 2.2's 24x24px minimum target size (SC 2.5.8); easiest to miss in a narrow action column
 
 ## TypeScript Types
 
@@ -541,6 +547,86 @@ type TablePaginationProps = {
    */
   onPageChange?: ({ page }: { page: number }) => void;
 };
+
+// Declarative alternative to the function-as-children pattern above - pass `columns` instead of
+// `children` on `Table` and it builds the TableHeader/TableBody JSX for you. Simpler for the common
+// case; drop to function-as-children only when you need something `columns` doesn't cover (a
+// multi-row grouped header, `gridColumnStart`/`gridColumnEnd` spanning, editable cells, etc.).
+// `Table` accepts exactly one of `children` or `columns`, never both.
+type TableColumnConfig<Item> = {
+  /**
+   * Unique key for the column. Also used as the column's `headerKey` when `sortable` is true, so
+   * it lines up with the key used in `sortFunctions`/`filterFunctions`.
+   */
+  key: string;
+
+  /**
+   * Content rendered in the column's header cell.
+   */
+  header: React.ReactNode;
+
+  /**
+   * Renders a single row's cell content for this column.
+   */
+  render: (item: TableNode<Item>, index: number) => React.ReactNode;
+
+  /**
+   * Column width as a `grid-template-columns` track, e.g. `'120px'`, `'1fr'`,
+   * `'minmax(100px, 1fr)'`. Omitting it on every column produces an equal-share `minmax(100px,
+   * 1fr)` fallback for each - fine for a handful of columns, but a genuinely wide table (15+
+   * columns) needs explicit widths sized to what each column actually holds, or every column ends
+   * up the same width regardless of content (a 6-character code column as wide as a 30-character
+   * name column).
+   * @default 'minmax(100px, 1fr)'
+   */
+  width?: string;
+
+  /**
+   * Makes this column sortable - requires a matching entry in `Table`'s `sortFunctions` keyed by
+   * the same `key`.
+   * @default false
+   */
+  sortable?: boolean;
+
+  /**
+   * Content alignment for both this column's header cell and its body cells.
+   * @default 'left'
+   */
+  textAlign?: 'left' | 'center' | 'right';
+};
+
+// Content for a `TableColumnConfig`'s `render` (or a hand-written `TableCell`'s children) - not a
+// `TableCell` replacement, it renders *inside* one, same as `<Badge>`/`<Code>`/any other cell
+// content. Covers the common "title + secondary line" cell (a name plus a note, a company plus a
+// compliance flag) with real vertical padding baked in (see the "no vertical padding at any
+// rowDensity" constraint above) and a built-in choice between clamping the description with a
+// hover tooltip for the full text, or letting the row grow to fit the full paragraph.
+type TableTitleDescriptionCellProps = {
+  /**
+   * The cell's primary, always-visible line.
+   */
+  title: React.ReactNode;
+
+  /**
+   * Secondary text rendered below `title`. Nothing renders for this line when omitted.
+   */
+  description?: string;
+
+  /**
+   * `'truncate'` clamps `description` to `descriptionLines` and shows the full text as a native
+   * tooltip on hover, but only when it's actually cut off - a description short enough to already
+   * fit gets no tooltip. `'wrap'` never clamps; the row grows to fit the full paragraph instead,
+   * with no tooltip (nothing is hidden, so there's nothing for one to reveal).
+   * @default 'truncate'
+   */
+  descriptionBehavior?: 'truncate' | 'wrap';
+
+  /**
+   * Number of lines `description` clamps to when `descriptionBehavior` is `'truncate'`.
+   * @default 2
+   */
+  descriptionLines?: number;
+};
 ```
 
 ## Usage Guidelines
@@ -548,25 +634,54 @@ type TablePaginationProps = {
 **Do**
 
 - Use `Table` for displaying structured, multi-column data that users need to scan, sort, compare, or act on.
-- Use the function-as-children pattern: `<Table>{(tableData) => (<>...</>)}</Table>`.
+- Prefer `columns` (a `TableColumnConfig<Item>[]`) over the function-as-children pattern for the
+  common case - it's less JSX to write and covers sorting, filtering, `textAlign`, and per-column
+  widths already. Drop to function-as-children (`<Table>{(tableData) => (<>...</>)}</Table>`) only
+  for what `columns` doesn't cover: a multi-row grouped header, `gridColumnStart`/`gridColumnEnd`
+  spanning, or editable cells. `Table` takes exactly one of `children`/`columns`, never both.
 - Ensure every row object in `data.nodes` has a unique `id` field.
-- Use `sortFunctions` with matching `headerKey` props on `TableHeaderCell` for sortable columns.
-  Clicking cycles ascending -> descending -> unsorted (removable sort); shift-clicking a
-  different sortable column adds it as a secondary/tertiary key instead of replacing the sort.
+- Use `sortFunctions` with matching `headerKey` props on `TableHeaderCell` (or `sortable: true` on
+  a `columns` entry) for sortable columns. Clicking cycles ascending -> descending -> unsorted
+  (removable sort); shift-clicking a different sortable column adds it as a secondary/tertiary key
+  instead of replacing the sort.
 - Use `initialSort` to render the table already sorted on mount instead of requiring a click.
 - Use `isHeaderSticky` and `isFirstColumnSticky` for large datasets that need scroll anchoring.
 - Use `stickyColumnCount` (with `stickyColumnWidths`) instead of `isFirstColumnSticky` when more
   than one leading column - e.g. an actions column plus an identifier column - needs to stay
-  frozen while a wide table scrolls horizontally.
+  frozen while a wide table scrolls horizontally. Give every column (frozen or not) an explicit
+  `width` sized to what it actually holds once a table gets wide (15+ columns) - the equal-share
+  fallback for an unset `width` gives a short code column and a long name column the same space.
 - Use `filterFunctions` with matching `headerKey` props on `TableHeaderCell` for filterable columns
-  — a compact filter input auto-renders inline in the header, no extra JSX required.
+  — a compact filter input auto-renders inline in the header, no extra JSX required. A key present
+  in `filterFunctions` without a matching `headerKey` on any `TableHeaderCell` still participates
+  in global search, it just doesn't get its own column filter input - useful for a column that
+  should be searchable but doesn't need a dedicated filter box.
 - Add a `TableToolbarSearch` inside `TableToolbar` for global search across every filterable
   column (reuses the same `filterFunctions` predicates as column filters).
+- For a narrow icon/action column, center it with `textAlign: 'center'` on that `columns` entry
+  rather than hand-wrapping the content in a centering `Box` - reach for the `Box` wrapper only
+  when centering alone isn't enough (multiple icons needing a specific `gap`).
+- Give every `IconButton` in an action column `isHighlighted` or `emphasis="moderate"` - without
+  one, its clickable area shrinks to the icon glyph's own size, under WCAG 2.2's 24x24px minimum
+  target size (see `IconButton`'s knowledgebase entry).
+- Use `Badge` `size="medium"` (or larger) for any badge inside a table cell, even at
+  `rowDensity="compact"` - `size="xsmall"`/`"small"` render at 10px, smaller than the 12px body
+  text typically next to them (see `Badge`'s knowledgebase entry).
+- For a "title + secondary line" cell (a name plus a note, a company plus a compliance flag), use
+  `TableTitleDescriptionCell` instead of hand-rolling it - it already has the vertical padding a
+  plain stacked `Box` doesn't get by default, plus a built-in truncate-with-tooltip vs. wrap choice.
+- When `data.nodes` can legitimately be empty (no data yet, or a search/filter that matched
+  nothing), check its length and render an `EmptyState` in place of `Table` - an empty `Table`
+  still renders its header with nothing underneath, which reads as broken rather than intentional.
+  If a toolbar search needs to stay visible even when results are empty, swap only `TableBody`'s
+  content instead (function-as-children, with a single spanning `TableCell` via
+  `gridColumnStart`/`gridColumnEnd`) rather than replacing the whole `Table`.
 
 **Don't**
 
-- Don't use static JSX children — `Table` requires the function-as-children pattern.
-- Don't expect column reordering, resizing, or row expansion — these are out of scope.
+- Don't expect column reordering or resizing — these are out of scope. Row expansion *is*
+  supported for grouped (`isGrouped`) tables — see `expandedRowIds` above and the Grouping pattern
+  below.
 - Don't expect full keyboard grid navigation (roving tabindex, arrow-key cell movement) — filter
   inputs are plain native inputs reachable via Tab, but grid-style arrow-key navigation isn't
   built yet.
@@ -577,6 +692,16 @@ type TablePaginationProps = {
 - Don't rely on `stickyColumnCount`/`isFirstColumnSticky` being visible on mobile — Table
   disables sticky columns below the `s` breakpoint automatically, since the frozen width can
   exceed the entire viewport there.
+- Don't assume `TableCell` reserves vertical breathing room for multi-line content - it has no
+  vertical padding at any `rowDensity` (only centering), so stacked/multi-line cell content can end
+  up touching the row border the moment it's taller than the row's own `minHeight`. Use
+  `TableTitleDescriptionCell` for a title+description cell, or add your own `paddingY` for anything
+  else multi-line.
+- Don't assume `selectionType="multiple"` + server-side pagination "just works" for the header
+  "select all" checkbox without checking your Table version - it needs to scope select-all/
+  deselect-all to the *current page's* rows (not every selected id across all pages) for
+  cross-page selection to behave correctly; read `selectedIds` from `onSelectionChange`, not the
+  deprecated `values`, which silently drops any selected row not on the current page.
 
 ## Example
 
@@ -1302,3 +1427,116 @@ and body columns line up with.
   </TableHeaderRow>
 </TableHeader>
 ```
+
+### Declarative Columns Config Pattern
+
+The preferred way to build a table for the common case - pass `columns` (a `TableColumnConfig<Item>[]`) instead of function-as-children. `Table` builds the `TableHeader`/`TableBody` JSX for you.
+
+```tsx
+import { Table, TableColumnConfig } from '@klear/klear360/components';
+
+type Item = { id: string; transactionId: string; companyName: string; status: string };
+
+const columns: TableColumnConfig<Item>[] = [
+  { key: 'transactionId', header: 'Transaction ID', render: (item) => item.transactionId, sortable: true },
+  { key: 'companyName', header: 'Company Name', render: (item) => item.companyName, width: '220px' },
+  { key: 'status', header: 'Status', render: (item) => <Badge>{item.status}</Badge>, textAlign: 'center' },
+];
+
+<Table data={data} columns={columns} sortFunctions={{ transactionId: (arr) => arr.sort((a, b) => a.transactionId.localeCompare(b.transactionId)) }} />;
+```
+
+### Action Column Pattern
+
+A narrow icon/action column - center it with `textAlign` on the column config, and give every `IconButton` `isHighlighted` (or `emphasis="moderate"`) so its clickable area meets the 24x24px minimum target size instead of collapsing to the bare icon glyph.
+
+```tsx
+const columns: TableColumnConfig<Item>[] = [
+  {
+    key: 'actions',
+    header: 'Actions',
+    width: '72px',
+    textAlign: 'center',
+    render: (item) => (
+      <IconButton
+        isHighlighted
+        icon={EyeIcon}
+        size="small"
+        accessibilityLabel={`View ${item.transactionId}`}
+        onClick={() => viewItem(item)}
+      />
+    ),
+  },
+  // ...other columns
+];
+```
+
+Multiple icons in one action cell need more than `textAlign` (a specific `gap` between them) - wrap them in a centering `Box` instead: `<Box display="flex" justifyContent="center" gap="spacing.3">...</Box>`.
+
+### Title + Description Cell Pattern
+
+A "title + secondary line" cell (a name plus a note) via `TableTitleDescriptionCell` - real vertical padding included, plus a truncate-with-tooltip vs. wrap choice, instead of hand-rolling a stacked `Box` that ends up touching the row border.
+
+```tsx
+import { Table, TableColumnConfig, TableTitleDescriptionCell } from '@klear/klear360/components';
+
+const columns: TableColumnConfig<Item>[] = [
+  {
+    key: 'companyName',
+    header: 'Company / Note',
+    width: '320px',
+    render: (item) => (
+      <TableTitleDescriptionCell
+        title={item.companyName}
+        description={item.complianceNote}
+        // 'wrap' shows the full note always, growing the row instead of clamping + tooltip
+        descriptionBehavior="truncate"
+        descriptionLines={2}
+      />
+    ),
+  },
+];
+```
+
+### Wide Dataset Pattern
+
+A genuinely wide table (15+ columns) needs explicit per-column `width`s sized to what each column holds - the equal-share `minmax(100px, 1fr)` fallback gives a 6-character code column the same width as a 30-character name column. Pair with `stickyColumnCount`/`stickyColumnWidths` to freeze the columns that matter while the rest scrolls; `selectionType="multiple"` adds a checkbox column that's frozen automatically alongside them (not counted in `stickyColumnCount`).
+
+```tsx
+const columns: TableColumnConfig<Item>[] = [
+  { key: 'transactionId', header: 'Transaction ID', render: (item) => item.transactionId, width: '150px' },
+  { key: 'companyName', header: 'Company Name', render: (item) => item.companyName, width: '220px' },
+  { key: 'hsCode', header: 'HS Code', render: (item) => item.hsCode, width: '110px' }, // short, fixed-format
+  // ...15+ columns total, each with its own meaningful width
+];
+
+<Table
+  data={data}
+  columns={columns}
+  selectionType="multiple"
+  stickyColumnCount={2}
+  stickyColumnWidths={['150px', '220px']}
+  isHeaderSticky
+/>;
+```
+
+### Empty State Pattern
+
+`data.nodes` can legitimately be empty (no data yet, or a search/filter matched nothing) - an empty `Table` still renders its header row with nothing underneath, which reads as broken. Check the length before rendering `Table` and swap in an `EmptyState` instead.
+
+```tsx
+const isEmpty = data.nodes.length === 0;
+
+{isEmpty ? (
+  <EmptyState
+    title="No transactions yet"
+    description="Import your first transactions to see them here."
+  >
+    <Button onClick={onImport}>Import Transactions</Button>
+  </EmptyState>
+) : (
+  <Table data={data} columns={columns} />
+)}
+```
+
+If a toolbar search needs to stay visible even with zero results (so the user has a way to clear it), swap only `TableBody`'s content instead of the whole `Table` - use function-as-children and a single `TableCell` spanning every column via `gridColumnStart={1}`/`gridColumnEnd={columns.length + 1}` holding the `EmptyState`, while `TableHeader` and `toolbar` stay mounted as normal.

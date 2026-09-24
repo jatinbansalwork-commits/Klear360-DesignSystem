@@ -247,6 +247,7 @@ const _Table = <Item,>({
               <TableHeaderCell
                 key={column.key}
                 headerKey={column.sortable ? column.key : undefined}
+                textAlign={column.textAlign}
               >
                 {column.header}
               </TableHeaderCell>
@@ -257,7 +258,9 @@ const _Table = <Item,>({
           {tableData.map((item, index) => (
             <TableRow key={item.id} item={item}>
               {columns.map((column) => (
-                <TableCell key={column.key}>{column.render(item, index)}</TableCell>
+                <TableCell key={column.key} textAlign={column.textAlign}>
+                  {column.render(item, index)}
+                </TableCell>
               ))}
             </TableRow>
           ))}
@@ -621,21 +624,39 @@ const _Table = <Item,>({
 
   const toggleAllRowsSelection = useMemo(
     () => (): void => {
-      if (selectedRows.length > 0) {
-        rowSelectConfig.fns.onRemoveAll();
-      } else if (isGrouped) {
-        rowSelectConfig.fns.onToggleAll({});
-      } else {
-        // Only the currently filtered/visible rows - matching "select all" meaning "select
-        // everything you can currently see", not everything that ever existed in `data`.
-        const ids = filteredData.nodes
-          .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
-          .filter(Boolean) as Identifier[];
+      if (isGrouped) {
+        // Tree-aware select-all/deselect-all - unrelated to the cross-page fix below, left as
+        // before (grouped tables aren't paginated server-side).
+        if (selectedRows.length > 0) {
+          rowSelectConfig.fns.onRemoveAll();
+        } else {
+          rowSelectConfig.fns.onToggleAll({});
+        }
+        return;
+      }
 
-        rowSelectConfig.fns.onAddAll(ids);
+      // Scoped to the currently filtered/visible rows, not `selectedRows` as a whole - matching
+      // "select all" meaning "select/deselect everything you can currently see". With
+      // server-side pagination, `selectedRows` can already contain ids from *other* pages;
+      // `onRemoveAll()`/`onAddAll()` operate on every selected id regardless of page, so using
+      // them here would wipe out (or double-count towards) selections the user made elsewhere.
+      // `onAddByIds`/`onRemoveByIds` only ever touch this page's ids, leaving other pages' picks
+      // intact - see the Selection Across Pages example for why this matters.
+      const visibleSelectableIds = filteredData.nodes
+        .map((item: TableNode<Item>) => (disabledRows.includes(item.id) ? null : item.id))
+        .filter(Boolean) as Identifier[];
+      const isAllVisibleSelected =
+        visibleSelectableIds.length > 0 &&
+        visibleSelectableIds.every((id) => selectedRows.includes(id));
+
+      if (isAllVisibleSelected) {
+        rowSelectConfig.fns.onRemoveByIds(visibleSelectableIds);
+      } else {
+        const idsToAdd = visibleSelectableIds.filter((id) => !selectedRows.includes(id));
+        rowSelectConfig.fns.onAddByIds(idsToAdd, {});
       }
     },
-    [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows],
+    [rowSelectConfig.fns, filteredData.nodes, selectedRows, disabledRows, isGrouped],
   );
 
   // Row expansion (group-header rows only, see `isGrouped`).

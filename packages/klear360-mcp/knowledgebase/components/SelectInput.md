@@ -23,6 +23,16 @@ type SelectInputProps = {
   accessibilityLabel?: string;
 
   /**
+   * Renders without a visible border/background, filling its container edge-to-edge - the same
+   * borderless treatment `BaseInput`'s own `isTableInputCell` gives a plain text input. Used to
+   * match a `SelectInput` trigger to plain-text sibling inputs sitting in the same row (e.g.
+   * `Table`'s auto-injected column-filter row does this automatically for a `filterConfig`'d
+   * column - not something most consumers need to set directly).
+   * @default false
+   */
+  isTableInputCell?: boolean;
+
+  /**
    * Position of the label.
    * Can be 'top', 'left', or 'inside-input'
    */

@@ -25,9 +25,6 @@ const TableMeta: Meta = {
   component: Table,
   parameters: {
     viewMode: 'story',
-    options: {
-      showPanel: false,
-    },
     chromatic: { disableSnapshot: true },
   },
 };
@@ -240,6 +237,7 @@ export const StickyColumns = (): React.ReactElement => {
             showPageNumberSelector
             onPageChange={action('onPageChange')}
             onPageSizeChange={action('onPageSizeChange')}
+            showLabel
           />
         }
       />
