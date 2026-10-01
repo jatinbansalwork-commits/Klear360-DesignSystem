@@ -199,7 +199,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly 1`] = `
                   style={
                     [
                       {
-                        "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                        "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                         "borderBottomStyle": "solid",
                       },
                       {
@@ -917,7 +917,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly 1`] = `
                                     style={
                                       [
                                         {
-                                          "color": "hsla(143, 72%, 31%, 1)",
+                                          "color": "hsla(142, 71%, 25%, 1)",
                                           "fontFamily": "Inter",
                                           "fontSize": 12,
                                           "fontStyle": "normal",
@@ -1083,7 +1083,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly 1`] = `
                               style={
                                 [
                                   {
-                                    "color": "hsla(143, 72%, 31%, 1)",
+                                    "color": "hsla(142, 71%, 25%, 1)",
                                     "fontFamily": "Inter",
                                     "fontSize": 12,
                                     "fontStyle": "normal",
@@ -1269,7 +1269,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly 1`] = `
                 style={
                   [
                     {
-                      "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                      "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                       "borderBottomStyle": "solid",
                     },
                     {
@@ -1490,7 +1490,7 @@ exports[`<BottomSheet /> should render empty header 1`] = `
                   style={
                     [
                       {
-                        "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                        "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                         "borderBottomStyle": "solid",
                       },
                       {

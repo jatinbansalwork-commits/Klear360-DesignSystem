@@ -968,7 +968,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
           xmlns="http://www.w3.org/1999/xhtml"
         >
           <div
-            style="background-color: rgb(0, 0, 0); border-radius: 16px; border: 1px solid hsla(222, 47%, 11%, 0.12); padding: 12px;"
+            style="background-color: rgb(0, 0, 0); border-radius: 16px; border: 1px solid hsla(222, 47%, 11%, 0.126); padding: 12px;"
           >
             <h6
               class="c2"
@@ -1053,7 +1053,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 <line
                   fill="none"
                   height="743.5"
-                  stroke="hsla(222, 47%, 11%, 0.12)"
+                  stroke="hsla(222, 47%, 11%, 0.126)"
                   width="730"
                   x="65"
                   x1="65"
@@ -1065,7 +1065,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 <line
                   fill="none"
                   height="743.5"
-                  stroke="hsla(222, 47%, 11%, 0.12)"
+                  stroke="hsla(222, 47%, 11%, 0.126)"
                   width="730"
                   x="65"
                   x1="65"
@@ -1077,7 +1077,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 <line
                   fill="none"
                   height="743.5"
-                  stroke="hsla(222, 47%, 11%, 0.12)"
+                  stroke="hsla(222, 47%, 11%, 0.126)"
                   width="730"
                   x="65"
                   x1="65"
@@ -1089,7 +1089,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 <line
                   fill="none"
                   height="743.5"
-                  stroke="hsla(222, 47%, 11%, 0.12)"
+                  stroke="hsla(222, 47%, 11%, 0.126)"
                   width="730"
                   x="65"
                   x1="65"
@@ -1101,7 +1101,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 <line
                   fill="none"
                   height="743.5"
-                  stroke="hsla(222, 47%, 11%, 0.12)"
+                  stroke="hsla(222, 47%, 11%, 0.126)"
                   width="730"
                   x="65"
                   x1="65"
@@ -1339,7 +1339,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 fill="none"
                 height="46.5"
                 orientation="bottom"
-                stroke="hsla(222, 47%, 11%, 0.12)"
+                stroke="hsla(222, 47%, 11%, 0.126)"
                 width="730"
                 x="65"
                 x1="65"
@@ -1388,7 +1388,7 @@ exports[`<BarChart /> should render complete chart with all components 1`] = `
                 fill="none"
                 height="743.5"
                 orientation="left"
-                stroke="hsla(222, 47%, 11%, 0.12)"
+                stroke="hsla(222, 47%, 11%, 0.126)"
                 width="60"
                 x="5"
                 x1="65"
