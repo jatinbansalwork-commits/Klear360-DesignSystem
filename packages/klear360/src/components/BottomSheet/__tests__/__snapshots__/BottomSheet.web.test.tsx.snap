@@ -271,7 +271,7 @@ exports[`<BottomSheet /> should compose with DropdownButton 1`] = `
 }
 
 .c26.c26.c26.c26.c26 {
-  color: hsla(3,69%,51%,1);
+  color: hsla(3,67%,42%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
@@ -1176,7 +1176,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly on opened sta
 }
 
 .c18.c18.c18.c18.c18 {
-  color: hsla(143,72%,31%,1);
+  color: hsla(142,71%,25%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -1254,7 +1254,7 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly on opened sta
 }
 
 .c25.c25.c25.c25.c25 {
-  color: hsla(143,72%,31%,1);
+  color: hsla(142,71%,25%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;

@@ -117,7 +117,7 @@ const colors: ColorsWithModes = {
       background: {
         positive: {
           subtle: globalColors.chromatic.emerald.a50,
-          intense: globalColors.chromatic.emerald[600],
+          intense: globalColors.chromatic.emerald[700],
         },
         negative: {
           subtle: globalColors.chromatic.crimson.a50,
@@ -125,7 +125,7 @@ const colors: ColorsWithModes = {
         },
         notice: {
           subtle: globalColors.chromatic.cider.a50,
-          intense: globalColors.chromatic.cider[600],
+          intense: globalColors.chromatic.cider[700],
         },
         information: {
           subtle: globalColors.chromatic.sapphire.a50,
@@ -161,15 +161,15 @@ const colors: ColorsWithModes = {
       text: {
         positive: {
           subtle: globalColors.chromatic.emerald[100],
-          intense: globalColors.chromatic.emerald[700],
+          intense: globalColors.chromatic.emerald[800],
         },
         negative: {
           subtle: globalColors.chromatic.crimson[100],
-          intense: globalColors.chromatic.crimson[600],
+          intense: globalColors.chromatic.crimson[700],
         },
         notice: {
           subtle: globalColors.chromatic.cider[100],
-          intense: globalColors.chromatic.cider[700],
+          intense: globalColors.chromatic.cider[800],
         },
         information: {
           subtle: globalColors.chromatic.sapphire[100],
@@ -183,15 +183,15 @@ const colors: ColorsWithModes = {
       icon: {
         positive: {
           subtle: globalColors.chromatic.emerald[100],
-          intense: globalColors.chromatic.emerald[700],
+          intense: globalColors.chromatic.emerald[800],
         },
         negative: {
           subtle: globalColors.chromatic.crimson[100],
-          intense: globalColors.chromatic.crimson[600],
+          intense: globalColors.chromatic.crimson[700],
         },
         notice: {
           subtle: globalColors.chromatic.cider[100],
-          intense: globalColors.chromatic.cider[700],
+          intense: globalColors.chromatic.cider[800],
         },
         information: {
           subtle: globalColors.chromatic.sapphire[100],
@@ -807,7 +807,7 @@ const colors: ColorsWithModes = {
           disabled: globalColors.neutral.blueGrayDark.a564,
         },
         primary: {
-          normal: globalColors.chromatic.azure[300],
+          normal: globalColors.chromatic.azure[200],
         },
         onSea: {
           onSubtle: globalColors.chromatic.forest[200],
@@ -838,7 +838,7 @@ const colors: ColorsWithModes = {
           disabled: globalColors.neutral.blueGrayDark.a532,
         },
         primary: {
-          normal: globalColors.chromatic.azure[300],
+          normal: globalColors.chromatic.azure[200],
         },
         onSea: {
           onSubtle: globalColors.chromatic.forest[400],
@@ -922,11 +922,11 @@ const colors: ColorsWithModes = {
         },
         information: {
           subtle: globalColors.chromatic.sapphire[50],
-          intense: globalColors.chromatic.sapphire[400],
+          intense: globalColors.chromatic.sapphire[300],
         },
         neutral: {
           subtle: globalColors.neutral.blueGrayDark[500],
-          intense: globalColors.neutral.blueGrayDark[300],
+          intense: globalColors.neutral.blueGrayDark[200],
         },
       },
       icon: {
@@ -944,11 +944,11 @@ const colors: ColorsWithModes = {
         },
         information: {
           subtle: globalColors.chromatic.sapphire[50],
-          intense: globalColors.chromatic.sapphire[400],
+          intense: globalColors.chromatic.sapphire[300],
         },
         neutral: {
           subtle: globalColors.neutral.blueGrayDark[500],
-          intense: globalColors.neutral.blueGrayDark[300],
+          intense: globalColors.neutral.blueGrayDark[200],
         },
       },
     },

@@ -536,7 +536,7 @@ exports[`<Drawer /> (native) renders a Drawer 1`] = `
                                   style={
                                     [
                                       {
-                                        "color": "hsla(143, 72%, 31%, 1)",
+                                        "color": "hsla(142, 71%, 25%, 1)",
                                         "fontFamily": "Inter",
                                         "fontSize": 12,
                                         "fontStyle": "normal",
@@ -1207,7 +1207,7 @@ exports[`<Drawer /> (native) renders a Drawer 1`] = `
               style={
                 [
                   {
-                    "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                    "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                     "borderBottomStyle": "solid",
                   },
                   {
@@ -1762,7 +1762,7 @@ exports[`<Drawer /> (native) renders a Drawer with footer 1`] = `
               style={
                 [
                   {
-                    "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                    "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                     "borderBottomStyle": "solid",
                   },
                   {
@@ -1860,7 +1860,7 @@ exports[`<Drawer /> (native) renders a Drawer with footer 1`] = `
             style={
               [
                 {
-                  "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                  "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                   "borderBottomStyle": "solid",
                 },
                 {
@@ -2813,7 +2813,7 @@ exports[`<Drawer /> (native) should render a Drawer with a custom header 1`] = `
               style={
                 [
                   {
-                    "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                    "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                     "borderBottomStyle": "solid",
                   },
                   {

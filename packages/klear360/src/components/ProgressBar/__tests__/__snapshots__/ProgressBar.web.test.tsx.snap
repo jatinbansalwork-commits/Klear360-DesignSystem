@@ -2013,7 +2013,7 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 1`] = `
 }
 
 .c5.c5.c5.c5.c5 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
 }
 
 .c6.c6.c6.c6.c6 {
@@ -2033,7 +2033,7 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 1`] = `
 }
 
 .c7.c7.c7.c7.c7 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
   height: 100%;
   width: 20%;
   border-radius: 4px;
@@ -2163,7 +2163,7 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 2`] = `
 }
 
 .c5.c5.c5.c5.c5 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
 }
 
 .c6.c6.c6.c6.c6 {
@@ -2183,7 +2183,7 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 2`] = `
 }
 
 .c7.c7.c7.c7.c7 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
   height: 100%;
   width: 20%;
   border-radius: 4px;
@@ -2313,7 +2313,7 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 1`] = `
 }
 
 .c5.c5.c5.c5.c5 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
 }
 
 .c6.c6.c6.c6.c6 {
@@ -2333,7 +2333,7 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 1`] = `
 }
 
 .c7.c7.c7.c7.c7 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
   height: 100%;
   width: 20%;
   border-radius: 4px;
@@ -2463,7 +2463,7 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 2`] = `
 }
 
 .c5.c5.c5.c5.c5 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
 }
 
 .c6.c6.c6.c6.c6 {
@@ -2483,7 +2483,7 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 2`] = `
 }
 
 .c7.c7.c7.c7.c7 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
   height: 100%;
   width: 20%;
   border-radius: 4px;

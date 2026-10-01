@@ -44,7 +44,7 @@ exports[`<StepGroup /> should render nested StepGroup 1`] = `
   height: 6px;
   width: 2px;
   border-left-width: 2px;
-  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-color: hsla(222,47%,11%,0.126);
   border-left-style: solid;
   visibility: hidden;
 }
@@ -105,7 +105,7 @@ exports[`<StepGroup /> should render nested StepGroup 1`] = `
   flex: 1;
   width: 2px;
   border-left-width: 2px;
-  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-color: hsla(222,47%,11%,0.126);
   border-left-style: solid;
   visibility: visible;
 }
@@ -142,7 +142,7 @@ exports[`<StepGroup /> should render nested StepGroup 1`] = `
   height: 6px;
   width: 2px;
   border-left-width: 2px;
-  border-left-color: hsla(222,47%,11%,0.12);
+  border-left-color: hsla(222,47%,11%,0.126);
   border-left-style: solid;
   visibility: visible;
 }
@@ -691,7 +691,7 @@ exports[`<StepGroup /> should render nested StepGroup 1`] = `
                       cx="5"
                       cy="5"
                       data-klear360-component="svg-circle"
-                      fill="hsla(143, 72%, 31%, 1)"
+                      fill="hsla(142, 71%, 25%, 1)"
                       r="5"
                     />
                   </svg>

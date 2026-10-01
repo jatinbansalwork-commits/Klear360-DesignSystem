@@ -2194,7 +2194,7 @@ exports[`<FileUploadItem /> (native) should render FileUploadItem with error sta
                         "numberOfLines": 1,
                         "style": [
                           {
-                            "color": "hsla(3, 69%, 51%, 1)",
+                            "color": "hsla(3, 67%, 42%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",
@@ -4751,7 +4751,7 @@ exports[`<FileUploadItem /> (native) should render multiple file items 1`] = `
                         "numberOfLines": 1,
                         "style": [
                           {
-                            "color": "hsla(3, 69%, 51%, 1)",
+                            "color": "hsla(3, 67%, 42%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",

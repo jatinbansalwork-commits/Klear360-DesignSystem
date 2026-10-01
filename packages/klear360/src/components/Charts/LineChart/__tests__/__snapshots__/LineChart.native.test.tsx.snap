@@ -231,7 +231,7 @@ exports[`<ChartLineWrapper /> (native) should ignore null cells when computing y
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -567,7 +567,7 @@ exports[`<ChartLineWrapper /> (native) should ignore null cells when computing y
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -923,7 +923,7 @@ exports[`<ChartLineWrapper /> (native) should render a color-matched band + lege
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -1361,7 +1361,7 @@ exports[`<ChartLineWrapper /> (native) should render a color-matched band + lege
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -2032,7 +2032,7 @@ exports[`<ChartLineWrapper /> (native) should render a horizontal reference line
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -2419,7 +2419,7 @@ exports[`<ChartLineWrapper /> (native) should render a horizontal reference line
                   rx={12}
                   stroke={
                     {
-                      "payload": 521082665,
+                      "payload": 537859881,
                       "type": 0,
                     }
                   }
@@ -2593,7 +2593,7 @@ exports[`<ChartLineWrapper /> (native) should render a reference band with a leg
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -2947,7 +2947,7 @@ exports[`<ChartLineWrapper /> (native) should render a reference band with a leg
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -3630,7 +3630,7 @@ exports[`<ChartLineWrapper /> (native) should render a vertical reference line (
                   rx={12}
                   stroke={
                     {
-                      "payload": 521082665,
+                      "payload": 537859881,
                       "type": 0,
                     }
                   }
@@ -3705,7 +3705,7 @@ exports[`<ChartLineWrapper /> (native) should render a vertical reference line (
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -4656,7 +4656,7 @@ exports[`<ChartLineWrapper /> (native) should render with all-negative data with
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -4992,7 +4992,7 @@ exports[`<ChartLineWrapper /> (native) should render with all-negative data with
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -5565,7 +5565,7 @@ exports[`<ChartLineWrapper /> (native) should render with negative data values 1
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }
@@ -5901,7 +5901,7 @@ exports[`<ChartLineWrapper /> (native) should render with negative data values 1
               }
               stroke={
                 {
-                  "payload": 521082665,
+                  "payload": 537859881,
                   "type": 0,
                 }
               }

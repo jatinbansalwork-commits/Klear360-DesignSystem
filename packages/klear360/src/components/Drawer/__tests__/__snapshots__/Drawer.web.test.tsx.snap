@@ -780,7 +780,7 @@ exports[`Drawer renders a Drawer 1`] = `
 }
 
 .c16.c16.c16.c16.c16 {
-  color: hsla(143,72%,31%,1);
+  color: hsla(142,71%,25%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;

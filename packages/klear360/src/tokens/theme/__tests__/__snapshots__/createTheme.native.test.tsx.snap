@@ -274,7 +274,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
         },
         "icon": {
           "information": {
-            "intense": "hsla(194, 49%, 39%, 1)",
+            "intense": "hsla(193, 32%, 49%, 1)",
             "subtle": "hsla(190, 32%, 93%, 1)",
           },
           "negative": {
@@ -282,7 +282,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(10, 100%, 98%, 1)",
           },
           "neutral": {
-            "intense": "hsla(215, 16%, 47%, 1)",
+            "intense": "hsla(215, 20%, 65%, 1)",
             "subtle": "hsla(215, 25%, 27%, 1)",
           },
           "notice": {
@@ -296,7 +296,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
         },
         "text": {
           "information": {
-            "intense": "hsla(194, 49%, 39%, 1)",
+            "intense": "hsla(193, 32%, 49%, 1)",
             "subtle": "hsla(190, 32%, 93%, 1)",
           },
           "negative": {
@@ -304,7 +304,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(10, 100%, 98%, 1)",
           },
           "neutral": {
-            "intense": "hsla(215, 16%, 47%, 1)",
+            "intense": "hsla(215, 20%, 65%, 1)",
             "subtle": "hsla(215, 25%, 27%, 1)",
           },
           "notice": {
@@ -665,7 +665,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
         },
         "border": {
           "gray": {
-            "muted": "hsla(215, 25%, 27%, 0.18)",
+            "muted": "hsla(215, 25%, 27%, 0.189)",
             "normal": "hsla(217, 33%, 17%, 1)",
             "subtle": "hsla(222, 47%, 11%, 1)",
           },
@@ -721,7 +721,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "onSubtle": "hsla(174, 54%, 81%, 1)",
           },
           "primary": {
-            "normal": "hsla(198, 27%, 45%, 1)",
+            "normal": "hsla(200, 23%, 63%, 1)",
           },
           "staticBlack": {
             "disabled": "hsla(0, 0%, 0%, 0.32)",
@@ -944,11 +944,11 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(222, 47%, 11%, 0.09)",
           },
           "notice": {
-            "intense": "hsla(35, 99%, 44%, 1)",
+            "intense": "hsla(34, 94%, 35%, 1)",
             "subtle": "hsla(35, 99%, 44%, 0.09)",
           },
           "positive": {
-            "intense": "hsla(143, 73%, 40%, 1)",
+            "intense": "hsla(143, 72%, 31%, 1)",
             "subtle": "hsla(143, 73%, 40%, 0.09)",
           },
         },
@@ -980,7 +980,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(193, 31%, 77%, 1)",
           },
           "negative": {
-            "intense": "hsla(3, 69%, 51%, 1)",
+            "intense": "hsla(3, 67%, 42%, 1)",
             "subtle": "hsla(2, 100%, 90%, 1)",
           },
           "neutral": {
@@ -988,11 +988,11 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(215, 16%, 47%, 1)",
           },
           "notice": {
-            "intense": "hsla(34, 94%, 35%, 1)",
+            "intense": "hsla(35, 99%, 27%, 1)",
             "subtle": "hsla(36, 93%, 84%, 1)",
           },
           "positive": {
-            "intense": "hsla(143, 72%, 31%, 1)",
+            "intense": "hsla(142, 71%, 25%, 1)",
             "subtle": "hsla(139, 52%, 87%, 1)",
           },
         },
@@ -1002,7 +1002,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(193, 31%, 77%, 1)",
           },
           "negative": {
-            "intense": "hsla(3, 69%, 51%, 1)",
+            "intense": "hsla(3, 67%, 42%, 1)",
             "subtle": "hsla(2, 100%, 90%, 1)",
           },
           "neutral": {
@@ -1010,11 +1010,11 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
             "subtle": "hsla(215, 16%, 47%, 1)",
           },
           "notice": {
-            "intense": "hsla(34, 94%, 35%, 1)",
+            "intense": "hsla(35, 99%, 27%, 1)",
             "subtle": "hsla(36, 93%, 84%, 1)",
           },
           "positive": {
-            "intense": "hsla(143, 72%, 31%, 1)",
+            "intense": "hsla(142, 71%, 25%, 1)",
             "subtle": "hsla(139, 52%, 87%, 1)",
           },
         },
@@ -1367,7 +1367,7 @@ exports[`createTheme should create a theme with the correct brand colors 1`] = `
         },
         "border": {
           "gray": {
-            "muted": "hsla(222, 47%, 11%, 0.12)",
+            "muted": "hsla(222, 47%, 11%, 0.126)",
             "normal": "hsla(213, 27%, 84%, 1)",
             "subtle": "hsla(214, 32%, 91%, 1)",
           },
@@ -2440,7 +2440,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
         },
         "icon": {
           "information": {
-            "intense": "hsla(194, 49%, 39%, 1)",
+            "intense": "hsla(193, 32%, 49%, 1)",
             "subtle": "hsla(190, 32%, 93%, 1)",
           },
           "negative": {
@@ -2448,7 +2448,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(10, 100%, 98%, 1)",
           },
           "neutral": {
-            "intense": "hsla(215, 16%, 47%, 1)",
+            "intense": "hsla(215, 20%, 65%, 1)",
             "subtle": "hsla(215, 25%, 27%, 1)",
           },
           "notice": {
@@ -2462,7 +2462,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
         },
         "text": {
           "information": {
-            "intense": "hsla(194, 49%, 39%, 1)",
+            "intense": "hsla(193, 32%, 49%, 1)",
             "subtle": "hsla(190, 32%, 93%, 1)",
           },
           "negative": {
@@ -2470,7 +2470,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(10, 100%, 98%, 1)",
           },
           "neutral": {
-            "intense": "hsla(215, 16%, 47%, 1)",
+            "intense": "hsla(215, 20%, 65%, 1)",
             "subtle": "hsla(215, 25%, 27%, 1)",
           },
           "notice": {
@@ -2831,7 +2831,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
         },
         "border": {
           "gray": {
-            "muted": "hsla(215, 25%, 27%, 0.18)",
+            "muted": "hsla(215, 25%, 27%, 0.189)",
             "normal": "hsla(217, 33%, 17%, 1)",
             "subtle": "hsla(222, 47%, 11%, 1)",
           },
@@ -2887,7 +2887,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "onSubtle": "hsla(174, 54%, 81%, 1)",
           },
           "primary": {
-            "normal": "hsla(198, 27%, 45%, 1)",
+            "normal": "hsla(200, 23%, 63%, 1)",
           },
           "staticBlack": {
             "disabled": "hsla(0, 0%, 0%, 0.32)",
@@ -3110,11 +3110,11 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(222, 47%, 11%, 0.09)",
           },
           "notice": {
-            "intense": "hsla(35, 99%, 44%, 1)",
+            "intense": "hsla(34, 94%, 35%, 1)",
             "subtle": "hsla(35, 99%, 44%, 0.09)",
           },
           "positive": {
-            "intense": "hsla(143, 73%, 40%, 1)",
+            "intense": "hsla(143, 72%, 31%, 1)",
             "subtle": "hsla(143, 73%, 40%, 0.09)",
           },
         },
@@ -3146,7 +3146,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(193, 31%, 77%, 1)",
           },
           "negative": {
-            "intense": "hsla(3, 69%, 51%, 1)",
+            "intense": "hsla(3, 67%, 42%, 1)",
             "subtle": "hsla(2, 100%, 90%, 1)",
           },
           "neutral": {
@@ -3154,11 +3154,11 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(215, 16%, 47%, 1)",
           },
           "notice": {
-            "intense": "hsla(34, 94%, 35%, 1)",
+            "intense": "hsla(35, 99%, 27%, 1)",
             "subtle": "hsla(36, 93%, 84%, 1)",
           },
           "positive": {
-            "intense": "hsla(143, 72%, 31%, 1)",
+            "intense": "hsla(142, 71%, 25%, 1)",
             "subtle": "hsla(139, 52%, 87%, 1)",
           },
         },
@@ -3168,7 +3168,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(193, 31%, 77%, 1)",
           },
           "negative": {
-            "intense": "hsla(3, 69%, 51%, 1)",
+            "intense": "hsla(3, 67%, 42%, 1)",
             "subtle": "hsla(2, 100%, 90%, 1)",
           },
           "neutral": {
@@ -3176,11 +3176,11 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
             "subtle": "hsla(215, 16%, 47%, 1)",
           },
           "notice": {
-            "intense": "hsla(34, 94%, 35%, 1)",
+            "intense": "hsla(35, 99%, 27%, 1)",
             "subtle": "hsla(36, 93%, 84%, 1)",
           },
           "positive": {
-            "intense": "hsla(143, 72%, 31%, 1)",
+            "intense": "hsla(142, 71%, 25%, 1)",
             "subtle": "hsla(139, 52%, 87%, 1)",
           },
         },
@@ -3533,7 +3533,7 @@ exports[`createTheme should create a theme with the correct brand colors 4`] = `
         },
         "border": {
           "gray": {
-            "muted": "hsla(222, 47%, 11%, 0.12)",
+            "muted": "hsla(222, 47%, 11%, 0.126)",
             "normal": "hsla(213, 27%, 84%, 1)",
             "subtle": "hsla(214, 32%, 91%, 1)",
           },
