@@ -60,27 +60,21 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
 ];
 
 /**
- * Table has no `emptyState` prop - when `data.nodes` is `[]`, the `columns`/`children` API still
- * renders `TableHeader` (and toolbar, if any) with zero rows underneath, which reads as a broken
- * or still-loading table rather than an intentional "nothing here" state.
+ * Two empty cases, two patterns:
  *
- * The recommended pattern is a thin consumer-side wrapper: check `data.nodes.length` *before*
- * deciding whether to render `Table` at all, and render `EmptyState` in its place when there's
- * nothing to show. This story simulates a freshly-created workspace with zero transactions - use
- * the button to load sample data and see the same spot render `Table` instead.
+ * - **No results after filtering/searching** - pass `emptyState` (e.g. an `EmptyState`) to
+ *   `Table`. It renders in place of the body rows, spans every column and is centered in the body
+ *   space below the header, while the toolbar, header and filter row stay visible - so the search
+ *   or filter that produced the empty result is still right there to clear. No grid-column hack
+ *   needed. See *Fixed Height* for how it fills a fixed-`height` table.
+ * - **No data at all** (this story: a freshly-created workspace with zero transactions) - a
+ *   consumer-side wrapper that renders `EmptyState` *instead of* `Table` is still the better fit:
+ *   there's nothing to filter, and the copy/CTA ("Import your first transactions") is about
+ *   onboarding, not about the table. Use the button to load sample data and see the same spot
+ *   render `Table` instead.
  *
- * Why a wrapper and not a built-in `Table` prop (e.g. `emptyState`)? A generic prop would only
- * know the array is empty, not *why* - "no data at all" (this story) needs very different
- * illustration/copy/actions (e.g. "Import your first transactions") than "no results after
- * filtering" (see the other story on this page, e.g. "Clear search"). Only the consumer, who owns
- * that context, can pick the right copy and CTA - `Table` funneling `asset`/`title`/
- * `description`/`children` through as pass-through props would just be indirection around
- * `EmptyState`'s own API for no real gain. The one place a built-in slot could still pull its
- * weight is as a lightweight safety net for exactly this "zero rows total" case (e.g. an optional
- * `emptyState?: React.ReactNode` `Table` renders instead of the header/body when
- * `data.nodes.length === 0`), so a team can't accidentally ship the bare-header state by
- * forgetting the wrapper - deliberately left out of scope here since the wrapper alone already
- * handles it with no loss of flexibility.
+ * Only the consumer knows *why* the list is empty, so `emptyState` takes whatever node fits -
+ * Table only decides where it goes and how much space it gets.
  */
 export const NoDataAtAll = (): React.ReactElement => {
   const [hasData, setHasData] = React.useState(false);

@@ -321,3 +321,75 @@ PaginationTotalCount.play = async () => {
   await userEvent.click(getByRole('button', { name: 'Page 3' }));
   await expect(getByText('Showing 5-5 Items')).toBeInTheDocument();
 };
+
+const FixedHeightTable = ({ rowCount }: { rowCount: number }): React.ReactElement => (
+  <Table<Item>
+    data={{
+      nodes: Array.from({ length: rowCount }, (_, index) => ({
+        ...nodes[index % nodes.length],
+        id: String(index + 1),
+      })),
+    }}
+    height="400px"
+    isHeaderSticky
+    filterFunctions={filterFunctions}
+    emptyState={<p>{`No results (${rowCount} rows)`}</p>}
+  >
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell headerKey="NAME">{`Name (${rowCount} rows)`}</TableHeaderCell>
+            <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item) => (
+            <TableRow key={item.id} item={item}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
+
+export const FixedHeightRowCounts: StoryFn = (): React.ReactElement => (
+  <>
+    <FixedHeightTable rowCount={0} />
+    <FixedHeightTable rowCount={3} />
+    <FixedHeightTable rowCount={100} />
+  </>
+);
+
+/**
+ * A fixed-height Table's header rows (label + filter row) are the same height with 0, 3 or 100
+ * body rows - the grid never stretches rows into leftover height - and `emptyState` is centered
+ * in the body space below the header.
+ */
+FixedHeightRowCounts.play = async () => {
+  const tables = Array.from(document.querySelectorAll<HTMLElement>('table[role="table"]'));
+  const headerRowHeights = tables.map((table) =>
+    Array.from(table.querySelectorAll('thead tr')).map(
+      (row) => row.firstElementChild!.getBoundingClientRect().height,
+    ),
+  );
+
+  await expect(tables).toHaveLength(3);
+  await expect(headerRowHeights[0]).toEqual(headerRowHeights[2]);
+  await expect(headerRowHeights[1]).toEqual(headerRowHeights[2]);
+
+  const emptyCell = within(tables[0]).getByText('No results (0 rows)').closest('td')!;
+  const cellBox = emptyCell.getBoundingClientRect();
+  const contentBox = emptyCell.firstElementChild!.getBoundingClientRect();
+  const tableBox = tables[0].getBoundingClientRect();
+  const headerHeight = headerRowHeights[0].reduce((sum, height) => sum + height, 0);
+  await expect(
+    Math.round(
+      Math.abs(cellBox.top + cellBox.height / 2 - (contentBox.top + contentBox.height / 2)),
+    ),
+  ).toBe(0);
+  await expect(Math.round(cellBox.height)).toBe(Math.round(tableBox.height - headerHeight));
+};
