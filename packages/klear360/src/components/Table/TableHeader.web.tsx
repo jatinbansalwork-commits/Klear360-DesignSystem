@@ -120,8 +120,13 @@ const StyledHeader = styled(Header)<{ $tableToolbarPlacement: TableToolbarPlacem
 
 const StyledFilterHeaderCell = styled(HeaderCell)<{
   $backgroundColor: TableBackgroundColors;
-}>(({ theme, $backgroundColor }) => ({
+  $stickyTopOffsetPx?: number;
+}>(({ theme, $backgroundColor, $stickyTopOffsetPx }) => ({
   '&&&': {
+    // Same sticky-offset mechanism as `StyledHeaderCell` (grouped multi-row headers) - pins the
+    // filter row directly below the label row(s) instead of also sticking to `top: 0` and sliding
+    // over them on vertical scroll.
+    ...($stickyTopOffsetPx ? { top: `${$stickyTopOffsetPx}px` } : {}),
     display: 'flex',
     alignItems: 'center',
     height: '100%',
@@ -215,10 +220,14 @@ const getHeaderCellsMeta = (
  * `filterConfig.options` instead of consumer-authored `ActionListItem`s, and controlled by the
  * filter row's own `columnFilterValues` state instead of being uncontrolled.
  *
- * `isTableInputCell` + a leading `SearchIcon` match this to its plain-text sibling below
- * (`BaseInput isTableInputCell leadingIcon={SearchIcon}`) - same borderless, cell-edge-flush look,
- * same icon treatment - rather than `SelectInput`'s normal bordered, button-like appearance, which
- * read as visually inconsistent sitting next to a plain search box in the same filter row.
+ * `isTableInputCell` matches this to its plain-text sibling below (`BaseInput isTableInputCell`) -
+ * same borderless, cell-edge-flush look - rather than `SelectInput`'s normal bordered, button-like
+ * appearance, which read as visually inconsistent sitting next to a plain search box in the same
+ * filter row.
+ *
+ * Unlike that text filter, there's deliberately no leading `SearchIcon` here: this is a picker,
+ * not a search - the trailing chevron already says "choose from a list", and a search icon
+ * suggested you could type to search instead.
  */
 const TableHeaderFilterDropdownCell = ({
   headerKey,
@@ -241,7 +250,6 @@ const TableHeaderFilterDropdownCell = ({
           testID={`table-header-filter-${headerKey}`}
           size="small"
           isTableInputCell
-          icon={SearchIcon}
           value={value ?? (isMultiselect ? [] : '')}
           onChange={({ values }) => onChange(isMultiselect ? values : values[0] ?? '')}
           placeholder={`Filter ${labelText}`}
@@ -269,8 +277,10 @@ const TableHeaderFilterDropdownCell = ({
  */
 const TableHeaderFilterRow = ({
   headerRow,
+  stickyTopOffsetPx,
 }: {
   headerRow: React.ReactNode;
+  stickyTopOffsetPx?: number;
 }): React.ReactElement => {
   const {
     filterableColumns,
@@ -281,8 +291,11 @@ const TableHeaderFilterRow = ({
     selectionType,
     hasHoverActions,
     showBorderedCells,
+    shouldHeaderBeSticky,
   } = useTableContext();
   const cellsMeta = getHeaderCellsMeta(headerRow);
+  // See `_TableHeaderRow`'s `cellStickyTopOffsetPx` - only meaningful once cells are sticky.
+  const cellStickyTopOffsetPx = shouldHeaderBeSticky ? stickyTopOffsetPx : undefined;
 
   return (
     // See the real header row's own `role="row"` override below for why this is explicit.
@@ -298,7 +311,11 @@ const TableHeaderFilterRow = ({
       {selectionType === 'multiple' && (
         // Purely a grid-alignment spacer (no filter for the checkbox column) - excluded from the
         // accessibility tree rather than announced as an empty column header.
-        <StyledFilterHeaderCell role="presentation" $backgroundColor={backgroundColor} />
+        <StyledFilterHeaderCell
+          role="presentation"
+          $backgroundColor={backgroundColor}
+          $stickyTopOffsetPx={cellStickyTopOffsetPx}
+        />
       )}
       {cellsMeta.map(({ headerKey, label }, index) => {
         const isFilterable = headerKey && filterableColumns.includes(headerKey);
@@ -310,6 +327,7 @@ const TableHeaderFilterRow = ({
             // `role="presentation"` so it isn't announced as an empty column header.
             role={isFilterable ? undefined : 'presentation'}
             $backgroundColor={backgroundColor}
+            $stickyTopOffsetPx={cellStickyTopOffsetPx}
           >
             {isFilterable && headerKey && filterConfig[headerKey] ? (
               <TableHeaderFilterDropdownCell
@@ -354,7 +372,11 @@ const TableHeaderFilterRow = ({
         );
       })}
       {hasHoverActions && (
-        <StyledFilterHeaderCell role="presentation" $backgroundColor={backgroundColor} />
+        <StyledFilterHeaderCell
+          role="presentation"
+          $backgroundColor={backgroundColor}
+          $stickyTopOffsetPx={cellStickyTopOffsetPx}
+        />
       )}
     </StyledHeaderRow>
   );
@@ -365,8 +387,23 @@ const TableHeaderFilterRow = ({
 // fixed height to stack each row's sticky `top` below the one(s) above it.
 const HEADER_ROW_HEIGHT_PX = Number(tableRow.minHeight.compact);
 
+/**
+ * Sticky `top` for the auto-injected filter row: the combined height of the label row(s) above
+ * it. Each label row sits at `rowIndex * HEADER_ROW_HEIGHT_PX` (see `_TableHeader`), and the last
+ * one also renders its own bottom border below that fixed height - so the filter row starts right
+ * after it rather than covering it.
+ */
+const getFilterRowStickyTopOffsetPx = ({
+  labelRowCount,
+  borderWidthPx,
+}: {
+  labelRowCount: number;
+  borderWidthPx: number;
+}): number => Math.max(labelRowCount, 1) * HEADER_ROW_HEIGHT_PX + borderWidthPx;
+
 const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactElement => {
   const { tableToolbarPlacement, filterableColumns } = useTableContext();
+  const { theme } = useTheme();
 
   // `TableHeader` may contain more than one `TableHeaderRow` (grouped multi-row headers - earlier
   // rows are group-label rows spanning leaf columns via `gridColumnStart`/`gridColumnEnd`, see
@@ -397,7 +434,15 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
       {...makeAnalyticsAttribute(rest)}
     >
       {decoratedChildren}
-      {filterableColumns.length > 0 && <TableHeaderFilterRow headerRow={children} />}
+      {filterableColumns.length > 0 && (
+        <TableHeaderFilterRow
+          headerRow={children}
+          stickyTopOffsetPx={getFilterRowStickyTopOffsetPx({
+            labelRowCount: headerRowIndices.length,
+            borderWidthPx: getIn(theme.border.width, tableHeader.borderBottomAndTopWidth),
+          })}
+        />
+      )}
     </StyledHeader>
   );
 };

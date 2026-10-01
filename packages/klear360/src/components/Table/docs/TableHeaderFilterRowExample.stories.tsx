@@ -143,4 +143,82 @@ export const MixedFilterRow = (): React.ReactElement => {
   );
 };
 
+const stickyFilterRowExampleData = createTransactionTableData(60);
+
+/**
+ * Sticky header + frozen leading/trailing columns + the auto-injected filter row, on a table tall
+ * and wide enough to scroll both ways. Scrolled down, the label row and the filter row both stay
+ * pinned (the filter row sticks directly below the labels, not on top of them). Scrolled right, the
+ * scrolling header cells pass under the frozen `Transaction ID` / `Incoterm` header and filter
+ * cells, and frozen body cells never paint over either header row.
+ */
+export const StickyHeaderWithFrozenColumns = (): React.ReactElement => {
+  return (
+    <Box backgroundColor="surface.background.gray.intense" padding="spacing.5">
+      <Box paddingBottom="spacing.4">
+        <Heading>Header Filter Row: Sticky Header + Frozen Columns</Heading>
+        <Text>
+          `isHeaderSticky`, `isFirstColumnSticky` and `isLastColumnSticky` combined with
+          `filterFunctions` (including a `filterConfig` dropdown column). Scroll down, right, or
+          both - the column labels and filter inputs stay visible, and frozen cells stay on top.
+        </Text>
+      </Box>
+      <Table
+        data={stickyFilterRowExampleData}
+        height="480px"
+        isHeaderSticky
+        isFirstColumnSticky
+        isLastColumnSticky
+        gridTemplateColumns="repeat(10, 200px)"
+        filterFunctions={filterFunctions}
+        filterConfig={{
+          TRANSACTION_STATE: { type: 'multiselect', options: transactionStateOptions },
+        }}
+        onColumnFilterValuesChange={action('onColumnFilterValuesChange')}
+      >
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Transaction ID</TableHeaderCell>
+                <TableHeaderCell headerKey="COMPANY_NAME">Company Name</TableHeaderCell>
+                <TableHeaderCell headerKey="TRANSACTION_STATE">Transaction State</TableHeaderCell>
+                <TableHeaderCell headerKey="VESSEL_NAME">Vessel Name</TableHeaderCell>
+                <TableHeaderCell>Shipment Number</TableHeaderCell>
+                <TableHeaderCell>MBL</TableHeaderCell>
+                <TableHeaderCell>HBL</TableHeaderCell>
+                <TableHeaderCell>Country of Export</TableHeaderCell>
+                <TableHeaderCell>Port of Loading</TableHeaderCell>
+                <TableHeaderCell>Incoterm</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>
+                    <Code size="medium">{item.transactionId}</Code>
+                  </TableCell>
+                  <TableCell>{item.companyName}</TableCell>
+                  <TableCell>
+                    <Badge size="medium" color={getTransactionStateColor(item.transactionState)}>
+                      {item.transactionState}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>{item.vesselName}</TableCell>
+                  <TableCell>{item.shipmentNumber}</TableCell>
+                  <TableCell>{item.mbl}</TableCell>
+                  <TableCell>{item.hbl}</TableCell>
+                  <TableCell>{item.countryOfExport}</TableCell>
+                  <TableCell>{item.portOfLoading}</TableCell>
+                  <TableCell>{item.incoterm}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>
+    </Box>
+  );
+};
+
 export default TableMeta;

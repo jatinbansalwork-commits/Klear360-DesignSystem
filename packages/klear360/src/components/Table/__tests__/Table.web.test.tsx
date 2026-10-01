@@ -818,6 +818,148 @@ describe('<Table />', () => {
     window.matchMedia = originalMatchMedia;
   });
 
+  describe('sticky header + sticky columns + filter row stacking', () => {
+    const stickyFilterFunctions = {
+      paymentId: (item: Item, value: string | string[]) =>
+        typeof value === 'string' && item.paymentId.includes(value),
+      status: (item: Item, value: string | string[]) =>
+        Array.isArray(value) ? value.length === 0 || value.includes(item.status) : true,
+    };
+
+    const renderStickyFilterTable = (
+      props: Partial<TableProps<Item>> = {},
+      headerRows: React.ReactNode = (
+        <TableHeaderRow>
+          <TableHeaderCell headerKey="paymentId">Payment ID</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
+          <TableHeaderCell headerKey="status">Status</TableHeaderCell>
+        </TableHeaderRow>
+      ),
+    ): RenderResult =>
+      renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 3) }}
+          isHeaderSticky
+          isFirstColumnSticky
+          isLastColumnSticky
+          filterFunctions={stickyFilterFunctions}
+          filterConfig={{
+            status: {
+              type: 'multiselect',
+              options: [
+                { label: 'Completed', value: 'Completed' },
+                { label: 'Pending', value: 'Pending' },
+              ],
+            },
+          }}
+          {...props}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>{headerRows}</TableHeader>
+              <TableBody>
+                {tableData.map((tableItem, index) => (
+                  <TableRow item={tableItem} key={index}>
+                    <TableCell>{tableItem.paymentId}</TableCell>
+                    <TableCell>{tableItem.amount}</TableCell>
+                    <TableCell>{tableItem.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+
+    // `auto` / unset z-index stacks at 0 within the table's stacking context.
+    const zIndexOf = (element: Element | null | undefined): number =>
+      Number.parseInt(window.getComputedStyle(element!).zIndex, 10) || 0;
+    const headerRowsOf = (container: HTMLElement): HTMLTableRowElement[] =>
+      Array.from(container.querySelectorAll<HTMLTableRowElement>('thead tr'));
+
+    it('layers frozen header cells above frozen body cells and above scrolling header cells', () => {
+      const { container } = renderStickyFilterTable();
+      const [labelRow, filterRow] = headerRowsOf(container);
+      const firstBodyRow = container.querySelector('tbody tr');
+
+      // [leading frozen, scrolling, trailing frozen] - same column order in every row.
+      for (const headerRow of [labelRow, filterRow]) {
+        const [leadingHeader, scrollingHeader, trailingHeader] = Array.from(headerRow.children);
+        const [leadingBody, , trailingBody] = Array.from(firstBodyRow!.children);
+
+        expect(leadingHeader).toHaveStyle({ position: 'sticky', left: '0px' });
+        expect(trailingHeader).toHaveStyle({ position: 'sticky', right: '0px' });
+
+        // Scrolled down: frozen body cells pass under the frozen header.
+        expect(zIndexOf(leadingHeader)).toBeGreaterThan(zIndexOf(leadingBody));
+        expect(zIndexOf(trailingHeader)).toBeGreaterThan(zIndexOf(trailingBody));
+        // Scrolled right: scrolling header cells pass under the frozen header.
+        expect(zIndexOf(leadingHeader)).toBeGreaterThan(zIndexOf(scrollingHeader));
+        expect(zIndexOf(trailingHeader)).toBeGreaterThan(zIndexOf(scrollingHeader));
+        // ...but only frozen header cells are raised - scrolling ones stay below frozen body cells.
+        expect(zIndexOf(scrollingHeader)).toBeLessThan(zIndexOf(leadingBody));
+      }
+    });
+
+    it('sticks the filter row directly below the label row', () => {
+      const { container } = renderStickyFilterTable();
+      const [labelRow, filterRow] = headerRowsOf(container);
+
+      // Label row: 36px compact header row + its 1px bottom border.
+      Array.from(labelRow.children).forEach((cell) => expect(cell).toHaveStyle({ top: '0px' }));
+      Array.from(filterRow.children).forEach((cell) =>
+        expect(cell).toHaveStyle({ position: 'sticky', top: '37px' }),
+      );
+    });
+
+    it('sticks the filter row below every row of a grouped multi-row header, leaving the grouped rows unchanged', () => {
+      // Rows passed as an array (not a fragment) - `TableHeader` counts its direct
+      // `TableHeaderRow` children, the same way consumers write grouped headers inline.
+      const { container } = renderStickyFilterTable({}, [
+        <TableHeaderRow key="group">
+          <TableHeaderCell gridColumnStart={1} gridColumnEnd={3}>
+            Payment
+          </TableHeaderCell>
+          <TableHeaderCell gridColumnStart={3} gridColumnEnd={4}>
+            State
+          </TableHeaderCell>
+        </TableHeaderRow>,
+        <TableHeaderRow key="leaf">
+          <TableHeaderCell headerKey="paymentId">Payment ID</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
+          <TableHeaderCell headerKey="status">Status</TableHeaderCell>
+        </TableHeaderRow>,
+      ]);
+      const [groupRow, leafRow, filterRow] = headerRowsOf(container);
+
+      Array.from(groupRow.children).forEach((cell) => expect(cell).toHaveStyle({ top: '0px' }));
+      Array.from(leafRow.children).forEach((cell) => expect(cell).toHaveStyle({ top: '36px' }));
+      Array.from(filterRow.children).forEach((cell) => expect(cell).toHaveStyle({ top: '73px' }));
+    });
+
+    it('does not offset the filter row when the header is not sticky', () => {
+      const { container } = renderStickyFilterTable({
+        isHeaderSticky: false,
+        isFirstColumnSticky: false,
+        isLastColumnSticky: false,
+      });
+      const [, filterRow] = headerRowsOf(container);
+
+      Array.from(filterRow.children).forEach((cell) => {
+        expect(cell).toHaveStyle({ position: 'relative' });
+        expect(cell).not.toHaveStyle({ top: '37px' });
+      });
+    });
+
+    it('scopes sticky z-indexes to the table so the refresh overlay covers frozen header cells', () => {
+      const { getByRole } = renderStickyFilterTable({ isRefreshing: true });
+
+      // The overlay is the table's sibling: without its own stacking context, frozen header cells
+      // (z-index above the overlay's) would paint over it while refreshing.
+      expect(getByRole('table')).toHaveStyle({ isolation: 'isolate' });
+    });
+  });
+
   it('throws in dev mode when trailingStickyColumnCount > 1 without matching trailingStickyColumnWidths', () => {
     expect(() =>
       renderWithTheme(
