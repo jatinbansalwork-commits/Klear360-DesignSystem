@@ -389,6 +389,13 @@ type TableProps<Item> = TableChildrenProps<Item> & {
    **/
   isRefreshing?: boolean;
   /**
+   * Rendered in place of the body rows when there are no rows to show (no data, or nothing left
+   * after filtering) - e.g. an `EmptyState`. It spans every column and fills the body space left
+   * below the header (centered in it), while the toolbar, header, filter row and pagination stay
+   * visible - so the filter that produced the empty result is still there to clear.
+   */
+  emptyState?: React.ReactNode;
+  /**
    * The showBorderedCells prop determines whether the table should have bordered cells or not.
    * The default value is `true`.
    **/

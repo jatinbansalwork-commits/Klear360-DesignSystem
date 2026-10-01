@@ -52,6 +52,8 @@ export type TableContextType<Item> = {
   showBorderedCells: NonNullable<TableProps<unknown>['showBorderedCells']>;
   /** Whether the header is currently rendered sticky (see `TableProps['isHeaderSticky']`, and sticky columns which force it on too). */
   shouldHeaderBeSticky: boolean;
+  /** `TableProps['emptyState']`, set only while there are no rows to show - TableBody renders it in place of its rows. */
+  activeEmptyState?: React.ReactNode;
   hasHoverActions: boolean;
   setHasHoverActions: (hasHoverActions: boolean) => void;
   multiSelectTrigger?: TableProps<unknown>['multiSelectTrigger'];

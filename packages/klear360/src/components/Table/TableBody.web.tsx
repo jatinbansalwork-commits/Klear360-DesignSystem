@@ -61,8 +61,21 @@ const StyledBody = styled(Body)<{
   };
 });
 
+// A single row spanning every column; Table gives it the leftover body height (see
+// `isShowingEmptyState` in Table.web.tsx) and the content is centered in it.
+const StyledEmptyStateCell = styled.td(({ theme }) => ({
+  gridColumn: '1 / -1',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingTop: makeSpace(theme.spacing[8]),
+  paddingBottom: makeSpace(theme.spacing[8]),
+  paddingLeft: makeSpace(theme.spacing[5]),
+  paddingRight: makeSpace(theme.spacing[5]),
+}));
+
 const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.ReactElement => {
-  const { showStripedRows, selectionType } = useTableContext();
+  const { showStripedRows, selectionType, activeEmptyState } = useTableContext();
   const isSelectable = selectionType !== 'none';
 
   return (
@@ -73,7 +86,15 @@ const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.R
       {...metaAttribute({ name: MetaConstants.TableBody })}
       {...makeAnalyticsAttribute(rest)}
     >
-      {children}
+      {activeEmptyState != null ? (
+        <tr role="row" style={{ display: 'contents' }}>
+          <StyledEmptyStateCell role="cell" {...metaAttribute({ name: MetaConstants.TableCell })}>
+            {activeEmptyState}
+          </StyledEmptyStateCell>
+        </tr>
+      ) : (
+        children
+      )}
     </StyledBody>
   );
 };

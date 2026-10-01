@@ -106,6 +106,35 @@ const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): nu
   return 0;
 };
 
+/**
+ * Number of grid rows the header and footer occupy - one per `TableHeaderRow`/`TableFooterRow`,
+ * plus the auto-injected filter row. Used to give the empty-state row (and only it) the leftover
+ * height while `emptyState` is shown.
+ */
+const getTableSectionRowCounts = (
+  children: (data: []) => React.ReactElement,
+): { headerRowCount: number; footerRowCount: number } => {
+  const tableRootComponent = children([]);
+  const sections = React.isValidElement(tableRootComponent)
+    ? React.Children.toArray(
+        (React.Children.toArray(tableRootComponent)[0] as React.ReactElement | undefined)?.props
+          ?.children,
+      )
+    : [];
+  const countRows = (sectionId: string, rowId: string): number => {
+    const section = sections.find((child) => getComponentId(child) === sectionId);
+    return React.isValidElement(section)
+      ? React.Children.toArray((section.props as { children?: React.ReactNode }).children).filter(
+          (child) => getComponentId(child) === rowId,
+        ).length
+      : 0;
+  };
+  return {
+    headerRowCount: countRows(ComponentIds.TableHeader, ComponentIds.TableHeaderRow),
+    footerRowCount: countRows(ComponentIds.TableFooter, ComponentIds.TableFooterRow),
+  };
+};
+
 const StyledReactTable = styled(ReactTable)<{
   $styledProps?: {
     height?: BoxProps['height'];
@@ -211,6 +240,7 @@ const _Table = <Item,>({
   gridTemplateColumns: gridTemplateColumnsProp,
   isLoading = false,
   isRefreshing = false,
+  emptyState,
   showBorderedCells = true,
   defaultSelectedIds = [],
   backgroundColor = tableBackgroundColor,
@@ -433,6 +463,13 @@ const _Table = <Item,>({
 
   // Table Theme
   const columnCount = getTableHeaderCellCount(resolvedChildren);
+  // Filtering/sorting never changes the row count past this point, so "no rows left" is known here.
+  const isShowingEmptyState = emptyState != null && filteredData.nodes.length === 0;
+  const { headerRowCount, footerRowCount } = useMemo(
+    () => getTableSectionRowCounts(resolvedChildren),
+    [resolvedChildren],
+  );
+  const headerGridRowCount = headerRowCount + (filterableColumns.length > 0 ? 1 : 0);
 
   // Shared by header/body/footer cells - freezes the leading `stickyColumnCount` columns (plus
   // the multi-select checkbox column, when present) at their cumulative left offset, computed
@@ -561,6 +598,19 @@ const _Table = <Item,>({
           } !important;`
     } !important;
     background-color: ${getIn(theme.colors, backgroundColor)};
+    /* Rows always keep their natural height - without this, a fixed-height table with few or no
+    rows shares the leftover height between the rows that exist (header rows included), so the
+    header changes size the moment a filter returns nothing. Leftover space stays empty surface. */
+    align-content: start;
+    ${
+      isShowingEmptyState
+        ? `grid-template-rows: ${
+            headerGridRowCount > 0 ? `repeat(${headerGridRowCount}, max-content)` : ''
+          } minmax(max-content, 1fr) ${
+            footerRowCount > 0 ? `repeat(${footerRowCount}, max-content)` : ''
+          };`
+        : ''
+    }
     /* Scopes the sticky cells' z-indexes (see tokens.ts) to the table itself, so they can't
     paint over the refresh overlay rendered as this element's sibling. */
     isolation: isolate;
@@ -947,6 +997,7 @@ const _Table = <Item,>({
       setHeaderRowDensity,
       showBorderedCells,
       shouldHeaderBeSticky,
+      activeEmptyState: isShowingEmptyState ? emptyState : undefined,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
@@ -994,6 +1045,8 @@ const _Table = <Item,>({
       setHeaderRowDensity,
       showBorderedCells,
       shouldHeaderBeSticky,
+      isShowingEmptyState,
+      emptyState,
       hasHoverActions,
       setHasHoverActions,
       multiSelectTrigger,
