@@ -2332,6 +2332,39 @@ describe('<Table />', () => {
         </Table>,
       );
 
+    it('text filters read "Search <column>" with a trailing search icon that the clear button replaces once filled', async () => {
+      const user = userEvent.setup();
+      const { getByRole, queryByRole } = renderFilterableTable();
+      const nameFilter = getByRole('textbox', { name: 'Search Name' });
+      const filterCell = nameFilter.closest('th')!;
+      // Every icon in the cell, minus the ones inside the clear button - i.e. the search icon.
+      const getSearchIcons = (): Element[] =>
+        Array.from(filterCell.querySelectorAll('svg')).filter((icon) => !icon.closest('button'));
+
+      expect(nameFilter).toHaveAttribute('placeholder', 'Search Name');
+      expect(getSearchIcons()).toHaveLength(1);
+      expect(queryByRole('button', { name: 'Clear Name filter' })).not.toBeInTheDocument();
+
+      await user.type(nameFilter, 'jane');
+      expect(getByRole('button', { name: 'Clear Name filter' })).toBeInTheDocument();
+      expect(getSearchIcons()).toHaveLength(0);
+
+      await user.click(getByRole('button', { name: 'Clear Name filter' }));
+      expect(nameFilter).toHaveValue('');
+      expect(getSearchIcons()).toHaveLength(1);
+      expect(queryByRole('button', { name: 'Clear Name filter' })).not.toBeInTheDocument();
+    });
+
+    it('dropdown/multiselect filters read "Select <column>"', () => {
+      const { getByRole } = renderFilterableTable({
+        filterConfig: {
+          STATUS: { type: 'multiselect', options: [{ label: 'Pending', value: 'pending' }] },
+        },
+      });
+
+      expect(getByRole('combobox', { name: 'Select Status' })).toBeInTheDocument();
+    });
+
     it('renders a filter input only for columns present in filterFunctions', () => {
       const { getAllByRole, getByRole } = renderWithTheme(
         <Table
@@ -2359,7 +2392,7 @@ describe('<Table />', () => {
           )}
         </Table>,
       );
-      expect(getByRole('textbox', { name: 'Filter by Status' })).toBeInTheDocument();
+      expect(getByRole('textbox', { name: 'Search Status' })).toBeInTheDocument();
       // Exactly one filter input rendered - the Name column has no headerKey/filterFunctions
       // entry, so its filter-row cell stays empty (present only to keep grid alignment).
       expect(getAllByRole('textbox')).toHaveLength(1);
@@ -2393,14 +2426,14 @@ describe('<Table />', () => {
       const user = userEvent.setup();
       const { getByRole, queryByText } = renderFilterableTable();
 
-      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      await user.type(getByRole('textbox', { name: 'Search Status' }), 'pending');
       expect(queryByText('John Doe')).toBeInTheDocument(); // klear01, pending
       expect(queryByText('Jane Doe')).toBeInTheDocument(); // klear02, pending
       expect(queryByText('Alice Smith')).not.toBeInTheDocument(); // klear03, failed
       expect(queryByText('Bob Smith')).not.toBeInTheDocument(); // klear04, completed
 
       // Adding a second column filter narrows further (AND, not OR).
-      await user.type(getByRole('textbox', { name: 'Filter by Name' }), 'jane');
+      await user.type(getByRole('textbox', { name: 'Search Name' }), 'jane');
       expect(queryByText('Jane Doe')).toBeInTheDocument();
       expect(queryByText('John Doe')).not.toBeInTheDocument();
     });
@@ -2431,7 +2464,7 @@ describe('<Table />', () => {
         ),
       });
 
-      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      await user.type(getByRole('textbox', { name: 'Search Status' }), 'pending');
       await user.type(getByRole('textbox', { name: 'Search table' }), 'jane');
       expect(queryByText('Jane Doe')).toBeInTheDocument();
       expect(queryByText('John Doe')).not.toBeInTheDocument();
@@ -2478,7 +2511,7 @@ describe('<Table />', () => {
       expect(queryByText('Bob Smith')).not.toBeInTheDocument();
       // Controlled - typing in the (now-uncontrolled-looking) filter input shouldn't be needed;
       // this just confirms the input reflects the controlled value.
-      expect(getByRole('textbox', { name: 'Filter by Status' })).toHaveValue('pending');
+      expect(getByRole('textbox', { name: 'Search Status' })).toHaveValue('pending');
     });
 
     const statusFilterConfig = {
@@ -2497,10 +2530,10 @@ describe('<Table />', () => {
         filterConfig: statusFilterConfig,
       });
 
-      expect(getByRole('combobox', { name: 'Filter by Status' })).toBeInTheDocument();
-      expect(queryByRole('textbox', { name: 'Filter by Status' })).not.toBeInTheDocument();
+      expect(getByRole('combobox', { name: 'Select Status' })).toBeInTheDocument();
+      expect(queryByRole('textbox', { name: 'Search Status' })).not.toBeInTheDocument();
       // The other filterable columns (no filterConfig entry) keep the plain text input.
-      expect(getByRole('textbox', { name: 'Filter by Name' })).toBeInTheDocument();
+      expect(getByRole('textbox', { name: 'Search Name' })).toBeInTheDocument();
     });
 
     // Driving the dropdown open (click -> select an option) goes through `@floating-ui/react`'s
@@ -2636,7 +2669,7 @@ describe('<Table />', () => {
         </Table>,
       );
 
-      await user.type(getByRole('textbox', { name: 'Filter by Status' }), 'pending');
+      await user.type(getByRole('textbox', { name: 'Search Status' }), 'pending');
       // Only klear01 (100) and klear02 (240) are "pending" - AMOUNT is the only sortable column.
       fireEvent.click(getByLabelText('Toggle Sort'));
 
@@ -2676,7 +2709,7 @@ describe('<Table />', () => {
         </Table>,
       );
 
-      fireEvent.change(getByRole('textbox', { name: 'Filter by Status' }), {
+      fireEvent.change(getByRole('textbox', { name: 'Search Status' }), {
         target: { value: 'pending' },
       });
       // 2 of 5 rows match "pending" (klear01, klear02).

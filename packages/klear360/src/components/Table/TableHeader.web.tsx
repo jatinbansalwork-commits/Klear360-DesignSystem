@@ -225,9 +225,10 @@ const getHeaderCellsMeta = (
  * appearance, which read as visually inconsistent sitting next to a plain search box in the same
  * filter row.
  *
- * Unlike that text filter, there's deliberately no leading `SearchIcon` here: this is a picker,
- * not a search - the trailing chevron already says "choose from a list", and a search icon
- * suggested you could type to search instead.
+ * There's no `SearchIcon` here: this is a picker, not a search - its trailing chevron says
+ * "choose from a list", hence "Select <column>". The text filter below reads "Search <column>"
+ * instead and puts its search icon in that same trailing spot, so every filter in the row shows
+ * its affordance in the same place.
  */
 const TableHeaderFilterDropdownCell = ({
   headerKey,
@@ -252,8 +253,8 @@ const TableHeaderFilterDropdownCell = ({
           isTableInputCell
           value={value ?? (isMultiselect ? [] : '')}
           onChange={({ values }) => onChange(isMultiselect ? values : values[0] ?? '')}
-          placeholder={`Filter ${labelText}`}
-          accessibilityLabel={`Filter by ${labelText}`}
+          placeholder={`Select ${labelText}`}
+          accessibilityLabel={`Select ${labelText}`}
         />
         <DropdownOverlay>
           <ActionList>
@@ -341,7 +342,15 @@ const TableHeaderFilterRow = ({
               // Flush/borderless input filling the cell edge-to-edge (`isTableInputCell`), same
               // treatment as TableEditableCell's body-row inputs - the cell's own `:focus-within`
               // (see StyledFilterHeaderCell) shows the ring instead of the input itself.
-              <BaseBox flex={1} marginX="spacing.2">
+              //
+              // These are lookups (a known HBOL, MBOL, entry or shipment ID), so the field reads as
+              // a search, with its icon trailing - in the same spot as the dropdown filters'
+              // chevron. Once there's a value, the clear button takes that spot instead: one
+              // trailing affordance at a time (BaseInput would otherwise render both side by side).
+              //
+              // With no leading icon, BaseInput's text sits a little closer to its edge than
+              // SelectInput's does - the extra left inset lines both filters' text up in the row.
+              <BaseBox flex={1} marginX="spacing.2" paddingLeft="spacing.2">
                 <BaseInput
                   isTableInputCell
                   id={`table-header-filter-${headerKey}`}
@@ -352,9 +361,9 @@ const TableHeaderFilterRow = ({
                       : ''
                   }
                   onChange={({ value }) => setColumnFilterValue(headerKey, value ?? '')}
-                  placeholder={`Filter ${labelText}`}
-                  accessibilityLabel={`Filter by ${labelText}`}
-                  leadingIcon={SearchIcon}
+                  placeholder={`Search ${labelText}`}
+                  accessibilityLabel={`Search ${labelText}`}
+                  trailingIcon={columnFilterValues[headerKey] ? undefined : SearchIcon}
                   trailingInteractionElement={
                     columnFilterValues[headerKey] ? (
                       <IconButton
