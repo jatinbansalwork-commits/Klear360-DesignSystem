@@ -100,7 +100,7 @@ export const ColumnFilter: StoryFn = (): React.ReactElement => <FilterableTable 
 
 ColumnFilter.play = async () => {
   const { getByRole, queryByText } = within(document.body);
-  const statusFilter = getByRole('textbox', { name: 'Filter by Status' });
+  const statusFilter = getByRole('textbox', { name: 'Search Status' });
 
   await userEvent.type(statusFilter, 'completed');
   await expect(queryByText('John Doe')).toBeInTheDocument();
@@ -113,7 +113,7 @@ export const CombinedFilters: StoryFn = (): React.ReactElement => <FilterableTab
 
 CombinedFilters.play = async () => {
   const { getByRole, queryByText } = within(document.body);
-  const statusFilter = getByRole('textbox', { name: 'Filter by Status' });
+  const statusFilter = getByRole('textbox', { name: 'Search Status' });
   const searchInput = getByRole('textbox', { name: 'Search table' });
 
   // Column filter narrows to "Completed" rows (John Doe, Alice Smith)...
@@ -130,9 +130,9 @@ export const Accessibility: StoryFn = (): React.ReactElement => <FilterableTable
 Accessibility.play = async () => {
   const { getByRole } = within(document.body);
   const searchInput = getByRole('textbox', { name: 'Search table' });
-  const nameFilter = getByRole('textbox', { name: 'Filter by Name' });
-  const statusFilter = getByRole('textbox', { name: 'Filter by Status' });
-  const methodFilter = getByRole('textbox', { name: 'Filter by Method' });
+  const nameFilter = getByRole('textbox', { name: 'Search Name' });
+  const statusFilter = getByRole('textbox', { name: 'Search Status' });
+  const methodFilter = getByRole('textbox', { name: 'Search Method' });
 
   // Every filter input has a distinct, meaningful accessible name and is reachable by keyboard
   // (plain native inputs, so Tab order and typing work without any custom key handling).
@@ -199,7 +199,7 @@ export const DropdownFilter: StoryFn = (): React.ReactElement => <DropdownFilter
  */
 DropdownFilter.play = async () => {
   const { getByRole, queryByText } = within(document.body);
-  const statusFilter = getByRole('combobox', { name: 'Filter by Status' });
+  const statusFilter = getByRole('combobox', { name: 'Select Status' });
 
   await userEvent.click(statusFilter);
   await userEvent.click(getByRole('option', { name: 'Completed' }));
