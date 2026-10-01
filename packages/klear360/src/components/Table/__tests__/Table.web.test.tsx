@@ -827,7 +827,7 @@ describe('<Table />', () => {
     };
 
     const renderStickyFilterTable = (
-      props: Partial<TableProps<Item>> = {},
+      props: Partial<Omit<TableProps<Item>, 'children' | 'columns' | 'data'>> = {},
       headerRows: React.ReactNode = (
         <TableHeaderRow>
           <TableHeaderCell headerKey="paymentId">Payment ID</TableHeaderCell>
