@@ -5,7 +5,7 @@ import PagerView from 'react-native-pager-view';
 import type { TabsProps } from './types';
 import { TabsContext } from './TabsContext';
 import { StyledTabButton } from './TabItem.native';
-import { iconColor, textColor, trackColor } from './tabTokens';
+import { iconColor, intenseSelected, textColor, trackColor } from './tabTokens';
 import { iconSizeMap, useTabsItemPropRestriction } from './utils';
 import { getComponentId } from '~utils/isValidAllowedChildren';
 import { Text } from '~components/Typography';
@@ -126,12 +126,14 @@ type TabBarIndicatorProps = {
   tabWidths: number[];
   selectedIndex: number;
   variant: NonNullable<TabsProps['variant']>;
+  selectedEmphasis: NonNullable<TabsProps['selectedEmphasis']>;
 };
 
 const TabBarIndicator = ({
   tabWidths,
   selectedIndex,
   variant,
+  selectedEmphasis,
 }: TabBarIndicatorProps): React.ReactElement | null => {
   const { theme } = useTheme();
   const isFilled = variant === 'filled';
@@ -164,7 +166,10 @@ const TabBarIndicator = ({
           ? {
               top: theme.spacing[2],
               bottom: theme.spacing[2],
-              backgroundColor: theme.colors.interactive.background.primary.faded,
+              backgroundColor:
+                selectedEmphasis === 'intense'
+                  ? getIn(theme.colors, intenseSelected.indicatorBackgroundColor)
+                  : theme.colors.interactive.background.primary.faded,
               borderRadius: theme.border.radius.small,
             }
           : {
@@ -189,6 +194,7 @@ type CustomTabBarProps = {
   variant: NonNullable<TabsProps['variant']>;
   isFullWidthTabItem: boolean;
   isFilled: boolean;
+  selectedEmphasis: NonNullable<TabsProps['selectedEmphasis']>;
 };
 
 const CustomTabBar = ({
@@ -199,6 +205,7 @@ const CustomTabBar = ({
   variant,
   isFullWidthTabItem,
   isFilled,
+  selectedEmphasis,
 }: CustomTabBarProps): React.ReactElement => {
   const { theme } = useTheme();
   const [tabWidths, setTabWidths] = React.useState<number[]>([]);
@@ -274,11 +281,19 @@ const CustomTabBar = ({
                   {route.leading ? (
                     <route.leading
                       size={iconSizeMap[size]}
-                      color={iconColor[selectedState].default}
+                      color={
+                        isFilled && selectedEmphasis === 'intense' && selectedState === 'selected'
+                          ? intenseSelected.iconColor.default
+                          : iconColor[selectedState].default
+                      }
                     />
                   ) : null}
                   <Text
-                    color={textColor[selectedState].default}
+                    color={
+                      isFilled && selectedEmphasis === 'intense' && selectedState === 'selected'
+                        ? intenseSelected.textColor.default
+                        : textColor[selectedState].default
+                    }
                     size={size === 'medium' ? 'medium' : 'large'}
                     weight="semibold"
                   >
@@ -294,7 +309,12 @@ const CustomTabBar = ({
 
       {/* Animated indicator rendered absolutely on top of the tab bar */}
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        <TabBarIndicator tabWidths={tabWidths} selectedIndex={selectedIndex} variant={variant} />
+        <TabBarIndicator
+          tabWidths={tabWidths}
+          selectedIndex={selectedIndex}
+          variant={variant}
+          selectedEmphasis={selectedEmphasis}
+        />
       </View>
     </View>
   );
@@ -313,6 +333,7 @@ const _Tabs = (
     variant = 'bordered',
     isFullWidthTabItem = false,
     isLazy = false,
+    selectedEmphasis = 'subtle',
   }: TabsProps,
   // ref is accepted to silence forwardRef warning but not forwarded to a DOM node
   // since the PagerView is managed via an internal ref
@@ -393,6 +414,7 @@ const _Tabs = (
           variant={variant}
           isFullWidthTabItem={isFullWidthTabItem}
           isFilled={isFilled}
+          selectedEmphasis={selectedEmphasis}
         />
         {/*
           PagerView APIs we depend on: `setPage`, `initialPage`,

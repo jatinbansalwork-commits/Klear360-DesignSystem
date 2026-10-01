@@ -57,6 +57,14 @@ type TabsProps = {
    * @default 'bordered'
    */
   variant?: 'bordered' | 'borderless' | 'filled';
+  /**
+   * How strongly the selected tab stands out. Applies to `variant="filled"` only.
+   * `subtle`: white pill. `intense`: primary-filled pill with white label/icon, for a top-level
+   * content switcher (e.g. a page's main views). Unselected tabs stay unfilled either way.
+   *
+   * @default 'subtle'
+   */
+  selectedEmphasis?: 'subtle' | 'intense';
 
   /**
    * If `true`, the TabItems will grow to use all the available space.
@@ -147,6 +155,7 @@ Use `Tabs` when a **single selection filters or changes the visible page content
 - Use `isLazy` when tab panels contain heavy content to avoid mounting all panels at once.
 - Use `trailing` prop on `TabItem` for badges or counters showing tab-specific counts.
 - Use `variant="filled"` for visually distinct tab groups; `"bordered"` (default) for standard use.
+- For a page's top-level view switcher, use `<Tabs variant="filled" selectedEmphasis="intense">` - not a row of Buttons (wrong semantics) and not SegmentedControl (that's for form values). Tabs work without TabPanels when the page renders the selected view itself; `aria-controls` is only emitted for rendered panels.
 
 **Don't**
 

@@ -18,6 +18,7 @@ import {
   focusBorderRadius as focusBorderRadiusToken,
   borderColor as borderColorToken,
   needsStackingContext,
+  intenseSelected,
 } from './tabTokens';
 import { iconSizeMap, useTabsItemPropRestriction } from './utils';
 import { Text } from '~components/Typography';
@@ -34,7 +35,8 @@ const StyledTabButton = styled.button<{
   variant: NonNullable<TabsProps['variant']>;
   isVertical: boolean;
   isSelected: boolean;
-}>(({ theme, isSelected, size, variant, isFullWidthTabItem, isVertical }) => {
+  isIntenseSelected: boolean;
+}>(({ theme, isSelected, isIntenseSelected, size, variant, isFullWidthTabItem, isVertical }) => {
   const orientation = isVertical ? 'vertical' : 'horizontal';
   const border = isVertical ? 'borderLeft' : 'borderBottom';
   const selectedState: 'selected' | 'unselected' = isSelected ? 'selected' : 'unselected';
@@ -91,7 +93,11 @@ const StyledTabButton = styled.button<{
     },
     '&:focus-visible': {
       borderRadius: makeSpace(theme.border.radius[focusBorderRadius]),
-      boxShadow: `inset 0px 0px 0px 4px ${theme.colors.surface.border.primary.muted}`,
+      boxShadow: `inset 0px 0px 0px ${isIntenseSelected ? 2 : 4}px ${
+        isIntenseSelected
+          ? getIn(theme.colors, intenseSelected.focusRingColor)
+          : theme.colors.surface.border.primary.muted
+      }`,
       backgroundColor: isSelected
         ? getIn(theme, background.default)
         : theme.colors.interactive.background.gray.default,
@@ -140,6 +146,8 @@ const TabItem = ({
     baseId,
     variant,
     isVertical,
+    selectedEmphasis,
+    renderedPanelValues,
   } = useTabsContext();
   const { currentInteraction, ...interactionProps } = useInteraction();
   const validatedTrailingComponent = useTabsItemPropRestriction(trailing, size!);
@@ -148,6 +156,12 @@ const TabItem = ({
   const panelId = `${baseId}-${value}-tabpanel`;
   const tabItemId = `${baseId}-${value}-tabitem`;
   const isFilled = variant === 'filled';
+  // Primary pill + white label/icon - see `intenseSelected` in tabTokens.
+  const isIntenseSelected = isSelected && isFilled && selectedEmphasis === 'intense';
+  // Only point at a panel that is actually rendered (Tabs can be used without TabPanels).
+  // `renderedPanelValues` is undefined outside the web Tabs provider - keep the old behaviour then.
+  const controlsPanelId =
+    !renderedPanelValues || renderedPanelValues.has(value) ? panelId : undefined;
 
   const interactionMap = {
     default: 'default',
@@ -166,6 +180,7 @@ const TabItem = ({
           href={href}
           isVertical={isVertical}
           isSelected={isSelected}
+          isIntenseSelected={isIntenseSelected}
           variant={variant!}
           isFullWidthTabItem={isFullWidthTabItem || isFilled}
           id={tabItemId}
@@ -179,18 +194,29 @@ const TabItem = ({
           {...makeAccessible({
             role: 'tab',
             selected: isSelected,
-            controls: panelId,
+            controls: controlsPanelId,
           })}
           {...metaAttribute({ name: MetaConstants.TabItem })}
           {...makeAnalyticsAttribute(rest)}
         >
           {Leading ? (
-            <Leading size={iconSizeMap[size!]} color={iconColor[selectedState][interaction]} />
+            <Leading
+              size={iconSizeMap[size!]}
+              color={
+                isIntenseSelected
+                  ? intenseSelected.iconColor[interaction]
+                  : iconColor[selectedState][interaction]
+              }
+            />
           ) : null}
 
           {children ? (
             <Text
-              color={textColor[selectedState][interaction]}
+              color={
+                isIntenseSelected
+                  ? intenseSelected.textColor[interaction]
+                  : textColor[selectedState][interaction]
+              }
               size={textSizeMap[size!]}
               weight="medium"
             >
