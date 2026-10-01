@@ -19,6 +19,7 @@ const _Tabs = (
     variant = 'bordered',
     isFullWidthTabItem = false,
     isLazy = false,
+    selectedEmphasis = 'subtle',
     ...rest
   }: TabsProps,
   ref: React.Ref<Klear360ElementRef>,
@@ -32,6 +33,21 @@ const _Tabs = (
     },
   });
 
+  const [renderedPanelValues, setRenderedPanelValues] = React.useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
+  const registerPanel = React.useCallback((panelValue: string) => {
+    setRenderedPanelValues((prev) => (prev.has(panelValue) ? prev : new Set(prev).add(panelValue)));
+    return () => {
+      setRenderedPanelValues((prev) => {
+        if (!prev.has(panelValue)) return prev;
+        const next = new Set(prev);
+        next.delete(panelValue);
+        return next;
+      });
+    };
+  }, []);
+
   const isVertical = orientation === 'vertical';
   const contextValue = React.useMemo(
     () => ({
@@ -43,8 +59,14 @@ const _Tabs = (
       isFullWidthTabItem,
       setSelectedValue,
       isLazy,
+      selectedEmphasis,
+      renderedPanelValues,
+      registerPanel,
     }),
     [
+      selectedEmphasis,
+      renderedPanelValues,
+      registerPanel,
       isFullWidthTabItem,
       baseId,
       isVertical,

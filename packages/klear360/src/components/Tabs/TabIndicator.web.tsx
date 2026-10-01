@@ -4,6 +4,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTabsContext } from './TabsContext';
+import { intenseSelected } from './tabTokens';
 import { castWebType, makeMotionTime } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useTheme } from '~components/Klear360Provider';
@@ -26,7 +27,7 @@ const TabIndicator = ({
   tabListContainerRef: React.RefObject<HTMLElement | null>;
 }): React.ReactElement => {
   const { theme } = useTheme();
-  const { selectedValue, baseId, variant, isVertical, size } = useTabsContext();
+  const { selectedValue, baseId, variant, isVertical, size, selectedEmphasis } = useTabsContext();
   const [shouldAnimate, setShouldAnimate] = React.useState(false);
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0, x: 0, y: 0 });
 
@@ -116,7 +117,11 @@ const TabIndicator = ({
         left="0px"
         top="0px"
         borderRadius={isSmallHorizontal ? undefined : 'small'}
-        backgroundColor="surface.background.gray.intense"
+        backgroundColor={
+          selectedEmphasis === 'intense'
+            ? intenseSelected.indicatorBackgroundColor
+            : 'surface.background.gray.intense'
+        }
         style={{
           ...transitionProps,
           width: `${dimensions.width}px`,

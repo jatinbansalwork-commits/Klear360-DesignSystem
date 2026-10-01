@@ -8,10 +8,17 @@ import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 
 const TabPanel = ({ children, value, ...rest }: TabPanelProps): React.ReactElement => {
-  const { selectedValue, baseId, isLazy } = useTabsContext();
+  const { selectedValue, baseId, isLazy, registerPanel } = useTabsContext();
   const isSelected = selectedValue === value;
   const panelId = `${baseId}-${value}-tabpanel`;
   const tabItemId = `${baseId}-${value}-tabitem`;
+  // A lazy, unselected panel renders no element - its TabItem mustn't reference it.
+  const isPanelRendered = !isLazy || isSelected;
+
+  React.useEffect(() => {
+    if (!isPanelRendered) return undefined;
+    return registerPanel?.(value);
+  }, [isPanelRendered, registerPanel, value]);
 
   if (isLazy) {
     return (
