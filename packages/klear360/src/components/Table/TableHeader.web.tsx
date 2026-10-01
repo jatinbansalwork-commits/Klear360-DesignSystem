@@ -36,8 +36,12 @@ import { ActionList, ActionListItem } from '~components/ActionList';
 const SortButton = styled.button(({ theme }) => ({
   cursor: 'pointer',
   border: 'none',
-  padding: 0,
-  margin: 0,
+  // Grows the 20px icon's hit area to 24x24 (WCAG 2.2 SC 2.5.8 Target Size) - the matching
+  // negative margin cancels it out in layout, so the icon, the label beside it and the header
+  // row height stay exactly where they were. The focus ring (an outline on this button) wraps
+  // the full hit area.
+  padding: makeSpace(theme.spacing[1]),
+  margin: `-${makeSpace(theme.spacing[1])}`,
   borderRadius: theme.border.radius.small,
   background: 'transparent',
   display: 'flex',

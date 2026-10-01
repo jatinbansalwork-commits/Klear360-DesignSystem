@@ -893,6 +893,61 @@ describe('<Table />', () => {
     expect(getAllByRole('row')[1]).toHaveTextContent('completed');
   });
 
+  it.each(['compact', 'normal', 'comfortable'] as const)(
+    'gives the sort button a hit area of at least 24x24 at %s rowDensity without shifting layout',
+    (rowDensity) => {
+      const { getByLabelText } = renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, 2) }}
+          rowDensity={rowDensity}
+          sortFunctions={{
+            STATUS: (array) => array.sort((a, b) => a.status.localeCompare(b.status)),
+          }}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell headerKey="STATUS">Status</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((tableItem, index) => (
+                  <TableRow item={tableItem} key={index}>
+                    <TableCell>{tableItem.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+      // jsdom has no layout, so the box is derived from styles: the 20px icon plus padding on
+      // each side (real-browser measurement: `SortButtonTargetSize` in Table.test.stories.tsx).
+      const sortButton = getByLabelText('Toggle Sort');
+      const icon = sortButton.querySelector('svg')!;
+      const style = window.getComputedStyle(sortButton);
+      const boxWidth =
+        Number(icon.getAttribute('width')) +
+        Number.parseFloat(style.paddingLeft) +
+        Number.parseFloat(style.paddingRight);
+      const boxHeight =
+        Number(icon.getAttribute('height')) +
+        Number.parseFloat(style.paddingTop) +
+        Number.parseFloat(style.paddingBottom);
+
+      expect(icon).toHaveAttribute('width', '20');
+      expect(icon).toHaveAttribute('height', '20');
+      expect(boxWidth).toBeGreaterThanOrEqual(24);
+      expect(boxHeight).toBeGreaterThanOrEqual(24);
+      // Negative margin cancels the padding, so the button's layout footprint stays 20x20.
+      expect(style.marginTop).toBe(`-${style.paddingTop}`);
+      expect(style.marginRight).toBe(`-${style.paddingRight}`);
+      expect(style.marginBottom).toBe(`-${style.paddingBottom}`);
+      expect(style.marginLeft).toBe(`-${style.paddingLeft}`);
+    },
+  );
+
   it('should clear sort on the third click (removable sort)', () => {
     const onSortChange = jest.fn();
     const { getByLabelText, getAllByRole } = renderWithTheme(
