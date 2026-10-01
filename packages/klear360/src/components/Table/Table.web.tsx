@@ -19,6 +19,7 @@ import {
   checkboxCellWidth,
   firstColumnStickyZIndex,
   refreshWrapperZIndex,
+  stickyHeaderColumnZIndex,
   tableBackgroundColor,
   tablePagination,
   tableRow,
@@ -435,88 +436,100 @@ const _Table = <Item,>({
 
   // Shared by header/body/footer cells - freezes the leading `stickyColumnCount` columns (plus
   // the multi-select checkbox column, when present) at their cumulative left offset, computed
-  // from `stickyColumnWidths` rather than measured at render time.
-  const stickyColumnsCSS = useMemo(() => {
-    if (stickyColumnCount < 1 && trailingStickyColumnCount < 1) return '';
+  // from `stickyColumnWidths` rather than measured at render time. Generated per cell type with
+  // its own `zIndex`: header cells need a higher one than body cells (see the stacking notes on
+  // `stickyHeaderColumnZIndex` in tokens.ts), otherwise frozen body cells - later in the DOM, at
+  // the same z-index - paint over the frozen header while scrolling vertically.
+  const getStickyColumnsCSS = useCallback(
+    (zIndex: number): string => {
+      if (stickyColumnCount < 1 && trailingStickyColumnCount < 1) return '';
 
-    const isMultiSelect = selectionType === 'multiple';
-    // The last frozen column's own `border-right` (on `.cell-wrapper`, see TableBody/TableHeader)
-    // is unreliable once scrolled - it sits behind the scrolling column that slides underneath in
-    // the same stacking context, so it can get visually clipped at the sticky boundary. A
-    // `box-shadow` is painted as part of the sticky cell itself instead of relying on layout to
-    // keep a border pixel uncovered, so it stays visible at any scroll position.
-    const lastStickyBoxShadow = showBorderedCells
-      ? `box-shadow: 1px 0 0 0 ${getIn(theme.colors, tableRow.borderColor)} !important;`
-      : '';
-    const stickyRule = (domIndex: number, left: number, isLastSticky: boolean): string => `
+      const isMultiSelect = selectionType === 'multiple';
+      // The last frozen column's own `border-right` (on `.cell-wrapper`, see TableBody/TableHeader)
+      // is unreliable once scrolled - it sits behind the scrolling column that slides underneath in
+      // the same stacking context, so it can get visually clipped at the sticky boundary. A
+      // `box-shadow` is painted as part of the sticky cell itself instead of relying on layout to
+      // keep a border pixel uncovered, so it stays visible at any scroll position.
+      const lastStickyBoxShadow = showBorderedCells
+        ? `box-shadow: 1px 0 0 0 ${getIn(theme.colors, tableRow.borderColor)} !important;`
+        : '';
+      const stickyRule = (domIndex: number, left: number, isLastSticky: boolean): string => `
   &:nth-of-type(${domIndex}) {
     left: ${left}px !important;
     position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
+    z-index: ${zIndex} !important;
     ${isLastSticky ? lastStickyBoxShadow : ''}
   }
   /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
   &:nth-of-type(${domIndex}).${classes.HAS_ROW_SPANNING} {
-    z-index: 3 !important;
+    z-index: ${zIndex + 1} !important;
   }`;
 
-    const rules: string[] = [];
-    let cumulativeLeft = 0;
-    if (isMultiSelect && stickyColumnCount > 0) {
-      // The checkbox column is always followed by at least one more sticky column here (guarded
-      // by `stickyColumnCount > 0` above), so it's never the last sticky one.
-      rules.push(stickyRule(1, 0, false));
-      cumulativeLeft = checkboxCellWidth;
-    }
-    for (let i = 0; i < stickyColumnCount; i += 1) {
-      const domIndex = i + 1 + (isMultiSelect ? 1 : 0);
-      rules.push(stickyRule(domIndex, cumulativeLeft, i === stickyColumnCount - 1));
-      cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
-    }
+      const rules: string[] = [];
+      let cumulativeLeft = 0;
+      if (isMultiSelect && stickyColumnCount > 0) {
+        // The checkbox column is always followed by at least one more sticky column here (guarded
+        // by `stickyColumnCount > 0` above), so it's never the last sticky one.
+        rules.push(stickyRule(1, 0, false));
+        cumulativeLeft = checkboxCellWidth;
+      }
+      for (let i = 0; i < stickyColumnCount; i += 1) {
+        const domIndex = i + 1 + (isMultiSelect ? 1 : 0);
+        rules.push(stickyRule(domIndex, cumulativeLeft, i === stickyColumnCount - 1));
+        cumulativeLeft += Number.parseFloat(stickyColumnWidths?.[i] ?? '0');
+      }
 
-    if (trailingStickyColumnCount > 0) {
-      // The trailing column that borders the scrolling region is the *first* trailing-sticky
-      // column (closest to the middle of the table), unlike the leading case where it's the
-      // last - hence the box-shadow goes on `i === 0` here.
-      const trailingStickyRule = (
-        domIndexFromEnd: number,
-        right: number,
-        isFirstTrailingSticky: boolean,
-      ): string => `
+      if (trailingStickyColumnCount > 0) {
+        // The trailing column that borders the scrolling region is the *first* trailing-sticky
+        // column (closest to the middle of the table), unlike the leading case where it's the
+        // last - hence the box-shadow goes on `i === 0` here.
+        const trailingStickyRule = (
+          domIndexFromEnd: number,
+          right: number,
+          isFirstTrailingSticky: boolean,
+        ): string => `
   &:nth-last-of-type(${domIndexFromEnd}) {
     right: ${right}px !important;
     position: sticky !important;
-    z-index: ${firstColumnStickyZIndex} !important;
+    z-index: ${zIndex} !important;
     ${isFirstTrailingSticky ? lastStickyBoxShadow : ''}
   }
   /* Higher z-index for sticky column cells that also span rows to prevent stacking issues */
   &:nth-last-of-type(${domIndexFromEnd}).${classes.HAS_ROW_SPANNING} {
-    z-index: 3 !important;
+    z-index: ${zIndex + 1} !important;
   }`;
 
-      // The hover-actions column (when present) is always the very last DOM column and is
-      // already its own `position: sticky; right: 0` (see TableBody's `hasHoverActions` styles) -
-      // skip over it so trailing sticky columns sit correctly to its left instead of fighting it
-      // for the same spot.
-      const trailingDomOffset = hasHoverActions ? 1 : 0;
-      let cumulativeRight = 0;
-      for (let i = 0; i < trailingStickyColumnCount; i += 1) {
-        const domIndexFromEnd = i + 1 + trailingDomOffset;
-        rules.push(trailingStickyRule(domIndexFromEnd, cumulativeRight, i === 0));
-        cumulativeRight += Number.parseFloat(trailingStickyColumnWidths?.[i] ?? '0');
+        // The hover-actions column (when present) is always the very last DOM column and is
+        // already its own `position: sticky; right: 0` (see TableBody's `hasHoverActions` styles) -
+        // skip over it so trailing sticky columns sit correctly to its left instead of fighting it
+        // for the same spot.
+        const trailingDomOffset = hasHoverActions ? 1 : 0;
+        let cumulativeRight = 0;
+        for (let i = 0; i < trailingStickyColumnCount; i += 1) {
+          const domIndexFromEnd = i + 1 + trailingDomOffset;
+          rules.push(trailingStickyRule(domIndexFromEnd, cumulativeRight, i === 0));
+          cumulativeRight += Number.parseFloat(trailingStickyColumnWidths?.[i] ?? '0');
+        }
       }
-    }
 
-    return rules.join('\n');
-  }, [
-    stickyColumnCount,
-    trailingStickyColumnCount,
-    selectionType,
-    stickyColumnWidths,
-    trailingStickyColumnWidths,
-    hasHoverActions,
-    showBorderedCells,
-    theme,
+      return rules.join('\n');
+    },
+    [
+      stickyColumnCount,
+      trailingStickyColumnCount,
+      selectionType,
+      stickyColumnWidths,
+      trailingStickyColumnWidths,
+      hasHoverActions,
+      showBorderedCells,
+      theme,
+    ],
+  );
+  const stickyColumnsCSS = useMemo(() => getStickyColumnsCSS(firstColumnStickyZIndex), [
+    getStickyColumnsCSS,
+  ]);
+  const stickyHeaderColumnsCSS = useMemo(() => getStickyColumnsCSS(stickyHeaderColumnZIndex), [
+    getStickyColumnsCSS,
   ]);
 
   const tableTheme = useTableTheme({
@@ -548,12 +561,15 @@ const _Table = <Item,>({
           } !important;`
     } !important;
     background-color: ${getIn(theme.colors, backgroundColor)};
+    /* Scopes the sticky cells' z-indexes (see tokens.ts) to the table itself, so they can't
+    paint over the refresh overlay rendered as this element's sibling. */
+    isolation: isolate;
     `,
     HeaderCell: `
     position: ${shouldHeaderBeSticky ? 'sticky' : 'relative'};
 
     top: ${shouldHeaderBeSticky ? '0' : undefined};
-    ${stickyColumnsCSS}
+    ${stickyHeaderColumnsCSS}
     `,
     Cell: `
     ${stickyColumnsCSS}

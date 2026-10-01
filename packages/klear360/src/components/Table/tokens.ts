@@ -1,7 +1,14 @@
 import { AlertCircleIcon, CheckIcon } from '~components/Icons';
 import { size } from '~tokens/global';
 
+// Stacking order inside the table's scroll container (isolated as its own stacking context - see
+// `Table` in Table.web.tsx - so none of these compete with the refresh overlay outside it):
+// - frozen body/footer cells sit above the scrolling cells sliding under them horizontally;
+// - frozen *header* cells sit above frozen body cells (which scroll under them vertically) and
+//   above scrolling header cells (which scroll under them horizontally).
+// Cells that also span rows get one extra level within their group.
 const firstColumnStickyZIndex = 2;
+const stickyHeaderColumnZIndex = 4;
 
 const refreshWrapperZIndex = 3;
 
@@ -141,6 +148,7 @@ export {
   refreshWrapperZIndex,
   tableBackgroundColor,
   firstColumnStickyZIndex,
+  stickyHeaderColumnZIndex,
   checkboxCellWidth,
   tableEditableCellRowDensityToInputSizeMap,
   validationStateToInputTrailingIconMap,
