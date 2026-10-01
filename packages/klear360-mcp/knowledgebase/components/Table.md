@@ -12,6 +12,7 @@ A table component that displays data in a grid format through rows and columns o
 - `expandedRowIds`/row-expansion chevrons only apply to `isGrouped` tables (group-header rows)
 - A `filterConfig` entry needs a matching `filterFunctions` entry for that column to actually filter rows - `filterConfig` alone only controls which input renders
 - A `filterFunctions` predicate for a `type: 'multiselect'` column receives a plain `string` from global search (never default that branch to `true` - see `filterFunctions` below)
+- Rows never stretch: with a fixed `height` and few/no rows, header rows (label, grouped, filter) and body rows keep their natural height and the leftover space stays empty table surface. For "no results after filtering" pass `emptyState` (it fills and centers in the remaining body space) instead of hand-rolling a full-width row
 - With `isHeaderSticky`, the auto-injected filter row sticks directly below the label row(s) - including every row of a grouped multi-row header - and frozen header/filter cells (`isFirstColumnSticky`/`stickyColumnCount`, `isLastColumnSticky`/`trailingStickyColumnCount`) stay above frozen body cells and scrolling header cells; no consumer CSS overrides needed
 - Filter-row copy and icons: text filters read "Search <column>" (placeholder and accessible name) with a trailing search icon, which the clear button replaces once the field has a value; `filterConfig` dropdown/multiselect filters read "Select <column>" with their trailing chevron. Every filter's affordance sits at the same right edge and their text shares the same left inset
 - `isGrouped` + a virtualized table (`TableVirtualizedWrapper`) is not a supported combination today - the virtualized row list is built from the sorted/filtered data directly and does not consult the tree's expand/collapse state, so collapsed children would still be included
@@ -262,6 +263,12 @@ type TableProps<Item> = {
    * @default false
    **/
   isRefreshing?: boolean;
+  /**
+   * Rendered in place of the body rows when there are no rows to show (no data, or nothing left
+   * after filtering) - e.g. an `EmptyState`. Spans every column and fills the body space below
+   * the header (centered), while toolbar, header, filter row and pagination stay visible.
+   */
+  emptyState?: React.ReactNode;
 
   /**
    * The showBorderedCells prop determines whether the table should have bordered cells or not.

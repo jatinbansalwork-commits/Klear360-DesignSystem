@@ -960,6 +960,83 @@ describe('<Table />', () => {
     });
   });
 
+  describe('fixed-height layout and emptyState', () => {
+    const renderFixedHeightTable = (
+      rowCount: number,
+      props: Partial<Omit<TableProps<Item>, 'children' | 'columns' | 'data'>> = {},
+    ): RenderResult =>
+      renderWithTheme(
+        <Table
+          data={{ nodes: nodes.slice(0, rowCount) }}
+          height="400px"
+          isHeaderSticky
+          filterFunctions={{
+            name: (item: Item, value: string | string[]) =>
+              typeof value === 'string' && item.name.includes(value),
+          }}
+          {...props}
+        >
+          {(tableData) => (
+            <>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHeaderCell>Payment ID</TableHeaderCell>
+                  <TableHeaderCell headerKey="name">Name</TableHeaderCell>
+                </TableHeaderRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((tableItem, index) => (
+                  <TableRow item={tableItem} key={index}>
+                    <TableCell>{tableItem.paymentId}</TableCell>
+                    <TableCell>{tableItem.name}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+          )}
+        </Table>,
+      );
+
+    it.each([0, 3])('never stretches rows to fill the height (%i rows)', (rowCount) => {
+      const { getByRole } = renderFixedHeightTable(rowCount);
+      // Real-browser row-height measurement: `FixedHeightRowCounts` in Table.test.stories.tsx.
+      expect(getByRole('table')).toHaveStyle({ alignContent: 'start' });
+    });
+
+    it('renders emptyState spanning all columns in place of the rows, filling the leftover height', () => {
+      const { getByRole, getByText } = renderFixedHeightTable(0, {
+        emptyState: <p>No payments found</p>,
+      });
+      const emptyCell = getByText('No payments found').closest('td')!;
+
+      expect(emptyCell).toHaveStyle({ gridColumn: '1 / -1' });
+      expect(emptyCell.closest('tbody')).toBeInTheDocument();
+      // Label row + filter row keep their natural height; the empty row takes what's left.
+      expect(getByRole('table')).toHaveStyle({
+        gridTemplateRows: 'repeat(2, max-content) minmax(max-content, 1fr)',
+      });
+      // Header and filter row stay rendered and usable.
+      expect(getByRole('textbox', { name: 'Search Name' })).toBeInTheDocument();
+    });
+
+    it('shows emptyState once filtering leaves no rows, and the rows again when cleared', async () => {
+      const user = userEvent.setup();
+      const { getByRole, queryByText } = renderFixedHeightTable(3, {
+        emptyState: <p>No payments found</p>,
+      });
+      const nameFilter = getByRole('textbox', { name: 'Search Name' });
+
+      expect(queryByText('No payments found')).not.toBeInTheDocument();
+      await user.type(nameFilter, 'zzz');
+      expect(queryByText('No payments found')).toBeInTheDocument();
+      await user.clear(nameFilter);
+      expect(queryByText('No payments found')).not.toBeInTheDocument();
+      expect(getByRole('table')).not.toHaveStyle({
+        gridTemplateRows: 'repeat(2, max-content) minmax(max-content, 1fr)',
+      });
+    });
+  });
+
   it('throws in dev mode when trailingStickyColumnCount > 1 without matching trailingStickyColumnWidths', () => {
     expect(() =>
       renderWithTheme(

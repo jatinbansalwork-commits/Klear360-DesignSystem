@@ -389,7 +389,7 @@ exports[`<Table /> should accept data-analytics-* props 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-8l3566-Table"
+        class="c3 css-1o1xcxi-Table"
         data-analytics-table="test"
         data-klear360-component="table"
         data-table-library_table=""
@@ -1667,7 +1667,7 @@ exports[`<Table /> should render table 1`] = `
         </div>
       </div>
       <table
-        class="c7 css-lyu3rf-Table"
+        class="c7 css-hxtga3-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -3630,7 +3630,7 @@ exports[`<Table /> should render table with TableEditableCell and Bordered cells
         data-klear360-component="base-box"
       />
       <table
-        class="c7 css-8l3566-Table"
+        class="c7 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -4729,7 +4729,7 @@ exports[`<Table /> should render table with a grouped multi-row header 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1rmuctl-Table"
+        class="c3 css-iajtdb-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -5537,7 +5537,7 @@ exports[`<Table /> should render table with column spanning 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1rmuctl-Table"
+        class="c3 css-iajtdb-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -6392,7 +6392,7 @@ exports[`<Table /> should render table with comfortable rowDensity 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-8l3566-Table"
+        class="c3 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -7484,7 +7484,7 @@ exports[`<Table /> should render table with compact rowDensity 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-8l3566-Table"
+        class="c3 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -8576,7 +8576,7 @@ exports[`<Table /> should render table with footer spanning 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1rmuctl-Table"
+        class="c3 css-iajtdb-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -9519,7 +9519,7 @@ exports[`<Table /> should render table with grouping 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1ygv1uv-Table"
+        class="c3 css-zmin2u-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -10806,7 +10806,7 @@ exports[`<Table /> should render table with grouping and selection 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-116hd1w-Table"
+        class="c3 css-7leh33-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -12228,7 +12228,7 @@ exports[`<Table /> should render table with header spanning 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1ygv1uv-Table"
+        class="c3 css-zmin2u-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -13543,7 +13543,7 @@ exports[`<Table /> should render table with isRefreshing 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c7 css-8l3566-Table"
+        class="c7 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -15178,7 +15178,7 @@ exports[`<Table /> should render table with multi select 1`] = `
         </div>
       </div>
       <table
-        class="c13 css-1oxpwyd-Table"
+        class="c13 css-1psp0uy-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -17940,7 +17940,7 @@ exports[`<Table /> should render table with multi select 2`] = `
         </div>
       </div>
       <table
-        class="c13 css-1oxpwyd-Table"
+        class="c13 css-1psp0uy-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -20519,7 +20519,7 @@ exports[`<Table /> should render table with multi select 3`] = `
         </div>
       </div>
       <table
-        class="c7 css-1oxpwyd-Table"
+        class="c7 css-1psp0uy-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -22652,7 +22652,7 @@ exports[`<Table /> should render table with nested expandable content 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1rmuctl-Table"
+        class="c3 css-iajtdb-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -23381,7 +23381,7 @@ exports[`<Table /> should render table with row spanning 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1rmuctl-Table"
+        class="c3 css-iajtdb-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -24175,7 +24175,7 @@ exports[`<Table /> should render table with showStripedRows 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-8l3566-Table"
+        class="c3 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -25306,7 +25306,7 @@ exports[`<Table /> should render table with single select 1`] = `
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-8l3566-Table"
+        class="c3 css-1o1xcxi-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -26788,7 +26788,7 @@ exports[`<Table /> should render table with sticky header, footer & first column
         data-klear360-component="base-box"
       />
       <table
-        class="c3 css-1x65lpt-Table"
+        class="c3 css-dfb28m-Table"
         data-klear360-component="table"
         data-table-library_table=""
         role="table"
@@ -28962,7 +28962,7 @@ exports[`<Table /> should render virtualized table 1`] = `
           data-klear360-component="base-box"
         />
         <table
-          class="c3 css-1speckh-Table"
+          class="c3 css-x3qani-Table"
           data-klear360-component="table"
           data-table-library_table=""
           role="table"
