@@ -23,12 +23,17 @@ type SourceVariantTokens = {
  * Color tokens per `source.variant`, for the chip's default (non-active) state. `trace` has no
  * border - matching the "doc" (document-grounded) chip reading as more clearly contained/bordered
  * than the "trace" (Track & Trace-grounded) one.
+ *
+ * `doc` is pinned to the neutral family (not `primary`) as a stopgap so it's unambiguously
+ * distinct from `trace`'s blue "information" family - the theme has no dedicated "AI/document"
+ * semantic color yet, and adding one means extending the shared `FeedbackColors` union that
+ * `Badge` and others also consume, which is a separate, bigger decision.
  */
 const sourceVariantTokens: Record<CitedFieldRowSourceVariant, SourceVariantTokens> = {
   doc: {
-    background: 'surface.background.primary.subtle',
-    border: 'surface.border.primary.muted',
-    text: 'surface.text.primary.normal',
+    background: 'feedback.background.neutral.subtle',
+    border: 'feedback.border.neutral.subtle',
+    text: 'feedback.text.neutral.intense',
   },
   trace: {
     background: 'feedback.background.information.subtle',

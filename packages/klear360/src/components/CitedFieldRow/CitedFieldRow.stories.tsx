@@ -31,7 +31,7 @@ import { Card, CardBody, CitedFieldRow } from '@klear/klear360/components';
 
 function App() {
   return (
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0" role="table">
         <CitedFieldRow.Header />
         <CitedFieldRow
@@ -110,7 +110,7 @@ const PlaygroundTemplate: StoryFn<CitedFieldRowStoryArgs> = ({
 
   return (
     <Box maxWidth="480px">
-      <Card>
+      <Card overflow="hidden">
         <CardBody padding="spacing.0" role="table">
           {showColumnHeader ? <CitedFieldRow.Header /> : null}
           <CitedFieldRow
@@ -160,7 +160,7 @@ Default.play = async ({ args, canvasElement }) => {
  */
 export const FieldTable: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0" role="table">
         <CitedFieldRow.Header />
         <CitedFieldRow
@@ -192,7 +192,7 @@ FieldTable.parameters = recipeStoryParameters;
  */
 export const WithHeader: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardHeader marginBottom="spacing.0" paddingBottom="spacing.3" showDivider={false}>
         <CardHeaderLeading title="Bill of lading" subtitle="Extracted fields" />
       </CardHeader>
@@ -221,7 +221,7 @@ WithHeader.parameters = recipeStoryParameters;
  */
 export const MissingValue: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow label="HBOL" value={null} />
       </CardBody>
@@ -236,7 +236,7 @@ MissingValue.parameters = recipeStoryParameters;
  */
 export const Ungrounded: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow label="Notes" value="Added manually by broker" />
       </CardBody>
@@ -264,7 +264,7 @@ export const CiteMuted: StoryFn = () => {
         />
         <Text size="small">Show only ungrounded fields</Text>
       </Box>
-      <Card>
+      <Card overflow="hidden">
         <CardBody padding="spacing.0">
           <CitedFieldRow
             label="MBOL"
@@ -286,7 +286,7 @@ CiteMuted.parameters = recipeStoryParameters;
  */
 export const CiteTarget: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow label="MBOL" value="MEDUXYZ123456" source={{ label: 'BOL p1' }} />
         <CitedFieldRow
@@ -308,7 +308,7 @@ CiteTarget.parameters = recipeStoryParameters;
  */
 export const ValidationError: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow
           label="MBOL"
@@ -335,7 +335,7 @@ ValidationError.parameters = recipeStoryParameters;
  */
 export const ValidationSuccess: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0" role="table">
         <CitedFieldRow.Header />
         <CitedFieldRow
@@ -360,7 +360,7 @@ export const Editable: StoryFn = () => {
 
   return (
     <Box maxWidth="480px">
-      <Card>
+      <Card overflow="hidden">
         <CardBody padding="spacing.0">
           <CitedFieldRow
             label="MBOL"
@@ -379,7 +379,7 @@ export const EditableValidationError: StoryFn = () => {
 
   return (
     <Box maxWidth="480px">
-      <Card>
+      <Card overflow="hidden">
         <CardBody padding="spacing.0" role="table">
           <CitedFieldRow.Header />
           <CitedFieldRow
@@ -433,7 +433,7 @@ export const AllStates: StoryFn = () => {
         />
         <Text size="small">Show only ungrounded fields</Text>
       </Box>
-      <Card>
+      <Card overflow="hidden">
         <CardHeader marginBottom="spacing.0" paddingBottom="spacing.3" showDivider={false}>
           <CardHeaderLeading title="Shipment fields" />
         </CardHeader>

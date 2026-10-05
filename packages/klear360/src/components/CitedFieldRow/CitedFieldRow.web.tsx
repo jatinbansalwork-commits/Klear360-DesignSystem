@@ -189,7 +189,7 @@ const _CitedFieldRow = (
       minWidth={0 as never}
       borderBottomWidth="thin"
       borderBottomStyle="solid"
-      borderBottomColor="surface.border.gray.muted"
+      borderBottomColor="surface.border.gray.subtle"
       opacity={isCiteMuted ? opacity[citeMutedChipOpacity] : undefined}
       pointerEvents={isCiteMuted ? 'none' : undefined}
       {...getStyledProps(rest)}
@@ -203,13 +203,13 @@ const _CitedFieldRow = (
         padding="spacing.3"
         borderRightWidth="thin"
         borderRightStyle="solid"
-        borderRightColor="surface.border.gray.muted"
+        borderRightColor="surface.border.gray.subtle"
         backgroundColor={citedFieldRowSubtleBackground}
       >
         <Text
           variant="body"
-          size="small"
-          weight="medium"
+          size="medium"
+          weight="regular"
           color={isGrounded ? 'surface.text.gray.normal' : 'surface.text.gray.muted'}
         >
           {label}
@@ -246,7 +246,7 @@ const _CitedFieldRow = (
             <StyledTabularNumsSpan>
               <Text
                 variant="body"
-                size="medium"
+                size="small"
                 weight={isEmpty ? 'regular' : 'medium'}
                 color={valueTextColor}
                 truncateAfterLines={1}
@@ -302,17 +302,25 @@ const _CitedFieldRow = (
  * linking the value back to its source document or event. Designed to sit inside a `Card`'s
  * body, stacked with other `CitedFieldRow`s to form a field table.
  *
+ * Pass `overflow="hidden"` on the wrapping `Card` so the last row's bottom corners are clipped
+ * to the card's rounded corners, instead of overhanging them with square corners of their own.
+ *
  * ----
  *
  * #### Usage
  *
  * ```tsx
- * <CitedFieldRow
- *   label="MBOL"
- *   value="MEDUXYZ123"
- *   source={{ label: 'BOL p1' }}
- *   onCiteClick={(source) => scrollToSource(source)}
- * />
+ * <Card overflow="hidden">
+ *   <CardBody padding="spacing.0" role="table">
+ *     <CitedFieldRow.Header />
+ *     <CitedFieldRow
+ *       label="MBOL"
+ *       value="MEDUXYZ123"
+ *       source={{ label: 'BOL p1' }}
+ *       onCiteClick={(source) => scrollToSource(source)}
+ *     />
+ *   </CardBody>
+ * </Card>
  * ```
  */
 const CitedFieldRow = assignWithoutSideEffects(React.forwardRef(_CitedFieldRow), {
