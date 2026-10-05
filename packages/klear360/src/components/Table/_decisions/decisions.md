@@ -830,6 +830,7 @@ also their is high chance of bugs and performance issues in the implementation o
 1. We have made a wrapper on top of react-table-library's implementation to create a virtualized table.
 2. if virtualization is enabled we have a wrapper component and we are not passing TableBody, so this breaks a lot of existing styles and features of the table component like hoverAction, rowSelection, etc. so we have to move these styles to table component.
 3. we have to pass a ref to the table container to calculate the height and width of the table to render only the visible rows and columns.
+4. `TableVirtualizedWrapper` (and its `TableVirtualizedWrapperProps` type) is now part of the package's public API, exported from `Table/index.ts` - previously it only existed as an internal, unexported component in `TableBody.web.tsx`, reachable only via a deep import. Web is the only implementation; `TableBody.native.tsx` exports a stub (matching the rest of Table's native stubs) that renders "Table Component is not available for Native mobile apps." rather than virtualizing.
 
 ## Props
 
@@ -839,7 +840,7 @@ but their is a change in children prop of Table component. In virtualized table 
 VirtualizedTable is a wrapper on top of react-table-library's [Virtualized](https://github.com/table-library/react-table-library/blob/master/src/virtualized/Virtualized.tsx) component. It provides a simple API to create a virtualized table.
 
 ```ts
-type VirtualizedWrapperProps<Item> = {
+type TableVirtualizedWrapperProps<Item> = {
   /**
    *   <TableComponent
    *      data={data}
