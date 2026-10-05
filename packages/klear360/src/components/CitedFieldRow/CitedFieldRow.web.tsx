@@ -302,17 +302,25 @@ const _CitedFieldRow = (
  * linking the value back to its source document or event. Designed to sit inside a `Card`'s
  * body, stacked with other `CitedFieldRow`s to form a field table.
  *
+ * Pass `overflow="hidden"` on the wrapping `Card` so the last row's bottom corners are clipped
+ * to the card's rounded corners, instead of overhanging them with square corners of their own.
+ *
  * ----
  *
  * #### Usage
  *
  * ```tsx
- * <CitedFieldRow
- *   label="MBOL"
- *   value="MEDUXYZ123"
- *   source={{ label: 'BOL p1' }}
- *   onCiteClick={(source) => scrollToSource(source)}
- * />
+ * <Card overflow="hidden">
+ *   <CardBody padding="spacing.0" role="table">
+ *     <CitedFieldRow.Header />
+ *     <CitedFieldRow
+ *       label="MBOL"
+ *       value="MEDUXYZ123"
+ *       source={{ label: 'BOL p1' }}
+ *       onCiteClick={(source) => scrollToSource(source)}
+ *     />
+ *   </CardBody>
+ * </Card>
  * ```
  */
 const CitedFieldRow = assignWithoutSideEffects(React.forwardRef(_CitedFieldRow), {

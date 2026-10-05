@@ -32,7 +32,7 @@ const Section = ({
     <Text size="large" weight="semibold" color="feedback.text.information.intense">
       {title}
     </Text>
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0" role="table">
         <CitedFieldRow.Header />
         {children}

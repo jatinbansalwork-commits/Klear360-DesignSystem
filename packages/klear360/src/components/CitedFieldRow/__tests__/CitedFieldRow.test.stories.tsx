@@ -19,7 +19,7 @@ const onCiteClick = fn();
 
 export const TestCiteChipClick: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow
           label="MBOL"
@@ -43,7 +43,7 @@ TestCiteChipClick.play = async ({ canvasElement }) => {
 
 export const TestCiteMutedDisablesChip: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow
           label="MBOL"
@@ -68,7 +68,7 @@ TestCiteMutedDisablesChip.play = async ({ canvasElement }) => {
 
 export const TestValidationErrorA11y: StoryFn = () => (
   <Box maxWidth="480px">
-    <Card>
+    <Card overflow="hidden">
       <CardBody padding="spacing.0">
         <CitedFieldRow
           label="MBOL"
