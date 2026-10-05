@@ -4,6 +4,15 @@ import { size } from '~tokens/global';
 // Diameter of the leading dot on the citation chip.
 const citeDotSize = size[6];
 
+/** Shared with `CitedFieldRow.Header` so column labels line up with data rows. */
+const citedFieldRowGridTemplateColumns = 'minmax(7.5rem, 42%) minmax(0, 1fr)';
+
+/**
+ * Gray "subtle" surface — resolves to `hsla(210, 40%, 96%, 1)` in the default theme.
+ * Used for the label column and value-cell hover tint.
+ */
+const citedFieldRowSubtleBackground = 'surface.background.gray.subtle';
+
 type SourceVariantTokens = {
   background: string;
   border: string;
@@ -39,5 +48,26 @@ const activeSourceTokens: SourceVariantTokens = {
 // Disabled (citeMuted) opacity - nearest token to the ~0.55 this is modeled on.
 const citeMutedChipOpacity = 700;
 
-export { citeDotSize, sourceVariantTokens, activeSourceTokens, citeMutedChipOpacity };
+const errorValueCellTokens = {
+  background: 'feedback.background.negative.subtle',
+  borderLeft: 'interactive.border.negative.default',
+  text: 'feedback.text.negative.intense',
+} as const;
+
+const successValueCellTokens = {
+  background: 'feedback.background.positive.subtle',
+  borderLeft: 'interactive.border.positive.default',
+  text: 'feedback.text.positive.intense',
+} as const;
+
+export {
+  citeDotSize,
+  citedFieldRowGridTemplateColumns,
+  citedFieldRowSubtleBackground,
+  sourceVariantTokens,
+  activeSourceTokens,
+  citeMutedChipOpacity,
+  errorValueCellTokens,
+  successValueCellTokens,
+};
 export type { SourceVariantTokens };

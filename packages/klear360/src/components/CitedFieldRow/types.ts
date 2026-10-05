@@ -78,6 +78,22 @@ type CitedFieldRowProps = {
    */
   isCiteTarget?: boolean;
   /**
+   * Validation state for the field value. When `'error'` or `'success'`, the value cell uses
+   * feedback colors and `errorText` / `successText` is shown below the value (or `control` when
+   * `isEditable` is true).
+   *
+   * @default 'none'
+   */
+  validationState?: 'none' | 'error' | 'success';
+  /**
+   * Error message shown when `validationState` is `'error'`.
+   */
+  errorText?: string;
+  /**
+   * Success message shown when `validationState` is `'success'`.
+   */
+  successText?: string;
+  /**
    * Fired when the citation chip is clicked (never on hover). The component only renders the
    * chip and reports the click - scrolling to a document, highlighting a bounding box, and
    * tracking which chip is active across a group of rows are all the consumer's responsibility.
@@ -87,4 +103,38 @@ type CitedFieldRowProps = {
   DataAnalyticsAttribute &
   StyledPropsKlear360;
 
-export type { CitedFieldRowProps, CitedFieldRowSource, CitedFieldRowSourceVariant };
+type CitedFieldRowHeaderProps = {
+  /**
+   * Column label for the field name column.
+   *
+   * @default 'Field'
+   */
+  fieldColumnLabel?: string;
+  /**
+   * Column label for the extracted value (left side of the value column).
+   *
+   * @default 'Value'
+   */
+  valueColumnLabel?: string;
+  /**
+   * Column label aligned with citation chips. Hidden when `isSourceColumnVisible` is `false`.
+   *
+   * @default 'Source'
+   */
+  sourceColumnLabel?: string;
+  /**
+   * When `false`, only the value column label is shown (for tables without citations).
+   *
+   * @default true
+   */
+  isSourceColumnVisible?: boolean;
+} & TestID &
+  DataAnalyticsAttribute &
+  StyledPropsKlear360;
+
+export type {
+  CitedFieldRowProps,
+  CitedFieldRowSource,
+  CitedFieldRowSourceVariant,
+  CitedFieldRowHeaderProps,
+};

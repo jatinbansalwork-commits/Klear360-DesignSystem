@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react';
 import userEvents from '@testing-library/user-event';
 import React from 'react';
-import { CitedFieldRow } from '../CitedFieldRow';
+import { CitedFieldRow } from '../';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import assertAccessible from '~utils/testing/assertAccessible.native';
 
@@ -9,6 +9,13 @@ beforeAll(() => jest.spyOn(console, 'error').mockImplementation());
 afterAll(() => jest.restoreAllMocks());
 
 describe('<CitedFieldRow />', () => {
+  it('should render column header labels', () => {
+    const { getByText } = renderWithTheme(<CitedFieldRow.Header />);
+    expect(getByText('Field')).toBeInTheDocument();
+    expect(getByText('Value')).toBeInTheDocument();
+    expect(getByText('Source')).toBeInTheDocument();
+  });
+
   it('should render label and value', () => {
     const { container, getByText } = renderWithTheme(
       <CitedFieldRow label="MBOL" value="MEDUXYZ123456" />,
@@ -70,6 +77,30 @@ describe('<CitedFieldRow />', () => {
 
     fireEvent.click(chip);
     expect(onCiteClick).not.toHaveBeenCalled();
+  });
+
+  it('should render success text when validationState is success', () => {
+    const { getByText } = renderWithTheme(
+      <CitedFieldRow
+        label="MBOL"
+        value="MEDUXYZ123456"
+        validationState="success"
+        successText="MBOL format is valid."
+      />,
+    );
+    expect(getByText('MBOL format is valid.')).toBeInTheDocument();
+  });
+
+  it('should render error text when validationState is error', () => {
+    const { getByText } = renderWithTheme(
+      <CitedFieldRow
+        label="MBOL"
+        value="INVALID"
+        validationState="error"
+        errorText="MBOL format is invalid."
+      />,
+    );
+    expect(getByText('MBOL format is invalid.')).toBeInTheDocument();
   });
 
   it('should render control instead of value when editable', () => {

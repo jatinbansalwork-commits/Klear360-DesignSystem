@@ -1,7 +1,15 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import type { CitedFieldRowProps, CitedFieldRowSource } from './types';
-import { citeDotSize, sourceVariantTokens, activeSourceTokens } from './citedFieldRowTokens';
+import {
+  citeDotSize,
+  sourceVariantTokens,
+  activeSourceTokens,
+  citedFieldRowSubtleBackground,
+  errorValueCellTokens,
+  successValueCellTokens,
+} from './citedFieldRowTokens';
+import { CheckIcon } from '~components/Icons';
 import BaseBox from '~components/Box/BaseBox';
 import { Text } from '~components/Typography';
 import { getStyledProps } from '~components/Box/styledProps';
@@ -66,6 +74,9 @@ const _CitedFieldRow = (
     source,
     isCiteMuted = false,
     isCiteTarget = false,
+    validationState = 'none',
+    errorText,
+    successText,
     onCiteClick,
     testID,
     ...rest
@@ -75,6 +86,33 @@ const _CitedFieldRow = (
   const isGrounded = Boolean(source);
   const isEmpty = value == null || value === '';
   const displayValue = isEmpty ? '—' : value;
+  const isError = validationState === 'error';
+  const isSuccess = validationState === 'success';
+  const showErrorText = isError && Boolean(errorText);
+  const showSuccessText = isSuccess && Boolean(successText);
+  const validationHintId = React.useId();
+  const showValidationHint = showErrorText || showSuccessText;
+  const valueAccentBorder = isError
+    ? errorValueCellTokens.borderLeft
+    : isSuccess
+    ? successValueCellTokens.borderLeft
+    : isCiteTarget
+    ? 'surface.border.primary.normal'
+    : undefined;
+  const valueBackground = isError
+    ? errorValueCellTokens.background
+    : isSuccess
+    ? successValueCellTokens.background
+    : isCiteTarget
+    ? 'surface.background.primary.subtle'
+    : 'interactive.background.staticWhite.default';
+  const valueTextColor = isError
+    ? errorValueCellTokens.text
+    : isSuccess
+    ? successValueCellTokens.text
+    : isEmpty
+    ? 'surface.text.gray.muted'
+    : 'surface.text.gray.normal';
 
   const handleCiteClick = (): void => {
     if (!source || isCiteMuted) return;
@@ -101,7 +139,7 @@ const _CitedFieldRow = (
         padding="spacing.3"
         borderRightWidth="thin"
         borderRightColor="surface.border.gray.muted"
-        backgroundColor="surface.background.gray.subtle"
+        backgroundColor={citedFieldRowSubtleBackground as never}
       >
         <Text
           variant="body"
@@ -115,30 +153,34 @@ const _CitedFieldRow = (
 
       <BaseBox
         flex={1}
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between"
-        gap="spacing.3"
+        flexDirection="column"
+        justifyContent="center"
+        gap={showValidationHint ? 'spacing.1' : undefined}
         paddingY="spacing.2"
         paddingX="spacing.3"
-        borderLeftWidth={isCiteTarget ? 'thick' : undefined}
-        borderLeftColor={isCiteTarget ? 'surface.border.primary.normal' : undefined}
-        backgroundColor={
-          isCiteTarget
-            ? 'surface.background.primary.subtle'
-            : 'interactive.background.staticWhite.default'
-        }
+        borderLeftWidth={valueAccentBorder ? 'thick' : undefined}
+        borderLeftColor={valueAccentBorder as never}
+        backgroundColor={valueBackground as never}
+        {...makeAccessible({
+          ...(isError ? { invalid: true } : {}),
+          ...(showValidationHint ? { describedBy: validationHintId } : {}),
+        })}
         {...metaAttribute({ name: MetaConstants.CitedFieldRowValue })}
       >
         {isEditable ? (
           control
         ) : (
-          <>
+          <BaseBox
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="space-between"
+            gap="spacing.3"
+          >
             <Text
               variant="body"
               size="medium"
               weight={isEmpty ? 'regular' : 'medium'}
-              color={isEmpty ? 'surface.text.gray.muted' : 'surface.text.gray.normal'}
+              color={valueTextColor as never}
               truncateAfterLines={1}
             >
               {displayValue}
@@ -146,8 +188,38 @@ const _CitedFieldRow = (
             {source ? (
               <SourceRefChip source={source} isDisabled={isCiteMuted} onClick={handleCiteClick} />
             ) : null}
-          </>
+          </BaseBox>
         )}
+        {showErrorText ? (
+          <BaseBox {...({ nativeID: validationHintId } as Record<string, string>)}>
+            <Text
+              variant="caption"
+              size="small"
+              color="feedback.text.negative.intense"
+              {...metaAttribute({ name: MetaConstants.CitedFieldRowError })}
+            >
+              {errorText}
+            </Text>
+          </BaseBox>
+        ) : null}
+        {showSuccessText ? (
+          <BaseBox
+            {...({ nativeID: validationHintId } as Record<string, string>)}
+            flexDirection="row"
+            alignItems="center"
+            gap="spacing.1"
+          >
+            <CheckIcon size="small" color="feedback.icon.positive.intense" />
+            <Text
+              variant="caption"
+              size="small"
+              color="feedback.text.positive.intense"
+              {...metaAttribute({ name: MetaConstants.CitedFieldRowSuccess })}
+            >
+              {successText}
+            </Text>
+          </BaseBox>
+        ) : null}
       </BaseBox>
     </BaseBox>
   );
