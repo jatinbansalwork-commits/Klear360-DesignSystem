@@ -1,6 +1,6 @@
 export { Table } from './Table';
 export { TableHeader, TableHeaderCell, TableHeaderRow } from './TableHeader';
-export { TableBody, TableCell, TableRow } from './TableBody';
+export { TableBody, TableCell, TableRow, TableVirtualizedWrapper } from './TableBody';
 export { TableTitleDescriptionCell } from './TableTitleDescriptionCell';
 export { TableFooter, TableFooterCell, TableFooterRow } from './TableFooter';
 export { TablePagination } from './TablePagination';
@@ -31,6 +31,7 @@ export type {
   Identifier,
   TableSortDirection,
   TableSortOrderEntry,
+  TableVirtualizedWrapperProps,
 } from './types';
 export { TableEditableCell, TableEditableDropdownCell } from './TableEditableCell';
 export { TableEditableSearchCell } from './TableEditableSearchCell';
