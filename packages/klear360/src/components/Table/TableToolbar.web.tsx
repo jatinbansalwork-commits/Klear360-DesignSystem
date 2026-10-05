@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ComponentIds } from './componentIds';
 import { tableToolbar } from './tokens';
-import { useTableContext } from './TableContext';
+import { useTableContext, useTableInteractionContext } from './TableContext';
 import type { TableToolbarProps, TableToolbarActionsProps, TableToolbarSearchProps } from './types';
 import { SearchInput } from '~components/Input/SearchInput';
 import { makeMotionTime, makeSize } from '~utils';
@@ -65,7 +65,7 @@ const _TableToolbarSearch = ({
   accessibilityLabel = 'Search table',
   ...rest
 }: TableToolbarSearchProps): React.ReactElement => {
-  const { globalFilterValue, setGlobalFilterValue } = useTableContext();
+  const { globalFilterValue, setGlobalFilterValue } = useTableInteractionContext();
   return (
     // Grows to use the toolbar's empty space (rather than sitting at a fixed 240px, which reads
     // as an afterthought squeezed next to TableToolbarActions) while staying readable on mobile
@@ -98,14 +98,8 @@ const _TableToolbar = ({
   title,
   selectedTitle: controlledSelectedTitle,
 }: TableToolbarProps): React.ReactElement => {
-  const {
-    selectionType,
-    selectedRows,
-    deselectAllRows,
-    currentPaginationState,
-    totalItems,
-    tableToolbarPlacement,
-  } = useTableContext();
+  const { selectionType, selectedRows, deselectAllRows, tableToolbarPlacement } = useTableContext();
+  const { currentPaginationState, totalItems } = useTableInteractionContext();
   const { platform } = useTheme();
   const isSelected = selectedRows && selectedRows.length > 0;
 

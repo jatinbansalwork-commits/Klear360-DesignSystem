@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Body, Row, Cell } from '@table-library/react-table-library/table';
 import { Virtualized } from '@table-library/react-table-library/virtualized';
 import styled from 'styled-components';
-import { useTableContext } from './TableContext';
+import { useTableContext, useTableInteractionContext } from './TableContext';
 import { checkboxCellWidth, classes, tableRow } from './tokens';
 import { ComponentIds } from './componentIds';
 import type {
@@ -555,7 +555,8 @@ const _Virtulized = <Item,>({
   children,
 }: VirtualizedWrapperProps): React.ReactElement => {
   const [parsedHeader = null, parsedBody = null] = React.Children.toArray(children);
-  const { rowDensity, tableData } = useTableContext<Item>();
+  const { rowDensity } = useTableContext();
+  const { tableData } = useTableInteractionContext<Item>();
   const _tableRow = Number(tableRow.minHeight[rowDensity]);
 
   const _rowHeight = (item: TableNode<Item>, index: number): number => {

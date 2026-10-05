@@ -12,8 +12,8 @@ import {
 import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree';
 import styled from 'styled-components';
 import usePresence from 'use-presence';
-import type { TableContextType } from './TableContext';
-import { TableContext } from './TableContext';
+import type { TableContextType, TableInteractionContextType } from './TableContext';
+import { TableContext, TableInteractionContext } from './TableContext';
 import { ComponentIds } from './componentIds';
 import {
   checkboxCellWidth,
@@ -814,7 +814,7 @@ const _Table = <Item,>({
     [filteredData, applySortEntries, activeSortEntries],
   );
 
-  const currentSortedState: TableContextType<Item>['currentSortedState'] = useMemo(() => {
+  const currentSortedState: TableInteractionContextType<Item>['currentSortedState'] = useMemo(() => {
     return {
       sortKey: activeSortEntries[0]?.sortKey ?? '',
       isSortReversed: activeSortEntries[0]?.direction === 'desc',
@@ -922,26 +922,20 @@ const _Table = <Item,>({
     }
   }
 
-  // Table Context
-  const tableContext: TableContextType<Item> = useMemo(
+  // Table Context - appearance/selection/structure only. Deliberately excludes sort, filter,
+  // pagination and tableData (see TableInteractionContext below) so that TableRow/TableCell -
+  // one instance per row/cell - don't re-render on every sort click or filter keystroke.
+  const tableContext: TableContextType = useMemo(
     () => ({
       selectionType,
       selectedRows,
-      totalItems,
       toggleRowSelectionById,
       toggleAllRowsSelection,
       deselectAllRows,
       rowDensity,
-      toggleSort,
-      currentSortedState,
-      setPaginationPage,
-      setPaginationRowSize,
-      currentPaginationState,
       showStripedRows,
       disabledRows,
       setDisabledRows,
-      paginationType,
-      setPaginationType,
       backgroundColor,
       headerRowDensity,
       setHeaderRowDensity,
@@ -953,15 +947,58 @@ const _Table = <Item,>({
       columnCount,
       gridTemplateColumns,
       isVirtualized,
-      // sortedData.nodes (not the raw data.nodes) so virtualized tables - which render
-      // straight off this context value instead of through StyledReactTable's own pipeline -
-      // reflect the current sort too.
-      tableData: sortedData.nodes,
       isGrouped,
       expandedRowIds,
       toggleRowExpansionById,
       tableToolbarPlacement: toolbar?.props?.placement ?? 'inline',
       checkboxDisplay,
+    }),
+    [
+      selectionType,
+      selectedRows,
+      toggleRowSelectionById,
+      toggleAllRowsSelection,
+      deselectAllRows,
+      gridTemplateColumns,
+      rowDensity,
+      columnCount,
+      showStripedRows,
+      disabledRows,
+      setDisabledRows,
+      backgroundColor,
+      headerRowDensity,
+      setHeaderRowDensity,
+      showBorderedCells,
+      shouldHeaderBeSticky,
+      hasHoverActions,
+      setHasHoverActions,
+      multiSelectTrigger,
+      isVirtualized,
+      isGrouped,
+      expandedRowIds,
+      toggleRowExpansionById,
+      toolbar?.props?.placement,
+      checkboxDisplay,
+    ],
+  );
+
+  // Table Interaction Context - sort, filter, pagination and the data/counts derived from them.
+  // Split out from TableContext so that only the (far fewer) components displaying this state
+  // re-render when it changes, instead of every row and cell in the table.
+  const tableInteractionContext: TableInteractionContextType<Item> = useMemo(
+    () => ({
+      totalItems,
+      toggleSort,
+      currentSortedState,
+      setPaginationPage,
+      setPaginationRowSize,
+      currentPaginationState,
+      paginationType,
+      setPaginationType,
+      // sortedData.nodes (not the raw data.nodes) so virtualized tables - which render
+      // straight off this context value instead of through StyledReactTable's own pipeline -
+      // reflect the current sort too.
+      tableData: sortedData.nodes,
       globalFilterValue,
       setGlobalFilterValue,
       columnFilterValues,
@@ -970,39 +1007,15 @@ const _Table = <Item,>({
       filterConfig,
     }),
     [
-      selectionType,
-      selectedRows,
       totalItems,
-      toggleRowSelectionById,
-      toggleAllRowsSelection,
-      deselectAllRows,
-      gridTemplateColumns,
-      rowDensity,
       toggleSort,
-      columnCount,
       currentSortedState,
       setPaginationPage,
       setPaginationRowSize,
       currentPaginationState,
-      showStripedRows,
-      disabledRows,
-      setDisabledRows,
       paginationType,
       setPaginationType,
-      backgroundColor,
-      headerRowDensity,
-      setHeaderRowDensity,
-      showBorderedCells,
-      shouldHeaderBeSticky,
-      hasHoverActions,
-      setHasHoverActions,
-      multiSelectTrigger,
-      isVirtualized,
       sortedData,
-      isGrouped,
-      expandedRowIds,
-      toggleRowExpansionById,
-      checkboxDisplay,
       globalFilterValue,
       setGlobalFilterValue,
       columnFilterValues,
@@ -1014,114 +1027,116 @@ const _Table = <Item,>({
 
   return (
     <TableContext.Provider value={tableContext}>
-      <TableSurface
-        colorScheme={colorScheme}
-        borderRadius={isInsideListView ? 'none' : 'medium'}
-        overflow="hidden"
-        isInsideListView={isInsideListView ?? false}
-        // Transparent when inside ListView so the gradient pseudo-elements
-        // on ListViewSurface remain visible through the TableSurface.
-        backgroundColor={isInsideListView ? 'transparent' : 'surface.background.gray.intense'}
-      >
-        {isLoading ? (
-          <BaseBox
-            flex={1}
-            {...getStyledProps(rest)}
-            {...metaAttribute({ name: MetaConstants.Table })}
-            {...makeAnalyticsAttribute(rest)}
-            testID="table-skeleton"
-          >
-            {/* Header skeleton row */}
-            <StyledSkeletonRow $columns={columnCount || 5} $isHeader>
-              {Array.from({ length: columnCount || 5 }).map((_, i) => (
-                <Skeleton
-                  key={i}
-                  width={
-                    i === 0 ? SKELETON_CELL_WIDTHS.headerFirst : SKELETON_CELL_WIDTHS.headerRest
-                  }
-                  height="16px"
-                  borderRadius="medium"
-                />
-              ))}
-            </StyledSkeletonRow>
-            {/* Body skeleton rows */}
-            {Array.from({ length: SKELETON_ROW_COUNT }).map((_, rowIdx) => (
-              <StyledSkeletonRow key={rowIdx} $columns={columnCount || 5}>
-                {Array.from({ length: columnCount || 5 }).map((_, colIdx) => {
-                  const cols = columnCount || 5;
-                  const width =
-                    colIdx === 0
-                      ? SKELETON_CELL_WIDTHS.first
-                      : colIdx === cols - 1
-                      ? SKELETON_CELL_WIDTHS.last
-                      : SKELETON_CELL_WIDTHS.middle;
-                  return (
-                    <Skeleton key={colIdx} width={width} height="14px" borderRadius="medium" />
-                  );
-                })}
-              </StyledSkeletonRow>
-            ))}
-          </BaseBox>
-        ) : (
-          <BaseBox
-            flex={1}
-            position="relative"
-            {...getStyledProps(rest)}
-            {...metaAttribute({ name: MetaConstants.Table })}
-            width={isVirtualized ? `100%` : undefined}
-            {...makeAnalyticsAttribute(rest)}
-          >
-            {isRefreshSpinnerMounted && (
-              <RefreshWrapper
-                position="absolute"
-                width="100%"
-                height="100%"
-                zIndex={refreshWrapperZIndex}
-                backgroundColor="overlay.background.subtle"
-                justifyContent="center"
-                alignItems="center"
-                display="flex"
-                isRefreshSpinnerEntering={isRefreshSpinnerEntering}
-                isRefreshSpinnerExiting={isRefreshSpinnerExiting}
-                isRefreshSpinnerVisible={isRefreshSpinnerVisible}
-              >
-                <Spinner color="white" accessibilityLabel="Refreshing Table" size="large" />
-              </RefreshWrapper>
-            )}
-            {/* wrapping toolbar in BaseBox and passing the same analytics attributes as of table because in analytics POV, events triggered are from table */}
-            <BaseBox {...makeAnalyticsAttribute(rest)}>{toolbar}</BaseBox>
-            <StyledReactTable
-              ref={tableElementRef}
-              role="table"
-              layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
-              data={sortedData}
-              // @ts-expect-error ignore this, theme clashes with styled-component's theme. We're using useTheme from klear360 to get actual theme
-              theme={tableTheme}
-              select={selectionType !== 'none' ? rowSelectConfig : null}
-              // Sorting is applied ourselves above (`sortedData`) so it can compose multiple
-              // columns - the library's own single-key sort modifier is unused here.
-              sort={null}
-              tree={isGrouped ? tree : null}
-              $styledProps={{
-                height,
-                width: isVirtualized ? `100%` : undefined,
-                isVirtualized,
-                isSelectable: selectionType !== 'none',
-                showStripedRows,
-              }}
-              pagination={hasPagination ? paginationConfig : null}
-              // No `aria-multiselectable` here - it's only a valid ARIA attribute on
-              // grid/listbox/tree/tablist/treegrid roles, not `role="table"`; per-row
-              // checkboxes already expose selection state individually.
+      <TableInteractionContext.Provider value={tableInteractionContext}>
+        <TableSurface
+          colorScheme={colorScheme}
+          borderRadius={isInsideListView ? 'none' : 'medium'}
+          overflow="hidden"
+          isInsideListView={isInsideListView ?? false}
+          // Transparent when inside ListView so the gradient pseudo-elements
+          // on ListViewSurface remain visible through the TableSurface.
+          backgroundColor={isInsideListView ? 'transparent' : 'surface.background.gray.intense'}
+        >
+          {isLoading ? (
+            <BaseBox
+              flex={1}
+              {...getStyledProps(rest)}
               {...metaAttribute({ name: MetaConstants.Table })}
               {...makeAnalyticsAttribute(rest)}
+              testID="table-skeleton"
             >
-              {resolvedChildren}
-            </StyledReactTable>
-            {pagination}
-          </BaseBox>
-        )}
-      </TableSurface>
+              {/* Header skeleton row */}
+              <StyledSkeletonRow $columns={columnCount || 5} $isHeader>
+                {Array.from({ length: columnCount || 5 }).map((_, i) => (
+                  <Skeleton
+                    key={i}
+                    width={
+                      i === 0 ? SKELETON_CELL_WIDTHS.headerFirst : SKELETON_CELL_WIDTHS.headerRest
+                    }
+                    height="16px"
+                    borderRadius="medium"
+                  />
+                ))}
+              </StyledSkeletonRow>
+              {/* Body skeleton rows */}
+              {Array.from({ length: SKELETON_ROW_COUNT }).map((_, rowIdx) => (
+                <StyledSkeletonRow key={rowIdx} $columns={columnCount || 5}>
+                  {Array.from({ length: columnCount || 5 }).map((_, colIdx) => {
+                    const cols = columnCount || 5;
+                    const width =
+                      colIdx === 0
+                        ? SKELETON_CELL_WIDTHS.first
+                        : colIdx === cols - 1
+                        ? SKELETON_CELL_WIDTHS.last
+                        : SKELETON_CELL_WIDTHS.middle;
+                    return (
+                      <Skeleton key={colIdx} width={width} height="14px" borderRadius="medium" />
+                    );
+                  })}
+                </StyledSkeletonRow>
+              ))}
+            </BaseBox>
+          ) : (
+            <BaseBox
+              flex={1}
+              position="relative"
+              {...getStyledProps(rest)}
+              {...metaAttribute({ name: MetaConstants.Table })}
+              width={isVirtualized ? `100%` : undefined}
+              {...makeAnalyticsAttribute(rest)}
+            >
+              {isRefreshSpinnerMounted && (
+                <RefreshWrapper
+                  position="absolute"
+                  width="100%"
+                  height="100%"
+                  zIndex={refreshWrapperZIndex}
+                  backgroundColor="overlay.background.subtle"
+                  justifyContent="center"
+                  alignItems="center"
+                  display="flex"
+                  isRefreshSpinnerEntering={isRefreshSpinnerEntering}
+                  isRefreshSpinnerExiting={isRefreshSpinnerExiting}
+                  isRefreshSpinnerVisible={isRefreshSpinnerVisible}
+                >
+                  <Spinner color="white" accessibilityLabel="Refreshing Table" size="large" />
+                </RefreshWrapper>
+              )}
+              {/* wrapping toolbar in BaseBox and passing the same analytics attributes as of table because in analytics POV, events triggered are from table */}
+              <BaseBox {...makeAnalyticsAttribute(rest)}>{toolbar}</BaseBox>
+              <StyledReactTable
+                ref={tableElementRef}
+                role="table"
+                layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
+                data={sortedData}
+                // @ts-expect-error ignore this, theme clashes with styled-component's theme. We're using useTheme from klear360 to get actual theme
+                theme={tableTheme}
+                select={selectionType !== 'none' ? rowSelectConfig : null}
+                // Sorting is applied ourselves above (`sortedData`) so it can compose multiple
+                // columns - the library's own single-key sort modifier is unused here.
+                sort={null}
+                tree={isGrouped ? tree : null}
+                $styledProps={{
+                  height,
+                  width: isVirtualized ? `100%` : undefined,
+                  isVirtualized,
+                  isSelectable: selectionType !== 'none',
+                  showStripedRows,
+                }}
+                pagination={hasPagination ? paginationConfig : null}
+                // No `aria-multiselectable` here - it's only a valid ARIA attribute on
+                // grid/listbox/tree/tablist/treegrid roles, not `role="table"`; per-row
+                // checkboxes already expose selection state individually.
+                {...metaAttribute({ name: MetaConstants.Table })}
+                {...makeAnalyticsAttribute(rest)}
+              >
+                {resolvedChildren}
+              </StyledReactTable>
+              {pagination}
+            </BaseBox>
+          )}
+        </TableSurface>
+      </TableInteractionContext.Provider>
     </TableContext.Provider>
   );
 };
