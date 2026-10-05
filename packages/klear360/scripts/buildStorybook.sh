@@ -40,6 +40,3 @@ if [ "$SKIP_DASHBOARD" = false ]; then
   node ./scripts/copyDashboard.js "$OUTPUT_DIR"
 fi
 
-# Copy svelte storybook to the output directory (serves at /svelte route)
-node ./scripts/copySvelteStorybook.js "$OUTPUT_DIR"
-
