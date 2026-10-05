@@ -189,7 +189,7 @@ const _CitedFieldRow = (
       minWidth={0 as never}
       borderBottomWidth="thin"
       borderBottomStyle="solid"
-      borderBottomColor="surface.border.gray.muted"
+      borderBottomColor="surface.border.gray.subtle"
       opacity={isCiteMuted ? opacity[citeMutedChipOpacity] : undefined}
       pointerEvents={isCiteMuted ? 'none' : undefined}
       {...getStyledProps(rest)}
@@ -203,13 +203,13 @@ const _CitedFieldRow = (
         padding="spacing.3"
         borderRightWidth="thin"
         borderRightStyle="solid"
-        borderRightColor="surface.border.gray.muted"
+        borderRightColor="surface.border.gray.subtle"
         backgroundColor={citedFieldRowSubtleBackground}
       >
         <Text
           variant="body"
-          size="small"
-          weight="medium"
+          size="medium"
+          weight="regular"
           color={isGrounded ? 'surface.text.gray.normal' : 'surface.text.gray.muted'}
         >
           {label}
@@ -246,7 +246,7 @@ const _CitedFieldRow = (
             <StyledTabularNumsSpan>
               <Text
                 variant="body"
-                size="medium"
+                size="small"
                 weight={isEmpty ? 'regular' : 'medium'}
                 color={valueTextColor}
                 truncateAfterLines={1}

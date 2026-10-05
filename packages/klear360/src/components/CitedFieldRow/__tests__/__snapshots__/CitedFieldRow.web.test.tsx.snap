@@ -9,7 +9,7 @@ exports[`<CitedFieldRow /> should render label and value 1`] = `
   align-items: stretch;
   grid-template-columns: minmax(7.5rem,42%) minmax(0,1fr);
   border-bottom-width: 1px;
-  border-bottom-color: hsla(222,47%,11%,0.126);
+  border-bottom-color: hsla(214,32%,91%,1);
   border-bottom-style: solid;
 }
 
@@ -25,7 +25,7 @@ exports[`<CitedFieldRow /> should render label and value 1`] = `
   padding: 8px;
   background-color: hsla(210,40%,96%,1);
   border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.126);
+  border-right-color: hsla(214,32%,91%,1);
   border-right-style: solid;
 }
 
@@ -68,6 +68,23 @@ exports[`<CitedFieldRow /> should render label and value 1`] = `
 .c3.c3.c3.c3.c3 {
   color: hsla(215,25%,27%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.18200000000000002px;
+  -moz-letter-spacing: -0.18200000000000002px;
+  -ms-letter-spacing: -0.18200000000000002px;
+  letter-spacing: -0.18200000000000002px;
+  margin: 0;
+  padding: 0;
+}
+
+.c7.c7.c7.c7.c7 {
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
   font-style: normal;
@@ -78,23 +95,6 @@ exports[`<CitedFieldRow /> should render label and value 1`] = `
   -moz-letter-spacing: -0.15600000000000003px;
   -ms-letter-spacing: -0.15600000000000003px;
   letter-spacing: -0.15600000000000003px;
-  margin: 0;
-  padding: 0;
-}
-
-.c7.c7.c7.c7.c7 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: -0.18200000000000002px;
-  -moz-letter-spacing: -0.18200000000000002px;
-  -ms-letter-spacing: -0.18200000000000002px;
-  letter-spacing: -0.18200000000000002px;
   margin: 0;
   padding: 0;
   overflow: hidden;
