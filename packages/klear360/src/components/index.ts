@@ -22,6 +22,7 @@ export * from './ChatInput';
 export * from './ChatMessage';
 export * from './Charts';
 export * from './Chip';
+export * from './CitedFieldRow';
 export * from './Collapsible';
 export * from './Counter';
 export * from './CounterInput';
