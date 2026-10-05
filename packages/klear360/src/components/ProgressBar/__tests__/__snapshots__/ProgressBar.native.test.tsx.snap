@@ -2572,12 +2572,12 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 1`] = `
           }
         >
           <View
-            backgroundColor="hsla(35, 99%, 44%, 1)"
+            backgroundColor="hsla(34, 94%, 35%, 1)"
             progress={20}
             style={
               [
                 {
-                  "backgroundColor": "hsla(35, 99%, 44%, 1)",
+                  "backgroundColor": "hsla(34, 94%, 35%, 1)",
                   "height": "100%",
                   "width": "20%",
                 },
@@ -2743,12 +2743,12 @@ exports[`<ProgressBar /> should render color=notice ProgressBar 2`] = `
           }
         >
           <View
-            backgroundColor="hsla(35, 99%, 44%, 1)"
+            backgroundColor="hsla(34, 94%, 35%, 1)"
             progress={20}
             style={
               [
                 {
-                  "backgroundColor": "hsla(35, 99%, 44%, 1)",
+                  "backgroundColor": "hsla(34, 94%, 35%, 1)",
                   "height": "100%",
                   "width": "20%",
                 },
@@ -2914,12 +2914,12 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 1`] = `
           }
         >
           <View
-            backgroundColor="hsla(143, 73%, 40%, 1)"
+            backgroundColor="hsla(143, 72%, 31%, 1)"
             progress={20}
             style={
               [
                 {
-                  "backgroundColor": "hsla(143, 73%, 40%, 1)",
+                  "backgroundColor": "hsla(143, 72%, 31%, 1)",
                   "height": "100%",
                   "width": "20%",
                 },
@@ -3085,12 +3085,12 @@ exports[`<ProgressBar /> should render color=positive ProgressBar 2`] = `
           }
         >
           <View
-            backgroundColor="hsla(143, 73%, 40%, 1)"
+            backgroundColor="hsla(143, 72%, 31%, 1)"
             progress={20}
             style={
               [
                 {
-                  "backgroundColor": "hsla(143, 73%, 40%, 1)",
+                  "backgroundColor": "hsla(143, 72%, 31%, 1)",
                   "height": "100%",
                   "width": "20%",
                 },

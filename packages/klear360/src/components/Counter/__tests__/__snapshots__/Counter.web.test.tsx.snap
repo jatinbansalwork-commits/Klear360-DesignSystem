@@ -830,7 +830,7 @@ exports[`<Counter /> should render intense emphasis notice color Counter 1`] = `
 .c1.c1.c1.c1.c1 {
   min-height: 20px;
   min-width: 20px;
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
 }
 
 .c3.c3.c3.c3.c3 {
@@ -855,7 +855,7 @@ exports[`<Counter /> should render intense emphasis notice color Counter 1`] = `
 }
 
 .c2.c2.c2.c2.c2 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
   border-radius: 9999px;
   max-width: 120px;
   display: -webkit-box;
@@ -946,7 +946,7 @@ exports[`<Counter /> should render intense emphasis notice color Counter 2`] = `
 .c1.c1.c1.c1.c1 {
   min-height: 20px;
   min-width: 20px;
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
 }
 
 .c3.c3.c3.c3.c3 {
@@ -971,7 +971,7 @@ exports[`<Counter /> should render intense emphasis notice color Counter 2`] = `
 }
 
 .c2.c2.c2.c2.c2 {
-  background-color: hsla(35,99%,44%,1);
+  background-color: hsla(34,94%,35%,1);
   border-radius: 9999px;
   max-width: 120px;
   display: -webkit-box;
@@ -1062,7 +1062,7 @@ exports[`<Counter /> should render intense emphasis positive color Counter 1`] =
 .c1.c1.c1.c1.c1 {
   min-height: 20px;
   min-width: 20px;
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
 }
 
 .c3.c3.c3.c3.c3 {
@@ -1087,7 +1087,7 @@ exports[`<Counter /> should render intense emphasis positive color Counter 1`] =
 }
 
 .c2.c2.c2.c2.c2 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
   border-radius: 9999px;
   max-width: 120px;
   display: -webkit-box;
@@ -1178,7 +1178,7 @@ exports[`<Counter /> should render intense emphasis positive color Counter 2`] =
 .c1.c1.c1.c1.c1 {
   min-height: 20px;
   min-width: 20px;
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
 }
 
 .c3.c3.c3.c3.c3 {
@@ -1203,7 +1203,7 @@ exports[`<Counter /> should render intense emphasis positive color Counter 2`] =
 }
 
 .c2.c2.c2.c2.c2 {
-  background-color: hsla(143,73%,40%,1);
+  background-color: hsla(143,72%,31%,1);
   border-radius: 9999px;
   max-width: 120px;
   display: -webkit-box;
@@ -2155,7 +2155,7 @@ exports[`<Counter /> should render subtle emphasis negative color Counter 1`] = 
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(3,69%,51%,1);
+  color: hsla(3,67%,42%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2271,7 +2271,7 @@ exports[`<Counter /> should render subtle emphasis negative color Counter 2`] = 
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(3,69%,51%,1);
+  color: hsla(3,67%,42%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2619,7 +2619,7 @@ exports[`<Counter /> should render subtle emphasis notice color Counter 1`] = `
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(34,94%,35%,1);
+  color: hsla(35,99%,27%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2735,7 +2735,7 @@ exports[`<Counter /> should render subtle emphasis notice color Counter 2`] = `
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(34,94%,35%,1);
+  color: hsla(35,99%,27%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2851,7 +2851,7 @@ exports[`<Counter /> should render subtle emphasis positive color Counter 1`] = 
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(143,72%,31%,1);
+  color: hsla(142,71%,25%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2967,7 +2967,7 @@ exports[`<Counter /> should render subtle emphasis positive color Counter 2`] = 
 }
 
 .c4.c4.c4.c4.c4 {
-  color: hsla(143,72%,31%,1);
+  color: hsla(142,71%,25%,1);
   font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;

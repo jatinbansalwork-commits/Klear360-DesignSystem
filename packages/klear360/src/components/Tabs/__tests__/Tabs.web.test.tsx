@@ -7,6 +7,7 @@ import { Text } from '~components/Typography';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
 import assertAccessible from '~utils/testing/assertAccessible.web';
+import klear360Theme from '~tokens/theme/klear360Theme';
 
 const queryTabPanelByText = (text: string): HTMLElement | null => {
   return (
@@ -460,5 +461,133 @@ describe('Tabs', () => {
       'href',
       'https://www.google.com',
     );
+  });
+  describe('selectedEmphasis', () => {
+    const lightColors = klear360Theme.colors.onLight;
+    const renderFilledTabs = (
+      selectedEmphasis?: 'subtle' | 'intense',
+    ): ReturnType<typeof renderWithTheme> =>
+      renderWithTheme(
+        <Tabs variant="filled" selectedEmphasis={selectedEmphasis} defaultValue="intake">
+          <TabList>
+            <TabItem value="exceptions">Exceptions</TabItem>
+            <TabItem value="intake">Intake</TabItem>
+            <TabItem value="temps">Temps</TabItem>
+          </TabList>
+        </Tabs>,
+      );
+    const getIndicator = (container: HTMLElement): Element =>
+      container.querySelector('[data-klear360-component="tab-indicator"]')!;
+
+    it('keeps the white pill and default selected text by default', () => {
+      const { container, getByRole } = renderFilledTabs();
+
+      expect(getIndicator(container)).toHaveStyle({
+        backgroundColor: lightColors.surface.background.gray.intense,
+      });
+      expect(getByRole('tab', { name: 'Intake' }).querySelector('p')).toHaveStyle({
+        color: lightColors.interactive.text.gray.normal,
+      });
+    });
+
+    it('draws a primary pill with white text for the selected tab when "intense"', () => {
+      const { container, getByRole } = renderFilledTabs('intense');
+
+      expect(getIndicator(container)).toHaveStyle({
+        backgroundColor: lightColors.surface.background.primary.intense,
+      });
+      expect(getByRole('tab', { name: 'Intake' }).querySelector('p')).toHaveStyle({
+        color: lightColors.surface.text.staticWhite.normal,
+      });
+      // Unselected tabs keep their normal (unfilled) colors.
+      expect(getByRole('tab', { name: 'Temps' }).querySelector('p')).toHaveStyle({
+        color: lightColors.interactive.text.gray.muted,
+      });
+    });
+
+    it('moves the white text along with the selection', () => {
+      const { getByRole } = renderFilledTabs('intense');
+
+      fireEvent.click(getByRole('tab', { name: 'Temps' }));
+      expect(getByRole('tab', { name: 'Temps' })).toHaveAttribute('aria-selected', 'true');
+      expect(getByRole('tab', { name: 'Temps' }).querySelector('p')).toHaveStyle({
+        color: lightColors.surface.text.staticWhite.normal,
+      });
+      expect(getByRole('tab', { name: 'Intake' }).querySelector('p')).toHaveStyle({
+        color: lightColors.interactive.text.gray.muted,
+      });
+    });
+
+    it('matches snapshot', () => {
+      const { baseElement } = renderFilledTabs('intense');
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
+  describe('aria-controls', () => {
+    it('is omitted when Tabs are used without TabPanels', async () => {
+      const { getAllByRole, getByRole } = renderWithTheme(
+        <Tabs variant="filled" selectedEmphasis="intense" defaultValue="intake">
+          <TabList>
+            <TabItem value="exceptions">Exceptions</TabItem>
+            <TabItem value="intake">Intake</TabItem>
+          </TabList>
+        </Tabs>,
+      );
+
+      getAllByRole('tab').forEach((tab) => expect(tab).not.toHaveAttribute('aria-controls'));
+      // Still announced as a tab list: "tab, 2 of 2, selected".
+      expect(getByRole('tablist')).toBeInTheDocument();
+      expect(getByRole('tab', { name: 'Intake' })).toHaveAttribute('aria-selected', 'true');
+      await assertAccessible(getByRole('tablist'));
+    });
+
+    it('points at the rendered panel when TabPanels are present', () => {
+      const { getByRole } = renderWithTheme(
+        <Tabs defaultValue="payments">
+          <TabList>
+            <TabItem value="payments">Payments</TabItem>
+            <TabItem value="refunds">Refunds</TabItem>
+          </TabList>
+          <TabPanel value="payments">
+            <Text>Payments</Text>
+          </TabPanel>
+          <TabPanel value="refunds">
+            <Text>Refunds</Text>
+          </TabPanel>
+        </Tabs>,
+      );
+
+      ['Payments', 'Refunds'].forEach((name) => {
+        const tab = getByRole('tab', { name });
+        const panelId = tab.getAttribute('aria-controls');
+        expect(panelId).toBeTruthy();
+        expect(document.getElementById(panelId!)).toBeInTheDocument();
+      });
+    });
+
+    it('only points lazy tabs at a panel once it is rendered', () => {
+      const { getByRole } = renderWithTheme(
+        <Tabs defaultValue="payments" isLazy>
+          <TabList>
+            <TabItem value="payments">Payments</TabItem>
+            <TabItem value="refunds">Refunds</TabItem>
+          </TabList>
+          <TabPanel value="payments">
+            <Text>Payments</Text>
+          </TabPanel>
+          <TabPanel value="refunds">
+            <Text>Refunds</Text>
+          </TabPanel>
+        </Tabs>,
+      );
+
+      expect(getByRole('tab', { name: 'Payments' })).toHaveAttribute('aria-controls');
+      expect(getByRole('tab', { name: 'Refunds' })).not.toHaveAttribute('aria-controls');
+
+      fireEvent.click(getByRole('tab', { name: 'Refunds' }));
+      expect(getByRole('tab', { name: 'Refunds' })).toHaveAttribute('aria-controls');
+      expect(getByRole('tab', { name: 'Payments' })).not.toHaveAttribute('aria-controls');
+    });
   });
 });

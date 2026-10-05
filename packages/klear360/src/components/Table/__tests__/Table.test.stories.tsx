@@ -321,3 +321,66 @@ PaginationTotalCount.play = async () => {
   await userEvent.click(getByRole('button', { name: 'Page 3' }));
   await expect(getByText('Showing 5-5 Items')).toBeInTheDocument();
 };
+
+const SortableTable = ({
+  rowDensity,
+}: {
+  rowDensity: 'compact' | 'normal' | 'comfortable';
+}): React.ReactElement => (
+  <Table<Item>
+    data={{ nodes }}
+    rowDensity={rowDensity}
+    sortFunctions={{ NAME: (array) => array.sort((a, b) => a.name.localeCompare(b.name)) }}
+  >
+    {(tableData) => (
+      <>
+        <TableHeader>
+          <TableHeaderRow>
+            <TableHeaderCell headerKey="NAME">{`Name (${rowDensity})`}</TableHeaderCell>
+          </TableHeaderRow>
+        </TableHeader>
+        <TableBody>
+          {tableData.map((item, index) => (
+            <TableRow key={index} item={item}>
+              <TableCell>{item.name}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </>
+    )}
+  </Table>
+);
+
+export const SortButtonTargetSize: StoryFn = (): React.ReactElement => (
+  <>
+    <SortableTable rowDensity="compact" />
+    <SortableTable rowDensity="normal" />
+    <SortableTable rowDensity="comfortable" />
+  </>
+);
+
+/**
+ * WCAG 2.2 SC 2.5.8 (Target Size, AA): every sort button's pointer target is at least 24x24 CSS
+ * px at every row density, while the visible sort icon stays 20x20 and the header row keeps its
+ * compact height.
+ */
+SortButtonTargetSize.play = async () => {
+  const { getAllByLabelText } = within(document.body);
+  const sortButtons = getAllByLabelText('Toggle Sort');
+
+  await expect(sortButtons).toHaveLength(3);
+  const measurements = sortButtons.map((sortButton) => {
+    const box = sortButton.getBoundingClientRect();
+    const icon = sortButton.querySelector('svg')!.getBoundingClientRect();
+    return {
+      hasTargetSize: box.width >= 24 && box.height >= 24,
+      iconSize: [icon.width, icon.height],
+      headerRowHeight: sortButton.closest('th')!.getBoundingClientRect().height,
+    };
+  });
+
+  // 36px compact header row + 1px bottom border, unchanged by the larger hit area.
+  await expect(measurements).toEqual(
+    sortButtons.map(() => ({ hasTargetSize: true, iconSize: [20, 20], headerRowHeight: 37 })),
+  );
+};

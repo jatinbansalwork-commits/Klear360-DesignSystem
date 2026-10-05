@@ -991,13 +991,13 @@ exports[`<Badge /> should render intense emphasis notice color Badge 1`] = `
       style={
         [
           {
-            "backgroundColor": "hsla(35, 99%, 44%, 1)",
+            "backgroundColor": "hsla(34, 94%, 35%, 1)",
             "height": 20,
             "textAlign": "left",
           },
           {
             "alignSelf": "center",
-            "backgroundColor": "hsla(35, 99%, 44%, 1)",
+            "backgroundColor": "hsla(34, 94%, 35%, 1)",
             "borderRadius": 9999,
             "display": "flex",
             "flexWrap": "nowrap",
@@ -1099,13 +1099,13 @@ exports[`<Badge /> should render intense emphasis notice color Badge 2`] = `
       style={
         [
           {
-            "backgroundColor": "hsla(35, 99%, 44%, 1)",
+            "backgroundColor": "hsla(34, 94%, 35%, 1)",
             "height": 20,
             "textAlign": "left",
           },
           {
             "alignSelf": "center",
-            "backgroundColor": "hsla(35, 99%, 44%, 1)",
+            "backgroundColor": "hsla(34, 94%, 35%, 1)",
             "borderRadius": 9999,
             "display": "flex",
             "flexWrap": "nowrap",
@@ -1207,13 +1207,13 @@ exports[`<Badge /> should render intense emphasis positive color Badge 1`] = `
       style={
         [
           {
-            "backgroundColor": "hsla(143, 73%, 40%, 1)",
+            "backgroundColor": "hsla(143, 72%, 31%, 1)",
             "height": 20,
             "textAlign": "left",
           },
           {
             "alignSelf": "center",
-            "backgroundColor": "hsla(143, 73%, 40%, 1)",
+            "backgroundColor": "hsla(143, 72%, 31%, 1)",
             "borderRadius": 9999,
             "display": "flex",
             "flexWrap": "nowrap",
@@ -1315,13 +1315,13 @@ exports[`<Badge /> should render intense emphasis positive color Badge 2`] = `
       style={
         [
           {
-            "backgroundColor": "hsla(143, 73%, 40%, 1)",
+            "backgroundColor": "hsla(143, 72%, 31%, 1)",
             "height": 20,
             "textAlign": "left",
           },
           {
             "alignSelf": "center",
-            "backgroundColor": "hsla(143, 73%, 40%, 1)",
+            "backgroundColor": "hsla(143, 72%, 31%, 1)",
             "borderRadius": 9999,
             "display": "flex",
             "flexWrap": "nowrap",
@@ -2232,7 +2232,7 @@ exports[`<Badge /> should render subtle emphasis negative color Badge 1`] = `
           style={
             [
               {
-                "color": "hsla(3, 69%, 51%, 1)",
+                "color": "hsla(3, 67%, 42%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2340,7 +2340,7 @@ exports[`<Badge /> should render subtle emphasis negative color Badge 2`] = `
           style={
             [
               {
-                "color": "hsla(3, 69%, 51%, 1)",
+                "color": "hsla(3, 67%, 42%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2664,7 +2664,7 @@ exports[`<Badge /> should render subtle emphasis notice color Badge 1`] = `
           style={
             [
               {
-                "color": "hsla(34, 94%, 35%, 1)",
+                "color": "hsla(35, 99%, 27%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2772,7 +2772,7 @@ exports[`<Badge /> should render subtle emphasis notice color Badge 2`] = `
           style={
             [
               {
-                "color": "hsla(34, 94%, 35%, 1)",
+                "color": "hsla(35, 99%, 27%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2880,7 +2880,7 @@ exports[`<Badge /> should render subtle emphasis positive color Badge 1`] = `
           style={
             [
               {
-                "color": "hsla(143, 72%, 31%, 1)",
+                "color": "hsla(142, 71%, 25%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2988,7 +2988,7 @@ exports[`<Badge /> should render subtle emphasis positive color Badge 2`] = `
           style={
             [
               {
-                "color": "hsla(143, 72%, 31%, 1)",
+                "color": "hsla(142, 71%, 25%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",

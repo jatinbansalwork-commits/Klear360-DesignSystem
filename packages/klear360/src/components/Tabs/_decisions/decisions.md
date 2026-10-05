@@ -392,6 +392,18 @@ Tabs will follow the [WAI-ARIA Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/ta
 
 - [Keyboard navigation](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction)
 
+## `selectedEmphasis` (filled variant)
+
+`variant="filled"` draws the selected tab as a white pill on a gray track (`selectedEmphasis="subtle"`, the default). `selectedEmphasis="intense"` draws it as a primary pill (`surface.background.primary.intense`) with a static-white label and icon instead; unselected tabs stay unfilled in both.
+
+**When to use `intense`:** a top-level content switcher whose current view has to read at a glance from across the page, e.g. a page's main views (KlearNow Shipments: Exceptions / Intake / Temps / Ingestion). Keep `subtle` for in-card or secondary tab groups, so the page has at most one primary-filled switcher competing with its primary action.
+
+**Not a SegmentedControl.** These are still `tablist`/`tab` (content switching, announced as "tab, 2 of 4, selected"). SegmentedControl stays reserved for choosing a form value (`radiogroup`), see its decisions doc. Consumers previously faked this look with a row of Buttons - wrong semantics, and unselected (tertiary) buttons render filled.
+
+**Contrast:** white on `primary.intense` is 11.1:1 in light and dark (12.1:1 in the neutral theme). The default focus ring (`surface.border.primary.muted`) is invisible on a primary pill (1:1), so the selected intense tab uses a 2px white inset ring instead (11.1:1). In dark mode the pill itself is close to the track (~1.6–1.9:1), so the selected state is carried by the white label vs. the muted unselected labels, not by the pill alone.
+
+**Without TabPanels:** Tabs can switch content the consumer renders itself. TabItems only emit `aria-controls` for a TabPanel that is currently rendered (including lazy panels, which only render while selected), so they never reference a missing id.
+
 ## Open Questions
 
 N/A

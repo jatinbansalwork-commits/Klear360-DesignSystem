@@ -42,6 +42,17 @@ type TabsProps = {
    */
   variant?: 'bordered' | 'borderless' | 'filled';
   /**
+   * How strongly the selected tab stands out. Applies to `variant="filled"` only.
+   *
+   * - `subtle`: the selected tab is a white pill on the track.
+   * - `intense`: the selected tab is a primary-filled pill with white label/icon - for a top-level
+   *   content switcher that has to read at a glance (e.g. a page's main views). Unselected tabs
+   *   stay unfilled either way.
+   *
+   * @default 'subtle'
+   */
+  selectedEmphasis?: 'subtle' | 'intense';
+  /**
    * If `true`, the TabItems will grow to use all the available space.
    *
    * @default false

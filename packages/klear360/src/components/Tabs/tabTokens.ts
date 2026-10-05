@@ -175,6 +175,27 @@ const iconColor = {
   },
 } as const;
 
+/**
+ * `selectedEmphasis="intense"` (filled variant only): the selected tab is a primary pill, so its
+ * label/icon flip to static white (11:1 on `surface.background.primary.intense`, both color
+ * schemes) and its focus ring is white too - the default primary-tinted ring is invisible on a
+ * primary pill.
+ */
+const intenseSelected = {
+  indicatorBackgroundColor: 'surface.background.primary.intense',
+  textColor: {
+    default: 'surface.text.staticWhite.normal',
+    highlighted: 'surface.text.staticWhite.normal',
+    disabled: 'surface.text.staticWhite.disabled',
+  },
+  iconColor: {
+    default: 'surface.icon.staticWhite.normal',
+    highlighted: 'surface.icon.staticWhite.normal',
+    disabled: 'surface.icon.staticWhite.disabled',
+  },
+  focusRingColor: 'interactive.border.staticWhite.default',
+} as const;
+
 const textSizeMap = {
   small: 'medium',
   medium: 'medium',
@@ -297,6 +318,7 @@ const needsStackingContext: Record<TabVariants, Record<TabOrientation, boolean>>
 };
 
 export {
+  intenseSelected,
   backgroundColor,
   textColor,
   iconColor,

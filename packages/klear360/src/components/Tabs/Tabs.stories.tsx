@@ -1252,3 +1252,69 @@ Showcase.parameters = {
 
 export const DelayedTabs = DelayedTabsTemplate.bind({});
 DelayedTabs.storyName = 'Tabs with delayed visibility';
+
+const SHIPMENT_VIEWS = [
+  { value: 'exceptions', label: 'Exceptions', icon: ZapIcon },
+  { value: 'intake', label: 'Intake', icon: ClipboardIcon },
+  { value: 'temps', label: 'Temps', icon: MonitorIcon },
+  { value: 'ingestion', label: 'Ingestion', icon: BankIcon },
+] as const;
+
+const SelectedEmphasisRow = ({
+  selectedEmphasis,
+  size,
+  withIcons,
+}: {
+  selectedEmphasis: NonNullable<TabsProps['selectedEmphasis']>;
+  size: NonNullable<TabsProps['size']>;
+  withIcons: boolean;
+}): React.ReactElement => (
+  // No TabPanels: the page renders the selected view's content itself, so TabItems emit no
+  // `aria-controls` (nothing to point at).
+  <Tabs variant="filled" selectedEmphasis={selectedEmphasis} size={size} defaultValue="intake">
+    <TabList>
+      {SHIPMENT_VIEWS.map((view) => (
+        <TabItem key={view.value} value={view.value} leading={withIcons ? view.icon : undefined}>
+          {view.label}
+        </TabItem>
+      ))}
+    </TabList>
+  </Tabs>
+);
+
+const FilledSelectedEmphasisTemplate: StoryFn<typeof Tabs> = () => (
+  <Box display="flex" flexDirection="column" gap="spacing.7">
+    <Text>
+      <Code size="medium">selectedEmphasis=&quot;intense&quot;</Code> (filled variant only) draws
+      the selected tab as a primary pill with white text, for a top-level content switcher such as a
+      page&apos;s main views. Unselected tabs stay unfilled. The default,{' '}
+      <Code size="medium">subtle</Code>, is the white pill.
+    </Text>
+    {(['subtle', 'intense'] as const).map((selectedEmphasis) => (
+      <Box key={selectedEmphasis} display="flex" flexDirection="column" gap="spacing.4">
+        <Heading size="small">{`selectedEmphasis="${selectedEmphasis}"`}</Heading>
+        {(['small', 'medium', 'large'] as const).map((size) => (
+          <Box key={size} display="flex" flexDirection="column" gap="spacing.3">
+            <Text size="small" color="surface.text.gray.muted">{`size="${size}"`}</Text>
+            <Box display="flex" flexWrap="wrap" gap="spacing.6">
+              <Box maxWidth="480px" flex={1}>
+                <SelectedEmphasisRow
+                  selectedEmphasis={selectedEmphasis}
+                  size={size}
+                  withIcons={false}
+                />
+              </Box>
+              <Box maxWidth="560px" flex={1}>
+                <SelectedEmphasisRow selectedEmphasis={selectedEmphasis} size={size} withIcons />
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    ))}
+  </Box>
+);
+
+export const FilledSelectedEmphasis = FilledSelectedEmphasisTemplate.bind({});
+FilledSelectedEmphasis.storyName = 'Filled: Selected Emphasis';
+FilledSelectedEmphasis.parameters = { controls: { disable: true } };
