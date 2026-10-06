@@ -871,7 +871,7 @@ type TableToolbarActionsProps = {
 } & StyledPropsKlear360 &
   DataAnalyticsAttribute;
 
-type TableVirtualizedWrapperProps = {
+type VirtualizedWrapperProps = {
   /**
    *
    * @example
@@ -989,7 +989,7 @@ export type {
   TableBackgroundColors,
   TablePaginationType,
   TablePaginationCommonProps,
-  TableVirtualizedWrapperProps,
+  VirtualizedWrapperProps,
   RowHeightType,
   TableCellGridSpanningProps,
   TableSortDirection,
