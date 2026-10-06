@@ -11,7 +11,7 @@ import type {
   TableRowProps,
   TableCellProps,
   TableBackgroundColors,
-  TableVirtualizedWrapperProps,
+  VirtualizedWrapperProps,
   RowHeightType,
   TableNode,
 } from './types';
@@ -553,7 +553,7 @@ const _Virtulized = <Item,>({
   headerHeight,
   rowHeight,
   children,
-}: TableVirtualizedWrapperProps): React.ReactElement => {
+}: VirtualizedWrapperProps): React.ReactElement => {
   const [parsedHeader = null, parsedBody = null] = React.Children.toArray(children);
   const { rowDensity, tableData } = useTableContext<Item>();
   const _tableRow = Number(tableRow.minHeight[rowDensity]);
