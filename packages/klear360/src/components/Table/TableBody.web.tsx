@@ -233,7 +233,7 @@ const _TableCell = ({
   );
 };
 
-const TableCell = assignWithoutSideEffects(_TableCell, {
+const TableCell = assignWithoutSideEffects(React.memo(_TableCell), {
   displayName: 'TableCell',
   componentId: ComponentIds.TableCell,
 });
@@ -584,7 +584,10 @@ const _Virtulized = <Item,>({
   );
 };
 
-const TableRow = assignWithoutSideEffects(_TableRow, {
+// `_TableRow` is generic over `Item` - `React.memo` doesn't preserve generics, so cast back to
+// the original signature (a standard, safe React+TS workaround; the cast changes nothing at
+// runtime, `React.memo`'s wrapper just forwards props through unchanged).
+const TableRow = assignWithoutSideEffects(React.memo(_TableRow) as typeof _TableRow, {
   displayName: 'TableRow',
   componentId: ComponentIds.TableRow,
 });

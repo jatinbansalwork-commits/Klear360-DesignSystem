@@ -815,6 +815,30 @@ The two internal spots that previously assumed exactly one `TableHeaderRow` - `g
 
 - The auto-injected filter row's own sticky offset isn't adjusted for a preceding group row - combining grouped headers with both `isHeaderSticky` and column filtering at once is a narrower combination left for a future pass if real usage needs it.
 
+# Row/cell memoization
+
+`TableRow`, `TableCell` and `TableHeaderCell` are wrapped in `React.memo` (the same
+`assignWithoutSideEffects(React.memo(_Component), {...})` pattern already used by
+`ActionListItem`/`ActionListSection`) so that, once `TableContext` no longer forces every row and
+cell to re-render on sort/filter/pagination changes (see the `TableContext` split above), they
+also don't re-render when their own props haven't changed for some other reason - e.g. the parent
+app re-rendering `Table` for an unrelated reason.
+
+This is a correctness-neutral, best-practice addition: `React.memo`'s default shallow comparator
+still re-renders on any actual prop change, so it changes nothing about _when_ a row/cell updates,
+only skips redundant work when it doesn't need to.
+
+**Real-world caveat for consumers**: this only helps when the props passed into `TableRow`/
+`TableCell` are themselves stable across renders. A consumer who writes an inline arrow function
+per row (e.g. `onClick={() => handleClick(item)}` inside the `TableBody` render-prop) creates a
+new function reference every render regardless of memoization here - for the full benefit on
+large tables, wrap such callbacks in `useCallback` (or hoist them outside the per-row closure) in
+the consuming app.
+
+`_TableRow` is generic over `Item`; `React.memo` doesn't preserve generics, so the memoized
+component is cast back to `typeof _TableRow` - a standard React+TypeScript workaround that
+changes nothing at runtime.
+
 # Virtualization
 
 Virtaulized table is a table component that renders only the visible rows and columns. This is useful when you have a large dataset and you want to render only the visible rows and columns to improve the performance of the table.

@@ -587,7 +587,7 @@ const _TableHeaderCell = ({
   );
 };
 
-const TableHeaderCell = assignWithoutSideEffects(_TableHeaderCell, {
+const TableHeaderCell = assignWithoutSideEffects(React.memo(_TableHeaderCell), {
   displayName: 'TableHeaderCell',
   componentId: ComponentIds.TableHeaderCell,
 });
