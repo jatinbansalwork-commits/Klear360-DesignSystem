@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CellWrapper, StyledCell } from './TableBody';
-import { useTableContext } from './TableContext';
+import { useTableRowContext } from './TableContext';
 import type { TableEditableSearchCellProps, TableProps } from './types';
 import {
   rowDensityToIsTableInputCellMapping,
@@ -81,7 +81,7 @@ const _TableEditableSearchCell = ({
   inputType,
   showSearchIcon = true,
 }: TableEditableSearchCellProps): React.ReactElement => {
-  const { rowDensity, showStripedRows, backgroundColor } = useTableContext();
+  const { rowDensity, showStripedRows, backgroundColor } = useTableRowContext();
   const inputRef = React.useRef<Klear360ElementRefWithValue>(null);
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
     Boolean(defaultValue ?? value),

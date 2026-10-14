@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CellWrapper, StyledCell } from './TableBody';
-import { useTableContext } from './TableContext';
+import { useTableRowContext } from './TableContext';
 import type { TableEditableCellProps, TableEditableDropdownCellProps, TableProps } from './types';
 import {
   rowDensityToIsTableInputCellMapping,
@@ -71,7 +71,7 @@ const _TableEditableCell = ({
   successText,
   inputType,
 }: TableEditableCellProps): React.ReactElement => {
-  const { rowDensity, showStripedRows, backgroundColor } = useTableContext();
+  const { rowDensity, showStripedRows, backgroundColor } = useTableRowContext();
 
   return (
     <StyledEditableCell
@@ -137,7 +137,7 @@ const _TableEditableCell = ({
 const TableEditableDropdownCell = (
   dropdownProps: TableEditableDropdownCellProps,
 ): React.ReactElement => {
-  const { rowDensity, showStripedRows, backgroundColor } = useTableContext();
+  const { rowDensity, showStripedRows, backgroundColor } = useTableRowContext();
 
   return (
     <TableEditableCellContext.Provider value={{ isInsideTableEditableCell: true }}>

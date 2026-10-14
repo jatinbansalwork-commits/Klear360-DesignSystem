@@ -13,14 +13,53 @@ import type {
   TableColumnFilterConfig,
 } from './types';
 
-export type TableContextType<Item> = {
+/**
+ * Selection + appearance state, read by the per-row/per-cell components (`TableRow`, `TableCell`,
+ * `TableEditableCell`, `TableFooterCell`, etc. - one instance per visible row/column, N instances
+ * total). Deliberately excludes sort/filter/pagination/`tableData` (see `TableDataContextType`) -
+ * those change on every keystroke in a column filter or every sort click, and previously lived in
+ * this same context object, so a filter keystroke recreated the one shared context value and
+ * forced every mounted row and cell to re-render even though none of them read that state. Kept
+ * in a separate context so those changes don't touch this one at all.
+ */
+export type TableRowContextType<Item> = {
   selectionType?: TableProps<unknown>['selectionType'];
   selectedRows?: TableNode['id'][];
-  totalItems: number;
   toggleRowSelectionById: (id: TableNode['id']) => void;
   toggleAllRowsSelection: () => void;
   deselectAllRows: () => void;
   rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
+  showStripedRows?: boolean;
+  disabledRows: TableNode['id'][];
+  setDisabledRows: React.Dispatch<React.SetStateAction<TableNode['id'][]>>;
+  backgroundColor: TableBackgroundColors | 'transparent';
+  headerRowDensity?: TableHeaderRowProps['rowDensity'];
+  setHeaderRowDensity: React.Dispatch<React.SetStateAction<TableHeaderRowProps['rowDensity']>>;
+  showBorderedCells: NonNullable<TableProps<unknown>['showBorderedCells']>;
+  /** Whether the header is currently rendered sticky (see `TableProps['isHeaderSticky']`, and sticky columns which force it on too). */
+  shouldHeaderBeSticky: boolean;
+  hasHoverActions: boolean;
+  setHasHoverActions: (hasHoverActions: boolean) => void;
+  multiSelectTrigger?: TableProps<unknown>['multiSelectTrigger'];
+  columnCount: number;
+  gridTemplateColumns: string | undefined;
+  isVirtualized?: boolean;
+  isGrouped: boolean;
+  expandedRowIds: TableNode['id'][];
+  toggleRowExpansionById: (id: TableNode['id']) => void;
+  tableToolbarPlacement: TableToolbarPlacement;
+  /** @see TableProps['checkboxDisplay'] */
+  checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
+};
+
+/**
+ * Data/sort/filter/pagination state, read only by single-instance components (`TableHeader`,
+ * `TableToolbar`, `TablePagination`, `TableVirtualizedWrapper`). Changes on every sort click,
+ * filter keystroke, page change, or data update - kept out of `TableRowContextType` so those
+ * changes don't force every row/cell to re-render (see that type's doc comment).
+ */
+export type TableDataContextType<Item> = {
+  totalItems: number;
   /**
    * Toggles sort on `sortKey`. Pass `isMultiSort: true` (a shift-click) to add/toggle this
    * column as an additional sort key instead of replacing the current sort.
@@ -41,30 +80,9 @@ export type TableContextType<Item> = {
     page: number;
     size: number;
   };
-  showStripedRows?: boolean;
-  disabledRows: TableNode['id'][];
-  setDisabledRows: React.Dispatch<React.SetStateAction<TableNode['id'][]>>;
   paginationType: NonNullable<TablePaginationType>;
   setPaginationType: React.Dispatch<React.SetStateAction<NonNullable<TablePaginationType>>>;
-  backgroundColor: TableBackgroundColors | 'transparent';
-  headerRowDensity?: TableHeaderRowProps['rowDensity'];
-  setHeaderRowDensity: React.Dispatch<React.SetStateAction<TableHeaderRowProps['rowDensity']>>;
-  showBorderedCells: NonNullable<TableProps<unknown>['showBorderedCells']>;
-  /** Whether the header is currently rendered sticky (see `TableProps['isHeaderSticky']`, and sticky columns which force it on too). */
-  shouldHeaderBeSticky: boolean;
-  hasHoverActions: boolean;
-  setHasHoverActions: (hasHoverActions: boolean) => void;
-  multiSelectTrigger?: TableProps<unknown>['multiSelectTrigger'];
-  columnCount: number;
-  gridTemplateColumns: string | undefined;
-  isVirtualized?: boolean;
   tableData: LocalTableNode<Item>[];
-  isGrouped: boolean;
-  expandedRowIds: TableNode['id'][];
-  toggleRowExpansionById: (id: TableNode['id']) => void;
-  tableToolbarPlacement: TableToolbarPlacement;
-  /** @see TableProps['checkboxDisplay'] */
-  checkboxDisplay: NonNullable<TableProps<unknown>['checkboxDisplay']>;
   globalFilterValue: string;
   setGlobalFilterValue: (value: string) => void;
   columnFilterValues: Record<string, string | string[]>;
@@ -75,26 +93,15 @@ export type TableContextType<Item> = {
   filterConfig: Record<string, TableColumnFilterConfig>;
 };
 
-const TableContext = React.createContext<TableContextType<unknown>>({
+const TableRowContext = React.createContext<TableRowContextType<unknown>>({
   selectionType: 'none',
   selectedRows: undefined,
-  totalItems: 0,
   toggleRowSelectionById: () => {},
   toggleAllRowsSelection: () => {},
   deselectAllRows: () => {},
   rowDensity: 'normal',
-  toggleSort: () => {},
-  currentSortedState: {
-    sortKey: '',
-    isSortReversed: false,
-    sortOrder: [],
-  },
-  setPaginationPage: () => {},
-  setPaginationRowSize: () => {},
   disabledRows: [],
   setDisabledRows: () => {},
-  paginationType: 'client',
-  setPaginationType: () => {},
   backgroundColor: 'surface.background.gray.intense',
   setHeaderRowDensity: () => {},
   showBorderedCells: true,
@@ -105,12 +112,26 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   columnCount: 0,
   gridTemplateColumns: undefined,
   isVirtualized: false,
-  tableData: [],
   isGrouped: false,
   expandedRowIds: [],
   toggleRowExpansionById: () => {},
   tableToolbarPlacement: 'inline',
   checkboxDisplay: 'always',
+});
+
+const TableDataContext = React.createContext<TableDataContextType<unknown>>({
+  totalItems: 0,
+  toggleSort: () => {},
+  currentSortedState: {
+    sortKey: '',
+    isSortReversed: false,
+    sortOrder: [],
+  },
+  setPaginationPage: () => {},
+  setPaginationRowSize: () => {},
+  paginationType: 'client',
+  setPaginationType: () => {},
+  tableData: [],
   globalFilterValue: '',
   setGlobalFilterValue: () => {},
   columnFilterValues: {},
@@ -119,9 +140,14 @@ const TableContext = React.createContext<TableContextType<unknown>>({
   filterConfig: {},
 });
 
-const useTableContext = <Item,>(): TableContextType<Item> => {
-  const context = React.useContext(TableContext as React.Context<TableContextType<Item>>);
+const useTableRowContext = <Item,>(): TableRowContextType<Item> => {
+  const context = React.useContext(TableRowContext as React.Context<TableRowContextType<Item>>);
   return context;
 };
 
-export { useTableContext, TableContext };
+const useTableDataContext = <Item,>(): TableDataContextType<Item> => {
+  const context = React.useContext(TableDataContext as React.Context<TableDataContextType<Item>>);
+  return context;
+};
+
+export { useTableRowContext, useTableDataContext, TableRowContext, TableDataContext };
