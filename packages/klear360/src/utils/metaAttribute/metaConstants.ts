@@ -181,4 +181,7 @@ export const MetaConstants = {
   TimePicker: 'time-picker',
   SegmentedControl: 'segmented-control',
   SegmentedControlItem: 'segmented-control-item',
+  ResizableSplit: 'resizable-split',
+  ResizableSplitPane: 'resizable-split-pane',
+  ResizableSplitHandle: 'resizable-split-handle',
 } as const;
