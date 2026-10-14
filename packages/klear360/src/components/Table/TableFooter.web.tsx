@@ -10,7 +10,7 @@ import type {
   TableBackgroundColors,
   TableProps,
 } from './types';
-import { useTableContext } from './TableContext';
+import { useTableRowContext } from './TableContext';
 import { Text } from '~components/Typography';
 import { makeSize, makeSpace } from '~utils';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
@@ -61,7 +61,7 @@ const StyledFooterRow = styled(FooterRow)<{ $showBorderedCells: boolean }>(
 );
 
 const _TableFooterRow = ({ children, ...rest }: TableFooterRowProps): React.ReactElement => {
-  const { showBorderedCells } = useTableContext();
+  const { showBorderedCells } = useTableRowContext();
   return (
     <StyledFooterRow
       {...metaAttribute({ name: MetaConstants.TableFooterRow })}
@@ -118,7 +118,7 @@ const _TableFooterCell = ({
   ...rest
 }: TableFooterCellProps): React.ReactElement => {
   const isChildrenString = typeof children === 'string';
-  const { backgroundColor, rowDensity } = useTableContext();
+  const { backgroundColor, rowDensity } = useTableRowContext();
 
   const hasRowSpan = Boolean(gridRowStart && gridRowEnd);
   const gridRowValue = hasRowSpan ? `${gridRowStart} / ${gridRowEnd}` : undefined;
