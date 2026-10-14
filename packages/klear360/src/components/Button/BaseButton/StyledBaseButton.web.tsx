@@ -63,19 +63,42 @@ const StyledBaseButton = styled.button
           },
         }),
     },
+    // `boxShadow` carries `!important` here (and in the `:focus:not(:focus-visible)` rule below) -
+    // confirmed by real-browser testing, not just the originally-reported case, to be necessary:
+    // a host page's own `*:focus { box-shadow: none }` reset (see Button's decisions doc / API
+    // docs: "do not use a global `*:focus { box-shadow: none }` reset on pages with Klear360
+    // buttons") otherwise wins regardless of this rule's own selector specificity, since
+    // `!important` always beats a non-important declaration. A plain declaration here could not
+    // survive that reset even though this rule exists; our own `!important` can, because our
+    // class-scoped selector has higher specificity than the host's bare `*` once both sides are
+    // `!important` (specificity still breaks ties within the `!important` tier).
     '&:focus-visible': {
       backgroundColor: props.focusBackgroundColor,
       outline: `1px solid ${props.theme.colors.surface.background.primary.subtle}`,
       backgroundImage: 'none',
-      boxShadow: props.focusBoxShadow
-        ? `0px 0px 0px 4px ${props.focusRingColor}, ${props.focusBoxShadow}`
-        : `0px 0px 0px 4px ${props.focusRingColor}`,
+      boxShadow: `${
+        props.focusBoxShadow
+          ? `0px 0px 0px 4px ${props.focusRingColor}, ${props.focusBoxShadow}`
+          : `0px 0px 0px 4px ${props.focusRingColor}`
+      } !important`,
       ...(props.variant === 'tertiary' &&
         props.color === 'transparent' && {
           '&& [data-klear360-component="svg-path"]': {
             fill: props.hoverIconColor,
           },
         }),
+    },
+    // A button retains `:focus` after a mouse click even when it never becomes `:focus-visible`
+    // (most browsers suppress the visible ring for pointer-originated focus, though this isn't
+    // universal - some browsers/versions do still set `:focus-visible` on a button click, which is
+    // exactly why the rule above needs the same `!important` treatment, not just this one). Without
+    // this rule, tertiary/secondary buttons - whose "border" is this inset `box-shadow`, not an
+    // actual `border` - would rely solely on the default-state rule above for their stroke while
+    // focused-but-not-visible. `:not(:focus-visible)` keeps this from ever fighting the
+    // `:focus-visible` rule above, so the keyboard focus ring's own appearance is unaffected.
+    '&:focus:not(:focus-visible)': {
+      backgroundColor: props.defaultBackgroundColor,
+      boxShadow: props.defaultBoxShadow ? `${props.defaultBoxShadow} !important` : undefined,
     },
     '*': {
       transitionProperty: 'color, fill, opacity',
