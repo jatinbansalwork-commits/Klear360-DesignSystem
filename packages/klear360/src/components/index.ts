@@ -59,6 +59,7 @@ export * from './Popover';
 export * from './ProgressBar';
 export * from './QuickFilters';
 export * from './Radio';
+export * from './ResizableSplit';
 export * from './TrustBadge';
 export * from './Scale';
 export * from './SegmentedControl';
