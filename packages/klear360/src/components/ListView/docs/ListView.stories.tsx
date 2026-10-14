@@ -2719,3 +2719,87 @@ const WithDropDownSearchExample: StoryFn<typeof ListView> = (args) => {
 };
 export const WithDropDownSearchExampleStory = WithDropDownSearchExample.bind({});
 WithDropDownSearchExampleStory.storyName = 'With Dropdown in Search Example';
+
+/**
+ * A single-row toolbar: `FilterChipGroup` (chips) sharing its row with a trailing "All filters"
+ * action, rather than a dedicated filter-bar row of its own - the composition this design system
+ * already supports via `quickFilters` (flex: 1, chips) + `actions` (trailing, flex-shrink: 0), but
+ * needed a `!important` SCSS override to use without `FilterChipGroup`'s default `spacing.4`
+ * vertical padding visibly pushing this row taller than the trailing button next to it.
+ *
+ * `toolbarDensity="compact"` on `ListViewFilters` cascades into the `FilterChipGroup` rendered via
+ * `quickFilters` (its own `density` prop, if set, always wins) - no consumer-side CSS override
+ * needed.
+ */
+const CompactToolbarExample: StoryFn<typeof ListView> = () => {
+  const [mot, setMot] = useState<string | undefined>(undefined);
+  const [view, setView] = useState<string | undefined>(undefined);
+  const [sort, setSort] = useState<string | undefined>(undefined);
+
+  return (
+    <BaseBox backgroundColor="surface.background.gray.moderate" padding="spacing.8">
+      <ListView>
+        <ListViewFilters
+          toolbarDensity="compact"
+          quickFilters={
+            <FilterChipGroup
+              onClearButtonClick={() => {
+                setMot(undefined);
+                setView(undefined);
+                setSort(undefined);
+              }}
+            >
+              <Dropdown selectionType="single">
+                <FilterChipSelectInput
+                  label="MOT"
+                  value={mot}
+                  onChange={({ values }) => setMot(values[0])}
+                  onClearButtonClick={() => setMot(undefined)}
+                />
+                <DropdownOverlay>
+                  <ActionList>
+                    <ActionListItem title="Ocean" value="ocean" />
+                    <ActionListItem title="Air" value="air" />
+                    <ActionListItem title="Truck" value="truck" />
+                  </ActionList>
+                </DropdownOverlay>
+              </Dropdown>
+              <Dropdown selectionType="single">
+                <FilterChipSelectInput
+                  label="View"
+                  value={view}
+                  onChange={({ values }) => setView(values[0])}
+                  onClearButtonClick={() => setView(undefined)}
+                />
+                <DropdownOverlay>
+                  <ActionList>
+                    <ActionListItem title="Card" value="card" />
+                    <ActionListItem title="Table" value="table" />
+                  </ActionList>
+                </DropdownOverlay>
+              </Dropdown>
+              <Dropdown selectionType="single">
+                <FilterChipSelectInput
+                  label="Sort"
+                  value={sort}
+                  onChange={({ values }) => setSort(values[0])}
+                  onClearButtonClick={() => setSort(undefined)}
+                />
+                <DropdownOverlay>
+                  <ActionList>
+                    <ActionListItem title="Newest first" value="newest" />
+                    <ActionListItem title="Oldest first" value="oldest" />
+                  </ActionList>
+                </DropdownOverlay>
+              </Dropdown>
+            </FilterChipGroup>
+          }
+          actions={<Button variant="secondary">All filters</Button>}
+        />
+      </ListView>
+    </BaseBox>
+  );
+};
+
+export const CompactToolbar = CompactToolbarExample.bind({});
+CompactToolbar.storyName = 'Compact Toolbar (chips + trailing action, single row)';

@@ -15,13 +15,22 @@ const FilterChipGroup = ({
   onResetButtonClick,
   clearButtonText,
   resetButtonText,
+  density,
   ...rest
 }: FilterChipGroupProps): React.ReactElement => {
   const [filterChipGroupSelectedFilters, setFilterChipGroupSelectedFilters] = useState<string[]>(
     [],
   );
   const [clearFilterCallbackTriggerer, setClearFilterCallbackTriggerer] = useState<number>(0);
-  const { selectedFiltersCount, setListViewSelectedFilters } = useListViewFilterContext();
+  const {
+    selectedFiltersCount,
+    setListViewSelectedFilters,
+    toolbarDensity,
+  } = useListViewFilterContext();
+  // An explicit `density` prop always wins; otherwise inherit the surrounding ListViewFilters'
+  // `toolbarDensity` (defaults to 'comfortable' outside of one, via the context's default value).
+  const resolvedDensity = density ?? toolbarDensity;
+  const isCompact = resolvedDensity === 'compact';
 
   // Shared bookkeeping reset: both actions clear the group's "has changes" tracking so the action
   // link(s) hide after use (a lingering action with nothing to revert is confusing). They reappear
@@ -69,7 +78,8 @@ const FilterChipGroup = ({
         {...metaAttribute({ name: MetaConstants.FilterChipGroup, testID })}
         {...makeAnalyticsAttribute(rest)}
         display="flex"
-        padding={['spacing.4', 'spacing.1']}
+        paddingY={isCompact ? 'spacing.0' : 'spacing.4'}
+        paddingX="spacing.1"
         alignItems="center"
         justifyContent="flex-start"
         width="100%"
