@@ -2,7 +2,8 @@ import type { StoryFn, Meta } from '@storybook/react-vite';
 import { Title, Description, Heading } from '@storybook/addon-docs/blocks';
 import type { ReactElement } from 'react';
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { within, userEvent, expect } from 'storybook/test';
 import type { ButtonProps } from './Button';
 import ButtonComponent from './Button';
 import { BaseText } from '~components/Typography/BaseText';
@@ -736,3 +737,58 @@ export const AllVariantsAndSizes: StoryFn<typeof ButtonComponent> = () => {
 };
 
 AllVariantsAndSizes.storyName = 'All Variants & Sizes';
+
+/**
+ * Reproduces a real host-app failure mode: a tertiary/secondary button's "border" is actually an
+ * inset `box-shadow` (not a `border`), so a host page's own `*:focus { box-shadow: none }` reset -
+ * loaded for unrelated legacy reasons - can strip it while the button sits in `:focus` without
+ * `:focus-visible` (the state a button is left in after a mouse click, since browsers only show
+ * `:focus-visible` for keyboard-originated focus). This story injects that exact reset and clicks
+ * the button with a real pointer event (`userEvent.click`, not a programmatic `.focus()` call, so
+ * the browser's own focus-visible heuristic is exercised for real) to confirm the fix holds.
+ *
+ * Do not use a global `*:focus { box-shadow: none }` (or similar broad `:focus` reset) on any page
+ * using Klear360 buttons - see Button's decisions doc.
+ */
+// A real `<style>` global rule, not a styled-components-scoped one - styled-components would
+// otherwise rewrite a nested `* { &:focus {...} }` into a DESCENDANT selector scoped to this
+// wrapper's own generated class (e.g. `.hash :focus`), which has much higher specificity than the
+// actual bare `*:focus` a host page would write, and so wouldn't faithfully reproduce the bug.
+const GlobalHostReset = createGlobalStyle`
+  *:focus {
+    box-shadow: none !important;
+  }
+`;
+
+const FocusAfterClickTemplate: StoryFn<typeof ButtonComponent> = () => (
+  <>
+    <GlobalHostReset />
+    <BaseBox display="flex" gap="spacing.5">
+      <ButtonComponent variant="tertiary" size="small">
+        Tertiary
+      </ButtonComponent>
+      <ButtonComponent variant="secondary" size="small">
+        Secondary
+      </ButtonComponent>
+    </BaseBox>
+  </>
+);
+
+export const FocusAfterClickWithHostReset = FocusAfterClickTemplate.bind({});
+FocusAfterClickWithHostReset.storyName = 'FocusAfterClickWithHostReset';
+FocusAfterClickWithHostReset.parameters = {
+  docs: {
+    description: {
+      story:
+        'Simulates a host page with a global `*:focus { box-shadow: none !important }` reset - clicking the button with a real pointer event should NOT strip its inset-shadow stroke, even though the button is left in `:focus` without `:focus-visible` after the click.',
+    },
+  },
+};
+FocusAfterClickWithHostReset.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const tertiaryButton = canvas.getByRole('button', { name: 'Tertiary' });
+
+  await userEvent.click(tertiaryButton);
+  await expect(tertiaryButton).toHaveFocus();
+  await expect(getComputedStyle(tertiaryButton).boxShadow).not.toBe('none');
+};

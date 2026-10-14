@@ -149,6 +149,29 @@ describe('<Button />', () => {
     expect(button).toHaveFocus();
   });
 
+  it('keeps its inset box-shadow while focused (not focus-visible) even under a host `*:focus { box-shadow: none }` reset', () => {
+    // Reproduces a real host-app failure mode: tertiary/secondary buttons draw their "border" via
+    // an inset box-shadow, not an actual border - a host page's own broad `*:focus` reset can
+    // strip it while the button sits focused-but-not-focus-visible (the state a mouse click
+    // leaves it in). See StyledBaseButton.web.tsx's `&:focus:not(:focus-visible)` rule.
+    const style = document.createElement('style');
+    style.textContent = '*:focus { box-shadow: none !important; }';
+    document.head.appendChild(style);
+
+    const { getByRole } = renderWithTheme(
+      <Button variant="tertiary" size="small">
+        Tertiary
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    button.focus();
+    expect(button).toHaveFocus();
+    expect(getComputedStyle(button).boxShadow).not.toBe('none');
+
+    document.head.removeChild(style);
+  });
+
   it('should accept testID', () => {
     const buttonText = 'Pay Now';
     const { getByTestId } = renderWithTheme(<Button testID="button-test">{buttonText}</Button>);
