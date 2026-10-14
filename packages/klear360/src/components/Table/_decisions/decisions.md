@@ -817,134 +817,189 @@ The two internal spots that previously assumed exactly one `TableHeaderRow` - `g
 
 # Virtualization
 
-Virtaulized table is a table component that renders only the visible rows and columns. This is useful when you have a large dataset and you want to render only the visible rows and columns to improve the performance of the table.
+Virtualized table is a table component that renders only the visible rows (not all of them) by
+windowing the body, so performance stays flat as row count grows into the thousands.
 
 ## Approach
 
-Out implementation of virtualized table is an wrapper on top of react-table-library 's implementation. It provides a simple API to create a virtualized table.
-alternatively we can use react-window or react-virtualized to create a virtualized table wrapper. but that would require more effort to create a virtualized table. plus their is a lot of boilerplate code to create a virtualized table using react-window or react-virtualized.
-also their is high chance of bugs and performance issues in the implementation of virtualized table using react-window or react-virtualized. if we need more features in the future then we can expore react-window or react-virtualized.
+Our implementation is a wrapper (`TableVirtualizedWrapper`) on top of
+`@table-library/react-table-library`'s own
+[Virtualized](https://github.com/table-library/react-table-library/blob/master/src/virtualized/Virtualized.tsx)
+component, which itself wraps `react-window`'s `VariableSizeList` + `react-virtualized-auto-sizer`.
+We chose this over hand-rolling a wrapper directly on `react-window`/`react-virtualized` to avoid
+re-implementing row/selection/sort/filter wiring that the table library already provides - the
+tradeoff is inheriting that library's own constraints (see "Known gaps" below) rather than owning
+the virtualization engine ourselves.
 
 ## Decision
 
-1. We have made a wrapper on top of react-table-library's implementation to create a virtualized table.
-2. if virtualization is enabled we have a wrapper component and we are not passing TableBody, so this breaks a lot of existing styles and features of the table component like hoverAction, rowSelection, etc. so we have to move these styles to table component.
-3. we have to pass a ref to the table container to calculate the height and width of the table to render only the visible rows and columns.
-4. `TableVirtualizedWrapper` (and its `TableVirtualizedWrapperProps` type) is now part of the package's public API, exported from `Table/index.ts` - previously it only existed as an internal, unexported component in `TableBody.web.tsx`, reachable only via a deep import. Web is the only implementation; `TableBody.native.tsx` exports a stub (matching the rest of Table's native stubs) that renders "Table Component is not available for Native mobile apps." rather than virtualizing.
+1. `TableVirtualizedWrapper` wraps `react-table-library`'s `Virtualized`, reading `tableData` (the
+   current sorted/filtered node list) and `rowDensity` from `TableContext` rather than taking them
+   as props - see "Props" below.
+2. Enabling virtualization forces the header sticky (`isHeaderSticky`/sticky columns are forced on
+   regardless of their own prop value), since the library always renders the header as a `position:
+   sticky` overlay inside the virtualized scroll container, not as a separate row in the scrollable
+   list.
+3. The virtualized list measures its container via `react-virtualized-auto-sizer`, so the consumer
+   must give the surrounding `Table` an explicit CSS height (e.g. `height="500px"`) for virtualization
+   to have a viewport to measure against.
+
+## Public API status
+
+**Exported from the package's public API** (`TableVirtualizedWrapper`, `TableVirtualizedWrapperProps`)
+as of this change. It was briefly exported once before (reverted in PR #88) for process reasons (shipped
+without review), not a technical defect in the export itself - this time it ships alongside the
+context-split/memoization work below, which the earlier export didn't have.
 
 ## Props
 
-most of props are same as Table component. we have added following table component.
+Most props are the same as `Table`. The one that changes is `children`: instead of (or alongside)
+`TableHeader`/`TableBody` directly, wrap them in `TableVirtualizedWrapper`.
 
-but their is a change in children prop of Table component. In virtualized table we need to pass a component named TableVirtulized that takes TableHeader, TableBody components.
-VirtualizedTable is a wrapper on top of react-table-library's [Virtualized](https://github.com/table-library/react-table-library/blob/master/src/virtualized/Virtualized.tsx) component. It provides a simple API to create a virtualized table.
+```tsx
+<TableComponent
+  data={data}
+  rowDensity="compact"
+  selectionType="multiple"
+  height="700px"
+>
+  {() => (
+    <TableVirtualizedWrapper>
+      <TableHeader>
+        <TableHeaderRow>
+          <TableHeaderCell>ID</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
+        </TableHeaderRow>
+      </TableHeader>
+      <TableBody<Item>>
+        {(tableItem, index) => (
+          <TableRow key={index} item={tableItem}>
+            <TableCell>{tableItem.paymentId}</TableCell>
+            <TableCell>
+              <Amount value={tableItem.amount} />
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </TableVirtualizedWrapper>
+  )}
+</TableComponent>
+```
 
 ```ts
-type TableVirtualizedWrapperProps<Item> = {
-  /**
-   *   <TableComponent
-   *      data={data}
-   *      rowDensity="compact"
-   *      selectionType="multiple"
-   *      height="700px"
-   *      toolbar={
-   *        <TableToolbar>
-   *          <TableToolbarActions>
-   *            <Button variant="secondary" marginRight="spacing.2">
-   *              Export
-   *            </Button>
-   *            <Button>Payout</Button>
-   *          </TableToolbarActions>
-   *        </TableToolbar>
-   *      }
-   *    >
-   *      {(tableData) => (
-   *        <TableVirtualizedWrapper tableData={tableData}>
-   *          <TableHeader>
-   *            <TableHeaderRow>
-   *              <TableHeaderCell>ID</TableHeaderCell>
-   *              <TableHeaderCell>Amount</TableHeaderCell>
-   *              <TableHeaderCell>Account</TableHeaderCell>
-   *              <TableHeaderCell>Date</TableHeaderCell>
-   *              <TableHeaderCell>Method</TableHeaderCell>
-   *              <TableHeaderCell>Status</TableHeaderCell>
-   *            </TableHeaderRow>
-   *          </TableHeader>
-   *          <TableBody<Item>>
-   *            {(tableItem, index) => (
-   *              <TableRow
-   *                key={index}
-   *                item={tableItem}
-   *                hoverActions={
-   *                  <>
-   *                    <IconButton
-   *                      accessibilityLabel="Copy"
-   *                      isHighlighted
-   *                      icon={CopyIcon}
-   *                      onClick={() => console.log('copy', tableItem)}
-   *                    />
-   *                    <IconButton
-   *                      accessibilityLabel="Delete"
-   *                      isHighlighted
-   *                      icon={TrashIcon}
-   *                      onClick={() => console.log('delete', tableItem)}
-   *                    />
-   *                  </>
-   *                }
-   *              >
-   *                <TableCell>
-   *                  <Code size="medium">{tableItem.paymentId}</Code>
-   *                </TableCell>
-   *                <TableCell>
-   *                  <Amount value={tableItem.amount} />
-   *                </TableCell>
-   *                <TableCell>{tableItem.account}</TableCell>
-   *                <TableCell>
-   *                  {tableItem.date?.toLocaleDateString('en-IN', {
-   *                    year: 'numeric',
-   *                    month: '2-digit',
-   *                    day: '2-digit',
-   *                  })}
-   *                </TableCell>
-   *                <TableCell>{tableItem.method}</TableCell>
-   *                <TableCell>
-   *                  <Badge
-   *                    size="medium"
-   *                    color={
-   *                      tableItem.status === 'Completed'
-   *                        ? 'positive'
-   *                        : tableItem.status === 'Pending'
-   *                        ? 'notice'
-   *                        : tableItem.status === 'Failed'
-   *                        ? 'negative'
-   *                        : 'default'
-   *                    }
-   *                  >
-   *                    {tableItem.status}
-   *                  </Badge>
-   *                </TableCell>
-   *              </TableRow>
-   *            )}
-   *          </TableBody>
-   *        </TableVirtualizedWrapper>
-   *      )}
-   *    </TableComponent>
-   *
-    /**
-   * The tableData prop is an array of objects.
-   */
-  tableData: TableNode<Item>[];
-  /**
-   * headerHeight is the height of the header
-   **/
+type TableVirtualizedWrapperProps = {
+  children: React.ReactNode;
+  /** The height reserved for the header's sticky overlay. */
   headerHeight?: number;
   /**
-   * rowHeight is the height of each row, it can be a fixed number or a function that returns a number
-   **/
+   * Per-row height - a fixed number, or a function of `(item, index)` for variable heights.
+   * @default the row-density-based default height (compact/normal/comfortable)
+   * See "Known gaps" below - this is NOT verified to work correctly for genuinely variable
+   * (non-constant) heights.
+   */
   rowHeight?: (item: TableLibraryTableNode, index: number) => number;
-  children: React.ReactNode;
 };
 ```
+
+Note: `tableData` is deliberately **not** a prop here (an earlier draft of this doc showed one) -
+the wrapper reads the current sorted/filtered data straight from `TableContext`, the same way the
+rest of `Table`'s internals do.
+
+## Re-render architecture (context split + memoization)
+
+`TableContext` was split into two separate React contexts:
+
+- **`TableRowContext`** - selection + appearance state (`selectedRows`, `rowDensity`,
+  `showStripedRows`, `expandedRowIds`, etc.), read by the N-instance components: `TableRow`,
+  `TableCell`, `TableEditableCell`, `TableFooterCell`.
+- **`TableDataContext`** - sort/filter/pagination/`tableData` state, read only by single-instance
+  components: `TableHeader`'s pieces, `TableToolbar`, `TablePagination`, `TableVirtualizedWrapper`.
+
+Previously these lived in one shared context object, so **any** sort click, filter keystroke, or
+page change recreated that single value and force-rendered every mounted row and cell, even though
+none of them read sort/filter/pagination state. Splitting the context means those interactions no
+longer touch `TableRowContext`'s subscribers at all - a filter keystroke's React work is now
+bounded by however many rows are actually mounted (with virtualization: the viewport's worth, not
+the whole dataset), not an unconditional full-table re-render.
+
+`TableRow`, `TableCell`, and `TableHeaderCell` are also now wrapped in `React.memo`, so a re-render
+of their parent that doesn't change their own props (or the context slice they read) is skipped.
+
+**What this does and doesn't achieve** (verified, not assumed - see the full Table task's prior
+investigation): this bounds the re-render cost of filter/sort/pagination changes, and - combined
+with virtualization capping how many rows are *mounted* - bounds the worst case to O(visible rows),
+not O(total rows). It does **not** achieve single-row selection isolation: a row-selection click
+still re-renders every currently-mounted row (not every row in the dataset), because
+`@table-library/react-table-library`'s own `Row`/`Cell` primitives are themselves direct,
+unmemoized consumers of that library's internal selection context, and React propagates context
+changes through memoization boundaries by design. True per-row isolation would need an external,
+`useSyncExternalStore`-based selection subscription, replacing how `TableRow` reads `selectedRows`
+entirely - a larger change, out of scope here.
+
+## Verified combination (real browser, not jsdom)
+
+`react-virtualized-auto-sizer` measures 0x0 in jsdom, so virtualization's actual behavior can only
+be verified in a real browser - see `docs/APIStories/VirtualizedTableCombinedFeaturesAPI.stories.tsx`'s
+`CombinedFeatures` story and its `play` function, which exercises and asserts, at a 100-rows-per-page
+scale: multi-select + a frozen (sticky) leading column + a column filter + global search +
+server-mode pagination, together. Confirmed in a real browser:
+- The frozen column keeps `position: sticky` under virtualization (this is **not** automatic - it
+  depends on the viewport being wide enough that `Table`'s existing "disable sticky columns on
+  mobile" logic doesn't kick in; a narrow preview pane can produce a false negative here, which is
+  exactly what happened once during manual verification before widening the viewport).
+- Global search narrows the virtualized row set to only matches.
+- Server-mode pagination swaps the virtualized dataset (a page change) without breaking
+  virtualization or losing the sticky/filter state.
+
+This specific combination (sticky column + filter + server pagination + virtualization) had zero
+prior test/story coverage before this change.
+
+## Re-render/FPS budget (published)
+
+At N=100 rows (one server page) with roughly 15-20 rows actually mounted by virtualization in a
+~500px-tall viewport:
+- **Initial mount**: commits each mounted `TableRow` once.
+- **A column-filter keystroke, global search keystroke, or sort click**: recreates
+  `TableDataContext` only. `TableRow`/`TableCell` don't subscribe to it (see above), so their
+  commit count for this interaction is governed only by whether the *mounted row set's membership*
+  changed (bounded by ~15-20, the mounted count - never the full 100-row page or the 31k-row total
+  dataset).
+- **A row-selection click**: recreates `TableRowContext`, which **does** re-render every currently
+  mounted row (~15-20), not just the clicked one - see the re-render architecture note above for
+  why, and what a further fix would require.
+
+## Known gaps (confirmed, not guessed)
+
+- **Row-height off-by-one for custom `rowHeight`/`headerHeight`**: `_Virtulized`'s internal
+  `_rowHeight` treats slot index 0 as "the header" (returning `headerHeight`) and shifts every
+  other index by one before calling the consumer's `rowHeight(item, index - 1)`. In the common,
+  currently-exercised case (no custom `rowHeight`/`headerHeight` passed, so every row gets the same
+  default height) this is invisible - the uniform shift happens to still reserve the right amount
+  of space for the header. It becomes a real bug the moment a consumer passes a genuinely variable
+  `rowHeight` function (the entire reason to use one): row 0's slot size is forced to
+  `headerHeight` regardless of its real computed height, and every other row's callback receives
+  the wrong index. **Not fixed in this change** - it requires either reworking the upstream
+  library's row-position formula assumptions or restructuring how this wrapper reserves header
+  space, and there's no existing test harness for variable row heights to verify a fix against.
+  Treat `rowHeight` as effectively **fixed-height-only** until this is addressed.
+- **Overscan is not configurable.** Confirmed directly from the installed library's compiled
+  bundle (`@table-library/react-table-library/virtualized.js`): no `overscanCount` (or equivalent)
+  is forwarded to the underlying `react-window` `VariableSizeList` anywhere in the library's own
+  `Virtualized` component. Making this tunable would require forking/patching the installed
+  library, not just this wrapper - out of scope.
+- **Grouped/tree tables + virtualization remains unsupported** (see "Row Expansion" → "Known
+  limitation: virtualization" above) - the virtualized list is built from `tableData` directly, not
+  `ReactTable`'s own tree-flattened/`expandedRowIds`-aware output.
+- **A console-visible DOM-nesting warning** (`<div> cannot appear as a child of <table>`) comes
+  from `react-virtualized-auto-sizer`'s own internals when used inside an actual `<table>` element
+  (which `StyledReactTable` renders as). This is a pre-existing quirk of the underlying library
+  combination, not something introduced here - confirmed present with a plain virtualized table
+  with no other features enabled, too. It doesn't appear to break rendering or interaction, but is
+  worth fixing upstream or suppressing deliberately rather than leaving silently unexplained.
+- **Keyboard focus across scroll-driven mount/unmount is unverified.** `Table` doesn't implement
+  full keyboard grid navigation at all yet (a separate, tracked follow-up), so this wasn't newly
+  broken by virtualization, but it means a focused row that scrolls out of view and gets unmounted
+  by `react-window` has no verified focus-restoration behavior.
 
 # Row Density & Vertical Cell Padding
 

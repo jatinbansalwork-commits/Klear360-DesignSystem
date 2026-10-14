@@ -512,6 +512,80 @@ export type QuickFilterProps = {
   - **Conclusion:**
     - We will be building this later. Currently we'll ship it with 2 inputs instead.
 
+## Performance at scale (N=100+ rows)
+
+`ListView` itself renders no items - it's a chrome/filter-bar wrapper (`ListViewFilters` + a styled
+surface) around whatever's passed as `children`, almost always a `<Table>`. It doesn't map over
+data or know the dataset exists. That has a useful consequence for high-density lists: filters
+(`FilterChipGroup`, search) are structural siblings of `Table`, not children of its scrollable
+body, so they're already outside any scrollport/virtualization boundary `Table` introduces - no
+extra isolation work is needed at the `ListView` layer itself for that part.
+
+The isolation work that *does* matter is inside `Table` - see `Table/_decisions/decisions.md`'s
+"Virtualization" section for the full re-render architecture. The practical guidance for a
+`ListView`-composed high-density list:
+
+**Do:**
+- Keep `ListViewFilters`'/`FilterChipGroup`'s own state (the filter VALUES) separate from
+  anything that would force `Table`'s row-level context (`TableRowContext`) to recreate - route
+  filter changes through `Table`'s own `globalFilterValue`/`columnFilterValues` controlled props
+  (which live in `TableDataContext`, not `TableRowContext`), rather than, say, re-mounting `<Table
+  key={filterValue}>` or passing a new `data` array reference on every filter keystroke before the
+  filter is actually meant to apply.
+- Use `TableVirtualizedWrapper` once a `Table` inside `ListView` is expected to render on the order
+  of 50-100+ rows per page with several custom cells each (e.g. KlearNow Track & Trace's ~15-18
+  column invoice grid) - this is the only thing that bounds the *mounted* row count, independent of
+  the context-split work.
+- Give the `Table` an explicit height (e.g. `height="500px"`) when virtualizing - `TableVirtualizedWrapper`
+  needs a sized viewport to measure against (see `Table`'s decisions doc).
+
+**Don't:**
+- Don't key `Table` (or anything wrapping it) by the current filter/search value to "force a
+  refresh" - that remounts the whole virtualized list (losing scroll position and re-mounting every
+  row) for a scenario the context split already handles without remounting anything.
+- Don't compute per-row visual density (row height, padding) as a function of the *total* filtered
+  count if it's meant to vary continuously - `Table`'s `rowDensity` is a fixed compact/normal/comfortable
+  choice per instance, and `TableVirtualizedWrapper`'s `rowHeight` callback currently has a
+  confirmed off-by-one for genuinely variable (non-constant) heights (see `Table`'s decisions doc,
+  "Known gaps") - don't rely on it for anything beyond a uniform height until that's fixed.
+- Don't assume a sticky/frozen leading column "just works" under virtualization without checking
+  viewport width - `Table` disables sticky columns below its mobile breakpoint regardless of
+  virtualization, which can look like a virtualization bug in a narrow preview/embed when it's
+  actually the existing, intentional mobile fallback.
+
+## Card list virtualization (composition pattern, not a new component)
+
+KlearNow's "Card & map" view (a vertical list of `Card`s next to a Leaflet map, as an alternative to
+the `Table` view inside the same `ListView`) has no dedicated Klear360 component today -
+`ListView` only composes `ListViewFilters` + whatever single child is passed, and that child has
+always been `Table` in every example in this file. There is no `VirtualizedCardList` or equivalent
+in this package.
+
+Rather than build one speculatively, the guidance for a consumer who needs to virtualize a Card
+list inside `ListView` is a **composition contract**, mirroring the same shape `Table` already
+uses:
+
+1. **Filters/search stay structural siblings of the virtualized list**, exactly as `ListViewFilters`
+   already sits outside `Table`'s own body today - don't put filter chips/search *inside* whatever
+   virtualizes the Card list, for the same reason `Table`'s filter row survives virtualization: it
+   needs to stay outside the scrollport's render cycle.
+2. **Filter/search state changes should not remount the virtualized list.** If a consumer wires a
+   third-party windowing library (e.g. `react-window`'s own `VariableSizeList`, which
+   `TableVirtualizedWrapper` itself wraps) directly around a `Card` list, the filtered `items` array
+   passed to it should change by reference only when the actual result set changes - not on every
+   keystroke before a debounced/applied filter commits, and not via a changing `key` prop on the
+   list itself.
+3. **Selection state (if the Card list supports multi-select, mirroring `Table`'s `selectionType`)
+   should live outside whatever context recreates on filter/search changes** - the same two-context
+   split `Table` uses (`TableRowContext` vs `TableDataContext`) is the right model to reuse: one
+   context for per-card selection/appearance state, a separate one for filter/sort/pagination state,
+   so a search keystroke doesn't re-render every mounted card.
+4. **This is explicitly a pattern to replicate, not a hook or component to import** - `useResize`
+   (`~utils/useResize`) is reusable as-is for measuring the available viewport/container size, but
+   there is no shared "virtualized list" primitive below `TableVirtualizedWrapper` in this package
+   today. A future `VirtualizedCardList` or similar would need its own proposal/decision doc, scoped
+   separately from this one.
+
 ## References
 
 - [Filtering - Carbon](https://carbondesignsystem.com/patterns/filtering/)

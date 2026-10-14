@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Body, Row, Cell } from '@table-library/react-table-library/table';
 import { Virtualized } from '@table-library/react-table-library/virtualized';
 import styled from 'styled-components';
-import { useTableContext } from './TableContext';
+import { useTableRowContext, useTableDataContext } from './TableContext';
 import { checkboxCellWidth, classes, tableRow } from './tokens';
 import { ComponentIds } from './componentIds';
 import type {
@@ -62,7 +62,7 @@ const StyledBody = styled(Body)<{
 });
 
 const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.ReactElement => {
-  const { showStripedRows, selectionType } = useTableContext();
+  const { showStripedRows, selectionType } = useTableRowContext();
   const isSelectable = selectionType !== 'none';
 
   return (
@@ -164,7 +164,7 @@ const _TableCell = ({
     backgroundColor,
     expandedRowIds,
     toggleRowExpansionById,
-  } = useTableContext();
+  } = useTableRowContext();
   const isSelectable = selectionType !== 'none';
   const isExpanded = _groupRowId !== undefined && expandedRowIds.includes(_groupRowId);
 
@@ -233,10 +233,16 @@ const _TableCell = ({
   );
 };
 
-const TableCell = assignWithoutSideEffects(_TableCell, {
-  displayName: 'TableCell',
-  componentId: ComponentIds.TableCell,
-});
+// Memoized so a TableDataContext change (sort/filter/pagination/tableData) - which this cell
+// doesn't read at all - doesn't re-render every mounted cell. Only re-renders when this cell's
+// own props change, or when TableRowContext (selection/appearance) changes.
+const TableCell = assignWithoutSideEffects(
+  (React.memo(_TableCell) as unknown) as typeof _TableCell,
+  {
+    displayName: 'TableCell',
+    componentId: ComponentIds.TableCell,
+  },
+);
 
 const TableCheckboxCell = ({
   isChecked,
@@ -286,7 +292,7 @@ const StyledRow = styled(Row)<{
   $isGrouped: boolean;
   $isGroupHeader: boolean;
 }>(({ theme, $isSelectable, $isHoverable, $showBorderedCells, $isGrouped, $isGroupHeader }) => {
-  const { hasHoverActions, checkboxDisplay, selectionType } = useTableContext();
+  const { hasHoverActions, checkboxDisplay, selectionType } = useTableRowContext();
 
   const rowBackgroundTransition = `background-color ${makeMotionTime(
     getIn(theme.motion, tableRow.backgroundColorMotionDuration),
@@ -412,7 +418,7 @@ const _TableRow = <Item,>({
     isVirtualized,
     isGrouped,
     multiSelectTrigger,
-  } = useTableContext();
+  } = useTableRowContext();
   const isSelectable = selectionType !== 'none';
   const isMultiSelect = selectionType === 'multiple';
   const isSelected = selectedRows?.includes(item.id);
@@ -555,7 +561,8 @@ const _Virtulized = <Item,>({
   children,
 }: TableVirtualizedWrapperProps): React.ReactElement => {
   const [parsedHeader = null, parsedBody = null] = React.Children.toArray(children);
-  const { rowDensity, tableData } = useTableContext<Item>();
+  const { rowDensity } = useTableRowContext<Item>();
+  const { tableData } = useTableDataContext<Item>();
   const _tableRow = Number(tableRow.minHeight[rowDensity]);
 
   const _rowHeight = (item: TableNode<Item>, index: number): number => {
@@ -583,7 +590,13 @@ const _Virtulized = <Item,>({
   );
 };
 
-const TableRow = assignWithoutSideEffects(_TableRow, {
+// Memoized (cast through `unknown` to preserve _TableRow's own generic `<Item>` signature -
+// React.memo's return type otherwise loses it) so a TableDataContext change - which this row
+// doesn't read at all - doesn't re-render every mounted row. Only re-renders when this row's own
+// props change, or when TableRowContext (selection/appearance) changes.
+const MemoizedTableRow = (React.memo(_TableRow) as unknown) as typeof _TableRow;
+
+const TableRow = assignWithoutSideEffects(MemoizedTableRow, {
   displayName: 'TableRow',
   componentId: ComponentIds.TableRow,
 });

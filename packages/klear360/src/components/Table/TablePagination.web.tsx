@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useTableContext } from './TableContext';
+import { useTableDataContext } from './TableContext';
 import { ComponentIds } from './componentIds';
 import { tablePagination } from './tokens';
 import type { TablePaginationProps } from './types';
@@ -29,7 +29,7 @@ const _TablePagination = ({
     totalItems,
     setPaginationRowSize,
     setPaginationType,
-  } = useTableContext();
+  } = useTableDataContext();
 
   // Sync pagination type with table context
   useEffect(() => {

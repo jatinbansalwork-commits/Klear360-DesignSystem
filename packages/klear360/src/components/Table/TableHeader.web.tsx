@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Header, HeaderRow, HeaderCell } from '@table-library/react-table-library/table';
 import { checkboxCellWidth, tableHeader, tableRow, classes } from './tokens';
-import { useTableContext } from './TableContext';
+import { useTableRowContext, useTableDataContext } from './TableContext';
 import { ComponentIds } from './componentIds';
 import type {
   TableHeaderRowProps,
@@ -291,12 +291,14 @@ const TableHeaderFilterRow = ({
     columnFilterValues,
     setColumnFilterValue,
     filterConfig,
+  } = useTableDataContext();
+  const {
     backgroundColor,
     selectionType,
     hasHoverActions,
     showBorderedCells,
     shouldHeaderBeSticky,
-  } = useTableContext();
+  } = useTableRowContext();
   const cellsMeta = getHeaderCellsMeta(headerRow);
   // See `_TableHeaderRow`'s `cellStickyTopOffsetPx` - only meaningful once cells are sticky.
   const cellStickyTopOffsetPx = shouldHeaderBeSticky ? stickyTopOffsetPx : undefined;
@@ -406,7 +408,8 @@ const getFilterRowStickyTopOffsetPx = ({
 }): number => Math.max(labelRowCount, 1) * HEADER_ROW_HEIGHT_PX + borderWidthPx;
 
 const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactElement => {
-  const { tableToolbarPlacement, filterableColumns } = useTableContext();
+  const { tableToolbarPlacement } = useTableRowContext();
+  const { filterableColumns } = useTableDataContext();
   const { theme } = useTheme();
 
   // `TableHeader` may contain more than one `TableHeaderRow` (grouped multi-row headers - earlier
@@ -524,13 +527,8 @@ const _TableHeaderCell = ({
   gridRowEnd,
   ...rest
 }: TableHeaderCellProps): React.ReactElement => {
-  const {
-    toggleSort,
-    currentSortedState,
-    backgroundColor,
-    rowDensity,
-    headerRowDensity,
-  } = useTableContext();
+  const { toggleSort, currentSortedState } = useTableDataContext();
+  const { backgroundColor, rowDensity, headerRowDensity } = useTableRowContext();
   const isChildrenString = typeof children === 'string';
   const isSortable =
     headerKey && Boolean(currentSortedState.sortableColumns?.find((key) => key === headerKey));
@@ -589,7 +587,11 @@ const _TableHeaderCell = ({
   );
 };
 
-const TableHeaderCell = assignWithoutSideEffects(_TableHeaderCell, {
+// Memoized so a re-render of this cell's parent (e.g. a sibling cell's own state change) that
+// doesn't actually change this cell's own props is skipped. Note this does NOT skip re-renders
+// triggered by a TableRowContext/TableDataContext change (e.g. sort state) - those are expected,
+// since this cell reads its own sort indicator from that context.
+const TableHeaderCell = assignWithoutSideEffects(React.memo(_TableHeaderCell), {
   displayName: 'TableHeaderCell',
   componentId: ComponentIds.TableHeaderCell,
 });
@@ -637,8 +639,6 @@ const _TableHeaderRow = ({
     disabledRows,
     selectionType,
     selectedRows,
-    totalItems,
-    tableData,
     toggleAllRowsSelection,
     setHeaderRowDensity,
     showBorderedCells,
@@ -647,7 +647,8 @@ const _TableHeaderRow = ({
     columnCount,
     isVirtualized,
     shouldHeaderBeSticky,
-  } = useTableContext();
+  } = useTableRowContext();
+  const { totalItems, tableData } = useTableDataContext();
   const isMultiSelect = selectionType === 'multiple';
   // Containment against the currently-visible rows (`tableData`), not a `selectedRows.length ===
   // totalItems` count comparison - `totalItems` tracks whatever `data` currently holds, which for

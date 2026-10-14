@@ -9,7 +9,7 @@ import { getActionListContainerRole } from '~components/ActionList/getA11yRoles'
 import { MetaConstants } from '~utils/metaAttribute';
 import { getTagsGroup } from '~components/Tag/getTagsGroup';
 import type { Klear360ElementRef } from '~utils/types';
-import { useTableContext } from '~components/Table/TableContext';
+import { useTableRowContext } from '~components/Table/TableContext';
 import {
   rowDensityToIsTableInputCellMapping,
   tableEditableCellRowDensityToInputSizeMap,
@@ -48,7 +48,7 @@ const _BaseDropdownInputTrigger = (
     setChangeCallbackTriggerer,
     changeCallbackTriggerer,
   } = useDropdown();
-  const { rowDensity } = useTableContext();
+  const { rowDensity } = useTableRowContext();
   const { isInsideTableEditableCell } = useTableEditableCell();
 
   const dropdownTriggerPlaceholder = props.placeholder ?? 'Select Option';
