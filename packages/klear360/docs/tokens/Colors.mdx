@@ -1,0 +1,128 @@
+import { Meta, DocsContainer } from '@storybook/addon-docs/blocks';
+import { Klear360Provider, useTheme, Box, Text } from '../../src/components';
+import { klear360Theme } from '../../src/tokens';
+
+<Meta
+  title="Tokens/Colors"
+  parameters={{
+    docs: {
+      container: ({ children, context }) => {
+        const colorScheme = context.store.globals.globals.colorScheme;
+
+        return (
+          <DocsContainer context={context}>
+            <Klear360Provider
+              key={colorScheme}
+              themeTokens={klear360Theme}
+              colorScheme={colorScheme}
+            >
+              {children}
+            </Klear360Provider>
+          </DocsContainer>
+        );
+      },
+    },
+  }}
+/>
+
+# ─ Colors
+
+Color tokens are grouped by **what the color is for**, not by hue - there's no `theme.colors.blue`.
+Reach for the category that matches the UI role you're styling; which hue ends up rendered is
+decided by the active theme (and by [`createTheme`](?path=/docs/guides-theming-createtheme-function--docs)
+for a custom brand), not by you.
+
+> For the full, live, browsable token tree (every nested value, in the current color scheme), see
+> [Tokens/Theme](?path=/docs/tokens-theme--docs). This page explains the category structure that
+> tree is organized by.
+
+## Categories
+
+export const swatch = (color) => (
+  <div
+    style={{
+      display: 'inline-block',
+      width: '20px',
+      height: '20px',
+      borderRadius: '4px',
+      backgroundColor: color,
+      verticalAlign: 'middle',
+      marginRight: '8px',
+      border: '1px solid hsla(216, 15%, 54%, 0.18)',
+    }}
+  />
+);
+
+export const Row = ({ path, value }) => (
+  <tr>
+    <td>
+      <code>{path}</code>
+    </td>
+    <td>
+      {swatch(value)}
+      {value}
+    </td>
+  </tr>
+);
+
+export const Categories = () => {
+  const { theme } = useTheme();
+  const c = theme.colors;
+  return (
+    <table>
+      <tbody>
+        <Row path="interactive.background.primary.default" value={c.interactive.background.primary.default} />
+        <Row path="interactive.text.primary.normal" value={c.interactive.text.primary.normal} />
+        <Row path="feedback.background.negative.intense" value={c.feedback.background.negative.intense} />
+        <Row path="feedback.text.positive.intense" value={c.feedback.text.positive.intense} />
+        <Row path="surface.background.gray.subtle" value={c.surface.background.gray.subtle} />
+        <Row path="surface.text.gray.normal" value={c.surface.text.gray.normal} />
+        <Row path="overlay.background.moderate" value={c.overlay.background.moderate} />
+        <Row path="popup.background.gray.moderate" value={c.popup.background.gray.moderate} />
+        <Row path="data.background.categorical.blue.intense" value={c.data.background.categorical.blue.intense} />
+      </tbody>
+    </table>
+  );
+};
+
+<Categories />
+
+- **`interactive`** - things the user acts on directly: buttons, inputs, links, selected states.
+  Keyed by a color role (`primary`, `gray`, or a [feedback color](#feedback-colors)) and a state
+  (`default`, `highlighted`, `faded`, `disabled`, etc. - states vary slightly by sub-category,
+  see `Tokens/Theme` for the exact set for a given role).
+- **`feedback`** - status and validation: success, error, warning, info, neutral. Keyed by one of
+  `positive` / `negative` / `notice` / `information` / `neutral` and an emphasis (`subtle` /
+  `intense`). Used by `Badge`, `Alert`, form validation states, and similar.
+- **`surface`** - page and container backgrounds, body text, and icons that aren't tied to a
+  specific interaction or status - the default "everything else" category for a card, a page
+  background, or ordinary body copy.
+- **`overlay`** - the scrim/backdrop behind a `Modal`, `Drawer`, or similar layer that sits above
+  the page.
+- **`popup`** - backgrounds/borders for floating surfaces that aren't full-page overlays:
+  `Dropdown`/`Menu` panels, `Tooltip`, `Popover`.
+- **`data`** - chart and visualization colors (`Charts/*` components), deliberately separate from
+  `feedback` - a chart's "positive" series color isn't meant to also carry `feedback`'s semantic
+  weight of "this succeeded."
+
+### Feedback colors
+
+The five feedback colors above (`positive`, `negative`, `notice`, `information`, `neutral`) are
+shared across `interactive`, `feedback`, and `popup` - e.g. a feedback-colored `Button` uses
+`interactive.background.<feedbackColor>`, while an `Alert` of the same semantic color uses
+`feedback.background.<feedbackColor>`. Same hue family, different category because they answer a
+different question ("what should this button do when pressed" vs. "what kind of message is this").
+
+## Light and dark mode
+
+Every category above is duplicated under `theme.colors.onLight` and `theme.colors.onDark` -
+components read the active scheme automatically via `Klear360Provider`'s `colorScheme` prop, so
+you reference a token the same way (`surface.background.gray.subtle`) regardless of which scheme
+is active; the provider resolves which half of the tree to use.
+
+## Using a color token in a component
+
+Most components accept color tokens as dot-notation strings on their own color-related props
+(e.g. `Badge`'s `color`, `Box`'s `backgroundColor`), resolved internally - you don't import
+`theme.colors` yourself for those. Reach for `useTheme()` directly only when building a custom
+component that needs a color token outside of an existing prop, as the examples on this page do.
