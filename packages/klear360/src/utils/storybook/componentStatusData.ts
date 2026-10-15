@@ -1,3 +1,13 @@
+// This file is manually maintained and drifts: a P3 audit (comparing every `name` here against
+// `src/components/*`) found 33 real, public components with no entry at all, including some
+// added within the same session that audit ran in (ResizableSplit, CitedFieldRow). No listed
+// entry had an actively *wrong* status (everything present is accurately 'released'/'deprecated')
+// - the problem is purely missing entries, not misleading ones.
+//
+// Not backfilled as part of that audit: an accurate `releasedIn` version per missing component
+// needs git-history research (when it first shipped, cross-referenced against the nearest
+// package.json version bump), not something to fabricate. CHANGELOG.md doesn't help either - it
+// only goes back to the version Changesets was bootstrapped at. Tracked as a separate follow-up.
 type ComponentStatuses =
   | 'released'
   | 'in-api-spec'
