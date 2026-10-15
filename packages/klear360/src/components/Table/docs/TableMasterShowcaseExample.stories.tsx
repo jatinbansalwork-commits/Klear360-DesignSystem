@@ -178,7 +178,7 @@ type ColumnDef = {
   key: string;
   header: string;
   width: string;
-  sortable?: boolean;
+  isSortable?: boolean;
   textAlign?: 'left' | 'center' | 'right';
   render: (item: TransactionTableItem) => React.ReactNode;
 };
@@ -189,7 +189,7 @@ const columnDefs: ColumnDef[] = [
     key: 'transactionId',
     header: 'Transaction ID',
     width: '150px',
-    sortable: true,
+    isSortable: true,
     render: (item) => (
       <Link variant="anchor" href={`/transactions/${item.id}`}>
         {item.transactionId}
@@ -228,7 +228,7 @@ const columnDefs: ColumnDef[] = [
     key: 'transactionState',
     header: 'Status',
     width: '150px',
-    sortable: true,
+    isSortable: true,
     render: (item) => (
       <Badge size="medium" color={getTransactionStateColor(item.transactionState)}>
         {item.transactionState}
@@ -239,7 +239,7 @@ const columnDefs: ColumnDef[] = [
     key: 'etd',
     header: 'ETD',
     width: '120px',
-    sortable: true,
+    isSortable: true,
     render: (item) => formatDate(item.etd),
   },
   {
@@ -439,7 +439,7 @@ export const MasterShowcase = (): React.ReactElement => {
                   <TableHeaderCell
                     key={column.key}
                     headerKey={
-                      column.sortable || FILTER_PREDICATES[column.key] ? column.key : undefined
+                      column.isSortable || FILTER_PREDICATES[column.key] ? column.key : undefined
                     }
                     textAlign={column.textAlign}
                   >

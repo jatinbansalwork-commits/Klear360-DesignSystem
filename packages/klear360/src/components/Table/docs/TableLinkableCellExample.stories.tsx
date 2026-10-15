@@ -27,7 +27,7 @@ type LinkColumnConfig<Item> = {
   header: React.ReactNode;
   getLabel: (item: TableNode<Item>) => string;
   width?: string;
-  sortable?: boolean;
+  isSortable?: boolean;
   /**
    * Renders as `Link`'s `'anchor'` variant - a real `href`, so cmd/ctrl-click, middle-click, and
    * "open in new tab" all work exactly as a user expects a link to. Use this whenever the target
@@ -57,14 +57,14 @@ const makeLinkColumn = <Item,>({
   header,
   getLabel,
   width,
-  sortable,
+  isSortable,
   getHref,
   onNavigate,
 }: LinkColumnConfig<Item>): TableColumnConfig<Item> => ({
   key,
   header,
   width,
-  sortable,
+  isSortable,
   render: (item) =>
     getHref ? (
       <Link variant="anchor" href={getHref(item)}>
@@ -106,7 +106,7 @@ export const LinkableCells = (): React.ReactElement => {
       getLabel: (item) => item.transactionId,
       getHref: (item) => `/transactions/${item.id}`,
       width: '160px',
-      sortable: true,
+      isSortable: true,
     }),
     makeLinkColumn<TransactionTableItem>({
       key: 'companyName',
@@ -114,7 +114,7 @@ export const LinkableCells = (): React.ReactElement => {
       getLabel: (item) => item.companyName,
       onNavigate: (item) => action('onNavigate:companyName')(item.companyName),
       width: '240px',
-      sortable: true,
+      isSortable: true,
     }),
     {
       key: 'transactionState',

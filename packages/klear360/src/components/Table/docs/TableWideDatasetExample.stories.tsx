@@ -36,14 +36,14 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
     header: 'Transaction ID',
     render: (item) => <Code size="medium">{item.transactionId}</Code>,
     width: '150px',
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'companyName',
     header: 'Company Name',
     render: (item) => item.companyName,
     width: '220px',
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'cbpTransactionNumber',
@@ -66,14 +66,14 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
       </Badge>
     ),
     width: '150px',
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'etd',
     header: 'ETD',
     render: (item) => formatDate(item.etd),
     width: '110px',
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'vesselName',

@@ -25,13 +25,13 @@ const columns: TableColumnConfig<TransactionTableItem>[] = [
     key: 'transactionId',
     header: 'Transaction ID',
     render: (item) => <Code size="medium">{item.transactionId}</Code>,
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'companyName',
     header: 'Company Name',
     render: (item) => item.companyName,
-    sortable: true,
+    isSortable: true,
   },
   {
     key: 'etd',
