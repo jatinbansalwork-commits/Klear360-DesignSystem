@@ -116,7 +116,7 @@ exports[`<List /> should render List with default properties 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -161,7 +161,7 @@ exports[`<List /> should render List with default properties 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -305,7 +305,7 @@ exports[`<List /> should render List with default properties 1`] = `
                         r="2.5px"
                         stroke={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -344,7 +344,7 @@ exports[`<List /> should render List with default properties 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -474,7 +474,7 @@ exports[`<List /> should render List with default properties 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -525,7 +525,7 @@ exports[`<List /> should render List with default properties 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -677,7 +677,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -722,7 +722,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -753,7 +753,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
                   {},
                   {
                     "alignSelf": "center",
-                    "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                    "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                     "borderRadius": 4,
                     "display": "flex",
                     "lineHeight": 0,
@@ -778,7 +778,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 10,
                       "fontStyle": "normal",
@@ -894,7 +894,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -939,7 +939,7 @@ exports[`<List /> should render List with inline ListItemCode 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -1085,7 +1085,7 @@ exports[`<List /> should render List with inline ListItemLink 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -1130,7 +1130,7 @@ exports[`<List /> should render List with inline ListItemLink 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -1349,7 +1349,7 @@ exports[`<List /> should render List with inline ListItemLink 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -1394,7 +1394,7 @@ exports[`<List /> should render List with inline ListItemLink 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -1540,7 +1540,7 @@ exports[`<List /> should render List with inline ListItemText 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -1708,7 +1708,7 @@ exports[`<List /> should render large ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -1762,7 +1762,7 @@ exports[`<List /> should render large ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -1906,7 +1906,7 @@ exports[`<List /> should render large ordered List 1`] = `
                         r="2.5px"
                         stroke={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -1945,7 +1945,7 @@ exports[`<List /> should render large ordered List 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 16,
                           "fontStyle": "normal",
@@ -2075,7 +2075,7 @@ exports[`<List /> should render large ordered List 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -2126,7 +2126,7 @@ exports[`<List /> should render large ordered List 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 16,
                                 "fontStyle": "normal",
@@ -2220,7 +2220,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -2232,7 +2232,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -2259,7 +2259,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -2313,7 +2313,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -2370,7 +2370,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -2382,7 +2382,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -2409,7 +2409,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -2463,7 +2463,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -2520,7 +2520,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -2532,7 +2532,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -2559,7 +2559,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -2613,7 +2613,7 @@ exports[`<List /> should render large ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -2758,7 +2758,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
                   d="M14.7071 5.29289C14.3166 4.90237 13.6834 4.90237 13.2929 5.29289C12.9024 5.68342 12.9024 6.31658 13.2929 6.70711L17.5858 11H4C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H17.5858L13.2929 17.2929C12.9024 17.6834 12.9024 18.3166 13.2929 18.7071C13.6834 19.0976 14.3166 19.0976 14.7071 18.7071L20.7071 12.7071C21.0976 12.3166 21.0976 11.6834 20.7071 11.2929L14.7071 5.29289Z"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -2802,7 +2802,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 16,
                     "fontStyle": "normal",
@@ -2933,7 +2933,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
                         d="M12.7071 3.29289C12.3166 2.90237 11.6834 2.90237 11.2929 3.29289L5.29289 9.29289C4.90237 9.68342 4.90237 10.3166 5.29289 10.7071C5.68342 11.0976 6.31658 11.0976 6.70711 10.7071L11 6.41421V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V6.41421L17.2929 10.7071C17.6834 11.0976 18.3166 11.0976 18.7071 10.7071C19.0976 10.3166 19.0976 9.68342 18.7071 9.29289L12.7071 3.29289Z"
                         fill={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -2977,7 +2977,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 16,
                           "fontStyle": "normal",
@@ -3107,7 +3107,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -3158,7 +3158,7 @@ exports[`<List /> should render large unordered List with icon 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 16,
                                 "fontStyle": "normal",
@@ -3287,7 +3287,7 @@ exports[`<List /> should render medium ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -3341,7 +3341,7 @@ exports[`<List /> should render medium ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -3485,7 +3485,7 @@ exports[`<List /> should render medium ordered List 1`] = `
                         r="2.5px"
                         stroke={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -3524,7 +3524,7 @@ exports[`<List /> should render medium ordered List 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -3654,7 +3654,7 @@ exports[`<List /> should render medium ordered List 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -3705,7 +3705,7 @@ exports[`<List /> should render medium ordered List 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -3799,7 +3799,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -3811,7 +3811,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -3838,7 +3838,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -3892,7 +3892,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -3949,7 +3949,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -3961,7 +3961,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -3988,7 +3988,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -4042,7 +4042,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -4099,7 +4099,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -4111,7 +4111,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -4138,7 +4138,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -4192,7 +4192,7 @@ exports[`<List /> should render medium ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -4337,7 +4337,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
                   d="M14.7071 5.29289C14.3166 4.90237 13.6834 4.90237 13.2929 5.29289C12.9024 5.68342 12.9024 6.31658 13.2929 6.70711L17.5858 11H4C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H17.5858L13.2929 17.2929C12.9024 17.6834 12.9024 18.3166 13.2929 18.7071C13.6834 19.0976 14.3166 19.0976 14.7071 18.7071L20.7071 12.7071C21.0976 12.3166 21.0976 11.6834 20.7071 11.2929L14.7071 5.29289Z"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -4381,7 +4381,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -4512,7 +4512,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
                         d="M12.7071 3.29289C12.3166 2.90237 11.6834 2.90237 11.2929 3.29289L5.29289 9.29289C4.90237 9.68342 4.90237 10.3166 5.29289 10.7071C5.68342 11.0976 6.31658 11.0976 6.70711 10.7071L11 6.41421V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V6.41421L17.2929 10.7071C17.6834 11.0976 18.3166 11.0976 18.7071 10.7071C19.0976 10.3166 19.0976 9.68342 18.7071 9.29289L12.7071 3.29289Z"
                         fill={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -4556,7 +4556,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -4686,7 +4686,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -4737,7 +4737,7 @@ exports[`<List /> should render medium unordered List with icon 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -4866,7 +4866,7 @@ exports[`<List /> should render small ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -4920,7 +4920,7 @@ exports[`<List /> should render small ordered List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -5064,7 +5064,7 @@ exports[`<List /> should render small ordered List 1`] = `
                         r="2.5px"
                         stroke={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -5103,7 +5103,7 @@ exports[`<List /> should render small ordered List 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontStyle": "normal",
@@ -5233,7 +5233,7 @@ exports[`<List /> should render small ordered List 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -5284,7 +5284,7 @@ exports[`<List /> should render small ordered List 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 12,
                                 "fontStyle": "normal",
@@ -5378,7 +5378,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -5390,7 +5390,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -5417,7 +5417,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -5471,7 +5471,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -5528,7 +5528,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -5540,7 +5540,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -5567,7 +5567,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -5621,7 +5621,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -5678,7 +5678,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
           <View
             alignItems="center"
             alignSelf="flex-start"
-            backgroundColor="hsla(206, 10%, 29%, 0.09)"
+            backgroundColor="hsla(222, 47%, 11%, 0.09)"
             borderRadius="max"
             data-klear360-component="base-box"
             display="flex"
@@ -5690,7 +5690,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
                 {
                   "alignItems": "center",
                   "alignSelf": "flex-start",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 9999,
                   "display": "flex",
                   "flexShrink": 0,
@@ -5717,7 +5717,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 10,
                     "fontStyle": "normal",
@@ -5771,7 +5771,7 @@ exports[`<List /> should render small ordered-filled List 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -5916,7 +5916,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
                   d="M14.7071 5.29289C14.3166 4.90237 13.6834 4.90237 13.2929 5.29289C12.9024 5.68342 12.9024 6.31658 13.2929 6.70711L17.5858 11H4C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H17.5858L13.2929 17.2929C12.9024 17.6834 12.9024 18.3166 13.2929 18.7071C13.6834 19.0976 14.3166 19.0976 14.7071 18.7071L20.7071 12.7071C21.0976 12.3166 21.0976 11.6834 20.7071 11.2929L14.7071 5.29289Z"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -5960,7 +5960,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -6091,7 +6091,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
                         d="M12.7071 3.29289C12.3166 2.90237 11.6834 2.90237 11.2929 3.29289L5.29289 9.29289C4.90237 9.68342 4.90237 10.3166 5.29289 10.7071C5.68342 11.0976 6.31658 11.0976 6.70711 10.7071L11 6.41421V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V6.41421L17.2929 10.7071C17.6834 11.0976 18.3166 11.0976 18.7071 10.7071C19.0976 10.3166 19.0976 9.68342 18.7071 9.29289L12.7071 3.29289Z"
                         fill={
                           {
-                            "payload": 4279666754,
+                            "payload": 4279397684,
                             "type": 0,
                           }
                         }
@@ -6135,7 +6135,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontStyle": "normal",
@@ -6265,7 +6265,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -6316,7 +6316,7 @@ exports[`<List /> should render small unordered List with icon 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 12,
                                 "fontStyle": "normal",
@@ -6468,7 +6468,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
                   cy="3px"
                   fill={
                     {
-                      "payload": 4284575093,
+                      "payload": 4281614934,
                       "type": 0,
                     }
                   }
@@ -6513,7 +6513,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(200, 10%, 18%, 1)",
+                    "color": "hsla(218, 50%, 6%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 12,
                     "fontStyle": "normal",
@@ -6657,7 +6657,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
                         r="2.5px"
                         stroke={
                           {
-                            "payload": 4284575093,
+                            "payload": 4281614934,
                             "type": 0,
                           }
                         }
@@ -6696,7 +6696,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontStyle": "normal",
@@ -6826,7 +6826,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
                             <RNSVGRect
                               fill={
                                 {
-                                  "payload": 4284575093,
+                                  "payload": 4281614934,
                                   "type": 0,
                                 }
                               }
@@ -6877,7 +6877,7 @@ exports[`<List /> should render unordered List of small size 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 12,
                                 "fontStyle": "normal",

@@ -117,7 +117,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -180,7 +180,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -273,7 +273,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 "alignItems": "center",
                 "alignSelf": "center",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                "borderColor": "hsla(222, 47%, 11%, 0.18)",
                 "borderRadius": 9999,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -462,7 +462,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 cy={6}
                 fill={
                   {
-                    "payload": 4284575093,
+                    "payload": 4281614934,
                     "type": 0,
                   }
                 }
@@ -560,7 +560,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 cy={6}
                 fill={
                   {
-                    "payload": 776162129,
+                    "payload": 772740905,
                     "type": 0,
                   }
                 }
@@ -624,7 +624,7 @@ exports[`Carousel Snapshots should render 1`] = `
                 "alignItems": "center",
                 "alignSelf": "center",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                "borderColor": "hsla(222, 47%, 11%, 0.18)",
                 "borderRadius": 9999,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -835,7 +835,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -898,7 +898,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -961,7 +961,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -1054,7 +1054,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 "alignItems": "center",
                 "alignSelf": "center",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                "borderColor": "hsla(222, 47%, 11%, 0.18)",
                 "borderRadius": 9999,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -1243,7 +1243,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 cy={6}
                 fill={
                   {
-                    "payload": 4284575093,
+                    "payload": 4281614934,
                     "type": 0,
                   }
                 }
@@ -1341,7 +1341,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 cy={6}
                 fill={
                   {
-                    "payload": 776162129,
+                    "payload": 772740905,
                     "type": 0,
                   }
                 }
@@ -1439,7 +1439,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 cy={6}
                 fill={
                   {
-                    "payload": 776162129,
+                    "payload": 772740905,
                     "type": 0,
                   }
                 }
@@ -1503,7 +1503,7 @@ exports[`Carousel Snapshots should render with visibleItems but always renders 1
                 "alignItems": "center",
                 "alignSelf": "center",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.18)",
+                "borderColor": "hsla(222, 47%, 11%, 0.18)",
                 "borderRadius": 9999,
                 "borderStyle": "solid",
                 "borderWidth": 1,

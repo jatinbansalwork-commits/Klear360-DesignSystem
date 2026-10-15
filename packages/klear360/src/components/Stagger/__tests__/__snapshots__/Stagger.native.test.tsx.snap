@@ -44,7 +44,7 @@ exports[`<Stagger /> (native) should render its children as expected 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -90,7 +90,7 @@ exports[`<Stagger /> (native) should render its children as expected 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -136,7 +136,7 @@ exports[`<Stagger /> (native) should render its children as expected 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -212,7 +212,7 @@ exports[`<Stagger /> (native) should render with Move children (exercises the tr
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -263,7 +263,7 @@ exports[`<Stagger /> (native) should render with Move children (exercises the tr
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -339,7 +339,7 @@ exports[`<Stagger /> (native) should render with type="in" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -390,7 +390,7 @@ exports[`<Stagger /> (native) should render with type="in" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -466,7 +466,7 @@ exports[`<Stagger /> (native) should render with type="out" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -517,7 +517,7 @@ exports[`<Stagger /> (native) should render with type="out" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",

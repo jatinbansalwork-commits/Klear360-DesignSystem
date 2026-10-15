@@ -25,7 +25,7 @@ exports[`Tabs should render 1`] = `
           },
           {
             "backgroundColor": "transparent",
-            "borderBottomColor": "hsla(206, 10%, 29%, 0.12)",
+            "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
             "borderBottomWidth": 1,
             "shadowColor": "transparent",
             "shadowOpacity": 0,
@@ -123,7 +123,7 @@ exports[`Tabs should render 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(0, 0%, 2%, 1)",
+                        "color": "hsla(216, 56%, 2%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -232,7 +232,7 @@ exports[`Tabs should render 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -327,7 +327,7 @@ exports[`Tabs should render 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -392,7 +392,7 @@ exports[`Tabs should render 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -446,7 +446,7 @@ exports[`Tabs should render with filled variant 1`] = `
           },
           {
             "backgroundColor": "hsla(0, 0%, 100%, 1)",
-            "borderColor": "hsla(206, 10%, 29%, 0.18)",
+            "borderColor": "hsla(222, 47%, 11%, 0.18)",
             "borderRadius": 8,
             "borderWidth": 1.5,
             "padding": 4,
@@ -555,7 +555,7 @@ exports[`Tabs should render with filled variant 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(0, 0%, 2%, 1)",
+                        "color": "hsla(216, 56%, 2%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -628,7 +628,7 @@ exports[`Tabs should render with filled variant 1`] = `
               style={
                 [
                   {
-                    "borderLeftColor": "hsla(203, 8%, 80%, 1)",
+                    "borderLeftColor": "hsla(213, 27%, 84%, 1)",
                     "borderLeftStyle": "solid",
                     "height": 20,
                     "left": 1,
@@ -697,7 +697,7 @@ exports[`Tabs should render with filled variant 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -792,7 +792,7 @@ exports[`Tabs should render with filled variant 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -857,7 +857,7 @@ exports[`Tabs should render with filled variant 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -911,7 +911,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
           },
           {
             "backgroundColor": "transparent",
-            "borderBottomColor": "hsla(206, 10%, 29%, 0.12)",
+            "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
             "borderBottomWidth": 1,
             "shadowColor": "transparent",
             "shadowOpacity": 0,
@@ -1018,7 +1018,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(0, 0%, 2%, 1)",
+                        "color": "hsla(216, 56%, 2%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -1131,7 +1131,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -1226,7 +1226,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1291,7 +1291,7 @@ exports[`Tabs should render with isFullWidthTabItem 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1345,7 +1345,7 @@ exports[`Tabs should render with large size 1`] = `
           },
           {
             "backgroundColor": "transparent",
-            "borderBottomColor": "hsla(206, 10%, 29%, 0.12)",
+            "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
             "borderBottomWidth": 1,
             "shadowColor": "transparent",
             "shadowOpacity": 0,
@@ -1443,7 +1443,7 @@ exports[`Tabs should render with large size 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(0, 0%, 2%, 1)",
+                        "color": "hsla(216, 56%, 2%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 16,
                         "fontStyle": "normal",
@@ -1552,7 +1552,7 @@ exports[`Tabs should render with large size 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 16,
                         "fontStyle": "normal",
@@ -1647,7 +1647,7 @@ exports[`Tabs should render with large size 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1712,7 +1712,7 @@ exports[`Tabs should render with large size 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",

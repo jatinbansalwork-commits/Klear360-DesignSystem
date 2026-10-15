@@ -22,7 +22,7 @@ exports[`<Display /> should render Display with color 1`] = `
     style={
       [
         {
-          "color": "hsla(200, 10%, 18%, 1)",
+          "color": "hsla(218, 50%, 6%, 1)",
           "fontFamily": "Inter",
           "fontSize": 34,
           "fontStyle": "normal",
@@ -69,7 +69,7 @@ exports[`<Display /> should render Display with default properties 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 34,
           "fontStyle": "normal",
@@ -116,7 +116,7 @@ exports[`<Display /> should render Display with mixed color 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 34,
           "fontStyle": "normal",
@@ -152,7 +152,7 @@ exports[`<Display /> should render Display with mixed color 1`] = `
       style={
         [
           {
-            "color": "hsla(200, 100%, 41%, 1)",
+            "color": "hsla(195, 100%, 22%, 1)",
             "fontFamily": "Inter",
             "fontSize": 34,
             "fontStyle": "normal",
@@ -200,7 +200,7 @@ exports[`<Display /> should render Display with variant "large" 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 38,
           "fontStyle": "normal",
@@ -247,7 +247,7 @@ exports[`<Display /> should render Display with variant "medium" 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 36,
           "fontStyle": "normal",
@@ -294,7 +294,7 @@ exports[`<Display /> should render Display with variant "small" 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 34,
           "fontStyle": "normal",
@@ -341,7 +341,7 @@ exports[`<Display /> should render Display with variant "small" and contrast "hi
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 34,
           "fontStyle": "normal",
@@ -388,7 +388,7 @@ exports[`<Display /> should render Display with variant "xlarge" 1`] = `
     style={
       [
         {
-          "color": "hsla(0, 0%, 2%, 1)",
+          "color": "hsla(216, 56%, 2%, 1)",
           "fontFamily": "Inter",
           "fontSize": 40,
           "fontStyle": "normal",

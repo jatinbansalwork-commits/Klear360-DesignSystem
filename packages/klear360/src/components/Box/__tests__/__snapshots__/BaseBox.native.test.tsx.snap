@@ -16,7 +16,7 @@ exports[`<BaseBox /> should render BaseBox component with elevation 1`] = `
     style={
       [
         {
-          "backgroundColor": "hsla(200, 61%, 20%, 1)",
+          "backgroundColor": "hsla(217, 62%, 30%, 1)",
           "height": 200,
           "width": 200,
         },
@@ -48,7 +48,7 @@ exports[`<BaseBox /> should render BaseBox component with elevation 1`] = `
       style={
         [
           {
-            "color": "hsla(0, 0%, 2%, 1)",
+            "color": "hsla(216, 56%, 2%, 1)",
             "fontFamily": "Inter",
             "fontSize": 14,
             "fontStyle": "normal",

@@ -109,7 +109,7 @@ exports[`<Morph /> (native) renders its child without throwing and matches snaps
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",

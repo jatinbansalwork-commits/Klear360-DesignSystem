@@ -3,9 +3,9 @@ import renderWithTheme from '~utils/testing/renderWithTheme.native';
 
 describe('<KlearLogoIcon />', () => {
   it('should render KlearLogoIcon', () => {
-    const { container } = renderWithTheme(
+    const renderTree = renderWithTheme(
       <KlearLogoIcon color="feedback.icon.neutral.intense" size="large" />,
-    );
-    expect(container).toMatchSnapshot();
+    ).toJSON();
+    expect(renderTree).toMatchSnapshot();
   });
 });

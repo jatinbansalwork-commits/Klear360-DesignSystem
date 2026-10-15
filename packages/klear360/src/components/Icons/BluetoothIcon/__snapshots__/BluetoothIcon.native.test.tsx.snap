@@ -67,7 +67,7 @@ exports[`<BluetoothIcon /> should render BluetoothIcon 1`] = `
         }
         stroke={
           {
-            "payload": 4280889138,
+            "payload": 4278717719,
             "type": 0,
           }
         }

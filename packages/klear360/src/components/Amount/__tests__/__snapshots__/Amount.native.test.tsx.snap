@@ -51,7 +51,7 @@ exports[`<Amount /> should allow customizing number of fraction digits 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -101,7 +101,7 @@ exports[`<Amount /> should allow customizing number of fraction digits 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -138,7 +138,7 @@ exports[`<Amount /> should allow customizing number of fraction digits 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -221,7 +221,7 @@ exports[`<Amount /> should render AED currency Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -271,7 +271,7 @@ exports[`<Amount /> should render AED currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -308,7 +308,7 @@ exports[`<Amount /> should render AED currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -391,7 +391,7 @@ exports[`<Amount /> should render Amount with default props 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -441,7 +441,7 @@ exports[`<Amount /> should render Amount with default props 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -478,7 +478,7 @@ exports[`<Amount /> should render Amount with default props 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -560,7 +560,7 @@ exports[`<Amount /> should render Amount with negative sign 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -597,7 +597,7 @@ exports[`<Amount /> should render Amount with negative sign 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -647,7 +647,7 @@ exports[`<Amount /> should render Amount with negative sign 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -684,7 +684,7 @@ exports[`<Amount /> should render Amount with negative sign 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -767,7 +767,7 @@ exports[`<Amount /> should render MYR currency Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -817,7 +817,7 @@ exports[`<Amount /> should render MYR currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -854,7 +854,7 @@ exports[`<Amount /> should render MYR currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -937,7 +937,7 @@ exports[`<Amount /> should render USD currency Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -987,7 +987,7 @@ exports[`<Amount /> should render USD currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -1024,7 +1024,7 @@ exports[`<Amount /> should render USD currency Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -1107,7 +1107,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -1157,7 +1157,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -1194,7 +1194,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -1266,7 +1266,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -1316,7 +1316,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -1353,7 +1353,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -1425,7 +1425,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -1475,7 +1475,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -1512,7 +1512,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -1584,7 +1584,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -1634,7 +1634,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -1671,7 +1671,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -1743,7 +1743,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 16,
               "fontStyle": "normal",
@@ -1793,7 +1793,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 20,
                 "fontStyle": "normal",
@@ -1830,7 +1830,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 16,
                 "fontStyle": "normal",
@@ -1902,7 +1902,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 16,
               "fontStyle": "normal",
@@ -1952,7 +1952,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 20,
                 "fontStyle": "normal",
@@ -1989,7 +1989,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 16,
                 "fontStyle": "normal",
@@ -2061,7 +2061,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontStyle": "normal",
@@ -2111,7 +2111,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 16,
                 "fontStyle": "normal",
@@ -2148,7 +2148,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2220,7 +2220,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontStyle": "normal",
@@ -2270,7 +2270,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 16,
                 "fontStyle": "normal",
@@ -2307,7 +2307,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2379,7 +2379,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 32,
               "fontStyle": "normal",
@@ -2429,7 +2429,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 36,
                 "fontStyle": "normal",
@@ -2466,7 +2466,7 @@ exports[`<Amount /> should render all sizes of Amount 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 32,
                 "fontStyle": "normal",
@@ -2549,7 +2549,7 @@ exports[`<Amount /> should render amount with Decimal value 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontStyle": "normal",
@@ -2599,7 +2599,7 @@ exports[`<Amount /> should render amount with Decimal value 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 16,
                 "fontStyle": "normal",
@@ -2636,7 +2636,7 @@ exports[`<Amount /> should render amount with Decimal value 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -2719,7 +2719,7 @@ exports[`<Amount /> should render amount with Humanize value 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontStyle": "normal",
@@ -2756,7 +2756,7 @@ exports[`<Amount /> should render amount with Humanize value 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 16,
               "fontStyle": "normal",
@@ -2837,7 +2837,7 @@ exports[`<Amount /> should render currencyIndicator="currency-code" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -2887,7 +2887,7 @@ exports[`<Amount /> should render currencyIndicator="currency-code" 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -2924,7 +2924,7 @@ exports[`<Amount /> should render currencyIndicator="currency-code" 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -3007,7 +3007,7 @@ exports[`<Amount /> should render currencyIndicator="currency-symbol" 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -3057,7 +3057,7 @@ exports[`<Amount /> should render currencyIndicator="currency-symbol" 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -3094,7 +3094,7 @@ exports[`<Amount /> should render currencyIndicator="currency-symbol" 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -3177,7 +3177,7 @@ exports[`<Amount /> should render information intent Amount  1`] = `
         style={
           [
             {
-              "color": "hsla(200, 100%, 33%, 1)",
+              "color": "hsla(196, 98%, 18%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -3214,7 +3214,7 @@ exports[`<Amount /> should render information intent Amount  1`] = `
         style={
           [
             {
-              "color": "hsla(200, 100%, 33%, 1)",
+              "color": "hsla(196, 98%, 18%, 1)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontStyle": "normal",
@@ -3296,7 +3296,7 @@ exports[`<Amount /> should render isStrikethrough={true} 1`] = `
         style={
           [
             {
-              "color": "hsla(0, 0%, 2%, 1)",
+              "color": "hsla(216, 56%, 2%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -3346,7 +3346,7 @@ exports[`<Amount /> should render isStrikethrough={true} 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -3383,7 +3383,7 @@ exports[`<Amount /> should render isStrikethrough={true} 1`] = `
           style={
             [
               {
-                "color": "hsla(0, 0%, 2%, 1)",
+                "color": "hsla(216, 56%, 2%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
@@ -3420,7 +3420,7 @@ exports[`<Amount /> should render isStrikethrough={true} 1`] = `
         style={
           [
             {
-              "borderBottomColor": "hsla(0, 0%, 2%, 1)",
+              "borderBottomColor": "hsla(216, 56%, 2%, 1)",
               "borderBottomStyle": "solid",
               "borderBottomWidth": 1,
               "position": "absolute",
@@ -3487,7 +3487,7 @@ exports[`<Amount /> should render positive intent Amount  1`] = `
         style={
           [
             {
-              "color": "hsla(150, 100%, 23%, 1)",
+              "color": "hsla(142, 71%, 25%, 1)",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontStyle": "normal",
@@ -3537,7 +3537,7 @@ exports[`<Amount /> should render positive intent Amount  1`] = `
           style={
             [
               {
-                "color": "hsla(150, 100%, 23%, 1)",
+                "color": "hsla(142, 71%, 25%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -3574,7 +3574,7 @@ exports[`<Amount /> should render positive intent Amount  1`] = `
           style={
             [
               {
-                "color": "hsla(150, 100%, 23%, 1)",
+                "color": "hsla(142, 71%, 25%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 10,
                 "fontStyle": "normal",
