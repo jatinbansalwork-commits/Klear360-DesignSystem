@@ -374,6 +374,29 @@ But still we could expose Calendar as a standalone component for advanced usecas
 Accessibility will mostly be handled by mantine,
 We will just need to make sure if we provide composition capabilities like Dropdown+Calendar those composed components are working correctly & are usable/accessible.
 
+## State Management: useState vs. useReducer
+
+`BaseDatePicker.web.tsx` and `DateInput.web.tsx` each hold several `useState` calls
+(`selectedPreset`, `oldValue`, `inputValue`, `validationError`, `isFocused`), which on its own
+can look like a useReducer candidate. Evaluated converting these to a single reducer per
+component and decided against it:
+
+- Each piece of state has a single, independent owner and trigger - `inputValue` only changes
+  in response to `textInputProps.value` syncing or user typing, `validationError` only clears in
+  response to `date` changing, `isFocused` only changes on focus/blur. There's no case where two
+  or more of these need to update together as one atomic transition, which is the scenario
+  `useReducer` actually helps with.
+- `BaseDatePicker.web.tsx` already uses the right tool for each job: `useReducer` for the
+  force-rerender trick, the shared `useControllableState` hook (used across many other
+  components, not DatePicker-specific) for the controlled/uncontrolled `picker` and `isOpen`
+  values, and plain `useState` for the few genuinely independent fields left over.
+  Folding `useControllableState`'s internal state into a local reducer here would diverge from
+  that shared hook's generic implementation for no benefit.
+
+Conclusion: no refactor. Converting independently-owned state into a single reducer would add
+indirection (action types, a reducer function, dispatch calls) without reducing the actual
+number of distinct state transitions or improving testability.
+
 ## Open Questions
 
 - How should we approach locale?
