@@ -49,19 +49,19 @@
   "typesVersions": {
     "*": {
       "core": [
-        "./lib/types/core/index.d.ts"
+        "./lib/types/index.d.ts"
       ],
       "currency": [
-        "./lib/types/currency/index.d.ts"
+        "./lib/types/index.d.ts"
       ],
       "phoneNumber": [
-        "./lib/types/phoneNumber/index.d.ts"
+        "./lib/types/index.d.ts"
       ],
       "dateTime": [
-        "./lib/types/dateTime/index.d.ts"
+        "./lib/types/index.d.ts"
       ],
       "geo": [
-        "./lib/types/geo/index.d.ts"
+        "./lib/types/index.d.ts"
       ],
       "types": [
         "./lib/types/index.d.ts"

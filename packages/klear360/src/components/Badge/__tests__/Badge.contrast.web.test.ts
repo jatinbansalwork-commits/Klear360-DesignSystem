@@ -1,11 +1,14 @@
 import tinycolor from 'tinycolor2';
 import klear360Theme from '~tokens/theme/klear360Theme';
 import klear360NeutralTheme from '~tokens/theme/klear360NeutralTheme';
-import type { ThemeTokens } from '~tokens/theme';
+import type { DotNotationToken } from '~utils/lodashButBetter/get';
+import type { Colors, ThemeTokens } from '~tokens/theme';
 import getIn from '~utils/lodashButBetter/get';
 
 // WCAG 2.2 AA (SC 1.4.3) for normal-size text - Badge text is 12px.
 const MIN_TEXT_CONTRAST = 4.5;
+
+type ColorToken = DotNotationToken<Colors>;
 
 const BADGE_COLORS = [
   'positive',
@@ -18,7 +21,7 @@ const BADGE_COLORS = [
 const EMPHASES = ['subtle', 'intense'] as const;
 // Subtle feedback backgrounds are translucent, so the pair is checked over every page surface a
 // Badge commonly sits on - the worst one has to pass.
-const SURFACES = [
+const SURFACES: ColorToken[] = [
   'surface.background.gray.intense',
   'surface.background.gray.moderate',
   'surface.background.gray.subtle',
@@ -28,7 +31,7 @@ const SURFACES = [
 const getBadgeTokenPair = (
   color: typeof BADGE_COLORS[number],
   emphasis: typeof EMPHASES[number],
-): { text: string; background: string } => {
+): { text: ColorToken; background: ColorToken } => {
   if (color === 'primary') {
     return {
       text:
@@ -56,9 +59,9 @@ const getWorstContrast = ({
   text,
   background,
 }: {
-  colors: Record<string, unknown>;
-  text: string;
-  background: string;
+  colors: Colors;
+  text: ColorToken;
+  background: ColorToken;
 }): number =>
   Math.min(
     ...SURFACES.map((surface) => {
@@ -84,7 +87,7 @@ describe('<Badge /> color contrast', () => {
   it.each(cases)(
     '$themeName $colorScheme: $color $emphasis badge text meets AA (>= 4.5:1)',
     ({ theme, colorScheme, color, emphasis }) => {
-      const colors = (theme.colors[colorScheme] as unknown) as Record<string, unknown>;
+      const colors = theme.colors[colorScheme];
       const contrast = getWorstContrast({ colors, ...getBadgeTokenPair(color, emphasis) });
       expect(contrast).toBeGreaterThanOrEqual(MIN_TEXT_CONTRAST);
     },

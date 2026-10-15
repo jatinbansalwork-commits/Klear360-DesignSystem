@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
-import { Body, Row, Cell } from '@table-library/react-table-library/table';
-import { Virtualized } from '@table-library/react-table-library/virtualized';
+import { Body, Row, Cell } from '@table-library/react-table-library/table.js';
+import { Virtualized } from '@table-library/react-table-library/virtualized.js';
 import styled from 'styled-components';
 import { useTableRowContext, useTableDataContext } from './TableContext';
 import { checkboxCellWidth, classes, tableRow } from './tokens';

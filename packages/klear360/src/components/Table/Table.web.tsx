@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Table as ReactTable } from '@table-library/react-table-library/table';
-import { useTheme as useTableTheme } from '@table-library/react-table-library/theme';
+import { Table as ReactTable } from '@table-library/react-table-library/table.js';
+import { useTheme as useTableTheme } from '@table-library/react-table-library/theme.js';
 import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
-import { useSort, SortToggleType } from '@table-library/react-table-library/sort';
-import { usePagination } from '@table-library/react-table-library/pagination';
+import { useSort, SortToggleType } from '@table-library/react-table-library/sort.js';
+import { usePagination } from '@table-library/react-table-library/pagination.js';
 import {
   SelectClickTypes,
   SelectTypes,
   useRowSelect,
-} from '@table-library/react-table-library/select';
-import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree';
+} from '@table-library/react-table-library/select.js';
+import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree.js';
 import styled from 'styled-components';
 import usePresence from 'use-presence';
 import type { TableRowContextType, TableDataContextType } from './TableContext';
