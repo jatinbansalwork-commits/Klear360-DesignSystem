@@ -167,36 +167,36 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
   }, [clearFilterCallbackTriggerer]);
 
   useEffect(() => {
-    if (!isFirstRender) {
-      // §6.5: additive - only present when overlay content is a TreeView
-      const selectedGroups = treeViewControllerRef.current?.getSelectedGroups(
-        isControlled ? controlledValueIndices : selectedIndices,
-      );
-      props.onChange?.({
-        name: props.name || idBase,
-        values: getValuesArrayFromIndices(),
-        ...(selectedGroups ? { selectedGroups } : {}),
-      });
-      if (isUnControlled) {
-        setUncontrolledInputValue(getValuesArrayFromIndices());
-      }
+    if (isFirstRender) {
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeCallbackTriggerer]);
-  useEffect(() => {
+
+    // §6.5: additive - only present when overlay content is a TreeView
+    const selectedGroups = treeViewControllerRef.current?.getSelectedGroups(
+      isControlled ? controlledValueIndices : selectedIndices,
+    );
+    props.onChange?.({
+      name: props.name || idBase,
+      values: getValuesArrayFromIndices(),
+      ...(selectedGroups ? { selectedGroups } : {}),
+    });
+    if (isUnControlled) {
+      setUncontrolledInputValue(getValuesArrayFromIndices());
+    }
+
     const isValueEmpty = selectedIndices.length === 0;
-    if (!isFirstRender && !isValueEmpty) {
-      setFilterChipGroupSelectedFilters((prev) => (prev.includes(label) ? prev : [...prev, label]));
-      setListViewSelectedFilters((prev) => ({
-        ...prev,
-        [label]: selectedIndices as number[],
-      }));
-    } else if (!isFirstRender && isValueEmpty) {
+    if (isValueEmpty) {
       setFilterChipGroupSelectedFilters((prev) => prev.filter((filter) => filter !== label));
       setListViewSelectedFilters((prev) => {
         const { [label]: _, ...updatedFilters } = prev;
         return updatedFilters;
       });
+    } else {
+      setFilterChipGroupSelectedFilters((prev) => (prev.includes(label) ? prev : [...prev, label]));
+      setListViewSelectedFilters((prev) => ({
+        ...prev,
+        [label]: selectedIndices as number[],
+      }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeCallbackTriggerer]);
