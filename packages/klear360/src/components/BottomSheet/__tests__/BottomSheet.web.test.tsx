@@ -13,6 +13,7 @@ import { Dropdown, DropdownButton } from '~components/Dropdown';
 import { SelectInput } from '~components/Input/DropdownInputTriggers';
 import { ActionList, ActionListItem } from '~components/ActionList';
 import { Badge } from '~components/Badge';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 jest.mock('~utils/useId', () => ({
   useId: () => 'dropdown-456',
@@ -518,6 +519,21 @@ describe('<BottomSheet />', () => {
     expect(queryByRole('button', { name: 'Close' })).not.toBeInTheDocument();
     await user.click(queryByTestId('bottomsheet-backdrop')!);
     await waitFor(() => expect(queryByText('BottomSheet body')).toBeVisible());
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { getByRole } = renderWithTheme(
+      <BottomSheet isOpen={true} accessibilityLabel="Address">
+        <BottomSheetHeader title="Address" />
+        <BottomSheetBody>
+          <Text>BottomSheet body</Text>
+        </BottomSheetBody>
+        <BottomSheetFooter>
+          <Button>Save</Button>
+        </BottomSheetFooter>
+      </BottomSheet>,
+    );
+    await assertAccessible(getByRole('dialog'));
   });
 
   viewport.cleanup();

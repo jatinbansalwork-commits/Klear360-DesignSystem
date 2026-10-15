@@ -77,6 +77,7 @@ const _BottomSheet = ({
   snapPoints = [0.35, 0.5, 0.85],
   isDismissible = true,
   zIndex = componentZIndices.bottomSheet,
+  accessibilityLabel,
   ...dataAnalyticsProps
 }: BottomSheetProps): React.ReactElement => {
   const { theme } = useTheme();
@@ -518,7 +519,7 @@ const _BottomSheet = ({
           name: MetaConstants.BottomSheet,
           testID: 'bottomsheet-surface',
         })}
-        {...makeAccessible({ modal: true, role: 'dialog' })}
+        {...makeAccessible({ modal: true, role: 'dialog', label: accessibilityLabel })}
         windowHeight={dimensions.height}
         isDragging={isDragging}
         style={{
