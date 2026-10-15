@@ -7,6 +7,7 @@ import { RadioGroup } from '../RadioGroup/RadioGroup';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import { Button } from '~components/Button';
 import { Badge } from '~components/Badge';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 beforeAll(() => jest.spyOn(console, 'error').mockImplementation());
 afterAll(() => jest.restoreAllMocks());
@@ -154,5 +155,15 @@ describe('<Radio />', () => {
       'apple',
     );
     expect(container).toMatchSnapshot();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderWithTheme(
+      <RadioGroup label="Select fruit">
+        <Radio value="apple">Apple</Radio>
+        <Radio value="mango">Mango</Radio>
+      </RadioGroup>,
+    );
+    await assertAccessible(container);
   });
 });

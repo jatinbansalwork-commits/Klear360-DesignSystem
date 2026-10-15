@@ -6,6 +6,7 @@ import { Checkbox } from '../Checkbox';
 import { Link } from '~components/Link';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import { Button } from '~components/Button';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 describe('<Checkbox />', () => {
   it('should render checkbox with label', () => {
@@ -210,5 +211,12 @@ describe('<Checkbox />', () => {
       container.querySelector('[data-analytics-label="Remember password"]'),
     ).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderWithTheme(
+      <Checkbox helpText="This has to be checked">Remember password</Checkbox>,
+    );
+    await assertAccessible(container);
   });
 });

@@ -2,6 +2,7 @@ import type { BadgeProps } from '../Badge';
 import { Badge } from '../Badge';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import { InfoIcon } from '~components/Icons';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 beforeAll(() => jest.spyOn(console, 'error').mockImplementation());
 afterAll(() => jest.restoreAllMocks());
@@ -20,6 +21,11 @@ describe('<Badge />', () => {
     const label = 'Label';
     const { container } = renderWithTheme(<Badge>{label}</Badge>);
     expect(container).toMatchSnapshot();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderWithTheme(<Badge icon={InfoIcon}>Label</Badge>);
+    await assertAccessible(container);
   });
 
   it('should throw an error when no children are passed', () => {

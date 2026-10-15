@@ -8,6 +8,7 @@ import { Badge } from '~components/Badge';
 import { Counter } from '~components/Counter';
 import { Button } from '~components/Button';
 import { Text } from '~components/Typography';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 describe('Modal', () => {
   it('renders a basic Modal', () => {
@@ -258,5 +259,20 @@ describe('Modal', () => {
     const container = getByRole('dialog');
     expect(container).toHaveAttribute('data-analytics-modal');
     expect(container).toHaveAttribute('data-analytics-modal', 'test-modal');
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { getByTestId } = renderWithTheme(
+      <Modal isOpen={true} onDismiss={() => {}} accessibilityLabel="Test Modal">
+        <ModalHeader title="Test Modal" />
+        <ModalBody>
+          <Text>Test Content</Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button>Confirm</Button>
+        </ModalFooter>
+      </Modal>,
+    );
+    await assertAccessible(getByTestId('modal-wrapper'));
   });
 });
