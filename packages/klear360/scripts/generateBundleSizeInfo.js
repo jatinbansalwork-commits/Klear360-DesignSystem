@@ -6,15 +6,32 @@ const execa = require('execa');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const prettier = require('prettier');
 
-const main = async () => {
-  const { globby } = await import('globby');
+// Folders re-exported from src/components/index.ts that aren't individually-sized components.
+const excludedPublicPaths = ['Icons', 'Form', 'types'];
 
-  const indexPaths = await globby([
-    'build/lib/web/production/components/**/index.js',
-    '!build/lib/web/production/components/{Icons,Form}/**/index.js',
-    '!build/lib/web/production/components/index.js',
-    '!build/lib/web/production/components/Box/styledProps/index.js',
-  ]);
+// Derive the component index paths from src/components/index.ts (the package's declared public
+// API) rather than globbing the build output recursively. The build directory contains many
+// internal, non-public barrel files (style helpers, base/internal implementation folders, etc.)
+// nested under component folders; globbing for every `index.js` under `components/**` picks
+// those up too, inflating the measured component count with entries that aren't part of the
+// public API and making the result non-reproducible across builds.
+const getPublicIndexPaths = () => {
+  const componentsIndexContent = fs.readFileSync(
+    path.resolve(__dirname, '../src/components/index.ts'),
+    'utf8',
+  );
+
+  const publicPaths = [...componentsIndexContent.matchAll(/export \* from '\.\/([^']+)'/g)]
+    .map(([, publicPath]) => publicPath)
+    .filter((publicPath) => !excludedPublicPaths.includes(publicPath));
+
+  return publicPaths
+    .map((publicPath) => `build/lib/web/production/components/${publicPath}/index.js`)
+    .filter((indexPath) => fs.existsSync(path.resolve(__dirname, `../${indexPath}`)));
+};
+
+const main = async () => {
+  const indexPaths = getPublicIndexPaths();
 
   const excludedComponents = [
     'useTheme',
