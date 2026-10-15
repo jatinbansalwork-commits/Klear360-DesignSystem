@@ -161,6 +161,43 @@ We also have visual tests that run on every PR. So if your PR changes / breaks a
 
 We support writing interaction tests using playwright. You can check example interaction tests of toast at [Toast.test.stories.tsx](./packages/klear360/src/components/Toast/__tests__/Toast.test.stories.tsx). You can run these tests by visiting the Interaction Tests section in klear360 documentation E.g. [Toast Stacking Interaction Test on Documentation](https://klear360.klear.com/?path=/story/components-interaction-tests-toast--toast-stacking)
 
+## Performance & Profiling
+
+### Runtime profiling
+
+When you suspect a component re-renders more than it should, or want to verify a fix actually
+helped, profile it with React DevTools rather than guessing:
+
+1. Install the [React Developer Tools](https://react.dev/learn/react-developer-tools) browser
+   extension and open its **Profiler** tab against `yarn start:web` (or any app consuming
+   `@klear/klear360`).
+2. Click record, perform the interaction you're investigating (typing in a filter, scrolling a
+   virtualized `Table`, opening a `Dropdown`), then stop recording.
+3. Look for components that re-rendered without their props/state actually changing - the
+   Profiler's "why did this render" view (flame graph + the commit's highlighted components)
+   points at these directly. That's the signal to reach for `React.memo`, `useMemo`, or
+   `useCallback` - not render count alone, since a component that renders often but cheaply
+   usually isn't worth optimizing, and one of these wrappers has its own (small but nonzero) cost.
+4. For a component with no interactive repro (e.g. verifying a large list doesn't re-render on an
+   unrelated context update), wrap it in [`<Profiler>`](https://react.dev/reference/react/Profiler)
+   temporarily and log `actualDuration`/`baseDuration` from its `onRender` callback.
+
+Record what you found and why a fix was or wasn't needed in the component's own
+`_decisions/decisions.md` (see any component's `_decisions/` folder for the format), the same way
+other non-obvious decisions are tracked - a render-count number without that context won't mean
+anything to the next person who re-measures it after unrelated changes.
+
+### Bundle size
+
+`yarn generate-bundle-size-info` (from `packages/klear360`, after `yarn pregenerate-bundle-size-info`
+to build first) reports each component's individual production bundle size
+(`scripts/generateBundleSizeInfo.js`), and `node scripts/generateBundleDiff.js` compares the
+current PR's stats (`prBundleSizeStats.json`) against a baseline fetched from the
+`bundle-size-stats` branch. Neither is currently wired into CI - run
+`generate-bundle-size-info` manually before/after a change if you're touching a component's
+dependencies or adding a non-trivial new one, to catch an unexpectedly large size increase before
+it ships.
+
 ## Editor Setup
 
 - Make sure you have [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) installed and setup on your VSCode. This will guide you and autofix errors to keep the code consistent with this project's guidelines
