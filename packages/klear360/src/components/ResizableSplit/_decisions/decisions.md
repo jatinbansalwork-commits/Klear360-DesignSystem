@@ -95,6 +95,30 @@ the same feature copy-pasted twice.
   them. The new component's `minStartWidth`/`minEndWidth` props accept whatever values that
   decision lands on.
 
+## Second use case: replacing PrimeReact's Splitter (Card & map view)
+
+A second, independent request asked for a "SplitView" to replace PrimeReact's `KSplitter`
+(`.p-splitter`) in Visibility/Track & Trace's Card & map view (~30% scrollable card list / ~70%
+map) - "mouse + keyboard resize, min widths, optional persist, `data-klear360-component`, tokens
+for the gutter, no `.p-splitter` CSS." This is the same component, not a new one - `ResizableSplit`
+already provides every piece asked for:
+
+- Mouse + keyboard resize, min widths: the core API (see above).
+- `data-klear360-component`: set via `metaAttribute` on the container/pane/handle, same as every
+  other Klear360 component - already present, not something this request needed added.
+- Tokens for the gutter: `getResizableSplitHandleStyles.ts` is entirely theme-token-driven
+  (`interactive.background.primary.*`, `border.radius.xsmall`, etc.) - zero PrimeReact CSS classes
+  or hardcoded colors involved anywhere.
+- "Optional persist": `onResizeEnd` is exactly this hook - the consumer decides whether/how to
+  persist (e.g. `localStorage`), same as the original viewer/form use case.
+
+The only asymmetry versus the first use case: here the **map** is naturally the end (explicitly-
+sized) pane and the **list** is the start (flex) pane, swapped from the viewer/form case where the
+start pane was the "main content." Nothing in the component enforces which side is "the sized one" -
+a consumer just orders panes and points `computeDefaultWidth` at whichever pane's share they want
+to control (here, `computeDefaultWidth={(containerWidth) => containerWidth * 0.7}` for the map, to
+reproduce the existing ~30/70 split). See the `ListAndMap` story in `ResizableSplit.stories.tsx`.
+
 ## Out of scope (confirmed, not just deferred)
 
 - **`useFillViewport`** - the viewport-fill-height hook duplicated in both KlearNow call sites has
