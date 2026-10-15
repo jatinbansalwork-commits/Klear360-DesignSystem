@@ -193,10 +193,20 @@ anything to the next person who re-measures it after unrelated changes.
 to build first) reports each component's individual production bundle size
 (`scripts/generateBundleSizeInfo.js`), and `node scripts/generateBundleDiff.js` compares the
 current PR's stats (`prBundleSizeStats.json`) against a baseline fetched from the
-`bundle-size-stats` branch. Neither is currently wired into CI - run
-`generate-bundle-size-info` manually before/after a change if you're touching a component's
-dependencies or adding a non-trivial new one, to catch an unexpectedly large size increase before
-it ships.
+`bundle-size-stats` branch. This now runs automatically in CI (the `Bundle Size` job comments the
+diff on every PR, and `Update Bundle Size Baseline` refreshes the baseline on `main`) - you only
+need to run it manually for a quicker local check before pushing.
+
+### Tree-shaking
+
+`@klear/klear360`'s `sideEffects` field (`package.json`) tells bundlers it's safe to drop an
+unused component's import entirely rather than keep it around in case it has side effects. Verified
+this actually works end-to-end with a real bundler (`esbuild`, bundling against the built package
+output, not just source): importing a single component (`Button`) produces a 320KB bundle, versus
+7.5MB importing the full `components` barrel (`import * as AllComponents`) - esbuild's own output
+explicitly lists every excluded component's import as "marked as having no side effects". If you
+ever see a suspiciously large bundle for a single-component import, suspect a missing/incorrect
+`sideEffects` entry or a new file extension that needs adding to it, not a bundler misconfiguration.
 
 ## Editor Setup
 
