@@ -75,6 +75,15 @@ type ListViewFilterProps = {
    * This will replace searchValue, onSearchChange, onSearchClear, searchValuePlaceholder, searchName, searchTrailing, and actionButtonGroup in a future major version.
    */
   actions?: React.ReactNode;
+  /**
+   * `"compact"` sets the vertical rhythm for a single-row toolbar - chips sharing their row with
+   * `actions` (e.g. a trailing "All filters" button) rather than sitting on their own dedicated
+   * filter-bar row. Cascades to a `FilterChipGroup` rendered via `quickFilters` (its own `density`
+   * prop, if set, always wins over this).
+   *
+   * @default "comfortable"
+   */
+  toolbarDensity?: 'comfortable' | 'compact';
 } & TestID &
   DataAnalyticsAttribute;
 
@@ -95,6 +104,10 @@ type ListViewContextType = {
    *  Selected Filters
    */
   setListViewSelectedFilters: React.Dispatch<React.SetStateAction<ListViewSelectedFiltersType>>;
+  /**
+   * @see ListViewFilterProps['toolbarDensity']
+   */
+  toolbarDensity?: 'comfortable' | 'compact';
 };
 export type {
   ListViewContextType,

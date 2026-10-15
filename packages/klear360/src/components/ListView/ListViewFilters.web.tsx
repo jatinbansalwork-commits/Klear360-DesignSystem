@@ -38,6 +38,7 @@ const ListViewFilters = ({
   selectedFiltersCount = 0,
   searchTrailing,
   actions,
+  toolbarDensity,
   ...rest
 }: ListViewFilterProps): React.ReactElement => {
   const [
@@ -57,6 +58,7 @@ const ListViewFilters = ({
         listViewSelectedFilters,
         setListViewSelectedFilters,
         selectedFiltersCount,
+        toolbarDensity,
       }}
     >
       <BaseBox

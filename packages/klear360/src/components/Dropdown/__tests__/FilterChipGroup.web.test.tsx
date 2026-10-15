@@ -4,6 +4,7 @@ import { waitFor } from '@testing-library/react';
 import { Dropdown, DropdownOverlay, FilterChipGroup, FilterChipSelectInput } from '../index';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import { ActionList, ActionListItem } from '~components/ActionList';
+import { ListViewFiltersProvider } from '~components/ListView/ListViewFiltersContext.web';
 
 const renderGroup = (
   props: Omit<React.ComponentProps<typeof FilterChipGroup>, 'children'> = {},
@@ -149,5 +150,69 @@ describe('<FilterChipGroup />', () => {
     expect(onResetButtonClick).toHaveBeenCalledTimes(1);
     expect(onClearButtonClick).not.toHaveBeenCalled();
     expect(trigger).toHaveTextContent('Apple');
+  });
+
+  it('defaults to comfortable vertical padding', () => {
+    const { getByTestId } = renderGroup({ testID: 'chip-group' });
+    expect(getComputedStyle(getByTestId('chip-group')).paddingTop).not.toBe('0px');
+  });
+
+  it('density="compact" drops vertical padding to 0, for sharing a row with other actions', () => {
+    const { getByTestId } = renderGroup({ testID: 'chip-group', density: 'compact' });
+    const cs = getComputedStyle(getByTestId('chip-group'));
+    expect(cs.paddingTop).toBe('0px');
+    expect(cs.paddingBottom).toBe('0px');
+  });
+
+  it('inherits toolbarDensity from a surrounding ListViewFilters context when its own density is unset', () => {
+    const { getByTestId } = renderWithTheme(
+      <ListViewFiltersProvider
+        value={{
+          listViewSelectedFilters: {},
+          setListViewSelectedFilters: jest.fn(),
+          selectedFiltersCount: 0,
+          toolbarDensity: 'compact',
+        }}
+      >
+        <FilterChipGroup testID="chip-group">
+          <Dropdown>
+            <FilterChipSelectInput label="Fruits" />
+            <DropdownOverlay>
+              <ActionList>
+                <ActionListItem title="Apple" value="apple" />
+                <ActionListItem title="Mango" value="mango" />
+              </ActionList>
+            </DropdownOverlay>
+          </Dropdown>
+        </FilterChipGroup>
+      </ListViewFiltersProvider>,
+    );
+    expect(getComputedStyle(getByTestId('chip-group')).paddingTop).toBe('0px');
+  });
+
+  it('an explicit density prop wins over the inherited toolbarDensity', () => {
+    const { getByTestId } = renderWithTheme(
+      <ListViewFiltersProvider
+        value={{
+          listViewSelectedFilters: {},
+          setListViewSelectedFilters: jest.fn(),
+          selectedFiltersCount: 0,
+          toolbarDensity: 'compact',
+        }}
+      >
+        <FilterChipGroup testID="chip-group" density="comfortable">
+          <Dropdown>
+            <FilterChipSelectInput label="Fruits" />
+            <DropdownOverlay>
+              <ActionList>
+                <ActionListItem title="Apple" value="apple" />
+                <ActionListItem title="Mango" value="mango" />
+              </ActionList>
+            </DropdownOverlay>
+          </Dropdown>
+        </FilterChipGroup>
+      </ListViewFiltersProvider>,
+    );
+    expect(getComputedStyle(getByTestId('chip-group')).paddingTop).not.toBe('0px');
   });
 });

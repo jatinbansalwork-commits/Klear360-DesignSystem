@@ -130,6 +130,21 @@ type FilterChipGroupProps = TestID &
      * @default "Reset"
      */
     resetButtonText?: string;
+    /**
+     * `"compact"` trims the group's own vertical padding (`paddingY` goes from `spacing.4` to
+     * `spacing.0`) so the chips sit flush with whatever shares their row - a trailing "All
+     * filters" button, a search input, etc. `spacing.4`'s vertical padding is sized for a chip
+     * group that's the only thing on its row (e.g. a dedicated filter bar); once something else
+     * shares the row, that padding visibly pushes the row taller than its neighbor, which is
+     * exactly the gap a consumer-side `!important` override was working around before this prop
+     * existed.
+     *
+     * Falls back to `ListViewFilters`' own `toolbarDensity` when this group is rendered inside
+     * one (via its `quickFilters` prop) and this prop isn't set directly.
+     *
+     * @default "comfortable"
+     */
+    density?: 'comfortable' | 'compact';
   };
 
 type FilterChipGroupContextType = {
