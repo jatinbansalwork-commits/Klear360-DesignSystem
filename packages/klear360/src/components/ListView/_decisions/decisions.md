@@ -586,6 +586,31 @@ uses:
    today. A future `VirtualizedCardList` or similar would need its own proposal/decision doc, scoped
    separately from this one.
 
+## Compact single-row toolbar (chips + trailing action)
+
+`ListViewFilters` already supports a single-row toolbar - `quickFilters` (flex: 1, the chip group)
+sharing its row with `actions` (flex-shrink: 0, trailing buttons/search) - see
+`ListViewFilters.web.tsx`'s own layout: both are children of one `display: flex;
+justify-content: space-between` row, not stacked on separate rows. This has been true since
+`actions` was added; it was never a gap in the composition API itself.
+
+The actual gap was **vertical rhythm**: `FilterChipGroup`'s own padding (`paddingY: spacing.4`
+until this change) is sized for a chip group that's the only thing on its row (a dedicated filter
+bar). Once something else - a trailing "All filters" button, in the motivating case - shares that
+row, `spacing.4`'s vertical padding visibly pushes the row taller than its neighbor. Track & Trace
+worked around this with a consumer-side `!important` SCSS override targeting
+`[data-testid='track-trace-filter-chip-group']` - exactly the kind of override this design system
+should make unnecessary.
+
+**Fix**: `FilterChipGroup` takes a `density?: 'comfortable' | 'compact'` prop (`'compact'` drops
+`paddingY` to `spacing.0`), and `ListViewFilters` takes a `toolbarDensity?: 'comfortable' |
+'compact'` prop that cascades into a `FilterChipGroup` rendered via `quickFilters` (via
+`ListViewFiltersContext` - `FilterChipGroup`'s own `density` prop, if set directly, always wins
+over the inherited value). See `docs/ListView.stories.tsx`'s `CompactToolbar` story for the
+reference composition: `ListViewFilters toolbarDensity="compact"` + `quickFilters` (a
+`FilterChipGroup` of `FilterChipSelectInput`s) + `actions` (a trailing `Button`), one row, no
+`!important` needed.
+
 ## References
 
 - [Filtering - Carbon](https://carbondesignsystem.com/patterns/filtering/)
