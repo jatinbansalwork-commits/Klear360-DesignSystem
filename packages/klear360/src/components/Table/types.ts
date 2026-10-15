@@ -154,7 +154,7 @@ type TableHeaderCellProps = {
  */
 type TableColumnConfig<Item> = {
   /**
-   * Unique key for the column. Also used as the column's `headerKey` when `sortable` is true,
+   * Unique key for the column. Also used as the column's `headerKey` when `isSortable` is true,
    * so it lines up with the key you use in Table's `sortFunctions` prop.
    */
   key: string;
@@ -179,6 +179,12 @@ type TableColumnConfig<Item> = {
    * looks for. Sorting itself still requires a matching entry in the `sortFunctions` prop — this
    * only wires the column up to participate if you provide one.
    * @default false
+   */
+  isSortable?: boolean;
+  /**
+   * @deprecated Use `isSortable` instead — renamed to match the `is*` boolean prop convention
+   * used everywhere else in the design system. Still honored (as a fallback when `isSortable` is
+   * not set) but will be removed in a future major version.
    */
   sortable?: boolean;
   /**

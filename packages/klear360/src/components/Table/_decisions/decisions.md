@@ -1026,6 +1026,30 @@ Going with **(a)**. `rowDensity="compact"` exists specifically so a consumer can
 
 See `TableCompactDensityMultilineExample.stories.tsx` (`CompactDensityMultilineGap` for the unpadded case, measured; `CompactDensityMultilineRecipe` for the fix) for the recipe in practice.
 
+# Known naming inconsistency: `sortable` vs. the `is*` boolean convention
+
+`TableColumnConfig.sortable` was a bare boolean (`sortable?: boolean`), unlike every other boolean
+prop in the design system, which is prefixed `is*`/`has*`/`show*` (e.g. `isLoading`,
+`showStripedRows`, `isStickyHeader`). Flagged as a naming inconsistency to fix.
+
+## Resolution
+
+Renamed to `isSortable`. `sortable` is kept as a `@deprecated` fallback (`column.isSortable ??
+column.sortable`) rather than removed outright - this follows the same non-breaking-deprecation
+precedent already used elsewhere in `Table` (`TableHeaderRowProps.rowDensity`,
+`onSelectionChange`'s `values`): the old field keeps working, with no runtime warning, only a
+JSDoc `@deprecated` annotation pointing at the replacement. A hard breaking removal was considered
+and rejected - there's no established precedent in this codebase for removing a deprecated prop
+outright rather than keeping it functional, and `sortable` has 16+ internal references alone, so a
+clean break would force every consumer (internal and external) to migrate immediately instead of
+on their own schedule.
+
+A jscodeshift codemod (`codemods/migrate-table-sortable`) mechanically migrates a consumer's own
+`sortable` column-config fields to `isSortable` ahead of the eventual removal, modeled on the
+existing `migrate-progressbar` prop-rename codemod. All of this design system's own internal
+usages (stories, the `Table.web.tsx` consumption site) were migrated to `isSortable` directly
+rather than left on the deprecated fallback.
+
 For the specific, very common case of a title plus a secondary line of text (a name plus a note, a
 company plus a compliance flag), `TableTitleDescriptionCell` productionizes this recipe rather than
 leaving every consumer to hand-roll it: real `paddingY` baked in, plus a choice between clamping the

@@ -144,7 +144,7 @@ type ColumnDef = {
   width: string;
   // Present only for columns that should be sortable/filterable - drives both this column's
   // `TableHeaderCell headerKey` below and whether it's wired into the fake server's own sort.
-  sortable?: boolean;
+  isSortable?: boolean;
   render: (item: TransactionTableItem) => React.ReactNode;
 };
 
@@ -153,21 +153,21 @@ const columnDefs: ColumnDef[] = [
     key: 'transactionId',
     header: 'Transaction ID',
     width: '150px',
-    sortable: true,
+    isSortable: true,
     render: (item) => <Code size="medium">{item.transactionId}</Code>,
   },
   {
     key: 'companyName',
     header: 'Company Name',
     width: '220px',
-    sortable: true,
+    isSortable: true,
     render: (item) => item.companyName,
   },
   {
     key: 'transactionState',
     header: 'Transaction State',
     width: '160px',
-    sortable: true,
+    isSortable: true,
     render: (item) => (
       <Badge size="medium" color={getTransactionStateColor(item.transactionState)}>
         {item.transactionState}
@@ -178,7 +178,7 @@ const columnDefs: ColumnDef[] = [
     key: 'etd',
     header: 'ETD',
     width: '130px',
-    sortable: true,
+    isSortable: true,
     render: (item) => formatDate(item.etd),
   },
   {
@@ -355,7 +355,7 @@ export const FullFeaturedTable = (): React.ReactElement => {
                   <TableHeaderCell
                     key={column.key}
                     headerKey={
-                      column.sortable || FILTER_PREDICATES[column.key] ? column.key : undefined
+                      column.isSortable || FILTER_PREDICATES[column.key] ? column.key : undefined
                     }
                   >
                     {column.header}

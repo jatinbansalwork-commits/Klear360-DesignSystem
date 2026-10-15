@@ -247,7 +247,7 @@ const _Table = <Item,>({
             {columns.map((column) => (
               <TableHeaderCell
                 key={column.key}
-                headerKey={column.sortable ? column.key : undefined}
+                headerKey={column.isSortable ?? column.sortable ? column.key : undefined}
                 textAlign={column.textAlign}
               >
                 {column.header}
