@@ -156,6 +156,29 @@ type TreeViewLoadMoreProps = {
 
 The trigger shows the **smallest describing set**: topmost fully-selected branches count as 1 each, remaining selected leaves count individually. A single entry shows its title as the label ("Karnataka"); multiple entries show a count. Implemented as an additive `displayOverride` published by TreeView and consumed by `makeInputDisplayValue` and the FilterChip display path, falling back to existing behaviour when absent.
 
+## React.memo evaluation
+
+As part of a repo-wide P2 audit of `React.memo` usage, `TreeViewItem` looked like a strong
+candidate at first glance - a per-node component that can render many times for a large tree,
+analogous to `TableBody`/`TableHeader` rows and `ActionListBox` items (which already use
+`React.memo`).
+
+It isn't, as things are currently wired: `_TreeViewItem` reads `selectedValuesSet`,
+`expandedValues`, `tabbableValue`, and more directly from `useTreeViewContext()` (plus
+`activeIndex` from `useDropdown()`). `React.memo` only skips a re-render triggered by a *parent*
+passing identical props - it does nothing to stop a re-render triggered by the component's own
+context subscription changing. Since this context carries tree-wide selection/expansion state,
+selecting or expanding any single node anywhere in the tree would still re-render every
+`TreeViewItem` regardless of a `React.memo` wrapper, because the context value itself changes, not
+just the props a parent passes down.
+
+Making individual items actually skip re-renders would need the context value split so each item
+subscribes only to the slice relevant to it (e.g. "is *this* node's `value` in `selectedValuesSet`"
+resolved before the context boundary, not inside each item) - a materially larger refactor than
+adding `React.memo`, out of scope here. Not implementing a memo wrapper that wouldn't actually
+change anything; see the "Performance & Profiling" section in the repo root's `CONTRIBUTING.md`
+for why - profile before memoizing, not the reverse.
+
 ## Out of scope for v1
 
 - React Native (native entry throws a dev error)
