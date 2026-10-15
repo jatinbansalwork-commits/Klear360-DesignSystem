@@ -64,7 +64,8 @@ const StyledCounterButton = styled.button<{
     ${({ theme }) => getFocusRingStyles({ theme, negativeOffset: true })}
   }
 
-  /* Hover styles based on emphasis */
+  /* Hover styles based on emphasis - !important guards this against being overridden by a
+     consumer's own hover styles on this button. */
   &:hover:not(:disabled) {
     ${({ theme, $emphasis }) => {
       if ($emphasis === 'subtle') {

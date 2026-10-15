@@ -6,6 +6,9 @@ import { castWebType, makeMotionTime } from '~utils';
  * @param props.theme Klear360 Theme Object
  * @param props.negativeOffset if set the outline offset will be set to -4px, this is useful
  * in table component where the outline will get cutoff by the table border
+ * @param props.isImportant pass `true` when the consumer renders inside a host page that resets
+ * focus styles with its own `!important` rule (e.g. `*:focus { outline: none !important }`) -
+ * our own declaration needs the same specificity tier to still win.
  */
 function getFocusRingStyles({
   theme,
