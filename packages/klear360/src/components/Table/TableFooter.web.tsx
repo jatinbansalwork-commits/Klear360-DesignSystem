@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, FooterRow, FooterCell } from '@table-library/react-table-library/table';
+import { Footer, FooterRow, FooterCell } from '@table-library/react-table-library/table.js';
 import styled from 'styled-components';
 import { tableFooter, tableRow, classes } from './tokens';
 import { ComponentIds } from './componentIds';

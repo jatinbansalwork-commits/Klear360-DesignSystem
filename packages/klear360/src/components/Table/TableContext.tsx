@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 import React from 'react';
-import type { TableNode } from '@table-library/react-table-library/table';
+import type { TableNode } from '@table-library/react-table-library/table.js';
 import type {
   TableBackgroundColors,
   TableProps,

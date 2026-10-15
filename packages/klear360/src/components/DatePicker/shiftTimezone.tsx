@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import timezonePlugin from 'dayjs/plugin/timezone';
-import utcPlugin from 'dayjs/plugin/utc';
+import timezonePlugin from 'dayjs/plugin/timezone.js';
+import utcPlugin from 'dayjs/plugin/utc.js';
 import type { DateValue, DatesRangeValue } from './types';
 
 dayjs.extend(utcPlugin);

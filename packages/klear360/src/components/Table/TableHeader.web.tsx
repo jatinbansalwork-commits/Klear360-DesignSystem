@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Header, HeaderRow, HeaderCell } from '@table-library/react-table-library/table';
+import { Header, HeaderRow, HeaderCell } from '@table-library/react-table-library/table.js';
 import { checkboxCellWidth, tableHeader, tableRow, classes } from './tokens';
 import { useTableRowContext, useTableDataContext } from './TableContext';
 import { ComponentIds } from './componentIds';
