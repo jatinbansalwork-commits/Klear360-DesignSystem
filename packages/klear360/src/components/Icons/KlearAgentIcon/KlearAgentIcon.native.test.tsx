@@ -3,9 +3,9 @@ import renderWithTheme from '~utils/testing/renderWithTheme.native';
 
 describe('<KlearAgentIcon />', () => {
   it('should render KlearAgentIcon', () => {
-    const { container } = renderWithTheme(
+    const renderTree = renderWithTheme(
       <KlearAgentIcon color="feedback.icon.neutral.intense" size="large" />,
-    );
-    expect(container).toMatchSnapshot();
+    ).toJSON();
+    expect(renderTree).toMatchSnapshot();
   });
 });

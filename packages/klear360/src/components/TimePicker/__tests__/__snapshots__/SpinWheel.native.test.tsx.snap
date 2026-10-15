@@ -85,7 +85,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -162,7 +162,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -239,7 +239,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -316,7 +316,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -393,7 +393,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 16,
                   "fontStyle": "normal",
@@ -470,7 +470,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -547,7 +547,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -624,7 +624,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -701,7 +701,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -778,7 +778,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -855,7 +855,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -932,7 +932,7 @@ exports[`<SpinWheel /> (native) should render active styling for the selected va
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1055,7 +1055,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1132,7 +1132,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1209,7 +1209,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 16,
                   "fontStyle": "normal",
@@ -1286,7 +1286,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1363,7 +1363,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1440,7 +1440,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1517,7 +1517,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1594,7 +1594,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1671,7 +1671,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1748,7 +1748,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1825,7 +1825,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -1902,7 +1902,7 @@ exports[`<SpinWheel /> (native) should render with default props 1`] = `
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2025,7 +2025,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2102,7 +2102,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 16,
                   "fontStyle": "normal",
@@ -2179,7 +2179,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2256,7 +2256,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2333,7 +2333,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2410,7 +2410,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2487,7 +2487,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2564,7 +2564,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2641,7 +2641,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2718,7 +2718,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2795,7 +2795,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -2872,7 +2872,7 @@ exports[`<SpinWheel /> (native) should visually position using displayValue when
             style={
               [
                 {
-                  "color": "hsla(204, 9%, 42%, 1)",
+                  "color": "hsla(215, 25%, 27%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",

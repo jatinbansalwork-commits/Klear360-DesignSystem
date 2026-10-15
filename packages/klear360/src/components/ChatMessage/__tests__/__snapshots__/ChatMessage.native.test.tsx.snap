@@ -56,7 +56,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
               {
                 "alignSelf": "flex-end",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderRadius": 16,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -91,7 +91,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -212,7 +212,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
                       d="M12 11C12.5523 11 13 11.4477 13 12V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V12C11 11.4477 11.4477 11 12 11Z"
                       fill={
                         {
-                          "payload": 4291829265,
+                          "payload": 4289932067,
                           "type": 0,
                         }
                       }
@@ -226,7 +226,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
                       d="M12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9H12.01C12.5623 9 13.01 8.55228 13.01 8C13.01 7.44772 12.5623 7 12.01 7H12Z"
                       fill={
                         {
-                          "payload": 4291829265,
+                          "payload": 4289932067,
                           "type": 0,
                         }
                       }
@@ -241,7 +241,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
                       d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z"
                       fill={
                         {
-                          "payload": 4291829265,
+                          "payload": 4289932067,
                           "type": 0,
                         }
                       }
@@ -270,7 +270,7 @@ exports[`<ChatMessage /> (native) should render error state correctly 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(4, 85%, 44%, 1)",
+                      "color": "hsla(3, 67%, 42%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -423,7 +423,7 @@ exports[`<ChatMessage /> (native) should render other message with leading icon 
                   d="M3 3H7.5H9.74999L12 12L14.25 3H16.5H21V7.5V9.75L12 12L21 14.25V16.5V21H16.5H14.25L12 12L9.74999 21H7.5H3V16.5V14.25L12 12L3 9.75V7.5V3Z"
                   fill={
                     {
-                      "payload": 4278230620,
+                      "payload": 4279211399,
                       "type": 0,
                     }
                   }
@@ -476,7 +476,7 @@ exports[`<ChatMessage /> (native) should render other message with leading icon 
                 style={
                   [
                     {
-                      "color": "hsla(0, 0%, 2%, 1)",
+                      "color": "hsla(216, 56%, 2%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -573,7 +573,7 @@ exports[`<ChatMessage /> (native) should render self message (default type) corr
               {
                 "alignSelf": "flex-end",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderRadius": 16,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -608,7 +608,7 @@ exports[`<ChatMessage /> (native) should render self message (default type) corr
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -704,7 +704,7 @@ exports[`<ChatMessage /> (native) should render self message (last type) correct
               {
                 "alignSelf": "flex-end",
                 "backgroundColor": "hsla(0, 0%, 100%, 1)",
-                "borderColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderRadius": 16,
                 "borderStyle": "solid",
                 "borderWidth": 1,
@@ -739,7 +739,7 @@ exports[`<ChatMessage /> (native) should render self message (last type) correct
             style={
               [
                 {
-                  "color": "hsla(0, 0%, 2%, 1)",
+                  "color": "hsla(216, 56%, 2%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontStyle": "normal",
@@ -901,7 +901,7 @@ exports[`<ChatMessage /> (native) should render with Card child correctly 1`] = 
                   d="M3 3H7.5H9.74999L12 12L14.25 3H16.5H21V7.5V9.75L12 12L21 14.25V16.5V21H16.5H14.25L12 12L9.74999 21H7.5H3V16.5V14.25L12 12L3 9.75V7.5V3Z"
                   fill={
                     {
-                      "payload": 4278230620,
+                      "payload": 4279211399,
                       "type": 0,
                     }
                   }
@@ -995,7 +995,7 @@ exports[`<ChatMessage /> (native) should render with Card child correctly 1`] = 
                       },
                       [
                         {
-                          "borderColor": "hsla(206, 10%, 29%, 0.12)",
+                          "borderColor": "hsla(222, 47%, 11%, 0.126)",
                           "borderStyle": "solid",
                           "borderWidth": 1,
                           "display": "flex",
@@ -1044,7 +1044,7 @@ exports[`<ChatMessage /> (native) should render with Card child correctly 1`] = 
                         style={
                           [
                             {
-                              "color": "hsla(0, 0%, 2%, 1)",
+                              "color": "hsla(216, 56%, 2%, 1)",
                               "fontFamily": "Inter",
                               "fontSize": 14,
                               "fontStyle": "normal",

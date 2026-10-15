@@ -264,7 +264,7 @@ exports[`<QuickFilters /> should render correctly with multiple selectionType 1`
                                       {
                                         "alignItems": "center",
                                         "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                                        "borderColor": "hsla(205, 8%, 71%, 1)",
+                                        "borderColor": "hsla(215, 20%, 65%, 1)",
                                         "borderRadius": 4,
                                         "borderStyle": "solid",
                                         "borderWidth": 1.5,
@@ -300,7 +300,7 @@ exports[`<QuickFilters /> should render correctly with multiple selectionType 1`
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -510,7 +510,7 @@ exports[`<QuickFilters /> should render correctly with multiple selectionType 1`
                                       {
                                         "alignItems": "center",
                                         "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                                        "borderColor": "hsla(205, 8%, 71%, 1)",
+                                        "borderColor": "hsla(215, 20%, 65%, 1)",
                                         "borderRadius": 4,
                                         "borderStyle": "solid",
                                         "borderWidth": 1.5,
@@ -546,7 +546,7 @@ exports[`<QuickFilters /> should render correctly with multiple selectionType 1`
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -856,7 +856,7 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -905,14 +905,14 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                         style={
                           [
                             {
-                              "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                              "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                               "minHeight": 20,
                               "minWidth": 20,
                             },
                             {
                               "alignItems": "center",
                               "alignSelf": "center",
-                              "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                              "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                               "borderRadius": 9999,
                               "display": "flex",
                               "flexWrap": "nowrap",
@@ -957,7 +957,7 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                             style={
                               [
                                 {
-                                  "color": "hsla(200, 10%, 18%, 1)",
+                                  "color": "hsla(218, 50%, 6%, 1)",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
                                   "fontStyle": "normal",
@@ -1179,7 +1179,7 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -1228,14 +1228,14 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                         style={
                           [
                             {
-                              "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                              "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                               "minHeight": 20,
                               "minWidth": 20,
                             },
                             {
                               "alignItems": "center",
                               "alignSelf": "center",
-                              "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                              "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                               "borderRadius": 9999,
                               "display": "flex",
                               "flexWrap": "nowrap",
@@ -1280,7 +1280,7 @@ exports[`<QuickFilters /> should render values correctly 1`] = `
                             style={
                               [
                                 {
-                                  "color": "hsla(200, 10%, 18%, 1)",
+                                  "color": "hsla(218, 50%, 6%, 1)",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
                                   "fontStyle": "normal",

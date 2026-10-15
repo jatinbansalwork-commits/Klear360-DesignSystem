@@ -84,7 +84,7 @@ exports[`<Code /> should render Code with default properties 1`] = `
         {},
         {
           "alignSelf": "center",
-          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
           "borderRadius": 4,
           "display": "flex",
           "lineHeight": 0,
@@ -109,7 +109,7 @@ exports[`<Code /> should render Code with default properties 1`] = `
       style={
         [
           {
-            "color": "hsla(200, 10%, 18%, 1)",
+            "color": "hsla(218, 50%, 6%, 1)",
             "fontFamily": "Roboto Mono",
             "fontSize": 10,
             "fontStyle": "normal",
@@ -176,7 +176,7 @@ exports[`<Code /> should render isHighlighted false Code 1`] = `
       style={
         [
           {
-            "color": "hsla(0, 0%, 2%, 1)",
+            "color": "hsla(216, 56%, 2%, 1)",
             "fontFamily": "Roboto Mono",
             "fontSize": 10,
             "fontStyle": "normal",
@@ -219,7 +219,7 @@ exports[`<Code /> should render medium Code 1`] = `
         {},
         {
           "alignSelf": "center",
-          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
           "borderRadius": 4,
           "display": "flex",
           "lineHeight": 0,
@@ -244,7 +244,7 @@ exports[`<Code /> should render medium Code 1`] = `
       style={
         [
           {
-            "color": "hsla(200, 10%, 18%, 1)",
+            "color": "hsla(218, 50%, 6%, 1)",
             "fontFamily": "Roboto Mono",
             "fontSize": 12,
             "fontStyle": "normal",
@@ -287,7 +287,7 @@ exports[`<Code /> should render small Code 1`] = `
         {},
         {
           "alignSelf": "center",
-          "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+          "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
           "borderRadius": 4,
           "display": "flex",
           "lineHeight": 0,
@@ -312,7 +312,7 @@ exports[`<Code /> should render small Code 1`] = `
       style={
         [
           {
-            "color": "hsla(200, 10%, 18%, 1)",
+            "color": "hsla(218, 50%, 6%, 1)",
             "fontFamily": "Roboto Mono",
             "fontSize": 10,
             "fontStyle": "normal",
