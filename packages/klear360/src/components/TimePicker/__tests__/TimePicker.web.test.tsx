@@ -1,6 +1,7 @@
 import React from 'react';
 import { TimePicker } from '../';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 // Mock scrollIntoView for JSDOM environment
 Object.defineProperty(Element.prototype, 'scrollIntoView', {
@@ -94,5 +95,10 @@ describe('<TimePicker />', () => {
     const { getByRole } = renderWithTheme(<TimePicker label="Left label" labelPosition="left" />);
 
     expect(getByRole('combobox', { name: /Left label/i })).toBeInTheDocument();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderWithTheme(<TimePicker label="Select time" timeFormat="12h" />);
+    await assertAccessible(container);
   });
 });

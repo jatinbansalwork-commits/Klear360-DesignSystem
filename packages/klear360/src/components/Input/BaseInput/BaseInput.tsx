@@ -1039,6 +1039,13 @@ const _BaseInput: React.ForwardRefRenderFunction<Klear360ElementRef, BaseInputPr
   // this overridden value.
   const visualInteraction = activeInteraction ?? currentInteraction;
   const _isRequired = isRequired || necessityIndicator === 'required';
+  // Mirrors the condition the visible <FormLabel> itself renders under (below) - `labelId` is
+  // only a real DOM id when that's true. Native `<label for>` association (which `inputId`/
+  // `labelId` also wire up) only counts toward accessible-name computation for an element's
+  // *native* role; once `role` overrides that (combobox, searchbox, etc.), only `aria-labelledby`
+  // is spec-valid, so it has to be set explicitly rather than relying on the native association.
+  const hasVisibleLabelForId =
+    !hideLabelText && !isLabelInsideInput && Boolean(label) && !isInsideInputGroup;
 
   const accessibilityProps = makeAccessible({
     required: Boolean(_isRequired),
@@ -1054,6 +1061,7 @@ const _BaseInput: React.ForwardRefRenderFunction<Klear360ElementRef, BaseInputPr
       helpTextId,
     }),
     label: accessibilityLabel,
+    labelledBy: !accessibilityLabel && hasVisibleLabelForId ? labelId : undefined,
     hasPopup,
     expanded: hasPopup ? isPopupExpanded : undefined,
     controls: hasPopup ? popupId : undefined,
@@ -1112,7 +1120,7 @@ const _BaseInput: React.ForwardRefRenderFunction<Klear360ElementRef, BaseInputPr
         width="100%"
       >
         {/* If the input is in an input group, we don't want to render the label */}
-        {!hideLabelText && !isLabelInsideInput && label && !isInsideInputGroup && (
+        {hasVisibleLabelForId && (
           <BaseBox
             display="flex"
             flexDirection={isLabelLeftPositioned ? 'column' : 'row'}

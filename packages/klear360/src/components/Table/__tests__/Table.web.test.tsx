@@ -17,6 +17,7 @@ import { Code } from '~components/Typography';
 import { Badge } from '~components/Badge';
 import { Klear360Provider } from '~components/Klear360Provider';
 import { klear360Theme } from '~tokens/theme';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 // `renderWithTheme` wraps only the initial render; rerenders need the provider again
 const withTheme = (ui: React.ReactElement): React.ReactElement => (
@@ -2743,5 +2744,31 @@ describe('<Table />', () => {
       const [{ selectedIds }] = onSelectionChange.mock.calls.at(-1);
       expect(selectedIds.sort()).toEqual(['1', '2']);
     });
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderWithTheme(
+      <Table data={{ nodes: nodes.slice(0, 3) }}>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+                <TableHeaderCell>Status</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((tableItem, index) => (
+                <TableRow item={tableItem} key={index}>
+                  <TableCell>{tableItem.paymentId}</TableCell>
+                  <TableCell>{tableItem.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>,
+    );
+    await assertAccessible(container);
   });
 });
