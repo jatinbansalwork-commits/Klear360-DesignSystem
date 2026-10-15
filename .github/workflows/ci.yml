@@ -71,3 +71,22 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn workspace @klear/klear360 build
       - run: yarn workspace @klear/klear360 verify:interop
+
+  chromatic:
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/klear360
+          buildScriptName: react:storybook:build
+          exitZeroOnChanges: true
