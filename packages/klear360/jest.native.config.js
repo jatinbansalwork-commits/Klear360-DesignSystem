@@ -43,5 +43,13 @@ module.exports = {
     '^\\~utils$': '<rootDir>/src/utils',
     '^\\~utils/(.*)': '<rootDir>/src/utils/$1',
     '^\\~tokens/(.*)': '<rootDir>/src/tokens/$1',
+    // `@klear/klear360` is "nohoist"-ed (see root package.json), so it keeps its own
+    // copy of react instead of sharing the one hoisted to the repo root. Workspace
+    // packages like `@klear/i18n-react` resolve `react` to that hoisted root copy,
+    // which is a *different* module instance than the one used here, so React treats
+    // their hooks as called outside of a component render. Force every `react`
+    // require in this project to resolve to the same local copy so there is only one
+    // instance in the test run.
+    '^react$': '<rootDir>/node_modules/react',
   },
 };

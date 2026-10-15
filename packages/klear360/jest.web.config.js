@@ -38,6 +38,16 @@ const baseConfig = {
     '^\\~utils$': '<rootDir>/src/utils',
     '^\\~utils/(.*)': '<rootDir>/src/utils/$1',
     '^\\~tokens/(.*)': '<rootDir>/src/tokens/$1',
+    // `@klear/klear360` is "nohoist"-ed (see root package.json), so it keeps its own
+    // copies of react/react-dom instead of sharing the ones hoisted to the repo root.
+    // Workspace packages like `@klear/i18n-react` resolve `react` to that hoisted
+    // root copy, which is a *different* module instance than the one react-dom uses
+    // here, so React treats their hooks as called outside of a component render.
+    // Force every `react`/`react-dom` require in this project to resolve to the same
+    // local copy so there is only one instance in the test run.
+    '^react$': '<rootDir>/node_modules/react',
+    '^react-dom$': '<rootDir>/node_modules/react-dom',
+    '^react-dom/(.*)$': '<rootDir>/node_modules/react-dom/$1',
   },
   globals: {
     __DEV__: true,
