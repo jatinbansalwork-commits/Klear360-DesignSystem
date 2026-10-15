@@ -176,13 +176,17 @@ const StyledHeaderRow = styled(HeaderRow)<{
           borderRightStyle: 'solid',
           ...($isVirtualized && {
             display: 'grid',
-            gridTemplateColumns: $gridTemplateColumns
-              ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
-              : ` ${
-                  $selectionType === 'multiple' ? 'min-content' : ''
-                } repeat(${$columnCount},minmax(100px, 1fr)) ${
-                  $hasHoverActions ? 'min-content' : ''
-                } !important;`,
+            // !important: must win over @table-library's own grid-template-columns regardless of
+            // which branch computed the value, matching the same override in Table.web.tsx.
+            gridTemplateColumns: `${
+              $gridTemplateColumns
+                ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
+                : ` ${
+                    $selectionType === 'multiple' ? 'min-content' : ''
+                  } repeat(${$columnCount},minmax(100px, 1fr)) ${
+                    $hasHoverActions ? 'min-content' : ''
+                  }`
+            } !important`,
           }),
         }
       : undefined,

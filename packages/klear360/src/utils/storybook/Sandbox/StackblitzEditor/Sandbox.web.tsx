@@ -172,6 +172,7 @@ const useStackblitzSetup = ({
 const StyledEmbed = styled(BaseBox)<{ editorHeight: SandboxStackBlitzProps['editorHeight'] }>(
   (props) => `
   position: relative;
+  /* .sb-iframe is a Storybook-internal class with its own border rules - !important to win here. */
   & > .sb-iframe  {
     border: 1px solid #efefef !important;
     border-radius: 4px;

@@ -36,6 +36,9 @@ const getTableBodyStyles = ({
   const shouldAddCommonStyle = Boolean(isVirtualized) || addCommonStyles;
 
   return {
+    // @table-library's virtualized mode renders through react-window, which sets its own
+    // height/width/overflow as inline styles on these elements - only `!important` can
+    // reliably override an inline style.
     ...(isVirtualized && {
       '& > div ': {
         overflow: 'auto !important',

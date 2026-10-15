@@ -53,6 +53,8 @@ const StyledCounterInput = styled(BaseBox)`
     ${({ theme }) => css(getFocusRingStyles({ theme, negativeOffset: true }) as CSSObject)};
   }
 
+  /* !important: overriding BaseInput's own internal background rules from outside, which
+     otherwise win via BaseInput's own state-based (hover/focus/error) class specificity. */
   &.__klear360-counter-input .__klear360-base-input-wrapper {
     box-shadow: none;
     background-color: transparent !important;
@@ -79,7 +81,8 @@ const StyledCounterInput = styled(BaseBox)`
     font-variant-numeric: tabular-nums;
   }
 
-  /* Remove ProgressBar background */
+  /* Remove ProgressBar background - !important for the same reason as BaseInput above: this
+     overrides ProgressBar's own internal track color from outside. */
   &.__klear360-counter-input
     [data-klear360-component='progress-bar']
     .__klear360-progress-bar-track {

@@ -24,6 +24,9 @@ const StyledTimeSegment = styled.div`
   outline: none;
   border-radius: ${makeSpace(spacing[1])};
 
+  /* !important here guards against a host page's own *:focus reset (e.g. *:focus { outline: none
+     !important }) overriding this segment's focus state - see StyledBaseButton.web.tsx for the
+     same pattern. */
   &:focus {
     background-color: ${({ theme }) =>
       theme.colors.interactive.background.primary.faded} !important;

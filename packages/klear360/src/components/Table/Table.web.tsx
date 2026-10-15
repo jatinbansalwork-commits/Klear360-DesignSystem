@@ -128,6 +128,8 @@ const StyledReactTable = styled(ReactTable)<{
   return {
     '&&&': {
       ...styledPropsCSSObject,
+      // `&&&` boosts specificity against our own styles, but @table-library's internal styles
+      // for this element still won without `!important` here too.
       overflow: `${$styledProps?.isVirtualized ? 'unset' : 'auto'} !important`,
     },
     ...($styledProps?.isVirtualized
@@ -453,6 +455,9 @@ const _Table = <Item,>({
       const lastStickyBoxShadow = showBorderedCells
         ? `box-shadow: 1px 0 0 0 ${getIn(theme.colors, tableRow.borderColor)} !important;`
         : '';
+      // `!important` on left/position/z-index: this rule is generated per-column and must reliably
+      // win regardless of @table-library's own per-cell styles or whatever selector order this
+      // stylesheet ends up with, since its correctness depends on actually taking effect.
       const stickyRule = (domIndex: number, left: number, isLastSticky: boolean): string => `
   &:nth-of-type(${domIndex}) {
     left: ${left}px !important;
@@ -549,6 +554,8 @@ const _Table = <Item,>({
           };`
         : ''
     }
+    /* !important: @table-library reads this same custom property name from its own internal
+       stylesheet, so ours needs to win regardless of selector order to actually drive the grid. */
     --data-table-library_grid-template-columns: ${
       gridTemplateColumns
         ? `${selectionType === 'multiple' ? 'min-content' : ''} ${gridTemplateColumns} ${
@@ -558,7 +565,7 @@ const _Table = <Item,>({
             selectionType === 'multiple' ? 'min-content' : ''
           } repeat(${columnCount},minmax(100px, 1fr)) ${
             hasHoverActions ? lastHoverActionsColWidth : ''
-          } !important;`
+          }`
     } !important;
     background-color: ${getIn(theme.colors, backgroundColor)};
     /* Scopes the sticky cells' z-indexes (see tokens.ts) to the table itself, so they can't
