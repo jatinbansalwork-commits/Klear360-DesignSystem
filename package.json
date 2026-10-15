@@ -21,6 +21,9 @@
     ]
   },
   "scripts": {
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
     "tsc:klear360": "yarn workspace @klear/klear360 typecheck",
     "tsc:knowledgebase": "node ./scripts/lintKnowledgebase.js",
     "lint": "eslint --ext js,jsx,ts,tsx packages && stylelint '**/*.{js,jsx,ts,tsx}'",
@@ -46,6 +49,7 @@
     "aicodemod:serve": "node packages/klear360/codemods/aicodemod/server.mjs"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@babel/core": "7.21.8",
     "@babel/eslint-parser": "7.21.8",
     "@types/jest": "26.0.23",
