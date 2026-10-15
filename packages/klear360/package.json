@@ -3,6 +3,9 @@
   "description": "The Design System that powers Klear",
   "version": "12.121.0",
   "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
   "engines": {
     "node": ">=20"
   },
@@ -311,8 +314,8 @@
     "@klear/i18n": "*",
     "@klear/i18n-react": "*",
     "framer-motion": ">=4",
-    "react": ">=18",
-    "react-dom": ">=18",
+    "react": ">=18 <19",
+    "react-dom": ">=18 <19",
     "react-hot-toast": "2.4.1",
     "react-native": "^0.72",
     "react-native-gesture-handler": "^2.9.0",

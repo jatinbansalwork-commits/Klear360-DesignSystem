@@ -51,6 +51,10 @@ The old `Klear360` GitHub URL redirects here — do not treat them as two repos.
 
 After any change: commit → push feature branch → open PR. **Do not ask** the user for permission to raise a PR; do it automatically. Never push directly to `main`. See [`.cursor/rules/klear360-pr-policy.mdc`](./.cursor/rules/klear360-pr-policy.mdc).
 
+## Changelog / Versioning
+
+Published packages (starting with `@klear/klear360`) use [Changesets](https://github.com/changesets/changesets) (`.changeset/` at the repo root). Any PR that changes a published package's public behavior should include a changeset: run `yarn changeset` from the repo root, answer the prompts, and commit the generated `.changeset/*.md` file alongside the change. See [`.changeset/README.md`](./.changeset/README.md).
+
 ## Cursor Skills (Design System)
 
 Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**, then raise a PR.

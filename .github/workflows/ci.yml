@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.12.1
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      # TODO: 3 pre-existing failures (Amount.tsx moduleResolution, TimeInput.web.tsx
+      # @react-stately mismatch, Badge.contrast.web.test.ts) predate this workflow.
+      # Non-blocking until fixed; flip to a hard failure once green.
+      - run: yarn tsc:klear360
+        continue-on-error: true
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.12.1
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  test-web:
+    name: Test (web)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.12.1
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace @klear/klear360 test:react
+
+  test-native:
+    name: Test (native)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.12.1
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace @klear/klear360 test:react-native
