@@ -2,6 +2,7 @@
 /* eslint-disable no-alert */
 import type { Meta, StoryFn } from '@storybook/react-vite';
 import React from 'react';
+import { within, userEvent, expect, waitFor } from 'storybook/test';
 import type { CardProps } from './Card';
 import {
   CardBody,
@@ -1094,4 +1095,95 @@ export const MultiSelectableCard = (): React.ReactElement => {
     return <MultiSelectCardReactNative />;
   }
   return <MultiSelectCardWeb />;
+};
+
+/**
+ * The recommended pattern for a **selectable list of cards that also contain an independent
+ * navigational link** - e.g. Track & Trace's shipment card list: click the card row to
+ * select/highlight it (and sync a map), click the shipment ID to navigate elsewhere, without the
+ * navigation link's hit area swallowing the row's selection click.
+ *
+ * This needs no custom wrapper, `outline`, or `overflow` workaround - `Card` already provides it:
+ * - `onClick` + `isSelected` (both already a fully **controlled** selection API - `isSelected` is
+ *   a plain boolean prop with no internal state, driven entirely by whatever you pass it) makes
+ *   the whole card row clickable for selection, same as `ClickableCard` above.
+ * - Any real `<a href>`, `<button>`, or `<label>` nested inside a `Card` - a `Link`, in this case -
+ *   is automatically lifted to `position: relative; z-index: 2` by `CardRoot`'s own styles (see
+ *   `CardRoot.web.tsx`, `& a[href]:not(a[data-klear360-component="card-link-overlay"])`), stepping
+ *   it above the full-card selection overlay (`z-index: 1`) so it receives its own clicks - this
+ *   is the same "nested links" technique at https://www.sarasoueidan.com/blog/nested-links, and it
+ *   already applies to *every* nested interactive element, not just one you'd have to opt into.
+ * - `isSelected`'s ring is a `box-shadow` on `CardRoot` (the outer element), not `CardSurface` (the
+ *   inner, `overflow`-clipped one) - `overflow="hidden"` (set to clip header image bleed, etc.)
+ *   is applied to `CardSurface` only (see `Card.tsx`), so it structurally cannot clip the
+ *   selection/focus ring, which lives one level up. No separate "focus ring on wrapper" workaround
+ *   needed.
+ */
+export const SelectableCardListWithNavigationLink = (): React.ReactElement => {
+  const shipments = [
+    { id: 'SHP-1001', origin: 'Shenzhen', destination: 'Los Angeles' },
+    { id: 'SHP-1002', origin: 'Busan', destination: 'Long Beach' },
+    { id: 'SHP-1003', origin: 'Singapore', destination: 'Oakland' },
+  ];
+  const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [navigatedId, setNavigatedId] = React.useState<string | null>(null);
+
+  return (
+    <Box display="flex" flexDirection="column" gap="spacing.3" width={{ s: '100%', m: '400px' }}>
+      <Text marginBottom="spacing.3">
+        Click a card row to select it (and, in a real app, sync a map). Click a shipment ID to
+        navigate - it won't also select the row.
+      </Text>
+      {navigatedId && <Text color="surface.text.primary.normal">Navigated via: {navigatedId}</Text>}
+      {shipments.map((shipment) => (
+        <Card
+          key={shipment.id}
+          accessibilityLabel={`Shipment ${shipment.id}, ${shipment.origin} to ${shipment.destination}`}
+          onClick={() => setSelectedId(shipment.id)}
+          isSelected={selectedId === shipment.id}
+          overflow="hidden"
+        >
+          <CardBody>
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setNavigatedId(shipment.id);
+              }}
+            >
+              {shipment.id}
+            </Link>
+            <Text marginTop="spacing.1" color="surface.text.gray.muted">
+              {shipment.origin} → {shipment.destination}
+            </Text>
+          </CardBody>
+        </Card>
+      ))}
+    </Box>
+  );
+};
+
+SelectableCardListWithNavigationLink.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  // Clicking the card row (not the link) selects it. The full-card hit area is a `::before`
+  // pseudo-element on the card's overlay button (see LinkOverlay.web.tsx) - a real mouse click
+  // reaches it via the browser's own coordinate-based hit-testing, but `userEvent.click` dispatches
+  // directly on the DOM node you pass it (no hit-testing), which would never bubble sideways from
+  // a text sibling to the overlay button. So this targets that overlay button directly, by its
+  // accessible name - the same element a real click on any non-uplifted part of the row would hit.
+  const secondCardOverlay = canvas.getByRole('button', {
+    name: 'Shipment SHP-1002, Busan to Long Beach',
+  });
+  await userEvent.click(secondCardOverlay);
+  await waitFor(() => expect(secondCardOverlay).toHaveAttribute('aria-pressed', 'true'));
+
+  // Clicking the nested link navigates - and does NOT change which card is selected.
+  const firstShipmentLink = canvas.getByRole('link', { name: 'SHP-1001' });
+  await userEvent.click(firstShipmentLink);
+  await waitFor(() => expect(canvas.getByText('Navigated via: SHP-1001')).toBeInTheDocument());
+  expect(secondCardOverlay).toHaveAttribute('aria-pressed', 'true');
+  expect(
+    canvas.getByRole('button', { name: 'Shipment SHP-1001, Shenzhen to Los Angeles' }),
+  ).toHaveAttribute('aria-pressed', 'false');
 };
