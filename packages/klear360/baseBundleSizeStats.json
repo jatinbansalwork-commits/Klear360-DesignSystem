@@ -79,9 +79,9 @@
   {
     "name": "BottomSheet",
     "passed": true,
-    "size": 15412,
+    "size": 15431,
     "sizeLimit": 2000000,
-    "loading": 0.301015625
+    "loading": 0.30138671875
   },
   {
     "name": "BottomNav, BottomNavItem",
@@ -142,9 +142,9 @@
   {
     "name": "ChatInput",
     "passed": true,
-    "size": 64775,
+    "size": 64803,
     "sizeLimit": 2000000,
-    "loading": 1.26513671875
+    "loading": 1.26568359375
   },
   {
     "name": "ChatMessage",
@@ -184,9 +184,9 @@
   {
     "name": "CounterInput",
     "passed": true,
-    "size": 44124,
+    "size": 44146,
     "sizeLimit": 2000000,
-    "loading": 0.861796875
+    "loading": 0.8622265625
   },
   {
     "name": "Divider",
@@ -205,9 +205,9 @@
   {
     "name": "DatePicker",
     "passed": true,
-    "size": 141448,
+    "size": 141486,
     "sizeLimit": 2000000,
-    "loading": 2.76265625
+    "loading": 2.7633984375
   },
   {
     "name": "Dropdown, DropdownOverlay, DropdownButton, DropdownLink, DropdownIconButton, DropdownFooter, DropdownHeader, FilterChipSelectInput, FilterChipGroup, InputDropdownButton",
@@ -268,58 +268,58 @@
   {
     "name": "SelectInput, AutoComplete",
     "passed": true,
-    "size": 46870,
+    "size": 46896,
     "sizeLimit": 2000000,
-    "loading": 0.9154296875
+    "loading": 0.9159375
   },
   {
     "name": "OTPInput",
     "passed": true,
-    "size": 39349,
+    "size": 39371,
     "sizeLimit": 2000000,
-    "loading": 0.76853515625
+    "loading": 0.76896484375
   },
   {
     "name": "PasswordInput",
     "passed": true,
-    "size": 42067,
+    "size": 42089,
     "sizeLimit": 2000000,
-    "loading": 0.82162109375
+    "loading": 0.82205078125
   },
   {
     "name": "TextArea",
     "passed": true,
-    "size": 42451,
+    "size": 42476,
     "sizeLimit": 2000000,
-    "loading": 0.82912109375
+    "loading": 0.829609375
   },
   {
     "name": "TextInput",
     "passed": true,
-    "size": 52720,
+    "size": 52743,
     "sizeLimit": 2000000,
-    "loading": 1.0296875
+    "loading": 1.03013671875
   },
   {
     "name": "SearchInput",
     "passed": true,
-    "size": 51389,
+    "size": 51416,
     "sizeLimit": 2000000,
-    "loading": 1.00369140625
+    "loading": 1.00421875
   },
   {
     "name": "PhoneNumberInput",
     "passed": true,
-    "size": 75738,
+    "size": 75771,
     "sizeLimit": 2000000,
-    "loading": 1.4792578125
+    "loading": 1.47990234375
   },
   {
     "name": "ColorInput",
     "passed": true,
-    "size": 40997,
+    "size": 41021,
     "sizeLimit": 2000000,
-    "loading": 0.80072265625
+    "loading": 0.80119140625
   },
   {
     "name": "InputGroup, InputRow",
@@ -366,9 +366,9 @@
   {
     "name": "Pagination",
     "passed": true,
-    "size": 73223,
+    "size": 73246,
     "sizeLimit": 2000000,
-    "loading": 1.43013671875
+    "loading": 1.4305859375
   },
   {
     "name": "Popover, PopoverInteractiveWrapper",
@@ -478,9 +478,9 @@
   {
     "name": "Table, TableHeader, TableHeaderCell, TableHeaderRow, TableBody, TableCell, TableRow, TableVirtualizedWrapper, TableTitleDescriptionCell, TableFooter, TableFooterCell, TableFooterRow, TablePagination, TableToolbar, TableToolbarActions, TableToolbarSearch, TableEditableCell, TableEditableDropdownCell, TableEditableSearchCell",
     "passed": true,
-    "size": 121297,
+    "size": 121322,
     "sizeLimit": 2000000,
-    "loading": 2.36908203125
+    "loading": 2.3695703125
   },
   {
     "name": "Tabs, TabItem, TabList, TabPanel",
@@ -499,9 +499,9 @@
   {
     "name": "TimePicker",
     "passed": true,
-    "size": 110905,
+    "size": 110914,
     "sizeLimit": 2000000,
-    "loading": 2.16611328125
+    "loading": 2.1662890625
   },
   {
     "name": "Tooltip, TooltipInteractiveWrapper",
@@ -534,9 +534,9 @@
   {
     "name": "ListView, ListViewFilters",
     "passed": true,
-    "size": 55410,
+    "size": 55432,
     "sizeLimit": 2000000,
-    "loading": 1.0822265625
+    "loading": 1.08265625
   },
   {
     "name": "Preview, PreviewBody, PreviewFooter, PreviewHeader",
@@ -548,8 +548,8 @@
   {
     "name": "GenUIProvider, useGenUI, useGenUIAction, useGenUIComponentActions, GenUISchemaRenderer",
     "passed": true,
-    "size": 290143,
+    "size": 290167,
     "sizeLimit": 2000000,
-    "loading": 5.66685546875
+    "loading": 5.66732421875
   }
 ]
