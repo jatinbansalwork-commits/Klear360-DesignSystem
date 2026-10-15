@@ -6,6 +6,7 @@ import { DatePicker as DatePickerComponent, FilterChipDatePicker } from '..';
 import type { DatesRangeValue } from '../types';
 import { Box } from '~components/Box';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 describe('<DatePicker/> ', () => {
   jest.setTimeout(10000);
@@ -303,4 +304,19 @@ describe('<FilterChipDatePicker/> open state', () => {
     expect(onOpenChange).toHaveBeenCalledTimes(2);
     expect(onOpenChange).toHaveBeenLastCalledWith(false);
   });
+});
+
+describe('<DatePicker/> accessibility', () => {
+  it('should have no accessibility violations, closed and open', async () => {
+    const user = userEvent.setup();
+    const { container, getByRole, queryByText } = renderWithTheme(
+      <DatePickerComponent accessibilityLabel="Select Date" />,
+    );
+
+    await assertAccessible(container);
+
+    await user.click(getByRole('combobox', { name: /Select Date/i }));
+    await waitFor(() => expect(queryByText('Sun')).toBeVisible());
+    await assertAccessible(container);
+  }, 120000);
 });

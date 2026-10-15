@@ -11,6 +11,7 @@ import { Button } from '~components/Button';
 import { Text } from '~components/Typography';
 import { Box } from '~components/Box';
 import { AutoComplete } from '~components/Input/DropdownInputTriggers';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 const getActiveDescendant = (selectInput: HTMLElement): string | null | undefined => {
   const activeDescendantId = selectInput.getAttribute('aria-activedescendant');
@@ -656,5 +657,26 @@ describe('<Dropdown /> with <FilterChipSelectInput/>', () => {
     const trigger = getByRole('button', { name: 'Status' });
     // More than one selected → the chip collapses to a compact counter of the selection count.
     await waitFor(() => expect(trigger).toHaveTextContent('2'));
+  });
+
+  it('should have no accessibility violations, closed and open', async () => {
+    const user = userEvent.setup();
+    const { container, getByRole } = renderWithTheme(
+      <Dropdown>
+        <SelectInput label="Fruits" />
+        <DropdownOverlay>
+          <ActionList>
+            <ActionListItem title="Apple" value="apple" />
+            <ActionListItem title="Mango" value="mango" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>,
+    );
+
+    await assertAccessible(container);
+
+    await user.click(getByRole('combobox', { name: 'Fruits' }));
+    await waitFor(() => expect(getByRole('listbox')).toBeVisible());
+    await assertAccessible(container);
   });
 });

@@ -62,6 +62,12 @@ type BottomSheetProps = {
    * @default false
    */
   snapToContentHeight?: boolean;
+  /**
+   * Accessible name for the bottom sheet's `dialog` role, read by screen readers when it opens.
+   * Pass the same text as `BottomSheetHeader`'s `title` when one is present, or a descriptive
+   * label when the sheet has no header.
+   */
+  accessibilityLabel?: string;
 } & DataAnalyticsAttribute;
 
 type BottomSheetHeaderProps = Pick<

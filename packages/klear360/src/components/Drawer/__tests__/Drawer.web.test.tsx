@@ -9,6 +9,7 @@ import { Badge } from '~components/Badge';
 import { Button } from '~components/Button';
 import { Text } from '~components/Typography';
 import { AnnouncementIcon, DownloadIcon } from '~components/Icons';
+import assertAccessible from '~utils/testing/assertAccessible.web';
 
 const BasicDrawer = (props: Partial<DrawerProps>): React.ReactElement => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -236,5 +237,23 @@ describe('Drawer', () => {
 
       expect(queryByText('Footer Button')).not.toBeInTheDocument();
     });
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { getByRole } = renderWithTheme(
+      <Drawer isOpen={true} onDismiss={() => {}} accessibilityLabel="Test Drawer">
+        <DrawerHeader
+          title="Address Details"
+          trailing={<Button icon={DownloadIcon} accessibilityLabel="Download" />}
+        />
+        <DrawerBody>
+          <Text>Test Content</Text>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button>Save</Button>
+        </DrawerFooter>
+      </Drawer>,
+    );
+    await assertAccessible(getByRole('dialog'));
   });
 });
