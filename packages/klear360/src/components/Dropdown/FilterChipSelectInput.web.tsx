@@ -229,6 +229,7 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
       onClearButtonClick={handleClearButtonClick}
       showClearButton={showClearButton}
       selectionType={selectionType}
+      testID={testID}
       {...rest}
       ref={triggererRef as any}
       onKeyDown={handleKeyDown}
