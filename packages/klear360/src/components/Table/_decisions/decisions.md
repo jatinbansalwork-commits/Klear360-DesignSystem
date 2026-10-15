@@ -1049,3 +1049,18 @@ compact row without issue. Treat `size="medium"` as the floor for any `Badge` in
 independent of `rowDensity`. See `Badge`'s own decisions doc (`Recommended minimum size inside table cells`) for the full writeup, and `CompactDensityBadgeSizeMismatch`/
 `CompactDensityBadgeSizeRecipe` in `TableCompactDensityMultilineExample.stories.tsx` for this shown
 side by side with ordinary cell text.
+
+## Known naming inconsistency: `sortable` vs. the `is*` boolean convention
+
+A repo-wide audit of boolean prop names (checking for bare `disabled`/`visible`/`required`/etc.
+instead of `isDisabled`/`isVisible`/`isRequired`) found exactly one inconsistency across the whole
+`klear360` package: `Column`'s `sortable?: boolean` (this file) doesn't follow the `is*`
+convention every other boolean prop in the design system uses - it should be `isSortable`.
+
+Not renamed as part of that audit. `sortable` is a public prop on a widely-used component (16
+files in this directory alone reference it), so a straight rename breaks every existing consumer
+silently at the type level with no runtime signal. This needs the same treatment as other
+breaking prop/token renames in this repo - a deprecation path (accept both names, warn on the old
+one) or a codemod (see `codemods/migrate-typography`, `codemods/migrate-motion-tokens` for the
+established pattern) - not a drive-by rename. Flagging here so the inconsistency is tracked rather
+than silently reintroduced by a future PR that copies this prop's style.
