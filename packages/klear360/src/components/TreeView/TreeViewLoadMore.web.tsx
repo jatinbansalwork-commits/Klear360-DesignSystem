@@ -2,6 +2,7 @@ import React from 'react';
 import { componentIds } from './componentIds';
 import type { TreeViewLoadMoreProps } from './types';
 import { TreeViewParentContext, useTreeViewContext } from './useTreeView';
+import { useTreeViewStoreSelector } from './useTreeViewStore';
 import { StyledTreeViewRow } from './StyledTreeViewRow.web';
 import { TreeViewRowMountAnimator } from './TreeViewAnimator.web';
 import { DEFAULT_LOAD_MORE_LABEL } from './treeViewUtils';
@@ -21,7 +22,6 @@ const _TreeViewLoadMore = (props: TreeViewLoadMoreProps): React.ReactElement | n
   const {
     isInsideDropdown,
     nodeMap,
-    tabbableValue,
     onDropdownNodeClick,
     registerRowRef,
     setFocusedValue,
@@ -38,6 +38,12 @@ const _TreeViewLoadMore = (props: TreeViewLoadMoreProps): React.ReactElement | n
   // in the registry by parent (TreeView dev-warns on more than one per branch)
   const node = Object.values(nodeMap).find(
     (registryNode) => registryNode.kind === 'loadMore' && registryNode.parentValue === parentValue,
+  );
+
+  // see TreeViewItem.web.tsx / useTreeViewStore.ts - selector subscription instead of
+  // reading the tree-wide `tabbableValue` off context directly
+  const isTabbable = useTreeViewStoreSelector(
+    (state) => !isInsideDropdown && state.tabbableValue === node?.value,
   );
 
   if (!node) {
@@ -68,7 +74,7 @@ const _TreeViewLoadMore = (props: TreeViewLoadMoreProps): React.ReactElement | n
               ? `${dropdownBaseId}-${node.optionIndex}`
               : undefined
           }
-          tabIndex={!isInsideDropdown && tabbableValue === node.value ? 0 : -1}
+          tabIndex={isTabbable ? 0 : -1}
           isDisabled={node.isDisabled}
           className={
             isInsideDropdown && node.optionIndex >= 0 && activeIndex === node.optionIndex

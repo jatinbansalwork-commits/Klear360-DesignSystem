@@ -2,6 +2,13 @@ import React from 'react';
 import type { TreeViewNodeType } from './types';
 import { throwKlear360Error } from '~utils/logger';
 
+/**
+ * Structural / rarely-changing TreeView state and the (referentially stable) action
+ * callbacks every row needs. Deliberately excludes selection, expansion, and roving-tabindex
+ * state - those are tree-wide and change on every interaction, so they are published through
+ * `useTreeViewStore` instead (a selector-based subscription) to keep rows that did not
+ * change from re-rendering. See TreeView/_decisions/decisions.md ("React.memo evaluation")
+ */
 type TreeViewContextType = {
   /**
    * Effective selection type. Inside Dropdown, inherited from Dropdown's selectionType
@@ -16,20 +23,6 @@ type TreeViewContextType = {
    */
   baseId: string;
   nodeMap: Record<string, TreeViewNodeType>;
-  /**
-   * Source of truth for selection state, unified across modes:
-   * - standalone: TreeView-owned Set of selected values
-   * - Dropdown: derived from Dropdown's selectedIndices
-   */
-  selectedValuesSet: Set<string>;
-  /**
-   * Values of currently expanded branches (uncontrolled state merged with controlled `isExpanded` props)
-   */
-  expandedValues: Set<string>;
-  /**
-   * The row that currently holds tabIndex=0 in standalone mode (roving tabindex)
-   */
-  tabbableValue: string | null;
   /**
    * Standalone row selection (single select / multiple cascade toggle)
    */
