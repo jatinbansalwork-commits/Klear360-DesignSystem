@@ -82,7 +82,7 @@ exports[`<Indicator /> should render 1`] = `
             cy="5"
             fill={
               {
-                "payload": 4280889138,
+                "payload": 4278717719,
                 "type": 0,
               }
             }
@@ -118,7 +118,7 @@ exports[`<Indicator /> should render 1`] = `
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -228,7 +228,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
             cy="5"
             fill={
               {
-                "payload": 4291252992,
+                "payload": 4287188993,
                 "type": 0,
               }
             }
@@ -264,7 +264,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",
@@ -363,7 +363,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
             cy="5"
             fill={
               {
-                "payload": 4278220091,
+                "payload": 4279397684,
                 "type": 0,
               }
             }
@@ -399,7 +399,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -498,7 +498,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
             cy="5"
             fill={
               {
-                "payload": 4291829265,
+                "payload": 4289932067,
                 "type": 0,
               }
             }
@@ -534,7 +534,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -633,7 +633,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
             cy="5"
             fill={
               {
-                "payload": 4278218920,
+                "payload": 4278272859,
                 "type": 0,
               }
             }
@@ -669,7 +669,7 @@ exports[`<Indicator /> should render different variants for size and color 1`] =
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 14,
                 "fontStyle": "normal",
@@ -779,7 +779,7 @@ exports[`<Indicator /> should render with intense emphasis 1`] = `
             cy="5"
             fill={
               {
-                "payload": 385912647,
+                "payload": 387756117,
                 "type": 0,
               }
             }
@@ -795,7 +795,7 @@ exports[`<Indicator /> should render with intense emphasis 1`] = `
             cy="5"
             fill={
               {
-                "payload": 4278220091,
+                "payload": 4279397684,
                 "type": 0,
               }
             }
@@ -831,7 +831,7 @@ exports[`<Indicator /> should render with intense emphasis 1`] = `
           style={
             [
               {
-                "color": "hsla(200, 10%, 18%, 1)",
+                "color": "hsla(218, 50%, 6%, 1)",
                 "fontFamily": "Inter",
                 "fontSize": 12,
                 "fontStyle": "normal",

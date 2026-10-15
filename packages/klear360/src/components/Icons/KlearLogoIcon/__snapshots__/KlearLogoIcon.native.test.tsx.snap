@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<KlearIcon /> should render KlearIcon 1`] = `
+exports[`<KlearLogoIcon /> should render KlearLogoIcon 1`] = `
 <View
   style={
     {
@@ -54,7 +54,7 @@ exports[`<KlearIcon /> should render KlearIcon 1`] = `
         d="M5 3H8V10.8L15 3H19L11 11.5L19.4 21H15.4L8 12.6V21H5V3Z"
         fill={
           {
-            "payload": 4280889138,
+            "payload": 4278717719,
             "type": 0,
           }
         }

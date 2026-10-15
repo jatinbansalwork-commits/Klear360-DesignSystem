@@ -76,7 +76,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
             style={
               [
                 {
-                  "color": "hsla(200, 10%, 18%, 1)",
+                  "color": "hsla(218, 50%, 6%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 12,
                   "fontStyle": "normal",
@@ -140,7 +140,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(0, 0%, 2%, 1)",
+                    "color": "hsla(216, 56%, 2%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -292,7 +292,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -333,7 +333,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -462,7 +462,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -503,7 +503,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -632,7 +632,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -673,7 +673,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -742,7 +742,7 @@ exports[`<RadioGroup /> should render with help text 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(204, 9%, 42%, 1)",
+                    "color": "hsla(215, 25%, 27%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 11,
                     "fontStyle": "normal",
@@ -848,7 +848,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
             style={
               [
                 {
-                  "color": "hsla(200, 10%, 18%, 1)",
+                  "color": "hsla(218, 50%, 6%, 1)",
                   "fontFamily": "Inter",
                   "fontSize": 12,
                   "fontStyle": "normal",
@@ -912,7 +912,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
               style={
                 [
                   {
-                    "color": "hsla(0, 0%, 2%, 1)",
+                    "color": "hsla(216, 56%, 2%, 1)",
                     "fontFamily": "Inter",
                     "fontSize": 14,
                     "fontStyle": "normal",
@@ -1062,7 +1062,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -1103,7 +1103,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -1232,7 +1232,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -1273,7 +1273,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -1402,7 +1402,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                           {
                             "alignItems": "center",
                             "backgroundColor": "hsla(0, 0%, 100%, 0)",
-                            "borderColor": "hsla(205, 8%, 71%, 1)",
+                            "borderColor": "hsla(215, 20%, 65%, 1)",
                             "borderRadius": 9999,
                             "borderStyle": "solid",
                             "borderWidth": 1.5,
@@ -1443,7 +1443,7 @@ exports[`<RadioGroup /> should render with label 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",

@@ -1867,7 +1867,7 @@ exports[`<Dropdown /> with <AutoComplete /> should render AutoComplete 1`] = `
                 style={
                   [
                     {
-                      "borderBottomColor": "hsla(222, 47%, 11%, 0.12)",
+                      "borderBottomColor": "hsla(222, 47%, 11%, 0.126)",
                       "borderBottomStyle": "solid",
                     },
                     {

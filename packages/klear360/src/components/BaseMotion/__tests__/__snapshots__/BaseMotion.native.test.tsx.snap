@@ -31,7 +31,7 @@ exports[`<BaseMotion /> (native) should render children inside BaseMotionBox 1`]
       style={
         [
           {
-            "color": "hsla(0, 0%, 2%, 1)",
+            "color": "hsla(216, 56%, 2%, 1)",
             "fontFamily": "Inter",
             "fontSize": 14,
             "fontStyle": "normal",
@@ -88,7 +88,7 @@ exports[`<BaseMotion /> (native) should wrap the child when using BaseMotionEnha
       style={
         [
           {
-            "color": "hsla(0, 0%, 2%, 1)",
+            "color": "hsla(216, 56%, 2%, 1)",
             "fontFamily": "Inter",
             "fontSize": 14,
             "fontStyle": "normal",

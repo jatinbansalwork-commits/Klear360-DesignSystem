@@ -87,7 +87,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                 style={
                   [
                     {
-                      "borderTopColor": "hsla(204, 8%, 88%, 1)",
+                      "borderTopColor": "hsla(214, 32%, 91%, 1)",
                       "borderTopStyle": "solid",
                       "borderTopWidth": 2,
                       "height": 2,
@@ -118,7 +118,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                     [
                       {
                         "alignItems": "center",
-                        "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                        "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                         "borderRadius": 50,
                         "display": "flex",
                         "height": 20,
@@ -209,7 +209,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                             cy="5"
                             fill={
                               {
-                                "payload": 4280889138,
+                                "payload": 4278717719,
                                 "type": 0,
                               }
                             }
@@ -245,7 +245,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -281,7 +281,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                 style={
                   [
                     {
-                      "borderTopColor": "hsla(204, 8%, 88%, 1)",
+                      "borderTopColor": "hsla(214, 32%, 91%, 1)",
                       "borderTopStyle": "solid",
                       "borderTopWidth": 2,
                       "height": 2,
@@ -360,7 +360,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -398,7 +398,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 11,
                             "fontStyle": "normal",
@@ -433,7 +433,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",
@@ -513,7 +513,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                 style={
                   [
                     {
-                      "borderTopColor": "hsla(204, 8%, 88%, 1)",
+                      "borderTopColor": "hsla(214, 32%, 91%, 1)",
                       "borderTopStyle": "solid",
                       "borderTopWidth": 2,
                       "height": 2,
@@ -544,7 +544,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                     [
                       {
                         "alignItems": "center",
-                        "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                        "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                         "borderRadius": 50,
                         "display": "flex",
                         "height": 20,
@@ -635,7 +635,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                             cy="5"
                             fill={
                               {
-                                "payload": 4280889138,
+                                "payload": 4278717719,
                                 "type": 0,
                               }
                             }
@@ -671,7 +671,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -727,7 +727,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -738,7 +738,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -749,7 +749,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -760,7 +760,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -771,7 +771,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -782,7 +782,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -793,7 +793,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -804,7 +804,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -815,7 +815,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -826,7 +826,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -837,7 +837,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -848,7 +848,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -926,7 +926,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -964,7 +964,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 11,
                             "fontStyle": "normal",
@@ -999,7 +999,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",
@@ -1099,7 +1099,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1110,7 +1110,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1121,7 +1121,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1132,7 +1132,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1143,7 +1143,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1154,7 +1154,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1165,7 +1165,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1176,7 +1176,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1187,7 +1187,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1198,7 +1198,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1209,7 +1209,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1220,7 +1220,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1250,7 +1250,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                     [
                       {
                         "alignItems": "center",
-                        "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                        "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                         "borderRadius": 50,
                         "display": "flex",
                         "height": 20,
@@ -1341,7 +1341,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                             cy="5"
                             fill={
                               {
-                                "payload": 4280889138,
+                                "payload": 4278717719,
                                 "type": 0,
                               }
                             }
@@ -1377,7 +1377,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                           style={
                             [
                               {
-                                "color": "hsla(200, 10%, 18%, 1)",
+                                "color": "hsla(218, 50%, 6%, 1)",
                                 "fontFamily": "Inter",
                                 "fontSize": 14,
                                 "fontStyle": "normal",
@@ -1433,7 +1433,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1444,7 +1444,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1455,7 +1455,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1466,7 +1466,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1477,7 +1477,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1488,7 +1488,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1499,7 +1499,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1510,7 +1510,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1521,7 +1521,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1532,7 +1532,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1543,7 +1543,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1554,7 +1554,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                   <View
                     style={
                       {
-                        "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                        "backgroundColor": "hsla(214, 32%, 91%, 1)",
                         "borderRadius": 1,
                         "height": 2,
                         "marginRight": 4,
@@ -1632,7 +1632,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -1670,7 +1670,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 11,
                             "fontStyle": "normal",
@@ -1705,7 +1705,7 @@ exports[`<StepGroup /> (native) should render horizontal orientation 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(204, 9%, 42%, 1)",
+                            "color": "hsla(215, 25%, 27%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",
@@ -1805,7 +1805,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "height": 6,
@@ -1838,7 +1838,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(150, 100%, 28%, 0.09)",
+                  "backgroundColor": "hsla(143, 73%, 40%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 24,
@@ -1929,7 +1929,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4278220091,
+                          "payload": 4279397684,
                           "type": 0,
                         }
                       }
@@ -1965,7 +1965,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -2000,7 +2000,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "flexBasis": 0,
@@ -2080,7 +2080,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 16,
                       "fontStyle": "normal",
@@ -2118,7 +2118,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -2155,7 +2155,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -2247,7 +2247,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                  "backgroundColor": "hsla(214, 32%, 91%, 1)",
                   "borderRadius": 1,
                   "height": 2,
                   "marginBottom": 4,
@@ -2279,7 +2279,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 24,
@@ -2370,7 +2370,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -2406,7 +2406,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -2529,7 +2529,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 16,
                       "fontStyle": "normal",
@@ -2567,7 +2567,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -2602,7 +2602,7 @@ exports[`<StepGroup /> (native) should render large size 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -2699,7 +2699,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "height": 6,
@@ -2732,7 +2732,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -2823,7 +2823,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -2859,7 +2859,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -2894,7 +2894,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "flexBasis": 0,
@@ -2974,7 +2974,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -3012,7 +3012,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -3049,7 +3049,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -3121,7 +3121,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "height": 6,
@@ -3154,7 +3154,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -3245,7 +3245,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -3281,7 +3281,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -3316,7 +3316,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "flexBasis": 0,
@@ -3396,7 +3396,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -3434,7 +3434,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -3471,7 +3471,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -3615,7 +3615,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   }
                   stroke={
                     {
-                      "payload": 4292796899,
+                      "payload": 4292995055,
                       "type": 0,
                     }
                   }
@@ -3647,7 +3647,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 [
                   {
                     "alignItems": "center",
-                    "backgroundColor": "hsla(150, 100%, 28%, 0.09)",
+                    "backgroundColor": "hsla(143, 73%, 40%, 0.09)",
                     "borderRadius": 50,
                     "display": "flex",
                     "height": 20,
@@ -3738,7 +3738,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                         cy="5"
                         fill={
                           {
-                            "payload": 4278220091,
+                            "payload": 4279397684,
                             "type": 0,
                           }
                         }
@@ -3774,7 +3774,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -3898,7 +3898,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(200, 10%, 18%, 1)",
+                        "color": "hsla(218, 50%, 6%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -3936,7 +3936,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 11,
                         "fontStyle": "normal",
@@ -3973,7 +3973,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 12,
                         "fontStyle": "normal",
@@ -4064,7 +4064,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
               <View
                 style={
                   {
-                    "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                    "backgroundColor": "hsla(214, 32%, 91%, 1)",
                     "borderRadius": 1,
                     "height": 2,
                     "marginBottom": 4,
@@ -4096,7 +4096,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                 [
                   {
                     "alignItems": "center",
-                    "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                    "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                     "borderRadius": 50,
                     "display": "flex",
                     "height": 20,
@@ -4187,7 +4187,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                         cy="5"
                         fill={
                           {
-                            "payload": 4280889138,
+                            "payload": 4278717719,
                             "type": 0,
                           }
                         }
@@ -4223,7 +4223,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -4297,7 +4297,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
               bbHeight="5"
               bbWidth="42"
               data-klear360-component="icon"
-              fill="hsla(204, 8%, 88%, 1)"
+              fill="hsla(214, 32%, 91%, 1)"
               focusable={false}
               height="5"
               importantForAccessibility="no-hide-descendants"
@@ -4327,7 +4327,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
               <RNSVGGroup
                 fill={
                   {
-                    "payload": 4292796899,
+                    "payload": 4292995055,
                     "type": 0,
                   }
                 }
@@ -4470,7 +4470,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(200, 10%, 18%, 1)",
+                        "color": "hsla(218, 50%, 6%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 14,
                         "fontStyle": "normal",
@@ -4508,7 +4508,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 11,
                         "fontStyle": "normal",
@@ -4545,7 +4545,7 @@ exports[`<StepGroup /> (native) should render nested StepGroup 1`] = `
                   style={
                     [
                       {
-                        "color": "hsla(204, 9%, 42%, 1)",
+                        "color": "hsla(215, 25%, 27%, 1)",
                         "fontFamily": "Inter",
                         "fontSize": 12,
                         "fontStyle": "normal",
@@ -4665,7 +4665,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                  "backgroundColor": "hsla(214, 32%, 91%, 1)",
                   "borderRadius": 1,
                   "height": 2,
                   "marginBottom": 4,
@@ -4697,7 +4697,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -4788,7 +4788,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -4824,7 +4824,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -4947,7 +4947,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -4985,7 +4985,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -5020,7 +5020,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -5110,7 +5110,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                  "backgroundColor": "hsla(214, 32%, 91%, 1)",
                   "borderRadius": 1,
                   "height": 2,
                   "marginBottom": 4,
@@ -5142,7 +5142,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -5233,7 +5233,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -5269,7 +5269,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -5392,7 +5392,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -5430,7 +5430,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -5465,7 +5465,7 @@ exports[`<StepGroup /> (native) should render with default props 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -5562,7 +5562,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "height": 6,
@@ -5595,7 +5595,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -5686,7 +5686,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -5722,7 +5722,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -5757,7 +5757,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
           style={
             [
               {
-                "borderLeftColor": "hsla(206, 10%, 29%, 0.12)",
+                "borderLeftColor": "hsla(222, 47%, 11%, 0.126)",
                 "borderLeftStyle": "solid",
                 "borderLeftWidth": 2,
                 "flexBasis": 0,
@@ -5837,7 +5837,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -5875,7 +5875,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -5910,7 +5910,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -5960,13 +5960,13 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                   style={
                     [
                       {
-                        "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                        "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                         "height": 20,
                         "textAlign": "left",
                       },
                       {
                         "alignSelf": "center",
-                        "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                        "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                         "borderRadius": 9999,
                         "display": "flex",
                         "flexWrap": "nowrap",
@@ -6013,7 +6013,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                       style={
                         [
                           {
-                            "color": "hsla(200, 10%, 18%, 1)",
+                            "color": "hsla(218, 50%, 6%, 1)",
                             "fontFamily": "Inter",
                             "fontSize": 12,
                             "fontStyle": "normal",
@@ -6106,7 +6106,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                  "backgroundColor": "hsla(214, 32%, 91%, 1)",
                   "borderRadius": 1,
                   "height": 2,
                   "marginBottom": 4,
@@ -6138,7 +6138,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -6229,7 +6229,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -6265,7 +6265,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -6388,7 +6388,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -6426,7 +6426,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -6461,7 +6461,7 @@ exports[`<StepGroup /> (native) should render with trailing badge 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
@@ -6580,7 +6580,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "hsla(204, 8%, 88%, 1)",
+                  "backgroundColor": "hsla(214, 32%, 91%, 1)",
                   "borderRadius": 1,
                   "height": 2,
                   "marginBottom": 4,
@@ -6612,7 +6612,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "hsla(206, 10%, 29%, 0.09)",
+                  "backgroundColor": "hsla(222, 47%, 11%, 0.09)",
                   "borderRadius": 50,
                   "display": "flex",
                   "height": 20,
@@ -6703,7 +6703,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
                       cy="5"
                       fill={
                         {
-                          "payload": 4280889138,
+                          "payload": 4278717719,
                           "type": 0,
                         }
                       }
@@ -6739,7 +6739,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
                     style={
                       [
                         {
-                          "color": "hsla(200, 10%, 18%, 1)",
+                          "color": "hsla(218, 50%, 6%, 1)",
                           "fontFamily": "Inter",
                           "fontSize": 14,
                           "fontStyle": "normal",
@@ -6862,7 +6862,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(200, 10%, 18%, 1)",
+                      "color": "hsla(218, 50%, 6%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontStyle": "normal",
@@ -6900,7 +6900,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontStyle": "normal",
@@ -6935,7 +6935,7 @@ exports[`<StepGroup /> (native) should support data-analytics attributes 1`] = `
                 style={
                   [
                     {
-                      "color": "hsla(204, 9%, 42%, 1)",
+                      "color": "hsla(215, 25%, 27%, 1)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontStyle": "normal",
