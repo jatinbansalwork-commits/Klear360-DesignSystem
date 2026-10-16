@@ -2,6 +2,7 @@ import React from 'react';
 import { componentIds } from './componentIds';
 import type { TreeViewItemProps } from './types';
 import { TreeViewParentContext, useTreeViewContext } from './useTreeView';
+import { useTreeViewStoreSelector } from './useTreeViewStore';
 import { TreeViewChevron } from './TreeViewChevron.web';
 import type { TreeViewChevronState } from './TreeViewChevron.web';
 import { StyledTreeViewRow } from './StyledTreeViewRow.web';
@@ -53,9 +54,6 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
     selectionType,
     isInsideDropdown,
     nodeMap,
-    selectedValuesSet,
-    expandedValues,
-    tabbableValue,
     onNodeSelect,
     onNodeExpandToggle,
     onDropdownNodeClick,
@@ -80,12 +78,29 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
 
   const node = nodeMap[props.value];
 
+  // Selector-based subscriptions to TreeView's volatile state (see useTreeViewStore.ts):
+  // this row only re-renders when ITS OWN derived slice changes - e.g. selecting a leaf
+  // elsewhere in the tree produces a new `selectedValuesSet`, but `has(props.value)` here
+  // still evaluates to the same boolean, so React skips re-rendering this row. Called
+  // unconditionally (before the `!node` early return below) to satisfy the Rules of Hooks
+  const isExpanded = useTreeViewStoreSelector((state) => state.expandedValues.has(props.value));
+  const isTabbable = useTreeViewStoreSelector(
+    (state) => !isInsideDropdown && state.tabbableValue === props.value,
+  );
+  const branchSelectionState = useTreeViewStoreSelector((state) =>
+    selectionType === 'multiple' && node?.isBranch
+      ? getBranchSelectionState(node, state.selectedValuesSet)
+      : undefined,
+  );
+  const isSelectedLeafOrSingle = useTreeViewStoreSelector((state) =>
+    state.selectedValuesSet.has(props.value),
+  );
+
   if (!node) {
     // can only happen with invalid usage (e.g. duplicate values in production builds)
     return null;
   }
 
-  const isExpanded = expandedValues.has(props.value);
   const chevronState: TreeViewChevronState = !node.isBranch
     ? 'leaf'
     : node.isLoading
@@ -94,18 +109,13 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
     ? 'expanded'
     : 'collapsed';
 
-  const branchSelectionState =
-    selectionType === 'multiple' && node.isBranch
-      ? getBranchSelectionState(node, selectedValuesSet)
-      : undefined;
-
   const isSelected =
     node.isSelectable &&
     (selectionType === 'multiple'
       ? node.isBranch
         ? branchSelectionState === 'all'
-        : selectedValuesSet.has(props.value)
-      : selectedValuesSet.has(props.value));
+        : isSelectedLeafOrSingle
+      : isSelectedLeafOrSingle);
 
   const handleChevronClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     // chevron click toggles expansion, never selects (B5)
@@ -240,7 +250,7 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
               ? `${dropdownBaseId}-${node.optionIndex}`
               : undefined
           }
-          tabIndex={!isInsideDropdown && tabbableValue === props.value ? 0 : -1}
+          tabIndex={isTabbable ? 0 : -1}
           isSelected={
             selectionType === 'single' && !node.isDisabled && node.isSelectable
               ? isSelected
@@ -290,7 +300,7 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
                   ? branchSelectionState === 'some'
                     ? 'mixed'
                     : branchSelectionState === 'all'
-                  : selectedValuesSet.has(props.value)
+                  : isSelectedLeafOrSingle
                 : undefined,
             disabled: node.isDisabled ? true : undefined,
           })}
@@ -335,7 +345,11 @@ const _TreeViewItem = (props: TreeViewItemProps): React.ReactElement | null => {
  * </TreeView>
  * ```
  */
-const TreeViewItem = assignWithoutSideEffects(_TreeViewItem, {
+// Effective now that TreeView's own context only changes on structural tree updates
+// (see TreeView.web.tsx / useTreeViewStore.ts) - selection, expansion, and roving-tabindex
+// state are read through per-row selector subscriptions instead of forcing every row to
+// re-render on every interaction. See TreeView/_decisions/decisions.md, "React.memo evaluation"
+const TreeViewItem = assignWithoutSideEffects(React.memo(_TreeViewItem), {
   componentId: componentIds.TreeViewItem,
   displayName: componentIds.TreeViewItem,
 });

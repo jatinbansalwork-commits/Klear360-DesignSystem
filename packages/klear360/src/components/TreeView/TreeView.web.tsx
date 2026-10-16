@@ -4,6 +4,8 @@ import { componentIds } from './componentIds';
 import type { TreeViewProps, TreeViewNodeType } from './types';
 import { TreeViewContext } from './useTreeView';
 import type { TreeViewContextType } from './useTreeView';
+import { createTreeViewStore, TreeViewStoreContext } from './useTreeViewStore';
+import type { TreeViewStoreType } from './useTreeViewStore';
 import {
   getDisplayOverride,
   getBranchSelectionState,
@@ -17,6 +19,7 @@ import {
 } from './treeViewUtils';
 import { TreeViewMountScopeContext, useTreeViewMountScopeRef } from './TreeViewAnimator.web';
 import { useDropdown } from '~components/Dropdown/useDropdown';
+import type { OptionsType } from '~components/Dropdown/useDropdown';
 import { useBottomSheetContext } from '~components/BottomSheet/BottomSheetContext';
 import { getBaseListBoxWrapperStyles } from '~components/ActionList/styles/getBaseListBoxWrapperStyles';
 import BaseBox from '~components/Box/BaseBox';
@@ -26,6 +29,7 @@ import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { logger, throwKlear360Error } from '~utils/logger';
 import { useId } from '~utils/useId';
+import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 
 const StyledTreeViewListBoxWrapper = styled(BaseBox)((props) => ({
   overflowY: 'auto',
@@ -112,7 +116,30 @@ const _TreeView = ({
     return merged;
   }, [orderedNodes, uncontrolledExpandedValues]);
 
-  const onNodeExpandToggle = (nodeValue: string): void => {
+  // `onNodeExpandToggle` / `onNodeSelect` / `onDropdownNodeClick` are published through
+  // TreeViewContext (see `contextValue` below), so they must keep a STABLE identity across
+  // renders - otherwise every selection/expansion change would produce a new context value
+  // and re-render every mounted row regardless of the TreeViewStore split (React.memo does
+  // not protect against a context value change). They read current state off `latestRef`
+  // (always refreshed, see near the `return` statement) instead of closing over render-scoped
+  // variables directly, so `React.useCallback(..., [])` can give them that stable identity
+  // while still always seeing up-to-date tree state when they are invoked
+  const latestRef = React.useRef<{
+    nodeMap: Record<string, TreeViewNodeType>;
+    orderedNodes: TreeViewNodeType[];
+    rootValues: string[];
+    options: OptionsType;
+    expandedValues: Set<string>;
+    standaloneSelectedValues: Set<string>;
+    isControlledSelection: boolean;
+    effectiveSelectionType: 'single' | 'multiple';
+    name?: string;
+    onChange?: TreeViewProps['onChange'];
+    dropdown: ReturnType<typeof useDropdown>;
+  }>();
+
+  const onNodeExpandToggle = React.useCallback((nodeValue: string): void => {
+    const { nodeMap, expandedValues } = latestRef.current!;
     const node = nodeMap[nodeValue];
     if (!node?.isBranch || node.isDisabled) {
       return;
@@ -130,7 +157,7 @@ const _TreeView = ({
       });
     }
     node.onExpandChange?.({ isExpanded: !isExpanded });
-  };
+  }, []);
 
   // ---------------- selection (standalone: B11 - a Set of selected leaf values) ----------------
   const isControlledSelection = !isInsideDropdown && value !== undefined;
@@ -171,40 +198,65 @@ const _TreeView = ({
     });
   };
 
-  const onNodeSelect = (nodeValue: string): void => {
-    const node = nodeMap[nodeValue];
-    if (!node || node.isDisabled || node.kind === 'loadMore') {
-      return;
-    }
-
-    // a branch that opted out of selection toggles expansion instead (row click / Enter / Space)
-    if (node.isBranch && !node.isSelectable) {
-      onNodeExpandToggle(nodeValue);
-      return;
-    }
-
-    let next: Set<string>;
-    if (effectiveSelectionType === 'single') {
-      // radio semantics (B1) - reselecting the current selection is a no-op
-      if (standaloneSelectedValues.has(nodeValue) && standaloneSelectedValues.size === 1) {
+  const onNodeSelect = React.useCallback(
+    (nodeValue: string): void => {
+      const {
+        nodeMap,
+        effectiveSelectionType,
+        standaloneSelectedValues,
+        isControlledSelection,
+        orderedNodes,
+        rootValues,
+        name,
+        onChange,
+      } = latestRef.current!;
+      const node = nodeMap[nodeValue];
+      if (!node || node.isDisabled || node.kind === 'loadMore') {
         return;
       }
-      next = new Set([nodeValue]);
-    } else {
-      if (node.isBranch && node.selectableLeafValues.length === 0) {
+
+      // a branch that opted out of selection toggles expansion instead (row click / Enter / Space)
+      if (node.isBranch && !node.isSelectable) {
+        onNodeExpandToggle(nodeValue);
         return;
       }
-      next = getSelectionOnNodeToggle({ node, selectedValues: standaloneSelectedValues });
-    }
 
-    if (!isControlledSelection) {
-      setUncontrolledSelectedValues(next);
-    }
-    emitStandaloneChange(next);
-  };
+      let next: Set<string>;
+      if (effectiveSelectionType === 'single') {
+        // radio semantics (B1) - reselecting the current selection is a no-op
+        if (standaloneSelectedValues.has(nodeValue) && standaloneSelectedValues.size === 1) {
+          return;
+        }
+        next = new Set([nodeValue]);
+      } else {
+        if (node.isBranch && node.selectableLeafValues.length === 0) {
+          return;
+        }
+        next = getSelectionOnNodeToggle({ node, selectedValues: standaloneSelectedValues });
+      }
+
+      if (!isControlledSelection) {
+        setUncontrolledSelectedValues(next);
+      }
+
+      if (effectiveSelectionType === 'single') {
+        onChange?.({ name, values: [...next], selectedGroups: [] });
+      } else {
+        onChange?.({
+          name,
+          values: getSelectedLeafValues(orderedNodes, next),
+          selectedGroups: getSelectedGroups({ rootValues, nodeMap, selectedValues: next }),
+        });
+      }
+    },
+    [onNodeExpandToggle],
+  );
 
   // ---------------- dropdown mode: selection routing (§6.2) ----------------
-  const toggleBranchInDropdown = (node: TreeViewNodeType): void => {
+  // stable (see latestRef comment above) - shared by onDropdownNodeClick below and by the
+  // dropdown keyboard controller (handleOptionSelect) further down
+  const toggleBranchInDropdown = React.useCallback((node: TreeViewNodeType): void => {
+    const { nodeMap, dropdown } = latestRef.current!;
     // multiple mode invariant: branch indices never enter selectedIndices
     const leafIndices = node.selectableLeafValues
       .map((leafValue) => nodeMap[leafValue]?.optionIndex ?? -1)
@@ -216,42 +268,43 @@ const _TreeView = ({
       dropdown.selectedIndices.includes(optionIndex),
     );
     dropdown.selectOptionsBatch(leafIndices, areAllSelected ? 'deselect' : 'select');
-  };
+  }, []);
 
-  const onDropdownNodeClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    clickedValue: string,
-  ): void => {
-    const node = nodeMap[clickedValue];
-    if (!node || node.isDisabled || node.optionIndex < 0) {
-      return;
-    }
+  const onDropdownNodeClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>, clickedValue: string): void => {
+      const { nodeMap, options, effectiveSelectionType, dropdown } = latestRef.current!;
+      const node = nodeMap[clickedValue];
+      if (!node || node.isDisabled || node.optionIndex < 0) {
+        return;
+      }
 
-    if (node.kind === 'loadMore') {
-      options[node.optionIndex].onClickTrigger?.(true);
-      dropdown.setActiveIndex(node.optionIndex);
-      dropdown.triggererRef.current?.focus();
-      return;
-    }
+      if (node.kind === 'loadMore') {
+        options[node.optionIndex].onClickTrigger?.(true);
+        dropdown.setActiveIndex(node.optionIndex);
+        dropdown.triggererRef.current?.focus();
+        return;
+      }
 
-    // non-selectable branch: toggle expansion, keep the overlay open, never enter selectedIndices
-    if (node.isBranch && !node.isSelectable) {
-      onNodeExpandToggle(node.value);
-      dropdown.setActiveIndex(node.optionIndex);
-      dropdown.triggererRef.current?.focus();
-      return;
-    }
+      // non-selectable branch: toggle expansion, keep the overlay open, never enter selectedIndices
+      if (node.isBranch && !node.isSelectable) {
+        onNodeExpandToggle(node.value);
+        dropdown.setActiveIndex(node.optionIndex);
+        dropdown.triggererRef.current?.focus();
+        return;
+      }
 
-    if (effectiveSelectionType === 'multiple' && node.isBranch) {
-      toggleBranchInDropdown(node);
-      dropdown.setActiveIndex(node.optionIndex);
-      dropdown.triggererRef.current?.focus();
-      return;
-    }
+      if (effectiveSelectionType === 'multiple' && node.isBranch) {
+        toggleBranchInDropdown(node);
+        dropdown.setActiveIndex(node.optionIndex);
+        dropdown.triggererRef.current?.focus();
+        return;
+      }
 
-    // leaf click (and branch click in single mode) goes through the standard path
-    dropdown.onOptionClick(event, node.optionIndex);
-  };
+      // leaf click (and branch click in single mode) goes through the standard path
+      dropdown.onOptionClick(event, node.optionIndex);
+    },
+    [onNodeExpandToggle, toggleBranchInDropdown],
+  );
 
   // ---------------- registration (§6.1) + uncontrolled remap + B6 inheritance ----------------
   const previousPropertiesRef = React.useRef(properties);
@@ -423,9 +476,13 @@ const _TreeView = ({
 
   // ---------------- focus management ----------------
   const rowRefs = React.useRef<Record<string, HTMLElement | null>>({});
-  const registerRowRef = (nodeValue: string, element: HTMLElement | null): void => {
-    rowRefs.current[nodeValue] = element;
-  };
+  // stable (see latestRef comment above) - `rowRefs` is itself a ref, so no latestRef indirection is needed
+  const registerRowRef = React.useCallback(
+    (nodeValue: string, element: HTMLElement | null): void => {
+      rowRefs.current[nodeValue] = element;
+    },
+    [],
+  );
 
   const [focusedValue, setFocusedValue] = React.useState<string | null>(null);
   const visibleValues = React.useMemo(
@@ -557,34 +614,63 @@ const _TreeView = ({
     }
   };
 
+  // refresh latestRef on every render, after everything it needs has been computed - the
+  // stable callbacks above only ever read through this ref, never close over the variables
+  // directly, so they always see this render's values despite never being recreated
+  latestRef.current = {
+    nodeMap,
+    orderedNodes,
+    rootValues,
+    options,
+    expandedValues,
+    standaloneSelectedValues,
+    isControlledSelection,
+    effectiveSelectionType,
+    name,
+    onChange,
+    dropdown,
+  };
+
+  // ---------------- volatile state store (selection / expansion / roving tabindex) ----------------
+  // One store per TreeView instance, created once; only `setState` is called on later renders.
+  // See useTreeViewStore.ts for why this lives outside TreeViewContext
+  const storeRef = React.useRef<TreeViewStoreType>();
+  if (!storeRef.current) {
+    storeRef.current = createTreeViewStore({ selectedValuesSet, expandedValues, tabbableValue });
+  }
+  const store = storeRef.current;
+  useIsomorphicLayoutEffect(() => {
+    store.setState({ selectedValuesSet, expandedValues, tabbableValue });
+  }, [store, selectedValuesSet, expandedValues, tabbableValue]);
+
   // ---------------- context ----------------
+  // structural/stable only (selectionType, isInsideDropdown, baseId, nodeMap change rarely;
+  // the 3 callbacks and registerRowRef never change identity, setFocusedValue is a setState
+  // setter) - so this object itself stays referentially stable across selection/expansion
+  // changes, and TreeViewItem/TreeViewLoadMore no longer re-render from context propagation
+  // on every interaction (see TreeView/_decisions/decisions.md, "React.memo evaluation")
   const contextValue = React.useMemo<TreeViewContextType>(
     () => ({
       selectionType: effectiveSelectionType,
       isInsideDropdown,
       baseId,
       nodeMap,
-      selectedValuesSet,
-      expandedValues,
-      tabbableValue,
       onNodeSelect,
       onNodeExpandToggle,
       onDropdownNodeClick,
       registerRowRef,
       setFocusedValue,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       effectiveSelectionType,
       isInsideDropdown,
       baseId,
       nodeMap,
-      selectedValuesSet,
-      expandedValues,
-      tabbableValue,
-      dropdown.selectedIndices,
-      dropdown.activeIndex,
-      dropdown.isKeydownPressed,
+      onNodeSelect,
+      onNodeExpandToggle,
+      onDropdownNodeClick,
+      registerRowRef,
+      setFocusedValue,
     ],
   );
 
@@ -610,16 +696,18 @@ const _TreeView = ({
 
   return (
     <TreeViewContext.Provider value={contextValue}>
-      <BaseBox
-        {...metaAttribute({ name: MetaConstants.TreeView, testID })}
-        {...makeAnalyticsAttribute(rest)}
-      >
-        {isInsideDropdown ? (
-          <StyledTreeViewListBoxWrapper>{treeContent}</StyledTreeViewListBoxWrapper>
-        ) : (
-          treeContent
-        )}
-      </BaseBox>
+      <TreeViewStoreContext.Provider value={store}>
+        <BaseBox
+          {...metaAttribute({ name: MetaConstants.TreeView, testID })}
+          {...makeAnalyticsAttribute(rest)}
+        >
+          {isInsideDropdown ? (
+            <StyledTreeViewListBoxWrapper>{treeContent}</StyledTreeViewListBoxWrapper>
+          ) : (
+            treeContent
+          )}
+        </BaseBox>
+      </TreeViewStoreContext.Provider>
     </TreeViewContext.Provider>
   );
 };

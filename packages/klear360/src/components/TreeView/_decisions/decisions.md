@@ -158,26 +158,21 @@ The trigger shows the **smallest describing set**: topmost fully-selected branch
 
 ## React.memo evaluation
 
-As part of a repo-wide P2 audit of `React.memo` usage, `TreeViewItem` looked like a strong
-candidate at first glance - a per-node component that can render many times for a large tree,
-analogous to `TableBody`/`TableHeader` rows and `ActionListBox` items (which already use
-`React.memo`).
+**Finding (P2 systematic `React.memo` audit).** `TreeViewItem` reads `selectedValuesSet`, `expandedValues`, `tabbableValue`, and the row action callbacks straight off `useTreeViewContext()` (plus `activeIndex` from `useDropdown()`). A bare `React.memo(TreeViewItem)` would have been a no-op: `memo` only blocks a re-render triggered by a parent passing identical props - it does nothing for a re-render triggered by the component's own context subscription changing. Since `TreeViewContext` carried tree-wide selection/expansion state as a single value object, selecting or expanding any one node re-rendered **every** `TreeViewItem` in the tree, memo or not.
 
-It isn't, as things are currently wired: `_TreeViewItem` reads `selectedValuesSet`,
-`expandedValues`, `tabbableValue`, and more directly from `useTreeViewContext()` (plus
-`activeIndex` from `useDropdown()`). `React.memo` only skips a re-render triggered by a *parent*
-passing identical props - it does nothing to stop a re-render triggered by the component's own
-context subscription changing. Since this context carries tree-wide selection/expansion state,
-selecting or expanding any single node anywhere in the tree would still re-render every
-`TreeViewItem` regardless of a `React.memo` wrapper, because the context value itself changes, not
-just the props a parent passes down.
+**Profiling.** Per `CONTRIBUTING.md`'s "Performance & Profiling" section, this should be a React DevTools Profiler session against a live app rather than a guess. That needs an interactive browser, which this investigation didn't have; the section's own fallback for a non-interactive repro - wrapping the component in [`<Profiler>`](https://react.dev/reference/react/Profiler) - was adapted into a reproducible jest measurement instead: a 110-row tree (10 branches × 10 leaves), selecting one leaf or collapsing one branch, counting how many rows' `TreeViewChevron` (rendered unconditionally by every row) actually re-rendered. Before the fix below: **110 / 110 rows re-rendered on a single leaf selection, and 110 / 110 on a single branch collapse** - i.e. every mounted row, every time, confirming this was a real, measurable O(tree size) cost per interaction rather than a theoretical one, not something to fix on theory alone. (Collapsed branches stay mounted - `TreeViewGroupAnimator` hides them with CSS `grid-template-rows`/`visibility`, it does not unmount them - so tree size, not visible row count, is what sets the blast radius.)
 
-Making individual items actually skip re-renders would need the context value split so each item
-subscribes only to the slice relevant to it (e.g. "is *this* node's `value` in `selectedValuesSet`"
-resolved before the context boundary, not inside each item) - a materially larger refactor than
-adding `React.memo`, out of scope here. Not implementing a memo wrapper that wouldn't actually
-change anything; see the "Performance & Profiling" section in the repo root's `CONTRIBUTING.md`
-for why - profile before memoizing, not the reverse.
+**Chosen approach: selector-based subscriptions (option 2), not a context split (option 1).** Splitting `TreeViewContext` into, say, a selection context and an expansion context would not have helped much: nearly every row needs *both* `expandedValues` (to compute its own chevron state) and `selectedValuesSet` (to compute its own checked state), so splitting the container doesn't reduce the blast radius - every row still subscribes to whichever context holds the Set that just changed, and a `Set` change is an all-consumers-re-render event regardless of how many contexts it's spread across. The actual fix needed each row to compare only **its own slice** of that state (`set.has(this row's value)`) and skip rendering when that slice is unchanged - a `React.useSyncExternalStore`-based selector hook (`useTreeViewStoreSelector`, in `useTreeViewStore.ts`) does exactly this, with no new dependency (React 18 ships `useSyncExternalStore`). `TreeViewContext` now only carries structural/rarely-changing state (`selectionType`, `isInsideDropdown`, `baseId`, `nodeMap`) and the row action callbacks; `TreeViewStoreContext` carries a small external store (`selectedValuesSet`, `expandedValues`, `tabbableValue`) that rows subscribe to per-slice.
+
+Two things had to hold for this to actually work, not just look like it does:
+- The context's own 3 callbacks (`onNodeSelect`, `onNodeExpandToggle`, `onDropdownNodeClick`) were previously plain closures recreated on every render, which alone would have kept producing a new `contextValue` object every render (and so re-rendering every consumer) even after the volatile Sets moved out of it. They're now `React.useCallback(..., [])` reading current state through a `latestRef` (refreshed every render, same "publish during render, not in an effect" pattern the file already used for `dropdown.treeViewControllerRef`), so they have a genuinely stable identity for the component's lifetime.
+- `TreeViewItem` and `TreeViewLoadMore` are wrapped in `React.memo` now that it's actually effective - stable context value, stable callbacks, and selector-based reads of the one tree-wide state that does still change per-interaction.
+
+**SSR.** `useSyncExternalStore` needs a `getServerSnapshot` argument (otherwise React logs "Missing getServerSnapshot" and falls back to client rendering) and the store-sync effect must not use plain `useLayoutEffect` (warns on the server). `useTreeViewStoreSelector` passes the same snapshot getter as both the client and server argument - the store's state at render time already **is** its initial state during SSR, since nothing mutates it before hydration - and `TreeView.web.tsx` syncs the store through the existing `useIsomorphicLayoutEffect` util instead. Caught by `TreeView.ssr.test.tsx`.
+
+**Verified via `TreeViewItem.renderScope.web.test.tsx`**: selecting a leaf, collapsing a branch, and moving roving-tabindex focus each leave an unrelated row's rendered DOM node (asserted by reference identity) untouched, in addition to the full `TreeView.web.test.tsx` / `TreeViewDropdown.web.test.tsx` / `TreeView.ssr.test.tsx` suites passing unchanged (B1-B12 contracts, both standalone and Dropdown mode). One pre-existing flaky test (`should support controlled selection through the trigger value prop`, a real `aria-checked` timing issue in `Dropdown`'s controlled-selection sync, unrelated to this change) was confirmed to fail identically on the unmodified baseline and is left as-is.
+
+**Explicitly out of scope.** `activeIndex` and `isKeydownPressed` (dropdown-mode active-row highlight / keydown styling) come from `Dropdown`'s own context (`useDropdown()`), not `TreeViewContext`, and are not addressed here - `Dropdown` is shared infrastructure behind `ActionList`, `AutoComplete`, `SelectInput`, etc., and applying the same selector pattern there is a separate, higher-blast-radius change that belongs in its own investigation if `Dropdown`-mode TreeView performance at scale turns out to need it.
 
 ## Out of scope for v1
 
