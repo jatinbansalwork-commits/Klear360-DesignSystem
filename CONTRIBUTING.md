@@ -161,6 +161,15 @@ We also have visual tests that run on every PR. So if your PR changes / breaks a
 
 We support writing interaction tests using playwright. You can check example interaction tests of toast at [Toast.test.stories.tsx](./packages/klear360/src/components/Toast/__tests__/Toast.test.stories.tsx). You can run these tests by visiting the Interaction Tests section in klear360 documentation E.g. [Toast Stacking Interaction Test on Documentation](https://klear360.klear.com/?path=/story/components-interaction-tests-toast--toast-stacking)
 
+Toast above is just one example to read first - there are 17 `*.test.stories.tsx` files across the
+package (DatePicker, Dropdown, FileUpload, AutoComplete, TimePicker, Table, Popover, Carousel,
+TabNav, Menu, Drawer, Tooltip, PhoneNumberInput, SideNav, CitedFieldRow, BaseMotion, Toast). This
+is deliberate, not incidental: every one of them involves something jsdom + RTL genuinely can't
+verify - real floating-ui positioning, actual CSS animation/transition timing, or drag gestures -
+unlike most components (Modal, Accordion, Checkbox, Tabs, ...), which get thorough coverage from
+jsdom unit tests alone and don't need a real browser. Reach for an interaction test only when a
+jsdom limitation like the above actually applies, not as a default for every stateful component.
+
 ## Performance & Profiling
 
 ### Runtime profiling
