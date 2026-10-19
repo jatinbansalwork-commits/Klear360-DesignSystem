@@ -710,3 +710,16 @@ We might need to make custom tooltip. Like ChartsToolTip. Since the tooltip woul
 - [Recharts](https://recharts.org/)
 - [Shadcn/ui](https://ui.shadcn.com/docs/components/chart)
 - [Material UI](https://mui.com/material-ui/react-chart/)
+
+## 6\. Known duplication: the geometry-recompute observer effect
+
+**Finding (P1 custom-hooks-extraction audit).** `AreaChart.web.tsx`, `LineChart.web.tsx`, and `useReferenceBand.tsx` each independently implement the same ~25-line effect: a `MutationObserver` (`childList`/`subtree`/`attributes`/`attributeFilter: ['d']`) that filters out mutations originating from the component's own overlay layer (`.klear360-null-bridge-layer` for Area/LineChart, `.${REFERENCE_BAND_LAYER_CLASS}` for the reference band) and debounces the rest via `requestAnimationFrame`, plus a `ResizeObserver`, both triggering the same recompute function (`computeBridges`/`computeBands`), with an identical `cleanups: Array<() => void>` + `typeof X !== 'undefined'` guard pattern. `AreaChart` and `LineChart`'s versions are near byte-identical - only the CSS class and the recompute function's name differ.
+
+This exists because all three need to recompute SVG geometry (bridge paths over null/gap segments, or reference-band paths) only after Recharts has actually painted the DOM - which happens asynchronously inside `ResponsiveContainer`, and keeps shifting during the draw-in animation - so "observe the DOM for mutations + observe for resize, debounced, self-mutation-filtered" is a real, repeated need, not a one-off.
+
+**Not extracted into a shared hook yet.** This is genuine duplication worth a `useDebouncedGeometryObserver(containerRef, { recompute, ignoreMutationsFrom, deps })`-shaped hook, but it wasn't done as part of this audit because:
+
+- The logic is animation-timing-sensitive (draw-in animations, hover-triggered tooltip/crosshair DOM churn that must NOT re-trigger a recompute) and has no automated test coverage for the timing/debounce behavior itself (snapshot tests cover rendered output, not the rAF-coalescing behavior) - a refactor here needs to be verified against the actual rendered, animated chart in a browser, not just a type-check and a snapshot diff.
+- It's an internal-only change (no public prop surface touched), so it carries no breaking-change risk, but a subtle behavioral slip in the debounce or mutation-filter logic would show up as visual flicker or a missed geometry update, not a type error or a failing unit test - exactly the kind of regression this audit's own discipline (verify before claiming, especially for anything performance/animation-sensitive) says shouldn't be rushed.
+
+Tracked as a separate follow-up task rather than fixed inline.
