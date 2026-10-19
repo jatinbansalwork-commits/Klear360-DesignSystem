@@ -1,3 +1,22 @@
+<script>
+  // Vite content-hashes each lazily-loaded chunk (e.g. docs/story modules). When a new
+  // Storybook build is deployed over an existing one, a tab that's still running the
+  // previous build's JS will try to dynamically import a chunk URL that no longer
+  // exists, throwing "Failed to fetch dynamically imported module" into Storybook's
+  // error boundary. Recover automatically by reloading once, which re-fetches the
+  // current build's HTML/manifest with up-to-date chunk URLs.
+  (function () {
+    var RELOAD_GUARD_KEY = 'klear360-storybook-preview-chunk-reload-at';
+    window.addEventListener('vite:preloadError', function (event) {
+      event.preventDefault();
+      var lastReload = Number(sessionStorage.getItem(RELOAD_GUARD_KEY) || 0);
+      if (Date.now() - lastReload > 10000) {
+        sessionStorage.setItem(RELOAD_GUARD_KEY, String(Date.now()));
+        window.location.reload();
+      }
+    });
+  })();
+</script>
 <link href="https://cdn.jsdelivr.net/npm/@klear/klear360/fonts.css" rel="stylesheet" />
 <!-- iOS zoom prevention meta tag for mobile input focus -->
 <meta
