@@ -548,8 +548,8 @@
   {
     "name": "GenUIProvider, useGenUI, useGenUIAction, useGenUIComponentActions, GenUISchemaRenderer",
     "passed": true,
-    "size": 290169,
+    "size": 290208,
     "sizeLimit": 2000000,
-    "loading": 5.66736328125
+    "loading": 5.668125
   }
 ]
