@@ -752,6 +752,22 @@ Some libraries we evaluated
 
 <br/><br/>
 
+## Known API inconsistency: `onOpenChange` signature
+
+A P3 component-architecture audit (comparing callback signatures across every overlay component,
+not just names) found `onOpenChange?: (isOpen: boolean) => void` here is the outlier against an
+object-wrapped `onOpenChange?: ({ isOpen }: { isOpen: boolean }) => void` convention used by six
+other overlay components: `DatePicker`, `Popover`, `Tooltip`, `Menu`, `TimePicker`, and
+`SpotlightPopoverTour`. A consumer moving between these very similar overlay components has to
+remember which shape each one expects, and can't share one handler across them.
+
+Not changed here - this is a breaking change to a public prop (confirmed consumed internally by
+`TextInput`, `SearchInput`, and `LightBox`, each passing a bare-boolean handler to match
+`Dropdown`'s current shape; real-world consumer impact is unknown and likely larger). Needs the
+same treatment as other breaking prop renames in this repo (deprecation path or codemod - see
+`Table`'s `sortable` → `isSortable` finding for the established pattern), not a drive-by change.
+Tracked as a separate task.
+
 ## References
 
 - [Primer React's ActionMenu](https://primer.style/react/storybook/?path=/story/deprecated-components-actionmenu--action-menu-with-external-anchor)
