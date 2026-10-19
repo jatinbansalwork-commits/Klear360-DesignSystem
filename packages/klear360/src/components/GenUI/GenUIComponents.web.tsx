@@ -346,14 +346,24 @@ const MarkdownCodeBlockCode = styled.code`
   border: none;
 `;
 
-const MarkdownCodeBlockCopyButton = ({ code }: { code: React.ReactNode }) => {
+const COPIED_FEEDBACK_DURATION_MS = 2000;
+
+// Shared by MarkdownCodeBlockCopyButton and Copyable - both show a transient "copied" state
+// for the same duration after writing the same kind of text value to the clipboard.
+const useCopyToClipboard = (value: string): { copied: boolean; handleCopy: () => void } => {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(String(code ?? ''));
+  const handleCopy = (): void => {
+    void navigator.clipboard.writeText(value);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), COPIED_FEEDBACK_DURATION_MS);
   };
+
+  return { copied, handleCopy };
+};
+
+const MarkdownCodeBlockCopyButton = ({ code }: { code: React.ReactNode }) => {
+  const { copied, handleCopy } = useCopyToClipboard(String(code ?? ''));
 
   return (
     <MarkdownCodeBlockActions>
@@ -1103,13 +1113,7 @@ const RenderChartComponent = memo(
 // Primitive copy button — just the icon + tooltip, no text label.
 // Compose this inside any cell that needs copy behaviour.
 const Copyable = ({ value }: { value?: string }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(value ?? '');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, handleCopy } = useCopyToClipboard(value ?? '');
 
   return (
     <Tooltip content={copied ? 'Copied!' : 'Copy'} placement="top">
