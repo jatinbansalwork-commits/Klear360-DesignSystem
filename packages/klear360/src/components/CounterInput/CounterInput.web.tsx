@@ -125,6 +125,7 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
     const lastActionRef = useRef<'increment' | 'decrement' | null>(null);
     const previousValueRef = useRef<number | undefined>(internalValue);
     const containerRef = useRef<HTMLDivElement>(null);
+    const animationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const rawCounterValue = internalValue ?? min;
     const counterValueDigitCount =
       Math.max(2, String(Math.abs(rawCounterValue)).length) + (rawCounterValue < 0 ? 1 : 0);
@@ -180,13 +181,27 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
           lastActionRef.current === 'increment'
             ? '__klear360-counter-input-animate-slide-up'
             : '__klear360-counter-input-animate-slide-down';
+        if (animationTimeoutRef.current !== null) {
+          clearTimeout(animationTimeoutRef.current);
+        }
         setAnimationClass(animationClass);
-        setTimeout(() => setAnimationClass(''), 300);
+        animationTimeoutRef.current = setTimeout(() => {
+          setAnimationClass('');
+          animationTimeoutRef.current = null;
+        }, 300);
         lastActionRef.current = null;
       }
 
       previousValueRef.current = internalValue;
     }, [internalValue, isLoading]);
+
+    useEffect(() => {
+      return (): void => {
+        if (animationTimeoutRef.current !== null) {
+          clearTimeout(animationTimeoutRef.current);
+        }
+      };
+    }, []);
 
     const handleInputChange = useCallback(
       ({ value: inputValue }: { value?: string }) => {

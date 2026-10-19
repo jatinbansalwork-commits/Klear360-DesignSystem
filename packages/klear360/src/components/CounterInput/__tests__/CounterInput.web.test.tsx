@@ -1,4 +1,6 @@
+import React from 'react';
 import userEvent from '@testing-library/user-event';
+import { act, fireEvent } from '@testing-library/react';
 import { CounterInput } from '../CounterInput';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import assertAccessible from '~utils/testing/assertAccessible.web';
@@ -71,6 +73,52 @@ describe('<CounterInput />', () => {
     await user.click(decrementButton);
 
     expect(onChange).toHaveBeenCalledWith({ value: 4 });
+  });
+
+  it('should not let a stale animation timeout clear a newer animation early on rapid clicks', () => {
+    jest.useFakeTimers();
+
+    const ControlledCounterInput = (): React.ReactElement => {
+      const [value, setValue] = React.useState(5);
+      return (
+        <CounterInput
+          label="Quantity"
+          value={value}
+          onChange={({ value: nextValue }) => setValue(nextValue as number)}
+        />
+      );
+    };
+
+    const { getByRole, container } = renderWithTheme(<ControlledCounterInput />);
+    const incrementButton = getByRole('button', { name: /increment/i });
+    const numberWrapper = container.querySelector(
+      '.__klear360-counter-input-number-wrapper',
+    ) as HTMLElement;
+
+    fireEvent.click(incrementButton);
+    expect(numberWrapper).toHaveClass('__klear360-counter-input-animate-slide-up');
+
+    // Second click lands before the first animation's 300ms timeout fires.
+    act(() => {
+      jest.advanceTimersByTime(100);
+    });
+    fireEvent.click(incrementButton);
+
+    // The first click's timeout would have fired here (100 + 300 = 400ms since it started,
+    // 300ms since the second click). Without clearing it, it would wipe the class the second
+    // animation is still using, 100ms early.
+    act(() => {
+      jest.advanceTimersByTime(300 - 100);
+    });
+    expect(numberWrapper).toHaveClass('__klear360-counter-input-animate-slide-up');
+
+    // The second click's own timeout (scheduled 100ms after the first) fires now.
+    act(() => {
+      jest.advanceTimersByTime(100);
+    });
+    expect(numberWrapper).not.toHaveClass('__klear360-counter-input-animate-slide-up');
+
+    jest.useRealTimers();
   });
 
   it('should respect min constraint and disable decrement button', async () => {
