@@ -806,6 +806,12 @@ component's own (already object-wrapped) `onOpenChange`. See
 `docs/migration-docs/upgrade-v13.md` for the migration command and manual-migration instructions,
 and the accompanying changeset for the public breaking-change writeup.
 
+A follow-up audit found this same bare-vs-wrapped inconsistency is not unique to `onOpenChange` -
+it's systemic across most `on*Change` callbacks in the package (`Table.onPageChange`,
+`ResizableSplit.onWidthChange`, `DatePicker.onPickerChange`, etc.). See the package-level
+`_decisions/decisions.md` (`on*Change` callback argument shape) for the full breakdown and the
+combined follow-up task scoped to all of them at once.
+
 <br/><br/>
 
 fin 🌻

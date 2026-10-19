@@ -33,3 +33,29 @@ Dual-publishing a CJS entry point that works for some import paths and throws fo
 - Node's `require(esm)` interop becomes the de facto standard across the bundlers this package's consumers actually use (webpack, Metro, Jest), not just plain Node.
 
 Until then, `verify:interop`'s CJS checks are expected to report the "known limitation"/"expected: ESM-only build" outcomes, not failures.
+
+# `on*Change` callback argument shape
+
+This covers a cross-cutting P3 architecture-audit finding: whether single-value `on*Change` callbacks across the whole package consistently pass the new value bare, or wrap it in an object (`{ value }`).
+
+## Found: genuinely inconsistent, not just `onOpenChange`
+
+`Dropdown`'s own `_decisions/decisions.md` already documents and **resolved** a narrower version of this: `onOpenChange`'s *signature* (bare boolean vs. `{ isOpen }`) was inconsistent across overlay components, and `Dropdown` was aligned to the object-wrapped shape used by `DatePicker`/`Popover`/`Tooltip`/`Menu`/`TimePicker`/`SpotlightPopoverTour` as a breaking change with a codemod (see that file's "resolved" section). But auditing every other `on*Change` callback in the package shows wrapping-vs-bare is still inconsistent everywhere else — there has never been a package-wide convention for whether a single scalar value gets wrapped, `onOpenChange` was just the one instance anyone had looked at closely.
+
+**Wrapped in an object**, even though the callback only ever carries one value:
+
+- `Table.onPageChange`/`onPageSizeChange`, `Pagination.onPageSizeChange`/`onSelectedPageChange` — `({ page })`/`({ pageSize })`
+- `LightBox.onIndexChange` — `(value: { index })` (note: param itself is named `value`, not destructured, unlike the others)
+- `SideNav.onVisibleLevelChange` — `({ visibleLevel })`
+- `ChatInput.onFileChange` — `({ fileList })` (wraps a single field for no apparent reason — `fileList` could be passed directly)
+- `Accordion.onExpandChange` — `({ expandedIndex })`; `SideNav.onExpandChange` — `({ isExpanded })`; `TreeView.onExpandChange` — `(event: { isExpanded })` (three different components with the same prop name, all wrapping, but `TreeView` additionally names the parameter `event` instead of destructuring like the other two — a second, smaller inconsistency nested inside this one)
+
+**Passed bare** (no wrapping):
+
+- `ResizableSplit.onWidthChange(width)`, `TimePicker.onActiveIndexChange(index)`/`onTimeValueChange(timeValue)`, `ListView.onShowQuickFiltersChange(showQuickFilters)`/`onShowFiltersChange(showFilters)`, `DatePicker.onPickerChange(picker)`/`onVisibleMonthChange(date)`, `SpotlightPopoverTour.onStepChange(step)`, `Table.onGlobalFilterValueChange(value)`, `Preview.onZoomChange(newZoom)`
+
+**Not actually an inconsistency** — these wrap because the value is genuinely multi-field, which is the correct thing to do: `ListView.onSearchChange({ name, value })`, `Preview.onDragChange({ x, y })`, `SideNav.onLinkActiveChange(args: OnLinkActiveChangeArgs)` (5 fields), `Table.onColumnFilterValuesChange(values: Record<...>)`/`onExpandedRowIdsChange(ids: Identifier[])` (the value itself is a collection, not a wrapped scalar).
+
+## Why not fixed inline
+
+Changing either direction (wrap-to-bare or bare-to-wrap) is a breaking change to a public prop's call signature for whichever components move, same reasoning as the resolved `onOpenChange` case. Given how widespread this is (well over a dozen callbacks across 9+ components on one side or the other, several very high-traffic — `Table`, `DatePicker`), this needs a single coordinated breaking-change pass with its own codemod and major-version bump (following the `migrate-dropdown-open-change`/`upgrade-v13` precedent), not a string of one-off breaking patches done component by component. Tracked as a separate follow-up task, scoped to *all* of the callbacks listed above at once so the package settles on one convention in a single breaking release rather than repeating the `onOpenChange` exercise piecemeal for each prop.
