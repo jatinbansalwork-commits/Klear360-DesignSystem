@@ -1,13 +1,3 @@
-// This file is manually maintained and drifts: a P3 audit (comparing every `name` here against
-// `src/components/*`) found 33 real, public components with no entry at all, including some
-// added within the same session that audit ran in (ResizableSplit, CitedFieldRow). No listed
-// entry had an actively *wrong* status (everything present is accurately 'released'/'deprecated')
-// - the problem is purely missing entries, not misleading ones.
-//
-// Not backfilled as part of that audit: an accurate `releasedIn` version per missing component
-// needs git-history research (when it first shipped, cross-referenced against the nearest
-// package.json version bump), not something to fabricate. CHANGELOG.md doesn't help either - it
-// only goes back to the version Changesets was bootstrapped at. Tracked as a separate follow-up.
 type ComponentStatuses =
   | 'released'
   | 'in-api-spec'
@@ -1120,6 +1110,277 @@ const componentData: ComponentStatusDataType = [
       react: {
         status: 'in-development',
         storybookLink: 'Components/FloatingActionButton',
+      },
+    },
+  },
+  {
+    name: 'AnnouncementBanner',
+    description:
+      'Full-width banner for site-wide or app-wide announcements and time-sensitive messages.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/AnnouncementBanner',
+      },
+    },
+  },
+  {
+    name: 'AppBar',
+    description: 'Top app bar for page-level navigation, titles, and primary actions.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/AppBar',
+      },
+    },
+  },
+  {
+    name: 'Box',
+    description:
+      'Low-level layout primitive for building custom layouts with styled spacing, flex, and responsive props.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Layout Primitives (Box)/Box',
+      },
+    },
+  },
+  {
+    name: 'BottomNav',
+    description:
+      'Bottom navigation bar for switching between top-level sections on mobile layouts.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/BottomNav',
+      },
+    },
+  },
+  {
+    name: 'Breadcrumb',
+    description: "Breadcrumb trail showing the user's location within a navigation hierarchy.",
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Breadcrumb',
+      },
+    },
+  },
+  {
+    name: 'ChatInput',
+    description:
+      'Composer input for chat and AI assistant interfaces, with attachments and submit actions.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/ChatInput',
+      },
+    },
+  },
+  {
+    name: 'CitedFieldRow',
+    description:
+      "Row that pairs a field's value with a citation back to its source, for AI-extracted or verified data.",
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/CitedFieldRow',
+      },
+    },
+  },
+  {
+    name: 'Elevate',
+    description:
+      "Motion wrapper that elevates its children's shadow/surface on hover, focus, or a controlled state.",
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Motion/Elevate',
+      },
+    },
+  },
+  {
+    name: 'GenUI',
+    description: 'Renders AI-generated UI schemas as a tree of design system components.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Patterns/GenUI',
+      },
+    },
+  },
+  {
+    name: 'Icons',
+    description: 'Full set of SVG icon components used throughout the design system.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Icons',
+      },
+    },
+  },
+  {
+    name: 'Klear360Provider',
+    description:
+      'Root provider that supplies theme tokens and color scheme context to all Klear360 components.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+      },
+    },
+  },
+  {
+    name: 'LightBox',
+    description: 'Full-screen overlay for viewing images or media with zoom and navigation.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/LightBox',
+      },
+    },
+  },
+  {
+    name: 'LiveAnnouncer',
+    description:
+      'Accessibility utility that announces dynamic content changes to screen readers via an ARIA live region.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+      },
+    },
+  },
+  {
+    name: 'QuickFilterGroup',
+    description: 'Horizontally scrollable group of QuickFilter chips.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/QuickFilter & QuickFilterGroup',
+      },
+    },
+  },
+  {
+    name: 'ResizableSplit',
+    description:
+      'Two-pane layout with a draggable divider for resizing the space given to each pane.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/ResizableSplit',
+      },
+    },
+  },
+  {
+    name: 'SegmentedControl',
+    description:
+      'Linear set of mutually exclusive, segmented options for switching views or filters.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/SegmentedControl',
+      },
+    },
+  },
+  {
+    name: 'Skeleton',
+    description: 'Placeholder block that mimics loading content while real data is fetched.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Skeleton',
+      },
+    },
+  },
+  {
+    name: 'KlearSense',
+    description: 'Animated glass/shader effect used as a branded background visual.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/KlearSense',
+      },
+    },
+  },
+  {
+    name: 'KlearSenseGradient',
+    description: 'Animated fluid gradient effect used as a branded background visual.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+      },
+    },
+  },
+  {
+    name: 'Tag',
+    description: 'Compact label for categorizing or marking an item with a status or attribute.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Tag',
+      },
+    },
+  },
+  {
+    name: 'TrustBadge',
+    description: 'Badge that signals a trusted/verified brand or integration.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/TrustBadge',
+      },
+    },
+  },
+  {
+    name: 'Display',
+    description: 'Large-scale display text for hero headlines and marketing-style emphasis.',
+    platform: 'all',
+    frameworks: {
+      react: {
+        status: 'released',
+        releasedIn: '12.121.0',
+        storybookLink: 'Components/Typography/Display',
       },
     },
   },

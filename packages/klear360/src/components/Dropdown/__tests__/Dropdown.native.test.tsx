@@ -182,7 +182,11 @@ describe('<Dropdown />', () => {
           <Button onClick={() => setCurrentSelection('bangalore')}>Select Bangalore</Button>
           <Button onClick={() => setCurrentSelection('')}>Clear Selection</Button>
           <Button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>Toggle Dropdown</Button>
-          <Dropdown selectionType="single" isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+          <Dropdown
+            selectionType="single"
+            isOpen={isDropdownOpen}
+            onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
+          >
             <SelectInput
               label="Select City"
               value={currentSelection}
@@ -241,7 +245,7 @@ describe('<Dropdown />', () => {
           <Button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>Toggle Dropdown</Button>
           <Dropdown
             isOpen={isDropdownOpen}
-            onOpenChange={setIsDropdownOpen}
+            onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
             selectionType="multiple"
           >
             <SelectInput

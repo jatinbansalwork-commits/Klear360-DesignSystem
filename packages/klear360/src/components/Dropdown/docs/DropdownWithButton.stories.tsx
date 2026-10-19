@@ -270,7 +270,7 @@ export const InternalLinkDropdown = (): React.ReactElement => {
     <Box padding="spacing.10" display="flex" alignItems="center" gap="spacing.2">
       <Text>Sort By</Text>
       <Box flex="1">
-        <Dropdown onOpenChange={setIsDropdownOpen} isOpen={isDropdownOpen}>
+        <Dropdown onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)} isOpen={isDropdownOpen}>
           <DropdownLink
             icon={isDropdownOpen ? ChevronUpIcon : ChevronDownIcon}
             iconPosition="right"
@@ -329,7 +329,10 @@ export const InternalIconButtonDropdown = (): React.ReactElement => {
     <Box padding="spacing.10">
       <Tooltip content="Check Status">
         <TooltipInteractiveWrapper>
-          <Dropdown onOpenChange={setIsDropdownOpen} isOpen={isDropdownOpen}>
+          <Dropdown
+            onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
+            isOpen={isDropdownOpen}
+          >
             <DropdownIconButton icon={BoxIcon} accessibilityLabel="Status Dropdown" />
             <DropdownOverlay>
               <ActionList>

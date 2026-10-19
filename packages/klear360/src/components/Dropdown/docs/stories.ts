@@ -146,7 +146,7 @@ const WithHeaderFooterScroll = `
     return (
       <Dropdown
         isOpen={isDropdownOpen}
-        onOpenChange={setIsDropdownOpen}
+        onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
       >
         <SelectInput
           label="Select Action"
@@ -747,7 +747,7 @@ const WithLinkStory = `
         <Text>Sort By</Text>
         <Box flex="1">
           <Dropdown
-            onOpenChange={(isOpen) => {
+            onOpenChange={({ isOpen }) => {
               if (!isOpen) {
                 setIsDropdownOpen(false)
               }
@@ -821,7 +821,7 @@ const WithIconButtonStory = `
     return (
       <Box padding="spacing.10">
         <Dropdown
-          onOpenChange={(isOpen) => {
+          onOpenChange={({ isOpen }) => {
             if (!isOpen) {
               setIsDropdownOpen(false);
             }
@@ -1175,7 +1175,7 @@ const WithTooltipStory = `
         <Tooltip content="Change Status">
           <TooltipInteractiveWrapper>
             <Dropdown
-              onOpenChange={(isOpen) => {
+              onOpenChange={({ isOpen }) => {
                 if (!isOpen) {
                   setIsDropdownOpen(false)
                 }

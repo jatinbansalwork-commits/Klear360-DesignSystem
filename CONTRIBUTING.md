@@ -156,6 +156,17 @@ yarn test:react-native # native tests
 
 We also have visual tests that run on every PR. So if your PR changes / breaks a certain component, the diff will show up on chromatic checks of PR
 
+**Where to find it:** the `Chromatic` job runs in the `CI` workflow on every PR. Once it finishes, find it in the PR's checks list (or in GitHub's "Checks" tab) and open the `Details` link - this takes you straight to the Chromatic build, with a per-story grid of every visual change it detected against the baseline on `main`.
+
+**What to do when you see a diff:**
+
+- Open each changed story and compare the before/after snapshot.
+- If the change is the intended result of your PR (e.g. you changed a component's padding or color), click **Accept** on those snapshots in Chromatic. This updates the baseline so future PRs diff against your new, intended look.
+- If the change is unintended (e.g. an unrelated component shifted because of a shared token or style change), treat it as a bug - fix it, push the fix, and let Chromatic re-run.
+- If you're unsure whether a flagged change is intentional, ask for a second opinion in the PR before accepting.
+
+**This is non-blocking by design.** The Chromatic job runs with `exitZeroOnChanges: true`, so it always reports success in GitHub's check list even when it finds visual differences - a visual diff is a flag for human review, not a CI failure. Don't expect (or wait for) the Chromatic check to go red; instead, make it a habit to open the Chromatic build on every PR that could affect visual output and review the diff before merging, since CI won't stop you if you skip it.
+
 
 ### Interaction Tests
 

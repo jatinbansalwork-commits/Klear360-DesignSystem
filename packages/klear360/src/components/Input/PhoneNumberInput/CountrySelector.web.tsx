@@ -78,7 +78,7 @@ const CountrySelector = ({
   );
 
   return (
-    <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+    <Dropdown isOpen={isDropdownOpen} onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}>
       <InputDropdownButton
         value={selectedCountry}
         onChange={({ value }) => onItemClick({ name: value })}

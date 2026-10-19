@@ -118,6 +118,7 @@
     "react": "yarn run react:storybook",
     "react:storybook": "cross-env FRAMEWORK=REACT storybook dev -c ./.storybook/react -p 9009",
     "react:storybook:build": "bash ./scripts/buildStorybook.sh",
+    "react:storybook:build:chromatic": "bash ./scripts/buildStorybook.sh --skip-dashboard",
     "react:storybook:serve": "http-server storybook-site --port 9009 --silent",
     "react:storybook:serve:test": "wait-on http://127.0.0.1:9009/ && yarn test:react:interaction",
     "test:react:interaction": "cross-env FRAMEWORK=REACT test-storybook -c ./.storybook/react --url http://127.0.0.1:9009/",

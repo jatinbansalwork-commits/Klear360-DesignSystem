@@ -752,6 +752,22 @@ Some libraries we evaluated
 
 <br/><br/>
 
+## Known API inconsistency: `onOpenChange` signature
+
+A P3 component-architecture audit (comparing callback signatures across every overlay component,
+not just names) found `onOpenChange?: (isOpen: boolean) => void` here is the outlier against an
+object-wrapped `onOpenChange?: ({ isOpen }: { isOpen: boolean }) => void` convention used by six
+other overlay components: `DatePicker`, `Popover`, `Tooltip`, `Menu`, `TimePicker`, and
+`SpotlightPopoverTour`. A consumer moving between these very similar overlay components has to
+remember which shape each one expects, and can't share one handler across them.
+
+Not changed here - this is a breaking change to a public prop (confirmed consumed internally by
+`TextInput`, `SearchInput`, and `LightBox`, each passing a bare-boolean handler to match
+`Dropdown`'s current shape; real-world consumer impact is unknown and likely larger). Needs the
+same treatment as other breaking prop renames in this repo (deprecation path or codemod - see
+`Table`'s `sortable` → `isSortable` finding for the established pattern), not a drive-by change.
+Tracked as a separate task.
+
 ## References
 
 - [Primer React's ActionMenu](https://primer.style/react/storybook/?path=/story/deprecated-components-actionmenu--action-menu-with-external-anchor)
@@ -760,6 +776,35 @@ Some libraries we evaluated
 - [Radix UI Dropdown](https://www.radix-ui.com/docs/primitives/components/dropdown-menu)
 - [MDN `role="menu"` Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/menu_role)
 - [downshift-js](https://www.downshift-js.com/use-multiple-selection)
+
+<br/><br/>
+
+## Known API inconsistency: `onOpenChange` signature (resolved)
+
+A P3 component-architecture-consistency audit (comparing callback signatures, not just names,
+across overlay components) found `Dropdown`'s `onOpenChange?: (isOpen: boolean) => void` was the
+only overlay component in the design system still using a bare boolean callback - `DatePicker`,
+`Popover`, `Tooltip`, `Menu`, `TimePicker`, and `SpotlightPopoverTour` all use
+`onOpenChange?: ({ isOpen }: { isOpen: boolean }) => void`. A consumer moving between these very
+similar overlay components couldn't share one handler because of the mismatched shape.
+
+### Resolution
+
+Aligned `Dropdown`'s `onOpenChange` to `({ isOpen }: { isOpen: boolean }) => void`, matching the
+other six components, as a breaking change (not a non-breaking deprecation-and-fallback, unlike
+`Table`'s `sortable` -> `isSortable` precedent) - the old shape is a different function arity, so
+there's no way to accept both signatures on one prop without losing type safety for whichever
+shape isn't currently calling it.
+
+All of this design system's own internal usages (`TextInput.tsx`, `SearchInput.tsx`,
+`CountrySelector.web.tsx`, plus every `Dropdown`-specific story and test) were migrated to the new
+shape directly. A jscodeshift codemod (`codemods/migrate-dropdown-open-change`) mechanically
+migrates external consumers - modeled on the existing `migrate-typography` and
+`migrate-motion-tokens` codemods. It's scoped specifically to `onOpenChange` on a JSX element
+literally named `Dropdown`, so it doesn't touch `DropdownOverlay`/`DropdownButton`/etc, or another
+component's own (already object-wrapped) `onOpenChange`. See
+`docs/migration-docs/upgrade-v13.md` for the migration command and manual-migration instructions,
+and the accompanying changeset for the public breaking-change writeup.
 
 <br/><br/>
 
