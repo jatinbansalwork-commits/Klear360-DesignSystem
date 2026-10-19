@@ -205,16 +205,16 @@
   {
     "name": "DatePicker",
     "passed": true,
-    "size": 141486,
+    "size": 141490,
     "sizeLimit": 2000000,
-    "loading": 2.7633984375
+    "loading": 2.7634765625
   },
   {
     "name": "Dropdown, DropdownOverlay, DropdownButton, DropdownLink, DropdownIconButton, DropdownFooter, DropdownHeader, FilterChipSelectInput, FilterChipGroup, InputDropdownButton",
     "passed": true,
-    "size": 47771,
+    "size": 47775,
     "sizeLimit": 2000000,
-    "loading": 0.93302734375
+    "loading": 0.93310546875
   },
   {
     "name": "Elevate",
@@ -296,23 +296,23 @@
   {
     "name": "TextInput",
     "passed": true,
-    "size": 52743,
+    "size": 52745,
     "sizeLimit": 2000000,
-    "loading": 1.03013671875
+    "loading": 1.03017578125
   },
   {
     "name": "SearchInput",
     "passed": true,
-    "size": 51416,
+    "size": 51419,
     "sizeLimit": 2000000,
-    "loading": 1.00421875
+    "loading": 1.00427734375
   },
   {
     "name": "PhoneNumberInput",
     "passed": true,
-    "size": 75771,
+    "size": 75782,
     "sizeLimit": 2000000,
-    "loading": 1.47990234375
+    "loading": 1.4801171875
   },
   {
     "name": "ColorInput",
@@ -366,9 +366,9 @@
   {
     "name": "Pagination",
     "passed": true,
-    "size": 73246,
+    "size": 73247,
     "sizeLimit": 2000000,
-    "loading": 1.4305859375
+    "loading": 1.43060546875
   },
   {
     "name": "Popover, PopoverInteractiveWrapper",
@@ -478,9 +478,9 @@
   {
     "name": "Table, TableHeader, TableHeaderCell, TableHeaderRow, TableBody, TableCell, TableRow, TableVirtualizedWrapper, TableTitleDescriptionCell, TableFooter, TableFooterCell, TableFooterRow, TablePagination, TableToolbar, TableToolbarActions, TableToolbarSearch, TableEditableCell, TableEditableDropdownCell, TableEditableSearchCell",
     "passed": true,
-    "size": 121322,
+    "size": 121333,
     "sizeLimit": 2000000,
-    "loading": 2.3695703125
+    "loading": 2.36978515625
   },
   {
     "name": "Tabs, TabItem, TabList, TabPanel",
@@ -534,9 +534,9 @@
   {
     "name": "ListView, ListViewFilters",
     "passed": true,
-    "size": 55432,
+    "size": 55435,
     "sizeLimit": 2000000,
-    "loading": 1.08265625
+    "loading": 1.08271484375
   },
   {
     "name": "Preview, PreviewBody, PreviewFooter, PreviewHeader",
@@ -548,8 +548,8 @@
   {
     "name": "GenUIProvider, useGenUI, useGenUIAction, useGenUIComponentActions, GenUISchemaRenderer",
     "passed": true,
-    "size": 290167,
+    "size": 290169,
     "sizeLimit": 2000000,
-    "loading": 5.66732421875
+    "loading": 5.66736328125
   }
 ]
