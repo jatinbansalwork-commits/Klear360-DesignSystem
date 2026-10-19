@@ -118,7 +118,7 @@ const _Dropdown = (
     defaultValue: false,
     onChange: (isOpenControlledValue) => {
       isDropdownOpenRef.current = isOpenControlledValue;
-      onOpenChange?.(isOpenControlledValue);
+      onOpenChange?.({ isOpen: isOpenControlledValue });
     },
   });
 

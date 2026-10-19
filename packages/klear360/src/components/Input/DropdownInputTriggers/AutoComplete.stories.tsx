@@ -532,7 +532,7 @@ export const InternalWithValidations = (): React.ReactElement => {
   return (
     <Dropdown
       selectionType="single"
-      onOpenChange={(isOpen) => {
+      onOpenChange={({ isOpen }) => {
         if (!isOpen) {
           console.log('dismiss');
           setIsDismissed(true);

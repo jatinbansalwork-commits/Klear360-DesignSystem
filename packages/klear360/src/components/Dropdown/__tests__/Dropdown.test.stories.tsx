@@ -211,7 +211,7 @@ export const ControlledDropdownSingleSelect: StoryFn<typeof Dropdown> = (): Reac
       </Button>
       <Dropdown
         isOpen={isDropdownOpen}
-        onOpenChange={(isOpen) => {
+        onOpenChange={({ isOpen }) => {
           setIsDropdownOpen(isOpen);
         }}
         selectionType="single"
@@ -275,7 +275,11 @@ export const ControlledDropdownMultiSelect: StoryFn<typeof Dropdown> = (): React
       </Button>
       <Button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>Open Dropdown</Button>
 
-      <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen} selectionType="multiple">
+      <Dropdown
+        isOpen={isDropdownOpen}
+        onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
+        selectionType="multiple"
+      >
         <SelectInput
           label="Select City"
           value={currentSelection}

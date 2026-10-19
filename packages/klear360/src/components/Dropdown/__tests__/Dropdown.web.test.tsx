@@ -217,7 +217,7 @@ describe('<Dropdown />', () => {
 
           <Dropdown
             isOpen={isDropdownOpen}
-            onOpenChange={setIsDropdownOpen}
+            onOpenChange={({ isOpen }) => setIsDropdownOpen(isOpen)}
             selectionType="multiple"
           >
             <SelectInput
