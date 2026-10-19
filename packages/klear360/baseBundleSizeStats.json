@@ -184,9 +184,9 @@
   {
     "name": "CounterInput",
     "passed": true,
-    "size": 44146,
+    "size": 44180,
     "sizeLimit": 2000000,
-    "loading": 0.8622265625
+    "loading": 0.862890625
   },
   {
     "name": "Divider",
