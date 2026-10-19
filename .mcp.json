@@ -2,7 +2,7 @@
   "mcpServers": {
     "klear360-mcp": {
       "command": "node",
-      "args": ["/Users/jatinbansal/Desktop/4.0/Klear360/packages/klear360-mcp/dist/server.js"]
+      "args": ["packages/klear360-mcp/dist/server.js"]
     }
   }
 }
