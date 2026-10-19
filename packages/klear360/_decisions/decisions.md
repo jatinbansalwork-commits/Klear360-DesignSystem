@@ -59,3 +59,32 @@ This covers a cross-cutting P3 architecture-audit finding: whether single-value 
 ## Why not fixed inline
 
 Changing either direction (wrap-to-bare or bare-to-wrap) is a breaking change to a public prop's call signature for whichever components move, same reasoning as the resolved `onOpenChange` case. Given how widespread this is (well over a dozen callbacks across 9+ components on one side or the other, several very high-traffic — `Table`, `DatePicker`), this needs a single coordinated breaking-change pass with its own codemod and major-version bump (following the `migrate-dropdown-open-change`/`upgrade-v13` precedent), not a string of one-off breaking patches done component by component. Tracked as a separate follow-up task, scoped to *all* of the callbacks listed above at once so the package settles on one convention in a single breaking release rather than repeating the `onOpenChange` exercise piecemeal for each prop.
+
+# Circular dependencies
+
+This covers a P0 architecture-audit check (from the second "React Library Development Best Practices" pass): whether `src/` has circular module dependencies.
+
+## Found: hundreds of cycles, all compile-time-only, zero runtime risk
+
+`npx madge --circular --extensions ts,tsx src` reports 482 cycles. That number looks alarming but is not a real problem - every single one checked resolves to the same safe shape: **at least one edge in each cycle is a TypeScript `import type`, which is fully erased at compile time and produces zero runtime circular-require risk** (no "cannot access X before initialization" class of bug, since the type doesn't exist in the emitted JS at all).
+
+The large majority (390+) are one specific, repeated pattern: every icon's own file does `import type { IconComponent } from '..'` to pull a shared type back from the `components/Icons/index.ts` barrel it's re-exported from - e.g. `components/Icons/index.ts > components/Icons/SourceToPayIcon/index.ts > components/Icons/SourceToPayIcon/SourceToPayIcon.tsx`, closed by a type-only import back to `..`. This is the same pattern on every icon, not 390 separate problems.
+
+The remaining ~15 are the same pattern in other components, individually verified by reading both directions of each cycle's imports:
+
+- `BaseInput.tsx` ↔ `BaseInputVisuals.tsx` (value import one way, `import type { BaseInputProps } from './BaseInput'` the other)
+- `BaseInputWrapper.tsx`/`baseInputStyles.ts` ↔ `types.ts` (`types.ts` has zero value-level imports of its own - it's a pure type file, so anything cycling through it is automatically runtime-safe)
+- `Klear360Provider/index.ts` ↔ `useTheme.ts` (index re-exports `useTheme` as a value; `useTheme.ts` only does `import type { Theme } from './'`)
+- `List.tsx` ↔ `ListContext.ts`/`ListItem.tsx` (value import one way, `import type { ListProps } from './List'` the other; the `List`↔`ListItem` pair is type-only in *both* directions, so it isn't even a runtime cycle)
+- `RadioGroup.tsx` ↔ `RadioContext.tsx`/`useRadioGroup.ts` (value import one way, type-only the other)
+- `Radio.tsx` ↔ `RadioIcon.tsx` (value import one way, `import type { RadioProps } from '../Radio'` the other)
+- `utils/platform/index.ts` ↔ `castUtils.ts` (index re-exports via `export * from './castUtils'`; `castUtils.ts` only does `import type { Platform } from '.'`)
+- `Spark/KlearGlass/types.ts` ↔ `presets.ts` (type-only in both directions)
+
+## Why not "fixed"
+
+There's nothing to fix - this is the normal, idiomatic way to share a component's prop-type definitions with its own sub-files without duplicating the type or hoisting it to a third shared file for no reason. Breaking these cycles (e.g. by moving every shared type to a separate `*.types-only.ts` file with no other imports) would add a layer of indirection across dozens of components to avoid a category of bug (runtime circular-require) that `import type` already fully prevents. Re-run `npx madge --circular --extensions ts,tsx src` if this needs re-verifying after a large refactor - the check itself takes well under a minute and needs no project setup beyond `npx`.
+
+## Independent confirmation: already guarded by existing lint config
+
+This repo's root `.eslintrc.js` already has `'import/no-cycle': ['error', { maxDepth: 4, ignoreExternal: false }]` - a *second*, independent cycle detector, already enforced in CI's lint job, that would fail the build on a genuinely problematic cycle. Running it directly against `SourceToPayIcon.tsx` (`npx eslint ... --resolve-plugins-relative-to . --no-ignore`, bypassing only the default ignore patterns, not the rule itself) produced zero errors despite the type-only cycle `madge` flagged at the same file - confirming `import/no-cycle`, under the TypeScript parser used here, already treats `import type` edges as non-cycle-forming. In other words: this package already has an automated guard against real circular-dependency regressions, and this audit's 482-cycle `madge` output is exactly the set of cycles that guard correctly lets through. No new CI check is needed.
