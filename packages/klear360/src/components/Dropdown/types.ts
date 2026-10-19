@@ -14,7 +14,7 @@ type DropdownProps = {
   /**
    * Callback when open state of the dropdown changes
    */
-  onOpenChange?: (isOpen: boolean) => void;
+  onOpenChange?: ({ isOpen }: { isOpen: boolean }) => void;
   selectionType?: 'single' | 'multiple';
   children: React.ReactNode[];
   /**

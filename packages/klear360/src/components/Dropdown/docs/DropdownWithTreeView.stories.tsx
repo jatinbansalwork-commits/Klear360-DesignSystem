@@ -147,7 +147,11 @@ export const WithFilterChip = (): React.ReactElement => {
   return (
     <Box minHeight="500px">
       {/* the overlay is controlled so the footer's Apply can close it */}
-      <Dropdown selectionType="multiple" isOpen={isOpen} onOpenChange={setIsOpen}>
+      <Dropdown
+        selectionType="multiple"
+        isOpen={isOpen}
+        onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+      >
         <FilterChipSelectInput
           label="Regions"
           value={values}

@@ -352,7 +352,7 @@ const _TextInput: React.ForwardRefRenderFunction<Klear360ElementRef, TextInputPr
       selectionType: 'single',
       isOpen,
       height: '100%',
-      onOpenChange: (isOpen: boolean) => {
+      onOpenChange: ({ isOpen }: { isOpen: boolean }) => {
         setIsOpen(isOpen);
       },
       children: React.Children.map(dropdown.props.children, (child) => {

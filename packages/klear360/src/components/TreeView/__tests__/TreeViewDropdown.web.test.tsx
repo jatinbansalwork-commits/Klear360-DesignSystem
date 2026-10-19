@@ -535,7 +535,11 @@ describe('<TreeView /> inside <Dropdown /> with <FilterChipSelectInput />', () =
       const [isOpen, setIsOpen] = React.useState(false);
 
       return (
-        <Dropdown selectionType="multiple" isOpen={isOpen} onOpenChange={setIsOpen}>
+        <Dropdown
+          selectionType="multiple"
+          isOpen={isOpen}
+          onOpenChange={({ isOpen }) => setIsOpen(isOpen)}
+        >
           <FilterChipSelectInput
             label="Regions"
             value={values}

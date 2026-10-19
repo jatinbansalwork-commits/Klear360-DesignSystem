@@ -186,7 +186,7 @@ const _SearchInput: React.ForwardRefRenderFunction<Klear360ElementRef, SearchInp
       selectionType: 'single',
       isOpen: isTrailingDropDownOpen,
       height: '100%',
-      onOpenChange: (isOpen: boolean) => {
+      onOpenChange: ({ isOpen }: { isOpen: boolean }) => {
         setIsTrailingDropDownOpen(isOpen);
       },
       children: React.Children.map(

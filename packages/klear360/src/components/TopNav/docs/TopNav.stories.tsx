@@ -255,7 +255,7 @@ const TopNavSearchDropdown = (): React.ReactElement => {
 
   return (
     <SearchContainer isActive={isSearchActive}>
-      <Dropdown onOpenChange={(isOpen) => setIsSearchActive(isOpen)}>
+      <Dropdown onOpenChange={({ isOpen }) => setIsSearchActive(isOpen)}>
         <SearchInput
           placeholder="Search in payments"
           accessibilityLabel="Search Across Klear"
