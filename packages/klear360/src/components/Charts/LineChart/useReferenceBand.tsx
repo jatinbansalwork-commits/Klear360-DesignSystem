@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useLayoutEffect, isValidElement } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, isValidElement } from 'react';
 import getIn from '~utils/lodashButBetter/get';
 import { useTheme } from '~components/Klear360Provider';
 import { getComponentId } from '~utils/isValidAllowedChildren';
@@ -17,6 +17,7 @@ import {
 } from '../CommonChartComponents/tokens';
 import { parsePathAnchors } from '../utils/nullBridgeUtils';
 import { buildBandAreaPath, perLineBandClass } from '../utils/referenceBandUtils';
+import { useDebouncedGeometryObserver } from '../utils/useDebouncedGeometryObserver';
 import { componentIds } from './componentIds';
 import type { ChartLineProps } from './types';
 
@@ -131,74 +132,43 @@ const useReferenceBand = (
     [bandSources],
   );
 
-  useLayoutEffect(() => {
+  const computeBands = useCallback((): void => {
     const container = containerRef.current;
-    if (!container || !hasReferenceBand) {
-      setBandGeoms((prev) => (prev.length === 0 ? prev : []));
-      return undefined;
-    }
+    if (!container) return;
+    const surface = container.querySelector('svg.recharts-surface');
+    if (!surface) return;
+    const next: BandGeometry[] = [];
+    bandSources.forEach((source) => {
+      const upperCurve = surface.querySelector<SVGPathElement>(
+        `.${source.upperClass} .recharts-line-curve`,
+      );
+      const lowerCurve = surface.querySelector<SVGPathElement>(
+        `.${source.lowerClass} .recharts-line-curve`,
+      );
+      if (!upperCurve || !lowerCurve) return;
+      const upperAnchors = parsePathAnchors(upperCurve.getAttribute('d') ?? '');
+      const lowerAnchors = parsePathAnchors(lowerCurve.getAttribute('d') ?? '');
+      const d = buildBandAreaPath(upperAnchors, lowerAnchors);
+      if (!d) return;
+      next.push({
+        id: source.id,
+        d,
+        fillColor: source.fillColor,
+      });
+    });
+    setBandGeoms((prev) => (geomsEqual(prev, next) ? prev : next));
+  }, [bandSources, containerRef]);
 
-    const computeBands = (): void => {
-      const surface = container.querySelector('svg.recharts-surface');
-      if (!surface) return;
-      const next: BandGeometry[] = [];
-      bandSources.forEach((source) => {
-        const upperCurve = surface.querySelector<SVGPathElement>(
-          `.${source.upperClass} .recharts-line-curve`,
-        );
-        const lowerCurve = surface.querySelector<SVGPathElement>(
-          `.${source.lowerClass} .recharts-line-curve`,
-        );
-        if (!upperCurve || !lowerCurve) return;
-        const upperAnchors = parsePathAnchors(upperCurve.getAttribute('d') ?? '');
-        const lowerAnchors = parsePathAnchors(lowerCurve.getAttribute('d') ?? '');
-        const d = buildBandAreaPath(upperAnchors, lowerAnchors);
-        if (!d) return;
-        next.push({
-          id: source.id,
-          d,
-          fillColor: source.fillColor,
-        });
-      });
-      setBandGeoms((prev) => (geomsEqual(prev, next) ? prev : next));
-    };
+  useEffect(() => {
+    if (!hasReferenceBand) setBandGeoms((prev) => (prev.length === 0 ? prev : []));
+  }, [hasReferenceBand]);
 
-    computeBands();
-
-    const cleanups: Array<() => void> = [];
-    if (typeof MutationObserver !== 'undefined') {
-      let rafId: number | null = null;
-      const mutationObserver = new MutationObserver((mutations) => {
-        // Ignore mutations from our own band layer to avoid a re-entrant loop.
-        const isBandMutation = mutations.some(
-          (m) => m.target instanceof Element && m.target.closest(`.${REFERENCE_BAND_LAYER_CLASS}`),
-        );
-        if (isBandMutation) return;
-        if (rafId !== null) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          rafId = null;
-          computeBands();
-        });
-      });
-      mutationObserver.observe(container, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['d'],
-      });
-      cleanups.push(() => {
-        mutationObserver.disconnect();
-        if (rafId !== null) cancelAnimationFrame(rafId);
-      });
-    }
-    if (typeof ResizeObserver !== 'undefined') {
-      const resizeObserver = new ResizeObserver(() => computeBands());
-      resizeObserver.observe(container);
-      cleanups.push(() => resizeObserver.disconnect());
-    }
-    return () => cleanups.forEach((cleanup) => cleanup());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, hasReferenceBand, sourceSignature]);
+  useDebouncedGeometryObserver(containerRef, {
+    recompute: computeBands,
+    ignoreMutationsFrom: REFERENCE_BAND_LAYER_CLASS,
+    enabled: hasReferenceBand,
+    deps: [data, hasReferenceBand, sourceSignature],
+  });
 
   const renderReferenceBands = (): React.ReactElement | null => {
     if (!hasReferenceBand || bandGeoms.length === 0) return null;

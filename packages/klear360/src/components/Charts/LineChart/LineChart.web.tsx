@@ -2,7 +2,6 @@ import React, {
   useState,
   useMemo,
   useEffect,
-  useLayoutEffect,
   useRef,
   useCallback,
   isValidElement,
@@ -32,6 +31,7 @@ import {
   parsePathAnchors,
   buildBridgePathData,
 } from '../utils/nullBridgeUtils';
+import { useDebouncedGeometryObserver } from '../utils/useDebouncedGeometryObserver';
 import { perLineBandClass } from '../utils/referenceBandUtils';
 import { LineChartContext, useLineChartContext } from './LineChartContext';
 import { useReferenceBand } from './useReferenceBand';
@@ -368,104 +368,71 @@ const ChartLineWrapper: React.FC<ChartLineWrapperProps & TestID & DataAnalyticsA
     Array<{ id: string; dataKey: string; d: string; stroke: string }>
   >([]);
 
-  useLayoutEffect(() => {
+  const computeBridges = useCallback((): void => {
     const container = containerRef.current;
-    if (!container || !hasDashedBridge) {
-      setBridgePaths((prev) => (prev.length === 0 ? prev : []));
-      return undefined;
-    }
+    if (!container) return;
+    const surface = container.querySelector('svg.recharts-surface');
+    if (!surface) return;
+    // Visible lines, in render order, and the coloured curves Recharts drew for them. Each
+    // ChartLine also renders a transparent hover-target curve, which we filter out. Hidden lines
+    // render nothing, so both lists stay aligned only when their counts match.
+    const visibleLines = chartLineOrder.filter((line) =>
+      selectedDataKeys ? selectedDataKeys.includes(line.dataKey) : true,
+    );
+    const colouredCurves = Array.from(
+      surface.querySelectorAll<SVGPathElement>('.recharts-line-curve'),
+    ).filter((curve) => {
+      const stroke = (curve.getAttribute('stroke') ?? '').toLowerCase();
+      return stroke !== '' && stroke !== 'transparent' && stroke !== 'none';
+    });
+    if (colouredCurves.length !== visibleLines.length) return;
 
-    const computeBridges = (): void => {
-      const surface = container.querySelector('svg.recharts-surface');
-      if (!surface) return;
-      // Visible lines, in render order, and the coloured curves Recharts drew for them. Each
-      // ChartLine also renders a transparent hover-target curve, which we filter out. Hidden lines
-      // render nothing, so both lists stay aligned only when their counts match.
-      const visibleLines = chartLineOrder.filter((line) =>
-        selectedDataKeys ? selectedDataKeys.includes(line.dataKey) : true,
-      );
-      const colouredCurves = Array.from(
-        surface.querySelectorAll<SVGPathElement>('.recharts-line-curve'),
-      ).filter((curve) => {
-        const stroke = (curve.getAttribute('stroke') ?? '').toLowerCase();
-        return stroke !== '' && stroke !== 'transparent' && stroke !== 'none';
-      });
-      if (colouredCurves.length !== visibleLines.length) return;
+    const nextPaths: Array<{ id: string; dataKey: string; d: string; stroke: string }> = [];
+    visibleLines.forEach((line, position) => {
+      if (!line.isDashedBridge) return;
+      const curve = colouredCurves[position];
+      const stroke = curve.getAttribute('stroke') ?? '';
+      const anchors = parsePathAnchors(curve.getAttribute('d') ?? '');
+      const { indices } = getDefinedNumericPoints(data, line.dataKey);
+      // Anchors must line up 1:1 with the defined data points for the sampling to be meaningful.
+      if (anchors.length !== indices.length) return;
 
-      const nextPaths: Array<{ id: string; dataKey: string; d: string; stroke: string }> = [];
-      visibleLines.forEach((line, position) => {
-        if (!line.isDashedBridge) return;
-        const curve = colouredCurves[position];
-        const stroke = curve.getAttribute('stroke') ?? '';
-        const anchors = parsePathAnchors(curve.getAttribute('d') ?? '');
-        const { indices } = getDefinedNumericPoints(data, line.dataKey);
-        // Anchors must line up 1:1 with the defined data points for the sampling to be meaningful.
-        if (anchors.length !== indices.length) return;
-
-        getInteriorGaps(indices).forEach(({ from, to }) => {
-          nextPaths.push({
-            id: `null-bridge-${line.dataKey}-${indices[from]}`,
-            dataKey: line.dataKey,
-            d: buildBridgePathData(anchors, from, to),
-            stroke,
-          });
+      getInteriorGaps(indices).forEach(({ from, to }) => {
+        nextPaths.push({
+          id: `null-bridge-${line.dataKey}-${indices[from]}`,
+          dataKey: line.dataKey,
+          d: buildBridgePathData(anchors, from, to),
+          stroke,
         });
       });
+    });
 
-      setBridgePaths((previous) => {
-        const isSame =
-          previous.length === nextPaths.length &&
-          previous.every(
-            (item, index) =>
-              item.id === nextPaths[index].id &&
-              item.d === nextPaths[index].d &&
-              item.stroke === nextPaths[index].stroke,
-          );
-        return isSame ? previous : nextPaths;
-      });
-    };
-
-    computeBridges();
-
-    // The line geometry isn't available synchronously (ResponsiveContainer renders the chart in a
-    // later commit) and it keeps changing while the line's draw-in animation runs, so we recompute
-    // whenever the chart's DOM or the line paths (`d`) mutate, and on resize.
-    const cleanups: Array<() => void> = [];
-    if (typeof MutationObserver !== 'undefined') {
-      let rafId: number | null = null;
-      const mutationObserver = new MutationObserver((mutations) => {
-        // Skip mutations that originate from our own bridge layer (the dashed paths we render),
-        // which would otherwise cause re-entrant computeBridges calls on every bridge update.
-        const isBridgeMutation = mutations.some(
-          (m) => m.target instanceof Element && m.target.closest('.klear360-null-bridge-layer'),
+    setBridgePaths((previous) => {
+      const isSame =
+        previous.length === nextPaths.length &&
+        previous.every(
+          (item, index) =>
+            item.id === nextPaths[index].id &&
+            item.d === nextPaths[index].d &&
+            item.stroke === nextPaths[index].stroke,
         );
-        if (isBridgeMutation) return;
-        // Debounce: coalesce multiple mutations in a single animation frame so that hover-related
-        // DOM changes (tooltips, active dots, crosshair) don't each trigger a separate computation.
-        if (rafId !== null) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          rafId = null;
-          computeBridges();
-        });
-      });
-      mutationObserver.observe(container, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['d'],
-      });
-      cleanups.push(() => {
-        mutationObserver.disconnect();
-        if (rafId !== null) cancelAnimationFrame(rafId);
-      });
-    }
-    if (typeof ResizeObserver !== 'undefined') {
-      const resizeObserver = new ResizeObserver(() => computeBridges());
-      resizeObserver.observe(container);
-      cleanups.push(() => resizeObserver.disconnect());
-    }
-    return () => cleanups.forEach((cleanup) => cleanup());
-  }, [data, chartLineOrder, hasDashedBridge, selectedDataKeys]);
+      return isSame ? previous : nextPaths;
+    });
+  }, [chartLineOrder, data, selectedDataKeys]);
+
+  useEffect(() => {
+    if (!hasDashedBridge) setBridgePaths((prev) => (prev.length === 0 ? prev : []));
+  }, [hasDashedBridge]);
+
+  // The line geometry isn't available synchronously (ResponsiveContainer renders the chart in a
+  // later commit) and it keeps changing while the line's draw-in animation runs, so we recompute
+  // whenever the chart's DOM or the line paths (`d`) mutate, and on resize.
+  useDebouncedGeometryObserver(containerRef, {
+    recompute: computeBridges,
+    ignoreMutationsFrom: 'klear360-null-bridge-layer',
+    enabled: hasDashedBridge,
+    deps: [computeBridges, hasDashedBridge],
+  });
 
   const renderNullBridges = (): React.ReactElement | null => {
     if (bridgePaths.length === 0) return null;
