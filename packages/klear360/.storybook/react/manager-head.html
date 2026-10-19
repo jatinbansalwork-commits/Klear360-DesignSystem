@@ -1,3 +1,18 @@
+<script>
+  // Same stale-chunk recovery as preview-head.html, for the manager UI itself
+  // (see that file for the full explanation).
+  (function () {
+    var RELOAD_GUARD_KEY = 'klear360-storybook-manager-chunk-reload-at';
+    window.addEventListener('vite:preloadError', function (event) {
+      event.preventDefault();
+      var lastReload = Number(sessionStorage.getItem(RELOAD_GUARD_KEY) || 0);
+      if (Date.now() - lastReload > 10000) {
+        sessionStorage.setItem(RELOAD_GUARD_KEY, String(Date.now()));
+        window.location.reload();
+      }
+    });
+  })();
+</script>
 <link href="https://cdn.jsdelivr.net/npm/@klear/klear360/fonts.css" rel="stylesheet">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/katorlys/prism-theme-github/themes/prism-theme-github-light.css">
