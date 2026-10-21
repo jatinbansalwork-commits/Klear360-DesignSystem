@@ -55,6 +55,20 @@ After any change: commit → push feature branch → open PR. **Do not ask** the
 
 Published packages (starting with `@klear/klear360`) use [Changesets](https://github.com/changesets/changesets) (`.changeset/` at the repo root). Any PR that changes a published package's public behavior should include a changeset: run `yarn changeset` from the repo root, answer the prompts, and commit the generated `.changeset/*.md` file alongside the change. See [`.changeset/README.md`](./.changeset/README.md).
 
+## Release Notes
+
+Separate from the technical changelog above, `packages/klear360` keeps a human-facing **Release Notes** story — Storybook's "Guides → Release Notes" page (`packages/klear360/docs/guides/ReleaseNotes.mdx`), mirrored at `packages/klear360/RELEASE_NOTES.md` and linked from its `README.md`. It's written for designers/PMs, not engineers: plain language, no jargon, calm and a little warm, one short paragraph per entry (see the existing entries for the voice — quiet changes get one line, bigger ones get a short story).
+
+**Add one new entry for any PR that ships something a non-engineer would want to know about** — a new component, a real user-visible bug fix, a meaningful process change (same bar as "would this interest someone skimming for what's new," not "did any file change"). Pure internal refactors or one-off audit docs with no visible effect can usually skip it unless they're part of a larger themed batch.
+
+When adding an entry:
+
+- Put it at the **top** of both `RELEASE_NOTES.md` and `ReleaseNotes.mdx` (newest first) — keep them identical, they're intentionally duplicated for Storybook + plain-git visibility.
+- Date it with the **real date** of the change (the fictional backfilled history stops at `v0.5.5` / Oct 21, 2026 — everything after that should use real dates, not invented ones).
+- Bump the version: patch (`v0.5.6` → `v0.5.7`) for a normal entry, minor (`v0.6.0`) when enough work has piled up to feel like a new chapter — use judgment, there's no hard threshold. Give a minor bump a short title the way `v0.5.0 "Measure Twice, Ship Once"` does.
+- Update the "You're on `vX.Y.Z`" line at the top of both files to match the new latest version.
+- Translate the actual technical change into what it means for someone using the product - name components/screens, not functions/props/internals.
+
 ## Cursor Skills (Design System)
 
 Project skills live in [`.cursor/skills/`](./.cursor/skills/). Load the relevant skill before working; **always finish with `klear360-audit`**, then raise a PR.

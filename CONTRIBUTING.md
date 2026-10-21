@@ -181,6 +181,25 @@ unlike most components (Modal, Accordion, Checkbox, Tabs, ...), which get thorou
 jsdom unit tests alone and don't need a real browser. Reach for an interaction test only when a
 jsdom limitation like the above actually applies, not as a default for every stateful component.
 
+## Release Notes
+
+If your PR ships something a non-engineer would want to know about - a new component, a real
+user-visible bug fix, a meaningful process change - add an entry to the **Release Notes**, not just
+a changeset. This is a separate, human-facing story of the project (plain language, no jargon),
+distinct from `CHANGELOG.md`'s technical version log:
+
+- Edit `packages/klear360/RELEASE_NOTES.md` **and** `packages/klear360/docs/guides/ReleaseNotes.mdx`
+  together (they're intentionally duplicated - one for plain git/GitHub viewing, one for Storybook's
+  "Guides → Release Notes" page) - add your entry at the top of both, dated with today's real date.
+- Match the existing voice: see the file's own entries for the tone - calm, warm, a short paragraph,
+  describing what changed for someone using the product (name the component or screen, not the
+  function or prop).
+- Bump the version at the top of both files (`vX.Y.Z` → next patch, or a minor bump with a short
+  title if this caps off a bigger chunk of work).
+
+A pure internal refactor or a one-off audit doc with no visible effect usually doesn't need its own
+entry unless it's part of a larger themed batch worth calling out together.
+
 ## Performance & Profiling
 
 ### Runtime profiling
