@@ -185,15 +185,18 @@ jsdom limitation like the above actually applies, not as a default for every sta
 
 If your PR ships something a non-engineer would want to know about - a new component, a real
 user-visible bug fix, a meaningful process change - add an entry to the **Release Notes**, not just
-a changeset. This is a separate, human-facing story of the project (plain language, no jargon),
-distinct from `CHANGELOG.md`'s technical version log:
+a changeset. This is a separate, human-facing page (plain language, no jargon, styled after
+[PrimeReact's changelog](https://primereact.dev/changelog)), distinct from `CHANGELOG.md`'s
+technical version log:
 
 - Edit `packages/klear360/RELEASE_NOTES.md` **and** `packages/klear360/docs/guides/ReleaseNotes.mdx`
   together (they're intentionally duplicated - one for plain git/GitHub viewing, one for Storybook's
-  "Guides → Release Notes" page) - add your entry at the top of both, dated with today's real date.
-- Match the existing voice: see the file's own entries for the tone - calm, warm, a short paragraph,
-  describing what changed for someone using the product (name the component or screen, not the
-  function or prop).
+  "Guides → Release Notes" page) - add your entry at the top of both.
+- Heading is the version only - no date, no day of week.
+- Group bullets under simple section labels - `**Added**`, `**Fixed**`, `**Improved**`, `**Checked**`
+  - using only the ones that apply. One short, plain sentence per bullet: name the component or
+  screen, not the function or prop, and say what changed for someone using it. See the file's own
+  entries for the exact tone - simple enough that a junior designer understands every line.
 - Bump the version at the top of both files (`vX.Y.Z` → next patch, or a minor bump with a short
   title if this caps off a bigger chunk of work).
 
