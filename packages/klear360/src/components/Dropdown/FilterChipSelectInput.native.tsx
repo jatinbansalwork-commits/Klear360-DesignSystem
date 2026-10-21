@@ -66,6 +66,7 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
     selectionType,
     isControlled,
     setSelectedIndices,
+    getSelectedIndices,
     controlledValueIndices,
     changeCallbackTriggerer,
   } = useDropdown();
@@ -76,13 +77,13 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
     setFilterChipGroupSelectedFilters,
   } = useFilterChipGroupContext();
 
+  // `getSelectedIndices()` (a synchronous, always-current snapshot), not the reactive
+  // `selectedIndices` above: this helper is only ever called from event handlers/effects keyed to
+  // `changeCallbackTriggerer`, which (being a plain context value) already reflects a selection
+  // change in the same render where the reactive, store-sourced `selectedIndices` can still lag
+  // one commit behind - see `getSelectedIndices`'s own doc comment in useDropdown.ts
   const getValuesArrayFromIndices = (): string[] => {
-    let indices: number[] = [];
-    if (isControlled) {
-      indices = controlledValueIndices;
-    } else {
-      indices = selectedIndices;
-    }
+    const indices = isControlled ? controlledValueIndices : getSelectedIndices();
 
     return indices.map((i) => options[i]?.value).filter((v): v is string => v !== undefined);
   };
@@ -175,12 +176,13 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
   }, [changeCallbackTriggerer]);
 
   useEffect(() => {
-    const isValueEmpty = selectedIndices.length === 0;
+    const currentSelectedIndices = isControlled ? controlledValueIndices : getSelectedIndices();
+    const isValueEmpty = currentSelectedIndices.length === 0;
     if (!isFirstRender && !isValueEmpty) {
       setFilterChipGroupSelectedFilters((prev) => (prev.includes(label) ? prev : [...prev, label]));
       setListViewSelectedFilters((prev) => ({
         ...prev,
-        [label]: selectedIndices as number[],
+        [label]: currentSelectedIndices as number[],
       }));
     } else if (!isFirstRender && isValueEmpty) {
       setFilterChipGroupSelectedFilters((prev) => prev.filter((filter) => filter !== label));

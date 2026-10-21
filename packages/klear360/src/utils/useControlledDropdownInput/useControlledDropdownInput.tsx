@@ -25,21 +25,22 @@ const useControlledDropdownInput = (props: useControlledDropdownInputProps): voi
     changeCallbackTriggerer,
     isControlled,
     options,
-    selectedIndices,
     controlledValueIndices,
     setSelectedIndices,
+    getSelectedIndices,
     selectionType,
     setIsControlled,
     treeViewControllerRef,
   } = useDropdown();
 
+  // `getSelectedIndices()` (a synchronous, always-current snapshot - see its own doc comment in
+  // useDropdown.ts), not the reactive `selectedIndices` `useDropdown()` also returns: that one is
+  // sourced from Dropdown's volatile store, which syncs one commit behind a render where
+  // `changeCallbackTriggerer` (read below, a plain context value with no such lag) already
+  // reflects the new selection - using the reactive value here would read a stale, pre-update
+  // selection in the very same effect that's supposed to report the new one
   const getValuesArrayFromIndices = (): string[] => {
-    let indices: number[] = [];
-    if (isControlled) {
-      indices = controlledValueIndices;
-    } else {
-      indices = selectedIndices;
-    }
+    const indices = isControlled ? controlledValueIndices : getSelectedIndices();
 
     return indices.map((selectionIndex) => options[selectionIndex].value);
   };
@@ -104,7 +105,7 @@ const useControlledDropdownInput = (props: useControlledDropdownInputProps): voi
     if (!isFirstRender) {
       // §6.5: additive - only present when the Dropdown overlay content is a TreeView
       const selectedGroups = treeViewControllerRef.current?.getSelectedGroups(
-        isControlled ? controlledValueIndices : selectedIndices,
+        isControlled ? controlledValueIndices : getSelectedIndices(),
       );
       props.onChange?.({
         name: props.name,
