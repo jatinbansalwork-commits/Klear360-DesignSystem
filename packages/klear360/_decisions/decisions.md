@@ -102,6 +102,22 @@ Checked every component where a context's consumers are rendered in a list/loop 
 - **`QuickFilterGroup`**: `QuickFilterGroupProvider value={{ selectionType, selectedQuickFilters, onSelect }}` is a fresh, unmemoized object literal every render of `QuickFilterGroup.tsx`, so every `QuickFilterItem` re-renders on any one filter's selection change - genuinely the same category of issue as `TreeView`, just not fixed. Not worth fixing: quick-filter groups are a small, bounded list (a handful of filter chips, not rows/nodes that can scale into the hundreds), so the practical cost of this is negligible - exactly the `TreeView` finding's own point that `React.memo`/selector patterns have a real complexity cost and are only worth paying when the re-render blast radius is actually large.
 - **`ListViewFiltersContext.web.tsx`**: not a re-render risk at all, for a different reason - `useListViewFilterContext` has **zero consumers** anywhere in `src/components/ListView` outside its own test file. The context is provided (`ListViewFilters.web.tsx`) but nothing reads it, so there's nothing to re-render. This looks like dead/unused infrastructure rather than a performance bug - worth a separate look, not something this re-render audit should "fix" by adding memoization to code nothing uses.
 
+# Code-splitting large, optional exports
+
+This covers a P3 architecture-audit check: using the bundle-size data already tracked in CI (`baseBundleSizeStats.json`, kept current by the `Update Bundle Size Baseline` CI job), identify genuinely large, optional components not currently code-split that would benefit from it.
+
+## Found one clear outlier: GenUI
+
+`GenUIProvider`/`GenUISchemaRenderer` measures ~290KB, by a wide margin the largest single export in the package - over 2x the next largest (`DatePicker`, ~141KB) and more than double every other export in the top 20. GenUI is also inherently optional in a way most of this package's other large exports aren't: it's a full generative-UI rendering SDK (markdown, a component registry, streaming support), realistically only needed by whichever specific view in a consumer's app renders AI-generated content (a chat panel, an assistant sidebar), not something most pages in a typical app would use at all.
+
+## Not wrapped in `React.lazy` inside this package
+
+A library should not unilaterally wrap its own exported components in `React.lazy`: a lazy-wrapped component can only be rendered inside a `<Suspense>` boundary, so doing this inside `@klear/klear360` itself would force every existing consumer of `GenUIProvider`/`GenUISchemaRenderer` to add a `Suspense` wrapper they don't currently need - a breaking change to how the components are used, not a transparent performance win. Code-splitting is fundamentally a decision about *where in a consuming app's route/panel structure* a chunk should load, which only the consuming app can decide - the library's job is just to make that decision possible and cheap, which it already is: `@klear/klear360`'s ESM output and verified `sideEffects` tree-shaking (see "Package build output" above) mean a consumer's own `React.lazy(() => import('@klear/klear360').then(m => ({ default: m.GenUIProvider })))` works cleanly today with zero changes needed on this package's side.
+
+## What was actually missing: documentation
+
+Nothing told consumers this was possible or worth doing, despite GenUI's size making it the single best code-splitting candidate in the package by a wide margin. Added a "Bundle Size & Code-Splitting" section to `docs/guides/GenUI.mdx` (the consumer-facing GenUI guide) with the size comparison and a concrete `React.lazy`/`Suspense` example scoped to a chat-panel-style use case. No other export's size/optionality profile comes close to justifying the same callout - `DatePicker`/`Table`/`TimePicker` (the next-largest group) are common, frequently-needed form/data primitives most consumer apps already load on first render anyway, not optional feature modules.
+
 ## Conclusion
 
 `TreeView` was a genuine, isolated outlier - not a systemic pattern. No other list-of-siblings context in the package has both (a) an unmemoized value and (b) a consumer count large enough for it to matter in practice. Nothing fixed here.
