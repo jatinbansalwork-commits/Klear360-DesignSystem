@@ -11,6 +11,8 @@ Klear360 is the Design System that powers [Klear](https://klear.com/).
 
 - [Docs](https://klear360.klear.com)
 - [Installation](https://klear360.klear.com/?path=/docs/guides-installation--docs)
+- [Release Notes](./RELEASE_NOTES.md) — what shipped, and why it mattered (also in Storybook under Guides)
+- [Changelog](./CHANGELOG.md) — the technical, version-by-version log
 - [@klear/klear360-old](https://github.com/klear/klear360-old) (Deprecated, Private)
 
 ## ✨ Features
