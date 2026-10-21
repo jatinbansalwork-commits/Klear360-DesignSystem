@@ -10,6 +10,12 @@ coverage
 **/build
 **/dist
 
+# plugin-figma-pattern-creator is not a yarn workspace member (its own package-lock.json,
+# installed separately) - `yarn install` at the root never installs its devDependencies
+# (e.g. @figma/eslint-plugin-figma-plugins), so the root `eslint --ext ... packages` glob
+# can't lint it. It has its own `yarn lint`/`npm run lint` script for that.
+packages/plugin-figma-pattern-creator/
+
 # klear360-mcp non-code directories
 packages/klear360-mcp/base-klear360-template/
 packages/klear360-mcp/knowledgebase/
