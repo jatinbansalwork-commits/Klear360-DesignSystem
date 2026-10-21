@@ -1,34 +1,30 @@
 # Release notes
 
-You're on `v0.5.3`.
+You're on `v0.5.0`.
 
 > Also published in Storybook under **Guides → Release Notes**. For the exact, version-accurate
 > technical changelog (what `@klear/klear360`'s published npm version actually ships), see
 > [`CHANGELOG.md`](./CHANGELOG.md).
 
-## v0.5.3
+## v0.5.0 — Measure Twice, Ship Once
 
-**Fixed**
-
-- Dropdown search shows nothing when there are zero matches. We're adding a proper "no results"
-  message instead.
-- Long option lists were re-rendering the whole list on every keystroke. Fixing it so only the part
-  that changed actually updates.
-- Counter input's slide animation could get cut short if you clicked fast. It now always finishes.
-- The two "copy" buttons in the AI chat components were running two separate copies of the same
-  code. Now there's one.
+No new components this week. We stopped adding things and checked what we'd already built.
 
 **Checked**
 
-- Went through every loading, empty, and disabled state in the kit to make sure they all behave the
-  same way. Most did.
-- Checked the whole codebase for circular file imports. Found a few, none of them were causing
+- Every component's props, loading states, empty states, and disabled states, to make sure they all
+  behave the same way across the kit.
+- The whole codebase for circular file imports. Found some, none of them were causing real
   problems.
-
-## v0.5.2
+- Every `ref` passed around the kit, to make sure it lands where it's supposed to.
 
 **Fixed**
 
+- Dropdown's open/close callback used a different shape than every other overlay (Popover, Tooltip,
+  Menu, Date Picker). Now it matches.
+- Counter input's slide animation could get cut short if you clicked fast. It now always finishes.
+- The two "copy" buttons in the AI chat components were running two separate copies of the same
+  code. Now there's one.
 - The connection between this kit and our AI coding assistant was broken. It was pointing at a
   folder that got deleted months ago.
 
@@ -36,41 +32,26 @@ You're on `v0.5.3`.
 
 - A rule that every machine uses one real copy of this project, not old copies lying around.
 
-**Checked**
+**Found, not yet fixed**
 
-- Every component that passes a `ref` around, to make sure it lands where it's supposed to.
+- Dropdown search shows nothing when there are zero matches. A proper "no results" message is
+  coming.
+- Long option lists re-render the whole list on every keystroke. Fixing it so only the part that
+  changed updates.
+- One Table prop that broke our own naming rules. Logging it for a proper fix instead of changing it
+  on anyone without warning.
 
-## v0.5.1
-
-**Fixed**
-
-- Dropdown's open/close callback used a different shape than every other overlay (Popover, Tooltip,
-  Menu, Date Picker). Now it matches.
-
-**Checked**
-
-- Every prop name in the kit — sizes, booleans, callbacks — to make sure they mean the same thing
-  everywhere. Found one Table prop that broke our own naming rules. Logged it for a proper fix
-  later instead of changing it on anyone without warning.
-
-## v0.5.0 — Measure Twice, Ship Once
-
-The kit had grown a lot. Time to stop adding things for a bit and check what we'd already built.
-
-**Checked**
-
-- Every component's props, loading states, and timers, compared against similar components.
-
-## v0.4.6
+## v0.4.2
 
 **Added**
 
-- A guide for breaking changes, plus a script that updates your code automatically when we rename a
-  prop.
+- An AI coding assistant wired directly into the kit, so the right component and its docs show up
+  automatically while you're building.
+- A Figma plugin, so a design file can be checked against what's actually shipped.
+- A migration guide for breaking changes, plus a script that updates your code automatically when we
+  rename a prop.
 - Tests that open a real browser, for the few things a basic test can't catch — a dropdown actually
   opening in the right place, a drag actually working.
-
-## v0.4.5
 
 **Improved**
 
@@ -78,44 +59,14 @@ The kit had grown a lot. Time to stop adding things for a bit and check what we'
   scrolling ten.
 - Table can now sort, filter, select across pages, and edit a cell without leaving the row.
 
-## v0.4.4
-
-**Added**
-
-- An AI assistant wired directly into the kit, so the right component and its docs show up
-  automatically while you're building.
-- A Figma plugin, so a design file can be checked against what's actually shipped.
-
-## v0.4.3
-
-**Checked**
-
-- Every input and button, with a screen reader turned on, to make sure it reads what it should.
-
-**Added**
-
-- Full translation support. Shipping in another language is now a setting, not a rewrite.
-
-## v0.4.2
-
-**Checked**
-
-- Every overlay, using only a keyboard — tab, escape, arrow keys.
-
-**Added**
-
-- Automatic screenshots on every change, so a visual break gets caught before it ships.
-
 ## v0.4.1
 
 **Added**
 
-- Automatic bundle size tracking. If a change makes the kit heavier, we see it right away.
-
-**Checked**
-
-- Confirmed importing one component doesn't pull in the rest of the kit. You only pay for what you
-  use.
+- Automatic screenshots on every change, so a visual break gets caught before it ships.
+- Full keyboard-only testing across every overlay — tab, escape, arrow keys.
+- A full screen-reader audit across every input and button.
+- Full translation support. Shipping in another language is now a setting, not a rewrite.
 
 ## v0.4.0 — Built to Last
 
@@ -125,91 +76,76 @@ once a whole team depends on it.
 **Added**
 
 - Automatic style and formatting checks on every change.
+- Automatic bundle size tracking. If a change makes the kit heavier, we see it right away.
 
-## v0.3.5
+**Checked**
+
+- Confirmed importing one component doesn't pull in the rest of the kit. You only pay for what you
+  use.
+
+## v0.3.2
 
 **Added**
 
-- Empty state component, for when a list or search has nothing to show.
-- Carousel component.
-- Segmented control and counter input.
+- Alert, Announcement Banner, Info Group, and Cited Field Row.
+- Live Announcer, for screen-reader announcements that don't interrupt whoever's using one.
+- Light Box, Preview, Quick Filters, Trust Badge, Indicator, and Amount.
+- Button Group and Input Group, for grouping related buttons and fields together.
 
 **Improved**
 
 - Documentation site now has real examples you can try, not just a list of props.
 
-## v0.3.4
-
-**Added**
-
-- Bottom sheet, for mobile.
-- File upload, with real upload progress and real errors.
-
-**Checked**
-
-- Color contrast across the whole kit. Found two pairs that failed and fixed them.
-
-## v0.3.3
-
-**Added**
-
-- Chat message component can now show cards, badges, and small charts, not just text.
-- Spotlight tour, for walking someone through a screen step by step.
-
-## v0.3.2
-
-**Fixed**
-
-- Toasts, tooltips, and popovers were sometimes stacking on top of each other.
-
-**Added**
-
-- Chat input component, built for the AI assistant.
-
 ## v0.3.1
 
 **Added**
 
-- A real motion system. Every animation uses the same speed and easing settings now.
-- Support for "reduce motion," everywhere, not just in one or two places.
+- Chat Input and Chat Message, the components behind our AI assistant.
+- GenUI — renders AI-generated content straight into real, styled components instead of plain text.
+- Spotlight Tour, for walking someone through a screen one step at a time.
+- File Upload, with real upload progress and real errors instead of a fake spinner.
+- Empty State, for when a list or search has nothing to show.
+- Carousel, Segmented Control, and Step Group.
+
+**Fixed**
+
+- Toasts, tooltips, and popovers were sometimes stacking on top of each other.
+- Two color pairings that failed our contrast check. Fixed both.
 
 ## v0.3.0 — The Human Touches
 
-All the main pieces existed by now. This stretch was about the small details: dark mode, motion,
-and a new set of components for AI chat.
+All the main pieces existed by now. This stretch was about the small details.
 
 **Added**
 
 - Dark mode, done properly across every component.
-
-## v0.2.4
-
-**Added**
-
-- Charts: bar, line, area, donut.
-- Tree view, for anything with nested items — folders, categories.
-- Pagination component.
-- Phone number and one-time-code inputs.
-
-## v0.2.3
-
-**Added**
-
-- Select input and multi-select.
-- Modal, Drawer, and Menu.
+- A way to build your own custom theme on top of the default one.
+- A real motion system — every animation uses the same speed and easing settings now, instead of
+  each component guessing its own.
+- Support for "reduce motion," everywhere, not just in one or two places.
+- A set of small animation building blocks (Fade, Slide, Scale, Move, Morph, Elevate, Stagger,
+  Animate Interactions) that other components use to move consistently.
+- Spark — a small set of ambient visual effects for flourish moments.
 
 ## v0.2.2
 
 **Added**
 
-- Table (first version) — headers, rows, pagination.
-- Side navigation, breadcrumbs, tabs, top navigation bar.
+- Charts: bar, line, area, donut, all using the same color system.
+- Tree View, for anything with nested items — folders, categories.
+- Pagination, List, and List View.
+- Counter and Counter Input.
+- App Bar and Floating Action Button.
+- Card and Resizable Split.
 
 ## v0.2.1
 
 **Added**
 
-- Date picker and time picker.
+- Table (first version) — headers, rows, pagination.
+- Select Input, multi-select, OTP input, Phone Number input, and Color input.
+- Modal, Drawer, and Bottom Sheet.
+- Side Navigation, Breadcrumb, Tabs, Top Navigation, and Bottom Navigation.
 
 ## v0.2.0 — Room to Grow
 
@@ -218,53 +154,52 @@ The basics worked. Time to build the components people use every single day.
 **Added**
 
 - Dropdown. A lot of what comes later is built on top of it.
+- Menu and Action List.
+- Date Picker and Time Picker.
 
-## v0.1.6
+## v0.1.2
 
 **Added**
 
-- Accordion, Tooltip, Popover, Avatar, Chip, Divider, Skeleton, Spinner.
+- Accordion, Collapsible, Tooltip, and Popover.
+- Divider, Skeleton, Spinner, Progress Bar, and Toast.
+- Link, Visually Hidden, and Skip Nav — the components that make a page usable without a mouse.
+- An icon library — one consistent size and color system instead of icons from five different
+  sources.
+- Blur, opacity, and sizing tokens, rounding out the token set.
 - First full test suite, covering everything shipped so far.
 
 **Checked**
 
 - Every component built so far, confirmed working on mobile apps too, not just the web.
 
-## v0.1.5
+**Fixed**
 
-**Added**
-
-- Text input, with labels, helper text, and error states built in.
-- Password input and search input.
-
-## v0.1.4
-
-**Added**
-
-- Checkbox, Radio, and Switch, all fully usable with just a keyboard.
-
-## v0.1.3
-
-**Added**
-
-- Button, with every state built in — loading, disabled, icon-only.
-- Text and Heading components.
-
-## v0.1.2
-
-**Added**
-
-- Theme provider. Wrap your app once, every component below it knows the theme.
-- Box, the base layout component almost everything else is built on.
+- Tooltip positioning near screen edges.
 
 ## v0.1.1
 
 **Added**
 
-- Color, type, and spacing tokens. One shared set of values instead of every screen picking its own.
+- Checkbox, Radio, and Switch, all fully usable with just a keyboard.
+- Text Input, Password Input, Search Input, and Text Area.
+- Avatar, Chip, Badge, and Tag.
+
+**Fixed**
+
+- Keyboard focus order on Checkbox and Radio.
 
 ## v0.1.0 — The Idea
 
 This is where it started. Every screen was using a slightly different blue, different spacing,
-different button style. We built one shared set of rules for color, text, and spacing, that both
-web and mobile could use from here on.
+different button style.
+
+**Added**
+
+- Color, typography, spacing, border, breakpoint, and elevation tokens — one shared set of values
+  instead of every screen picking its own.
+- Theme provider. Wrap your app once, every component below it knows the theme.
+- Box, the base layout component almost everything else is built on.
+- Button and Icon Button, with every state built in — loading, disabled, icon-only.
+- Text, Heading, Display, and Code — typography you write in code, instead of styling by hand every
+  time.

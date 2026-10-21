@@ -59,15 +59,17 @@ Published packages (starting with `@klear/klear360`) use [Changesets](https://gi
 
 Separate from the technical changelog above, `packages/klear360` keeps a human-facing **Release Notes** page — Storybook's "Guides → Release Notes" page (`packages/klear360/docs/guides/ReleaseNotes.mdx`), mirrored at `packages/klear360/RELEASE_NOTES.md` and linked from its `README.md`. Written for designers/PMs, not engineers, in the style of [PrimeReact's changelog](https://primereact.dev/changelog): version number only (no date), short bulleted entries grouped under simple section labels (`**Added**`, `**Fixed**`, `**Improved**`, `**Checked**` - pick whichever apply, skip the rest), one line per bullet. No jargon, no flowery prose - simple enough that a junior designer reads it and understands exactly what changed. See the existing entries for the exact tone.
 
-**Add one new entry for any PR that ships something a non-engineer would want to know about** — a new component, a real user-visible bug fix, a meaningful process change (same bar as "would this interest someone skimming for what's new," not "did any file change"). Pure internal refactors or one-off audit docs with no visible effect can usually skip it unless they're part of a larger themed batch.
+**Don't add a new version for every single PR** — that reads as machine-generated, not like a real product's release history (see [Razorpay Blade's releases](https://github.com/razorpay/blade/releases) for how a genuinely fast-moving design system actually ships: dense, infrequent releases bundling many additions and fixes at once, not one release per change). Batch instead: roughly **1-2 releases a week**, each one rolling up everything that shipped since the last - several new components, several fixes, together under one version. Only add a brand new version entry when you're the one closing out that batch (use judgment - if an entry for the current, unreleased batch already exists at the top of the file, add your bullet(s) to it instead of creating a new version).
 
-When adding an entry:
+A PR's work belongs in the release notes if it ships something a non-engineer would want to know about — a new component, a real user-visible bug fix, a meaningful process change (same bar as "would this interest someone skimming for what's new," not "did any file change"). Pure internal refactors or one-off audit docs with no visible effect can usually skip it entirely.
+
+When adding to an entry (new or existing):
 
 - Put it at the **top** of both `RELEASE_NOTES.md` and `ReleaseNotes.mdx` (newest first) — keep them identical, they're intentionally duplicated for Storybook + plain-git visibility.
-- Heading is the version only - `## v0.5.4` - no date, no day of week.
-- Bump the version: patch (`v0.5.3` → `v0.5.4`) for a normal entry, minor (`v0.6.0`) when enough work has piled up to feel like a new chapter — use judgment, there's no hard threshold. Give a minor bump a short title the way `v0.5.0 — Measure Twice, Ship Once` does.
+- Heading is the version only - `## v0.5.1` - no date, no day of week.
+- Bump the version: patch (`v0.5.0` → `v0.5.1`) for a normal batch, minor (`v0.6.0`) when enough has piled up to feel like a new chapter — use judgment, there's no hard threshold. Give a minor bump a short title the way `v0.5.0 — Measure Twice, Ship Once` does.
 - Update the "You're on `vX.Y.Z`" line at the top of both files to match the new latest version.
-- Write each bullet as one short, plain sentence - name the component or screen, not the function/prop/internal mechanism, and say what changed for someone using it.
+- Group bullets under simple section labels (`**Added**`, `**Fixed**`, `**Improved**`, `**Checked**`) and write each bullet as one short, plain sentence - name the component or screen, not the function/prop/internal mechanism, and say what changed for someone using it.
 
 ## Cursor Skills (Design System)
 
