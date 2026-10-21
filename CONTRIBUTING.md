@@ -184,24 +184,31 @@ jsdom limitation like the above actually applies, not as a default for every sta
 ## Release Notes
 
 If your PR ships something a non-engineer would want to know about - a new component, a real
-user-visible bug fix, a meaningful process change - add an entry to the **Release Notes**, not just
-a changeset. This is a separate, human-facing page (plain language, no jargon, styled after
+user-visible bug fix, a meaningful process change - it belongs in the **Release Notes**, not just a
+changeset. This is a separate, human-facing page (plain language, no jargon, styled after
 [PrimeReact's changelog](https://primereact.dev/changelog)), distinct from `CHANGELOG.md`'s
-technical version log:
+technical version log.
+
+**Don't cut a new version for every PR.** Batch roughly 1-2 releases a week, each bundling
+everything that shipped since the last one - see
+[Razorpay Blade's releases](https://github.com/razorpay/blade/releases) for what a genuinely
+fast-moving design system's real release cadence looks like (dense, infrequent, many things at
+once - not one release per change). If an entry for the current, not-yet-released batch already
+exists at the top of the file, add your bullet(s) there instead of creating a new version.
 
 - Edit `packages/klear360/RELEASE_NOTES.md` **and** `packages/klear360/docs/guides/ReleaseNotes.mdx`
   together (they're intentionally duplicated - one for plain git/GitHub viewing, one for Storybook's
-  "Guides → Release Notes" page) - add your entry at the top of both.
+  "Guides → Release Notes" page) - add at the top of both.
 - Heading is the version only - no date, no day of week.
 - Group bullets under simple section labels - `**Added**`, `**Fixed**`, `**Improved**`, `**Checked**`
   - using only the ones that apply. One short, plain sentence per bullet: name the component or
   screen, not the function or prop, and say what changed for someone using it. See the file's own
   entries for the exact tone - simple enough that a junior designer understands every line.
-- Bump the version at the top of both files (`vX.Y.Z` → next patch, or a minor bump with a short
-  title if this caps off a bigger chunk of work).
+- Bump the version only when you're closing out the current batch (`vX.Y.Z` → next patch, or a minor
+  bump with a short title if this caps off a bigger chunk of work).
 
 A pure internal refactor or a one-off audit doc with no visible effect usually doesn't need its own
-entry unless it's part of a larger themed batch worth calling out together.
+entry at all.
 
 ## Performance & Profiling
 
