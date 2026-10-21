@@ -88,3 +88,20 @@ There's nothing to fix - this is the normal, idiomatic way to share a component'
 ## Independent confirmation: already guarded by existing lint config
 
 This repo's root `.eslintrc.js` already has `'import/no-cycle': ['error', { maxDepth: 4, ignoreExternal: false }]` - a *second*, independent cycle detector, already enforced in CI's lint job, that would fail the build on a genuinely problematic cycle. Running it directly against `SourceToPayIcon.tsx` (`npx eslint ... --resolve-plugins-relative-to . --no-ignore`, bypassing only the default ignore patterns, not the rule itself) produced zero errors despite the type-only cycle `madge` flagged at the same file - confirming `import/no-cycle`, under the TypeScript parser used here, already treats `import type` edges as non-cycle-forming. In other words: this package already has an automated guard against real circular-dependency regressions, and this audit's 482-cycle `madge` output is exactly the set of cycles that guard correctly lets through. No new CI check is needed.
+
+# Context-triggered re-renders
+
+This covers a P2 architecture-audit check: whether any `React.createContext` provider besides `TreeView`'s (see `TreeView/_decisions/decisions.md`'s "React.memo evaluation" section) passes an unmemoized context value to many sibling consumers, causing the same "every sibling re-renders on any one item's state change" problem `TreeView` had before its `useSyncExternalStore`-based fix.
+
+## Swept every `createContext` provider with a list-of-siblings consumption pattern
+
+Checked every component where a context's consumers are rendered in a list/loop (the shape that made `TreeView`'s bug expensive - O(list size) re-renders per interaction, not O(1)):
+
+- **Already correctly memoized**: `SideNav` (`React.useMemo` with a deliberate, commented `exhaustive-deps` override), `Tabs`, `Carousel`, `Radio`'s `useRadioGroup` (`contextValue` built via `React.useMemo`).
+- **`Table`**: row selection is owned and re-rendered by `@table-library/react-table-library`'s own internal state/theme engine, not a `React.createContext` this package defines - out of scope for a fix here even if it had the same issue, since it isn't this package's code.
+- **`QuickFilterGroup`**: `QuickFilterGroupProvider value={{ selectionType, selectedQuickFilters, onSelect }}` is a fresh, unmemoized object literal every render of `QuickFilterGroup.tsx`, so every `QuickFilterItem` re-renders on any one filter's selection change - genuinely the same category of issue as `TreeView`, just not fixed. Not worth fixing: quick-filter groups are a small, bounded list (a handful of filter chips, not rows/nodes that can scale into the hundreds), so the practical cost of this is negligible - exactly the `TreeView` finding's own point that `React.memo`/selector patterns have a real complexity cost and are only worth paying when the re-render blast radius is actually large.
+- **`ListViewFiltersContext.web.tsx`**: not a re-render risk at all, for a different reason - `useListViewFilterContext` has **zero consumers** anywhere in `src/components/ListView` outside its own test file. The context is provided (`ListViewFilters.web.tsx`) but nothing reads it, so there's nothing to re-render. This looks like dead/unused infrastructure rather than a performance bug - worth a separate look, not something this re-render audit should "fix" by adding memoization to code nothing uses.
+
+## Conclusion
+
+`TreeView` was a genuine, isolated outlier - not a systemic pattern. No other list-of-siblings context in the package has both (a) an unmemoized value and (b) a consumer count large enough for it to matter in practice. Nothing fixed here.
