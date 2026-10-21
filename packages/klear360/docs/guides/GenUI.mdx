@@ -24,6 +24,40 @@ function App() {
 }
 ```
 
+## Bundle Size & Code-Splitting
+
+`GenUIProvider`/`GenUISchemaRenderer` (plus the rest of the GenUI family) is, by a wide margin, the
+largest single export in `@klear/klear360` - roughly 290KB versus ~140KB for the next largest
+export (`DatePicker`). `@klear/klear360`'s own `sideEffects`/tree-shaking setup already means you
+only pay for this at all if you actually import it, but if your app only renders GenUI content on
+one route or panel (a chat/assistant view, for example), you don't need to pay for it on every
+other page's initial bundle either.
+
+This package intentionally does **not** wrap `GenUIProvider`/`GenUISchemaRenderer` in `React.lazy`
+itself - that would force every consumer to wrap them in a `<Suspense>` boundary even if they don't
+want to code-split, which is a breaking change to how the components are used today. Code-splitting
+is a decision about *your app's* route/panel boundaries, so it belongs in *your* code, using the
+dynamic `import()` this package's ESM output already supports cleanly:
+
+```tsx
+const GenUIProvider = React.lazy(() =>
+  import('@klear/klear360').then((m) => ({ default: m.GenUIProvider })),
+);
+const GenUISchemaRenderer = React.lazy(() =>
+  import('@klear/klear360').then((m) => ({ default: m.GenUISchemaRenderer })),
+);
+
+function ChatPanel() {
+  return (
+    <React.Suspense fallback={<Spinner />}>
+      <GenUIProvider>
+        <GenUISchemaRenderer components={components} />
+      </GenUIProvider>
+    </React.Suspense>
+  );
+}
+```
+
 ## Built-in Components
 
 **TEXT**\

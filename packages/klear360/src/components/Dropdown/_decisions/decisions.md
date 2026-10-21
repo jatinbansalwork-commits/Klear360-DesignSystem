@@ -855,4 +855,68 @@ combined follow-up task scoped to all of them at once.
 
 <br/><br/>
 
+## Known gap: no built-in "no results" pattern for filterable lists
+
+**Finding (P2 loading/error/empty/disabled-state audit).** `ActionList`/`BaseMenu` have `isDisabled`
+(per item) but no concept of an empty result set, and `FilterChipSelectInput.web.tsx` - this
+design system's own filterable multi-select built on `ActionList` - has no code path at all for
+"the user's filter text matched zero options": no `noOptionsText`/`emptyMessage` prop, no
+conditional render, nothing. A consumer typing a filter that matches nothing today just sees an
+empty dropdown panel with no feedback that anything happened, vs. a genuine "no results" state.
+
+This is a real gap, not a "looked-like-one-isn't" case like most of this audit's other findings:
+`Table` has exactly this same category of problem (an async/filtered view can come back empty) and
+already solves it with a documented pattern - see `TableEmptyStateExample.stories.tsx`, which
+renders the shared `EmptyState` component in a column-spanning row when there's no data. Dropdown's
+filterable lists have no equivalent story, pattern, or slot to do the same thing. `TreeView` has the
+identical gap for a lazily-loaded subtree that resolves to zero children - it has `isLoading` for
+the in-flight state (see its own `_decisions/decisions.md`) but nothing for "loaded, and it's empty."
+
+**Not fixed inline.** Closing this properly means designing where a "no results" slot would live in
+`ActionList`'s render tree (a non-interactive row, presumably reusing `EmptyState`, inserted when
+the item list resolves to empty) and doing the equivalent for `TreeView`'s `LoadMore` row - a real
+API decision (prop name, default content if any, whether it's a dedicated prop or a documented
+`children`-based pattern like `Table`'s) that deserves its own design pass rather than a drive-by
+addition. Tracked as a separate follow-up task covering both `Dropdown`'s filterable lists and
+`TreeView`.
+
+<br/><br/>
+
+## Found: `ActionListItem` has the same `React.memo`-is-a-no-op problem `TreeViewItem` had
+
+**Finding (P3 `useMemo`/`useCallback` audit).** `ActionListItem` (`ActionListItem.tsx`) is wrapped
+in `React.memo` (`const ActionListItem = assignWithoutSideEffects(React.memo(_ActionListItem), ...)`),
+but `_ActionListItem` reads `activeIndex`, `selectedIndices`, `filteredValues`, `isKeydownPressed`,
+`onOptionClick`, and more straight off `useDropdown()` (which is `React.useContext(DropdownContext)`
+under the hood) - it doesn't receive any of this as props. This is architecturally identical to the
+already-fixed `TreeView.onExpandChange`/`React.memo` finding (see `TreeView/_decisions/decisions.md`'s
+"React.memo evaluation" section): `React.memo` only blocks a re-render triggered by a parent passing
+identical props, and does nothing for a re-render triggered by the component's own context
+subscription changing.
+
+`Dropdown.tsx`'s `contextValue` is itself correctly `React.useMemo`'d, but its dependency array
+bundles every piece of Dropdown's state together as one object - `activeIndex` (keyboard-nav
+highlight), `selectedIndices` (selection), `filteredValues` (search-filter text), `isKeydownPressed`
+(keyboard-vs-mouse focus styling), and others. Changing any one of these produces a new
+`contextValue` object (correctly - the value genuinely changed), which re-renders **every**
+`ActionListItem` subscribed to `useDropdown()`, not just the item(s) whose own rendered output
+actually depends on the field that changed. Concretely: typing one character into a filterable
+`FilterChipSelectInput`'s search box updates `filteredValues` on every keystroke, and arrow-key
+navigation updates `activeIndex` on every press - both re-render the entire option list each time,
+the same O(list size) cost per interaction `TreeView` had before its fix, for an even more frequent
+trigger (every keystroke vs. every selection/expand).
+
+**Not fixed inline.** `TreeView`'s fix (`useSyncExternalStore`-based selector subscriptions, splitting
+structural state from a small external store of fast-changing state) is directly applicable in shape,
+but `DropdownContext` has substantially more surface area and more consumers than `TreeViewContext`
+did: it's shared infrastructure behind `ActionList`, `AutoComplete`, `SelectInput`,
+`FilterChipSelectInput`, and `Menu` (`TreeView`'s own fix explicitly called out extending this
+pattern to `Dropdown` as future, separate work - see that section's "Explicitly out of scope" note).
+A fix here touches every one of those consumers' rendering paths, so it needs the same rigor
+`TreeView`'s fix got (a reproducible render-count measurement before/after, dedicated render-scope
+tests, SSR verification) across a wider blast radius, not a drive-by port of the same technique.
+Tracked as a separate follow-up task.
+
+<br/><br/>
+
 fin 🌻
