@@ -40,7 +40,7 @@
     "@klear/i18n": "1.0.0",
     "class-variance-authority": "^0.7.0",
     "tinycolor2": "1.6.0",
-    "ts-deepmerge": "6.2.0"
+    "ts-deepmerge": "8.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.28.3",
