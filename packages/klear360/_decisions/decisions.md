@@ -121,3 +121,21 @@ Nothing told consumers this was possible or worth doing, despite GenUI's size ma
 ## Conclusion
 
 `TreeView` was a genuine, isolated outlier - not a systemic pattern. No other list-of-siblings context in the package has both (a) an unmemoized value and (b) a consumer count large enough for it to matter in practice. Nothing fixed here.
+
+# Dependency audit
+
+This covers a P0 check (from the second "React Library Development Best Practices" gap-analysis pass): is every runtime dependency actually needed, and minimal/up to date where it matters.
+
+## `@emotion/react` looked unused - it isn't. Don't remove it.
+
+All 26 packages in `dependencies` were checked for real usage (`grep` across `src/` for both `from '<pkg>'` imports and bare side-effect `import '<pkg>'`s). 25 had clear direct usage. `@emotion/react` had **zero** - no import anywhere in `src/`, and `yarn why @emotion/react` showed nothing else in the tree requiring it either, which looked like a textbook dead dependency.
+
+It is not one. `@table-library/react-table-library` (which backs `Table`) declares `@emotion/react` as a `peerDependency` (`>= 11`) that it needs internally for its own styling, but doesn't bundle or re-declare as a regular dependency. `klear360` satisfies that peer on every consumer's behalf by carrying `@emotion/react` as its own regular dependency - a legitimate, common pattern for a library wrapping another library with peer deps, not a leftover.
+
+This was caught, not guessed: removing it locally and running `yarn verify:interop` immediately failed with `Cannot find package '@emotion/react' imported from .../node_modules/@table-library/react-table-library/styles-*.js`. Re-added before anything was committed. If this dependency is ever reconsidered, check `@table-library/react-table-library`'s own `peerDependencies` first, and re-run `verify:interop` after removing it locally - don't trust a `grep`/`yarn why` pass alone, exactly the mistake this entry documents.
+
+## Security: 2 critical vulnerabilities found and patched, 84 lower-severity ones deferred
+
+`yarn audit` found 89 vulnerabilities (3 low, 46 moderate, 38 high, 2 critical) across the whole monorepo's dependency tree. Both critical ones were fixed via `resolutions` pins to already-published patched versions (see the `fix(deps)` PR for this item) - `proxy-addr` (IP-spoofing, transitive via `klear360-mcp`'s MCP SDK dependency) and `shell-quote` (command injection, transitive via `npm-run-all`; an existing resolution for a different, older CVE wasn't high enough to cover this one).
+
+The 38 high and 46 moderate findings were deliberately **not** attempted in the same pass - they're mostly several layers deep in devDependency tooling chains (build/test infrastructure, not `packages/klear360`'s own published runtime bundle), and the volume means a careful, dedicated pass is needed to confirm each fix doesn't break the chain of tooling it sits in, rather than a batch of blind `resolutions` pins. Tracked as a separate follow-up task.
