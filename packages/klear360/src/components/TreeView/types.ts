@@ -3,7 +3,8 @@ import type { DataAnalyticsAttribute, TestID } from '~utils/types';
 
 type TreeViewProps = {
   /**
-   * Children of TreeView. Only `TreeViewItem` and `TreeViewLoadMore` are allowed
+   * Children of TreeView. Only `TreeViewItem`, `TreeViewLoadMore`, and `TreeViewEmptyState`
+   * are allowed
    */
   children: React.ReactNode;
   /**
@@ -81,7 +82,12 @@ type TreeViewItemProps = {
    */
   isSelectable?: boolean;
   /**
-   * Nested `TreeViewItem` / `TreeViewLoadMore` children. Nesting defines depth
+   * Nested `TreeViewItem` / `TreeViewLoadMore` children. Nesting defines depth.
+   *
+   * For an on-demand (async) branch whose children resolve to zero items, render a single
+   * `TreeViewEmptyState` here instead of leaving `children` empty - it keeps the branch
+   * expandable (combine with `hasChildren`) and tells the user there's nothing inside, rather
+   * than an expanded branch that silently shows nothing.
    */
   children?: React.ReactNode;
   /**
@@ -118,6 +124,27 @@ type TreeViewItemProps = {
   }) => void;
 } & TestID &
   DataAnalyticsAttribute;
+
+type TreeViewEmptyStateProps = {
+  /**
+   * Asset slot for a custom illustration or icon. Defaults to a search icon
+   */
+  asset?: React.ReactNode;
+  /**
+   * Primary heading text
+   *
+   * @default 'No items found'
+   */
+  title?: string;
+  /**
+   * Supporting description text
+   */
+  description?: string;
+  /**
+   * Content for actions, links, or any custom content (e.g. a "Retry" button)
+   */
+  children?: React.ReactNode;
+} & TestID;
 
 type TreeViewLoadMoreProps = {
   /**
@@ -219,6 +246,7 @@ export type {
   TreeViewProps,
   TreeViewItemProps,
   TreeViewLoadMoreProps,
+  TreeViewEmptyStateProps,
   TreeViewNodeType,
   BranchSelectionStateType,
   TreeViewDisplayOverrideType,

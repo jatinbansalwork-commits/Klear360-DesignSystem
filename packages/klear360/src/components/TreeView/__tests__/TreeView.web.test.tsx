@@ -545,7 +545,7 @@ describe('<TreeView /> standalone', () => {
         </TreeView>,
       ),
     ).toThrow(
-      '[Klear360: TreeView]: Only TreeViewItem, TreeViewLoadMore are supported inside TreeView',
+      '[Klear360: TreeView]: Only TreeViewItem, TreeViewLoadMore, TreeViewEmptyState are supported inside TreeView',
     );
     consoleError.mockRestore();
   });

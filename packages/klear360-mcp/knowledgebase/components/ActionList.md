@@ -30,6 +30,12 @@ type ActionListProps = {
    * Whether to use virtualized list rendering for performance with large lists
    */
   isVirtualized?: boolean;
+  /**
+   * Content rendered instead of the list when a filterable trigger (AutoComplete, or any
+   * trigger with an AutoComplete in the DropdownHeader, e.g. FilterChipSelectInput) narrows
+   * the options down to zero matches. Defaults to a built-in EmptyState ("No results found").
+   */
+  noResultsContent?: React.ReactNode;
 } & TestID &
   DataAnalyticsAttribute;
 
@@ -128,6 +134,7 @@ type ActionListItemAssetProps = {
 - Use `leading` prop with specific components: `ActionListItemIcon`, `ActionListItemAsset`, `ActionListItemAvatar`, `ActionListItemText`.
 - Use `intent="negative"` on `ActionListItem` for destructive actions (delete, remove, logout).
 - Use `isVirtualized` for lists with 100+ items to maintain performance.
+- Pass `noResultsContent` with a custom `EmptyState` when a filterable trigger (`AutoComplete`, `FilterChipSelectInput`) can narrow the list down to zero matches and the default "No results found" copy isn't specific enough.
 
 **Don't**
 

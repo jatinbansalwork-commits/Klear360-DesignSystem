@@ -11,7 +11,11 @@ import type { OptionsType } from '~components/Dropdown/useDropdown';
 import { getComponentId } from '~utils/isValidAllowedChildren';
 import { logger, throwKlear360Error } from '~utils/logger';
 
-const treeViewAllowedChildren = [componentIds.TreeViewItem, componentIds.TreeViewLoadMore];
+const treeViewAllowedChildren = [
+  componentIds.TreeViewItem,
+  componentIds.TreeViewLoadMore,
+  componentIds.TreeViewEmptyState,
+];
 
 const TREEVIEW_MAX_RECOMMENDED_LEVEL = 3;
 const DEFAULT_LOAD_MORE_LABEL = 'Show more';
@@ -71,6 +75,7 @@ const getTreeViewProperties = (children: React.ReactNode): TreeViewPropertiesTyp
     const selectableLeafValues: string[] = [];
     const childValues: string[] = [];
     let loadMoreCountInLevel = 0;
+    let emptyStateCountInLevel = 0;
 
     if (level > maxLevel) {
       maxLevel = level;
@@ -91,6 +96,32 @@ const getTreeViewProperties = (children: React.ReactNode): TreeViewPropertiesTyp
       }
 
       const posInSet = childIndex + 1;
+
+      if (childComponentId === componentIds.TreeViewEmptyState) {
+        // Decorative only - not a row: skipped entirely from the registry (nodeMap/options/
+        // childValues/selectableLeafValues), so it's never focusable, selectable, or counted
+        // towards its branch's traversal. `hasRenderedChildren` on the parent still comes out
+        // `true` (it's a real React child), so the branch keeps its expand affordance and the
+        // group still renders with this as its sole content.
+        emptyStateCountInLevel++;
+        if (__DEV__) {
+          if (emptyStateCountInLevel > 1) {
+            logger({
+              type: 'warn',
+              moduleName: 'TreeViewEmptyState',
+              message: 'Only one TreeViewEmptyState is expected per branch',
+            });
+          }
+          if (childArray.length > 1) {
+            logger({
+              type: 'warn',
+              moduleName: 'TreeViewEmptyState',
+              message: 'TreeViewEmptyState should be the only child of its branch',
+            });
+          }
+        }
+        return;
+      }
 
       if (childComponentId === componentIds.TreeViewLoadMore) {
         const loadMoreProps = child.props as TreeViewLoadMoreProps;

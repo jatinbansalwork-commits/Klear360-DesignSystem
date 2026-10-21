@@ -18,6 +18,15 @@ import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 type ActionListProps = {
   children: React.ReactNode[];
   isVirtualized?: boolean;
+  /**
+   * Content rendered instead of the list when a filterable trigger (`AutoComplete`, or any
+   * trigger with an `AutoComplete` in the `DropdownHeader`, e.g. `FilterChipSelectInput`) narrows
+   * the options down to zero matches.
+   *
+   * Defaults to a built-in `EmptyState` ("No results found"). Pass your own node (e.g. an
+   * `EmptyState` with a "Clear search" action) to customize the copy, icon, or actions.
+   */
+  noResultsContent?: React.ReactNode;
 } & TestID &
   DataAnalyticsAttribute;
 
@@ -25,6 +34,7 @@ const _ActionList = ({
   children,
   testID,
   isVirtualized,
+  noResultsContent,
   ...rest
 }: ActionListProps): React.ReactElement => {
   const {
@@ -35,6 +45,7 @@ const _ActionList = ({
     dropdownTriggerer,
     hasFooterAction,
     filteredValues,
+    hasAutoCompleteInHeader,
   } = useDropdown();
 
   const ActionListBox = isVirtualized ? ActionListVirtualizedBox : ActionListNormalBox;
@@ -51,11 +62,11 @@ const _ActionList = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actionListOptions]);
 
-  if (
-    filteredValues.length <= 0 &&
-    dropdownTriggerer === dropdownComponentIds.triggers.AutoComplete
-  ) {
-    return <ActionListNoResults />;
+  const hasAutoComplete =
+    hasAutoCompleteInHeader || dropdownTriggerer === dropdownComponentIds.triggers.AutoComplete;
+
+  if (hasAutoComplete && filteredValues.length <= 0) {
+    return <>{noResultsContent ?? <ActionListNoResults />}</>;
   }
 
   const actionListContainerRole = getActionListContainerRole(hasFooterAction, dropdownTriggerer);

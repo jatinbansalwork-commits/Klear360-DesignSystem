@@ -768,6 +768,47 @@ same treatment as other breaking prop renames in this repo (deprecation path or 
 `Table`'s `sortable` → `isSortable` finding for the established pattern), not a drive-by change.
 Tracked as a separate task.
 
+## Known gap (resolved): no built-in "no results" pattern for filterable lists
+
+A P2 architecture audit found `ActionList` had no documented or consistent way to tell a consumer
+"your filter matched nothing" - a consumer typing into a filterable trigger that narrowed the
+options down to zero matches just saw an empty dropdown panel.
+
+Investigating turned up a partial, narrower implementation already in the codebase:
+`ActionList.tsx` rendered a hardcoded `ActionListNoResults` component (plain `Box`/`Text`, not the
+shared `EmptyState`), but only when `dropdownTriggerer === AutoComplete` - i.e. only for the
+standalone `AutoComplete` trigger. `FilterChipSelectInput` (Dropdown's own filterable multi-select)
+filters through a different mechanism: an `AutoComplete` placed inside `DropdownHeader`, which sets
+`hasAutoCompleteInHeader` on the shared Dropdown context instead of `dropdownTriggerer`. That case
+was never checked, so filtering `FilterChipSelectInput`'s list down to zero matches still rendered
+a blank panel - every `ActionListItem` was hiding itself (its own `filteredValues` check already
+covered `hasAutoCompleteInHeader` correctly), but nothing filled the gap they left behind.
+
+### Resolution
+
+- Extended the existing check to `hasAutoCompleteInHeader || dropdownTriggerer === AutoComplete`,
+  matching the condition every `ActionListItem`/`ActionListSection` already uses to hide itself.
+- Added `ActionList`'s `noResultsContent?: React.ReactNode` prop so a consumer can override the
+  copy, icon, or add actions (e.g. "Clear search"), defaulting to `ActionListNoResults` - now built
+  on the shared `EmptyState` component instead of ad hoc `Box`/`Text`.
+
+### Why a dedicated prop, not `Table`'s documented `children`-based convention
+
+`Table`'s "no results after filtering" pattern (see `Table`'s own decisions) is a thin
+consumer-side wrapper: the consumer filters their own data array and conditionally renders
+`EmptyState` in place of `Table` entirely - `Table` never sees the "zero rows" transition, so there
+is nothing for it to own.
+
+`ActionList` doesn't work that way. The consumer always renders the same `ActionListItem`
+children; `Dropdown`'s own internal filtering state (`filteredValues`) decides which of them stay
+visible, hiding the rest from inside `ActionListItem` itself. The consumer never stops rendering
+children, so a documented `children`-based slot (`<ActionList><EmptyState .../></ActionList>` when
+there are zero matches) isn't something the consumer is ever in a position to drive - only
+`ActionList` itself knows when every item it was given has been filtered down to nothing. A
+dedicated prop, following the already-established pattern of `ActionListNoResults` (just
+generalized to cover both filtering mechanisms and made overridable), is the only approach that
+fits ActionList's rendering model.
+
 ## References
 
 - [Primer React's ActionMenu](https://primer.style/react/storybook/?path=/story/deprecated-components-actionmenu--action-menu-with-external-anchor)

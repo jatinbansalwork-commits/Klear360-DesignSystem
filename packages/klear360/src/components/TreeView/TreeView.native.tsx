@@ -1,4 +1,9 @@
-import type { TreeViewItemProps, TreeViewLoadMoreProps, TreeViewProps } from './types';
+import type {
+  TreeViewEmptyStateProps,
+  TreeViewItemProps,
+  TreeViewLoadMoreProps,
+  TreeViewProps,
+} from './types';
 
 const TreeView = (_props: TreeViewProps): never => {
   throw new Error('[Klear360: TreeView]: TreeView is not available on React Native');
@@ -12,4 +17,8 @@ const TreeViewLoadMore = (_props: TreeViewLoadMoreProps): never => {
   throw new Error('[Klear360: TreeView]: TreeViewLoadMore is not available on React Native');
 };
 
-export { TreeView, TreeViewItem, TreeViewLoadMore };
+const TreeViewEmptyState = (_props: TreeViewEmptyStateProps): never => {
+  throw new Error('[Klear360: TreeView]: TreeViewEmptyState is not available on React Native');
+};
+
+export { TreeView, TreeViewItem, TreeViewLoadMore, TreeViewEmptyState };

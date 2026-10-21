@@ -169,7 +169,7 @@ describe('getTreeViewProperties', () => {
 
   it('should throw on unsupported children (B10)', () => {
     expect(() => getTreeViewProperties(<div>hello</div>)).toThrow(
-      '[Klear360: TreeView]: Only TreeViewItem, TreeViewLoadMore are supported inside TreeView',
+      '[Klear360: TreeView]: Only TreeViewItem, TreeViewLoadMore, TreeViewEmptyState are supported inside TreeView',
     );
   });
 

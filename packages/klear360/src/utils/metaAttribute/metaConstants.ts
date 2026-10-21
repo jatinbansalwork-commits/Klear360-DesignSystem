@@ -111,6 +111,7 @@ export const MetaConstants = {
   TreeView: 'tree-view',
   TreeViewItem: 'tree-view-item',
   TreeViewLoadMore: 'tree-view-load-more',
+  TreeViewEmptyState: 'tree-view-empty-state',
   Tooltip: 'tooltip',
   TooltipInteractiveWrapper: 'tooltip-interactive-wrapper',
   Tabs: 'tabs',
