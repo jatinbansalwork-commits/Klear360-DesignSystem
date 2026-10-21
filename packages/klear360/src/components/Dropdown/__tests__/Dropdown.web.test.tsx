@@ -86,6 +86,59 @@ describe('<Dropdown />', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('should show ActionList no-results content when a header AutoComplete (e.g. FilterChipSelectInput) filters to zero matches', async () => {
+    const user = userEvent.setup();
+
+    const { getByRole, getByText, queryByText } = renderWithTheme(
+      <Dropdown>
+        <FilterChipSelectInput label="Fruits" />
+        <DropdownOverlay zIndex={1002}>
+          <DropdownHeader>
+            <AutoComplete label="Search fruits" />
+          </DropdownHeader>
+          <ActionList>
+            <ActionListItem title="Apple" value="apple" />
+            <ActionListItem title="Mango" value="mango" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>,
+    );
+
+    await user.click(getByRole('button', { name: 'Fruits' }));
+    await waitFor(() => expect(getByRole('menu')).toBeVisible());
+    const searchInput = getByRole('searchbox', { name: 'Search fruits' });
+
+    expect(queryByText('No results found')).toBeNull();
+
+    await user.type(searchInput, 'zzz');
+    await waitFor(() => expect(getByText('No results found')).toBeInTheDocument());
+    expect(queryByText('Apple')).toBeNull();
+  });
+
+  it('should render a custom noResultsContent on ActionList when provided', async () => {
+    const user = userEvent.setup();
+
+    const { getByRole, getByText } = renderWithTheme(
+      <Dropdown>
+        <FilterChipSelectInput label="Fruits" />
+        <DropdownOverlay zIndex={1002}>
+          <DropdownHeader>
+            <AutoComplete label="Search fruits" />
+          </DropdownHeader>
+          <ActionList noResultsContent={<Text>Nothing matched your search</Text>}>
+            <ActionListItem title="Apple" value="apple" />
+            <ActionListItem title="Mango" value="mango" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>,
+    );
+
+    await user.click(getByRole('button', { name: 'Fruits' }));
+    await waitFor(() => expect(getByRole('menu')).toBeVisible());
+    await user.type(getByRole('searchbox', { name: 'Search fruits' }), 'zzz');
+    await waitFor(() => expect(getByText('Nothing matched your search')).toBeInTheDocument());
+  });
+
   it('should render dropdown with large size select input', () => {
     const { container } = renderWithTheme(
       <Dropdown>

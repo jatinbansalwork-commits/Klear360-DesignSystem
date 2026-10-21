@@ -174,6 +174,56 @@ Two things had to hold for this to actually work, not just look like it does:
 
 **Explicitly out of scope.** `activeIndex` and `isKeydownPressed` (dropdown-mode active-row highlight / keydown styling) come from `Dropdown`'s own context (`useDropdown()`), not `TreeViewContext`, and are not addressed here - `Dropdown` is shared infrastructure behind `ActionList`, `AutoComplete`, `SelectInput`, etc., and applying the same selector pattern there is a separate, higher-blast-radius change that belongs in its own investigation if `Dropdown`-mode TreeView performance at scale turns out to need it.
 
+## Known gap (resolved): no "loaded, and it's empty" state for async branches
+
+A P2 architecture audit found `TreeView` had `isLoading` for an async branch's in-flight state
+(B-series: forces the chevron, shows a spinner) but nothing for the state after loading finishes
+with zero items. A branch with `hasChildren` and `isLoading={false}` but no real `TreeViewItem`
+children falls out of `isBranch`'s definition once the consumer also drops `hasChildren`
+(`isBranch = hasRenderedChildren || hasChildren`) - so the row quietly turns into a leaf and the
+expand affordance disappears, or, if the consumer keeps `hasChildren` set, the branch stays
+expandable but its expanded group renders nothing at all (B11/B7's `hasRenderedChildren` check: an
+empty `children` means no group renders). Either way, nothing tells the user "this branch has no
+items" versus "this is still loading" or "this isn't a branch."
+
+### Resolution
+
+Added `TreeViewEmptyState`, a new allowed child type alongside `TreeViewItem` and
+`TreeViewLoadMore` (`treeViewAllowedChildren` in `treeViewUtils.ts`). A consumer renders it as the
+branch's only child once a fetch resolves to zero items (keeping `hasChildren` set so the branch
+stays expandable):
+
+```jsx
+<TreeViewItem title="Karnataka" value="karnataka" hasChildren isLoading={isLoading}>
+  {!isLoading && cities.length === 0 ? (
+    <TreeViewEmptyState description="No cities match this filter" />
+  ) : (
+    cities.map((city) => <TreeViewItem key={city.value} {...city} />)
+  )}
+</TreeViewItem>
+```
+
+It also works at the root, for a whole tree that resolves to zero items.
+
+`walkLevel` (`treeViewUtils.ts`) recognizes it and skips registration entirely - it is never added
+to `nodeMap`/`options`/`childValues`/`selectableLeafValues`, so it's never focusable, selectable,
+or counted towards keyboard traversal or `selectedGroups`. `hasRenderedChildren` is still computed
+from `React.Children.count(children) > 0`, so a branch whose only child is `TreeViewEmptyState`
+still reports `true` there - the group still renders - no change needed to that calculation.
+Dev-only warnings fire if more than one `TreeViewEmptyState` is used per branch, or if it's mixed
+with real `TreeViewItem`/`TreeViewLoadMore` siblings (both nonsensical combinations).
+
+### Why a documented `children`-based slot, not a dedicated prop
+
+Unlike `ActionList` (see `Dropdown`'s own decisions, "no built-in 'no results' pattern"), the
+consumer here is already the one deciding whether to render real children or not - `TreeView`
+doesn't have an internal filtering mechanism hiding `TreeViewItem`s the way `Dropdown`'s
+`AutoComplete` does for `ActionList`. The consumer always controls a branch's `children` directly
+(this is exactly how `TreeViewLoadMore` already works - a sibling row-shaped child, not a prop), so
+a `children`-based slot is the natural fit and keeps the same shape as the existing
+`TreeViewLoadMore` precedent, rather than introducing a second, inconsistent way (an `isEmpty`
+prop, say) to express the same "what goes in this branch's body" decision.
+
 ## Out of scope for v1
 
 - React Native (native entry throws a dev error)

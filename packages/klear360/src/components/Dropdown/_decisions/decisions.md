@@ -841,6 +841,48 @@ addition. Tracked as a separate follow-up task covering both `Dropdown`'s filter
 
 <br/><br/>
 
+## Known gap (resolved): no built-in "no results" pattern for filterable lists
+
+Following up on the finding above, investigating turned up a partial, narrower implementation
+already in the codebase: `ActionList.tsx` rendered a hardcoded `ActionListNoResults` component
+(plain `Box`/`Text`, not the shared `EmptyState`), but only when `dropdownTriggerer ===
+AutoComplete` - i.e. only for the standalone `AutoComplete` trigger. `FilterChipSelectInput`
+filters through a different mechanism: an `AutoComplete` placed inside `DropdownHeader`, which sets
+`hasAutoCompleteInHeader` on the shared Dropdown context instead of `dropdownTriggerer`. That case
+was never checked, so filtering `FilterChipSelectInput`'s list down to zero matches still rendered
+a blank panel - every `ActionListItem` was already hiding itself correctly (its own
+`filteredValues` check already covered `hasAutoCompleteInHeader`), but nothing filled the gap they
+left behind.
+
+### Resolution
+
+- Extended the existing check to `hasAutoCompleteInHeader || dropdownTriggerer === AutoComplete`,
+  matching the condition every `ActionListItem`/`ActionListSection` already uses to hide itself.
+- Added `ActionList`'s `noResultsContent?: React.ReactNode` prop so a consumer can override the
+  copy, icon, or add actions (e.g. "Clear search"), defaulting to `ActionListNoResults` - now built
+  on the shared `EmptyState` component instead of ad hoc `Box`/`Text`.
+- The equivalent gap in `TreeView` (a lazily-loaded subtree resolving to zero children) is covered
+  separately - see `TreeView`'s own `_decisions/decisions.md`.
+
+### Why a dedicated prop, not `Table`'s documented `children`-based convention
+
+`Table`'s "no results after filtering" pattern (see `Table`'s own decisions) is a thin
+consumer-side wrapper: the consumer filters their own data array and conditionally renders
+`EmptyState` in place of `Table` entirely - `Table` never sees the "zero rows" transition, so there
+is nothing for it to own.
+
+`ActionList` doesn't work that way. The consumer always renders the same `ActionListItem`
+children; `Dropdown`'s own internal filtering state (`filteredValues`) decides which of them stay
+visible, hiding the rest from inside `ActionListItem` itself. The consumer never stops rendering
+children, so a documented `children`-based slot (`<ActionList><EmptyState .../></ActionList>` when
+there are zero matches) isn't something the consumer is ever in a position to drive - only
+`ActionList` itself knows when every item it was given has been filtered down to nothing. A
+dedicated prop, following the already-established pattern of `ActionListNoResults` (just
+generalized to cover both filtering mechanisms and made overridable), is the only approach that
+fits ActionList's rendering model.
+
+<br/><br/>
+
 ## Found: `ActionListItem` has the same `React.memo`-is-a-no-op problem `TreeViewItem` had
 
 **Finding (P3 `useMemo`/`useCallback` audit).** `ActionListItem` (`ActionListItem.tsx`) is wrapped

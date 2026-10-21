@@ -11,7 +11,7 @@ TreeView renders a hierarchical list of expandable, selectable items. It works s
 ## Important Constraints
 
 - `TreeView` is a **web-only** component. On React Native it throws an error.
-- `TreeView` only supports `TreeViewItem` and `TreeViewLoadMore` as children (throws otherwise)
+- `TreeView` only supports `TreeViewItem`, `TreeViewLoadMore`, and `TreeViewEmptyState` as children (throws otherwise)
 - `TreeViewItem` `value` must be unique across the whole tree (throws on duplicates)
 - Inside Dropdown, `selectionType`, `value`, `defaultValue`, and `onChange` on TreeView are ignored (dev warning) — use them on the Dropdown trigger instead (SelectInput / FilterChipSelectInput)
 - TreeView is not supported inside BottomSheet (dev error)
@@ -26,7 +26,8 @@ Below are the props that the TreeView component and its subcomponents accept.
 ```typescript
 type TreeViewProps = {
   /**
-   * Children of TreeView. Only `TreeViewItem` and `TreeViewLoadMore` are allowed
+   * Children of TreeView. Only `TreeViewItem`, `TreeViewLoadMore`, and `TreeViewEmptyState`
+   * are allowed
    */
   children: React.ReactNode;
   /**
@@ -97,7 +98,9 @@ type TreeViewItemProps = {
    */
   isSelectable?: boolean;
   /**
-   * Nested `TreeViewItem` / `TreeViewLoadMore` children. Nesting defines depth
+   * Nested `TreeViewItem` / `TreeViewLoadMore` children. Nesting defines depth.
+   * For an on-demand branch that resolves to zero items, render a `TreeViewEmptyState` here
+   * instead (keep `hasChildren` set so the chevron/expanded state persists).
    */
   children?: React.ReactNode;
   /**
@@ -150,6 +153,26 @@ type TreeViewLoadMoreProps = {
   isLoading?: boolean;
 } & TestID &
   DataAnalyticsAttribute;
+
+type TreeViewEmptyStateProps = {
+  /**
+   * Asset slot for a custom illustration or icon. Defaults to a search icon
+   */
+  asset?: React.ReactNode;
+  /**
+   * Primary heading text
+   * @default 'No items found'
+   */
+  title?: string;
+  /**
+   * Supporting description text
+   */
+  description?: string;
+  /**
+   * Content for actions, links, or any custom content (e.g. a "Retry" button)
+   */
+  children?: React.ReactNode;
+} & TestID;
 ```
 
 ## Usage Guidelines
@@ -158,6 +181,7 @@ type TreeViewLoadMoreProps = {
 - Use `selectionType="multiple"` when users can select several leaves; toggling a branch selects/deselects all its enabled loaded leaves and partial selections render an indeterminate checkbox.
 - Standalone TreeView owns its selection via `value`/`defaultValue`/`onChange`. Inside Dropdown, put those props on the trigger — a consumer swapping `ActionList` for `TreeView` inside an existing `Dropdown + SelectInput` keeps the exact same controlled API.
 - For async/on-demand children, set `hasChildren` (renders the chevron before children exist) and `isLoading` while fetching; render the loaded children as nested `TreeViewItem`s. Newly loaded children of a fully-selected branch inherit the selection.
+- If the fetch resolves to zero items, render `TreeViewEmptyState` as the branch's only child (keep `hasChildren` set and `isLoading={false}`) instead of leaving `children` empty - it keeps the chevron/expanded state and tells the user there's nothing inside. It's decorative only: never focusable, selectable, or counted in keyboard traversal. Works at the root too, for a whole tree that resolves to zero items.
 - Use `TreeViewLoadMore` as the last child of a branch (or the root) for progressive loading.
 - Keyboard: ArrowUp/ArrowDown move across visible rows; ArrowRight expands / enters a branch; ArrowLeft collapses / moves to the parent; Home/End jump to the first/last visible row; Enter/Space select (Space is a no-op on TreeViewLoadMore).
 - Branches are selectable by default (in single mode a branch is a valid selection; in multiple mode toggling it cascades). Set `isSelectable={false}` on a branch to make it a pure grouping row — clicking it (or Enter/Space) toggles expansion instead, and only leaf items can be selected.
