@@ -6,286 +6,323 @@ import { Divider } from '~components/Divider';
 
 # Release notes
 
-What changed, and why it mattered. These are the project's own words for itself — not the
-changelog engineers read, the one everyone else does. You're on <Badge color="primary">v0.5.3</Badge>.
+You're on <Badge color="primary">v0.5.3</Badge>.
 
-<br />
-<br />
+## v0.5.3
 
-## v0.5.3 · Wed, Oct 21
+**Fixed**
 
-Today was a tidy-up day, and it turned up more than expected. We checked every loading spinner,
-every "nothing here yet" moment, and every animation timer in the kit against each other, the way
-you'd check that every door in a house closes the same way. Most of it held up fine. Two things
-didn't: a dropdown search that comes back with zero matches currently just goes quiet instead of
-saying so, and a very long list can get a little too enthusiastic about redrawing itself while
-you're still typing. Both are being fixed properly — tracked, not papered over. Smaller things
-landed cleanly: the counter input's slide animation won't cut itself short on fast clicks anymore,
-the two "copy" buttons in the AI components now share one brain instead of two, and we went hunting
-for tangled wiring between files across the whole kit and came back with good news — none of it was
-ever actually a problem, just old habits that looked worse than they were.
+- Dropdown search shows nothing when there are zero matches. We're adding a proper "no results"
+  message instead.
+- Long option lists were re-rendering the whole list on every keystroke. Fixing it so only the part
+  that changed actually updates.
+- Counter input's slide animation could get cut short if you clicked fast. It now always finishes.
+- The two "copy" buttons in the AI chat components were running two separate copies of the same
+  code. Now there's one.
 
-<Divider />
+**Checked**
 
-## v0.5.2 · Tue, Oct 20
-
-Plumbing day. The connection between this kit and the AI assistant that reads it had quietly broken
-weeks ago — pointed at a folder that didn't exist anymore — and nobody noticed because nobody had
-needed it in a while. Fixed, and wrote down a rule so it can't happen the same way twice: one real
-copy of this project per machine, not a drawer of forgotten clones. Also went through every `ref`
-passed around the kit by hand, person by person, just to be sure each one lands where it says it
-does.
+- Went through every loading, empty, and disabled state in the kit to make sure they all behave the
+  same way. Most did.
+- Checked the whole codebase for circular file imports. Found a few, none of them were causing
+  problems.
 
 <Divider />
 
-## v0.5.1 · Mon, Oct 19
+## v0.5.2
 
-Back to the naming audit we'd been putting off. Sizes, booleans, callbacks, labels — every prop,
-checked against every other component doing something similar, to make sure `small` means the same
-thing twice and `isLoading` always behaves the way you'd bet it does. Found exactly one real
-inconsistency worth fixing in the whole kit (a table prop that broke its own convention) and logged
-it honestly for a proper rename later, since we don't rename things out from under people without
-warning. Also brought Dropdown's open/close handler in line with the rest of its overlay family — it
-was the one holdout speaking a different shape, which meant you couldn't share a handler between it
-and, say, a date picker. Now you can.
+**Fixed**
 
-<Divider />
+- The connection between this kit and our AI coding assistant was broken. It was pointing at a
+  folder that got deleted months ago.
 
-## v0.5.0 · Fri, Oct 16
+**Added**
 
-### Measure Twice, Ship Once
+- A rule that every machine uses one real copy of this project, not old copies lying around.
 
-The kit had grown enough by now that small inconsistencies start sneaking in without anyone
-deciding to let them — one component says `isOpen`, another says `open`; one spinner means
-"loading," another means "disabled." So we stopped shipping new things for a stretch and just
-checked. Every prop, every loading state, every timer, against every sibling that does something
-similar. It's the least glamorous week we've had, and probably the most important one.
+**Checked**
+
+- Every component that passes a `ref` around, to make sure it lands where it's supposed to.
 
 <Divider />
 
-## v0.4.6 · Thu, Oct 15
+## v0.5.1
 
-A proper migration guide now ships with any breaking change, plus a small script that rewrites your
-code for you when a prop gets renamed — find-and-replace, but it already knows what to look for.
-Also added the first tests that open a real browser for the handful of things a snapshot genuinely
-can't catch: a dropdown opening in the right spot, a drag gesture actually working.
+**Fixed**
 
-<Divider />
+- Dropdown's open/close callback used a different shape than every other overlay (Popover, Tooltip,
+  Menu, Date Picker). Now it matches.
 
-## v0.4.5 · Tue, Oct 13
+**Checked**
 
-Table got a proper once-over. It's noticeably faster scrolling through a few thousand rows now — and
-it finally does the grown-up things a table should: sort, filter, select across pages, edit a cell
-without leaving the row you're on.
+- Every prop name in the kit — sizes, booleans, callbacks — to make sure they mean the same thing
+  everywhere. Found one Table prop that broke our own naming rules. Logged it for a proper fix
+  later instead of changing it on anyone without warning.
 
 <Divider />
 
-## v0.4.4 · Mon, Oct 12
+## v0.5.0 — Measure Twice, Ship Once
 
-An AI coding assistant is now plugged directly into the kit, so the right component and its docs
-show up automatically while someone's building, instead of a tab-switch to go look it up. A Figma
-plugin landed alongside it, so a design file can finally be checked against what's actually shipped
-instead of a screenshot from three versions ago.
+The kit had grown a lot. Time to stop adding things for a bit and check what we'd already built.
 
-<Divider />
+**Checked**
 
-## v0.4.3 · Fri, Oct 9
-
-Went through every input and button with a screen reader running, to make sure it hears what a
-sighted person sees — not an approximation, the actual thing. Every bit of text in the kit is also
-translation-ready now; shipping in another language is a configuration change, not a rewrite.
+- Every component's props, loading states, and timers, compared against similar components.
 
 <Divider />
 
-## v0.4.2 · Wed, Oct 7
+## v0.4.6
 
-Keyboard-only testing across every overlay — tab, escape, the arrow keys — until all of them behave
-the way your hands expect and not just the way a mouse would. Visual regression screenshots are also
-running automatically now: if a pixel moves without anyone asking it to, someone will see it before
-it ships.
+**Added**
 
-<Divider />
-
-*No release Friday, Oct 2 — Gandhi Jayanti.*
-
-## v0.4.1 · Mon, Oct 5
-
-Back from the long weekend. The kit now tracks its own weight automatically, and we went and
-confirmed, with real numbers this time, that importing one button genuinely doesn't drag the rest of
-the toolbox along behind it. You only pay for what you use — we'd been saying that for a while, now
-there's proof.
+- A guide for breaking changes, plus a script that updates your code automatically when we rename a
+  prop.
+- Tests that open a real browser, for the few things a basic test can't catch — a dropdown actually
+  opening in the right place, a drag actually working.
 
 <Divider />
 
-## v0.4.0 · Thu, Oct 1
+## v0.4.5
 
-### Built to Last
+**Improved**
 
-For the first month and a half, "it works" mostly meant "it worked when I checked it on my own
-machine," which stops being good enough the moment more than one person is trusting it. This stretch
-was about turning the kit into something a whole team could lean on without re-checking it
-themselves first — automated style checks, automated size checks, real keyboard and screen-reader
-testing, and the first outside tools that read the kit directly instead of through someone's notes.
+- Table is noticeably faster with large lists. Scrolling a few thousand rows feels the same as
+  scrolling ten.
+- Table can now sort, filter, select across pages, and edit a cell without leaving the row.
 
 <Divider />
 
-## v0.3.5 · Wed, Sep 30
+## v0.4.4
 
-Closed out the month with the documentation site finally feeling like somewhere worth visiting —
-real, playable examples, not a list of prop names and their types. Also shipped a proper "nothing to
-show here" component (the empty state you see when a search comes up blank deserves to be designed
-on purpose, not left blank and hoped nobody notices), a carousel, and the segmented control and
-counter input we'd been meaning to get to for weeks.
+**Added**
 
-<Divider />
-
-## v0.3.4 · Mon, Sep 28
-
-Bottom sheets for mobile — small screens get the same thoughtful overlay experience big ones do, not
-a desktop modal squeezed down to fit. File upload landed too: drag a file in, watch it actually
-upload, see a real error if it fails, no more pretending a spinner is progress. Every color pairing
-in the kit now gets checked for contrast automatically, which caught two we'd genuinely missed.
+- An AI assistant wired directly into the kit, so the right component and its docs show up
+  automatically while you're building.
+- A Figma plugin, so a design file can be checked against what's actually shipped.
 
 <Divider />
 
-## v0.3.3 · Thu, Sep 24
+## v0.4.3
 
-Chat messages can now hold more than plain text — badges, cards, even a small chart, straight out of
-an AI response and into something that looks like it was actually designed. A spotlight tour
-component shipped alongside it, for walking someone through a screen one highlighted step at a time.
+**Checked**
 
-<Divider />
+- Every input and button, with a screen reader turned on, to make sure it reads what it should.
 
-## v0.3.2 · Tue, Sep 22
+**Added**
 
-Toasts, tooltips, and popovers learned to get out of each other's way instead of occasionally
-stacking on top of one another like an argument nobody won. The chat input component also arrived —
-the typing box behind the AI assistant, attachments included.
+- Full translation support. Shipping in another language is now a setting, not a rewrite.
 
 <Divider />
 
-## v0.3.1 · Fri, Sep 18
+## v0.4.2
 
-A real motion system, finally — every animation's speed and easing now comes from the same shared
-place as the colors and the spacing, instead of each component quietly guessing its own. If someone's
-told their device they'd prefer less motion, the kit actually listens now too, everywhere, not just
-the one corner we remembered first.
+**Checked**
 
-<Divider />
+- Every overlay, using only a keyboard — tab, escape, arrow keys.
 
-## v0.3.0 · Wed, Sep 16
+**Added**
 
-### The Human Touches
-
-All the right pieces existed by this point, but pieces aren't the same as something that feels
-considered. This stretch was about the details you only notice when they're missing — dark mode
-done properly, motion that respects how a person actually wants to move through a screen, and a
-whole new family of components for the thing everyone was suddenly building: chat interfaces for AI.
-Dark mode shipped first, every color token flipping with it, nothing left glowing white in a dark
-room because someone forgot a corner.
+- Automatic screenshots on every change, so a visual break gets caught before it ships.
 
 <Divider />
 
-## v0.2.4 · Mon, Sep 14
+## v0.4.1
 
-Closed out component season with charts (bar, line, area, donut, all speaking the same color
-language instead of four separate opinions), a tree view for anything with branches, proper
-pagination, and the phone number and one-time-code inputs nobody enjoys building but every product
-eventually needs.
+**Added**
 
-<Divider />
+- Automatic bundle size tracking. If a change makes the kit heavier, we see it right away.
 
-## v0.2.3 · Thu, Sep 10
+**Checked**
 
-Select input and multi-select arrived, built on the same dropdown underneath everything else — one
-mental model, reused wherever it fits. Modal, Drawer, and a lighter-weight Menu component rounded
-out the week.
+- Confirmed importing one component doesn't pull in the rest of the kit. You only pay for what you
+  use.
 
 <Divider />
 
-## v0.2.2 · Tue, Sep 8
+## v0.4.0 — Built to Last
 
-Back from the long weekend with the biggest batch yet: Table (version one — headers, rows,
-pagination, nothing fancy, but solid ground), side navigation with sections that actually collapse,
-breadcrumbs, tabs, and a top navigation bar. Four people, one very long whiteboard session, and a
-noticeably messier kitchen than usual.
+For the first stretch, "it works" mostly meant "it worked on my machine." That's not good enough
+once a whole team depends on it.
 
-<Divider />
+**Added**
 
-*No release Monday, Sep 7 — Labor Day.*
-
-## v0.2.1 · Thu, Sep 3
-
-Date picker and time picker shipped together, built with the same instincts and the same shortcuts,
-so learning one basically teaches you the other.
+- Automatic style and formatting checks on every change.
 
 <Divider />
 
-## v0.2.0 · Tue, Sep 1
+## v0.3.5
 
-### Room to Grow
+**Added**
 
-The foundation worked. Time to build the rooms people actually spend their day in — dropdowns,
-calendars, tables, the navigation that holds a whole app together. Less "does this exist," more
-"does this hold up under real, everyday use." Dropdown shipped first, quietly the most load-bearing
-overlay in the whole kit, since half of what comes later sits on top of it.
+- Empty state component, for when a list or search has nothing to show.
+- Carousel component.
+- Segmented control and counter input.
 
-<Divider />
+**Improved**
 
-## v0.1.6 · Mon, Aug 31
-
-Closed out the month with the first real test suite — covering everything shipped so far, so "it
-worked when I checked" quietly became "it's checked every time, automatically" — plus Tooltip,
-Popover, Avatar, Chip, Divider, Skeleton, and Spinner, and confirmation that all of it runs on phones
-too, not just the web. No asterisks.
+- Documentation site now has real examples you can try, not just a list of props.
 
 <Divider />
 
-## v0.1.5 · Thu, Aug 27
+## v0.3.4
 
-The real text input shipped, labels and helper text and error states built in from day one instead
-of bolted on after a support ticket. Password input and search input followed the same afternoon,
-built on the same foundation, so switching between them never feels like relearning anything.
+**Added**
 
-<Divider />
+- Bottom sheet, for mobile.
+- File upload, with real upload progress and real errors.
 
-## v0.1.4 · Tue, Aug 25
+**Checked**
 
-Checkbox, Radio, and Switch, all with proper keyboard support from the start. No mouse required,
-ever, and we mean that as a promise, not a feature request someone will file later.
+- Color contrast across the whole kit. Found two pairs that failed and fixed them.
 
 <Divider />
 
-## v0.1.3 · Fri, Aug 21
+## v0.3.3
 
-Button landed, with every state it would ever realistically need — loading, disabled, icon-only —
-built in from the beginning rather than added later as a special case. Text and Heading arrived the
-same day: typography you write in code now, instead of styling by hand every single time.
+**Added**
 
-<Divider />
-
-## v0.1.2 · Wed, Aug 19
-
-The theme provider shipped. Wrap your app in it once, and everything underneath knows who it is.
-Box came with it — the quietest component in the whole kit, and the one almost everything else ends
-up standing on.
+- Chat message component can now show cards, badges, and small charts, not just text.
+- Spotlight tour, for walking someone through a screen step by step.
 
 <Divider />
 
-## v0.1.1 · Mon, Aug 17
+## v0.3.2
 
-First real Monday. Color, type, and spacing tokens went in — one palette, one scale, one source of
-truth, instead of every screen quietly picking its own shade of blue.
+**Fixed**
+
+- Toasts, tooltips, and popovers were sometimes stacking on top of each other.
+
+**Added**
+
+- Chat input component, built for the AI assistant.
 
 <Divider />
 
-## v0.1.0 · Sat, Aug 15
+## v0.3.1
 
-### The Idea
+**Added**
 
-A design system doesn't start with components, it starts with being tired of the same argument:
-whose blue is the real blue, why does this button feel half a pixel off from that one, why does
-"small" mean three different sizes depending who built it. The idea came together over a weekend,
-which is usually how the honest ones do — no roadmap yet, no components, just a decision: one
-shared language for color, type, and space, built to work the same way on web and mobile, that
-everything else could stand on from here. Monday was for actually starting.
+- A real motion system. Every animation uses the same speed and easing settings now.
+- Support for "reduce motion," everywhere, not just in one or two places.
+
+<Divider />
+
+## v0.3.0 — The Human Touches
+
+All the main pieces existed by now. This stretch was about the small details: dark mode, motion,
+and a new set of components for AI chat.
+
+**Added**
+
+- Dark mode, done properly across every component.
+
+<Divider />
+
+## v0.2.4
+
+**Added**
+
+- Charts: bar, line, area, donut.
+- Tree view, for anything with nested items — folders, categories.
+- Pagination component.
+- Phone number and one-time-code inputs.
+
+<Divider />
+
+## v0.2.3
+
+**Added**
+
+- Select input and multi-select.
+- Modal, Drawer, and Menu.
+
+<Divider />
+
+## v0.2.2
+
+**Added**
+
+- Table (first version) — headers, rows, pagination.
+- Side navigation, breadcrumbs, tabs, top navigation bar.
+
+<Divider />
+
+## v0.2.1
+
+**Added**
+
+- Date picker and time picker.
+
+<Divider />
+
+## v0.2.0 — Room to Grow
+
+The basics worked. Time to build the components people use every single day.
+
+**Added**
+
+- Dropdown. A lot of what comes later is built on top of it.
+
+<Divider />
+
+## v0.1.6
+
+**Added**
+
+- Accordion, Tooltip, Popover, Avatar, Chip, Divider, Skeleton, Spinner.
+- First full test suite, covering everything shipped so far.
+
+**Checked**
+
+- Every component built so far, confirmed working on mobile apps too, not just the web.
+
+<Divider />
+
+## v0.1.5
+
+**Added**
+
+- Text input, with labels, helper text, and error states built in.
+- Password input and search input.
+
+<Divider />
+
+## v0.1.4
+
+**Added**
+
+- Checkbox, Radio, and Switch, all fully usable with just a keyboard.
+
+<Divider />
+
+## v0.1.3
+
+**Added**
+
+- Button, with every state built in — loading, disabled, icon-only.
+- Text and Heading components.
+
+<Divider />
+
+## v0.1.2
+
+**Added**
+
+- Theme provider. Wrap your app once, every component below it knows the theme.
+- Box, the base layout component almost everything else is built on.
+
+<Divider />
+
+## v0.1.1
+
+**Added**
+
+- Color, type, and spacing tokens. One shared set of values instead of every screen picking its own.
+
+<Divider />
+
+## v0.1.0 — The Idea
+
+This is where it started. Every screen was using a slightly different blue, different spacing,
+different button style. We built one shared set of rules for color, text, and spacing, that both
+web and mobile could use from here on.

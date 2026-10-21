@@ -57,17 +57,17 @@ Published packages (starting with `@klear/klear360`) use [Changesets](https://gi
 
 ## Release Notes
 
-Separate from the technical changelog above, `packages/klear360` keeps a human-facing **Release Notes** story — Storybook's "Guides → Release Notes" page (`packages/klear360/docs/guides/ReleaseNotes.mdx`), mirrored at `packages/klear360/RELEASE_NOTES.md` and linked from its `README.md`. It's written for designers/PMs, not engineers: plain language, no jargon, calm and a little warm, one short paragraph per entry (see the existing entries for the voice — quiet changes get one line, bigger ones get a short story).
+Separate from the technical changelog above, `packages/klear360` keeps a human-facing **Release Notes** page — Storybook's "Guides → Release Notes" page (`packages/klear360/docs/guides/ReleaseNotes.mdx`), mirrored at `packages/klear360/RELEASE_NOTES.md` and linked from its `README.md`. Written for designers/PMs, not engineers, in the style of [PrimeReact's changelog](https://primereact.dev/changelog): version number only (no date), short bulleted entries grouped under simple section labels (`**Added**`, `**Fixed**`, `**Improved**`, `**Checked**` - pick whichever apply, skip the rest), one line per bullet. No jargon, no flowery prose - simple enough that a junior designer reads it and understands exactly what changed. See the existing entries for the exact tone.
 
 **Add one new entry for any PR that ships something a non-engineer would want to know about** — a new component, a real user-visible bug fix, a meaningful process change (same bar as "would this interest someone skimming for what's new," not "did any file change"). Pure internal refactors or one-off audit docs with no visible effect can usually skip it unless they're part of a larger themed batch.
 
 When adding an entry:
 
 - Put it at the **top** of both `RELEASE_NOTES.md` and `ReleaseNotes.mdx` (newest first) — keep them identical, they're intentionally duplicated for Storybook + plain-git visibility.
-- Date it with the **real date** of the change (the fictional backfilled history stops at `v0.5.3` / Oct 21, 2026 — everything after that should use real dates, not invented ones).
-- Bump the version: patch (`v0.5.3` → `v0.5.4`) for a normal entry, minor (`v0.6.0`) when enough work has piled up to feel like a new chapter — use judgment, there's no hard threshold. Give a minor bump a short title the way `v0.5.0 "Measure Twice, Ship Once"` does.
+- Heading is the version only - `## v0.5.4` - no date, no day of week.
+- Bump the version: patch (`v0.5.3` → `v0.5.4`) for a normal entry, minor (`v0.6.0`) when enough work has piled up to feel like a new chapter — use judgment, there's no hard threshold. Give a minor bump a short title the way `v0.5.0 — Measure Twice, Ship Once` does.
 - Update the "You're on `vX.Y.Z`" line at the top of both files to match the new latest version.
-- Translate the actual technical change into what it means for someone using the product - name components/screens, not functions/props/internals.
+- Write each bullet as one short, plain sentence - name the component or screen, not the function/prop/internal mechanism, and say what changed for someone using it.
 
 ## Cursor Skills (Design System)
 
