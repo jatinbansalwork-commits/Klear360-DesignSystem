@@ -139,3 +139,21 @@ This was caught, not guessed: removing it locally and running `yarn verify:inter
 `yarn audit` found 89 vulnerabilities (3 low, 46 moderate, 38 high, 2 critical) across the whole monorepo's dependency tree. Both critical ones were fixed via `resolutions` pins to already-published patched versions (see the `fix(deps)` PR for this item) - `proxy-addr` (IP-spoofing, transitive via `klear360-mcp`'s MCP SDK dependency) and `shell-quote` (command injection, transitive via `npm-run-all`; an existing resolution for a different, older CVE wasn't high enough to cover this one).
 
 The 38 high and 46 moderate findings were deliberately **not** attempted in the same pass - they're mostly several layers deep in devDependency tooling chains (build/test infrastructure, not `packages/klear360`'s own published runtime bundle), and the volume means a careful, dedicated pass is needed to confirm each fix doesn't break the chain of tooling it sits in, rather than a batch of blind `resolutions` pins. Tracked as a separate follow-up task.
+
+# Pure-utility audit
+
+This covers a P1 check (from the latest gap-analysis pass): are `src/utils` functions kept pure and independent of React where possible?
+
+## Checked every non-hook, non-tooling file that imports React or React Native
+
+Grepped `src/utils` for files importing from `react`/`react-native`, then filtered out the files where that's expected by definition: every `use*.ts`/`use*.tsx` file (hooks - importing React is the whole point), everything under `storybook/` and `testing/` (dev/test tooling, not shipped pure logic), and plain `types.ts` files (type-only imports, erased at compile time, zero runtime dependency). That left 5 real candidates:
+
+- **`getColorScheme.native.ts`**: imports `Appearance` from `react-native` - a platform runtime API, not the React UI library. Platform detection inherently needs a platform API; this isn't what "independent of React" is about.
+- **`platform/getOS.native.ts`** (imports `Platform` as a value) and **`getOS.web.ts`** (imports `type Platform` only): same reasoning - `getOS.native.ts`'s dependency on React Native's `Platform.OS` is inherent to the task, `getOS.web.ts` has no runtime dependency on anything.
+- **`getMotionRefs.ts`**: imports `type React from 'react'` - type-only, erased at compile time. Zero runtime React dependency despite the import line existing.
+- **`isValidAllowedChildren.ts`**: imports `React` as a value, to call `React.isValidElement()`. This function's entire job is inspecting React elements - you cannot check "is this a valid React element" without React's own API for it. Necessary, not a violation.
+- **`getFocusRingStyles.native.tsx`**: this one isn't a pure-utility violation so much as a mislabeling - the file exports `FocusRingWrapper`, a stateful React Native component using `useSharedValue`/`useAnimatedStyle`/`React.useEffect` for an animated focus ring, filed under `utils/` rather than `components/`. Its React dependency is completely necessary (it's a real component); the only observation is that it's organized as a "util" when it's actually a component. Not acted on - reorganizing it risks touching whatever currently imports it from its `utils/getFocusRingStyles` path, for a purely organizational win.
+
+## Conclusion
+
+Clean. Every genuine runtime React/React Native dependency found in `src/utils` is necessary for what that specific file does (platform detection, inspecting React elements, or being an actual component mislabeled as a util) - nothing found that could be made React-independent without losing functionality. Nothing fixed here.
