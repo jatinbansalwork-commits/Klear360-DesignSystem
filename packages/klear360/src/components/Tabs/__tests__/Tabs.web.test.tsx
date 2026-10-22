@@ -562,6 +562,7 @@ describe('Tabs', () => {
         const tab = getByRole('tab', { name });
         const panelId = tab.getAttribute('aria-controls');
         expect(panelId).toBeTruthy();
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- the lint parser's tsconfig doesn't see panelId as nullable here, but the real build's strict tsconfig does (getAttribute returns string | null); removing this breaks `tsc -p tsconfig-typecheck.web.json`
         expect(document.getElementById(panelId!)).toBeInTheDocument();
       });
     });

@@ -32,8 +32,10 @@ class FakeResizeObserver {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function -- intentional no-op test double for ResizeObserver
   unobserve(): void {}
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function -- intentional no-op test double for ResizeObserver
   disconnect(): void {}
 }
 

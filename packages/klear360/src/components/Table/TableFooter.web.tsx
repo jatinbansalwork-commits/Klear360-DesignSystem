@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
 import { Footer, FooterRow, FooterCell } from '@table-library/react-table-library/table.js';
 import styled from 'styled-components';
 import { tableFooter, tableRow, classes } from './tokens';

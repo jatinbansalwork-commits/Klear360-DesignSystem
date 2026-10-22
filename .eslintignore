@@ -26,6 +26,17 @@ coverage
 # can't lint it. It has its own `yarn lint`/`npm run lint` script for that.
 packages/plugin-figma-pattern-creator/
 
+# Same reason as plugin-figma-pattern-creator above: neither of these is a yarn workspace
+# member (root "workspaces" only lists klear360/klear360-core/eslint-plugin-klear360/
+# klear360-i18n/klear360-i18n-react/klear360-mcp), each has its own lockfile installed
+# separately, and `yarn install` at the root never installs their devDependencies (e.g.
+# `react` itself) - so the root eslint glob can't resolve their imports and was flagging
+# `import/no-extraneous-dependencies` on every file. widget-figma-dev-handoff-checklist
+# already has its own `yarn lint`/`npm run lint` script; plugin-figma-token-publisher has
+# no lint script of its own and was apparently never linted at all.
+packages/widget-figma-dev-handoff-checklist/
+packages/plugin-figma-token-publisher/
+
 # klear360-mcp non-code directories
 packages/klear360-mcp/base-klear360-template/
 packages/klear360-mcp/knowledgebase/
