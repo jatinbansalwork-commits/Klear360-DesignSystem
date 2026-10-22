@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Accessibility" />
+
+# ♿ Accessibility
+
+Klear360 bakes accessibility into the components themselves rather than leaving it entirely to the consuming app. This page documents how that works today, what's enforced automatically, and what's deliberately out of scope.
+
+<br />
+
+## The `accessibilityLabel` convention
+
+Every component that needs an accessible name exposes a single, consistent prop: `accessibilityLabel`. It's the same name on web and React Native, and it's the only prop used for this purpose across the whole package - you won't find a mix of `ariaLabel`/`aria-label`/`accessibilityLabel` on different components. Where a label needs to reference another element instead of being a plain string (e.g. "labelled by this heading"), that's wired up internally through `makeAccessible()` rather than exposed as a separate prop.
+
+```jsx
+<IconButton icon={TrashIcon} accessibilityLabel="Delete item" onClick={handleDelete} />
+```
+
+## `makeAccessible`: one cross-platform prop vocabulary, two outputs
+
+Components don't set `aria-*` attributes or React Native `accessibility*` props directly. They call `makeAccessible({ ... })` with a shared vocabulary (`label`, `role`, `selected`, `disabled`, `expanded`, `describedBy`, `controls`, and the rest of the ARIA state/property set), and `makeAccessible` translates that into the right output for the platform it's running on:
+
+- **Web** (`accessibilityMapWeb.ts`): maps to the matching `aria-*` attribute (`role` → `role`, `selected` → `aria-selected`, `describedBy` → `aria-describedby`, etc.).
+- **React Native** (`accessibilityMapNative.ts`): maps to the matching React Native accessibility prop (`accessibilityState`, `accessibilityValue`, `accessibilityActions`, etc.).
+
+This is why you'll see the same `makeAccessible({ role: 'listbox', label: 'Select Presets' })` call work unmodified across `.web.tsx` and `.native.tsx` component files - it's a deliberate single source of truth, not a coincidence. In development, calling it with a key that has no mapping logs a warning rather than silently dropping the attribute.
+
+## Enforced automatically, not just by convention
+
+Two independent layers catch accessibility problems before they ship:
+
+- **Static, at lint time**: `eslint-plugin-jsx-a11y` (`plugin:jsx-a11y/recommended`) and `eslint-plugin-react-native-a11y` (`plugin:react-native-a11y/all`) run on every file, on every PR. A couple of rules are deliberately turned off, for specific, understood reasons rather than general looseness:
+  - `jsx-a11y/no-static-element-interactions` and `jsx-a11y/no-noninteractive-tabindex` are off because `makeAccessible()` sets the ARIA `role` dynamically at runtime - ESLint's static analysis can't see that a `<div>` wired up this way is actually a `role="button"` or `role="listbox"`, so it would otherwise false-positive on correct code.
+  - `react-native-a11y/has-valid-accessibility-descriptors` is off because it also incorrectly triggers on web files.
+  - `react-native-a11y/has-accessibility-hint` is off as a deliberate call - `accessibilityHint` is for supplementary context beyond the label, and is left to each component's own judgment rather than mandated everywhere.
+- **Runtime, in tests**: `assertAccessible()` (`src/utils/testing/assertAccessible.web.ts`) wraps [`jest-axe`](https://github.com/nickcolley/jest-axe)'s `axe()` check and asserts zero violations against the rendered DOM. It's used across 63 test files, concentrated on components with real interactive/ARIA complexity (`Dropdown`, `TreeView`, `Table`, form controls, etc.) rather than every component indiscriminately.
+
+## Keyboard navigation and focus management
+
+Components with real keyboard interaction (not just a static display) have dedicated keyboard-interaction tests - arrow-key navigation, `Tab`/`Shift+Tab`, `Enter`/`Escape`, and focus-landing assertions (`toHaveFocus()`) - covering `Dropdown`, `TreeView` (including dropdown mode), `Tabs`, `AutoComplete`, `Checkbox`/`CheckboxGroup`, `Radio`/`RadioGroup`, `ChipGroup`, `List`, and the text input family (`TextInput`/`TextArea`/`OTPInput`/`ColorInput`). Roving tabindex, focus trapping (`Modal`, `BottomSheet`), and focus restoration on close are implemented where the pattern calls for them - check an individual component's own Storybook docs page for its specific keyboard shortcuts.
+
+## Known limitations
+
+- **Coverage is targeted, not exhaustive.** A purely visual, non-interactive component (`Divider`, `Skeleton`) doesn't have a dedicated keyboard-interaction test, because there's no keyboard interaction to test. The 63-file `jest-axe` coverage and 34-file keyboard-interaction coverage are concentrated on components where getting it wrong would actually matter, not spread evenly across all ~90 components.
+- **`Table` row-selection re-render scope** (a performance characteristic, documented in `Table/_decisions/decisions.md`) has no accessibility impact - it's about React re-render cost, not about what's announced to assistive technology.
+- **This page doesn't yet enumerate per-component ARIA patterns.** For a specific component's exact role/state mapping and keyboard shortcuts, its own Storybook docs page and `_decisions/decisions.md` (where one exists) are the source of truth - this guide documents the shared architecture, not a full per-component accessibility reference.
+
+If you find a real accessibility gap in a specific component, please open an issue or a PR - this page will be updated as the architecture evolves.
