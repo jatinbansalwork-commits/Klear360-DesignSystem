@@ -176,3 +176,28 @@ Two findings remain with no available remediation:
 - **`sprintf-js`** (moderate, unbounded-precision-specifier DoS, transitive via `@changesets/cli`'s and `nyc`'s `js-yaml`/`argparse` chain) - same situation, `patched_versions: <0.0.0`; latest (`1.1.3`) is still vulnerable.
 
 Both are devDependency-only (changesets/lint-staged/nyc tooling, never shipped in `packages/klear360`'s published bundle) and neither accepts untrusted input in this repo's usage (fixed, repo-internal glob patterns and YAML config, not user-controlled data), so the practical exposure is low. Re-run `yarn audit --level moderate` periodically to check whether upstream ships a fix; if either library goes unmaintained, replacing the dependent (`micromatch`'s consumer, or `js-yaml`'s consumer) is the longer-term option, not something to force via `resolutions` without a real patched version to pin to.
+
+# Documentation freshness audit
+
+This covers the second P2 check (from the latest gap-analysis pass): do documented props/examples still match the actual current API, or has drift gone unnoticed since docs were written?
+
+## Targeted check: the two real breaking changes made during this remediation effort
+
+`Table`'s `sortable` -> `isSortable` rename and `Dropdown`'s `onOpenChange` signature change are the highest-risk candidates for stale docs - recent, breaking, with many existing story files. Checked both directly:
+
+- `Table`: the word "sortable" appears in a handful of `.stories.tsx` files, but only inside prose comments describing behavior ("sortable column," "sortable/filterable") - zero actual usages of the deprecated `sortable:` prop key anywhere in stories or docs. Clean.
+- `Dropdown`: zero bare-boolean `onOpenChange={(isOpen) => ...}` usages left in stories - already fully migrated to the object-wrapped shape. Clean.
+
+## Broader heuristic scan: too noisy to trust without disproportionate manual triage
+
+Tried a scripted cross-reference (JSX attributes used in each component's `.stories.tsx` files vs. its own `types.ts` prop names) across 10 more components (`TreeView`, `FileUpload`, `SegmentedControl`, `Accordion`, `Carousel`, `CounterInput`, `ListView`, `BottomSheet`, `SideNav`, `SpotlightPopoverTour`). Every component returned dozens of "missing" props, but inspecting them showed the heuristic is dominated by false positives: shared `Box`/`BaseBox` layout props (`display`, `padding`, `color`, `gap`, `width`...) that aren't in the component's own `types.ts` but are legitimately inherited, plus Storybook doc-page scaffolding props (`componentName`, `componentDescription`, `figmaURL`, `editorHeight`) that belong to internal doc-page wrapper components, not the component being documented. Not a reliable way to surface real staleness without manually triaging dozens of false positives per component - abandoned in favor of investigating *why* this can't be caught automatically instead.
+
+## The real finding: stale props in stories aren't caught by typecheck, and that's a deliberate (if now-unexamined) tradeoff
+
+Checked whether a genuinely wrong/removed prop in a `.stories.tsx` file would be caught by CI at all. It wouldn't: both `tsconfig-typecheck.web.json` and `tsconfig-typecheck.native.json` explicitly exclude `**/**.stories.tsx` (and `**/components/**/docs/**`, which is where most story files actually live) from `yarn typecheck`'s scope.
+
+This isn't arbitrary neglect - tested directly by typechecking with that exclusion removed: **1172 errors** surface, and the overwhelming majority are `TS2307`/cascading-from-`TS2307` failures (`Cannot find module '@storybook/react-vite' or its corresponding type declarations... Consider updating to 'node16', 'nodenext', or 'bundler'`). This repo's publish-oriented `tsconfig-typecheck.web.json` uses a `moduleResolution` setting incompatible with how modern Storybook packages publish their own types, so almost every story file fails to resolve its own `Meta`/`StoryObj` imports, which then cascades into hundreds of secondary "implicit any"/"not a valid JSX element type" errors that have nothing to do with the story's actual prop usage. Untangling genuine prop-staleness bugs from this noise would need a *separate*, Storybook-compatible tsconfig (`moduleResolution: "bundler"` or similar) dedicated to checking stories, not just deleting the exclusion from the existing one.
+
+## Conclusion
+
+No new stale-documentation bugs found. The two actual recent breaking changes are both already correctly migrated everywhere. The deeper, more useful finding is architectural: there's currently no automated guard against a story silently using a prop that no longer exists, because stories aren't typechecked at all, for a real (module-resolution) reason rather than oversight. Fixing that gap properly - a dedicated stories-compatible tsconfig - is its own scoped follow-up, not something to attempt as a drive-by fix here given the 1172-error starting point would need careful separation of signal from noise.
