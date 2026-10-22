@@ -1,1 +1,1 @@
-export { merge as default } from 'ts-deepmerge';
+export { default } from 'ts-deepmerge';
