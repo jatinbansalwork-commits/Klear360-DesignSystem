@@ -300,8 +300,8 @@ const _Pagination = ({
               />
               <DropdownOverlay>
                 <ActionList>
-                  {pageSizeOptions.map((item, index) => (
-                    <ActionListItem key={index} title={item.toString()} value={item.toString()} />
+                  {pageSizeOptions.map((item) => (
+                    <ActionListItem key={item} title={item.toString()} value={item.toString()} />
                   ))}
                 </ActionList>
               </DropdownOverlay>

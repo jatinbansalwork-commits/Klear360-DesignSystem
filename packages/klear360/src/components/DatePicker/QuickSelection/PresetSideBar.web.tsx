@@ -31,9 +31,9 @@ const PresetSideBar = ({
             }
           }}
         >
-          {presetStates.map(({ preset }, index) => {
+          {presetStates.map(({ preset }) => {
             return (
-              <Chip value={preset.label} key={index} data-analytics-name={preset.label}>
+              <Chip value={preset.label} key={preset.label} data-analytics-name={preset.label}>
                 {preset.label}
               </Chip>
             );
@@ -57,10 +57,10 @@ const PresetSideBar = ({
       borderRightWidth="thin"
       {...makeAccessible({ role: 'listbox', label: 'Select Presets' })}
     >
-      {presetStates.map(({ preset, isSelected }, index) => {
+      {presetStates.map(({ preset, isSelected }) => {
         return (
           <QuickSelectionItem
-            key={index}
+            key={preset.label}
             isSelected={isSelected}
             onClick={() => onSelection(preset.value)}
           >
