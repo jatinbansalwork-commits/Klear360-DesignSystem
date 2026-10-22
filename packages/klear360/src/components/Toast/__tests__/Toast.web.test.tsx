@@ -8,7 +8,10 @@ import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import { Button } from '~components/Button';
 import { Box } from '~components/Box';
 
-const ToastExample = (props: Partial<ToastProps> & { content: string }): React.ReactElement => {
+const ToastExample = (
+  // eslint-disable-next-line react/no-unused-prop-types -- `content` is used, just indirectly via the `...props` spread into `toast.show()` below, which the rule's static analysis can't see
+  props: Partial<ToastProps> & { content: string },
+): React.ReactElement => {
   const toast = useToast();
 
   // Each test starts from a clean slate - react-hot-toast's store is module-level global state

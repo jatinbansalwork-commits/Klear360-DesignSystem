@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
 import { Header, HeaderRow, HeaderCell } from '@table-library/react-table-library/table.js';
 import { checkboxCellWidth, tableHeader, tableRow, classes } from './tokens';
 import { useTableRowContext, useTableDataContext } from './TableContext';

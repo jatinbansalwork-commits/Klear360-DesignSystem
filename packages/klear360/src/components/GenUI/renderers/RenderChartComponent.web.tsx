@@ -140,7 +140,7 @@ const RenderChartComponent = memo(
           switch (type) {
             case 'currency': {
               const formatted = formatNumber(numValue, {
-                currency: (formatterCurrency || 'INR') as 'INR',
+                currency: (formatterCurrency ?? 'INR') as 'INR',
                 intlOptions: {
                   notation: 'compact',
                   maximumFractionDigits: 1,

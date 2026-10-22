@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
+// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
 import { Body, Row, Cell } from '@table-library/react-table-library/table.js';
+// eslint-disable-next-line import/extensions -- see above
 import { Virtualized } from '@table-library/react-table-library/virtualized.js';
 import styled from 'styled-components';
 import { useTableRowContext, useTableDataContext } from './TableContext';
@@ -561,7 +563,7 @@ const _Virtulized = <Item,>({
   children,
 }: TableVirtualizedWrapperProps): React.ReactElement => {
   const [parsedHeader = null, parsedBody = null] = React.Children.toArray(children);
-  const { rowDensity } = useTableRowContext<Item>();
+  const { rowDensity } = useTableRowContext();
   const { tableData } = useTableDataContext<Item>();
   const _tableRow = Number(tableRow.minHeight[rowDensity]);
 
