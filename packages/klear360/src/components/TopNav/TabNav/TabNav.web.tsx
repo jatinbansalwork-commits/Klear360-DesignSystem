@@ -91,8 +91,13 @@ const TabNav = ({
 
   useResize(ref, resizeCallback);
 
+  // setControlledItems is already a stable useState setter, but memoizing the object itself
+  // keeps the Provider's value reference unchanged across unrelated TabNav re-renders too - see
+  // TabNavContext.tsx's doc comment for why controlledItems/containerRef aren't in here.
+  const tabNavContextValue = React.useMemo(() => ({ setControlledItems }), [setControlledItems]);
+
   return (
-    <TabNavContext.Provider value={{ containerRef: ref, controlledItems, setControlledItems }}>
+    <TabNavContext.Provider value={tabNavContextValue}>
       <BaseBox
         as="nav"
         display="flex"

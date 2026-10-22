@@ -83,6 +83,10 @@ const getMarkdownCodeBlockDetails = (
   return { code: children };
 };
 
+/** Stable context values for the `ol`/`ul` renderers below - same reasoning as `markdownComponents`. */
+const ORDERED_LIST_CONTEXT_VALUE = { ordered: true };
+const UNORDERED_LIST_CONTEXT_VALUE = { ordered: false };
+
 /**
  * Stable components object for ReactMarkdown to prevent re-renders during streaming.
  * Defined outside the component to maintain referential equality.
@@ -130,12 +134,12 @@ const markdownComponents = {
   ),
   li: MarkdownListItemRenderer,
   ol: ({ children }: { children?: React.ReactNode }) => (
-    <MarkdownListContext.Provider value={{ ordered: true }}>
+    <MarkdownListContext.Provider value={ORDERED_LIST_CONTEXT_VALUE}>
       <MarkdownOrderedList>{children}</MarkdownOrderedList>
     </MarkdownListContext.Provider>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
-    <MarkdownListContext.Provider value={{ ordered: false }}>
+    <MarkdownListContext.Provider value={UNORDERED_LIST_CONTEXT_VALUE}>
       <MarkdownUnorderedList>{children}</MarkdownUnorderedList>
     </MarkdownListContext.Provider>
   ),
