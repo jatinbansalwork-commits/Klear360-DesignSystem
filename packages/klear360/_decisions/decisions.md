@@ -297,6 +297,24 @@ Checked every production file with 5+ `useState` calls for the specific trigger 
 
 No code changes from this half of the audit - the real work was in the Context re-render findings above.
 
+# Build/Packaging and Testing checklist closeouts
+
+## Tree-shaking (Library Build and Packaging): already resolved, cross-referencing instead of re-investigating
+
+This was tracked as "partial" based on the P1 publish-verification audit's finding that a plain `require()` with no bundler eagerly resolves every peer dependency through the single `./components` barrel. The Performance audit above (P3, "Bundle size monitoring and tree-shaking") already investigated this specific checklist item in full and found it's genuinely supported for the real consumption path: `CONTRIBUTING.md`'s own documented measurement shows a single-component `esbuild` import producing a 320KB bundle vs. 7.5MB for the full barrel, confirmed via the package's `sideEffects` field and esbuild's own "no side effects" exclusion log. The raw-CJS-`require()` finding is a distinct, narrower, already-documented edge case (no bundler at all), not evidence that tree-shaking itself is unsupported. Moves to done - no further action, see the Performance audit section above for the full verification.
+
+## Visual regression testing (Testing and Code Quality): already done, just not previously recognized as satisfying this item
+
+Checked whether this project has visual regression testing at all before assuming it needed to be set up from scratch. It does: `.github/workflows/ci.yml`'s `chromatic` job runs `chromaui/action@v1` against the built Storybook (`react:storybook:build:chromatic`) on every CI run, publishing every story (1255 of them, per a recent run) and diffing them against the baseline (`UI Tests` - 1254 tests unchanged on a docs-only PR, confirming it's live and gating, not decorative). This is Chromatic, a standard, real visual regression testing tool - the checklist item is already satisfied and was just never checked off as such. No action needed.
+
+## Keyboard navigation, focus management, and accessibility testing (Testing and Code Quality): substantial, correctly-targeted coverage found
+
+Checked actual test coverage before assuming it was missing. Two complementary layers exist:
+- **Automated `jest-axe` audits**: `assertAccessible.web.ts` wraps `axe(container)` + `expect(results).toHaveNoViolations()` - a real automated accessibility audit, not just a label. Used across 63 test files.
+- **Explicit keyboard-interaction tests**: 34 test files simulate real keyboard interaction (`userEvent.keyboard('{Tab}'/{Enter}'/{Escape}')`, `fireEvent.keyDown`, arrow-key navigation, `toHaveFocus()` assertions) - concentrated on exactly the components where keyboard navigation is actually complex and load-bearing: `Dropdown`, `TreeView` (+ `TreeViewDropdown`), `Tabs`, `AutoComplete`, `Checkbox`/`CheckboxGroup`, `Radio`/`RadioGroup`, `ChipGroup`, `List`, `TextInput`/`TextArea`/`OTPInput`/`ColorInput`, `ResizableSplit`.
+
+This isn't literal 100% coverage of every one of the ~90 components (a static `Badge` or `Divider` has no keyboard interaction to test), but it's coverage where the checklist's own intent (keyboard nav and focus management actually matter) is satisfied, not a gap. Moves from "not checked" to done.
+
 # Documentation closeout: accessibility behavior and known limitations
 
 Covers "Document accessibility behavior and known limitations" from the "Documentation and Versioning" checklist section, tracked as "partial" - a11y behavior itself is well-covered (axe-core testing, keyboard-interaction tests, a shared `makeAccessible` utility - see the Testing closeout above), but there was no centralized documentation of any of it.
