@@ -296,3 +296,11 @@ Checked every production file with 5+ `useState` calls for the specific trigger 
 - The one existing `useReducer` call in the codebase (`BaseDatePicker.web.tsx`) is the `useReducer((x) => x + 1, 0)` force-rerender idiom, not a state-machine use - unrelated to this checklist item, not evidence either way.
 
 No code changes from this half of the audit - the real work was in the Context re-render findings above.
+
+# Documentation closeout: accessibility behavior and known limitations
+
+Covers "Document accessibility behavior and known limitations" from the "Documentation and Versioning" checklist section, tracked as "partial" - a11y behavior itself is well-covered (axe-core testing, keyboard-interaction tests, a shared `makeAccessible` utility - see the Testing closeout above), but there was no centralized documentation of any of it.
+
+Checked what's actually there before writing anything, rather than documenting an idealized architecture: the `accessibilityLabel` prop convention (already established, consistent across every component), the `makeAccessible`/`accessibilityMap` cross-platform utility (one shared prop vocabulary mapped to `aria-*` on web and React Native accessibility props on native), the `jsx-a11y`/`react-native-a11y` ESLint plugins enforced on every PR (and the *specific, real* reasons three of their rules are turned off - two are tooling false-positives against `makeAccessible`'s dynamic role-setting and against web files being misflagged by a native-only rule, one is a deliberate judgment call on `accessibilityHint`), and the `jest-axe`-based `assertAccessible()` helper's actual coverage.
+
+Added `docs/guides/Accessibility.mdx` - a new Storybook guide page (`Guides/Accessibility`) consolidating all of the above into one place, with an honest "Known limitations" section (coverage is targeted at genuinely-interactive components, not spread evenly across all ~90; this guide documents the shared architecture, not a full per-component ARIA reference - that stays in each component's own Storybook docs page). Didn't attempt to retrofit an "Accessibility" section into every individual component's docs - with ~90 components, that's a much larger undertaking than this one gap justifies, and the per-component API docs (prop tables showing `accessibilityLabel`, etc.) already cover the per-component level reasonably.
