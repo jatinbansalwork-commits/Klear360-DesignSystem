@@ -205,9 +205,9 @@
   {
     "name": "DatePicker",
     "passed": true,
-    "size": 142835,
+    "size": 142836,
     "sizeLimit": 2000000,
-    "loading": 2.78974609375
+    "loading": 2.789765625
   },
   {
     "name": "Dropdown, DropdownOverlay, DropdownButton, DropdownLink, DropdownIconButton, DropdownFooter, DropdownHeader, FilterChipSelectInput, FilterChipGroup, InputDropdownButton",
@@ -366,9 +366,9 @@
   {
     "name": "Pagination",
     "passed": true,
-    "size": 74926,
+    "size": 74924,
     "sizeLimit": 2000000,
-    "loading": 1.4633984375
+    "loading": 1.463359375
   },
   {
     "name": "Popover, PopoverInteractiveWrapper",
@@ -478,9 +478,9 @@
   {
     "name": "Table, TableHeader, TableHeaderCell, TableHeaderRow, TableBody, TableCell, TableRow, TableVirtualizedWrapper, TableTitleDescriptionCell, TableFooter, TableFooterCell, TableFooterRow, TablePagination, TableToolbar, TableToolbarActions, TableToolbarSearch, TableEditableCell, TableEditableDropdownCell, TableEditableSearchCell",
     "passed": true,
-    "size": 122678,
+    "size": 122682,
     "sizeLimit": 2000000,
-    "loading": 2.3960546875
+    "loading": 2.3961328125
   },
   {
     "name": "Tabs, TabItem, TabList, TabPanel",
