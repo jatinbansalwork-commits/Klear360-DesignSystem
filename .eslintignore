@@ -10,6 +10,16 @@ coverage
 **/build
 **/dist
 
+# klear360-i18n and klear360-i18n-react publish their compiled output to `lib/`
+# (see their package.json `main`/`module`/`types`/`files` fields) instead of
+# `build`/`dist` like other packages. That compiled, committed output was never
+# excluded here, so the root `eslint --ext ... packages` glob was linting the
+# minified/bundled JS as if it were source - accounting for ~5650 of the ~5700
+# errors in a repo-wide lint run (mangled identifiers, bundler artifacts tripping
+# rules like `vars-on-top`/`func-names`/`id-match`). This gap has existed since
+# the repo's initial commit; it is not something a recent dependency change broke.
+**/lib
+
 # plugin-figma-pattern-creator is not a yarn workspace member (its own package-lock.json,
 # installed separately) - `yarn install` at the root never installs its devDependencies
 # (e.g. @figma/eslint-plugin-figma-plugins), so the root `eslint --ext ... packages` glob
