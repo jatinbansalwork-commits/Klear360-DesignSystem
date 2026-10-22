@@ -204,11 +204,11 @@ CombinedFeatures.play = async ({ canvasElement }) => {
   }
   expect(scrollContainer).toBeTruthy();
   const leftBefore = (firstCell as Element).getBoundingClientRect().left;
-  (scrollContainer as HTMLElement).scrollLeft = 300;
-  await waitFor(() => expect((scrollContainer as HTMLElement).scrollLeft).toBeGreaterThan(0));
+  scrollContainer!.scrollLeft = 300;
+  await waitFor(() => expect(scrollContainer!.scrollLeft).toBeGreaterThan(0));
   const leftAfter = (firstCell as Element).getBoundingClientRect().left;
   expect(leftAfter).toBe(leftBefore);
-  (scrollContainer as HTMLElement).scrollLeft = 0;
+  scrollContainer!.scrollLeft = 0;
 
   // 2. Global search narrows the virtualized rows to only matches.
   const searchInput = canvas.getByPlaceholderText('Search company name');

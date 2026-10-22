@@ -1,14 +1,20 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
 import { Table as ReactTable } from '@table-library/react-table-library/table.js';
+// eslint-disable-next-line import/extensions -- see above
 import { useTheme as useTableTheme } from '@table-library/react-table-library/theme.js';
 import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
+// eslint-disable-next-line import/extensions -- see above
 import { useSort, SortToggleType } from '@table-library/react-table-library/sort.js';
+// eslint-disable-next-line import/extensions -- see above
 import { usePagination } from '@table-library/react-table-library/pagination.js';
 import {
   SelectClickTypes,
   SelectTypes,
   useRowSelect,
+  // eslint-disable-next-line import/extensions -- see above
 } from '@table-library/react-table-library/select.js';
+// eslint-disable-next-line import/extensions -- see above
 import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree.js';
 import styled from 'styled-components';
 import usePresence from 'use-presence';
@@ -933,7 +939,7 @@ const _Table = <Item,>({
   // TableRowContextType's doc comment for why sort/filter/pagination/tableData are deliberately
   // NOT here (that's TableDataContext, below) - this is what lets a filter keystroke or sort
   // click avoid re-rendering every row and cell.
-  const tableRowContext: TableRowContextType<Item> = useMemo(
+  const tableRowContext: TableRowContextType = useMemo(
     () => ({
       selectionType,
       selectedRows,

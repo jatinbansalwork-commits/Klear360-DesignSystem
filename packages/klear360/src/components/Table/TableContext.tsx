@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 import React from 'react';
+// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
 import type { TableNode } from '@table-library/react-table-library/table.js';
 import type {
   TableBackgroundColors,
@@ -22,7 +23,7 @@ import type {
  * forced every mounted row and cell to re-render even though none of them read that state. Kept
  * in a separate context so those changes don't touch this one at all.
  */
-export type TableRowContextType<Item> = {
+export type TableRowContextType = {
   selectionType?: TableProps<unknown>['selectionType'];
   selectedRows?: TableNode['id'][];
   toggleRowSelectionById: (id: TableNode['id']) => void;
@@ -93,7 +94,7 @@ export type TableDataContextType<Item> = {
   filterConfig: Record<string, TableColumnFilterConfig>;
 };
 
-const TableRowContext = React.createContext<TableRowContextType<unknown>>({
+const TableRowContext = React.createContext<TableRowContextType>({
   selectionType: 'none',
   selectedRows: undefined,
   toggleRowSelectionById: () => {},
@@ -140,8 +141,8 @@ const TableDataContext = React.createContext<TableDataContextType<unknown>>({
   filterConfig: {},
 });
 
-const useTableRowContext = <Item,>(): TableRowContextType<Item> => {
-  const context = React.useContext(TableRowContext as React.Context<TableRowContextType<Item>>);
+const useTableRowContext = (): TableRowContextType => {
+  const context = React.useContext(TableRowContext);
   return context;
 };
 
