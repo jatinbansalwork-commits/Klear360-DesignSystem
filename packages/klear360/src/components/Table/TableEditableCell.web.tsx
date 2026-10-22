@@ -134,13 +134,15 @@ const _TableEditableCell = ({
   );
 };
 
+const TABLE_EDITABLE_CELL_CONTEXT_VALUE = { isInsideTableEditableCell: true };
+
 const TableEditableDropdownCell = (
   dropdownProps: TableEditableDropdownCellProps,
 ): React.ReactElement => {
   const { rowDensity, showStripedRows, backgroundColor } = useTableRowContext();
 
   return (
-    <TableEditableCellContext.Provider value={{ isInsideTableEditableCell: true }}>
+    <TableEditableCellContext.Provider value={TABLE_EDITABLE_CELL_CONTEXT_VALUE}>
       <StyledEditableCell
         role="cell"
         $backgroundColor={backgroundColor}

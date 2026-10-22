@@ -31,6 +31,8 @@ import { BaseMotionEnhancerBox } from '~components/BaseMotion';
  * </AnimateInteractions>
  * ```
  */
+const ANIMATE_INTERACTIONS_CONTEXT_VALUE = { isInsideAnimateInteractionsContainer: true };
+
 const AnimateInteractions = ({
   children,
   motionTriggers = ['hover'],
@@ -48,7 +50,7 @@ const AnimateInteractions = ({
   });
 
   return (
-    <AnimateInteractionsContext.Provider value={{ isInsideAnimateInteractionsContainer: true }}>
+    <AnimateInteractionsContext.Provider value={ANIMATE_INTERACTIONS_CONTEXT_VALUE}>
       <BaseMotionEnhancerBox ref={baseMotionRef} motionTriggers={motionTriggers} animate={controls}>
         {children}
       </BaseMotionEnhancerBox>
