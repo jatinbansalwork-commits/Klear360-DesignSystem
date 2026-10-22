@@ -233,7 +233,7 @@ const _TabNavItem: React.ForwardRefRenderFunction<HTMLAnchorElement, TabNavItemP
   );
 };
 
-const TabNavItem = assignWithoutSideEffects(React.forwardRef(_TabNavItem), {
+const TabNavItem = assignWithoutSideEffects(React.memo(React.forwardRef(_TabNavItem)), {
   displayName: 'TabNavItem',
 });
 
