@@ -39,7 +39,7 @@
   "author": "Klear",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.32.1",
+    "@modelcontextprotocol/sdk": "1.26.0",
     "dedent": "1.6.0"
   },
   "devDependencies": {
