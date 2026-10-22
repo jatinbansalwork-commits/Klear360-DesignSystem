@@ -8,7 +8,8 @@ import { getActionListItemRole, getActionListSectionRole } from './getA11yRoles'
 import { Divider } from '~components/Divider';
 import BaseBox from '~components/Box/BaseBox';
 import type { IconComponent } from '~components/Icons';
-import { useDropdown } from '~components/Dropdown/useDropdown';
+import { DropdownContext, useDropdown } from '~components/Dropdown/useDropdown';
+import { useDropdownStoreSelector } from '~components/Dropdown/useDropdownStore';
 import type { FeedbackColors } from '~tokens/theme/theme';
 import { Text } from '~components/Typography';
 import type { Platform } from '~utils';
@@ -343,25 +344,42 @@ const makeActionListItemClickable = (
  * ```
  */
 const _ActionListItem = (props: ActionListItemProps): React.ReactElement => {
+  /**
+   * Structural/rarely-changing fields only - read straight off `DropdownContext` (NOT
+   * `useDropdown()`, which also subscribes to the volatile store for its whole-state return
+   * value; doing that here would re-introduce the exact re-render-everything bug this is
+   * fixing). See ActionList/_decisions/decisions.md, "React.memo evaluation"
+   */
   const {
-    activeIndex,
     dropdownBaseId,
     onOptionClick,
-    selectedIndices,
     setShouldIgnoreBlurAnimation,
     selectionType,
     dropdownTriggerer,
-    isKeydownPressed,
-    filteredValues,
     hasAutoCompleteInHeader,
-  } = useDropdown();
+  } = React.useContext(DropdownContext);
+
+  /**
+   * Per-item slices of Dropdown's volatile state (see useDropdownStore.ts). Each selector only
+   * triggers a re-render of THIS item when the SELECTED (derived) value changes - e.g. an arrow
+   * press that moves `activeIndex` to a different item does not re-render this one, since
+   * `state.activeIndex === props._index` still evaluates to the same boolean
+   */
+  const isActive = useDropdownStoreSelector((state) => state.activeIndex === props._index);
+  const isKeydownPressed = useDropdownStoreSelector((state) => state.isKeydownPressed);
+  const isSelectedByIndex = useDropdownStoreSelector((state) =>
+    typeof props._index === 'number' ? state.selectedIndices.includes(props._index) : undefined,
+  );
+  const isVisibleFromFilter = useDropdownStoreSelector((state) =>
+    state.filteredValues.includes(props.value),
+  );
 
   React.useEffect(() => {
-    if (activeIndex === props._index && props._virtualizedIndex !== undefined) {
+    if (isActive && props._virtualizedIndex !== undefined) {
       props._onVirtualizedFocus?.(props._virtualizedIndex as number);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex]);
+  }, [isActive]);
 
   const hasAutoComplete =
     hasAutoCompleteInHeader || dropdownTriggerer === dropdownComponentIds.triggers.AutoComplete;
@@ -386,10 +404,7 @@ const _ActionListItem = (props: ActionListItemProps): React.ReactElement => {
       hasFilterChipSelectInput ||
       hasInputDropdownButton
     ) {
-      if (typeof props._index === 'number') {
-        return selectedIndices.includes(props._index);
-      }
-      return undefined;
+      return isSelectedByIndex;
     }
 
     return props.isSelected;
@@ -420,7 +435,7 @@ const _ActionListItem = (props: ActionListItemProps): React.ReactElement => {
     }
   }, [props.intent, dropdownTriggerer]);
 
-  const isVisible = hasAutoComplete && filteredValues ? filteredValues.includes(props.value) : true;
+  const isVisible = hasAutoComplete ? isVisibleFromFilter : true;
 
   return (
     <BaseMenuItem
@@ -445,7 +460,7 @@ const _ActionListItem = (props: ActionListItemProps): React.ReactElement => {
       titleSuffix={props.titleSuffix}
       href={props.href}
       target={props.target}
-      className={activeIndex === props._index ? 'active-focus' : ''}
+      className={isActive ? 'active-focus' : ''}
       isSelected={isSelected}
       isDisabled={props.isDisabled}
       role={getActionListItemRole(dropdownTriggerer, props.href)}

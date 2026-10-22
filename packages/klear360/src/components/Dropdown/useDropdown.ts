@@ -13,6 +13,7 @@ import type { SelectActionsType } from './dropdownUtils';
 import type { DropdownProps } from './types';
 
 import { dropdownComponentIds } from './dropdownComponentIds';
+import { useDropdownStoreSelector } from './useDropdownStore';
 import type { FormInputHandleOnKeyDownEvent } from '~components/Form/FormTypes';
 import { isReactNative, isBrowser } from '~utils';
 import type { ContainerElementType } from '~utils/types';
@@ -70,7 +71,6 @@ type DropdownContextType = {
   /**
    * contains the indexes of selected items
    */
-  selectedIndices: number[];
   setSelectedIndices: (value: number[]) => void;
   /**
    * contains the indexes of selected items during controlled selection
@@ -84,13 +84,12 @@ type DropdownContextType = {
   setOptions: (value: OptionsType) => void;
 
   /**
-   * Filtered values for AutoComplete Inputs
+   * Setter for filtered values for AutoComplete Inputs. The current value is published through
+   * the volatile store (see useDropdownStore.ts), not here - see "Volatile state" below
    */
-  filteredValues: string[];
   setFilteredValues: (values: string[]) => void;
 
-  /** Currently active (focussed) index  */
-  activeIndex: number;
+  /** Setter for the currently active (focussed) index. See "Volatile state" below */
   setActiveIndex: (value: number) => void;
 
   /** Currently active (focussed) tag  */
@@ -103,8 +102,7 @@ type DropdownContextType = {
    */
   shouldIgnoreBlurAnimation: boolean;
   setShouldIgnoreBlurAnimation: (value: boolean) => void;
-  /** Tells you if keyboard was used. Its false by default and turns into true when keydown is called  */
-  isKeydownPressed: boolean;
+  /** Setter for whether keyboard was used. See "Volatile state" below */
   setIsKeydownPressed: (value: boolean) => void;
   /** common baseId which is prepended to multiple other ids inside this dropdown  */
   dropdownBaseId: string;
@@ -152,7 +150,7 @@ type DropdownContextType = {
    * ```
    */
   changeCallbackTriggerer: number;
-  setChangeCallbackTriggerer: (changeCallbackTriggerer: number) => void;
+  setChangeCallbackTriggerer: React.Dispatch<React.SetStateAction<number>>;
 
   /**
    * true when SelectInput has `value` prop (when it is controlled)
@@ -165,21 +163,83 @@ type DropdownContextType = {
    * overlay content (ActionList, Menu, custom slots)
    */
   treeViewControllerRef: React.MutableRefObject<TreeViewDropdownControllerType | null>;
+
+  /**
+   * Handles the click even on option.
+   *
+   * Contains the logic that selects the option, moves the focus, etc.
+   *
+   * Stable for the lifetime of the Dropdown (built once in Dropdown.tsx via `useDropdownActions`)
+   * so that `ActionListItem` (see its own file) can read it straight off context without
+   * subscribing to the volatile store - see "Volatile state" below
+   */
+  onOptionClick: (
+    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>,
+    index: number,
+  ) => void;
+
+  /**
+   * Removes the option with given optionsIndex. Stable, see `onOptionClick`
+   */
+  removeOption: (index: number) => void;
+
+  /**
+   * Selects / deselects multiple options in one state update with a single onChange.
+   * Used by TreeView branch cascade toggles. Stable, see `onOptionClick`
+   */
+  selectOptionsBatch: (indices: number[], action: 'select' | 'deselect') => void;
+
+  /**
+   * Current `selectedIndices`, read fresh (never stale, see `onOptionClick`). For consumers that
+   * need to make an imperative decision (e.g. TreeView's branch-cascade toggle deciding
+   * select-vs-deselect) based on the CURRENT selection synchronously, in the same tick as calling
+   * `selectOptionsBatch`/`selectOption` right after - unlike the reactive `selectedIndices`
+   * `useDropdown()` returns below, which is sourced from the volatile store and can lag by one
+   * commit behind Dropdown's own render (the store only updates via a layout effect)
+   */
+  getSelectedIndices: () => number[];
+
+  /**
+   * Marks the given index as selected. Stable, see `onOptionClick`
+   */
+  selectOption: (index: number, properties?: { closeOnSelection?: boolean }) => boolean;
+
+  /**
+   * Moves the active (focussed) index according to `actionType`. Stable, see `onOptionClick`
+   */
+  onOptionChange: (actionType: SelectActionsType, index?: number) => void;
 };
 
+/**
+ * Volatile state is NOT stored in `DropdownContextType` / `DropdownContext` on purpose.
+ *
+ * `activeIndex`, `selectedIndices`, `filteredValues`, and `isKeydownPressed` change on every
+ * arrow-key press, filter keystroke, selection, and keyboard/mouse switch respectively. Bundling
+ * them into the same `useMemo`'d context object as everything else (as used to be the case) meant
+ * every change produced a new context value, re-rendering every consumer of `useDropdown()` -
+ * including `ActionListItem`, which is mounted once per option and wrapped in `React.memo` to no
+ * effect, since `memo` cannot block a re-render triggered by the component's own context
+ * subscription (same root cause as TreeView's `TreeViewItem`, see
+ * TreeView/_decisions/decisions.md, "React.memo evaluation").
+ *
+ * These 4 fields are published through a `useSyncExternalStore`-based store instead
+ * (`useDropdownStore.ts`), so `ActionListItem` can subscribe to only the slice relevant to its
+ * own `_index` / `value` (`useDropdownStoreSelector`) instead of the whole state. `useDropdown()`
+ * still returns all 4 reactively (via a whole-state store subscription below) for every other
+ * consumer (`SelectInput`, `AutoComplete`, `FilterChipSelectInput`, `Dropdown` itself, etc.) -
+ * all single-instance-per-Dropdown, so subscribing to the full volatile state there is exactly as
+ * cheap as it already was.
+ */
 const DropdownContext = React.createContext<DropdownContextType>({
   isOpen: false,
   setIsOpen: noop,
   close: noop,
-  selectedIndices: [],
   setSelectedIndices: noop,
   controlledValueIndices: [],
   setControlledValueIndices: noop,
   options: [],
   setOptions: noop,
-  filteredValues: [],
   setFilteredValues: noop,
-  activeIndex: -1,
   setActiveIndex: noop,
   activeTagIndex: -1,
   setActiveTagIndex: noop,
@@ -189,7 +249,6 @@ const DropdownContext = React.createContext<DropdownContextType>({
   setHasFooterAction: noop,
   hasAutoCompleteInHeader: false,
   setHasAutoCompleteInHeader: noop,
-  isKeydownPressed: false,
   setIsKeydownPressed: noop,
   changeCallbackTriggerer: 0,
   setChangeCallbackTriggerer: noop,
@@ -217,12 +276,318 @@ const DropdownContext = React.createContext<DropdownContextType>({
   treeViewControllerRef: {
     current: null,
   },
+  onOptionClick: noop,
+  removeOption: noop,
+  selectOptionsBatch: noop,
+  getSelectedIndices: () => [],
+  selectOption: () => false,
+  onOptionChange: noop,
 });
 
 let searchTimeout: number;
 let searchString = '';
 
+/**
+ * Latest, render-time-only values that Dropdown's stable actions (see `useDropdownActions`) need
+ * to read at call time, but that don't belong in the volatile store (they don't need per-item
+ * selector granularity - there's exactly one Dropdown instance reading them per interaction)
+ */
+type DropdownActionsLatestState = {
+  options: OptionsType;
+  isDropdownOpen: boolean;
+  isControlled: boolean;
+  hasAutoCompleteInHeader: boolean;
+  selectionType: DropdownProps['selectionType'];
+  activeIndex: number;
+  selectedIndices: number[];
+  filteredValues: string[];
+};
+
+type UseDropdownActionsParams = {
+  latestRef: React.MutableRefObject<DropdownActionsLatestState>;
+  dropdownTriggererRef: React.MutableRefObject<DropdownContextType['dropdownTriggerer']>;
+  triggererRef: React.MutableRefObject<HTMLButtonElement | null>;
+  headerAutoCompleteRef: React.MutableRefObject<HTMLButtonElement | null>;
+  actionListItemRef: React.RefObject<HTMLDivElement | null>;
+  treeViewControllerRef: React.MutableRefObject<TreeViewDropdownControllerType | null>;
+  setActiveIndex: (value: number) => void;
+  setActiveTagIndex: (value: number) => void;
+  setIsKeydownPressed: (value: boolean) => void;
+  setSelectedIndices: (value: number[]) => void;
+  setControlledValueIndices: (value: number[]) => void;
+  setChangeCallbackTriggerer: React.Dispatch<React.SetStateAction<number>>;
+  close: () => void;
+};
+
+type DropdownActions = Pick<
+  DropdownContextType,
+  | 'onOptionClick'
+  | 'removeOption'
+  | 'selectOptionsBatch'
+  | 'getSelectedIndices'
+  | 'selectOption'
+  | 'onOptionChange'
+>;
+
+/**
+ * Builds Dropdown's selection/navigation actions ONCE per Dropdown instance (called from
+ * Dropdown.tsx), with a stable identity for their lifetime - unlike everything else
+ * `useDropdown()` computes, which is recreated on every call.
+ *
+ * They read the current volatile state (`activeIndex`, `selectedIndices`, `filteredValues`)
+ * off `latestRef` at call time, not from a reactive closure, so they stay correct even when
+ * called from an `ActionListItem` that - by design - hasn't re-rendered recently. This reads
+ * `latestRef` rather than the store from useDropdownStore.ts on purpose: the store only syncs on
+ * the NEXT commit via a layout effect, so two of these actions firing within the same render pass
+ * (e.g. two ArrowDown keydowns handled before the first's effect has run) could otherwise read a
+ * stale value - `latestRef` is mutated synchronously during Dropdown's render instead, so it is
+ * never behind. See `DropdownContextType`'s "Volatile state" comment above.
+ */
+const useDropdownActions = ({
+  latestRef,
+  dropdownTriggererRef,
+  triggererRef,
+  headerAutoCompleteRef,
+  actionListItemRef,
+  treeViewControllerRef,
+  setActiveIndex,
+  setActiveTagIndex,
+  setIsKeydownPressed,
+  setSelectedIndices,
+  setControlledValueIndices,
+  setChangeCallbackTriggerer,
+  close,
+}: UseDropdownActionsParams): DropdownActions => {
+  const setIndices = React.useCallback(
+    (indices: number[]): void => {
+      if (latestRef.current.isControlled) {
+        setControlledValueIndices(indices);
+      } else {
+        setSelectedIndices(indices);
+      }
+    },
+    [latestRef, setControlledValueIndices, setSelectedIndices],
+  );
+
+  const getSelectedIndices = React.useCallback((): number[] => latestRef.current.selectedIndices, [
+    latestRef,
+  ]);
+
+  const removeOption = React.useCallback(
+    (index: number): void => {
+      const { selectedIndices } = latestRef.current;
+      const existingItemIndex = selectedIndices.indexOf(index);
+      if (existingItemIndex < 0) {
+        return;
+      }
+
+      setIndices([
+        ...selectedIndices.slice(0, existingItemIndex),
+        ...selectedIndices.slice(existingItemIndex + 1),
+      ]);
+    },
+    [latestRef, setIndices],
+  );
+
+  const selectOption = React.useCallback(
+    (
+      index: number,
+      properties: { closeOnSelection?: boolean } = { closeOnSelection: true },
+    ): boolean => {
+      let isSelected = false;
+      const { selectedIndices, activeIndex, options, selectionType } = latestRef.current;
+
+      if (index < 0 || index > options.length - 1) {
+        return isSelected;
+      }
+
+      if (selectionType === 'multiple') {
+        if (selectedIndices.includes(index)) {
+          removeOption(index);
+          isSelected = false;
+        } else {
+          setIndices([...selectedIndices, index]);
+          isSelected = true;
+        }
+      } else {
+        setIndices([index]);
+        isSelected = true;
+      }
+
+      // Triggers `onChange` on SelectInput
+      setChangeCallbackTriggerer((triggerer) => triggerer + 1);
+
+      if (activeIndex !== index) {
+        setActiveIndex(index);
+      }
+
+      if (properties?.closeOnSelection && selectionType !== 'multiple') {
+        close();
+      }
+
+      return isSelected;
+    },
+    [close, latestRef, removeOption, setActiveIndex, setChangeCallbackTriggerer, setIndices],
+  );
+
+  const selectOptionsBatch = React.useCallback(
+    (indices: number[], action: 'select' | 'deselect'): void => {
+      if (indices.length === 0) {
+        return;
+      }
+
+      const { selectedIndices, options } = latestRef.current;
+
+      let updatedIndices: number[];
+      if (action === 'select') {
+        updatedIndices = [...selectedIndices];
+        for (const index of indices) {
+          if (index >= 0 && index <= options.length - 1 && !updatedIndices.includes(index)) {
+            updatedIndices.push(index);
+          }
+        }
+      } else {
+        updatedIndices = selectedIndices.filter(
+          (selectedIndex) => !indices.includes(selectedIndex),
+        );
+      }
+
+      setIndices(updatedIndices);
+      setChangeCallbackTriggerer((triggerer) => triggerer + 1);
+    },
+    [latestRef, setChangeCallbackTriggerer, setIndices],
+  );
+
+  const onOptionChange = React.useCallback(
+    (actionType: SelectActionsType, index?: number): void => {
+      setActiveTagIndex(-1);
+      const { activeIndex, filteredValues, options, hasAutoCompleteInHeader } = latestRef.current;
+      const newIndex = index ?? activeIndex;
+      const hasAutoComplete =
+        hasAutoCompleteInHeader ||
+        dropdownTriggererRef.current === dropdownComponentIds.triggers.AutoComplete;
+      const treeViewController = treeViewControllerRef.current;
+      let updatedIndex: number;
+
+      if (treeViewController) {
+        // When overlay content is a TreeView, traversal skips rows hidden under collapsed
+        // branches (indices stay stable across expand / collapse, only traversal changes)
+        const visibleIndexes = treeViewController.getVisibleOptionIndices();
+        updatedIndex =
+          visibleIndexes[
+            getUpdatedIndex({
+              currentIndex: visibleIndexes.indexOf(newIndex),
+              maxIndex: visibleIndexes.length - 1,
+              actionType,
+            })
+          ] ?? newIndex;
+      } else if (hasAutoComplete && filteredValues.length > 0) {
+        // When its autocomplete, we don't loop over all options. We only loop on filtered options
+        const filteredIndexes = filteredValues
+          .map((filteredValue) => options.findIndex((option) => option.value === filteredValue))
+          .sort((a, b) => a - b);
+
+        updatedIndex =
+          filteredIndexes[
+            getUpdatedIndex({
+              currentIndex: filteredIndexes.indexOf(newIndex),
+              maxIndex: filteredIndexes.length - 1,
+              actionType,
+            })
+          ];
+      } else {
+        updatedIndex = getUpdatedIndex({
+          currentIndex: newIndex,
+          maxIndex: options.length - 1,
+          actionType,
+        });
+      }
+      setActiveIndex(updatedIndex);
+
+      const optionValues = options.map((option) => option.value);
+      ensureScrollVisiblity(updatedIndex, actionListItemRef.current, optionValues);
+      if (isBrowser()) {
+        fireNativeEvent(actionListItemRef as React.RefObject<HTMLElement>, ['change', 'input']);
+      }
+    },
+    [
+      actionListItemRef,
+      dropdownTriggererRef,
+      latestRef,
+      setActiveIndex,
+      setActiveTagIndex,
+      treeViewControllerRef,
+    ],
+  );
+
+  /**
+   * Click handler when user clicks on any particular option.
+   *
+   * It
+   * - changes the option focus
+   * - selects that option
+   * - moves focus to combobox
+   */
+  const onOptionClick = React.useCallback(
+    (
+      e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>,
+      index: number,
+    ): void => {
+      setIsKeydownPressed(false);
+      const actionType = getActionFromKey(
+        e,
+        latestRef.current.isDropdownOpen,
+        dropdownTriggererRef.current,
+      );
+      if (typeof actionType === 'number') {
+        onOptionChange(actionType, index);
+      }
+      selectOption(index);
+
+      if (!isReactNative()) {
+        if (latestRef.current.hasAutoCompleteInHeader) {
+          // move focus to autocomplete
+          headerAutoCompleteRef.current?.focus();
+        } else {
+          triggererRef.current?.focus();
+        }
+      }
+    },
+    [
+      dropdownTriggererRef,
+      headerAutoCompleteRef,
+      latestRef,
+      onOptionChange,
+      selectOption,
+      setIsKeydownPressed,
+      triggererRef,
+    ],
+  );
+
+  return {
+    onOptionClick,
+    removeOption,
+    selectOptionsBatch,
+    getSelectedIndices,
+    selectOption,
+    onOptionChange,
+  };
+};
+
 type UseDropdownReturnValue = DropdownContextType & {
+  /**
+   * contains the indexes of selected items
+   */
+  selectedIndices: number[];
+  /**
+   * Filtered values for AutoComplete Inputs
+   */
+  filteredValues: string[];
+  /** Currently active (focussed) index  */
+  activeIndex: number;
+  /** Tells you if keyboard was used. Its false by default and turns into true when keydown is called  */
+  isKeydownPressed: boolean;
+
   /**
    * Click event on combobox. Toggles the dropdown
    */
@@ -232,27 +597,6 @@ type UseDropdownReturnValue = DropdownContextType & {
    * Keydown event of combobox. Handles most of the keyboard accessibility of dropdown
    */
   onTriggerKeydown: FormInputHandleOnKeyDownEvent | undefined;
-
-  /**
-   * Handles the click even on option.
-   *
-   * Contains the logic that selects the option, moves the focus, etc
-   */
-  onOptionClick: (
-    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>,
-    index: number,
-  ) => void;
-
-  /**
-   * Removes the option with given optionsIndex
-   */
-  removeOption: (index: number) => void;
-
-  /**
-   * Selects / deselects multiple options in one state update with a single onChange.
-   * Used by TreeView branch cascade toggles
-   */
-  selectOptionsBatch: (indices: number[], action: 'select' | 'deselect') => void;
 
   /**
    * value that is used during form submissions
@@ -275,14 +619,10 @@ const useDropdown = (): UseDropdownReturnValue => {
     isOpen,
     setIsOpen,
     close,
-    selectedIndices,
     setSelectedIndices,
-    activeIndex,
-    setActiveIndex,
     activeTagIndex,
     setActiveTagIndex,
     visibleTagsCountRef,
-    isKeydownPressed,
     setIsKeydownPressed,
     options,
     selectionType,
@@ -290,112 +630,22 @@ const useDropdown = (): UseDropdownReturnValue => {
     setChangeCallbackTriggerer,
     isControlled,
     setControlledValueIndices,
-    filteredValues,
     dropdownTriggerer,
+    onOptionClick,
+    removeOption,
+    selectOptionsBatch,
+    selectOption,
+    onOptionChange,
     ...rest
   } = React.useContext(DropdownContext);
 
-  type SelectOptionType = (
-    index: number,
-    properties?: {
-      closeOnSelection?: boolean;
-    },
-  ) => boolean;
-
-  const setIndices = (indices: number[]): void => {
-    if (isControlled) {
-      setControlledValueIndices(indices);
-    } else {
-      setSelectedIndices(indices);
-    }
-  };
-
-  const removeOption = (index: number): void => {
-    // remove existing item
-    const existingItemIndex = selectedIndices.indexOf(index);
-    if (existingItemIndex < 0) {
-      return;
-    }
-
-    setIndices([
-      ...selectedIndices.slice(0, existingItemIndex),
-      ...selectedIndices.slice(existingItemIndex + 1),
-    ]);
-  };
-
-  /**
-   * Marks the given index as selected.
-   *
-   * In single select, it also closes the menu.
-   * In multiselect, it keeps the menu open for more selections
-   */
-  const selectOption: SelectOptionType = (
-    index,
-    properties = {
-      closeOnSelection: true,
-    },
-  ) => {
-    let isSelected = false;
-
-    if (index < 0 || index > options.length - 1) {
-      return isSelected;
-    }
-
-    if (selectionType === 'multiple') {
-      if (selectedIndices.includes(index)) {
-        removeOption(index);
-        isSelected = false;
-      } else {
-        setIndices([...selectedIndices, index]);
-        isSelected = true;
-      }
-    } else {
-      setIndices([index]);
-      isSelected = true;
-    }
-
-    // Triggers `onChange` on SelectInput
-    setChangeCallbackTriggerer(changeCallbackTriggerer + 1);
-
-    if (activeIndex !== index) {
-      setActiveIndex(index);
-    }
-
-    if (properties?.closeOnSelection && selectionType !== 'multiple') {
-      close();
-    }
-
-    return isSelected;
-  };
-
-  /**
-   * Marks multiple indices as selected / deselected in a single state update and
-   * bumps the change callback triggerer exactly once.
-   *
-   * Used by TreeView for branch cascade toggles (one branch toggle mutates many leaf
-   * indices but must fire a single `onChange`). Routes through the same controlled /
-   * uncontrolled fork as `selectOption`. ActionList does not use this
-   */
-  const selectOptionsBatch = (indices: number[], action: 'select' | 'deselect'): void => {
-    if (indices.length === 0) {
-      return;
-    }
-
-    let updatedIndices: number[];
-    if (action === 'select') {
-      updatedIndices = [...selectedIndices];
-      for (const index of indices) {
-        if (index >= 0 && index <= options.length - 1 && !updatedIndices.includes(index)) {
-          updatedIndices.push(index);
-        }
-      }
-    } else {
-      updatedIndices = selectedIndices.filter((selectedIndex) => !indices.includes(selectedIndex));
-    }
-
-    setIndices(updatedIndices);
-    setChangeCallbackTriggerer(changeCallbackTriggerer + 1);
-  };
+  // see "Volatile state" comment on DropdownContextType above
+  const {
+    activeIndex,
+    selectedIndices,
+    filteredValues,
+    isKeydownPressed,
+  } = useDropdownStoreSelector((state) => state);
 
   /**
    * Click listener for combobox (or any triggerer of the dropdown)
@@ -405,89 +655,6 @@ const useDropdown = (): UseDropdownReturnValue => {
       close();
     } else {
       setIsOpen(true);
-    }
-  };
-
-  /**
-   * Function that we call when we want to move focus from one option to other
-   */
-  const onOptionChange = (actionType: SelectActionsType, index?: number): void => {
-    setActiveTagIndex(-1);
-    const newIndex = index ?? activeIndex;
-    let updatedIndex: number;
-    const hasAutoComplete =
-      rest.hasAutoCompleteInHeader ||
-      dropdownTriggerer === dropdownComponentIds.triggers.AutoComplete;
-    const treeViewController = rest.treeViewControllerRef?.current;
-    if (treeViewController) {
-      // When overlay content is a TreeView, traversal skips rows hidden under collapsed
-      // branches (indices stay stable across expand / collapse, only traversal changes)
-      const visibleIndexes = treeViewController.getVisibleOptionIndices();
-      updatedIndex =
-        visibleIndexes[
-          getUpdatedIndex({
-            currentIndex: visibleIndexes.indexOf(newIndex),
-            maxIndex: visibleIndexes.length - 1,
-            actionType,
-          })
-        ] ?? newIndex;
-    } else if (hasAutoComplete && filteredValues.length > 0) {
-      // When its autocomplete, we don't loop over all options. We only loop on filtered options
-
-      const filteredIndexes = filteredValues
-        .map((filteredValue) => options.findIndex((option) => option.value === filteredValue))
-        .sort((a, b) => a - b);
-
-      updatedIndex =
-        filteredIndexes[
-          getUpdatedIndex({
-            currentIndex: filteredIndexes.indexOf(newIndex),
-            maxIndex: filteredIndexes.length - 1,
-            actionType,
-          })
-        ];
-    } else {
-      updatedIndex = getUpdatedIndex({
-        currentIndex: newIndex,
-        maxIndex: options.length - 1,
-        actionType,
-      });
-    }
-    setActiveIndex(updatedIndex);
-
-    const optionValues = options.map((option) => option.value);
-    ensureScrollVisiblity(updatedIndex, rest.actionListItemRef.current, optionValues);
-    if (isBrowser()) {
-      fireNativeEvent(rest.actionListItemRef as React.RefObject<HTMLElement>, ['change', 'input']);
-    }
-  };
-
-  /**
-   * Click handler when user clicks on any particular option.
-   *
-   * It
-   * - changes the option focus
-   * - selects that option
-   * - moves focus to combobox
-   */
-  const onOptionClick = (
-    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>,
-    index: number,
-  ): void => {
-    setIsKeydownPressed(false);
-    const actionType = getActionFromKey(e, isOpen, dropdownTriggerer);
-    if (typeof actionType === 'number') {
-      onOptionChange(actionType, index);
-    }
-    selectOption(index);
-
-    if (!isReactNative()) {
-      if (rest.hasAutoCompleteInHeader) {
-        // move focus to autocomplete
-        rest.headerAutoCompleteRef.current?.focus();
-      } else {
-        rest.triggererRef.current?.focus();
-      }
     }
   };
 
@@ -593,12 +760,13 @@ const useDropdown = (): UseDropdownReturnValue => {
     filteredValues,
     removeOption,
     selectOptionsBatch,
+    selectOption,
+    onOptionChange,
     setControlledValueIndices,
     onTriggerClick,
     onTriggerKeydown,
     onOptionClick,
     activeIndex,
-    setActiveIndex,
     activeTagIndex,
     setActiveTagIndex,
     visibleTagsCountRef,
@@ -621,4 +789,4 @@ const useDropdown = (): UseDropdownReturnValue => {
 };
 
 export type { DropdownContextType, OptionsType, TreeViewDropdownControllerType };
-export { useDropdown, DropdownContext };
+export { useDropdown, useDropdownActions, DropdownContext };

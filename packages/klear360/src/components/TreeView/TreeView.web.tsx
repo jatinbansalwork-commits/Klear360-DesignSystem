@@ -264,8 +264,13 @@ const _TreeView = ({
     if (leafIndices.length === 0) {
       return;
     }
+    // reads the CURRENT selection synchronously (not the reactive `dropdown.selectedIndices`,
+    // which is sourced from Dropdown's volatile store and can lag one commit behind - see
+    // `getSelectedIndices`'s own doc comment in useDropdown.ts) since this decision and the
+    // `selectOptionsBatch` call right after must agree on the same selection snapshot
+    const currentSelectedIndices = dropdown.getSelectedIndices();
     const areAllSelected = leafIndices.every((optionIndex) =>
-      dropdown.selectedIndices.includes(optionIndex),
+      currentSelectedIndices.includes(optionIndex),
     );
     dropdown.selectOptionsBatch(leafIndices, areAllSelected ? 'deselect' : 'select');
   }, []);

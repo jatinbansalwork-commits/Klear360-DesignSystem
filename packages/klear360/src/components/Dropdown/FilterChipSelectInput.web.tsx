@@ -70,6 +70,7 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
     selectionType,
     isControlled,
     setSelectedIndices,
+    getSelectedIndices,
     controlledValueIndices,
     changeCallbackTriggerer,
     treeViewControllerRef,
@@ -82,13 +83,13 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
     setFilterChipGroupSelectedFilters,
   } = useFilterChipGroupContext();
 
+  // `getSelectedIndices()` (a synchronous, always-current snapshot), not the reactive
+  // `selectedIndices` above: this helper is only ever called from event handlers/effects keyed to
+  // `changeCallbackTriggerer`, which (being a plain context value) already reflects a selection
+  // change in the same render where the reactive, store-sourced `selectedIndices` can still lag
+  // one commit behind - see `getSelectedIndices`'s own doc comment in useDropdown.ts
   const getValuesArrayFromIndices = (): string[] => {
-    let indices: number[] = [];
-    if (isControlled) {
-      indices = controlledValueIndices;
-    } else {
-      indices = selectedIndices;
-    }
+    const indices = isControlled ? controlledValueIndices : getSelectedIndices();
 
     return indices.map((selectionIndex) => options[selectionIndex].value);
   };
@@ -171,10 +172,12 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
       return;
     }
 
+    // see `getValuesArrayFromIndices`'s own comment: these read the synchronous snapshot, not
+    // the reactive `selectedIndices`, since this effect is keyed to `changeCallbackTriggerer`
+    const currentSelectedIndices = isControlled ? controlledValueIndices : getSelectedIndices();
+
     // §6.5: additive - only present when overlay content is a TreeView
-    const selectedGroups = treeViewControllerRef.current?.getSelectedGroups(
-      isControlled ? controlledValueIndices : selectedIndices,
-    );
+    const selectedGroups = treeViewControllerRef.current?.getSelectedGroups(currentSelectedIndices);
     props.onChange?.({
       name: props.name || idBase,
       values: getValuesArrayFromIndices(),
@@ -184,7 +187,7 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
       setUncontrolledInputValue(getValuesArrayFromIndices());
     }
 
-    const isValueEmpty = selectedIndices.length === 0;
+    const isValueEmpty = currentSelectedIndices.length === 0;
     if (isValueEmpty) {
       setFilterChipGroupSelectedFilters((prev) => prev.filter((filter) => filter !== label));
       setListViewSelectedFilters((prev) => {
@@ -195,7 +198,7 @@ const _FilterChipSelectInput = (props: FilterChipSelectInputProps): React.ReactE
       setFilterChipGroupSelectedFilters((prev) => (prev.includes(label) ? prev : [...prev, label]));
       setListViewSelectedFilters((prev) => ({
         ...prev,
-        [label]: selectedIndices as number[],
+        [label]: currentSelectedIndices as number[],
       }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
