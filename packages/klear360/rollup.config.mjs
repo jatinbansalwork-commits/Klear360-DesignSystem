@@ -11,6 +11,7 @@ import pluginCommonjs from '@rollup/plugin-commonjs';
 import pluginDeclarations from 'rollup-plugin-dts';
 import pluginAlias from '@rollup/plugin-alias';
 import pluginReplace from '@rollup/plugin-replace';
+import postcss from 'rollup-plugin-postcss';
 import ts from 'typescript';
 import { depsExternalPlugin } from './dependencies-external-plugin.mjs';
 
@@ -124,6 +125,19 @@ const getWebConfig = (inputs) => {
       depsExternalPlugin({ externalDependencies }),
       pluginResolve({ extensions: webExtensions }),
       pluginCommonjs(),
+      // Mirrors @klear/klear360-core's styles config: CSS Modules extracted into a single
+      // `styles/index.css` instead of injected at import time. This removes the module-level
+      // `document.head.appendChild` side effect, leaving every style module import-time pure so
+      // consumers can tree-shake the JS per component. Consumers import the stylesheet once via
+      // the `./styles.css` package export. `use: ['sass']` compiles real Sass before PostCSS.
+      // A config with no CSS in its graph (tokens, utils) emits no stylesheet.
+      postcss({
+        extract: 'styles/index.css',
+        modules: true,
+        minimize: process.env.NODE_ENV === 'production',
+        sourceMap: true,
+        use: ['sass'],
+      }),
       pluginBabel({
         exclude: 'node_modules/**',
         babelHelpers: 'runtime',
@@ -260,10 +274,13 @@ const config = () => {
   const components = 'src/components/index.ts';
   const tokens = 'src/tokens/index.ts';
   const utils = 'src/utils/index.ts';
+  // Built alongside components so a single postcss instance extracts every component's CSS
+  // (plus the layer-order declaration) into one `styles/index.css`.
+  const styles = 'src/styles/index.ts';
   const klear360Coverage = 'src/utils/klear360Coverage.ts';
   if (framework === 'REACT') {
     return [
-      getWebConfig(components),
+      getWebConfig([components, styles]),
       getWebConfig(tokens),
       getWebConfig(utils),
       getKlear360CoverageConfig(klear360Coverage),
