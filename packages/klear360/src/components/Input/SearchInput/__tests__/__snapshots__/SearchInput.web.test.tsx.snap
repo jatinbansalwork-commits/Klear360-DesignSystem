@@ -455,7 +455,7 @@ exports[`<SearchInput /> should accept data-analytics attribute 1`] = `
         >
           <label
             data-klear360-component="form-label"
-            for="searchinput-647-input-648"
+            for="searchinput-660-input-661"
             style="width: 100%; flex-shrink: 0; margin-right: 0px;"
           >
             <div
@@ -550,7 +550,7 @@ exports[`<SearchInput /> should accept data-analytics attribute 1`] = `
                   data-analytics-name="search-input"
                   data-klear360-component="styled-base-input"
                   enterkeyhint="search"
-                  id="searchinput-647-input-648"
+                  id="searchinput-660-input-661"
                   inputmode="search"
                   type="text"
                   value=""
@@ -1823,8 +1823,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c7.c7.c7.c7.c7 {
-  color: hsla(200,10%,18%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
   font-style: normal;
@@ -1846,8 +1846,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c9.c9.c9.c9.c9 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1863,8 +1863,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c18.c18.c18.c18.c18 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1896,8 +1896,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c18.c18.c18.c18.c18::-webkit-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1913,8 +1913,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c18.c18.c18.c18.c18::-moz-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1930,8 +1930,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c18.c18.c18.c18.c18:-ms-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1947,8 +1947,8 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c18.c18.c18.c18.c18::placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1988,7 +1988,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -2018,7 +2018,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: background-color;
   transition-property: background-color;
   -webkit-transition-duration: 160ms;
@@ -2050,7 +2050,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -2100,7 +2100,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
 }
 
 .c10.c10.c10.c10.c10:focus-within {
-  outline: 4px solid hsla(198, 100%, 18%,0.18);
+  outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
   transition-property: outline-width;
@@ -2166,7 +2166,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
             >
               <label
                 data-klear360-component="form-label"
-                for="searchinput-668-input-669"
+                for="searchinput-590-input-591"
                 style="width: 100%; flex-shrink: 0; margin-right: 0px;"
               >
                 <div
@@ -2226,7 +2226,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
                   >
                     <svg
                       aria-hidden="true"
-                      class="Svgweb__StyledSvg-vcmjs8-0"
+                      class=""
                       data-klear360-component="icon"
                       fill="none"
                       height="16px"
@@ -2237,7 +2237,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
                         clip-rule="evenodd"
                         d="M16.6177 18.0319C15.078 19.2635 13.125 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 13.125 19.2635 15.078 18.0319 16.6177L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0977 20.6834 22.0977 20.2929 21.7071L16.6177 18.0319ZM4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 12.886 17.2541 14.5978 16.0413 15.8565C16.0071 15.8828 15.9742 15.9116 15.9429 15.9429C15.9116 15.9742 15.8827 16.0071 15.8564 16.0413C14.5977 17.2542 12.886 18 11 18C7.13401 18 4 14.866 4 11Z"
                         data-klear360-component="svg-path"
-                        fill="hsla(204, 9%, 42%, 1)"
+                        fill="hsla(215, 25%, 27%, 1)"
                         fill-rule="evenodd"
                       />
                     </svg>
@@ -2260,7 +2260,7 @@ exports[`<SearchInput /> should render dropdown and make it visible on click 1`]
                       class="c18"
                       data-klear360-component="styled-base-input"
                       enterkeyhint="search"
-                      id="searchinput-668-input-669"
+                      id="searchinput-590-input-591"
                       inputmode="search"
                       placeholder="Search payment products, settings, and more"
                       type="text"

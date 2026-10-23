@@ -500,7 +500,7 @@ exports[`<PhoneNumberInput /> should accept data-analytics attributes 1`] = `
       >
         <label
           data-klear360-component="form-label"
-          for="phone-number-input-157-input-158"
+          for="phone-number-input-163-input-164"
           style="width: 100%; flex-shrink: 0; margin-right: 0px;"
         >
           <div
@@ -567,7 +567,7 @@ exports[`<PhoneNumberInput /> should accept data-analytics attributes 1`] = `
                   data-klear360-component="base-box"
                 >
                   <button
-                    aria-controls="dropdown-163-actionlist"
+                    aria-controls="dropdown-169-actionlist"
                     aria-expanded="false"
                     aria-haspopup="menu"
                     aria-label="India - Select Country"
@@ -636,7 +636,7 @@ exports[`<PhoneNumberInput /> should accept data-analytics attributes 1`] = `
             data-analytics-value="phone-input-value"
             data-klear360-component="styled-base-input"
             enterkeyhint="done"
-            id="phone-number-input-157-input-158"
+            id="phone-number-input-163-input-164"
             inputmode="decimal"
             placeholder="1234 567890"
             prefix="+91"
@@ -1816,7 +1816,7 @@ exports[`<PhoneNumberInput /> should render large size 1`] = `
       >
         <label
           data-klear360-component="form-label"
-          for="phone-number-input-27-input-28"
+          for="phone-number-input-28-input-29"
           style="width: 100%; flex-shrink: 0; margin-right: 0px;"
         >
           <div
@@ -1883,7 +1883,7 @@ exports[`<PhoneNumberInput /> should render large size 1`] = `
                   data-klear360-component="base-box"
                 >
                   <button
-                    aria-controls="dropdown-33-actionlist"
+                    aria-controls="dropdown-34-actionlist"
                     aria-expanded="false"
                     aria-haspopup="menu"
                     aria-label="India - Select Country"
@@ -1950,7 +1950,7 @@ exports[`<PhoneNumberInput /> should render large size 1`] = `
             class="c17"
             data-klear360-component="styled-base-input"
             enterkeyhint="done"
-            id="phone-number-input-27-input-28"
+            id="phone-number-input-28-input-29"
             inputmode="decimal"
             placeholder="1234 567890"
             prefix="+91"

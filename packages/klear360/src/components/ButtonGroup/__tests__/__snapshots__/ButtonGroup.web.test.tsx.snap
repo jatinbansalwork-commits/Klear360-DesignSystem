@@ -124,7 +124,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] =
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -412,7 +417,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with dropdown 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -709,7 +719,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -976,7 +991,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -1243,7 +1263,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -1510,7 +1535,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -1777,7 +1807,12 @@ exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -2041,7 +2076,11 @@ exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
   background-color: hsla(198,100%,18%,0.18);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,0.18);
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -2261,7 +2300,11 @@ exports[`<ButtonGroup /> should render disabled negative color primary button 1`
   background-color: hsla(3,69%,51%,0.09);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(3,69%,51%,0.09);
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -2412,7 +2455,12 @@ exports[`<ButtonGroup /> should render disabled negative color secondary button 
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -2560,7 +2608,11 @@ exports[`<ButtonGroup /> should render disabled positive color primary button 1`
   background-color: hsla(143,73%,40%,0.09);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(143,73%,40%,0.09);
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -2711,7 +2763,12 @@ exports[`<ButtonGroup /> should render disabled positive color secondary button 
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -2859,7 +2916,11 @@ exports[`<ButtonGroup /> should render disabled primary color primary button 1`]
   background-color: hsla(198,100%,18%,0.18);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,0.18);
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3010,7 +3071,12 @@ exports[`<ButtonGroup /> should render disabled primary color secondary button 1
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3161,7 +3227,12 @@ exports[`<ButtonGroup /> should render disabled primary color tertiary button 1`
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3309,7 +3380,11 @@ exports[`<ButtonGroup /> should render disabled white color primary button 1`] =
   background-color: hsla(0,0%,100%,0.18);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.18);
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3460,7 +3535,12 @@ exports[`<ButtonGroup /> should render disabled white color secondary button 1`]
   background-color: hsla(222,47%,11%,0.06);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.32);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.32) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(222,47%,11%,0.06);
+  box-shadow: inset 0 0px 0px 1px hsla(0,0%,100%,0.32) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3611,7 +3691,12 @@ exports[`<ButtonGroup /> should render disabled white color tertiary button 1`] 
   background-color: hsla(222,47%,11%,0.06);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.32);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.32) !important;
+}
+
+.c0.c0.c0.c0.c0:focus:not(:focus-visible) {
+  background-color: hsla(222,47%,11%,0.06);
+  box-shadow: inset 0 0px 0px 1px hsla(0,0%,100%,0.32) !important;
 }
 
 .c0.c0.c0.c0.c0 * {
@@ -3809,7 +3894,12 @@ exports[`<ButtonGroup /> should render negative color primary button 1`] = `
   background-color: hsla(3,67%,42%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(3,67%,42%,1),inset 0 0px 0px 0.5px hsla(3,67%,42%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(3,67%,42%,1),inset 0 0px 0px 0.5px hsla(3,67%,42%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(3,69%,51%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(3,67%,42%,1),inset 0 0px 0px 0.5px hsla(3,69%,51%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -4077,7 +4167,12 @@ exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -4326,7 +4421,12 @@ exports[`<ButtonGroup /> should render positive color primary button 1`] = `
   background-color: hsla(143,72%,31%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(143,72%,31%,1),inset 0 0px 0px 0.5px hsla(143,72%,31%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(143,72%,31%,1),inset 0 0px 0px 0.5px hsla(143,72%,31%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(143,73%,40%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(143,72%,31%,1),inset 0 0px 0px 0.5px hsla(143,73%,40%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -4594,7 +4694,12 @@ exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -4843,7 +4948,12 @@ exports[`<ButtonGroup /> should render primary color primary button 1`] = `
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -5111,7 +5221,12 @@ exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -5361,7 +5476,12 @@ exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -5610,7 +5730,12 @@ exports[`<ButtonGroup /> should render white color primary button 1`] = `
   background-color: hsla(0,0%,100%,0.8);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 0.5px hsla(0,0%,0%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 0.5px hsla(0,0%,0%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 0.5px hsla(0,0%,0%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -5878,7 +6003,12 @@ exports[`<ButtonGroup /> should render white color secondary button 1`] = `
   background-color: hsla(0,0%,0%,0.18);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.18);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -6128,7 +6258,12 @@ exports[`<ButtonGroup /> should render white color tertiary button 1`] = `
   background-color: hsla(0,0%,0%,0.18);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.18);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(0,0%,100%,0.8) !important;
 }
 
 .c1.c1.c1.c1.c1 * {

@@ -112,6 +112,7 @@ exports[`<Pagination /> should render basic pagination 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -138,7 +139,12 @@ exports[`<Pagination /> should render basic pagination 1`] = `
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c3.c3.c3.c3.c3:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c3.c3.c3.c3.c3 * {
@@ -178,6 +184,7 @@ exports[`<Pagination /> should render basic pagination 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -204,7 +211,12 @@ exports[`<Pagination /> should render basic pagination 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c8.c8.c8.c8.c8:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c8.c8.c8.c8.c8 * {
@@ -442,6 +454,7 @@ exports[`<Pagination /> should render disabled state 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -468,7 +481,12 @@ exports[`<Pagination /> should render disabled state 1`] = `
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c3.c3.c3.c3.c3:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c3.c3.c3.c3.c3 * {
@@ -872,6 +890,7 @@ exports[`<Pagination /> should render with all features enabled 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -898,7 +917,12 @@ exports[`<Pagination /> should render with all features enabled 1`] = `
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c27.c27.c27.c27.c27:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c27.c27.c27.c27.c27 * {
@@ -938,6 +962,7 @@ exports[`<Pagination /> should render with all features enabled 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -964,7 +989,12 @@ exports[`<Pagination /> should render with all features enabled 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c36.c36.c36.c36.c36:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c36.c36.c36.c36.c36 * {
@@ -1947,6 +1977,7 @@ exports[`<Pagination /> should render with label 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -1973,7 +2004,12 @@ exports[`<Pagination /> should render with label 1`] = `
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c5.c5.c5.c5.c5:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c5.c5.c5.c5.c5 * {
@@ -2013,6 +2049,7 @@ exports[`<Pagination /> should render with label 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2039,7 +2076,12 @@ exports[`<Pagination /> should render with label 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c9.c9.c9.c9.c9:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c9.c9.c9.c9.c9 * {
@@ -2317,6 +2359,7 @@ exports[`<Pagination /> should render with page number selector 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -2343,7 +2386,12 @@ exports[`<Pagination /> should render with page number selector 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c3.c3.c3.c3.c3:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c3.c3.c3.c3.c3 * {
@@ -3020,6 +3068,7 @@ exports[`<Pagination /> should render with page size picker 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3046,7 +3095,12 @@ exports[`<Pagination /> should render with page size picker 1`] = `
   background-color: hsla(0,0%,100%,0.01);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
+}
+
+.c26.c26.c26.c26.c26:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,0.01);
+  box-shadow: inset 0 0px 0px 1px hsla(214,32%,91%,1) !important;
 }
 
 .c26.c26.c26.c26.c26 * {
@@ -3086,6 +3140,7 @@ exports[`<Pagination /> should render with page size picker 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  white-space: nowrap;
   background-image: none;
   -webkit-transition-property: background-color,background-image,box-shadow;
   transition-property: background-color,background-image,box-shadow;
@@ -3112,7 +3167,12 @@ exports[`<Pagination /> should render with page size picker 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c31.c31.c31.c31.c31:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c31.c31.c31.c31.c31 * {
@@ -3498,7 +3558,7 @@ exports[`<Pagination /> should render with page size picker 1`] = `
                           data-klear360-component="base-box"
                         >
                           <button
-                            aria-controls="dropdown-29-actionlist"
+                            aria-controls="dropdown-35-actionlist"
                             aria-describedby=""
                             aria-disabled="false"
                             aria-expanded="false"
@@ -3509,7 +3569,7 @@ exports[`<Pagination /> should render with page size picker 1`] = `
                             autocomplete="off"
                             class="c13"
                             data-klear360-component="styled-base-input"
-                            id="dropdown-29-trigger-30-input-31"
+                            id="dropdown-35-trigger-36-input-37"
                             name="page-size"
                             placeholder=""
                             role="combobox"
