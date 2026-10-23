@@ -18,7 +18,7 @@ exports[`BottomNav should render 1`] = `
   left: 0px;
   background-color: hsla(0,0%,100%,1);
   border-top-width: 1px;
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-top-style: solid;
 }
 
