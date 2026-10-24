@@ -44,7 +44,6 @@ import { throwKlear360Error, logger } from '~utils/logger';
 import { announce } from '~components/LiveAnnouncer/LiveAnnouncer';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import type { LinkProps } from '~components/Link';
-import getIn from '~utils/lodashButBetter/get';
 import { useMergeRefs } from '~utils/useMergeRefs';
 import type { MotionMetaProp } from '~components/BaseMotion';
 import { getInnerMotionRef, getOuterMotionRef } from '~utils/getMotionRefs';
@@ -1080,7 +1079,6 @@ const _BaseInput: React.ForwardRefRenderFunction<Klear360ElementRef, BaseInputPr
           shouldAddLimitedFocus={shouldAddLimitedFocus}
           $size={_size}
           $borderRadius={borderRadius}
-          elevation={elevation}
         >
           <BaseInputWrapper
             isDropdownTrigger={isDropdownTrigger}
