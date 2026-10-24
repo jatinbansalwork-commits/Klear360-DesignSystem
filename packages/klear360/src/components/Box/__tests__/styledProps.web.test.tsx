@@ -1,8 +1,18 @@
-import styled from 'styled-components';
+import styled, { StyleSheetManager, ThemeProvider as StyledThemeProvider } from 'styled-components';
 import BaseBox from '../BaseBox';
 import type { StyledPropsKlear360 } from '~components/Box/styledProps';
 import { useStyledProps, getStyledProps } from '~components/Box/styledProps';
 import renderWithTheme from '~utils/testing/renderWithTheme.web';
+import stylisCSSHigherSpecificity from '~components/Klear360Provider/stylisCSSHigherSpecificity';
+import { klear360Theme } from '~tokens/theme';
+import type { Theme } from '~components/Klear360Provider';
+
+const lightThemeForStyledTest: Theme = {
+  ...klear360Theme,
+  colors: klear360Theme.colors.onLight,
+  elevation: klear360Theme.elevation.onLight,
+  typography: klear360Theme.typography.onDesktop,
+};
 
 type MyComponentWithStyledProps = {
   test: 'working???';
@@ -49,9 +59,13 @@ describe('styledProps with getStyledProps', () => {
 describe('styledProps with useStyledProps', () => {
   it('should add styledProps on actual base element', () => {
     const { container } = renderWithTheme(
-      <ComponentWithUseStyledProps margin={['spacing.0', 'spacing.10']} test="working???">
-        hi
-      </ComponentWithUseStyledProps>,
+      <StyledThemeProvider theme={lightThemeForStyledTest}>
+        <StyleSheetManager stylisPlugins={[stylisCSSHigherSpecificity()]}>
+          <ComponentWithUseStyledProps margin={['spacing.0', 'spacing.10']} test="working???">
+            hi
+          </ComponentWithUseStyledProps>
+        </StyleSheetManager>
+      </StyledThemeProvider>,
     );
 
     expect(container).toMatchInlineSnapshot(`

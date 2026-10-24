@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InputGroup should handle validation states correctly 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -92,9 +75,15 @@ exports[`InputGroup should handle validation states correctly 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-rb"
+                  >
+                    .base-input-fr-rb:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-rb focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -189,23 +178,6 @@ exports[`InputGroup should handle validation states correctly 1`] = `
 `;
 
 exports[`InputGroup should render InputGroup with large size 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 12px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -240,9 +212,15 @@ exports[`InputGroup should render InputGroup with large size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r6"
+                  >
+                    .base-input-fr-r6:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r6 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 12px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -275,9 +253,15 @@ exports[`InputGroup should render InputGroup with large size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r7"
+                  >
+                    .base-input-fr-r7:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r7 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 12px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -316,9 +300,15 @@ exports[`InputGroup should render InputGroup with large size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r8"
+                  >
+                    .base-input-fr-r8:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r8 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 12px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -354,23 +344,6 @@ exports[`InputGroup should render InputGroup with large size 1`] = `
 `;
 
 exports[`InputGroup should render InputGroup with medium size 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -405,9 +378,15 @@ exports[`InputGroup should render InputGroup with medium size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r3"
+                  >
+                    .base-input-fr-r3:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r3 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -440,9 +419,15 @@ exports[`InputGroup should render InputGroup with medium size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r4"
+                  >
+                    .base-input-fr-r4:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r4 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -481,9 +466,15 @@ exports[`InputGroup should render InputGroup with medium size 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r5"
+                  >
+                    .base-input-fr-r5:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r5 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -519,23 +510,6 @@ exports[`InputGroup should render InputGroup with medium size 1`] = `
 `;
 
 exports[`InputGroup should render Inputgroup with default properties 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -610,9 +584,15 @@ exports[`InputGroup should render Inputgroup with default properties 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r0"
+                  >
+                    .base-input-fr-r0:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r0 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -651,9 +631,15 @@ exports[`InputGroup should render Inputgroup with default properties 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r1"
+                  >
+                    .base-input-fr-r1:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r1 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -686,9 +672,15 @@ exports[`InputGroup should render Inputgroup with default properties 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r2"
+                  >
+                    .base-input-fr-r2:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r2 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -768,23 +760,6 @@ exports[`InputGroup should render Inputgroup with default properties 1`] = `
 `;
 
 exports[`InputGroup should render disabled ButtonGroup 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -819,9 +794,15 @@ exports[`InputGroup should render disabled ButtonGroup 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-r9"
+                  >
+                    .base-input-fr-r9:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-r9 focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"
@@ -862,9 +843,15 @@ exports[`InputGroup should render disabled ButtonGroup 1`] = `
                   data-klear360-component="base-box"
                   style="display: flex; flex-direction: column; position: relative; width: 100%;"
                 >
+                  <style
+                    data-klear360-scoped="base-input-fr-ra"
+                  >
+                    .base-input-fr-ra:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                  </style>
                   <div
-                    class="c0 focus-ring-wrapper"
+                    class="base-input-fr-ra focus-ring-wrapper"
                     data-klear360-component="base-box"
+                    style="width: 100%; border-radius: 8px;"
                   >
                     <div
                       class="__klear360-base-input-wrapper"

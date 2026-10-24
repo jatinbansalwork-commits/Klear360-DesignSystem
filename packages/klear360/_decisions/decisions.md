@@ -388,9 +388,9 @@ Mechanism unchanged from P1. Each component: diff against current styled output,
 | **Table** (7 scoped web files → `tableScopedStyled.web.tsx` + module SCSS), **SideNav** root + **SideNavLink** (`SideNav.module.scss`, `getSideNav*Styles`, `SideNavLink.module.scss`), **Carousel** (3 web files incl. **CircularIndicatorButton**), **TimePicker** (3 incl. **SpinWheel** ref typing), **DatePicker** CalendarStyles, **ProgressBar** (2), **GenUI** (2), **Charts** CommonChartComponents legend, **TourMask**, **SelectorInput** | done (P2 waves 19–27) |
 | Amount, AppBar, Breadcrumb, Heading, Text, TrustBadge | already CSS/token-based on web (no styled wrapper in scoped files) |
 
-**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining styled usage on web is in **shared cross-platform `.tsx` entry points** still on the bridge (`Menu/docs/CustomMenu.web.tsx`, `TopNav/TopNavOverlayThemeOverride.tsx`, `Klear360Provider.web.tsx`) plus docs/stories — P3 waves 4–5.
+**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining runtime styled usage on web is **docs/stories/tests** only (wave 5); shared production paths use `ThemeContext` + `ThemeCssVariablesRoot`.
 
-**`Klear360Provider` (web):** `ThemeContext` + CSS-variable wrapper unchanged. **`ThemeProvider` / `StyleSheetManager` not removed** — dropping them breaks every remaining styled-components consumer above (web Jest without the bridge fails with `props.theme` undefined). Remove at P3 when shared `.tsx` styled entry points are migrated or deleted.
+**`Klear360Provider` (web):** `ThemeContext` + `ThemeCssVariablesRoot` (CSS custom properties). **No `ThemeProvider` / `StyleSheetManager`** on web — native provider still uses the styled-components bridge until the native styling pass.
 
 **Not in core CSS reference tree** (migrated from styled-components only): Table body/row/cell runtime styles, SideNav root/link, Charts, GenUI, DatePicker calendar chrome, etc.
 
@@ -403,7 +403,7 @@ Goal: remove remaining **shared `.tsx`** styled-components usage on web, then dr
 | **1** | `Tag`, `List`, `ListItem`, `Code` (shared entry points; no styled wrappers on web) | done |
 | **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` focus-ring wrapper | done |
 | **3** | `BaseButton.tsx` (`ButtonContent` → `BaseBox` + inline opacity), `Card.tsx` / `types.ts` (`CSSProperties['cursor']` instead of `CSSObject`) | done |
-| **4** | Remove web `ThemeProvider` / `StyleSheetManager`; audit web Jest without styled bridge | pending |
+| **4** | Remove web `ThemeProvider` / `StyleSheetManager`; `ThemeCssVariablesRoot`; `TopNavOverlayThemeOverride` CSS vars | done |
 | **5** | Docs/storybook styled usage; optional `@klear/klear360-core` peer for published package | pending |
 
 Native `.native.tsx` files keep styled-components until a separate native styling pass (unchanged from P1 plan).

@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -95,9 +78,15 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
                   </div>
                 </label>
               </div>
+              <style
+                data-klear360-scoped="base-input-fr-r7"
+              >
+                .base-input-fr-r7:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+              </style>
               <div
-                class="c0 focus-ring-wrapper"
+                class="base-input-fr-r7 focus-ring-wrapper"
                 data-klear360-component="base-box"
+                style="width: 100%; border-radius: 8px;"
               >
                 <div
                   class="__klear360-base-input-wrapper"
@@ -218,23 +207,6 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 `;
 
 exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -312,9 +284,15 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
                   </div>
                 </label>
               </div>
+              <style
+                data-klear360-scoped="base-input-fr-r4"
+              >
+                .base-input-fr-r4:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+              </style>
               <div
-                class="c0 focus-ring-wrapper"
+                class="base-input-fr-r4 focus-ring-wrapper"
                 data-klear360-component="base-box"
+                style="width: 100%; border-radius: 8px;"
               >
                 <div
                   class="__klear360-base-input-wrapper"
@@ -434,23 +412,6 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 `;
 
 exports[`<Dropdown /> should render dropdown with large size select input 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 12px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -528,9 +489,15 @@ exports[`<Dropdown /> should render dropdown with large size select input 1`] = 
                   </div>
                 </label>
               </div>
+              <style
+                data-klear360-scoped="base-input-fr-rh"
+              >
+                .base-input-fr-rh:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+              </style>
               <div
-                class="c0 focus-ring-wrapper"
+                class="base-input-fr-rh focus-ring-wrapper"
                 data-klear360-component="base-box"
+                style="width: 100%; border-radius: 12px;"
               >
                 <div
                   class="__klear360-base-input-wrapper"
@@ -1009,10 +976,6 @@ exports[`<Dropdown /> with <DropdownButton /> should render menu 1`] = `
 `;
 
 exports[`<Dropdown /> with <DropdownButton /> should support data-analytics-attribute 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1042,9 +1005,8 @@ exports[`<Dropdown /> with <DropdownButton /> should support data-analytics-attr
             style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
           >
             <div
-              class="c0"
               data-klear360-component="base-box"
-              style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+              style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
             >
               <div
                 data-klear360-component="base-text"
