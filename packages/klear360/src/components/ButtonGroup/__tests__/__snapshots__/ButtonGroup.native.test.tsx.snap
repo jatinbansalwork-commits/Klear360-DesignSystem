@@ -80,6 +80,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with default propert
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -563,6 +564,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with default propert
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -958,6 +960,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with default propert
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -1374,6 +1377,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with full width 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={true}
+        isIconOnly={false}
         isInsideFullWidthButtonGroup={true}
         isLoading={false}
         isPressed={false}
@@ -1862,6 +1866,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with full width 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isInsideFullWidthButtonGroup={true}
         isLoading={false}
@@ -2262,6 +2267,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with full width 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isInsideFullWidthButtonGroup={true}
         isLoading={false}
@@ -2680,6 +2686,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with large size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="48px"
@@ -3163,6 +3170,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with large size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -3558,6 +3566,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with large size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -3972,6 +3981,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with medium size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -4455,6 +4465,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with medium size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -4850,6 +4861,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with medium size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -5264,6 +5276,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with small size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="32px"
@@ -5747,6 +5760,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with small size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -6142,6 +6156,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with small size 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -6556,6 +6571,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with xsmall size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="28px"
@@ -7039,6 +7055,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with xsmall size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -7434,6 +7451,7 @@ exports[`<ButtonGroup /> (native) should render ButtonGroup with xsmall size 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -7845,6 +7863,7 @@ exports[`<ButtonGroup /> (native) should render disabled ButtonGroup 1`] = `
         hoverBackgroundColor="hsla(198, 100%, 18%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -8040,6 +8059,7 @@ exports[`<ButtonGroup /> (native) should render disabled ButtonGroup 1`] = `
         hoverBackgroundColor="hsla(198, 100%, 18%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -8236,6 +8256,7 @@ exports[`<ButtonGroup /> (native) should render disabled ButtonGroup 1`] = `
         hoverBackgroundColor="hsla(198, 100%, 18%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -8453,6 +8474,7 @@ exports[`<ButtonGroup /> (native) should render negative color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(3, 67%, 42%, 1), inset 0 0px 0px 0.5px hsla(3, 67%, 42%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -8936,6 +8958,7 @@ exports[`<ButtonGroup /> (native) should render negative color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(3, 67%, 42%, 1), inset 0 0px 0px 0.5px hsla(3, 67%, 42%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -9331,6 +9354,7 @@ exports[`<ButtonGroup /> (native) should render negative color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(3, 67%, 42%, 1), inset 0 0px 0px 0.5px hsla(3, 67%, 42%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -9745,6 +9769,7 @@ exports[`<ButtonGroup /> (native) should render negative color secondary variant
         hoverBoxShadow="inset 0 -1px 0.5px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(215, 20%, 65%, 1), inset 0 -1.5px 0px 0px hsla(214, 32%, 91%, 1)"
         hoverIconColor="hsla(3, 69%, 51%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -10131,6 +10156,7 @@ exports[`<ButtonGroup /> (native) should render negative color secondary variant
         hoverIconColor="hsla(3, 69%, 51%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -10516,6 +10542,7 @@ exports[`<ButtonGroup /> (native) should render negative color secondary variant
         hoverIconColor="hsla(3, 69%, 51%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -10931,6 +10958,7 @@ exports[`<ButtonGroup /> (native) should render positive color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(143, 72%, 31%, 1), inset 0 0px 0px 0.5px hsla(143, 72%, 31%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -11414,6 +11442,7 @@ exports[`<ButtonGroup /> (native) should render positive color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(143, 72%, 31%, 1), inset 0 0px 0px 0.5px hsla(143, 72%, 31%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -11809,6 +11838,7 @@ exports[`<ButtonGroup /> (native) should render positive color primary variant 1
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(143, 72%, 31%, 1), inset 0 0px 0px 0.5px hsla(143, 72%, 31%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -12223,6 +12253,7 @@ exports[`<ButtonGroup /> (native) should render positive color secondary variant
         hoverBoxShadow="inset 0 -1px 0.5px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(215, 20%, 65%, 1), inset 0 -1.5px 0px 0px hsla(214, 32%, 91%, 1)"
         hoverIconColor="hsla(143, 72%, 31%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -12609,6 +12640,7 @@ exports[`<ButtonGroup /> (native) should render positive color secondary variant
         hoverIconColor="hsla(143, 72%, 31%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -12994,6 +13026,7 @@ exports[`<ButtonGroup /> (native) should render positive color secondary variant
         hoverIconColor="hsla(143, 72%, 31%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -13409,6 +13442,7 @@ exports[`<ButtonGroup /> (native) should render primary color primary variant 1`
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -13892,6 +13926,7 @@ exports[`<ButtonGroup /> (native) should render primary color primary variant 1`
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -14287,6 +14322,7 @@ exports[`<ButtonGroup /> (native) should render primary color primary variant 1`
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(200, 98%, 17%, 1), inset 0 0px 0px 0.5px hsla(200, 98%, 17%, 1), inset 0 1.5px 0px 0px hsla(0, 0%, 100%, 0.18), inset 0 -2px 0px 0px hsla(0, 0%, 100%, 0.18)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -14701,6 +14737,7 @@ exports[`<ButtonGroup /> (native) should render primary color secondary variant 
         hoverBoxShadow="inset 0 -1px 0.5px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(215, 20%, 65%, 1), inset 0 -1.5px 0px 0px hsla(214, 32%, 91%, 1)"
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -15087,6 +15124,7 @@ exports[`<ButtonGroup /> (native) should render primary color secondary variant 
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -15472,6 +15510,7 @@ exports[`<ButtonGroup /> (native) should render primary color secondary variant 
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -15887,6 +15926,7 @@ exports[`<ButtonGroup /> (native) should render primary color tertiary variant 1
         hoverBoxShadow="inset 0 -1px 0.5px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(215, 20%, 65%, 1), inset 0 -1.5px 0px 0px hsla(214, 32%, 91%, 1)"
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -16273,6 +16313,7 @@ exports[`<ButtonGroup /> (native) should render primary color tertiary variant 1
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -16658,6 +16699,7 @@ exports[`<ButtonGroup /> (native) should render primary color tertiary variant 1
         hoverIconColor="hsla(216, 56%, 2%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -17073,6 +17115,7 @@ exports[`<ButtonGroup /> (native) should render white color primary variant 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 0.5px hsla(0, 0%, 0%, 0.18)"
         hoverIconColor="hsla(0, 0%, 0%, 0.72)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -17508,6 +17551,7 @@ exports[`<ButtonGroup /> (native) should render white color primary variant 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 0.5px hsla(0, 0%, 0%, 0.18)"
         hoverIconColor="hsla(0, 0%, 0%, 0.72)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -17903,6 +17947,7 @@ exports[`<ButtonGroup /> (native) should render white color primary variant 1`] 
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 0.5px hsla(0, 0%, 0%, 0.18)"
         hoverIconColor="hsla(0, 0%, 0%, 0.72)"
         isFullWidth={false}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -18317,6 +18362,7 @@ exports[`<ButtonGroup /> (native) should render white color secondary variant 1`
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(0, 0%, 100%, 0.8)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -18703,6 +18749,7 @@ exports[`<ButtonGroup /> (native) should render white color secondary variant 1`
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -19088,6 +19135,7 @@ exports[`<ButtonGroup /> (native) should render white color secondary variant 1`
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -19503,6 +19551,7 @@ exports[`<ButtonGroup /> (native) should render white color tertiary variant 1`]
         hoverBoxShadow="inset 0 -1.5px 0px 0px hsla(0, 0%, 0%, 0.18), inset 0 0px 0px 1px hsla(0, 0%, 100%, 0.8)"
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
+        isIconOnly={false}
         isLoading={false}
         isPressed={false}
         minHeight="36px"
@@ -19889,6 +19938,7 @@ exports[`<ButtonGroup /> (native) should render white color tertiary variant 1`]
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
@@ -20274,6 +20324,7 @@ exports[`<ButtonGroup /> (native) should render white color tertiary variant 1`]
         hoverIconColor="hsla(0, 0%, 100%, 1)"
         isFullWidth={false}
         isGroupBorderCollapsed={true}
+        isIconOnly={false}
         isInsetShadowSidesFlattened={true}
         isLoading={false}
         isPressed={false}
