@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MenuItem } from '../';
 import { Box } from '~components/Box';
 import {
@@ -13,32 +12,24 @@ import {
 } from '~components/Icons';
 import type { IconComponent } from '~components/Icons';
 import { Text } from '~components/Typography';
-import { makeBorderSize, makeSize, makeSpace } from '~utils';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
+import styles from './CustomMenu.module.scss';
 
-const CustomMenuTrigger = styled.button<{ isTransparent?: boolean }>((props) => {
-  return {
-    all: 'unset',
-    padding: makeSpace(props.theme.spacing[4]),
-    color: props.theme.colors.surface.text.gray.normal,
-    backgroundColor: props.isTransparent
-      ? props.theme.colors.transparent
-      : props.theme.colors.interactive.background.gray.faded,
-    borderRadius: props.isTransparent ? '0px' : makeSize(props.theme.border.radius.medium),
-    borderBottomWidth: makeBorderSize(props.theme.border.width.thick),
-    borderBottomStyle: 'solid',
-    borderBottomColor: props.theme.colors.transparent,
-    cursor: 'pointer',
-    '&:hover, &[aria-expanded="true"]': {
-      backgroundColor: props.isTransparent
-        ? props.theme.colors.transparent
-        : props.theme.colors.interactive.background.gray.fadedHighlighted,
-      color: props.theme.colors.interactive.text.primary.normal,
-      borderBottomColor: props.theme.colors.interactive.border.primary.default,
-    },
-    '&:focus-visible': getFocusRingStyles({ theme: props.theme }),
-  };
-});
+type CustomMenuTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  isTransparent?: boolean;
+};
+
+const CustomMenuTrigger = React.forwardRef<HTMLButtonElement, CustomMenuTriggerProps>(
+  ({ isTransparent, className, ...props }, ref): React.ReactElement => (
+    <button
+      ref={ref}
+      type="button"
+      className={`${isTransparent ? styles.triggerTransparent : styles.trigger}${className ? ` ${className}` : ''}`}
+      {...props}
+    />
+  ),
+);
+
+CustomMenuTrigger.displayName = 'CustomMenuTrigger';
 
 const MenuTrigger = React.forwardRef<HTMLButtonElement, { children: string; className?: string }>(
   ({ children, ...props }, ref): React.ReactElement => {
@@ -51,6 +42,8 @@ const MenuTrigger = React.forwardRef<HTMLButtonElement, { children: string; clas
     );
   },
 );
+
+MenuTrigger.displayName = 'MenuTrigger';
 
 const navMenuItems = {
   payments: [

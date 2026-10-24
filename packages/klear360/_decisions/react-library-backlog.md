@@ -1,24 +1,39 @@
 # React Library Best Practices — prioritized backlog
 
-Living tracker for `@klear/klear360`. Detail in [decisions.md](./decisions.md).
+Living tracker for `@klear/klear360`. **Checklist 1–25:** [react-library-ship-tracker.md](./react-library-ship-tracker.md). Audit detail: [decisions.md](./decisions.md).
 
-## P0 — Ship now
+**Horizons:** **P0** = unblock `main`. **P1** = Wave A minors. **P2** = programs / major.
 
-| ID | Item | Status |
-|----|------|--------|
-| P0-1 | P3 wave 5 (#187) | Open PR |
-| P0-2 | Triage stale audit PRs (#156–#157–#162–#179) | **#188** supersedes 156/157/162; **#179 closed** |
+---
 
-## P1 — Next minors
+## P0 — Done on `main`
 
-| ID | Item |
-|----|------|
-| P1-1 | Web styled stragglers (Button.stories, Sandpack samples) |
-| P1-2 | Confirm `@klear/klear360-core` `src/styles` |
-| P1-3 | GenUI file split |
-| P1-4 | Storybook-dedicated tsconfig for stories typecheck |
-| P1-5 | Open PR #179 superseded — P0 pipeline on `main` via later PRs |
+| # | Item | Status |
+|---|------|--------|
+| 2 | RN optional peers + audit triage (#188) | **Merged** |
+| 1 | P3 waves 3–5 (web cutover) | **This PR** (merge of wave 5 + Wave A) |
 
-## P2 — Programs / major
+---
 
-Native styling pass, `on*Change` major, RN Jest, `@klear/klear360-core` peer, Table row re-renders, etc. — see prior backlog sections in chat / expand as needed.
+## P1 — Wave A (this PR)
+
+| # | Item | Status |
+|---|------|--------|
+| 4 | Web styled stragglers (`Button.stories`, Sandpack sample notes) | In PR |
+| 5 | Confirm `@klear/klear360-core` `src/styles` | In PR |
+| 18 | Storybook-dedicated tsconfig + `yarn types:typecheck:storybook` | In PR |
+| 23–25 | `decisions.md`, backlog, ship tracker | In PR |
+
+GenUI file split = **done** (do not reopen).
+
+---
+
+## P2 — Next programs
+
+Native styling (**3**), `on*Change` major (**7**), RN Jest (**17**), core published peer (**6**), tarball CI (**15**), Table rows (**11**), SideNav reducer (**12**), a11y/docs/tests (**19–22**), npm audit (**16**).
+
+---
+
+## Done (no action)
+
+Web SCSS + P3 web cutover; performance hot paths; Chromatic + a11y guide; Changesets; ESM-only policy; type-only circular deps OK.

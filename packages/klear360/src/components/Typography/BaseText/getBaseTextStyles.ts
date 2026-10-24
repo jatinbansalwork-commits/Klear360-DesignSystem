@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { makeTypographySize } from '~utils/makeTypographySize';
 import type { StyledBaseTextProps } from './types';
 import { DOTTED_UNDERLINE_STYLES } from './tokens';

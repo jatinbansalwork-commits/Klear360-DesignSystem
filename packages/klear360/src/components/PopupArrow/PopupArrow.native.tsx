@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { PopupArrowProps } from './types';
 import Svg, { Path } from '~components/Icons/_Svg';
 import { useTheme } from '~components/Klear360Provider';

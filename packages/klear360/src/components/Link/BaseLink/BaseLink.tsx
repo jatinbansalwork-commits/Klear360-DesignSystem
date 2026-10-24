@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { SyntheticEvent } from 'react';
 import React from 'react';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { GestureResponderEvent } from 'react-native';
 import StyledBaseLink from './StyledBaseLink';
 import getIn from '~utils/lodashButBetter/get';

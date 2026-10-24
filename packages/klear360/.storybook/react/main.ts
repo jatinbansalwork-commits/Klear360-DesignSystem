@@ -16,7 +16,7 @@ const config: StorybookConfig = {
     check: !isDevelopment,
     checkOptions: {
       typescript: {
-        configFile: resolve(klear360Root, 'tsconfig-typecheck.web.json'),
+        configFile: resolve(klear360Root, 'tsconfig-typecheck.storybook.json'),
       },
     },
     // 'react-docgen' (not 'react-docgen-typescript') so Controls tables stay populated for

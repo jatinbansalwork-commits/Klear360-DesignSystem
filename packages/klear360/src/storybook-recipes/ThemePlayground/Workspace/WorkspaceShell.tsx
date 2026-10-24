@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { useState } from 'react';
 import { makeSpace } from '../../../utils';
 import {
@@ -13,71 +12,74 @@ import {
   BottomSheetHeader,
   BottomSheetBody,
 } from '../../../components';
-
-const StyledHeader = styled.div(({ theme }) => ({
-  boxShadow: '0 4px 8px  rgba(23,26,30,.15)',
-  backgroundImage: 'linear-gradient(to bottom right,rgba(255,255,255,0.2),rgba(0,0,0,0.2))',
-  height: '80px',
-  width: '100%',
-  backgroundColor: theme.colors.surface.background.primary.intense,
-  padding: makeSpace(theme.spacing[4]),
-  borderTopLeftRadius: 'medium',
-  borderTopRightRadius: 'medium',
-  flexDirection: 'row',
-  display: 'flex',
-  gap: makeSpace(theme.spacing[4]),
-  alignItems: 'center',
-  zIndex: 2,
-}));
-
-const StyledFooter = styled.div(({ theme }) => ({
-  boxShadow: `0 -2px 6px  rgba(23,26,30,.15)`,
-  borderTop: `1px solid ${theme.colors.surface.border.primary.muted}`,
-  zIndex: 2,
-  display: 'flex',
-  padding: makeSpace(theme.spacing[4]),
-  alignItems: 'center',
-}));
-
-const WorkspaceAvatar = styled.div(({ theme }) => ({
-  height: '46px',
-  width: '46px',
-  borderRadius: theme.border.radius.small,
-  backgroundColor: theme.colors.interactive.background.primary.faded,
-  color: theme.colors.interactive.text.onPrimary.normal,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontWeight: 600,
-  flexShrink: 0,
-}));
-
-const StatusWrapper = styled.div(({ theme }) => ({
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  background: 'rgba(255,255,255,0.1 )',
-  padding: `${makeSpace(theme.spacing[1])} ${makeSpace(theme.spacing[2])}`,
-  cursor: 'pointer',
-  borderRadius: theme.border.radius.small,
-}));
-
-const LanguageSelector = styled.div(({ theme }) => ({
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  background: 'rgba(255,255,255,0.1 )',
-  padding: `${makeSpace(theme.spacing[1])} ${makeSpace(theme.spacing[2])}`,
-  cursor: 'pointer',
-  borderRadius: theme.border.radius.small,
-  gap: makeSpace(theme.spacing[2]),
-  marginTop: makeSpace(theme.spacing[3]),
-}));
+import { useTheme } from '~components/Klear360Provider';
 
 const WorkspaceShell = ({ children }: { children: React.ReactNode }): React.ReactElement => {
   const [isLanguageSheetOpen, setIsLanguageSheetOpen] = useState(false);
+  const { theme } = useTheme();
+
+  const headerStyle: React.CSSProperties = {
+    boxShadow: '0 4px 8px rgba(23,26,30,.15)',
+    backgroundImage: 'linear-gradient(to bottom right,rgba(255,255,255,0.2),rgba(0,0,0,0.2))',
+    height: '80px',
+    width: '100%',
+    backgroundColor: theme.colors.surface.background.primary.intense,
+    padding: makeSpace(theme.spacing[4]),
+    borderTopLeftRadius: theme.border.radius.medium,
+    borderTopRightRadius: theme.border.radius.medium,
+    flexDirection: 'row',
+    display: 'flex',
+    gap: makeSpace(theme.spacing[4]),
+    alignItems: 'center',
+    zIndex: 2,
+  };
+
+  const footerStyle: React.CSSProperties = {
+    boxShadow: '0 -2px 6px rgba(23,26,30,.15)',
+    borderTop: `1px solid ${theme.colors.surface.border.primary.muted}`,
+    zIndex: 2,
+    display: 'flex',
+    padding: makeSpace(theme.spacing[4]),
+    alignItems: 'center',
+  };
+
+  const avatarStyle: React.CSSProperties = {
+    height: '46px',
+    width: '46px',
+    borderRadius: theme.border.radius.small,
+    backgroundColor: theme.colors.interactive.background.primary.faded,
+    color: theme.colors.interactive.text.onPrimary.normal,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 600,
+    flexShrink: 0,
+  };
+
+  const statusWrapperStyle: React.CSSProperties = {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    background: 'rgba(255,255,255,0.1)',
+    padding: `${makeSpace(theme.spacing[1])} ${makeSpace(theme.spacing[2])}`,
+    cursor: 'pointer',
+    borderRadius: theme.border.radius.small,
+  };
+
+  const languageSelectorStyle: React.CSSProperties = {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    background: 'rgba(255,255,255,0.1)',
+    padding: `${makeSpace(theme.spacing[1])} ${makeSpace(theme.spacing[2])}`,
+    cursor: 'pointer',
+    borderRadius: theme.border.radius.small,
+    gap: makeSpace(theme.spacing[2]),
+    marginTop: makeSpace(theme.spacing[3]),
+  };
+
   return (
     <Box
       maxWidth="375px"
@@ -94,11 +96,11 @@ const WorkspaceShell = ({ children }: { children: React.ReactNode }): React.Reac
         <BottomSheetHeader title="Choose Language" />
         <BottomSheetBody />
       </BottomSheet>
-      <StyledHeader>
-        <WorkspaceAvatar>NS</WorkspaceAvatar>
+      <div style={headerStyle}>
+        <div style={avatarStyle}>NS</div>
         <Box zIndex={1}>
           <Heading color="interactive.text.onPrimary.normal">Northwind Studio</Heading>
-          <StatusWrapper>
+          <div style={statusWrapperStyle}>
             <Text
               marginLeft="spacing.2"
               marginRight="spacing.2"
@@ -108,23 +110,33 @@ const WorkspaceShell = ({ children }: { children: React.ReactNode }): React.Reac
               Active workspace
             </Text>
             <InfoIcon size="xsmall" color="interactive.icon.onPrimary.normal" />
-          </StatusWrapper>
+          </div>
         </Box>
 
         <Box display="flex" alignItems="flex-end" flexDirection="column" flex={1}>
           <CloseIcon size="medium" color="interactive.icon.onPrimary.normal" />
-          <LanguageSelector onClick={() => setIsLanguageSheetOpen(true)}>
+          <div
+            role="button"
+            tabIndex={0}
+            style={languageSelectorStyle}
+            onClick={() => setIsLanguageSheetOpen(true)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                setIsLanguageSheetOpen(true);
+              }
+            }}
+          >
             <Text size="small" color="interactive.text.onPrimary.normal">
               EN
             </Text>
             <ChevronDownIcon size="xsmall" color="interactive.icon.onPrimary.normal" />
-          </LanguageSelector>
+          </div>
         </Box>
-      </StyledHeader>
+      </div>
       <Box flex={1} overflow="scroll">
         {children}
       </Box>
-      <StyledFooter>
+      <div style={footerStyle}>
         <Box flex={1} flexDirection="column">
           <Text weight="semibold">3 pending updates</Text>
           <Text size="small">Review changes</Text>
@@ -134,7 +146,7 @@ const WorkspaceShell = ({ children }: { children: React.ReactNode }): React.Reac
             Continue
           </Button>
         </Box>
-      </StyledFooter>
+      </div>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { useMemoizedStyles } from '../BaseBox/useMemoizedStyles';
 import { getStyledProps, removeUndefinedStyledProps } from './getStyledProps';
 import type { Theme } from '~components/Klear360Provider';

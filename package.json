@@ -25,6 +25,7 @@
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
     "tsc:klear360": "yarn workspace @klear/klear360 typecheck",
+    "tsc:klear360-storybook": "yarn workspace @klear/klear360 types:typecheck:storybook",
     "tsc:knowledgebase": "node ./scripts/lintKnowledgebase.js",
     "lint": "eslint --ext js,jsx,ts,tsx packages && stylelint '**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --ext js,jsx,ts,tsx packages --fix && stylelint '**/*.{js,jsx,ts,tsx}' --fix",

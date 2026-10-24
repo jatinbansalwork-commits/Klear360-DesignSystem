@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { BaseInputProps } from './BaseInput';
 import { getBaseInputBorderStyles } from './getBaseInputBorderStyles';
 import {

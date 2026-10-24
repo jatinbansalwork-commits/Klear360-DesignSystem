@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TextArea /> should render 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -74,9 +57,15 @@ exports[`<TextArea /> should render 1`] = `
             </div>
           </label>
         </div>
+        <style
+          data-klear360-scoped="base-input-fr-r0"
+        >
+          .base-input-fr-r0:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+        </style>
         <div
-          class="c0 focus-ring-wrapper"
+          class="base-input-fr-r0 focus-ring-wrapper"
           data-klear360-component="base-box"
+          style="width: 100%; border-radius: 8px;"
         >
           <div
             class="__klear360-base-input-wrapper"
@@ -111,23 +100,6 @@ exports[`<TextArea /> should render 1`] = `
 `;
 
 exports[`<TextArea /> should render large size 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 12px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -184,9 +156,15 @@ exports[`<TextArea /> should render large size 1`] = `
             </div>
           </label>
         </div>
+        <style
+          data-klear360-scoped="base-input-fr-r1"
+        >
+          .base-input-fr-r1:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+        </style>
         <div
-          class="c0 focus-ring-wrapper"
+          class="base-input-fr-r1 focus-ring-wrapper"
           data-klear360-component="base-box"
+          style="width: 100%; border-radius: 12px;"
         >
           <div
             class="__klear360-base-input-wrapper"
@@ -236,23 +214,6 @@ exports[`<TextArea /> should render large size 1`] = `
 `;
 
 exports[`<TextArea /> should set number of lines 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -309,9 +270,15 @@ exports[`<TextArea /> should set number of lines 1`] = `
             </div>
           </label>
         </div>
+        <style
+          data-klear360-scoped="base-input-fr-r5"
+        >
+          .base-input-fr-r5:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+        </style>
         <div
-          class="c0 focus-ring-wrapper"
+          class="base-input-fr-r5 focus-ring-wrapper"
           data-klear360-component="base-box"
+          style="width: 100%; border-radius: 8px;"
         >
           <div
             class="__klear360-base-input-wrapper"
@@ -346,23 +313,6 @@ exports[`<TextArea /> should set number of lines 1`] = `
 `;
 
 exports[`<TextArea /> should support adding data-analytics attribute to the textarea's container 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -419,9 +369,15 @@ exports[`<TextArea /> should support adding data-analytics attribute to the text
             </div>
           </label>
         </div>
+        <style
+          data-klear360-scoped="base-input-fr-rn"
+        >
+          .base-input-fr-rn:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+        </style>
         <div
-          class="c0 focus-ring-wrapper"
+          class="base-input-fr-rn focus-ring-wrapper"
           data-klear360-component="base-box"
+          style="width: 100%; border-radius: 8px;"
         >
           <div
             class="__klear360-base-input-wrapper"

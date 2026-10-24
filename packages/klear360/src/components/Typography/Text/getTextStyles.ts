@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import getBaseTextStyles from '../BaseText/getBaseTextStyles';
 import type { TextProps, TextVariant } from './Text';
 import { getTextProps } from './Text';

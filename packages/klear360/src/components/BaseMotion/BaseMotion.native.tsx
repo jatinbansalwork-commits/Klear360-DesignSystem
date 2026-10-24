@@ -4,7 +4,7 @@ import type { View } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { mergeRefs } from '@mantine/hooks';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type {
   BaseMotionBoxProps,
   BaseMotionEntryExitProps,

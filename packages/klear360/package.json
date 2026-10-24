@@ -94,7 +94,7 @@
     }
   },
   "scripts": {
-    "typecheck": "run-p types:typecheck:*",
+    "typecheck": "run-p types:typecheck:web types:typecheck:native",
     "test": "run-p test:*",
     "prepare": "yarn build",
     "build": "run-s build:clean build:generate-types build:react-prod build:react-dev build:react-native build:clean-declarations build:generate-root-imports build:clean-theme-bundle",
@@ -107,6 +107,7 @@
     "types:generate-types:native": "tsc -p ./tsconfig-generate-types.native.json && yarn tsc-alias -p ./tsconfig-generate-types.native.json",
     "types:typecheck:web": "tsc -p ./tsconfig-typecheck.web.json",
     "types:typecheck:native": "tsc -p ./tsconfig-typecheck.native.json",
+    "types:typecheck:storybook": "tsc -p ./tsconfig-typecheck.storybook.json",
     "types:copy-declarations:web": "copyfiles -u 1 build/types/web/components/**/*.d.ts build/components/**/*",
     "types:copy-declarations:native": "copyfiles -u 1 build/types/native/components/**/*.d.ts build/components/**/*",
     "build:generate-root-imports": "node ./scripts/generateRootImports.js",

@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { TrackProps } from './types';
 import { switchColors, switchSizes } from './switchTokens';
 import getIn from '~utils/lodashButBetter/get';

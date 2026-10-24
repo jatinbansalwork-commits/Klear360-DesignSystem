@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 
 const getStyledLinkStyles = ({ cursor }: { cursor?: CSSObject['cursor'] }): CSSObject => ({
   padding: 0,

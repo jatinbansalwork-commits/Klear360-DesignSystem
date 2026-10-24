@@ -2,7 +2,6 @@ import type { StoryFn, Meta } from '@storybook/react-vite';
 import { Title, Description, Heading } from '@storybook/addon-docs/blocks';
 import type { ReactElement } from 'react';
 import React, { useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
 import { within, userEvent, expect } from 'storybook/test';
 import type { ButtonProps } from './Button';
 import ButtonComponent from './Button';
@@ -95,29 +94,29 @@ const ButtonTemplate: StoryFn<typeof ButtonComponent> = ({ children = 'Button', 
   return <ButtonComponent {...args}>{children}</ButtonComponent>;
 };
 
-const StyledBaseText = styled(BaseText)({ padding: '8px 0px' });
+const sizeLabelProps = { fontWeight: 'bold' as const, paddingTop: 'spacing.2', paddingBottom: 'spacing.2' };
 const ButtonWithSizeTemplate: StoryFn<typeof ButtonComponent> = ({
   children = 'Button',
   ...args
 }) => {
   return (
     <>
-      <StyledBaseText fontWeight="bold">xsmall</StyledBaseText>
+      <BaseText {...sizeLabelProps}>xsmall</BaseText>
       <ButtonComponent {...args} size="xsmall">
         {children}
       </ButtonComponent>
 
-      <StyledBaseText fontWeight="bold">small</StyledBaseText>
+      <BaseText {...sizeLabelProps}>small</BaseText>
       <ButtonComponent {...args} size="small">
         {children}
       </ButtonComponent>
 
-      <StyledBaseText fontWeight="bold">medium</StyledBaseText>
+      <BaseText {...sizeLabelProps}>medium</BaseText>
       <ButtonComponent {...args} size="medium">
         {children}
       </ButtonComponent>
 
-      <StyledBaseText fontWeight="bold">large</StyledBaseText>
+      <BaseText {...sizeLabelProps}>large</BaseText>
       <ButtonComponent {...args} size="large">
         {children}
       </ButtonComponent>
@@ -131,17 +130,17 @@ const ButtonWithVariantTemplate: StoryFn<typeof ButtonComponent> = ({
 }) => {
   return (
     <>
-      <StyledBaseText fontWeight="bold">Primary</StyledBaseText>
+      <BaseText {...sizeLabelProps}>Primary</BaseText>
       <ButtonComponent {...args} variant="primary">
         {children}
       </ButtonComponent>
 
-      <StyledBaseText fontWeight="bold">Secondary</StyledBaseText>
+      <BaseText {...sizeLabelProps}>Secondary</BaseText>
       <ButtonComponent {...args} variant="secondary">
         {children}
       </ButtonComponent>
 
-      <StyledBaseText fontWeight="bold">Tertiary</StyledBaseText>
+      <BaseText {...sizeLabelProps}>Tertiary</BaseText>
       <ButtonComponent {...args} variant="tertiary">
         {children}
       </ButtonComponent>
@@ -750,19 +749,14 @@ AllVariantsAndSizes.storyName = 'All Variants & Sizes';
  * Do not use a global `*:focus { box-shadow: none }` (or similar broad `:focus` reset) on any page
  * using Klear360 buttons - see Button's decisions doc.
  */
-// A real `<style>` global rule, not a styled-components-scoped one - styled-components would
-// otherwise rewrite a nested `* { &:focus {...} }` into a DESCENDANT selector scoped to this
-// wrapper's own generated class (e.g. `.hash :focus`), which has much higher specificity than the
-// actual bare `*:focus` a host page would write, and so wouldn't faithfully reproduce the bug.
-const GlobalHostReset = createGlobalStyle`
-  *:focus {
-    box-shadow: none !important;
-  }
-`;
+// Document-level rule (not scoped CSS) so specificity matches a host page reset.
+const HostPageFocusReset = (): ReactElement => (
+  <style>{`*:focus { box-shadow: none !important; }`}</style>
+);
 
 const FocusAfterClickTemplate: StoryFn<typeof ButtonComponent> = () => (
   <>
-    <GlobalHostReset />
+    <HostPageFocusReset />
     <BaseBox display="flex" gap="spacing.5">
       <ButtonComponent variant="tertiary" size="small">
         Tertiary

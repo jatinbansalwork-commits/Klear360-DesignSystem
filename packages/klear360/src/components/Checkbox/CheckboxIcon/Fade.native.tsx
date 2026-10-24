@@ -3,7 +3,7 @@
 import React from 'react';
 import type { EasingFn } from 'react-native-reanimated';
 import Animated, { Keyframe } from 'react-native-reanimated';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import styled from 'styled-components/native';
 import type { FadeProps } from './types';
 import { useTheme } from '~components/Klear360Provider';

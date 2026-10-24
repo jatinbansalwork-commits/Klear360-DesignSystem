@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.stories.tsx",
+    "src/**/*.stories.internal.tsx",
+    "src/**/*.stories.ts",
+    "src/utils/storybook/**/*.ts",
+    "src/utils/storybook/**/*.tsx",
+    "src/storybook-recipes/**/*.ts",
+    "src/storybook-recipes/**/*.tsx",
+    "src/components/**/docs/**/*.tsx",
+    "src/components/**/docs/**/*.ts",
+    "src/**/*Docs.tsx",
+    "docs/**/*.stories.tsx",
+    "docs/**/*.stories.ts"
+  ],
+  "exclude": [
+    "**/*.native.ts",
+    "**/*.native.tsx",
+    "**/*.native.test.*",
+    "**/__tests__/**"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "resolveJsonModule": true
+  }
+}
