@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import styled from 'styled-components';
 import type { GestureResponderEvent } from 'react-native';
 import StyledBaseButton from './StyledBaseButton';
 import type { ButtonTypography, ButtonBoxShadow } from './buttonTokens';
@@ -523,9 +522,15 @@ const getProps = ({
   return props;
 };
 
-const ButtonContent = styled(BaseBox)<{ isHidden: boolean }>(({ isHidden }) => ({
-  opacity: isHidden ? 0 : 1,
-}));
+type ButtonContentProps = React.ComponentProps<typeof BaseBox> & { isHidden: boolean };
+
+const ButtonContent = ({
+  isHidden,
+  style,
+  ...rest
+}: ButtonContentProps): React.ReactElement => (
+  <BaseBox style={{ opacity: isHidden ? 0 : 1, ...style }} {...rest} />
+);
 
 const _BaseButton: React.ForwardRefRenderFunction<Klear360ElementRef, BaseButtonProps> = (
   {
