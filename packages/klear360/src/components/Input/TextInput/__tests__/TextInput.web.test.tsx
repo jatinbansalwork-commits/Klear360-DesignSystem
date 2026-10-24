@@ -9,6 +9,7 @@ import renderWithTheme from '~utils/testing/renderWithTheme.web';
 import assertAccessible from '~utils/testing/assertAccessible.web';
 import { Button } from '~components/Button';
 import { Link } from '~components/Link';
+import { MetaConstants } from '~utils/metaAttribute';
 
 const getTag = (tagName: string): HTMLElement => {
   return screen.queryAllByLabelText(`Close ${tagName} tag`)?.[0];
@@ -557,6 +558,16 @@ describe('<TextInput />', () => {
       );
     };
 
+    // jsdom has no layout, so every clientWidth is 0 and the tag slot can never compute how many
+    // tags overflow. Give the slot room for exactly one 100px tag so the rest collapse into "+N More".
+    const clientWidthSpy = jest
+      .spyOn(HTMLElement.prototype, 'clientWidth', 'get')
+      .mockImplementation(function mockClientWidth(this: HTMLElement) {
+        if (this.classList.contains('tags-slot')) return 300;
+        if (this.getAttribute('data-klear360-component') === MetaConstants.Tag) return 100;
+        return 0;
+      });
+
     const { getByLabelText, getByRole, getByText } = renderWithTheme(<Example />);
 
     const input = getByLabelText(label);
@@ -579,6 +590,8 @@ describe('<TextInput />', () => {
 
     expect(getTag(klear360Email)).toBeVisible();
     expect(getByText('+2 More')).toBeInTheDocument();
+
+    clientWidthSpy.mockRestore();
   });
 
   it('should accept testID', () => {

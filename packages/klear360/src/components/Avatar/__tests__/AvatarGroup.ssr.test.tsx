@@ -16,7 +16,7 @@ describe('<AvatarGroup />', () => {
     );
     expect(container).toMatchSnapshot();
     expect(container).toHaveTextContent('NK');
-    expect(container).toHaveTextContent('AN');
+    expect(container).toHaveTextContent('MA');
     expect(container).toHaveTextContent('RB');
   });
 });

@@ -189,8 +189,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c8.c8.c8.c8.c8 {
-  color: hsla(200,10%,18%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
   font-style: normal;
@@ -212,8 +212,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c9.c9.c9.c9.c9 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -229,8 +229,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c18.c18.c18.c18.c18 {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -264,8 +264,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c16.c16.c16.c16.c16 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -298,8 +298,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c16.c16.c16.c16.c16::-webkit-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -316,8 +316,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c16.c16.c16.c16.c16::-moz-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -334,8 +334,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c16.c16.c16.c16.c16:-ms-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -352,8 +352,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c16.c16.c16.c16.c16::placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -394,7 +394,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -424,7 +424,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: background-color;
   transition-property: background-color;
   -webkit-transition-duration: 160ms;
@@ -456,7 +456,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -506,7 +506,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 .c10.c10.c10.c10.c10:focus-within {
-  outline: 4px solid hsla(198, 100%, 18%,0.18);
+  outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
   transition-property: outline-width;
@@ -538,10 +538,6 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
 }
 
 @media screen and (min-width:1200px) {
-
-}
-
-@media screen and (min-width:768px) {
 
 }
 
@@ -590,8 +586,8 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
             >
               <label
                 data-klear360-component="form-label"
-                for="dropdown-55-trigger-56-input-57"
-                id="dropdown-55-label"
+                for="dropdown-42-trigger-43-input-44"
+                id="dropdown-42-label"
                 style="width: 100%; flex-shrink: 0; margin-right: 0px;"
               >
                 <div
@@ -650,18 +646,19 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
                     data-klear360-component="base-box"
                   >
                     <button
-                      aria-activedescendant="dropdown-55-0"
-                      aria-controls="dropdown-55-actionlist"
+                      aria-activedescendant="dropdown-42-0"
+                      aria-controls="dropdown-42-actionlist"
                       aria-describedby=""
                       aria-disabled="false"
                       aria-expanded="true"
                       aria-haspopup="dialog"
                       aria-invalid="false"
+                      aria-labelledby="dropdown-42-label"
                       aria-required="false"
                       autocomplete="off"
                       class="c16"
                       data-klear360-component="styled-base-input"
-                      id="dropdown-55-trigger-56-input-57"
+                      id="dropdown-42-trigger-43-input-44"
                       placeholder="Select Option"
                       role="combobox"
                       type="button"
@@ -711,7 +708,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
                             clip-rule="evenodd"
                             d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
                             data-klear360-component="svg-path"
-                            fill="hsla(204, 9%, 42%, 1)"
+                            fill="hsla(215, 25%, 27%, 1)"
                             fill-rule="evenodd"
                           />
                         </svg>
@@ -728,7 +725,7 @@ exports[`<Dropdown /> should render autocomplete inside dropdown 1`] = `
                             clip-rule="evenodd"
                             d="M11.2929 8.29289C11.6834 7.90237 12.3166 7.90237 12.7071 8.29289L18.7071 14.2929C19.0976 14.6834 19.0976 15.3166 18.7071 15.7071C18.3166 16.0976 17.6834 16.0976 17.2929 15.7071L12 10.4142L6.70711 15.7071C6.31658 16.0976 5.68342 16.0976 5.29289 15.7071C4.90237 15.3166 4.90237 14.6834 5.29289 14.2929L11.2929 8.29289Z"
                             data-klear360-component="svg-path"
-                            fill="hsla(204, 9%, 42%, 1)"
+                            fill="hsla(215, 25%, 27%, 1)"
                             fill-rule="evenodd"
                           />
                         </svg>
@@ -944,8 +941,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c8.c8.c8.c8.c8 {
-  color: hsla(200,10%,18%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(218,50%,6%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.75rem;
   font-weight: 500;
   font-style: normal;
@@ -967,8 +964,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c9.c9.c9.c9.c9 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -984,8 +981,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c18.c18.c18.c18.c18 {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1019,8 +1016,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c16.c16.c16.c16.c16 {
-  color: hsla(0,0%,2%,1);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(216,56%,2%,1);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1053,8 +1050,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c16.c16.c16.c16.c16::-webkit-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1071,8 +1068,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c16.c16.c16.c16.c16::-moz-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1089,8 +1086,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c16.c16.c16.c16.c16:-ms-input-placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1107,8 +1104,8 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c16.c16.c16.c16.c16::placeholder {
-  color: hsla(206,10%,29%,0.32);
-  font-family: "Inter","Inter Fallback Arial",Arial;
+  color: hsla(222,47%,11%,0.32);
+  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
   font-size: 0.875rem;
   font-weight: 400;
   font-style: normal;
@@ -1149,7 +1146,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -1179,7 +1176,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: background-color;
   transition-property: background-color;
   -webkit-transition-duration: 160ms;
@@ -1211,7 +1208,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
   height: auto;
   border: none;
   border-width: 0px;
-  box-shadow: hsla(198, 100%, 18%,1) 0px 0px 0px 1.5px;
+  box-shadow: hsla(198,100%,18%,1) 0px 0px 0px 1.5px;
   -webkit-transition-property: box-shadow,background-color;
   transition-property: box-shadow,background-color;
   -webkit-transition-duration: 640ms;
@@ -1261,7 +1258,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
 }
 
 .c10.c10.c10.c10.c10:focus-within {
-  outline: 4px solid hsla(198, 100%, 18%,0.18);
+  outline: 4px solid hsla(198,100%,18%,0.18);
   outline-offset: 1px;
   -webkit-transition-property: outline-width;
   transition-property: outline-width;
@@ -1407,6 +1404,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
                       aria-expanded="true"
                       aria-haspopup="dialog"
                       aria-invalid="false"
+                      aria-labelledby="dropdown-7-label"
                       aria-required="false"
                       autocomplete="off"
                       class="c16"
@@ -1461,7 +1459,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
                             clip-rule="evenodd"
                             d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
                             data-klear360-component="svg-path"
-                            fill="hsla(204, 9%, 42%, 1)"
+                            fill="hsla(215, 25%, 27%, 1)"
                             fill-rule="evenodd"
                           />
                         </svg>
@@ -1478,7 +1476,7 @@ exports[`<Dropdown /> should render dropdown and make it visible on click 1`] = 
                             clip-rule="evenodd"
                             d="M11.2929 8.29289C11.6834 7.90237 12.3166 7.90237 12.7071 8.29289L18.7071 14.2929C19.0976 14.6834 19.0976 15.3166 18.7071 15.7071C18.3166 16.0976 17.6834 16.0976 17.2929 15.7071L12 10.4142L6.70711 15.7071C6.31658 16.0976 5.68342 16.0976 5.29289 15.7071C4.90237 15.3166 4.90237 14.6834 5.29289 14.2929L11.2929 8.29289Z"
                             data-klear360-component="svg-path"
-                            fill="hsla(204, 9%, 42%, 1)"
+                            fill="hsla(215, 25%, 27%, 1)"
                             fill-rule="evenodd"
                           />
                         </svg>
@@ -2091,8 +2089,8 @@ exports[`<Dropdown /> should render dropdown with large size select input 1`] = 
             >
               <label
                 data-klear360-component="form-label"
-                for="dropdown-60-trigger-61-input-62"
-                id="dropdown-60-label"
+                for="dropdown-347-trigger-348-input-349"
+                id="dropdown-347-label"
                 style="width: 100%; flex-shrink: 0; margin-right: 0px;"
               >
                 <div
@@ -2151,17 +2149,18 @@ exports[`<Dropdown /> should render dropdown with large size select input 1`] = 
                     data-klear360-component="base-box"
                   >
                     <button
-                      aria-controls="dropdown-60-actionlist"
+                      aria-controls="dropdown-347-actionlist"
                       aria-describedby=""
                       aria-disabled="false"
                       aria-expanded="false"
                       aria-haspopup="dialog"
                       aria-invalid="false"
+                      aria-labelledby="dropdown-347-label"
                       aria-required="false"
                       autocomplete="off"
                       class="c16"
                       data-klear360-component="styled-base-input"
-                      id="dropdown-60-trigger-61-input-62"
+                      id="dropdown-347-trigger-348-input-349"
                       placeholder="Select Option"
                       role="combobox"
                       type="button"
@@ -2697,7 +2696,12 @@ exports[`<Dropdown /> with <DropdownButton /> should support data-analytics-attr
   background-color: hsla(200,98%,17%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(200,98%,17%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(198,100%,18%,1);
+  box-shadow: inset 0 -1.5px 0px 0px hsla(200,98%,17%,1),inset 0 0px 0px 0.5px hsla(198,100%,18%,1),inset 0 1.5px 0px 0px hsla(0,0%,100%,0.18),inset 0 -2px 0px 0px hsla(0,0%,100%,0.18) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -2757,7 +2761,7 @@ exports[`<Dropdown /> with <DropdownButton /> should support data-analytics-attr
       data-klear360-component="base-box"
     >
       <button
-        aria-controls="dropdown-188-actionlist"
+        aria-controls="dropdown-704-actionlist"
         aria-expanded="false"
         aria-haspopup="menu"
         class="c1"
@@ -2920,7 +2924,7 @@ exports[`<Dropdown /> with <FilterChipSelectInput/> should render dropdown with 
         data-klear360-component="base-box"
       >
         <button
-          aria-controls="dropdown-195-actionlist"
+          aria-controls="dropdown-723-actionlist"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Fruits"
@@ -3101,7 +3105,7 @@ exports[`<Dropdown /> with <FilterChipSelectInput/> should support data-analytic
         data-klear360-component="base-box"
       >
         <button
-          aria-controls="dropdown-207-actionlist"
+          aria-controls="dropdown-745-actionlist"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="profile"

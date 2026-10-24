@@ -428,7 +428,12 @@ exports[`<BottomSheet /> should compose with DropdownButton 1`] = `
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c1.c1.c1.c1.c1:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c1.c1.c1.c1.c1 * {
@@ -1436,7 +1441,12 @@ exports[`<BottomSheet /> should render Header/Footer/Body properly on opened sta
   background-color: hsla(0,0%,100%,1);
   outline: 1px solid hsla(198,100%,18%,0.09);
   background-image: none;
-  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1);
+  box-shadow: 0px 0px 0px 4px hsla(198,100%,18%,0.18),inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(215,20%,65%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
+}
+
+.c36.c36.c36.c36.c36:focus:not(:focus-visible) {
+  background-color: hsla(0,0%,100%,1);
+  box-shadow: inset 0 -1px 0.5px 0px hsla(0,0%,0%,0.18),inset 0 0px 0px 1px hsla(214,32%,91%,1),inset 0 -1.5px 0px 0px hsla(214,32%,91%,1) !important;
 }
 
 .c36.c36.c36.c36.c36 * {

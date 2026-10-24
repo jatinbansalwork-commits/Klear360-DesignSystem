@@ -3687,20 +3687,20 @@ describe('<GenUI />', () => {
         );
 
         expect(getByText('Figma Heading 1')).toHaveStyle({
-          color: 'rgb(5, 5, 5)',
+          color: 'rgb(2, 2, 2)',
           fontSize: '1.5rem',
           fontWeight: '500',
           lineHeight: '2rem',
         });
         expect(getByText('Figma Heading 2').tagName).toBe('H2');
         expect(getByText('Figma Heading 2')).toHaveStyle({
-          color: 'rgb(5, 5, 5)',
+          color: 'rgb(2, 2, 2)',
           fontSize: '1.25rem',
           fontWeight: '500',
           lineHeight: '1.625rem',
         });
         expect(getByText('Figma Heading 3')).toHaveStyle({
-          color: 'rgb(41, 41, 41)',
+          color: 'rgb(8, 8, 8)',
           fontSize: '1.25rem',
           fontWeight: '500',
           lineHeight: '1.625rem',
@@ -3766,7 +3766,7 @@ describe('<GenUI />', () => {
         const { getByText } = renderWithTheme(<StrongComponent>Strong text</StrongComponent>);
 
         expect(getByText('Strong text')).toHaveStyle({
-          color: 'rgb(41, 41, 41)',
+          color: 'rgb(8, 8, 8)',
           fontWeight: '600',
         });
         expect(getByText('Strong text').tagName).toBe('SPAN');
@@ -3789,17 +3789,17 @@ describe('<GenUI />', () => {
         );
 
         expect(getByText('Bold text')).toHaveStyle({
-          color: 'rgb(41, 41, 41)',
+          color: 'rgb(8, 8, 8)',
           fontWeight: '600',
         });
         expect(getByText('Bold text').tagName).toBe('SPAN');
         expect(getByText('Bold italic text')).toHaveStyle({
-          color: 'rgb(41, 41, 41)',
+          color: 'rgb(8, 8, 8)',
           fontStyle: 'italic',
         });
         expect(getByText('Bold italic text').tagName).toBe('SPAN');
         expect(getByText('Italic text')).toHaveStyle({
-          color: 'rgb(41, 41, 41)',
+          color: 'rgb(8, 8, 8)',
           fontStyle: 'italic',
         });
         expect(getByText('Italic text').tagName).toBe('SPAN');
@@ -3907,7 +3907,7 @@ describe('<GenUI />', () => {
         });
         expect(getByText('const greeting = "Hello";')).toHaveStyle({
           display: 'block',
-          color: 'rgb(5, 5, 5)',
+          color: 'rgb(2, 2, 2)',
           fontSize: '12px',
           lineHeight: '20px',
           padding: '12px',

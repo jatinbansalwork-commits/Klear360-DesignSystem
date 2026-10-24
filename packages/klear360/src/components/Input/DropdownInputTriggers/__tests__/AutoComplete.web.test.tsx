@@ -233,7 +233,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
   it('should render BottomSheet and make it visible on click', async () => {
     const user = userEvent.setup();
 
-    const { container, getByLabelText, queryByTestId } = renderWithTheme(
+    const { container, getByRole, queryByTestId } = renderWithTheme(
       <Dropdown>
         <SelectInput testID="select" label="Fruits" />
         <BottomSheet>
@@ -255,7 +255,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
       </Dropdown>,
     );
 
-    const selectInput = getByLabelText('Fruits') as HTMLInputElement;
+    const selectInput = getByRole('combobox', { name: 'Fruits' }) as HTMLInputElement;
     const autoComplete = queryByTestId('fruits-autocomplete') as HTMLInputElement;
     expect(selectInput).toBeVisible();
 
@@ -271,7 +271,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
   it('should handle AutoComplete behaviour in single select', async () => {
     const user = userEvent.setup();
 
-    const { getByRole, queryByRole, getByLabelText, queryByTestId } = renderWithTheme(
+    const { getByRole, queryByRole, queryByTestId } = renderWithTheme(
       <Dropdown>
         <SelectInput testID="select" label="Cities" />
         <BottomSheet>
@@ -290,7 +290,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
       </Dropdown>,
     );
 
-    const selectInput = getByLabelText('Cities') as HTMLInputElement;
+    const selectInput = getByRole('combobox', { name: 'Cities' }) as HTMLInputElement;
     expect(selectInput).toBeVisible();
 
     expect(queryByTestId('bottomsheet-body')).not.toBeVisible();
@@ -316,7 +316,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
   // Flaky test. Skipping for now. Should be replicated into E2E eventually
   it.skip('should handle AutoComplete behaviour in multiselect', async () => {
     const user = userEvent.setup();
-    const { queryByTestId, getByLabelText, getByRole } = renderWithTheme(
+    const { queryByTestId, getByRole } = renderWithTheme(
       <Dropdown selectionType="multiple">
         <SelectInput label="Fruits" placeholder="Select Fruits" />
         <BottomSheet>
@@ -334,7 +334,7 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
       </Dropdown>,
     );
 
-    const selectInput = getByLabelText('Fruits') as HTMLInputElement;
+    const selectInput = getByRole('combobox', { name: 'Fruits' }) as HTMLInputElement;
     const autoComplete = queryByTestId('fruits-autocomplete') as HTMLInputElement;
     expect(selectInput).toBeVisible();
 
@@ -454,11 +454,9 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
     };
 
     const user = userEvent.setup();
-    const { getByRole, getByLabelText, queryByRole, queryByTestId } = renderWithTheme(
-      <ControlledFiltering />,
-    );
+    const { getByRole, queryByRole, queryByTestId } = renderWithTheme(<ControlledFiltering />);
 
-    const selectInput = getByLabelText('Cities') as HTMLInputElement;
+    const selectInput = getByRole('combobox', { name: 'Cities' }) as HTMLInputElement;
     const autoComplete = getByRole('searchbox') as HTMLInputElement;
 
     expect(selectInput).toBeInTheDocument();
@@ -579,9 +577,9 @@ describe('<BottomSheet /> & <Dropdown /> with <AutoComplete />', () => {
     };
 
     const user = userEvent.setup();
-    const { getByRole, getByLabelText, queryByTestId } = renderWithTheme(<ControlledFiltering />);
+    const { getByRole, queryByTestId } = renderWithTheme(<ControlledFiltering />);
 
-    const selectInput = getByLabelText('Cities') as HTMLInputElement;
+    const selectInput = getByRole('combobox', { name: 'Cities' }) as HTMLInputElement;
     const autoComplete = queryByTestId('cities-autocomplete') as HTMLInputElement;
 
     expect(selectInput).toBeInTheDocument();

@@ -33,6 +33,7 @@ const baseConfig = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', './jest-setup.web.js'],
   moduleNameMapper: {
+    '\\.module\\.(scss|css)$': '<rootDir>/jest/cssModuleMock.js',
     '^\\~src/(.*)': '<rootDir>/src/$1',
     '^\\~components/(.*)': '<rootDir>/src/components/$1',
     '^\\~utils$': '<rootDir>/src/utils',
