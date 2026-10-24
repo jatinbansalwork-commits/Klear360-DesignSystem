@@ -569,6 +569,7 @@ const _BaseButton: React.ForwardRefRenderFunction<Klear360ElementRef, BaseButton
   const [isPressed, setIsPressed] = React.useState(false);
   const isLink = Boolean(href);
   const childrenString = getStringFromReactText(children);
+  const isIconOnly = Boolean(Icon) && (!childrenString || childrenString.trim().length === 0);
   const isChildrenComponent = React.isValidElement(children);
 
   // Button cannot be disabled when its rendered as Link
@@ -765,6 +766,7 @@ const _BaseButton: React.ForwardRefRenderFunction<Klear360ElementRef, BaseButton
       variant={buttonGroupProps.variant ?? variant}
       color={buttonGroupProps.color ?? color}
       size={buttonGroupProps.size ?? size}
+      isIconOnly={isIconOnly}
       isLoading={isLoading}
       disabled={disabled}
       minHeight={minHeight}
