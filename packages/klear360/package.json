@@ -349,6 +349,24 @@
     },
     "react-native-safe-area-context": {
       "optional": true
+    },
+    "@floating-ui/react-native": {
+      "optional": true
+    },
+    "@gorhom/bottom-sheet": {
+      "optional": true
+    },
+    "@gorhom/portal": {
+      "optional": true
+    },
+    "react-native-gesture-handler": {
+      "optional": true
+    },
+    "react-native-pager-view": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
     }
   }
 }
