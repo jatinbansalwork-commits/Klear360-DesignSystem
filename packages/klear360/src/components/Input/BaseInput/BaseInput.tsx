@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import type { ReactNode } from 'react';
-import styled from 'styled-components';
 import { StyledBaseInput } from './StyledBaseInput';
+import { FocusRingWrapper } from './BaseInputFocusRingWrapper';
 import { BaseInputVisuals } from './BaseInputVisuals';
 import { BaseInputWrapper } from './BaseInputWrapper';
 import { BaseInputTagSlot } from './BaseInputTagSlot';
 import type { InputWrapperRef } from './types';
-import {
-  baseInputBorderBackgroundMotion,
-  baseInputBorderRadius,
-  formHintLeftLabelMarginLeft,
-} from './baseInputTokens';
+import { formHintLeftLabelMarginLeft } from './baseInputTokens';
 import type {
   FormInputLabelProps,
   FormInputValidationProps,
@@ -24,14 +20,7 @@ import type { IconComponent } from '~components/Icons';
 import BaseBox from '~components/Box/BaseBox';
 import { getStyledProps } from '~components/Box/styledProps';
 import type { StyledPropsKlear360 } from '~components/Box/styledProps';
-import {
-  castWebType,
-  getPlatformType,
-  isReactNative,
-  makeBorderSize,
-  makeMotionTime,
-  useBreakpoint,
-} from '~utils';
+import { getPlatformType, isReactNative, useBreakpoint } from '~utils';
 import type { Platform } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useFormId } from '~components/Form/useFormId';
@@ -55,7 +44,6 @@ import { throwKlear360Error, logger } from '~utils/logger';
 import { announce } from '~components/LiveAnnouncer/LiveAnnouncer';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import type { LinkProps } from '~components/Link';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import getIn from '~utils/lodashButBetter/get';
 import { useMergeRefs } from '~utils/useMergeRefs';
 import type { MotionMetaProp } from '~components/BaseMotion';
@@ -821,64 +809,6 @@ const getDescribedByElementId = ({
 
   return '';
 };
-
-const FocusRingWrapper = styled(BaseBox)<{
-  currentInteraction: ActionStates;
-  isTableInputCell: NonNullable<BaseInputProps['isTableInputCell']>;
-  className: string;
-  shouldAddLimitedFocus: boolean;
-  $size: NonNullable<BaseInputProps['size']>;
-  $borderRadius?: BaseInputProps['borderRadius'];
-}>(
-  ({
-    theme,
-    currentInteraction,
-    isTableInputCell,
-    shouldAddLimitedFocus,
-    $size,
-    $borderRadius,
-  }) => ({
-    borderRadius: makeBorderSize(
-      isTableInputCell
-        ? theme.border.radius.none
-        : theme.border.radius[$borderRadius ?? baseInputBorderRadius[$size]],
-    ),
-    width: '100%',
-    // `&:focus-within` is a web-only pseudo-selector. On React Native,
-    // styled-components/native (css-to-react-native) cannot parse a nested rule and
-    // logs "Node of type rule not supported as an inline style" for every rendered
-    // input. focus-within has no effect on native, so we omit the nested rule there.
-    ...(getPlatformType() === 'react-native'
-      ? {}
-      : {
-          '&:focus-within':
-            !isTableInputCell && (shouldAddLimitedFocus ? currentInteraction === 'focus' : true)
-              ? {
-                  ...getFocusRingStyles({
-                    theme,
-                  }),
-                  transitionDuration: castWebType(
-                    makeMotionTime(
-                      getIn(
-                        theme.motion.duration,
-                        baseInputBorderBackgroundMotion[
-                          currentInteraction === 'focus' ? 'enter' : 'exit'
-                        ].duration,
-                      ),
-                    ),
-                  ),
-                  transitionTimingFunction: castWebType(
-                    theme.motion.easing[
-                      baseInputBorderBackgroundMotion[
-                        currentInteraction === 'focus' ? 'enter' : 'exit'
-                      ].easing
-                    ],
-                  ),
-                }
-              : {},
-        }),
-  }),
-);
 
 const _BaseInput: React.ForwardRefRenderFunction<Klear360ElementRef, BaseInputProps> = (
   {

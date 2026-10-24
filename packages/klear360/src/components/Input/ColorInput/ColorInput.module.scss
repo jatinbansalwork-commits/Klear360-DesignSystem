@@ -1,0 +1,41 @@
+.colorInputRoot {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  :global(.__klear360-color-input-row:first-child) input:not([type='color']) {
+    padding-left: var(--color-input-value-padding-left);
+  }
+
+  :global(.__klear360-color-input-row) :global(.__klear360-base-input-wrapper),
+  :global(.__klear360-color-input-row) :global(.focus-ring-wrapper) {
+    border-radius: 0;
+  }
+
+  :global(.__klear360-color-input-row) :global(.__klear360-base-input-wrapper) {
+    position: relative;
+    z-index: 0;
+  }
+
+  :global(.__klear360-color-input-row) :global(.__klear360-base-input-wrapper:hover),
+  :global(.__klear360-color-input-row) :global(.__klear360-base-input-wrapper:focus-within) {
+    z-index: 1;
+  }
+
+  :global(.__klear360-color-input-row:first-child) :global(.__klear360-base-input-wrapper),
+  :global(.__klear360-color-input-row:first-child) :global(.focus-ring-wrapper) {
+    border-top-left-radius: var(--color-input-radius);
+    border-bottom-left-radius: var(--color-input-radius);
+  }
+
+  :global(.__klear360-color-input-row:last-child) :global(.__klear360-base-input-wrapper),
+  :global(.__klear360-color-input-row:last-child) :global(.focus-ring-wrapper) {
+    border-top-right-radius: var(--color-input-radius);
+    border-bottom-right-radius: var(--color-input-radius);
+  }
+
+  :global(.__klear360-color-input-row:only-child) :global(.__klear360-base-input-wrapper),
+  :global(.__klear360-color-input-row:only-child) :global(.focus-ring-wrapper) {
+    border-radius: var(--color-input-radius);
+  }
+}
