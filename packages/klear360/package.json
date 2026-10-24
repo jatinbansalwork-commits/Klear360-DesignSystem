@@ -146,7 +146,6 @@
     "fetch-icons": "node ./scripts/getSvgFromFigma.js"
   },
   "dependencies": {
-    "@klear/klear360-core": "0.14.0",
     "@babel/runtime": "7.28.3",
     "@emotion/react": "11.11.1",
     "@floating-ui/react": "0.26.13",

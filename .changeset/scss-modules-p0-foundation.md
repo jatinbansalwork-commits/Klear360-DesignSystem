@@ -14,5 +14,7 @@ import '@klear/klear360/styles.css';
 
 No component has moved yet - the stylesheet currently only declares the `klear360` cascade layer,
 and every component still renders through styled-components exactly as before. Importing it now is
-optional and harmless; it becomes required as components are migrated. Also adds
-`@klear/klear360-core` as a dependency for its theme CSS variables.
+optional and harmless; it becomes required as components are migrated. Theme CSS custom
+properties for migrated components are injected at runtime by `Klear360Provider` (see P1);
+`@klear/klear360-core` is not listed in `package.json` yet because Yarn 1's `nohoist` for
+`@klear/klear360` breaks clean installs when it is — a proper peer dependency lands at P3.
