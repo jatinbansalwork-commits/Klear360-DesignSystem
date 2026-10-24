@@ -381,7 +381,7 @@ exports[`<TextArea /> should support adding data-analytics attribute to the text
         >
           <label
             data-klear360-component="form-label"
-            for="textarea-1183-input-1184"
+            for="textarea-1189-input-1190"
             style="width: 100%; flex-shrink: 0; margin-right: 0px;"
           >
             <div
@@ -435,7 +435,7 @@ exports[`<TextArea /> should support adding data-analytics attribute to the text
               class=""
               data-analytics-name="text-area"
               data-klear360-component="styled-base-input"
-              id="textarea-1183-input-1184"
+              id="textarea-1189-input-1190"
               rows="2"
               style="color: rgb(2, 2, 2); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 400; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: -0.18200000000000002px; margin: 0px; padding: 8px 12px 8px 12px; flex: 1; background-color: rgb(255, 255, 255); width: 100%; resize: none; box-sizing: border-box; outline: none; cursor: auto;"
             />

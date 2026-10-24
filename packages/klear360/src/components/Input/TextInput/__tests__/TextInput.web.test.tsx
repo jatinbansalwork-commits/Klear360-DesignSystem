@@ -527,7 +527,7 @@ describe('<TextInput />', () => {
     expect(tagChangeCallback).toBeCalledWith({ tags: [klear360Email] });
 
     await userEvent.click(getTag(klear360Email));
-    await waitFor(() => expect(getTag(klear360Email)).not.toBeVisible());
+    await waitFor(() => expect(getTag(klear360Email)).toBeUndefined());
   });
 
   it(`should add tags in controlled API`, async () => {

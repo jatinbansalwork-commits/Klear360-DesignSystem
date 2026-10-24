@@ -14,6 +14,29 @@ import type {
   TableColumnFilterConfig,
 } from './types';
 import { ScopedRuntimeStyles, useStableScopeClass } from '~utils/web/scopedCssFromObject';
+const applyStickyHeaderRowCellStyles = (
+  row: HTMLTableRowElement | null,
+  shouldHeaderBeSticky: boolean,
+  stickyTopOffsetPx: number | undefined,
+): void => {
+  row?.querySelectorAll('th').forEach((cell) => {
+    if (shouldHeaderBeSticky) {
+      cell.style.position = 'sticky';
+      cell.style.top = `${stickyTopOffsetPx ?? 0}px`;
+    } else {
+      cell.style.position = 'relative';
+      cell.style.removeProperty('top');
+    }
+  });
+};
+
+const stickyHeaderCellStyle = (
+  shouldHeaderBeSticky: boolean,
+  stickyTopOffsetPx: number | undefined,
+): React.CSSProperties =>
+  shouldHeaderBeSticky
+    ? { position: 'sticky', top: `${stickyTopOffsetPx ?? 0}px` }
+    : { position: 'relative' };
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
 import { Text } from '~components/Typography';
@@ -224,11 +247,23 @@ const TableHeaderFilterRow = ({
   } = useTableRowContext();
   const cellsMeta = getHeaderCellsMeta(headerRow);
   // See `_TableHeaderRow`'s `cellStickyTopOffsetPx` - only meaningful once cells are sticky.
-  const cellStickyTopOffsetPx = shouldHeaderBeSticky ? stickyTopOffsetPx : undefined;
+  const cellStickyTopOffsetPx = shouldHeaderBeSticky
+    ? stickyTopOffsetPx !== undefined
+      ? stickyTopOffsetPx
+      : 0
+    : undefined;
+  const filterCellStyle = stickyHeaderCellStyle(shouldHeaderBeSticky, cellStickyTopOffsetPx);
+  const syncFilterRowStickyStyles = React.useCallback(
+    (row: HTMLTableRowElement | null) => {
+      applyStickyHeaderRowCellStyles(row, shouldHeaderBeSticky, cellStickyTopOffsetPx);
+    },
+    [cellStickyTopOffsetPx, shouldHeaderBeSticky],
+  );
 
   return (
     // See the real header row's own `role="row"` override below for why this is explicit.
     <StyledHeaderRow
+      ref={syncFilterRowStickyStyles}
       role="row"
       $showBorderedCells={showBorderedCells}
       $gridTemplateColumns={undefined}
@@ -242,6 +277,7 @@ const TableHeaderFilterRow = ({
         // accessibility tree rather than announced as an empty column header.
         <StyledFilterHeaderCell
           role="presentation"
+          style={filterCellStyle}
           $backgroundColor={backgroundColor}
           $stickyTopOffsetPx={cellStickyTopOffsetPx}
         />
@@ -255,6 +291,7 @@ const TableHeaderFilterRow = ({
             // Non-filterable columns render an empty spacer cell to keep grid alignment - give it
             // `role="presentation"` so it isn't announced as an empty column header.
             role={isFilterable ? undefined : 'presentation'}
+            style={filterCellStyle}
             $backgroundColor={backgroundColor}
             $stickyTopOffsetPx={cellStickyTopOffsetPx}
           >
@@ -303,6 +340,7 @@ const TableHeaderFilterRow = ({
       {hasHoverActions && (
         <StyledFilterHeaderCell
           role="presentation"
+          style={filterCellStyle}
           $backgroundColor={backgroundColor}
           $stickyTopOffsetPx={cellStickyTopOffsetPx}
         />
@@ -395,7 +433,13 @@ const _TableHeaderCell = ({
   ...rest
 }: TableHeaderCellProps): React.ReactElement => {
   const { toggleSort, currentSortedState } = useTableDataContext();
-  const { backgroundColor, rowDensity, headerRowDensity } = useTableRowContext();
+  const { backgroundColor, rowDensity, headerRowDensity, shouldHeaderBeSticky } =
+    useTableRowContext();
+  const stickyTopOffsetPx = shouldHeaderBeSticky
+    ? _stickyTopOffsetPx !== undefined
+      ? _stickyTopOffsetPx
+      : 0
+    : undefined;
   const isChildrenString = typeof children === 'string';
   const isSortable =
     headerKey && Boolean(currentSortedState.sortableColumns?.find((key) => key === headerKey));
@@ -427,7 +471,8 @@ const _TableHeaderCell = ({
       $rowDensity={headerRowDensity ?? rowDensity}
       $hasPadding={_hasPadding}
       $textAlign={textAlign}
-      $stickyTopOffsetPx={_stickyTopOffsetPx}
+      style={stickyHeaderCellStyle(shouldHeaderBeSticky, stickyTopOffsetPx)}
+      $stickyTopOffsetPx={stickyTopOffsetPx}
       onClick={(event: React.MouseEvent) => {
         if (isSortable) {
           toggleSort(headerKey, event.shiftKey);
@@ -539,8 +584,11 @@ const _TableHeaderRow = ({
   // `top: Npx` only makes sense to apply once this row's cells are actually `position: sticky`
   // (see `StyledHeaderCell`'s theme-driven `position`) - on a non-sticky `position: relative` cell
   // it would instead permanently shift the row down by that many pixels.
-  const cellStickyTopOffsetPx =
-    shouldHeaderBeSticky && _stickyTopOffsetPx ? _stickyTopOffsetPx : undefined;
+  const cellStickyTopOffsetPx = shouldHeaderBeSticky
+    ? _stickyTopOffsetPx !== undefined
+      ? _stickyTopOffsetPx
+      : 0
+    : undefined;
 
   // Grouped multi-row headers (see `TableHeader`'s row decoration) only ever need the
   // checkbox/hover-actions placeholder cells once, on the leaf row - otherwise every group-label
@@ -555,12 +603,20 @@ const _TableHeaderRow = ({
       )
     : children;
 
+  const syncHeaderRowStickyStyles = React.useCallback(
+    (row: HTMLTableRowElement | null) => {
+      applyStickyHeaderRowCellStyles(row, shouldHeaderBeSticky, cellStickyTopOffsetPx);
+    },
+    [cellStickyTopOffsetPx, shouldHeaderBeSticky],
+  );
+
   return (
     // `@table-library`'s own `HeaderRow` defaults its `role` prop to `"rowheader"` internally -
     // a WAI-ARIA *cell* role, not valid for an entire row - so it must be explicitly overridden
     // to `"row"` here rather than merely omitted (omitting it lets the library's own bad default
     // through unchanged).
     <StyledHeaderRow
+      ref={syncHeaderRowStickyStyles}
       role="row"
       {...metaAttribute({ name: MetaConstants.TableHeaderRow })}
       {...makeAnalyticsAttribute(rest)}

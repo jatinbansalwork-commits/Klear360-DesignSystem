@@ -1452,12 +1452,12 @@ describe('<GenUI />', () => {
         },
       ];
 
-      const { container } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <GenUIProvider>
           <GenUISchemaRenderer components={components} />
         </GenUIProvider>,
       );
-      expect(container.firstElementChild?.firstElementChild).toHaveStyle({
+      expect(getByRole('separator').parentElement).toHaveStyle({
         paddingTop: '24px',
         paddingBottom: '24px',
       });
@@ -1471,12 +1471,12 @@ describe('<GenUI />', () => {
         },
       ];
 
-      const { container } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <GenUIProvider>
           <GenUISchemaRenderer components={components} />
         </GenUIProvider>,
       );
-      expect(container.firstElementChild?.firstElementChild).toHaveStyle({
+      expect(getByRole('separator').parentElement).toHaveStyle({
         paddingTop: '24px',
         paddingBottom: '24px',
       });

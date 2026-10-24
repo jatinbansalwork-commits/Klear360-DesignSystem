@@ -84,7 +84,7 @@ describe('<StepGroup />', () => {
     );
     const stepItem = container.querySelector('.step-item');
     expect(stepItem).toHaveStyle({
-      minWidth: 'min(120px,100%)',
+      minWidth: 'min(120px, 100%)',
     });
   });
 
