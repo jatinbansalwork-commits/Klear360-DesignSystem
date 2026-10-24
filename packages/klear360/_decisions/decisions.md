@@ -364,4 +364,4 @@ Migrated web components use **SCSS Modules + CSS custom properties**, not styled
 - [x] **Divider (web)** — simple static component; `.module.scss` verified against current styled output; native unchanged.
 - [x] **BaseButton (web)** — CVA + `BaseButton.module.scss` (~680 lines, verified against styled-components + klear360-core reference); variant/color/size/disabled/full-width/icon-only via module classes; `:focus:not(:focus-visible)` + `!important` inset stroke; motion tokens added to `themeToCSSVariables`; native unchanged.
 - [x] **Dropdown overlay (web)** — `StyledDropdownOverlay.module.scss` + CSS vars for panel fill; box-shadow/backdrop still resolved from theme + `colorScheme` (light/dark inset differs); theme-switch test added.
-- [ ] **Table** — runtime theme switching (P1 pilot 3b / or P2).
+- [x] **TableSurface (web)** — layout in `TableSurface.module.scss`; surface borders, gradients, and elevation shadow still resolved from `theme` + `colorScheme` (same split as styled-components); theme-switch test on `boxShadow`.
