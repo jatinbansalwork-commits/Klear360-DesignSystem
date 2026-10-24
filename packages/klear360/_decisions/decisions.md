@@ -140,6 +140,24 @@ This was caught, not guessed: removing it locally and running `yarn verify:inter
 
 The 38 high and 46 moderate findings were deliberately **not** attempted in the same pass - they're mostly several layers deep in devDependency tooling chains (build/test infrastructure, not `packages/klear360`'s own published runtime bundle), and the volume means a careful, dedicated pass is needed to confirm each fix doesn't break the chain of tooling it sits in, rather than a batch of blind `resolutions` pins. Tracked as a separate follow-up task.
 
+# Pure-utility audit
+
+This covers a P1 check (from the latest gap-analysis pass): are `src/utils` functions kept pure and independent of React where possible?
+
+Grepped `src/utils` for files importing from `react`/`react-native`, filtered out hooks, `storybook/`/`testing/`, and type-only imports. Five runtime candidates remained — all legitimate (platform APIs, `React.isValidElement`, or `getFocusRingStyles.native.tsx` being a component filed under `utils/`). **Nothing to fix.**
+
+# Publish verification: a real external install, not just build output
+
+This covers P1 publish verification: `npm pack` the built package and install outside the monorepo workspace.
+
+## Fixed: several React Native peer dependencies weren't marked optional
+
+Plain `npm install` of the packed tarball could fail with `ERESOLVE` for web-only consumers when RN-only peers weren't in `peerDependenciesMeta`. Added optional entries for `@floating-ui/react-native`, `@gorhom/bottom-sheet`, `@gorhom/portal`, `react-native-gesture-handler`, `react-native-pager-view`, and `react-native-svg` (merged from former PR #157).
+
+## Documented, not fixable from this side
+
+npm may still try to resolve optional peers' own transitive requirements; `--legacy-peer-deps` or Yarn remains the practical workaround for cross-platform libraries.
+
 # `useEffect` necessity audit
 
 This covers the second P0 check (from the latest gap-analysis pass): a re-read of every `useEffect` usage asking a different question than the earlier P1 cleanup sweep did - not "does this clean up correctly," but "does this need to be an effect at all, or could it just be computed during render?"
@@ -328,6 +346,16 @@ Covers "Document accessibility behavior and known limitations" from the "Documen
 Checked what's actually there before writing anything, rather than documenting an idealized architecture: the `accessibilityLabel` prop convention (already established, consistent across every component), the `makeAccessible`/`accessibilityMap` cross-platform utility (one shared prop vocabulary mapped to `aria-*` on web and React Native accessibility props on native), the `jsx-a11y`/`react-native-a11y` ESLint plugins enforced on every PR (and the *specific, real* reasons three of their rules are turned off - two are tooling false-positives against `makeAccessible`'s dynamic role-setting and against web files being misflagged by a native-only rule, one is a deliberate judgment call on `accessibilityHint`), and the `jest-axe`-based `assertAccessible()` helper's actual coverage.
 
 Added `docs/guides/Accessibility.mdx` - a new Storybook guide page (`Guides/Accessibility`) consolidating all of the above into one place, with an honest "Known limitations" section (coverage is targeted at genuinely-interactive components, not spread evenly across all ~90; this guide documents the shared architecture, not a full per-component ARIA reference - that stays in each component's own Storybook docs page). Didn't attempt to retrofit an "Accessibility" section into every individual component's docs - with ~90 components, that's a much larger undertaking than this one gap justifies, and the per-component API docs (prop tables showing `accessibilityLabel`, etc.) already cover the per-component level reasonably.
+
+# Documentation freshness audit
+
+P2 check: do Storybook props/examples still match the API?
+
+- **Recent breaking changes** (`Table` `sortable` → `isSortable`, `Dropdown` `onOpenChange`) — already migrated in stories/docs.
+- **Heuristic scan** across 10 components — dominated by false positives (inherited `Box` props, Storybook scaffolding).
+- **Gap:** `.stories.tsx` is excluded from `yarn typecheck`; removing the exclusion surfaces ~1172 Storybook `moduleResolution` errors, not prop bugs. A dedicated Storybook-compatible tsconfig is the proper follow-up (former PR #162).
+
+Prioritized open work: [react-library-backlog.md](./react-library-backlog.md).
 
 # SCSS Modules migration (styled-components → `.module.scss`)
 
