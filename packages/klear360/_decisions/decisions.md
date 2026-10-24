@@ -393,3 +393,17 @@ Mechanism unchanged from P1. Each component: diff against current styled output,
 **`Klear360Provider` (web):** `ThemeContext` + CSS-variable wrapper unchanged. **`ThemeProvider` / `StyleSheetManager` not removed** — dropping them breaks every remaining styled-components consumer above (web Jest without the bridge fails with `props.theme` undefined). Remove at P3 when shared `.tsx` styled entry points are migrated or deleted.
 
 **Not in core CSS reference tree** (migrated from styled-components only): Table body/row/cell runtime styles, SideNav root/link, Charts, GenUI, DatePicker calendar chrome, etc.
+
+## P3: styled-components cutover — **IN PROGRESS**
+
+Goal: remove remaining **shared `.tsx`** styled-components usage on web, then drop `ThemeProvider` / `StyleSheetManager` from `Klear360Provider.web.tsx` and uninstall styled-components when only native paths remain.
+
+| Wave | Scope | Status |
+|------|--------|--------|
+| **1** | `Tag`, `List`, `ListItem`, `Code` (shared entry points; no styled wrappers on web) | done |
+| **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` border/wrapper leftovers | pending |
+| **3** | `BaseButton.tsx` (native styled path only if any), `Card.tsx` types/helpers | pending |
+| **4** | Remove web `ThemeProvider` / `StyleSheetManager`; audit web Jest without styled bridge | pending |
+| **5** | Docs/storybook styled usage; optional `@klear/klear360-core` peer for published package | pending |
+
+Native `.native.tsx` files keep styled-components until a separate native styling pass (unchanged from P1 plan).

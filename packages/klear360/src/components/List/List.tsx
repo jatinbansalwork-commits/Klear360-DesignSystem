@@ -1,18 +1,15 @@
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 import { ListProvider, useListContext } from './ListContext';
 import { UnorderedList } from './UnorderedList';
 import { OrderedList } from './OrderedList';
 import type { ListItemProps } from './ListItem';
-import getIn from '~utils/lodashButBetter/get';
 import type { IconComponent, IconProps } from '~components/Icons';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
-import type { Klear360ElementRef, DotNotationSpacingStringToken, TestID } from '~utils/types';
+import type { Klear360ElementRef, TestID } from '~utils/types';
 import BaseBox from '~components/Box/BaseBox';
 import { getStyledProps } from '~components/Box/styledProps';
 import type { StyledPropsKlear360 } from '~components/Box/styledProps';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { makeSpace } from '~utils/makeSpace';
 import { makeAccessible } from '~utils/makeAccessible';
 import { isValidAllowedChildren } from '~utils/isValidAllowedChildren';
 import { throwKlear360Error } from '~utils/logger';
@@ -50,18 +47,6 @@ type ListWithoutIconProps = ListCommonProps & {
 };
 type ListProps = ListWithIconProps | ListWithoutIconProps;
 
-const StyledOrderedList = styled(OrderedList)<{ marginTop?: DotNotationSpacingStringToken }>(
-  ({ marginTop, theme }) => ({
-    marginTop: marginTop ? makeSpace(getIn(theme, marginTop)) : undefined,
-  }),
-);
-
-const StyledUnorderedList = styled(UnorderedList)<{ marginTop?: DotNotationSpacingStringToken }>(
-  ({ marginTop, theme }) => ({
-    marginTop: marginTop ? makeSpace(getIn(theme, marginTop)) : undefined,
-  }),
-);
-
 /**
  * List Component is used to display a set of related items that are composed of text/links. Each list item begins with a bullet or a number.
  *
@@ -86,7 +71,7 @@ const _List = (
   { variant = 'unordered', size, children, icon, testID, iconColor, ...styledProps }: ListProps,
   ref: React.Ref<Klear360ElementRef>,
 ): React.ReactElement => {
-  const ListElement = variant === 'unordered' ? StyledUnorderedList : StyledOrderedList;
+  const ListElement = variant === 'unordered' ? UnorderedList : OrderedList;
   const { level, size: listContextSize } = useListContext();
   const listContextValue = useMemo(
     () => ({

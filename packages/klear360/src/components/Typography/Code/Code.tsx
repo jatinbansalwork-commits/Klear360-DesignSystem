@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { makeTypographySize } from '~utils/makeTypographySize';
+import { useTheme } from '~components/Klear360Provider';
 import { BaseText } from '../BaseText';
 import type { BaseTextProps, BaseTextSizes } from '../BaseText/types';
 import BaseBox from '~components/Box/BaseBox';
@@ -59,11 +59,6 @@ type CodeNonHighlightedProps = CodeCommonProps & {
 
 export type CodeProps = CodeHighlightedProps | CodeNonHighlightedProps;
 
-type CodeContainerProps = {
-  size: CodeProps['size'];
-  isHighlighted: CodeProps['isHighlighted'];
-};
-
 const platformType = getPlatformType();
 const isPlatformWeb = platformType === 'browser' || platformType === 'node';
 
@@ -91,21 +86,6 @@ const getCodeFontSizeAndLineHeight = (
       return undefined;
   }
 };
-
-const CodeContainer = styled(BaseBox)<CodeContainerProps>((props) => {
-  const padding = `${makeSpace(props.theme.spacing[0])} ${makeSpace(props.theme.spacing[2])}`;
-  return {
-    padding,
-    backgroundColor: props.isHighlighted
-      ? props.theme.colors.feedback.background.neutral.subtle
-      : undefined,
-    borderRadius: props.theme.border.radius.xsmall,
-    display: isPlatformWeb ? 'inline-block' : 'flex',
-    alignSelf: isPlatformWeb ? undefined : 'center',
-    verticalAlign: 'middle',
-    lineHeight: makeTypographySize(props.theme.typography.lineHeights[0]),
-  };
-});
 
 const getCodeColor = ({
   isHighlighted,
@@ -144,18 +124,30 @@ const _Code = (
   }: CodeProps,
   ref: React.Ref<Klear360ElementRef>,
 ): React.ReactElement => {
+  const { theme } = useTheme();
   const { fontSize, lineHeight, letterSpacing } = getCodeFontSizeAndLineHeight(size)!;
   const codeTextColor = React.useMemo<CodeProps['color']>(
     () => getCodeColor({ isHighlighted, color }),
     [isHighlighted, color],
   );
 
+  const codeContainerStyle = React.useMemo((): React.CSSProperties => {
+    return {
+      padding: `${makeSpace(theme.spacing[0])} ${makeSpace(theme.spacing[2])}`,
+      backgroundColor: isHighlighted ? theme.colors.feedback.background.neutral.subtle : undefined,
+      borderRadius: theme.border.radius.xsmall,
+      display: isPlatformWeb ? 'inline-block' : 'flex',
+      alignSelf: isPlatformWeb ? undefined : 'center',
+      verticalAlign: 'middle',
+      lineHeight: makeTypographySize(theme.typography.lineHeights[0]),
+    };
+  }, [theme, isHighlighted]);
+
   return (
-    <CodeContainer
+    <BaseBox
       ref={ref as never}
-      size={size}
-      isHighlighted={isHighlighted}
       as={isPlatformWeb ? 'span' : undefined}
+      style={codeContainerStyle as never}
       {...metaAttribute({ name: MetaConstants.Code, testID })}
       {...getStyledProps(styledProps)}
     >
@@ -173,7 +165,7 @@ const _Code = (
       >
         {children}
       </BaseText>
-    </CodeContainer>
+    </BaseBox>
   );
 };
 

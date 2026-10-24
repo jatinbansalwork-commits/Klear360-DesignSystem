@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { TagProps } from './types';
 import { Box } from '~components/Box';
 import { getStyledProps } from '~components/Box/styledProps';
@@ -15,21 +14,7 @@ import { useIsMobile } from '~utils/useIsMobile';
 import type { Klear360ElementRef } from '~utils/types';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { useTruncationTitle } from '~utils/useTruncationTitle';
-
-const FocussableTag = styled(BaseBox)<{ _isVirtuallyFocused: TagProps['_isVirtuallyFocused'] }>(
-  (props) => {
-    if (props._isVirtuallyFocused && !isReactNative()) {
-      return {
-        outline: `${makeSize(globalSizeTokens['1'])} solid ${
-          props.theme.colors.surface.background.gray.subtle
-        }`,
-        boxShadow: `0px 0px 0px 4px ${props.theme.colors.interactive.background.primary.faded}`,
-      };
-    }
-
-    return {};
-  },
-);
+import { useTheme } from '~components/Klear360Provider';
 
 const _Tag = (
   {
@@ -46,6 +31,7 @@ const _Tag = (
   ref: React.Ref<Klear360ElementRef>,
 ): React.ReactElement | null => {
   const isMobile = useIsMobile();
+  const { theme } = useTheme();
 
   const { containerRef, textRef } = useTruncationTitle({
     content: typeof children === 'string' ? children : undefined,
@@ -75,6 +61,14 @@ const _Tag = (
     return 'small';
   }, [isMobile, size]);
 
+  const virtualFocusStyle =
+    _isVirtuallyFocused && !isReactNative()
+      ? {
+          outline: `${makeSize(globalSizeTokens['1'])} solid ${theme.colors.surface.background.gray.subtle}`,
+          boxShadow: `0px 0px 0px 4px ${theme.colors.interactive.background.primary.faded}`,
+        }
+      : undefined;
+
   return (
     <BaseBox
       ref={ref as never}
@@ -83,7 +77,7 @@ const _Tag = (
       {...metaAttribute({ name: MetaConstants.Tag, testID })}
       {...makeAnalyticsAttribute(rest)}
     >
-      <FocussableTag
+      <BaseBox
         display={(isReactNative() ? 'flex' : 'inline-flex') as never}
         alignSelf={isReactNative() ? 'center' : undefined}
         flexDirection="row"
@@ -92,7 +86,7 @@ const _Tag = (
         backgroundColor={backgroundColor}
         borderRadius="max"
         padding={size === 'medium' ? mediumPadding : largePadding}
-        _isVirtuallyFocused={_isVirtuallyFocused}
+        style={virtualFocusStyle as never}
       >
         {/* Leading Icon */}
         {Icon ? (
@@ -124,7 +118,6 @@ const _Tag = (
             isDisabled={isDisabled}
             _tabIndex={_isTagInsideInput ? -1 : undefined}
             onClick={(e) => {
-              // Inside tag input, we stop propagation to avoid opening dropdown on click of close on tag
               if (_isTagInsideInput) {
                 e.stopPropagation();
               }
@@ -132,7 +125,7 @@ const _Tag = (
             }}
           />
         </Box>
-      </FocussableTag>
+      </BaseBox>
     </BaseBox>
   );
 };
