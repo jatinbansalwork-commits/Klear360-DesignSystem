@@ -341,7 +341,7 @@ Working assumption: class names and token usage line up closely enough to use th
 
 ## P0: build pipeline
 
-- Added `@klear/klear360-core@0.14.0` as a dependency (theme CSS custom properties, `./tokens/theme.css`).
+- **Did not** add `@klear/klear360-core` to `package.json` yet. Listing it (dependency or peer) makes Yarn 1's `yarn install --frozen-lockfile` fail on a clean checkout while `@klear/klear360` is in root `workspaces.nohoist` — klear360-core's nested `vitest@2` collides with the hoisted `vitest@3` tree and linking dies mid-install (`ENOENT` under `packages/klear360-core/node_modules/@vitest/...`). CI reproduced this on #176. Monorepo builds still reach core through the root workspace link; a published `@klear/klear360-core` peer lands at P3 cutover.
 - `getWebConfig` in `rollup.config.mjs` runs `rollup-plugin-postcss` with CSS Modules and **extracts** everything into a single `styles/index.css` per web build (development/production), mirroring klear360-core. Extract, not inject: injection adds a module-level `document.head.appendChild` side effect to every style import, which would make per-component JS impossible to tree-shake. Sass compiles first via `use: ['sass']`. Native builds are untouched.
 - Consumers load the stylesheet once through the new `./styles.css` package export. `sideEffects: ["*.css"]` already keeps that import from being tree-shaken away.
 - `postcss.config.js`: `postcss-nested`, the local `postcss-klear360-layer.cjs` plugin (wraps this package's `.module.scss`/`.module.css` output in `@layer klear360` so unlayered consumer CSS wins without `!important`), then `autoprefixer`. `src/styles/layers.scss` declares the layer up front.
