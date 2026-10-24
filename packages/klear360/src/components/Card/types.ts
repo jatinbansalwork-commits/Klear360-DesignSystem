@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSProperties } from 'react';
 import type { CardProps } from './Card';
 import type { BaseBoxProps, SpacingValueType } from '~components/Box/BaseBox';
 import type { Platform } from '~utils';
@@ -19,7 +19,7 @@ type CardRootProps = {
   accessibilityLabel?: string;
   validationState?: 'none' | 'error' | 'success';
   cursor?: Platform.Select<{
-    web: CSSObject['cursor'];
+    web: CSSProperties['cursor'];
     native: undefined;
   }>;
 } & BaseBoxProps;
