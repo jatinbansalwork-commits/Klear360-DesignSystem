@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import React from 'react';
 import { useListContext } from './ListContext';
 import { UnorderedItemIcon } from './ListItemIcons';
@@ -46,23 +45,6 @@ type ListItemProps = {
    */
   _itemNumber?: undefined;
 } & TestID;
-
-const StyledListItem = styled(ListItemElement)<{
-  level?: number;
-  variant: NonNullable<ListProps['variant']>;
-  hasIcon: boolean;
-}>(({ level, theme, variant, hasIcon }) => ({
-  marginLeft: level
-    ? getIn(
-        theme,
-        listItemMarginLeft[
-          `${variant}${variant === 'unordered' && hasIcon ? 'WithIcon' : ''}` as NonNullable<
-            ListProps['variant'] | 'unorderedWithIcon'
-          >
-        ][level],
-      )
-    : 0,
-}));
 
 const ListItemContentChildren = ({
   children,
@@ -143,11 +125,18 @@ const _ListItem = ({
   );
   const hasIcon = Boolean(ItemIcon);
 
+  const marginLeftTokenKey =
+    `${variant}${variant === 'unordered' && hasIcon ? 'WithIcon' : ''}` as NonNullable<
+      ListProps['variant'] | 'unorderedWithIcon'
+    >;
+
+  const listItemMarginLeftStyle = level
+    ? getIn(theme, listItemMarginLeft[marginLeftTokenKey][level])
+    : 0;
+
   return (
-    <StyledListItem
-      level={level}
-      variant={variant}
-      hasIcon={hasIcon}
+    <ListItemElement
+      style={{ marginLeft: listItemMarginLeftStyle }}
       {...metaAttribute({ name: MetaConstants.ListItem, testID })}
     >
       <BaseBox
@@ -204,7 +193,7 @@ const _ListItem = ({
         <ListItemContentChildren size={size}>{validChildItem}</ListItemContentChildren>
       </BaseBox>
       {childList}
-    </StyledListItem>
+    </ListItemElement>
   );
 };
 
