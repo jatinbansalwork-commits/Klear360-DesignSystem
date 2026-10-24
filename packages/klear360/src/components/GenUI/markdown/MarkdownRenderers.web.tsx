@@ -24,6 +24,7 @@ import {
   MarkdownCodeBlockLanguage,
 } from './MarkdownStyles';
 import { MarkdownCodeBlockCopyButton } from './MarkdownCodeBlockCopyButton';
+import { useTheme } from '~components/Klear360Provider';
 
 const MarkdownListItemRenderer = ({ children }: { children?: React.ReactNode }): JSX.Element => {
   const { ordered } = React.useContext(MarkdownListContext);
@@ -53,6 +54,7 @@ const MarkdownHeadingRenderer = ({
   tag: MarkdownHeadingTag;
   children?: React.ReactNode;
 }): JSX.Element => {
+  const { theme } = useTheme();
   const { level, size, color, as } = markdownHeadingStyles[tag];
 
   return (
@@ -63,6 +65,16 @@ const MarkdownHeadingRenderer = ({
         weight="medium"
         color={color}
         textTransform={level === 6 ? 'uppercase' : undefined}
+        style={
+          level === 6
+            ? {
+                fontFamily: theme.typography.fonts.family.text,
+                fontSize: `${theme.typography.fonts.size[100]}px`,
+                lineHeight: `${theme.typography.lineHeights[300]}px`,
+                letterSpacing: '0.03em',
+              }
+            : undefined
+        }
       >
         {children}
       </Heading>

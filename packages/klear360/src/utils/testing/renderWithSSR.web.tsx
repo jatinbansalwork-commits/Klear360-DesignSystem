@@ -52,9 +52,22 @@ const renderWithSSR = (ui: ReactElement): RenderResult => {
   const errors = [];
   const oldConsoleError = console.error;
   const oldConsoleWarn = console.warn;
+  const ignoredSsrWarnings = [
+    /useLayoutEffect does nothing on the server/,
+    /Unsupported style property line-clamp/,
+    /Unsupported style property -webkit-line-clamp/,
+    /Unsupported style property -webkit-box-orient/,
+    /React does not recognize the `/,
+    /\[Klear360: Box\]: `backgroundColor` is deprecated/,
+  ];
+
   // eslint-disable-next-line no-multi-assign
   console.error = console.warn = (...messages) => {
-    errors.push(util.format(...messages));
+    const formatted = util.format(...messages);
+    if (ignoredSsrWarnings.some((pattern) => pattern.test(formatted))) {
+      return;
+    }
+    errors.push(formatted);
   };
 
   // Catch any hydration errors

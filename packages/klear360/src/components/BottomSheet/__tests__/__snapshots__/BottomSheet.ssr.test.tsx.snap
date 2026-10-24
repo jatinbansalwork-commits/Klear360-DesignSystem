@@ -4,401 +4,7 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 1`] = `"<div id="root">
 
 exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
 .c0.c0.c0.c0.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-}
-
-.c1.c1.c1.c1.c1 {
-  overflow: auto;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.c2.c2.c2.c2.c2 {
-  padding-right: 16px;
-  padding-left: 16px;
-  margin-bottom: 16px;
-  margin-top: 16px;
-  touch-action: none;
-}
-
-.c3.c3.c3.c3.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.c4.c4.c4.c4.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: auto;
-  -ms-flex: auto;
-  flex: auto;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  padding-right: 16px;
-  margin-right: auto;
-}
-
-.c5.c5.c5.c5.c5 {
-  -webkit-flex: auto;
-  -ms-flex: auto;
-  flex: auto;
-}
-
-.c6.c6.c6.c6.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.c8.c8.c8.c8.c8 {
-  margin-left: 8px;
-}
-
-.c9.c9.c9.c9.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 28px;
-}
-
-.c10.c10.c10.c10.c10 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c11.c11.c11.c11.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c19.c19.c19.c19.c19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.c20.c20.c20.c20.c20 {
-  width: 100%;
-}
-
-.c21.c21.c21.c21.c21 {
-  overflow: auto;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-flex-shrink: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-}
-
-.c22.c22.c22.c22.c22 {
-  overflow: auto;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-right: 16px;
-  padding-left: 16px;
-}
-
-.c24.c24.c24.c24.c24 {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  z-index: 2;
-  margin-top: auto;
-  width: 100%;
-  background-color: hsla(0,0%,100%,1);
-  touch-action: none;
-}
-
-.c25.c25.c25.c25.c25 {
-  padding: 16px;
-}
-
-.c27.c27.c27.c27.c27 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.c14.c14.c14.c14.c14 {
-  margin-right: 16px;
-}
-
-.c15.c15.c15.c15.c15 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.c16.c16.c16.c16.c16 {
-  text-align: left;
-}
-
-.c17.c17.c17.c17.c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding-right: 4px;
-  padding-left: 4px;
-}
-
-.c7.c7.c7.c7.c7 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 1rem;
-  font-weight: 600;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.528px;
-  -moz-letter-spacing: -0.528px;
-  -ms-letter-spacing: -0.528px;
-  letter-spacing: -0.528px;
-  margin: 0;
-  padding: 0;
-  word-break: break-word;
-  margin-top: 1px;
-}
-
-.c12.c12.c12.c12.c12 {
-  color: hsla(142,71%,25%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: -0.15600000000000003px;
-  -moz-letter-spacing: -0.15600000000000003px;
-  -ms-letter-spacing: -0.15600000000000003px;
-  letter-spacing: -0.15600000000000003px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow-wrap: break-word;
-}
-
-.c13.c13.c13.c13.c13 {
-  color: hsla(215,25%,27%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: -0.15600000000000003px;
-  -moz-letter-spacing: -0.15600000000000003px;
-  -ms-letter-spacing: -0.15600000000000003px;
-  letter-spacing: -0.15600000000000003px;
-  margin: 0;
-  padding: 0;
-}
-
-.c23.c23.c23.c23.c23 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: -0.18200000000000002px;
-  -moz-letter-spacing: -0.18200000000000002px;
-  -ms-letter-spacing: -0.18200000000000002px;
-  letter-spacing: -0.18200000000000002px;
-  margin: 0;
-  padding: 0;
-}
-
-.c29.c29.c29.c29.c29 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c18.c18.c18.c18.c18 {
-  color: hsla(142,71%,25%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: -0.15600000000000003px;
-  -moz-letter-spacing: -0.15600000000000003px;
-  -ms-letter-spacing: -0.15600000000000003px;
-  letter-spacing: -0.15600000000000003px;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow-wrap: break-word;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c26.c26.c26.c26.c26 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c28.c28.c28.c28.c28 {
   opacity: 1;
-}
-
-@media screen and (min-width:768px) {
-  .c2.c2.c2.c2.c2 {
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-}
-
-@media screen and (min-width:768px) {
-  .c25.c25.c25.c25.c25 {
-    padding: 20px;
-  }
 }
 
 <div
@@ -423,72 +29,69 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
       style="opacity: 1; pointer-events: all; height: 0px; bottom: 0px; z-index: 100; transition-duration: 280ms;"
     >
       <div
-        class="c0"
         data-klear360-component="base-box"
+        style="display:flex;flex-direction:column;height:100%"
       >
         <div
           class=""
           data-klear360-component="BottomSheetGrabHandle"
         />
         <div
-          class="c1"
           data-klear360-component="bottom-sheet-header"
+          style="overflow:auto;flex-shrink:0"
         >
           <div
-            class=""
             data-klear360-component="base-box"
           >
             <div
-              class="c2"
               data-klear360-component="base-box"
+              style="padding-right:16px;padding-left:16px;margin-bottom:16px;margin-top:16px;touch-action:none"
             >
               <div
-                class="c3"
                 data-klear360-component="base-box"
+                style="display:flex;flex-direction:row;position:relative;user-select:none"
               >
                 <div
-                  class="c4"
                   data-klear360-component="base-box"
+                  style="display:flex;flex:auto;flex-direction:row;align-items:flex-start;padding-right:16px;margin-right:auto"
                 >
                   <div
-                    class="c5"
                     data-klear360-component="base-box"
+                    style="flex:auto"
                   >
                     <div
-                      class="c6"
                       data-klear360-component="base-box"
+                      style="display:flex;flex-direction:row;flex-shrink:0"
                     >
                       <p
-                        class="c7"
                         data-klear360-component="text"
-                        letter-spacing="25"
+                        style="color:hsla(216, 56%, 2%, 1);font-family:"Inter", "Roboto", "Inter Fallback Arial", Arial;font-size:1rem;font-weight:600;font-style:normal;text-decoration-line:none;line-height:1.5rem;letter-spacing:-0.528px;margin:0;padding:0;word-break:break-word;margin-top:1px"
                       >
                         Address Details
                       </p>
                       <div
-                        class="c8"
                         data-klear360-component="base-box"
+                        style="margin-left:8px"
                       >
                         <div
-                          class="c9"
                           data-klear360-component="box"
+                          style="display:flex;align-items:center;justify-content:center;height:28px"
                         >
                           <div
-                            class="c10"
                             data-klear360-component="counter"
+                            style="display:inline-flex;align-self:center;justify-content:center"
                           >
                             <div
                               class=""
                               data-klear360-component="base-box"
                             >
                               <div
-                                class="c11"
                                 data-klear360-component="base-box"
+                                style="display:flex;overflow:hidden;flex-direction:row;align-items:center;justify-content:center"
                               >
                                 <p
-                                  class="c12"
                                   data-klear360-component="text"
-                                  letter-spacing="50"
+                                  style="color:hsla(142, 71%, 25%, 1);font-family:"Inter", "Roboto", "Inter Fallback Arial", Arial;font-size:0.75rem;font-weight:500;font-style:normal;text-decoration-line:none;line-height:1.0625rem;letter-spacing:-0.15600000000000003px;text-align:center;margin:0;padding:0;overflow:hidden;display:-webkit-box;line-clamp:1;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow-wrap:break-word"
                                 >
                                   2
                                 </p>
@@ -499,38 +102,37 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
                       </div>
                     </div>
                     <p
-                      class="c13"
                       data-klear360-component="text"
-                      letter-spacing="50"
+                      style="color:hsla(215, 25%, 27%, 1);font-family:"Inter", "Roboto", "Inter Fallback Arial", Arial;font-size:0.75rem;font-weight:400;font-style:normal;text-decoration-line:none;line-height:1.0625rem;letter-spacing:-0.15600000000000003px;margin:0;padding:0"
                     >
                       Saving addresses makes future deliveries faster
                     </p>
                   </div>
                 </div>
                 <div
-                  class="c14"
                   data-klear360-component="base-box"
+                  style="margin-right: 16px;"
                 >
                   <div
-                    class="c9"
                     data-klear360-component="box"
+                    style="display: flex; align-items: center; justify-content: center; height: 28px;"
                   >
                     <div
-                      class="c15"
                       data-klear360-component="badge"
+                      style="display: inline-flex;"
                     >
                       <div
-                        class="c16"
+                        class=""
                         data-klear360-component="base-box"
+                        style="text-align: left;"
                       >
                         <div
-                          class="c17"
                           data-klear360-component="base-box"
+                          style="display: flex; overflow: hidden; flex-direction: row; align-items: center; justify-content: center; padding-right: 4px; padding-left: 4px;"
                         >
                           <p
-                            class="c18"
                             data-klear360-component="text"
-                            letter-spacing="50"
+                            style="color: rgb(18, 18, 18); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.75rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.0625rem; letter-spacing: -0.15600000000000003px; margin: 0px 4px 0px 4px; padding: 0px; overflow: hidden; display: -webkit-box; line-clamp: 1; overflow-wrap: break-word;"
                           >
                             Action Needed
                           </p>
@@ -540,8 +142,8 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
                   </div>
                 </div>
                 <div
-                  class="c9"
                   data-klear360-component="box"
+                  style="display:flex;align-items:center;justify-content:center;height:28px"
                 >
                   <button
                     aria-label="Close"
@@ -551,7 +153,6 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class=""
                       data-klear360-component="icon"
                       fill="none"
                       height="20px"
@@ -568,12 +169,12 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
                 </div>
               </div>
               <div
-                class="c19"
                 data-klear360-component="base-box"
+                style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%"
               >
                 <div
-                  class="c20"
                   data-klear360-component="box"
+                  style="width:100%"
                 />
               </div>
             </div>
@@ -585,27 +186,25 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
           </div>
         </div>
         <div
-          class="c21"
           data-klear360-component="bottom-sheet-body"
           data-testid="bottomsheet-body"
-          style="-webkit-tap-highlight-color:revert;-webkit-touch-callout:revert;-webkit-user-select:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;user-select:auto;touch-action:none"
+          style="overflow:auto;flex-grow:1;flex-shrink:1;touch-action:none;user-select:auto;-webkit-tap-highlight-color:revert;-webkit-touch-callout:revert;-webkit-user-select:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch"
         >
           <div
-            class="c22"
             data-klear360-component="base-box"
+            style="overflow:auto;padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px"
           >
             <p
-              class="c23"
               data-klear360-component="text"
-              letter-spacing="50"
+              style="color:hsla(216, 56%, 2%, 1);font-family:"Inter", "Roboto", "Inter Fallback Arial", Arial;font-size:0.875rem;font-weight:400;font-style:normal;text-decoration-line:none;line-height:1.25rem;letter-spacing:-0.18200000000000002px;margin:0;padding:0"
             >
               BottomSheet body
             </p>
           </div>
         </div>
         <div
-          class="c24"
           data-klear360-component="bottom-sheet-footer"
+          style="flex-shrink:0;z-index:2;margin-top:auto;width:100%;background-color:hsla(0, 0%, 100%, 1);touch-action:none"
         >
           <div
             class="    "
@@ -613,8 +212,8 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
             role="separator"
           />
           <div
-            class="c25"
             data-klear360-component="base-box"
+            style="padding:16px"
           >
             <button
               class=""
@@ -624,16 +223,18 @@ exports[`<BottomSheet /> should render a BottomSheet ssr 2`] = `
               type="button"
             >
               <div
-                class=" c26"
+                class=""
                 data-klear360-component="base-box"
+                style="transition-duration:160ms;transition-timing-function:cubic-bezier(0.3, 0, 0.2, 1)"
               >
                 <div
-                  class="c27 c28"
+                  class="c0"
                   data-klear360-component="base-box"
+                  style="display:flex;flex:1;flex-direction:row;align-items:center;justify-content:center;z-index:1"
                 >
                   <div
-                    class="c29"
                     data-klear360-component="base-text"
+                    style="color:hsla(216, 56%, 2%, 1);font-family:"Inter", "Roboto", "Inter Fallback Arial", Arial;font-size:0.875rem;font-weight:500;font-style:normal;text-decoration-line:none;line-height:1.25rem;letter-spacing:0px;text-align:center;margin:0;padding:0;margin-right:4px;margin-left:4px"
                   >
                     Remove address
                   </div>

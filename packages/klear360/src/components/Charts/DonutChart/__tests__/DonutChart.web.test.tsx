@@ -187,8 +187,8 @@ describe('<DonutChart />', () => {
 
     await waitFor(() => expect(getByText('BAD_REQUEST_ERROR')).toBeInTheDocument());
 
-    expect(getByText('GATEWAY_ERROR')).toHaveStyle({ textDecoration: 'none' });
-    expect(getByText('BAD_REQUEST_ERROR')).toHaveStyle({ textDecoration: 'none' });
+    expect(getByText('GATEWAY_ERROR')).toHaveStyle({ textDecorationLine: 'none' });
+    expect(getByText('BAD_REQUEST_ERROR')).toHaveStyle({ textDecorationLine: 'none' });
   });
 
   it('should strike through donut legend items when they are not selected', () => {
@@ -203,7 +203,7 @@ describe('<DonutChart />', () => {
 
     fireEvent.click(getByText('BAD_REQUEST_ERROR'));
 
-    expect(getByText('BAD_REQUEST_ERROR')).toHaveStyle({ textDecoration: 'line-through' });
+    expect(getByText('BAD_REQUEST_ERROR')).toHaveStyle({ textDecorationLine: 'line-through' });
   });
 });
 
