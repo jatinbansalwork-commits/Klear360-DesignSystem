@@ -4,9 +4,8 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/jsx-no-useless-fragment */
-import type { CSSObject } from 'styled-components';
-import styled from 'styled-components';
 import React from 'react';
+import { ScopedRuntimeStyles, useStableScopeClass } from '~utils/web/scopedCssFromObject';
 import { Indicators } from './Indicators/Indicators';
 import { NavigationButton } from './NavigationButton';
 import type { CarouselProps } from './types';
@@ -110,62 +109,93 @@ const Controls = ({
   return <></>;
 };
 
-const CarouselContainer = styled(BaseBox)<{
+type CarouselScrollContainerProps = React.ComponentProps<typeof BaseBox> & {
   showOverlay?: boolean;
   scrollOverlayColor: CarouselProps['scrollOverlayColor'];
   isScrollAtStart: boolean;
   isScrollAtEnd: boolean;
-}>(({ theme, showOverlay, scrollOverlayColor, isScrollAtStart, isScrollAtEnd }) => {
-  const gradientStop1: string = getIn(theme.colors, scrollOverlayColor!);
-  const gradientStop2 = 'hsla(0, 0%, 100%, 0)';
+};
 
-  const overlayCommonStyle: CSSObject = {
-    content: "''",
-    position: 'absolute',
-    top: 0,
-    width: '100px',
-    height: '100%',
-    transitionDuration: castWebType(makeMotionTime(theme.motion.duration.gentle)),
-    transitionTimingFunction: castWebType(theme.motion.easing.standard),
-    transitionProperty: 'opacity',
-  };
-
-  return {
-    width: '100%',
-    height: '100%',
-    overflowX: 'scroll',
-    display: 'flex',
-    flexWrap: 'nowrap',
-    scrollSnapType: 'x mandatory',
-    scrollSnapPointsY: `repeat(100%)`,
-    msOverflowStyle: 'none' /* IE and Edge */,
-    scrollbarWidth: 'none' /* Firefox */,
-    /* Needed to work on iOS Safari */
-    webkitOverflowScrolling: 'touch',
-    msScrollSnapType: 'mandatory',
-    scrollSnapPointsX: 'repeat(100%)',
-    msScrollSnapPointsX: 'repeat(100%)',
-    '&::-webkit-scrollbar': {
-      display: 'none',
+const CarouselScrollContainer = React.forwardRef<HTMLDivElement, CarouselScrollContainerProps>(
+  (
+    {
+      showOverlay,
+      scrollOverlayColor,
+      isScrollAtStart,
+      isScrollAtEnd,
+      className,
+      children,
+      ...rest
     },
-    ...(showOverlay && {
-      '&::before': {
-        ...overlayCommonStyle,
-        background: `linear-gradient(to right, ${gradientStop1}, ${gradientStop2})`,
-        left: -1,
-        opacity: isScrollAtStart ? 0 : 1,
-        pointerEvents: 'none',
-      },
-      '&::after': {
-        ...overlayCommonStyle,
-        background: `linear-gradient(to left, ${gradientStop1}, ${gradientStop2})`,
-        right: -1,
-        opacity: isScrollAtEnd ? 0 : 1,
-        pointerEvents: 'none',
-      },
-    }),
-  };
-});
+    ref,
+  ) => {
+    const { theme } = useTheme();
+    const scopeClass = useStableScopeClass('carousel-scroll');
+    const styleObject = React.useMemo(() => {
+      const gradientStop1: string = getIn(theme.colors, scrollOverlayColor!);
+      const gradientStop2 = 'hsla(0, 0%, 100%, 0)';
+
+      const overlayCommonStyle = {
+        content: "''",
+        position: 'absolute',
+        top: 0,
+        width: '100px',
+        height: '100%',
+        transitionDuration: castWebType(makeMotionTime(theme.motion.duration.gentle)),
+        transitionTimingFunction: castWebType(theme.motion.easing.standard),
+        transitionProperty: 'opacity',
+      };
+
+      return {
+        width: '100%',
+        height: '100%',
+        overflowX: 'scroll',
+        display: 'flex',
+        flexWrap: 'nowrap',
+        scrollSnapType: 'x mandatory',
+        scrollSnapPointsY: `repeat(100%)`,
+        msOverflowStyle: 'none',
+        scrollbarWidth: 'none',
+        webkitOverflowScrolling: 'touch',
+        msScrollSnapType: 'mandatory',
+        scrollSnapPointsX: 'repeat(100%)',
+        msScrollSnapPointsX: 'repeat(100%)',
+        '&::-webkit-scrollbar': { display: 'none' },
+        ...(showOverlay && {
+          '&::before': {
+            ...overlayCommonStyle,
+            background: `linear-gradient(to right, ${gradientStop1}, ${gradientStop2})`,
+            left: -1,
+            opacity: isScrollAtStart ? 0 : 1,
+            pointerEvents: 'none',
+          },
+          '&::after': {
+            ...overlayCommonStyle,
+            background: `linear-gradient(to left, ${gradientStop1}, ${gradientStop2})`,
+            right: -1,
+            opacity: isScrollAtEnd ? 0 : 1,
+            pointerEvents: 'none',
+          },
+        }),
+      };
+    }, [theme, showOverlay, scrollOverlayColor, isScrollAtStart, isScrollAtEnd]);
+
+    return (
+      <>
+        <ScopedRuntimeStyles scopeClass={scopeClass} styleObject={styleObject} />
+        <BaseBox
+          ref={ref}
+          className={[scopeClass, className].filter(Boolean).join(' ')}
+          {...rest}
+        >
+          {children}
+        </BaseBox>
+      </>
+    );
+  },
+);
+
+CarouselScrollContainer.displayName = 'CarouselScrollContainer';
 
 type CarouselBodyProps = {
   children: React.ReactNode;
@@ -201,7 +231,7 @@ const CarouselBody = React.forwardRef<HTMLDivElement, CarouselBodyProps>(
     ref,
   ) => {
     return (
-      <CarouselContainer
+      <CarouselScrollContainer
         tabIndex={0}
         ref={ref}
         showOverlay={Boolean(scrollOverlayColor)}
@@ -244,7 +274,7 @@ const CarouselBody = React.forwardRef<HTMLDivElement, CarouselBodyProps>(
           }
           return carouselItemNode;
         })}
-      </CarouselContainer>
+      </CarouselScrollContainer>
     );
   },
 );

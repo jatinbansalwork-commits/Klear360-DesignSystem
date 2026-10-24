@@ -1,0 +1,26 @@
+.wrapper {
+  cursor: pointer;
+  background-color: var(--quick-filter-bg, transparent);
+  transition-property: background-color;
+  transition-timing-function: var(--easing-standard);
+  transition-duration: var(--duration-xquick);
+
+  &:hover {
+    background-color: var(--quick-filter-bg-hover, var(--interactive-background-gray-faded));
+  }
+
+  &:has(:focus-visible) {
+    background-color: var(--quick-filter-bg-hover, var(--interactive-background-gray-faded));
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+
+  :global(input:focus-visible + div) {
+    outline: none !important;
+  }
+}
+
+.wrapperSelected {
+  --quick-filter-bg: var(--interactive-background-gray-faded-highlighted);
+  --quick-filter-bg-hover: var(--interactive-background-gray-faded-highlighted);
+}

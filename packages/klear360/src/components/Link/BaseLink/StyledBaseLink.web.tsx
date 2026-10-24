@@ -1,50 +1,96 @@
-import styled from 'styled-components';
+import React from 'react';
 import getStyledLinkStyles from './getStyledLinkStyles';
 import type { StyledBaseLinkProps } from './types';
-import getIn from '~utils/lodashButBetter/get';
-import { castWebType } from '~utils';
+import styles from './BaseLink.module.scss';
+import { useTheme } from '~components/Klear360Provider';
 import { useStyledProps } from '~components/Box/styledProps';
-import { makeBorderSize } from '~utils/makeBorderSize';
-import { makeMotionTime } from '~utils/makeMotionTime';
-import { omitPropsFromHTML } from '~utils/omitPropsFromHTML';
 
-const StyledLink = styled.button
-  .withConfig({
-    shouldForwardProp: omitPropsFromHTML,
-    displayName: 'StyledLink',
-  })
-  .attrs<StyledBaseLinkProps>((props: StyledBaseLinkProps) => ({
-    ...props.accessibilityProps,
-  }))<StyledBaseLinkProps>((props) => {
-  const styledPropsCSSObject = useStyledProps(props);
-  return {
-    ...getStyledLinkStyles(props),
-    display: 'inline-block',
-    borderRadius: makeBorderSize(props.theme.border.radius.small),
-    transitionProperty: 'box-shadow',
-    transitionTimingFunction: getIn(props.theme.motion, props.motionEasing),
-    transitionDuration: castWebType(
-      makeMotionTime(getIn(props.theme.motion, props.motionDuration)),
-    ),
-    '.content-container': {
-      width: 'max-content',
-      borderRadius: makeBorderSize(props.theme.border.radius.xsmall),
-    },
-    '&:focus-visible': {
-      '.content-container': {
-        outline: `4px solid ${props.focusRingColor}`,
-        outlineOffset: '1px',
+type WebStyledBaseLinkProps = StyledBaseLinkProps & {
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  title?: string;
+};
+
+const StyledBaseLink = React.forwardRef<
+  HTMLAnchorElement | HTMLButtonElement,
+  WebStyledBaseLinkProps
+>((props, ref) => {
+  const { theme } = useTheme();
+  const styledPropsCSSObject = useStyledProps({ ...props, theme });
+  const linkStyles = getStyledLinkStyles({ cursor: props.cursor });
+
+  const {
+    as,
+    focusRingColor,
+    setCurrentInteraction: _setCurrentInteraction,
+    accessibilityProps,
+    motionDuration: _motionDuration,
+    motionEasing: _motionEasing,
+    variant: _variant,
+    className,
+    style,
+    children,
+    title,
+    href,
+    target,
+    rel,
+    disabled,
+    type,
+    onClick,
+    onBlur,
+    onFocus,
+    onMouseLeave,
+    onMouseMove,
+    onPointerDown,
+    onPointerEnter,
+    onTouchStart,
+    onTouchEnd,
+    onKeyDown,
+    onMouseDown,
+    onMouseUp,
+  } = props;
+
+  const dataAttributes = Object.fromEntries(
+    Object.entries(props).filter(([key]) => key.startsWith('data-')),
+  );
+
+  return React.createElement(
+    as,
+    {
+      ref,
+      className: [styles.base, className].filter(Boolean).join(' '),
+      style: {
+        ...linkStyles,
+        ...(styledPropsCSSObject as React.CSSProperties),
+        ...style,
+        ['--base-link-focus-ring' as string]: focusRingColor,
       },
+      href,
+      target,
+      rel,
+      disabled,
+      type,
+      title,
+      onClick,
+      onBlur,
+      onFocus,
+      onMouseLeave,
+      onMouseMove,
+      onPointerDown,
+      onPointerEnter,
+      onTouchStart,
+      onTouchEnd,
+      onKeyDown,
+      onMouseDown,
+      onMouseUp,
+      ...dataAttributes,
+      ...accessibilityProps,
     },
-    '*': {
-      transitionProperty: 'color, fill',
-      transitionTimingFunction: getIn(props.theme.motion, props.motionEasing),
-      transitionDuration: castWebType(
-        makeMotionTime(getIn(props.theme.motion, props.motionDuration)),
-      ),
-    },
-    ...styledPropsCSSObject,
-  };
+    children,
+  );
 });
 
-export default StyledLink;
+StyledBaseLink.displayName = 'StyledLink';
+
+export default StyledBaseLink;

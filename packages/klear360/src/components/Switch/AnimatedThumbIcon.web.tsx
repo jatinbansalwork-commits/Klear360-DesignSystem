@@ -1,19 +1,28 @@
-import styled from 'styled-components';
-import { switchMotion } from './switchTokens';
-import getIn from '~utils/lodashButBetter/get';
+import React from 'react';
+import type { SwitchProps } from './types';
+import { getSwitchThumbIconModuleClasses } from './getSwitchThumbModuleClasses';
 import Svg from '~components/Icons/_Svg';
-import { makeMotionTime } from '~utils/makeMotionTime';
+import type { SvgProps } from '~components/Icons/_Svg/Svg/types';
 
-const AnimatedThumbIcon = styled(Svg)<{ isChecked?: boolean }>(({ isChecked, theme }) => {
-  const easing = getIn(theme, switchMotion.easing.thumbIcon);
-  const duration = getIn(theme, switchMotion.duration.thumbIcon);
+type AnimatedThumbIconProps = SvgProps & {
+  isChecked?: boolean;
+  size?: NonNullable<SwitchProps['size']>;
+};
 
-  return {
-    transitionDuration: `${makeMotionTime(duration)}`,
-    transitionTimingFunction: easing,
-    transitionDelay: isChecked ? `${makeMotionTime(theme.motion.delay['2xquick'])}` : `0ms`,
-    opacity: isChecked ? 1 : 0,
-  };
-});
+const AnimatedThumbIcon = ({
+  isChecked,
+  size = 'medium',
+  children,
+  ...rest
+}: AnimatedThumbIconProps): React.ReactElement => (
+  <span
+    className={getSwitchThumbIconModuleClasses({
+      size,
+      isEffectivelyChecked: Boolean(isChecked),
+    })}
+  >
+    <Svg {...rest}>{children}</Svg>
+  </span>
+);
 
 export { AnimatedThumbIcon };

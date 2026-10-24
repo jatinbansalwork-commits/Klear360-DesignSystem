@@ -1,0 +1,15 @@
+.toastWrapper {
+  /* Opacity for peek/hidden toasts is set inline; pointer-events toggled via descendant rule. */
+}
+
+.toastWrapperVisible {
+  & > * {
+    pointer-events: auto;
+  }
+}
+
+.toastWrapperHidden {
+  & > * {
+    pointer-events: none;
+  }
+}

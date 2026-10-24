@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './SideNav.module.scss';
 import type { SideNavSectionProps } from './types';
 import { classes } from './tokens';
 import { Box } from '~components/Box';
@@ -8,23 +8,12 @@ import { Collapsible, CollapsibleBody } from '~components/Collapsible';
 import BaseBox from '~components/Box/BaseBox';
 import { useCollapsible } from '~components/Collapsible/CollapsibleContext';
 import { ChevronDownIcon, ChevronUpIcon } from '~components/Icons';
-import { makeBorderSize } from '~utils';
 import { BaseLink } from '~components/Link/BaseLink';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 
-const SideNavTitleDivider = styled(BaseBox)(({ theme }) => {
-  return {
-    height: makeBorderSize(theme.border.width.thicker),
-    width: '100%',
-    background: `linear-gradient(90deg, ${theme.colors.transparent} 0%, ${theme.colors.surface.border.gray.muted} 50%, ${theme.colors.transparent} 100%)`,
-  };
-});
-
-const FullWidthLink = styled(BaseLink)(() => {
-  return {
-    width: '100%',
-  };
-});
+const SideNavTitleDivider = (): React.ReactElement => (
+  <BaseBox className={styles.titleDivider} />
+);
 
 const ShowMoreLink = ({
   collapsedItemsCount,
@@ -39,42 +28,34 @@ const ShowMoreLink = ({
     variant: 'button',
     onClick: toggleCollapse,
     marginY: 'spacing.2',
+    className: styles.fullWidthLink,
   } as const;
 
   return (
     <>
       <BaseBox className={classes.SHOW_WHEN_COLLAPSED} width="100%" justifyContent="center">
-        <FullWidthLink
+        <BaseLink
           {...linkProps}
           marginX="spacing.4"
           icon={isExpanded ? ChevronUpIcon : undefined}
           iconPosition="right"
         >
           {isExpanded ? `` : `+${collapsedItemsCount}`}
-        </FullWidthLink>
+        </BaseLink>
       </BaseBox>
       <BaseBox className={classes.HIDE_WHEN_COLLAPSED} width="100%">
-        <FullWidthLink
+        <BaseLink
           {...linkProps}
           marginX="spacing.4"
           icon={isExpanded ? ChevronUpIcon : ChevronDownIcon}
           iconPosition="right"
         >
           {isExpanded ? 'Show Less' : `+${collapsedItemsCount} More`}
-        </FullWidthLink>
+        </BaseLink>
       </BaseBox>
     </>
   );
 };
-
-const StyledSectionTitleContainer = styled(BaseBox)((_props) => {
-  return {
-    [`.${classes.COLLAPSED}:not(.${classes.TRANSITIONING}) & p`]: {
-      // We only make it opacity 0 to maintain the height of the title in collapsed state
-      opacity: 0,
-    },
-  };
-});
 
 const SideNavSection = ({
   children,
@@ -90,7 +71,11 @@ const SideNavSection = ({
   return (
     <Box paddingBottom="spacing.5" {...makeAnalyticsAttribute(rest)}>
       {title ? (
-        <StyledSectionTitleContainer position="relative" padding={['spacing.2', 'spacing.4']}>
+        <BaseBox
+          className={styles.sectionTitleContainer}
+          position="relative"
+          padding={['spacing.2', 'spacing.4']}
+        >
           <Text
             size="xsmall"
             weight="medium"
@@ -110,7 +95,7 @@ const SideNavSection = ({
           >
             <SideNavTitleDivider />
           </BaseBox>
-        </StyledSectionTitleContainer>
+        </BaseBox>
       ) : null}
 
       <Box>{maxVisibleItems ? children.slice(0, maxVisibleItems) : children}</Box>

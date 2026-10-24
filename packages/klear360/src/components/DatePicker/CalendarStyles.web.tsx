@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import styled from 'styled-components';
+import React from 'react';
 import dayjs from 'dayjs';
+import { ScopedRuntimeStyles, useStableScopeClass } from '~utils/web/scopedCssFromObject';
+import { useTheme } from '~components/Klear360Provider';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
 import type { PickerType } from './types';
 import { classes } from './constants';
 import BaseBox from '~components/Box/BaseBox';
@@ -90,9 +93,17 @@ const inRangeCell = {
   },
 } as const;
 
-const CalendarGradientStyles = styled(BaseBox)<{ date: Date; isRange: boolean }>(
-  ({ theme, date, isRange }) => {
-    const isMobile = useIsMobile();
+const getCalendarGradientStyleObject = ({
+  theme,
+  date,
+  isRange,
+  isMobile,
+}: {
+  theme: ReturnType<typeof useTheme>['theme'];
+  date: Date;
+  isRange: boolean;
+  isMobile: boolean;
+}): Record<string, unknown> => {
     // Bail out if datepicker is not in range mode or on mobile
     if (isMobile || !isRange) return {};
 
@@ -163,11 +174,44 @@ const CalendarGradientStyles = styled(BaseBox)<{ date: Date; isRange: boolean }>
         },
       },
     };
-  },
-);
+};
 
-const CalendarStyles = styled(BaseBox)<{ pickerType?: PickerType }>(({ theme, pickerType }) => {
+type CalendarGradientStylesProps = BaseBoxProps & { date: Date; isRange: boolean };
+
+const CalendarGradientStyles = ({
+  date,
+  isRange,
+  className,
+  children,
+  ...rest
+}: CalendarGradientStylesProps): React.ReactElement => {
+  const { theme } = useTheme();
   const isMobile = useIsMobile();
+  const scopeClass = useStableScopeClass('calgrad');
+  const styleObject = React.useMemo(
+    () => getCalendarGradientStyleObject({ theme, date, isRange, isMobile }),
+    [theme, date, isRange, isMobile],
+  );
+
+  return (
+    <>
+      <ScopedRuntimeStyles scopeClass={scopeClass} styleObject={styleObject} />
+      <BaseBox className={[scopeClass, className].filter(Boolean).join(' ')} {...rest}>
+        {children}
+      </BaseBox>
+    </>
+  );
+};
+
+const getCalendarStylesStyleObject = ({
+  theme,
+  pickerType,
+  isMobile,
+}: {
+  theme: ReturnType<typeof useTheme>['theme'];
+  pickerType?: PickerType;
+  isMobile: boolean;
+}): Record<string, unknown> => {
   const device = isMobile ? 'mobile' : 'desktop';
   const isDayPicker = pickerType === 'day';
 
@@ -336,6 +380,32 @@ const CalendarStyles = styled(BaseBox)<{ pickerType?: PickerType }>(({ theme, pi
       },
     },
   };
-});
+};
+
+type CalendarStylesProps = BaseBoxProps & { pickerType?: PickerType };
+
+const CalendarStyles = ({
+  pickerType,
+  className,
+  children,
+  ...rest
+}: CalendarStylesProps): React.ReactElement => {
+  const { theme } = useTheme();
+  const isMobile = useIsMobile();
+  const scopeClass = useStableScopeClass('calstyles');
+  const styleObject = React.useMemo(
+    () => getCalendarStylesStyleObject({ theme, pickerType, isMobile }),
+    [theme, pickerType, isMobile],
+  );
+
+  return (
+    <>
+      <ScopedRuntimeStyles scopeClass={scopeClass} styleObject={styleObject} />
+      <BaseBox className={[scopeClass, className].filter(Boolean).join(' ')} {...rest}>
+        {children}
+      </BaseBox>
+    </>
+  );
+};
 
 export { CalendarStyles, CalendarGradientStyles };

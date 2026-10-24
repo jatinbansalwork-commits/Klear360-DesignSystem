@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -9,6 +8,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import usePresence from 'use-presence';
+import styles from './LightBox.module.scss';
 import { LightBoxProvider } from './LightBoxContext';
 import type { LightBoxProps } from './types';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
@@ -22,35 +22,27 @@ import { Box } from '~components/Box';
 import { BaseBox } from '~components/Box/BaseBox';
 import { CloseIcon } from '~components/Icons';
 
-const StyledBackdrop = styled(FloatingOverlay)<{ $isVisible: boolean }>(
-  ({ theme, $isVisible }) => ({
-    backgroundColor: theme.colors.overlay.background.subtle,
-    transitionProperty: 'opacity',
-    backdropFilter: `blur(${theme.backdropBlur.high}px)`,
-    transitionDuration: `${makeMotionTime(theme.motion.duration.moderate)}`,
-    transitionTimingFunction: $isVisible
-      ? castWebType(theme.motion.easing.entrance)
-      : castWebType(theme.motion.easing.exit),
-    opacity: $isVisible ? 1 : 0,
-  }),
-);
-
-const StyledLightBoxContent = styled(BaseBox)<{ $isVisible: boolean }>(({ theme, $isVisible }) => ({
-  opacity: $isVisible ? 1 : 0,
-  transitionProperty: 'opacity',
-  transitionDuration: `${makeMotionTime(theme.motion.duration.moderate)}`,
-  transitionTimingFunction: $isVisible
-    ? castWebType(theme.motion.easing.entrance)
-    : castWebType(theme.motion.easing.exit),
-}));
-
 type LightBoxBackdropProps = {
   isVisible: boolean;
 };
 
-const LightBoxBackdrop = ({ isVisible }: LightBoxBackdropProps): React.ReactElement => (
-  <StyledBackdrop $isVisible={isVisible} lockScroll={true} />
-);
+const LightBoxBackdrop = ({ isVisible }: LightBoxBackdropProps): React.ReactElement => {
+  const { theme } = useTheme();
+  return (
+    <FloatingOverlay
+      lockScroll={true}
+      className={styles.backdrop}
+      data-visible={isVisible ? true : undefined}
+      style={{
+        backdropFilter: `blur(${theme.backdropBlur.high}px)`,
+        transitionDuration: makeMotionTime(theme.motion.duration.moderate),
+        transitionTimingFunction: isVisible
+          ? castWebType(theme.motion.easing.entrance)
+          : castWebType(theme.motion.easing.exit),
+      }}
+    />
+  );
+};
 
 const _LightBox = ({
   isOpen,
@@ -90,6 +82,13 @@ const _LightBox = ({
   const { getFloatingProps } = useInteractions([dismiss]);
   const defaultInitialFocusRef = React.useRef<HTMLButtonElement | null>(null);
 
+  const contentTransitionStyle = {
+    transitionDuration: makeMotionTime(theme.motion.duration.moderate),
+    transitionTimingFunction: isVisible
+      ? castWebType(theme.motion.easing.entrance)
+      : castWebType(theme.motion.easing.exit),
+  };
+
   return (
     <LightBoxProvider value={{ activeIndex, handleIndexChange }}>
       <FloatingPortal>
@@ -102,10 +101,12 @@ const _LightBox = ({
               context={context}
               modal={true}
             >
-              <StyledLightBoxContent
+              <BaseBox
                 ref={refs.setFloating}
                 {...getFloatingProps()}
-                $isVisible={isVisible}
+                className={styles.content}
+                data-visible={isVisible ? true : undefined}
+                style={contentTransitionStyle}
                 role="dialog"
                 aria-label={accessibilityLabel}
                 aria-modal={true}
@@ -138,7 +139,7 @@ const _LightBox = ({
                 <BaseBox position="relative" height="100%" width="100%">
                   {children}
                 </BaseBox>
-              </StyledLightBoxContent>
+              </BaseBox>
             </FloatingFocusManager>
           </Box>
         ) : null}

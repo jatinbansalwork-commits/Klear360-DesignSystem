@@ -1,0 +1,41 @@
+.animatedContainer {
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+  opacity: 1;
+}
+
+.animatedContainerCollapsed {
+  max-width: 0;
+  opacity: 0;
+}
+
+@keyframes tagShow {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tagDismiss {
+  from {
+    opacity: 1;
+    max-width: 100%;
+  }
+
+  to {
+    opacity: 0;
+    max-width: 0;
+  }
+}
+
+.showAnimation {
+  animation: tagShow var(--duration-xquick) var(--easing-entrance);
+}
+
+.dismissAnimation {
+  animation: tagDismiss var(--duration-xquick) var(--easing-exit);
+}

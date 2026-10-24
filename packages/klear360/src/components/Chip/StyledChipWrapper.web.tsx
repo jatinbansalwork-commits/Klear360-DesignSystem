@@ -1,36 +1,54 @@
-import styled from 'styled-components';
+import React from 'react';
 import type { StyledChipWrapperProps } from './types';
-import { chipMotionTokens, chipColorTokens, chipBorderRadiusTokens } from './chipTokens';
+import { chipBorderRadiusTokens } from './chipTokens';
+import { getChipInnerModuleClasses } from './getChipModuleClasses';
 import getIn from '~utils/lodashButBetter/get';
 import BaseBox from '~components/Box/BaseBox';
-import { makeMotionTime } from '~utils/makeMotionTime';
-import { castWebType } from '~utils';
+import { useTheme } from '~components/Klear360Provider';
+import { makeBorderSize } from '~utils/makeBorderSize';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
 
-const StyledChipWrapper = styled(BaseBox)<StyledChipWrapperProps>(
-  ({ theme, borderColor, isChecked, isDisabled, color, size = 'small' as const }) => {
-    const easing = getIn(theme.motion, chipMotionTokens.easing);
-    const duration = castWebType(makeMotionTime(getIn(theme.motion, chipMotionTokens.duration)));
-    const borderRadiusKey = chipBorderRadiusTokens[size];
-    const outerRadius = theme.border.radius[borderRadiusKey];
-    const outerBorderWidth = theme.border.width.thin;
+type WebStyledChipWrapperProps = Omit<StyledChipWrapperProps, 'theme'> &
+  BaseBoxProps & {
+    style?: React.CSSProperties;
+  };
 
-    return {
-      display: 'flex',
-      borderColor: isChecked ? getIn(theme.colors, borderColor) : 'transparent',
-      borderRadius: `${outerRadius - outerBorderWidth}px`,
+const StyledChipWrapper = ({
+  borderColor,
+  isChecked,
+  isDisabled,
+  color,
+  size = 'small',
+  className,
+  style,
+  children,
+  ...rest
+}: WebStyledChipWrapperProps): React.ReactElement => {
+  const { theme } = useTheme();
+  const borderRadiusKey = chipBorderRadiusTokens[size];
+  const outerRadius = theme.border.radius[borderRadiusKey];
+  const isMediumOrLarge = size === 'medium' || size === 'large';
+  const outerBorderWidth = getIn(theme, 'border.width.thin') as number;
 
-      ...(!isDisabled && {
-        '&:hover': {
-          backgroundColor: getIn(
-            theme.colors,
-            chipColorTokens.background[isChecked && color ? color : 'unchecked'].hover,
-          ),
-          transitionTimingFunction: easing,
-          transitionDuration: duration,
-        },
-      }),
-    };
-  },
-);
+  const innerStyle: React.CSSProperties = {
+    borderRadius: makeBorderSize(outerRadius - outerBorderWidth),
+    borderColor:
+      isChecked && !isMediumOrLarge ? getIn(theme.colors, borderColor) : 'transparent',
+    ...(isMediumOrLarge ? { borderWidth: 0 } : {}),
+    overflow: 'visible',
+  };
+
+  return (
+    <BaseBox
+      {...rest}
+      className={[getChipInnerModuleClasses({ isChecked, isDisabled, color }), className]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ ...innerStyle, ...style }}
+    >
+      {children}
+    </BaseBox>
+  );
+};
 
 export { StyledChipWrapper };

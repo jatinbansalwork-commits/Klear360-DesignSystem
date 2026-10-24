@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './BottomNav.module.scss';
 import type { BottomNavItemProps, BottomNavProps } from './types';
-import { makeMotionTime, makeSpace, useTheme } from '~utils';
+import { useTheme } from '~utils';
 import { makeAccessible } from '~utils/makeAccessible';
 import { throwKlear360Error } from '~utils/logger';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
@@ -12,19 +12,6 @@ import BaseBox from '~components/Box/BaseBox';
 import { getStyledProps } from '~components/Box/styledProps';
 import { Text } from '~components/Typography';
 import { componentZIndices } from '~utils/componentZIndices';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
-
-const StyledBottomNav = styled(BaseBox)(() => {
-  const { colorScheme } = useTheme();
-
-  const boxShadowColor =
-    colorScheme === 'light'
-      ? globalColors.neutral.blueGrayLight.a912
-      : globalColors.neutral.black[100];
-  return {
-    boxShadow: `0px -8px 24px 0px ${boxShadowColor}`,
-  };
-});
 
 /**
  * ### BottomNav component
@@ -70,6 +57,8 @@ const _BottomNav = (
   { children, zIndex = componentZIndices.bottomNav, testID, ...rest }: BottomNavProps,
   ref: React.Ref<Klear360ElementRef>,
 ): React.ReactElement => {
+  const { colorScheme } = useTheme();
+
   if (__DEV__) {
     const childrenCount = React.Children.count(children);
     if (childrenCount > 5 && childrenCount < 2) {
@@ -80,8 +69,13 @@ const _BottomNav = (
     }
   }
 
+  const boxShadowColor =
+    colorScheme === 'light'
+      ? globalColors.neutral.blueGrayLight.a912
+      : globalColors.neutral.black[100];
+
   return (
-    <StyledBottomNav
+    <BaseBox
       ref={ref as never}
       role="navigation"
       position="fixed"
@@ -94,6 +88,7 @@ const _BottomNav = (
       paddingX="spacing.2"
       display="flex"
       flexDirection="row"
+      style={{ boxShadow: `0px -8px 24px 0px ${boxShadowColor}` }}
       {...getStyledProps(rest)}
       zIndex={zIndex}
       {...metaAttribute({
@@ -103,29 +98,9 @@ const _BottomNav = (
       {...makeAnalyticsAttribute(rest)}
     >
       {children}
-    </StyledBottomNav>
+    </BaseBox>
   );
 };
-
-const StyledBottomNavItem = styled(BaseBox)<{ to?: string }>((props) => {
-  return {
-    textDecoration: 'none',
-    color: props.theme.colors.interactive.text.gray.subtle,
-    backgroundColor: 'transparent',
-    border: 'none',
-    paddingLeft: makeSpace(props.theme.spacing[0]),
-    paddingRight: makeSpace(props.theme.spacing[0]),
-    transition: `color ${makeMotionTime(props.theme.motion.duration['2xquick'])} ${
-      props.theme.motion.easing.standard
-    }`,
-    '&[aria-current="page"]': {
-      color: props.theme.colors.interactive.text.primary.subtle,
-    },
-    '&:focus-visible': {
-      ...getFocusRingStyles({ theme: props.theme }),
-    },
-  };
-});
 
 const BottomNavItem = ({
   title,
@@ -144,7 +119,7 @@ const BottomNavItem = ({
   const defaultRel = target === '_blank' ? 'noreferrer noopener' : undefined;
 
   return (
-    <StyledBottomNavItem
+    <BaseBox
       as={isRouterLink ? as : defaultRenderElement}
       href={as ? undefined : href}
       to={href} // for react router
@@ -160,6 +135,7 @@ const BottomNavItem = ({
       cursor="pointer"
       onClick={onClick}
       gap="spacing.1"
+      className={styles.bottomNavItem}
       {...makeAccessible({
         current: isActive ? 'page' : undefined,
       })}
@@ -173,7 +149,7 @@ const BottomNavItem = ({
       <Text truncateAfterLines={1} color="currentColor" size="xsmall" weight="semibold">
         {title}
       </Text>
-    </StyledBottomNavItem>
+    </BaseBox>
   );
 };
 

@@ -2,19 +2,19 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable consistent-return */
 import React from 'react';
-import styled from 'styled-components';
 import { useTopNavContext } from '../TopNavContext';
 import type { TabNavItemProps, TabNavIconProp } from './types';
 import { useTabNavContext } from './TabNavContext';
-import { makeBorderSize, makeMotionTime, makeSpace } from '~utils';
-import { opacity } from '~tokens/global';
+import styles from './TabNav.module.scss';
+import {
+  getTabNavItemStyles,
+  getTabNavItemWrapperStyles,
+} from './getTabNavItemStyles';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAccessible } from '~utils/makeAccessible';
 import BaseBox from '~components/Box/BaseBox';
-import getTextStyles from '~components/Typography/Text/getTextStyles';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { useTheme } from '~components/Klear360Provider';
 import type { Theme } from '~components/Klear360Provider';
 import type { IconComponent } from '~components/Icons';
@@ -75,79 +75,6 @@ const getIconColor = (isPrimaryVariant: boolean, isActive: boolean | undefined) 
   return isActive ? 'surface.icon.staticWhite.normal' : 'surface.icon.staticWhite.subtle';
 };
 
-const StyledTabNavItem = styled.a<{
-  $isActive?: boolean;
-  $foregroundColors: ReturnType<typeof getForegroundColors>;
-}>(({ theme, $isActive, $foregroundColors }) => {
-  return {
-    ...getTextStyles({
-      theme,
-      size: 'medium',
-      weight: $isActive ? 'semibold' : 'medium',
-    }),
-    color: $isActive ? $foregroundColors.normal : $foregroundColors.subtle,
-    flex: 1,
-    display: 'flex',
-    gap: makeSpace(theme.spacing[2]),
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    textDecoration: 'none',
-    whiteSpace: 'nowrap',
-    paddingTop: makeSpace(theme.spacing[3]),
-    paddingBottom: makeSpace(theme.spacing[3]),
-    paddingLeft: makeSpace(theme.spacing[4]),
-    paddingRight: makeSpace(theme.spacing[4]),
-    borderRadius: makeBorderSize(theme.border.radius.medium),
-    // reset button styles
-    border: 'none',
-    background: 'none',
-    opacity: $isActive ? 1 : opacity[1000],
-    transition: `opacity ${makeMotionTime(theme.motion.duration.moderate)} ${
-      theme.motion.easing.standard
-    }`,
-    '&[aria-expanded="true"]': $isActive ? {} : {},
-    '&:hover': $isActive
-      ? {}
-      : {
-          opacity: 1,
-          color: $foregroundColors.hover,
-        },
-    '&:focus-visible': {
-      ...getFocusRingStyles({ theme }),
-      opacity: 1,
-      color: $foregroundColors.hover,
-    },
-    '&:active': {
-      opacity: 1,
-    },
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      inset: 0,
-      zIndex: 1, // ensures it sits above the wrapper
-    },
-  };
-});
-
-const StyledTabNavItemWrapper = styled(BaseBox)<{
-  isActive?: boolean;
-}>(({ theme, isActive }) => {
-  return {
-    position: 'relative',
-    flexShrink: 0,
-    padding: `${makeSpace(theme.spacing[2])} ${makeSpace(theme.spacing[1])}`,
-    backgroundColor: 'transparent',
-    borderColor: isActive ? theme.colors.surface.border.gray.muted : 'transparent',
-    borderTopLeftRadius: makeBorderSize(theme.border.radius.medium),
-    borderTopRightRadius: makeBorderSize(theme.border.radius.medium),
-    transition: `${makeMotionTime(theme.motion.duration.moderate)} ${theme.motion.easing.standard}`,
-    transitionProperty: 'background',
-    zIndex: 1,
-    cursor: 'pointer',
-  };
-});
-
 const _TabNavItem: React.ForwardRefRenderFunction<HTMLAnchorElement, TabNavItemProps> = (
   {
     as,
@@ -203,23 +130,30 @@ const _TabNavItem: React.ForwardRefRenderFunction<HTMLAnchorElement, TabNavItemP
   const foregroundColors = getForegroundColors(isPrimaryVariant, theme);
   const glowColor = getGlowColor({ icon, isPrimaryVariant, theme });
   const iconColor = getIconColor(isPrimaryVariant, isActive);
+  const Component = (as ?? (href ? 'a' : 'button')) as React.ElementType;
 
   return (
-    <StyledTabNavItemWrapper
+    <BaseBox
       ref={bodyRef}
-      isActive={isActive}
+      className={styles.itemWrapper}
+      style={
+        {
+          ...getTabNavItemWrapperStyles({ theme, isActive }),
+          ['--tab-nav-item-hover-color' as string]: foregroundColors.hover,
+        } as React.CSSProperties
+      }
       data-active={isActive ? 'true' : 'false'}
       data-glow-color={glowColor}
       {...metaAttribute({ name: MetaConstants.TabNavItem })}
     >
-      <StyledTabNavItem
-        ref={ref}
-        as={as ?? (href ? 'a' : 'button')}
-        to={href}
-        href={as ? undefined : href}
+      <Component
+        ref={ref as never}
+        className={styles.itemLink}
+        style={getTabNavItemStyles({ theme, isActive, foregroundColors })}
+        {...(href && !as ? { href } : {})}
+        {...(href && as ? { to: href } : {})}
         target={target}
-        $isActive={isActive}
-        $foregroundColors={foregroundColors}
+        data-active={isActive ? 'true' : 'false'}
         {...props}
         {...metaAttribute({ name: MetaConstants.TabNavItemLink })}
         {...makeAccessible({ label: accessibilityLabel, current: isActive })}
@@ -228,8 +162,8 @@ const _TabNavItem: React.ForwardRefRenderFunction<HTMLAnchorElement, TabNavItemP
         {title}
         {titleSuffix ? titleSuffix : null}
         {trailing ? trailing : null}
-      </StyledTabNavItem>
-    </StyledTabNavItemWrapper>
+      </Component>
+    </BaseBox>
   );
 };
 

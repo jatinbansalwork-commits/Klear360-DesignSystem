@@ -1,0 +1,13 @@
+.chevronRotator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition-property: transform;
+  transition-duration: var(--duration-quick);
+  transition-timing-function: var(--easing-standard);
+
+  &[data-expanded] {
+    transform: rotate(90deg);
+  }
+}

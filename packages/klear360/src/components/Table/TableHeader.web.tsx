@@ -1,18 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
-import { Header, HeaderRow, HeaderCell } from '@table-library/react-table-library/table.js';
+import {
+  ScopedTableHeader,
+  StyledFilterHeaderCell,
+  StyledHeaderRow,
+  StyledHeaderCell,
+} from './tableScopedStyled.web';
 import { checkboxCellWidth, tableHeader, tableRow, classes } from './tokens';
 import { useTableRowContext, useTableDataContext } from './TableContext';
 import { ComponentIds } from './componentIds';
 import type {
   TableHeaderRowProps,
   TableHeaderCellProps,
-  TableBackgroundColors,
-  TableProps,
-  TableToolbarPlacement,
   TableColumnFilterConfig,
 } from './types';
+import { ScopedRuntimeStyles, useStableScopeClass } from '~utils/web/scopedCssFromObject';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
 import { Text } from '~components/Typography';
@@ -25,7 +26,6 @@ import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { useTheme } from '~components/Klear360Provider';
 import getIn from '~utils/lodashButBetter/get';
 import { getFocusRingStyles } from '~utils/getFocusRingStyles';
-import { size } from '~tokens/global';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { BaseInput } from '~components/Input/BaseInput';
 import { CloseIcon, SearchIcon } from '~components/Icons';
@@ -33,39 +33,6 @@ import { IconButton } from '~components/Button/IconButton';
 import { Dropdown, DropdownOverlay } from '~components/Dropdown';
 import { SelectInput } from '~components/Input/DropdownInputTriggers';
 import { ActionList, ActionListItem } from '~components/ActionList';
-
-const SortButton = styled.button(({ theme }) => ({
-  cursor: 'pointer',
-  border: 'none',
-  // Grows the 20px icon's hit area to 24x24 (WCAG 2.2 SC 2.5.8 Target Size) - the matching
-  // negative margin cancels it out in layout, so the icon, the label beside it and the header
-  // row height stay exactly where they were. The focus ring (an outline on this button) wraps
-  // the full hit area.
-  padding: makeSpace(theme.spacing[1]),
-  margin: `-${makeSpace(theme.spacing[1])}`,
-  borderRadius: theme.border.radius.small,
-  background: 'transparent',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: makeSpace(theme.spacing[1]),
-  transitionProperty: 'color, box-shadow',
-  transitionDuration: castWebType(makeMotionTime(getIn(theme.motion, 'duration.quick'))),
-  transitionTimingFunction: (theme.motion.easing.standard as unknown) as string,
-  '&:focus-visible': getFocusRingStyles({ theme }),
-}));
-
-const PriorityBadge = styled(BaseBox)(({ theme }) => ({
-  minWidth: makeSize(14),
-  height: makeSize(14),
-  borderRadius: theme.border.radius.round,
-  backgroundColor: getIn(theme.colors, 'interactive.background.gray.faded'),
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  paddingLeft: makeSpace(theme.spacing[1]),
-  paddingRight: makeSpace(theme.spacing[1]),
-}));
 
 /**
  * `sortDirection` is this column's own state - 'none' is the unsorted state, distinct from
@@ -81,13 +48,38 @@ const SortIcon = ({
   priority?: number;
 }): React.ReactElement => {
   const { theme } = useTheme();
+  const sortButtonScope = useStableScopeClass('tblsort');
+  const sortButtonFocusStyles = React.useMemo(
+    () => ({ '&:focus-visible': getFocusRingStyles({ theme }) }),
+    [theme],
+  );
   const defaultColor = getIn(theme.colors, 'interactive.icon.gray.disabled');
   const activeColor = getIn(theme.colors, 'interactive.icon.gray.muted');
   // Preserves the existing mapping: descending highlights the up arrow, ascending the down arrow.
   const upArrowColor = sortDirection === 'desc' ? activeColor : defaultColor;
   const downArrowColor = sortDirection === 'asc' ? activeColor : defaultColor;
+  const spacing1 = makeSpace(theme.spacing[1]);
   return (
-    <SortButton
+    <>
+      <ScopedRuntimeStyles scopeClass={sortButtonScope} styleObject={sortButtonFocusStyles} />
+      <button
+      type="button"
+      className={sortButtonScope}
+      style={{
+        cursor: 'pointer',
+        border: 'none',
+        padding: spacing1,
+        margin: `-${spacing1}`,
+        borderRadius: theme.border.radius.small,
+        background: 'transparent',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: spacing1,
+        transitionProperty: 'color, box-shadow',
+        transitionDuration: castWebType(makeMotionTime(getIn(theme.motion, 'duration.quick'))),
+        transitionTimingFunction: castWebType(theme.motion.easing.standard),
+      }}
       {...metaAttribute({ name: MetaConstants.TableSortButton })}
       {...makeAccessible({ label: 'Toggle Sort', role: 'button' })}
     >
@@ -102,100 +94,26 @@ const SortIcon = ({
         />
       </svg>
       {priority ? (
-        <PriorityBadge>
+        <BaseBox
+          minWidth={makeSize(14)}
+          height={makeSize(14)}
+          borderRadius="round"
+          backgroundColor="interactive.background.gray.faded"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          paddingLeft="spacing.1"
+          paddingRight="spacing.1"
+        >
           <Text size="small" color="surface.text.gray.muted">
             {priority}
           </Text>
-        </PriorityBadge>
+        </BaseBox>
       ) : null}
-    </SortButton>
+    </button>
+    </>
   );
 };
-
-const StyledHeader = styled(Header)<{ $tableToolbarPlacement: TableToolbarPlacement }>(
-  ({ $tableToolbarPlacement }) => ({
-    '&&&': {
-      '& tr:first-child th': {
-        borderTop: 'none',
-      },
-      display: $tableToolbarPlacement === 'overlay' ? 'none' : undefined,
-    },
-  }),
-);
-
-const StyledFilterHeaderCell = styled(HeaderCell)<{
-  $backgroundColor: TableBackgroundColors;
-  $stickyTopOffsetPx?: number;
-}>(({ theme, $backgroundColor, $stickyTopOffsetPx }) => ({
-  '&&&': {
-    // Same sticky-offset mechanism as `StyledHeaderCell` (grouped multi-row headers) - pins the
-    // filter row directly below the label row(s) instead of also sticking to `top: 0` and sliding
-    // over them on vertical scroll.
-    ...($stickyTopOffsetPx ? { top: `${$stickyTopOffsetPx}px` } : {}),
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    backgroundColor: getIn(theme.colors, $backgroundColor),
-    borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
-    borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
-    borderBottomStyle: 'solid',
-    // No horizontal cell padding here - the input already carries its own inset (see the
-    // `marginX` on its wrapping BaseBox below), matching TableEditableCell's flush-cell
-    // convention. Padding on both would stack (previously 12px cell + 12px icon-slot padding
-    // = 24px before the icon, noticeably more than TableEditableCell's 16px).
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingTop: makeSpace(getIn(theme.spacing, '2')),
-    paddingBottom: makeSpace(getIn(theme.spacing, '2')),
-    // The input itself renders flush/borderless (`isTableInputCell`) same as TableEditableCell,
-    // so the cell - not the input - is what shows the focus ring while typing/clearing.
-    '&:focus-within': getFocusRingStyles({ theme, negativeOffset: true }),
-  },
-}));
-
-const StyledHeaderRow = styled(HeaderRow)<{
-  $showBorderedCells: boolean;
-  $gridTemplateColumns: string | undefined;
-  $hasHoverActions: boolean;
-  $selectionType: TableProps<unknown>['selectionType'];
-  $columnCount: number;
-  $isVirtualized?: boolean;
-}>(
-  ({
-    theme,
-    $showBorderedCells,
-    $gridTemplateColumns,
-    $hasHoverActions,
-    $selectionType,
-    $columnCount,
-    $isVirtualized,
-  }) => ({
-    '& th': $showBorderedCells
-      ? {
-          borderRightWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
-          borderRightColor: getIn(theme.colors, tableRow.borderColor),
-          borderRightStyle: 'solid',
-          ...($isVirtualized && {
-            display: 'grid',
-            // !important: must win over @table-library's own grid-template-columns regardless of
-            // which branch computed the value, matching the same override in Table.web.tsx.
-            gridTemplateColumns: `${
-              $gridTemplateColumns
-                ? `${$gridTemplateColumns} ${$hasHoverActions ? 'min-content' : ''}`
-                : ` ${
-                    $selectionType === 'multiple' ? 'min-content' : ''
-                  } repeat(${$columnCount},minmax(100px, 1fr)) ${
-                    $hasHoverActions ? 'min-content' : ''
-                  }`
-            } !important`,
-          }),
-        }
-      : undefined,
-    '& th:last-child ': {
-      borderRight: 'none',
-    },
-  }),
-);
 
 /**
  * A column's `headerKey` + rendered label, extracted from the real header row's
@@ -440,7 +358,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
     : children;
 
   return (
-    <StyledHeader
+    <ScopedTableHeader
       $tableToolbarPlacement={tableToolbarPlacement}
       {...metaAttribute({ name: MetaConstants.TableHeader })}
       {...makeAnalyticsAttribute(rest)}
@@ -455,7 +373,7 @@ const _TableHeader = ({ children, ...rest }: TableHeaderRowProps): React.ReactEl
           })}
         />
       )}
-    </StyledHeader>
+    </ScopedTableHeader>
   );
 };
 
@@ -463,62 +381,6 @@ const TableHeader = assignWithoutSideEffects(_TableHeader, {
   displayName: 'TableHeader',
   componentId: ComponentIds.TableHeader,
 });
-
-const StyledHeaderCell = styled(HeaderCell)<{
-  $isSortable: boolean;
-  $backgroundColor: TableBackgroundColors;
-  $rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-  $hasPadding: boolean;
-  $textAlign: 'left' | 'center' | 'right';
-  $gridRow?: string;
-  $stickyTopOffsetPx?: number;
-}>(
-  ({
-    theme,
-    $isSortable,
-    $backgroundColor,
-    $rowDensity,
-    $hasPadding,
-    $textAlign,
-    $gridRow,
-    $stickyTopOffsetPx,
-  }) => ({
-    '&&&': {
-      display: $textAlign ? 'flex' : 'block',
-      justifyContent: $textAlign ? 'space-between' : 'initial',
-      height: '100%',
-      backgroundColor: getIn(theme.colors, $backgroundColor),
-      borderBottomWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
-      borderTopWidth: makeSpace(getIn(theme.border.width, tableHeader.borderBottomAndTopWidth)),
-      borderBottomColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
-      borderTopColor: getIn(theme.colors, tableHeader.borderBottomAndTopColor),
-      borderBottomStyle: 'solid',
-      borderTopStyle: 'solid',
-      cursor: $isSortable ? 'pointer' : 'auto',
-      gridRow: $gridRow,
-      // Grouped multi-row headers only - stacks this row's sticky position below the row(s) above
-      // it (each fixed at the compact 36px header row height) instead of every row independently
-      // sticking to `top: 0` and overlapping each other.
-      ...($stickyTopOffsetPx ? { top: `${$stickyTopOffsetPx}px` } : {}),
-      '> div': {
-        backgroundColor: getIn(theme.colors, tableHeader.backgroundColor),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: $textAlign ? $textAlign : 'space-between',
-        alignItems: 'center',
-        height: '100%',
-        paddingLeft: $hasPadding
-          ? makeSpace(getIn(theme, tableRow.paddingLeft[$rowDensity]))
-          : undefined,
-        paddingRight: $hasPadding
-          ? makeSpace(getIn(theme, tableRow.paddingRight[$rowDensity]))
-          : undefined,
-        minHeight: makeSize(getIn(size, tableRow.minHeight[$rowDensity])),
-      },
-      '&:focus-visible': getFocusRingStyles({ theme, negativeOffset: true }),
-    },
-  }),
-);
 
 const _TableHeaderCell = ({
   children,
@@ -560,7 +422,7 @@ const _TableHeaderCell = ({
       gridColumnStart={gridColumnStart}
       gridColumnEnd={gridColumnEnd}
       $gridRow={gridRowValue}
-      $isSortable={isSortable}
+      $isSortable={Boolean(isSortable)}
       $backgroundColor={backgroundColor}
       $rowDensity={headerRowDensity ?? rowDensity}
       $hasPadding={_hasPadding}

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import './GenUISchemaRenderer.global.scss';
+import styles from './GenUISchemaRenderer.module.scss';
 import type { GenUIComponent } from './GenUIComponents';
 import { useGenUI, useGenUIComponentActions, GenUIContext } from './GenUIContext';
 import type { GenUIBlockLevelComponentType } from './types';
@@ -22,180 +23,6 @@ const ComponentErrorFallback = () => {
  * Block-level component types that should have the animated gradient border effect
  */
 const BLOCK_LEVEL_COMPONENTS = new Set(['CARD', 'TABLE']);
-
-/**
- * Global styles for @property rules needed for CSS animation of custom properties
- * Note: @property is required to animate CSS custom properties (interpolation)
- */
-const GlobalAnimationStyles = createGlobalStyle`
-  @property --travel-x {
-    syntax: '<length>';
-    inherits: false;
-    initial-value: 0px;
-  }
-  @property --travel-r {
-    syntax: '<angle>';
-    inherits: false;
-    initial-value: 0deg;
-  }
-  @property --travel-x2 {
-    syntax: '<length>';
-    inherits: false;
-    initial-value: 0px;
-  }
-  @property --travel-r2 {
-    syntax: '<angle>';
-    inherits: false;
-    initial-value: 0deg;
-  }
-`;
-
-/**
- * Static keyframes using CSS variables for positions.
- * Values are passed via inline style: --x-start, --x-end
- * Using ~70% for edge traversal, ~30% for corner sweep (good for typical card aspect ratios)
- */
-const travelX = keyframes`
-  0% { --travel-x: var(--x-start); }
-  70% { --travel-x: var(--x-end); }
-  100% { --travel-x: var(--x-end); }
-`;
-
-const travelR = keyframes`
-  0% { --travel-r: 0deg; }
-  70% { --travel-r: 0deg; }
-  100% { --travel-r: 180deg; }
-`;
-
-const travelX2 = keyframes`
-  0% { --travel-x2: var(--x-start); }
-  30% { --travel-x2: var(--x-start); }
-  100% { --travel-x2: var(--x-end); }
-`;
-
-const travelR2 = keyframes`
-  0% { --travel-r2: 0deg; }
-  30% { --travel-r2: -180deg; }
-  100% { --travel-r2: -180deg; }
-`;
-
-/** Mask reveal animation - diagonal swipe from top-left to bottom-right */
-const maskReveal = keyframes`
-  0% {
-    mask-position: 100% 100%;
-    opacity: 0;
-  }
-  100% {
-    mask-position: 0% 0%;
-    opacity: 1;
-  }
-`;
-
-/** Gradient shade movement - left to right, fades out at end */
-const shadeMove = keyframes`
-  0% {
-    background-position: 0% 50%;
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    background-position: 100% 50%;
-    opacity: 0;
-  }
-`;
-
-/** Container for the animated border effect — owns the vertical margin to keep the ring flush */
-const AnimatedBorderContainer = styled.div<{ $showContent?: boolean }>`
-  position: relative;
-  width: 100%;
-  border-radius: 12px;
-  margin: 12px 0;
-`;
-
-/**
- * The animated gradient border layer - light travels along the border edges.
- * Uses conic-gradient positioned at (--travel-x, 50%) with rotation --travel-r.
- * The animation moves the gradient center along the horizontal axis while
- * rotating it at the corners to create the illusion of perimeter traversal.
- */
-const GradientBorder = styled.div<{ $fadeOut?: boolean }>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  background: conic-gradient(
-      from calc(var(--travel-r) - 50deg) at var(--travel-x) 50%,
-      transparent 0%,
-      hsl(180 85% 65%) 3%,
-      hsl(145 75% 45%) 5%,
-      hsl(145 85% 70%) 7%,
-      transparent 30%,
-      transparent 100%
-    ),
-    conic-gradient(
-      from calc(var(--travel-r2) - 50deg) at var(--travel-x2) 50%,
-      transparent 0%,
-      hsl(180 85% 65%) 3%,
-      hsl(145 75% 45%) 5%,
-      hsl(145 85% 70%) 7%,
-      transparent 30%,
-      transparent 100%
-    );
-  animation: ${travelX} 1s linear infinite, ${travelR} 1s linear infinite,
-    ${travelX2} 1s linear infinite, ${travelR2} 1s linear infinite;
-  pointer-events: none;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  padding: 1.5px;
-  opacity: ${({ $fadeOut }) => ($fadeOut ? 0 : 1)};
-  transition: opacity 3s ease-out;
-`;
-
-/** Content container with mask reveal animation */
-const ContentContainer = styled.div<{
-  ref?: React.Ref<HTMLDivElement>;
-}>`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  /* Diagonal gradient mask for reveal effect - starts hidden, animates to revealed */
-  mask-image: linear-gradient(135deg, black 0%, black 45%, transparent 55%);
-  mask-size: 300% 300%;
-  /* Start position: fully masked (hidden) */
-  mask-position: 100% 100%;
-  /* Animate to 0% 0% (fully revealed) with ease-out for smooth finish */
-  animation: ${maskReveal} 2s ease-out forwards;
-  animation-delay: 0.6s;
-`;
-
-/** Green linear gradient shade overlay */
-const GradientShade = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  pointer-events: none;
-  z-index: 5;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    hsl(145 85% 50% / 0.15) 30%,
-    hsl(155 85% 45% / 0.25) 50%,
-    hsl(145 85% 50% / 0.15) 70%,
-    transparent 100%
-  );
-  background-size: 50% 100%;
-  background-repeat: no-repeat;
-  background-position: 0% 50%;
-  animation: ${shadeMove} 1.5s ease-out forwards;
-  animation-delay: 0.3s;
-`;
 
 /**
  * Animated gradient border wrapper for block-level components.
@@ -244,16 +71,18 @@ const AnimatedGradientBorder: React.FC<{
   useResize(containerRef, computePositions);
 
   return (
-    <>
-      <GlobalAnimationStyles />
-      <AnimatedBorderContainer ref={containerRef} $showContent={showContent}>
-        <GradientBorder $fadeOut={showContent} style={cssVars} />
-        <ContentContainer ref={contentRef}>
-          {children}
-          <GradientShade />
-        </ContentContainer>
-      </AnimatedBorderContainer>
-    </>
+    <div ref={containerRef} className={styles.animatedBorderContainer}>
+      <div
+        className={[styles.gradientBorder, showContent ? styles.gradientBorderFadeOut : undefined]
+          .filter(Boolean)
+          .join(' ')}
+        style={cssVars}
+      />
+      <div ref={contentRef} className={styles.contentContainer}>
+        {children}
+        <div className={styles.gradientShade} />
+      </div>
+    </div>
   );
 };
 

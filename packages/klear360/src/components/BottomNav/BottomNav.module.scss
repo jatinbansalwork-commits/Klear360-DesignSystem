@@ -1,0 +1,20 @@
+.bottomNavItem {
+  text-decoration: none;
+  color: var(--interactive-text-gray-subtle);
+  background-color: transparent;
+  border: none;
+  padding-left: var(--spacing-0);
+  padding-right: var(--spacing-0);
+  transition-property: color;
+  transition-duration: var(--duration-2xquick);
+  transition-timing-function: var(--easing-standard);
+
+  &[aria-current='page'] {
+    color: var(--interactive-text-primary-subtle);
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+}

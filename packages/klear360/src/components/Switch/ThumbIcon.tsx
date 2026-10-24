@@ -9,6 +9,7 @@ import { Path } from '~components/Icons/_Svg';
 import { size } from '~tokens/global';
 import { makeSize } from '~utils/makeSize';
 import { makeSpace } from '~utils/makeSpace';
+import { isReactNative } from '~utils';
 
 const switchIconSize = {
   desktop: {
@@ -40,6 +41,7 @@ const ThumbIcon = ({
   return (
     <AnimatedThumbIcon
       isChecked={isEffectivelyChecked}
+      {...(!isReactNative() ? { size } : {})}
       width={finalWidth}
       height={finalHeight}
       // Switch uses a custom svg, this viewbox is copied from design

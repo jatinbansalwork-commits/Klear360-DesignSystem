@@ -1,14 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { SegmentedControlProps } from './types';
+import { getSegmentedControlContainerClasses } from './getSegmentedControlModuleClasses';
 import { SegmentedControlContext } from './SegmentedControlContext';
 import { SegmentedControlIndicator } from './SegmentedControlIndicator.web';
-import {
-  containerPadding,
-  containerBorderRadius,
-  containerHeight,
-  gap,
-} from './segmentedControlTokens';
+import { containerHeight } from './segmentedControlTokens';
 import { useControllableState } from '~utils/useControllable';
 import { useId } from '~utils/useId';
 import { useMergeRefs } from '~utils/useMergeRefs';
@@ -17,7 +12,6 @@ import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { getStyledProps } from '~components/Box/styledProps';
 import { makeSpace, useBreakpoint } from '~utils';
-import getIn from '~utils/lodashButBetter/get';
 import type { Klear360ElementRef } from '~utils/types';
 import { FormLabel, FormHint } from '~components/Form';
 import BaseBox from '~components/Box/BaseBox';
@@ -25,20 +19,6 @@ import { useTheme } from '~components/Klear360Provider';
 import { formHintLeftLabelMarginLeft } from '~components/Input/BaseInput/baseInputTokens';
 import { makeSize } from '~utils/makeSize';
 import { getHintType } from '~components/Input/BaseInput/BaseInput';
-
-const StyledSegmentedControlContainer = styled.div<{
-  $size: NonNullable<SegmentedControlProps['size']>;
-}>(({ theme, $size }) => ({
-  display: 'flex',
-  width: '100%',
-  height: makeSpace(containerHeight[$size]),
-  alignItems: 'center',
-  gap: makeSpace(getIn(theme, gap[$size])),
-  padding: makeSpace(getIn(theme, containerPadding[$size])),
-  backgroundColor: theme.colors.interactive.background.gray.faded,
-  borderRadius: makeSpace(theme.border.radius[containerBorderRadius[$size]]),
-  position: 'relative',
-}));
 
 const _SegmentedControl = (
   {
@@ -125,9 +105,10 @@ const _SegmentedControl = (
   const ariaLabel = label ? undefined : accessibilityLabel || name;
 
   const segmentedControlElement = (
-    <StyledSegmentedControlContainer
+    <div
       ref={mergedRef}
-      $size={size}
+      className={getSegmentedControlContainerClasses(size)}
+      style={{ height: makeSpace(containerHeight[size]), width: '100%' }}
       {...makeAccessible({
         role: 'radiogroup',
         labelledBy: label ? labelId : undefined,
@@ -139,7 +120,7 @@ const _SegmentedControl = (
     >
       {children}
       <SegmentedControlIndicator containerRef={containerRef} />
-    </StyledSegmentedControlContainer>
+    </div>
   );
 
   return (

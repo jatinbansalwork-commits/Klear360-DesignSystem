@@ -1,43 +1,31 @@
 import React from 'react';
-// eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
-import { Footer, FooterRow, FooterCell } from '@table-library/react-table-library/table.js';
-import styled from 'styled-components';
-import { tableFooter, tableRow, classes } from './tokens';
+import {
+  ScopedTableFooter,
+  StyledFooterRow,
+  StyledFooterCell,
+} from './tableScopedStyled.web';
+import { classes } from './tokens';
 import { ComponentIds } from './componentIds';
 import type {
   TableFooterProps,
   TableFooterRowProps,
   TableFooterCellProps,
-  TableBackgroundColors,
-  TableProps,
 } from './types';
 import { useTableRowContext } from './TableContext';
 import { Text } from '~components/Typography';
-import { makeSize, makeSpace } from '~utils';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import getIn from '~utils/lodashButBetter/get';
-import { size } from '~tokens/global';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
-
-const StyledFooter = styled(Footer)(({ theme }) => ({
-  '&&&': {
-    backgroundColor: getIn(theme.colors, tableFooter.backgroundColor),
-    '& tr:last-child th': {
-      borderBottom: 'none',
-    },
-  },
-}));
 
 const _TableFooter = ({ children, ...rest }: TableFooterProps): React.ReactElement => {
   return (
-    <StyledFooter
+    <ScopedTableFooter
       isFooter
       {...metaAttribute({ name: MetaConstants.TableFooter })}
       {...makeAnalyticsAttribute(rest)}
     >
       {children}
-    </StyledFooter>
+    </ScopedTableFooter>
   );
 };
 
@@ -45,21 +33,6 @@ const TableFooter = assignWithoutSideEffects(_TableFooter, {
   displayName: 'TableFooter',
   componentId: ComponentIds.TableFooter,
 });
-
-const StyledFooterRow = styled(FooterRow)<{ $showBorderedCells: boolean }>(
-  ({ theme, $showBorderedCells }) => ({
-    '& th': $showBorderedCells
-      ? {
-          borderRightWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
-          borderRightColor: getIn(theme.colors, tableRow.borderColor),
-          borderRightStyle: 'solid',
-        }
-      : undefined,
-    '& th:last-child ': {
-      borderRight: 'none',
-    },
-  }),
-);
 
 const _TableFooterRow = ({ children, ...rest }: TableFooterRowProps): React.ReactElement => {
   const { showBorderedCells } = useTableRowContext();
@@ -78,36 +51,6 @@ const TableFooterRow = assignWithoutSideEffects(_TableFooterRow, {
   displayName: 'TableFooterRow',
   componentId: ComponentIds.TableFooterRow,
 });
-
-const StyledFooterCell = styled(FooterCell)<{
-  $backgroundColor: TableBackgroundColors;
-  $rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-  $textAlign?: string;
-  $gridRow?: string;
-}>(({ theme, $backgroundColor, $rowDensity, $textAlign, $gridRow }) => ({
-  '&&&': {
-    height: '100%',
-    backgroundColor: getIn(theme.colors, $backgroundColor),
-    borderBottomWidth: makeSpace(getIn(theme.border.width, tableFooter.borderBottomAndTopWidth)),
-    borderTopWidth: makeSpace(getIn(theme.border.width, tableFooter.borderBottomAndTopWidth)),
-    borderBottomColor: getIn(theme.colors, tableFooter.borderBottomAndTopColor),
-    borderTopColor: getIn(theme.colors, tableFooter.borderBottomAndTopColor),
-    borderBottomStyle: 'solid',
-    borderTopStyle: 'solid',
-    gridRow: $gridRow,
-    '> div': {
-      backgroundColor: getIn(theme.colors, tableFooter.backgroundColor),
-      display: 'flex',
-      flexDirection: 'row',
-      height: '100%',
-      paddingLeft: makeSpace(getIn(theme, tableRow.paddingLeft[$rowDensity])),
-      paddingRight: makeSpace(getIn(theme, tableRow.paddingRight[$rowDensity])),
-      minHeight: makeSize(getIn(size, tableRow.minHeight[$rowDensity])),
-      alignItems: 'center',
-      justifyContent: $textAlign ? $textAlign : 'left',
-    },
-  },
-}));
 
 const _TableFooterCell = ({
   children,

@@ -1,0 +1,45 @@
+.dropZone {
+  display: flex;
+  border-style: dashed;
+  transition-property: background-color;
+  transition-timing-function: var(--easing-standard);
+  transition-duration: var(--duration-2xquick);
+  border-color: var(--interactive-border-gray-default);
+
+  &[data-active] {
+    background-color: var(--interactive-background-primary-faded);
+  }
+
+  &[data-disabled] {
+    border-color: var(--interactive-border-gray-disabled);
+  }
+
+  &:not([data-disabled]):not([data-active]):hover {
+    background-color: var(--interactive-background-gray-default);
+  }
+}
+
+.item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  width: 100%;
+  word-break: break-all;
+  transition-property: background-color;
+  transition-timing-function: var(--easing-standard);
+  transition-duration: var(--duration-2xquick);
+  background-color: var(--file-upload-item-bg, var(--surface-background-gray-intense));
+  border-color: var(--file-upload-item-border, var(--surface-border-gray-subtle));
+  box-shadow: var(--elevation-low-raised);
+  min-height: var(--file-upload-item-min-height, 64px);
+
+  &[data-status='error'] {
+    border-color: var(--interactive-border-negative-faded);
+  }
+
+  &:not([data-status='uploading']):hover {
+    background-color: var(--file-upload-item-bg-hover, var(--surface-background-gray-intense));
+  }
+}

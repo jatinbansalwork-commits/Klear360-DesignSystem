@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { classes, getNavItemTransition, NAV_ITEM_HEIGHT } from '../tokens';
+import styles from '../SideNav.module.scss';
+import { classes, NAV_ITEM_HEIGHT } from '../tokens';
 import type { SideNavItemProps } from '../types';
 import { Box } from '~components/Box';
 import BaseBox from '~components/Box/BaseBox';
@@ -10,12 +10,6 @@ import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { TooltipifyComponent } from '~utils/TooltipifyComponent';
 import type { IconComponent } from '~components/Icons';
 import { isIconComponent } from '~utils/isIconComponent';
-
-const SideNavItemContainer = styled(BaseBox)((props) => {
-  return {
-    transition: getNavItemTransition(props.theme),
-  };
-});
 
 const SideNavItem = ({
   leading,
@@ -31,7 +25,8 @@ const SideNavItem = ({
 
   return (
     <TooltipifyComponent tooltip={tooltip}>
-      <SideNavItemContainer
+      <BaseBox
+        className={styles.sideNavItem}
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
@@ -64,7 +59,7 @@ const SideNavItem = ({
           </BaseBox>
         </Box>
         <BaseBox className={classes.HIDE_WHEN_COLLAPSED}>{trailing}</BaseBox>
-      </SideNavItemContainer>
+      </BaseBox>
     </TooltipifyComponent>
   );
 };

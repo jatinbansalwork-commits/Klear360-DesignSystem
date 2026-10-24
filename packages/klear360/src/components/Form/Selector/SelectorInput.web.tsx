@@ -1,28 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
-import type { CSSObject } from 'styled-components';
 import React from 'react';
-import styled from 'styled-components';
+import type { CSSProperties } from 'react';
 import type { HoverProps, SelectorInputProps } from './types';
+import styles from './SelectorInput.module.scss';
 import getIn from '~utils/lodashButBetter/get';
 import type { Theme } from '~components/Klear360Provider';
+import { useTheme } from '~components/Klear360Provider';
 import { castWebType } from '~utils';
-import { screenReaderStyles } from '~components/VisuallyHidden';
 import type { Klear360ElementRef } from '~utils/types';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { makeMotionTime } from '~utils/makeMotionTime';
 import { makeAccessible } from '~utils/makeAccessible';
 import { useMergeRefs } from '~utils/useMergeRefs';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 
-const getHoverStyles = ({
+const getHoverStyleVars = ({
   theme,
   isDisabled,
   hasError,
   isChecked,
   hoverTokens,
-}: { theme: Theme } & HoverProps): CSSObject => {
+}: { theme: Theme } & HoverProps): CSSProperties => {
   if (isDisabled || hasError) return {};
 
   const checked = isChecked ? 'checked' : 'unchecked';
@@ -30,24 +29,13 @@ const getHoverStyles = ({
   const borderColor = hoverTokens.default.border?.[checked];
 
   return {
-    borderColor: borderColor ? getIn(theme, borderColor) : undefined,
-    backgroundColor: getIn(theme, backgroundColor),
-    transitionTimingFunction: theme.motion.easing.standard as string,
-    transitionDuration: castWebType(makeMotionTime(theme.motion.duration['2xquick'])),
+    ['--selector-hover-background-color' as string]: getIn(theme, backgroundColor),
+    ['--selector-hover-border-color' as string]: borderColor
+      ? getIn(theme, borderColor)
+      : 'transparent',
+    ['--duration-2xquick' as string]: castWebType(makeMotionTime(theme.motion.duration['2xquick'])),
   };
 };
-
-const StyledInput = styled.input<HoverProps>(
-  ({ theme, isChecked, isDisabled, hasError, hoverTokens }) => ({
-    ...screenReaderStyles,
-    '&:focus-visible + div': {
-      ...getFocusRingStyles({ theme }),
-    },
-    '&:hover + div': {
-      ...getHoverStyles({ theme, isChecked, isDisabled, hasError, hoverTokens }),
-    },
-  }),
-);
 
 const _SelectorInput: React.ForwardRefRenderFunction<Klear360ElementRef, SelectorInputProps> = (
   {
@@ -63,23 +51,26 @@ const _SelectorInput: React.ForwardRefRenderFunction<Klear360ElementRef, Selecto
   },
   ref,
 ) => {
-  // merging both refs because inputProps.ref needs to have access to indeterminate state
-  // to be able to set the mixed value via setMixed() function
-  // TODO: replace with a generic `mergeRefs()` util if we do this in other places
+  const { theme } = useTheme();
   const mergedRef = useMergeRefs(ref, inputProps.ref);
 
   return (
-    <StyledInput
+    <input
       id={id}
-      isChecked={isChecked}
-      isDisabled={isDisabled}
-      hasError={hasError}
+      className={styles.input}
+      style={getHoverStyleVars({
+        theme,
+        isChecked,
+        isDisabled,
+        hasError,
+        hoverTokens,
+      })}
+      disabled={isDisabled}
       tabIndex={tabIndex}
-      hoverTokens={hoverTokens}
       {...inputProps}
       {...makeAccessible({ label: accessibilityLabel })}
       {...makeAnalyticsAttribute(rest)}
-      ref={mergedRef}
+      ref={mergedRef as React.Ref<HTMLInputElement>}
     />
   );
 };

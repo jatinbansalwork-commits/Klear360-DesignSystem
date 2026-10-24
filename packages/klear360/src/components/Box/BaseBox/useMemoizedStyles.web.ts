@@ -1,5 +1,4 @@
 import React from 'react';
-import type { CSSObject } from 'styled-components';
 import { getBaseBoxStyles } from './baseBoxStyles';
 import type { BaseBoxProps } from './types';
 import type { Theme } from '~components/Klear360Provider';
@@ -43,7 +42,9 @@ const getMemoDependency = (
  *
  * Checkout:  for benchmarks
  */
-const useMemoizedStyles = (boxProps: BaseBoxProps & { theme: Theme }): CSSObject => {
+const useMemoizedStyles = (
+  boxProps: BaseBoxProps & { theme: Theme },
+): React.CSSProperties => {
   const { colorScheme } = useTheme();
   const boxPropsMemoDependency = getMemoDependency({ ...boxProps, colorScheme });
   const boxPropsCSSObject = React.useMemo(
@@ -52,7 +53,7 @@ const useMemoizedStyles = (boxProps: BaseBoxProps & { theme: Theme }): CSSObject
     [boxPropsMemoDependency],
   );
 
-  return boxPropsCSSObject;
+  return boxPropsCSSObject as React.CSSProperties;
 };
 
 export { useMemoizedStyles, getMemoDependency };

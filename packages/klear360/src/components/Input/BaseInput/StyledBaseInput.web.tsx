@@ -1,86 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import type { CSSObject, DefaultTheme, ThemeProps } from 'styled-components';
-import { getBaseInputStyles } from './baseInputStyles';
 import type { StyledBaseInputProps } from './types';
-import getIn from '~utils/lodashButBetter/get';
-import getTextStyles from '~components/Typography/Text/getTextStyles';
-import getHeadingStyles from '~components/Typography/Heading/getHeadingStyles';
+import { getBaseInputNativeModuleClasses } from './getBaseInputNativeModuleClasses';
+import { getWebInputElementStyle } from './getWebInputElementStyle';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { Text } from '~components/Typography';
 import BaseBox from '~components/Box/BaseBox';
-
-const getWebInputStyles = (
-  props: Omit<StyledBaseInputProps, 'accessibilityProps' | 'setCurrentInteraction' | 'type'> &
-    ThemeProps<DefaultTheme> &
-    (React.InputHTMLAttributes<HTMLInputElement> | React.ButtonHTMLAttributes<HTMLButtonElement>),
-): CSSObject => {
-  return {
-    ...getBaseInputStyles({
-      isDisabled: props.disabled,
-      theme: props.theme,
-      validationState: props.validationState,
-      leadingIcon: props.leadingIcon,
-      prefix: props.prefix,
-      trailingInteractionElement: props.trailingInteractionElement,
-      leadingInteractionElement: props.leadingInteractionElement,
-      suffix: props.suffix,
-      trailingIcon: props.trailingIcon,
-      textAlign: props.textAlign,
-      isTextArea: props.isTextArea,
-      hasTags: props.hasTags,
-      isDropdownTrigger: props.isDropdownTrigger,
-      size: props.$size,
-      padding: props.$padding,
-      valueComponentType: props.valueComponentType,
-      isTableInputCell: props.isTableInputCell,
-      hasLeadingDropdown: props.hasLeadingDropdown,
-      color: props.color,
-      disabledColor: props.disabledColor,
-      isInsideCounterInput: props.isInsideCounterInput,
-    }),
-    outline: 'none',
-    border: 'none',
-    caretColor: props.$caretColor ? getIn(props.theme.colors, props.$caretColor) : undefined,
-    '::placeholder': {
-      ...(props.valueComponentType === 'heading'
-        ? getHeadingStyles({
-            size: props.$size === 'xsmall' ? 'small' : props.$size,
-            weight: 'regular',
-            color: 'surface.text.gray.disabled',
-            theme: props.theme,
-          })
-        : getTextStyles({
-            size: props.$size,
-            variant: 'body',
-            weight: 'regular',
-            color: 'surface.text.gray.disabled',
-            theme: props.theme,
-          })),
-      textAlign: props.textAlign,
-    },
-    ':focus': {
-      outline: 'none',
-    },
-    cursor: props.disabled ? 'not-allowed' : 'auto',
-  };
-};
-
-const StyledBaseNativeInput = styled.input<
-  Omit<StyledBaseInputProps, 'accessibilityProps' | 'setCurrentInteraction' | 'type'>
->(getWebInputStyles);
-
-const StyledBaseNativeButton = styled.button<
-  Omit<StyledBaseInputProps, 'accessibilityProps' | 'setCurrentInteraction' | 'type'>
->((props) => ({
-  ...getWebInputStyles(props),
-}));
-
-const StyledBaseDivWrapper = styled.div<
-  Omit<StyledBaseInputProps, 'accessibilityProps' | 'setCurrentInteraction' | 'type'>
->((props) => ({
-  ...getWebInputStyles(props),
-}));
+import { useTheme } from '~components/Klear360Provider';
 
 const autoCompleteSuggestionTypeMap = {
   none: 'off',
@@ -140,10 +65,90 @@ const _StyledBaseInput: React.ForwardRefRenderFunction<
   },
   ref,
 ) => {
+  const { theme } = useTheme();
+
+  const {
+    as,
+    validationState,
+    leadingIcon,
+    prefix,
+    trailingInteractionElement,
+    onTrailingInteractionElementClick: _onTrailingInteractionElementClick,
+    leadingInteractionElement,
+    suffix,
+    trailingIcon,
+    textAlign,
+    autoFocus,
+    hasLeadingIcon: _hasLeadingIcon,
+    hasTrailingIcon: _hasTrailingIcon,
+    currentInteraction: _currentInteraction,
+    handleOnSubmit: _handleOnSubmit,
+    isTextArea,
+    hasTags,
+    isDropdownTrigger,
+    isTableInputCell,
+    hasLeadingDropdown,
+    $padding,
+    $caretColor,
+    autoGrowMaxHeight: _autoGrowMaxHeight,
+    id,
+    placeholder,
+    defaultValue,
+    value,
+    onPaste,
+    popupId: _popupId,
+    isPopupExpanded: _isPopupExpanded,
+    ...restDom
+  } = props;
+
+  const nativeClassName = getBaseInputNativeModuleClasses({
+    $size,
+    valueComponentType,
+    textAlign,
+    hasLeadingDropdown,
+    leadingIcon,
+    prefix,
+    trailingInteractionElement,
+    leadingInteractionElement,
+    suffix,
+    trailingIcon,
+  });
+
+  const nativeStyle = getWebInputElementStyle({
+    theme,
+    isDisabled,
+    validationState,
+    leadingIcon,
+    prefix,
+    trailingInteractionElement,
+    leadingInteractionElement,
+    suffix,
+    trailingIcon,
+    textAlign,
+    isTextArea,
+    hasTags,
+    isDropdownTrigger,
+    $size,
+    $padding,
+    valueComponentType,
+    isTableInputCell,
+    hasLeadingDropdown,
+    color,
+    disabledColor,
+    isInsideCounterInput,
+    $caretColor,
+  });
+
+  const sharedValueProps = {
+    id,
+    placeholder,
+    defaultValue,
+    value,
+    autoFocus,
+  };
+
   const commonProps = {
     onBlur: (event: React.ChangeEvent<HTMLInputElement>): void => {
-      // In certain cases like SelectInput, we want to ignore the blur animation when option item is clicked.
-      // The selectinput should always look like it is in focus otherwise it triggers blur + focus again which can cause flicker
       if (!shouldIgnoreBlurAnimation) {
         setCurrentInteraction('default');
       }
@@ -157,14 +162,18 @@ const _StyledBaseInput: React.ForwardRefRenderFunction<
       handleOnKeyDown?.({ name, key: event.key, code: event.code, event });
     },
     disabled: isDisabled,
-    enterKeyHint: keyboardReturnKeyType === 'default' ? 'enter' : keyboardReturnKeyType,
+    enterKeyHint: (keyboardReturnKeyType === 'default'
+      ? 'enter'
+      : keyboardReturnKeyType) as React.InputHTMLAttributes<HTMLInputElement>['enterKeyHint'],
     autoComplete: autoCompleteSuggestionType
       ? autoCompleteSuggestionTypeMap[autoCompleteSuggestionType]
       : undefined,
+    className: nativeClassName,
+    style: nativeStyle,
   };
 
-  return props.as === 'div' ? (
-    <StyledBaseDivWrapper
+  return as === 'div' ? (
+    <div
       onBlur={(event: React.FocusEvent<HTMLDivElement>): void => {
         if (!shouldIgnoreBlurAnimation) {
           setCurrentInteraction('default');
@@ -176,70 +185,107 @@ const _StyledBaseInput: React.ForwardRefRenderFunction<
         handleOnFocus?.({ name, value: (event as unknown) as React.ChangeEvent<HTMLInputElement> });
       }}
       onClick={(event: React.MouseEvent<HTMLDivElement>): void => {
-        if (props.isDropdownTrigger) {
+        if (isDropdownTrigger) {
           event.stopPropagation();
         }
         handleOnClick?.({ name, value: (event as unknown) as React.MouseEvent<HTMLInputElement> });
       }}
-      name={name}
-      $size={$size}
-      valueComponentType={valueComponentType}
       tabIndex={tabIndex}
-      {...props}
+      className={nativeClassName}
+      style={nativeStyle}
       {...accessibilityProps}
     >
       {children}
-    </StyledBaseDivWrapper>
-  ) : props.as === 'button' ? (
-    <StyledBaseNativeButton
-      // @ts-expect-error: TS doesnt understand that this will always be `button`
-      ref={ref}
+    </div>
+  ) : as === 'button' ? (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      id={id}
+      {...accessibilityProps}
       name={name}
       type="button"
-      onClick={(event: React.MouseEvent<HTMLInputElement>): void => {
-        if (props.isDropdownTrigger) {
-          // dropdown triggers have click event on outer container as well on web to handle outer padding clicks of input
-          // we don't want the clicks to be called twice in such cases so we stop propogation if this click has happened
+      tabIndex={tabIndex}
+      disabled={isDisabled}
+      className={nativeClassName}
+      style={nativeStyle}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>): void => {
+        if (isDropdownTrigger) {
           event.stopPropagation();
         }
 
-        handleOnClick?.({ name, value: event });
+        handleOnClick?.({
+          name,
+          value: event as unknown as React.MouseEvent<HTMLInputElement>,
+        });
       }}
-      $size={$size}
-      valueComponentType={valueComponentType}
-      {...commonProps}
-      {...props}
-      {...accessibilityProps}
-      value={props.value}
-      tabIndex={tabIndex}
+      onBlur={(event) => commonProps.onBlur(event as unknown as React.ChangeEvent<HTMLInputElement>)}
+      onFocus={(event) =>
+        commonProps.onFocus(event as unknown as React.ChangeEvent<HTMLInputElement>)
+      }
+      onKeyDown={(event) =>
+        commonProps.onKeyDown(event as unknown as React.KeyboardEvent<HTMLInputElement>)
+      }
     >
       <BaseBox display="flex" alignItems="center" gap="spacing.3">
         <Text
           color={
-            props.value && !isDisabled
+            value && !isDisabled
               ? 'interactive.text.gray.normal'
               : 'surface.text.gray.disabled'
           }
           truncateAfterLines={1}
-          textAlign={props.textAlign}
+          textAlign={textAlign}
           size={$size}
         >
-          {props.value ? props.value : props.placeholder}
+          {value ? value : placeholder}
         </Text>
         {valueSuffix}
       </BaseBox>
-    </StyledBaseNativeButton>
+    </button>
+  ) : as === 'textarea' ? (
+    <textarea
+      ref={ref as React.Ref<HTMLTextAreaElement>}
+      name={name}
+      required={isRequired}
+      maxLength={maxCharacters}
+      rows={isDropdownTrigger ? 1 : numberOfLines}
+      onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void =>
+        handleOnChange?.({ name, value: event as unknown as React.ChangeEvent<HTMLInputElement> })
+      }
+      onInput={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        handleOnInput?.({ name, value: event as unknown as React.ChangeEvent<HTMLInputElement> });
+      }}
+      onClick={(event) => {
+        if (isDropdownTrigger) {
+          event.stopPropagation();
+        }
+
+        handleOnClick?.({ name, value: event as unknown as React.MouseEvent<HTMLInputElement> });
+      }}
+      autoCapitalize={autoCapitalize}
+      tabIndex={tabIndex}
+      {...sharedValueProps}
+      onPaste={onPaste as unknown as React.ClipboardEventHandler<HTMLTextAreaElement>}
+      {...restDom}
+      {...accessibilityProps}
+      onBlur={(event) => commonProps.onBlur(event as unknown as React.ChangeEvent<HTMLInputElement>)}
+      onFocus={(event) =>
+        commonProps.onFocus(event as unknown as React.ChangeEvent<HTMLInputElement>)
+      }
+      onKeyDown={(event) =>
+        commonProps.onKeyDown(event as unknown as React.KeyboardEvent<HTMLInputElement>)
+      }
+      disabled={isDisabled}
+      className={nativeClassName}
+      style={nativeStyle}
+    />
   ) : (
-    <StyledBaseNativeInput
-      // @ts-expect-error: TS doesnt understand that this will always be `input`
-      ref={ref}
+    <input
+      ref={ref as React.Ref<HTMLInputElement>}
       name={name}
       type={type === 'telephone' ? 'tel' : type}
       required={isRequired}
       maxLength={maxCharacters}
-      // In Tagged TextArea, tags take up their own space so we need to define height instead of relying on HTML rows
-      rows={props.isTextArea && props.isDropdownTrigger ? 1 : numberOfLines}
-      numberOfLines={numberOfLines}
       inputMode={keyboardType === 'telephone' ? 'tel' : keyboardType}
       onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
         handleOnChange?.({ name, value: event })
@@ -248,24 +294,26 @@ const _StyledBaseInput: React.ForwardRefRenderFunction<
         handleOnInput?.({ name, value: event });
       }}
       onClick={(event) => {
-        if (props.isDropdownTrigger) {
-          // dropdown triggers have click event on outer container as well on web to handle outer padding clicks of input
-          // we don't want the clicks to be called twice in such cases so we stop propogation if this click has happened
+        if (isDropdownTrigger) {
           event.stopPropagation();
         }
 
         handleOnClick?.({ name, value: event });
       }}
       autoCapitalize={autoCapitalize}
-      $size={$size}
-      valueComponentType={valueComponentType}
       tabIndex={tabIndex}
-      color={color}
-      disabledColor={disabledColor}
-      isInsideCounterInput={isInsideCounterInput}
-      {...commonProps}
-      {...props}
+      {...sharedValueProps}
+      onPaste={onPaste}
+      {...restDom}
       {...accessibilityProps}
+      onBlur={commonProps.onBlur}
+      onFocus={commonProps.onFocus}
+      onKeyDown={commonProps.onKeyDown}
+      disabled={isDisabled}
+      enterKeyHint={commonProps.enterKeyHint}
+      autoComplete={commonProps.autoComplete}
+      className={nativeClassName}
+      style={nativeStyle}
     />
   );
 };

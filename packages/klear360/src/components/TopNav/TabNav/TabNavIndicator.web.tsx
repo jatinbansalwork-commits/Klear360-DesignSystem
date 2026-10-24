@@ -2,32 +2,14 @@
 /* eslint-disable consistent-return */
 // inspired from Tabs/TabIndicator.web.tsx
 import React from 'react';
-import styled from 'styled-components';
-import { castWebType, makeBorderSize, makeMotionTime, makeSpace } from '~utils';
+import { castWebType, makeMotionTime } from '~utils';
 import { size, opacity } from '~tokens/global';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useTheme } from '~components/Klear360Provider';
 import { useResize } from '~utils/useResize';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import BaseBox from '~components/Box/BaseBox';
-
-const StyledIndicatorWrapper = styled.div({
-  pointerEvents: 'none',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  willChange: 'transform, width, opacity',
-});
-
-const StyledTabNavIndicatorLine = styled(BaseBox)(({ theme }) => {
-  return {
-    position: 'relative',
-    width: '100%',
-    height: makeSpace(theme.border.width.thinner),
-    borderTopLeftRadius: makeBorderSize(theme.border.radius.medium),
-    borderTopRightRadius: makeBorderSize(theme.border.radius.medium),
-  };
-});
+import styles from './TabNav.module.scss';
 
 const GLOW_OVERFLOW = size[32];
 const GLOW_HEIGHT = size[56];
@@ -37,32 +19,6 @@ const buildGlowMask = (width: number, height: number = GLOW_HEIGHT): string => {
   const rx = width * 0.37;
   return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'%3E%3Cdefs%3E%3Cfilter id='b' filterUnits='userSpaceOnUse' x='0' y='0' width='${width}' height='${height}'%3E%3CfeGaussianBlur stdDeviation='40'/%3E%3C/filter%3E%3C/defs%3E%3Cellipse cx='${cx}' cy='${height}' rx='${rx}' ry='60' fill='black' filter='url(%23b)'/%3E%3C/svg%3E")`;
 };
-
-const StyledIndicatorGlow = styled.div<{
-  glowColor: string;
-  glowWidth: number;
-  glowMask: string;
-}>(({ glowColor, glowWidth, glowMask }) => {
-  const totalWidth = glowWidth + GLOW_OVERFLOW * 2;
-  return {
-    position: 'absolute',
-    bottom: 0,
-    left: `${-GLOW_OVERFLOW}px`,
-    width: `${totalWidth}px`,
-    height: `${GLOW_HEIGHT}px`,
-    // Tuned visually to blend the glow into the dark TopNav background without overpowering the indicator line
-    opacity: opacity[1000],
-    background: `radial-gradient(50% 100% at 50% 100%, ${glowColor} 0%, transparent 100%)`,
-    WebkitMaskImage: glowMask,
-    WebkitMaskRepeat: 'no-repeat',
-    WebkitMaskPosition: 'center bottom',
-    WebkitMaskSize: '100% 100%',
-    maskImage: glowMask,
-    maskRepeat: 'no-repeat',
-    maskPosition: 'center bottom',
-    maskSize: '100% 100%',
-  };
-});
 
 const ACTIVE_ITEM_SELECTOR = '[data-klear360-component="tab-nav-item"][data-active="true"]';
 
@@ -122,10 +78,6 @@ const TabNavIndicator = ({
     void updatePosition();
   }, [updatePosition]);
 
-  // Watch for data-active attribute changes AND child additions/removals so the
-  // indicator moves when: (a) active tab changes via router, (b) an item moves
-  // into/out of the "More" overflow (the More button is added to the DOM with
-  // data-active already set, so a pure attribute observer would miss it).
   React.useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -165,9 +117,13 @@ const TabNavIndicator = ({
 
   useResize(containerRef, updatePosition);
 
+  const glowWidth = activeWidth;
+  const totalWidth = glowWidth + GLOW_OVERFLOW * 2;
+
   return (
-    <StyledIndicatorWrapper
+    <div
       ref={wrapperRef}
+      className={styles.indicatorWrapper}
       style={{
         transitionProperty: 'transform, width, opacity',
         transitionTimingFunction: castWebType(theme.motion.easing.standard),
@@ -177,14 +133,33 @@ const TabNavIndicator = ({
       {...metaAttribute({ name: MetaConstants.TabNavIndicator })}
     >
       {showGlow && activeWidth > 0 && (
-        <StyledIndicatorGlow glowColor={glowColor} glowWidth={activeWidth} glowMask={glowMask} />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: `${-GLOW_OVERFLOW}px`,
+            width: `${totalWidth}px`,
+            height: `${GLOW_HEIGHT}px`,
+            opacity: opacity[1000],
+            background: `radial-gradient(50% 100% at 50% 100%, ${glowColor} 0%, transparent 100%)`,
+            WebkitMaskImage: glowMask,
+            WebkitMaskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center bottom',
+            WebkitMaskSize: '100% 100%',
+            maskImage: glowMask,
+            maskRepeat: 'no-repeat',
+            maskPosition: 'center bottom',
+            maskSize: '100% 100%',
+          }}
+        />
       )}
-      <StyledTabNavIndicatorLine
+      <BaseBox
+        className={styles.indicatorLine}
         style={{
           background: `linear-gradient(90deg, transparent 0%, ${theme.colors.surface.icon.staticWhite.normal} 20%, ${theme.colors.surface.icon.staticWhite.normal} 80.29%, transparent 100%)`,
         }}
       />
-    </StyledIndicatorWrapper>
+    </div>
   );
 };
 

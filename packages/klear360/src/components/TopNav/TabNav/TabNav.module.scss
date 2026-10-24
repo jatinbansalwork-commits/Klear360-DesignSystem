@@ -1,0 +1,45 @@
+.indicatorWrapper {
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  will-change: transform, width, opacity;
+}
+
+.indicatorLine {
+  position: relative;
+  width: 100%;
+  height: var(--border-width-thinner);
+  border-top-left-radius: var(--border-radius-medium);
+  border-top-right-radius: var(--border-radius-medium);
+}
+
+.itemWrapper {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.itemLink {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  &:not([data-active='true']):hover {
+    opacity: 1;
+    color: var(--tab-nav-item-hover-color);
+  }
+
+  &:focus-visible {
+    opacity: 1;
+    color: var(--tab-nav-item-hover-color);
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}

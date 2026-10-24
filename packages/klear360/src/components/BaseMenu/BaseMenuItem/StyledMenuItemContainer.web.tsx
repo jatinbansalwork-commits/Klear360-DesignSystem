@@ -1,35 +1,25 @@
-import styled from 'styled-components';
+import React from 'react';
 import type { StyledBaseMenuItemContainerProps } from '../types';
-import { getBaseMenuItemStyles } from './getBaseMenuItemStyles';
-import { getItemPadding } from './tokens';
-import { getMediaQuery, makeSize, makeSpace } from '~utils';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import BaseBox from '~components/Box/BaseBox';
+import actionListStyles from '../../ActionList/styles/ActionList.module.scss';
 
-const StyledMenuItemContainer = styled(BaseBox)<StyledBaseMenuItemContainerProps>((props) => {
-  return {
-    ...getBaseMenuItemStyles({ theme: props.theme }),
-    padding: makeSize(getItemPadding(props.theme).itemPaddingMobile),
-    marginTop: makeSpace(props.theme.spacing[1]),
-    marginBottom: makeSpace(props.theme.spacing[1]),
-    display: props.isVisible ? 'flex' : 'none',
-    [`@media ${getMediaQuery({ min: props.theme.breakpoints.m })}`]: {
-      padding: makeSize(getItemPadding(props.theme).itemPaddingDesktop),
-    },
-    '&:hover:not([aria-disabled=true]):not([aria-selected=true]), &[aria-expanded="true"]': {
-      backgroundColor:
-        props.color === 'negative'
-          ? props.theme.colors.interactive.background.negative.faded
-          : props.theme.colors.interactive.background.gray.default,
-    },
-    '&:focus-visible': getFocusRingStyles({ theme: props.theme }),
-    '&.active-focus': props.isKeydownPressed
-      ? getFocusRingStyles({ theme: props.theme })
-      : undefined,
-    '&[aria-selected=true], &[aria-selected=true]:hover': {
-      backgroundColor: props.theme.colors.interactive.background.gray.fadedHighlighted,
-    },
-  };
-});
+const StyledMenuItemContainer = React.forwardRef<HTMLElement, StyledBaseMenuItemContainerProps>(
+  ({ color, isVisible, isKeydownPressed: _isKeydownPressed, className, ...props }, ref) => (
+    <BaseBox
+      ref={ref as never}
+      {...props}
+      className={[
+        actionListStyles.item,
+        color === 'negative' ? actionListStyles.itemNegative : undefined,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ display: isVisible ? 'flex' : 'none' }}
+    />
+  ),
+);
+
+StyledMenuItemContainer.displayName = 'StyledMenuItemContainer';
 
 export { StyledMenuItemContainer };

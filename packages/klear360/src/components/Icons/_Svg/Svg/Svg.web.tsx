@@ -1,16 +1,10 @@
-import styled from 'styled-components';
 import type { ReactElement } from 'react';
 import type { SvgProps } from './types';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useStyledProps } from '~components/Box/styledProps';
 import { makeAccessible } from '~utils/makeAccessible';
-
-const StyledSvg = styled.svg<SvgProps & { styledDisplay: SvgProps['display'] }>(
-  ({ styledDisplay, ...props }) => {
-    const styledPropsCSSObject = useStyledProps({ ...props, display: styledDisplay });
-    return styledPropsCSSObject;
-  },
-);
+import { filterForwardableDomProps } from '~components/Box/BaseBox/filterForwardableDomProps';
+import { useTheme } from '~components/Klear360Provider';
 
 const Svg = ({
   children,
@@ -23,21 +17,24 @@ const Svg = ({
   fillOpacity,
   ...styledProps
 }: SvgProps): ReactElement => {
+  const { theme } = useTheme();
+  const styledPropsCSSObject = useStyledProps({ ...styledProps, display, theme });
+  const domProps = filterForwardableDomProps(styledProps as Record<string, unknown>);
+
   return (
-    <StyledSvg
+    <svg
       {...makeAccessible({ hidden: true })}
       {...metaAttribute({ name: MetaConstants.Icon, testID })}
       height={height}
       viewBox={viewBox}
       width={width}
       fill={fill}
-      // svg has its own display prop, which conflicts with our styled display prop
-      styledDisplay={display}
       fillOpacity={fillOpacity}
-      {...styledProps}
+      style={styledPropsCSSObject as React.CSSProperties}
+      {...domProps}
     >
       {children}
-    </StyledSvg>
+    </svg>
   );
 };
 

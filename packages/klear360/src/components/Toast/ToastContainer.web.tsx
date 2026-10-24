@@ -1,7 +1,6 @@
 import type { ToastPosition, ToasterProps, Toast } from 'react-hot-toast';
 import { resolveValue, useToaster } from 'react-hot-toast';
 import React from 'react';
-import styled from 'styled-components';
 import {
   PEEKS,
   MAX_TOASTS,
@@ -15,6 +14,7 @@ import {
   CONTAINER_GUTTER_MOBILE,
   CONTAINER_GUTTER_DESKTOP,
 } from './constants';
+import styles from './ToastContainer.module.scss';
 import { makeMotionTime, makeSize, useTheme } from '~utils';
 import BaseBox from '~components/Box/BaseBox';
 import type { Theme } from '~components/Klear360Provider';
@@ -29,15 +29,18 @@ type CalculateYPositionProps = {
   reverseOrder?: boolean;
 };
 
-const StyledToastWrapper = styled(BaseBox)<{
+const getToastWrapperOpacity = ({
+  isVisible,
+  index,
+  isExpanded,
+  isPromotional,
+}: {
   isVisible: boolean;
   index: number;
   isExpanded: boolean;
   isPromotional: boolean;
-}>(({ isVisible, index, isExpanded, isPromotional }) => {
+}): number => {
   let opacity: number = isVisible ? 1 : 0;
-  // Only make the PEEKING and MAX_TOASTS toasts visible,
-  // Every other toasts should be hidden
   if (index < PEEKS + MAX_TOASTS) {
     opacity = 1;
   } else if (isPromotional || isExpanded) {
@@ -45,14 +48,8 @@ const StyledToastWrapper = styled(BaseBox)<{
   } else {
     opacity = 0;
   }
-
-  return {
-    '& > *': {
-      pointerEvents: opacity === 1 ? 'auto' : 'none',
-    },
-    opacity,
-  };
-});
+  return opacity;
+};
 
 const getPositionStyle = (
   position: ToastPosition,
@@ -286,19 +283,27 @@ const Toaster: React.FC<ToasterProps & { offsetBottom?: number; zIndex?: number 
         // Use -1 * index so newer toasts (lower index) have higher z-index values
         const wrapperZIndex = -1 * index;
 
+        const wrapperOpacity = getToastWrapperOpacity({
+          isVisible: toast.visible,
+          index,
+          isExpanded,
+          isPromotional,
+        });
+
         return (
-          <StyledToastWrapper
+          <BaseBox
             key={toast.id}
-            index={index}
             ref={ref}
-            isExpanded={isExpanded}
-            isVisible={toast.visible}
-            isPromotional={isPromotional}
+            className={[
+              styles.toastWrapper,
+              wrapperOpacity === 1 ? styles.toastWrapperVisible : styles.toastWrapperHidden,
+            ].join(' ')}
             style={{
               ...positionStyle,
               zIndex: wrapperZIndex,
               height: toastHeight,
               overflow: 'hidden',
+              opacity: wrapperOpacity,
             }}
             onMouseEnter={() => {
               if (isPromotional) return;
@@ -316,7 +321,7 @@ const Toaster: React.FC<ToasterProps & { offsetBottom?: number; zIndex?: number 
             <BaseBox height="fit-content" width="100%">
               {resolveValue(toast.message, { ...toast, index })}
             </BaseBox>
-          </StyledToastWrapper>
+          </BaseBox>
         );
       })}
     </BaseBox>

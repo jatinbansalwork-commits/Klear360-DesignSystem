@@ -1,27 +1,13 @@
-import styled from 'styled-components';
 import React from 'react';
+import styles from './Popover.module.scss';
 import { usePopoverContext } from './PopoverContext';
 import type { BaseBoxProps } from '~components/Box/BaseBox';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAccessible } from '~utils/makeAccessible';
-import { useMemoizedStyles } from '~components/Box/BaseBox/useMemoizedStyles';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
+import { useMemoizedStyles } from '~components/Box/BaseBox/useMemoizedStyles.web';
+import { useTheme } from '~utils';
+import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import type { DataAnalyticsAttribute } from '~utils/types';
-
-const StyledPopoverInteractiveWrapper = styled.button((props) => {
-  const cssObject = useMemoizedStyles(props as never);
-
-  return {
-    all: 'unset',
-    ...cssObject,
-    appearance: 'none',
-    cursor: 'pointer',
-    lineHeight: 0,
-    '&:focus-visible': {
-      ...getFocusRingStyles({ theme: props.theme }),
-    },
-  };
-});
 
 type PopoverInteractiveWrapper = {
   /**
@@ -38,14 +24,27 @@ type PopoverInteractiveWrapper = {
   DataAnalyticsAttribute;
 
 const PopoverInteractiveWrapper = React.forwardRef<HTMLButtonElement, PopoverInteractiveWrapper>(
-  ({ accessibilityLabel, ...props }, ref) => {
+  (
+    { accessibilityLabel, className, children, display, onClick, onKeyDown, ...boxProps },
+    ref,
+  ) => {
     usePopoverContext();
+    const { theme } = useTheme();
+    const inlineStyle = useMemoizedStyles({
+      display: display || 'inline-block',
+      theme,
+      ...boxProps,
+    });
 
     return (
-      <StyledPopoverInteractiveWrapper
+      <button
         ref={ref}
-        display={props.display || 'inline-block'}
-        {...props}
+        type="button"
+        className={[styles.interactiveWrapper, className].filter(Boolean).join(' ')}
+        style={inlineStyle}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        {...makeAnalyticsAttribute(boxProps)}
         {...metaAttribute({
           testID: 'popover-interactive-wrapper',
           name: MetaConstants.PopoverInteractiveWrapper,
@@ -53,9 +52,13 @@ const PopoverInteractiveWrapper = React.forwardRef<HTMLButtonElement, PopoverInt
         {...makeAccessible({
           label: accessibilityLabel,
         })}
-      />
+      >
+        {children}
+      </button>
     );
   },
 );
+
+PopoverInteractiveWrapper.displayName = 'PopoverInteractiveWrapper';
 
 export { PopoverInteractiveWrapper };

@@ -1,0 +1,69 @@
+.row:not([data-cite-muted]):hover .valueCell {
+  background-color: var(--surface-background-gray-subtle);
+  transition-property: background-color;
+  transition-duration: var(--duration-quick);
+  transition-timing-function: var(--easing-standard);
+}
+
+.tabularNums {
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.sourceRef {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin: 0;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-style: solid;
+  border-width: var(--border-width-thin);
+  border-radius: var(--border-radius-max);
+  font: inherit;
+  text-align: start;
+  white-space: nowrap;
+  box-shadow: none;
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: var(--duration-quick);
+  transition-timing-function: var(--easing-standard);
+
+  &[data-variant='doc']:not([data-active]) {
+    background-color: var(--feedback-background-neutral-subtle);
+    border-color: var(--feedback-border-neutral-subtle);
+    color: var(--feedback-text-neutral-intense);
+  }
+
+  &[data-variant='trace']:not([data-active]) {
+    background-color: var(--feedback-background-information-subtle);
+    border-color: transparent;
+    color: var(--feedback-text-information-intense);
+  }
+
+  &[data-active] {
+    background-color: var(--surface-background-primary-intense);
+    border-color: var(--surface-background-primary-intense);
+    color: var(--surface-text-static-white-normal);
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    box-shadow: var(--elevation-low-raised);
+  }
+
+  &:hover:not(:disabled) span {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+}

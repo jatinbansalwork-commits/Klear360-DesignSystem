@@ -1,0 +1,22 @@
+@keyframes circularProgressPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.progressArc {
+  height: 100%;
+  width: 100%;
+}
+
+.progressArcPulse {
+  opacity: 0;
+  animation: circularProgressPulse var(--circular-progress-duration) var(--circular-progress-easing)
+    infinite;
+}

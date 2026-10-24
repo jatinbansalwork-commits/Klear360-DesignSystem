@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { CellWrapper, StyledCell } from './TableBody';
+import { CellWrapper } from './TableBody';
+import { EditableStyledCell } from './tableScopedStyled.web';
 import { useTableRowContext } from './TableContext';
 import type { TableEditableCellProps, TableEditableDropdownCellProps, TableProps } from './types';
 import {
@@ -9,7 +9,6 @@ import {
 } from './tokens';
 import { ComponentIds } from './componentIds';
 import { TableEditableCellContext } from './TableEditableCellContext';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import type { MarginProps } from '~components/Box/BaseBox/types/spacingTypes';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import BaseBox from '~components/Box/BaseBox';
@@ -19,17 +18,6 @@ import { castWebType } from '~utils';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { Dropdown } from '~components/Dropdown';
 import { getKeyboardAndAutocompleteProps } from '~components/Input/BaseInput/utils';
-
-const StyledEditableCell = styled(StyledCell)<{
-  $rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-}>(({ theme, $rowDensity }) => ({
-  '&&&': {
-    '&:focus-visible': { outline: '1px solid' },
-    '&:focus-within': {
-      ...($rowDensity !== 'comfortable' ? getFocusRingStyles({ theme, negativeOffset: true }) : {}),
-    },
-  },
-}));
 
 const getEditableInputMargin = ({
   rowDensity,
@@ -74,7 +62,7 @@ const _TableEditableCell = ({
   const { rowDensity, showStripedRows, backgroundColor } = useTableRowContext();
 
   return (
-    <StyledEditableCell
+    <EditableStyledCell
       role="cell"
       $backgroundColor={backgroundColor}
       $rowDensity={rowDensity}
@@ -130,7 +118,7 @@ const _TableEditableCell = ({
           </Box>
         </CellWrapper>
       </BaseBox>
-    </StyledEditableCell>
+    </EditableStyledCell>
   );
 };
 
@@ -143,7 +131,7 @@ const TableEditableDropdownCell = (
 
   return (
     <TableEditableCellContext.Provider value={TABLE_EDITABLE_CELL_CONTEXT_VALUE}>
-      <StyledEditableCell
+      <EditableStyledCell
         role="cell"
         $backgroundColor={backgroundColor}
         $rowDensity={rowDensity}
@@ -172,7 +160,7 @@ const TableEditableDropdownCell = (
             />
           </CellWrapper>
         </BaseBox>
-      </StyledEditableCell>
+      </EditableStyledCell>
     </TableEditableCellContext.Provider>
   );
 };

@@ -1,110 +1,48 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react';
-import type { FlattenSimpleInterpolation } from 'styled-components';
-import styled, { css, keyframes } from 'styled-components';
 import usePresence from 'use-presence';
 import type { SpotlightPopoverTourMaskRect } from './types';
 import { useTheme } from '~components/Klear360Provider';
 import { useWindowSize } from '~utils/useWindowSize';
-import { makeSpace } from '~utils';
-import { makeMotionTime } from '~utils/makeMotionTime';
+import { makeSpace, makeMotionTime } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { componentZIndices } from '~utils/componentZIndices';
-
-const scaleIn = keyframes`
-  from {
-    fill-opacity: 0;
-  }
-  to {
-    fill-opacity: 1;
-  }
-`;
-const fadeOut = keyframes`
-  from {
-    fill-opacity: 1;
-  }
-  to {
-    fill-opacity: 0;
-  }
-`;
-
-const pulsingAnimation = keyframes`
-  0% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-const AnimatedFade = styled.rect<{ animationType: FlattenSimpleInterpolation | null }>(
-  ({ animationType }) =>
-    animationType === null
-      ? ''
-      : css`
-          ${animationType}
-        `,
-);
-
-const StyledPlusing = styled.rect<{ animationType: FlattenSimpleInterpolation | null }>(
-  ({ animationType }) => {
-    return animationType === null
-      ? ''
-      : css`
-          ${animationType}
-        `;
-  },
-);
+import { castWebType } from '~utils';
+import styles from './TourMask.module.scss';
 
 type FadeRectProps = React.ComponentProps<'rect'> & {
   show: boolean;
 };
-const FadeRect = React.memo(
-  ({ show, children, ...rest }: FadeRectProps): React.ReactElement => {
-    const { theme } = useTheme();
 
-    const duration = theme.motion.duration.gentle;
-    const enter = css`
-      animation: ${scaleIn} ${makeMotionTime(duration)}
-        ${(theme.motion.easing.entrance as unknown) as string};
-      animation-fill-mode: forwards;
-    `;
+const FadeRect = React.memo(({ show, children, ...rest }: FadeRectProps): React.ReactElement => {
+  const { theme } = useTheme();
+  const duration = theme.motion.duration.gentle;
+  const cssVars = {
+    '--tour-mask-duration': makeMotionTime(duration),
+    '--tour-mask-easing-enter': castWebType(theme.motion.easing.entrance),
+    '--tour-mask-easing-exit': castWebType(theme.motion.easing.exit),
+  } as React.CSSProperties;
 
-    const exit = css`
-      animation: ${fadeOut} ${makeMotionTime(duration)}
-        ${(theme.motion.easing.exit as unknown) as string};
-      animation-fill-mode: forwards;
-    `;
+  const { isVisible } = usePresence(Boolean(show), {
+    transitionDuration: duration,
+    initialEnter: false,
+  });
 
-    const { isVisible } = usePresence(Boolean(show), {
-      transitionDuration: duration,
-      initialEnter: false,
-    });
+  return (
+    <rect
+      className={isVisible ? styles.fadeEnter : styles.fadeExit}
+      style={cssVars}
+      {...rest}
+    >
+      {children}
+    </rect>
+  );
+});
 
-    return (
-      // @ts-expect-error styled compoennt types are different from react types
-      <AnimatedFade animationType={isVisible ? enter : exit} {...rest}>
-        {children}
-      </AnimatedFade>
-    );
-  },
-);
-
-const PulsingRect = React.memo(
-  (props: React.ComponentProps<'rect'>): React.ReactElement => {
-    const pulsing = css`
-      animation: ${pulsingAnimation} 2s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    `;
-
-    return (
-      // @ts-expect-error styled compoennt types are different from react types
-      <StyledPlusing animationType={pulsing} {...props} />
-    );
-  },
-);
+const PulsingRect = React.memo((props: React.ComponentProps<'rect'>): React.ReactElement => {
+  return <rect className={styles.pulsing} {...props} />;
+});
 
 type SpotlightPopoverTourMaskProps = {
   padding: number;
@@ -135,15 +73,6 @@ const _SpotlightPopoverTourMask = ({
   const y = size.y - (height - size.height) / 2;
 
   const borderWidth = theme.spacing[1];
-  /**
-   * The spotlight takes the corner radius of the component it highlights, so it reads as a
-   * halo on that element rather than as a box of its own. When the step highlights content
-   * that draws no corner at all (plain text), there is nothing to inherit — we agree with
-   * the popover's radius instead of squaring off to a hard corner.
-   *
-   * Note this is the target's radius verbatim, not `radius + padding / 2`: matching the
-   * component is the intended rule, and the small corner offset that leaves is deliberate.
-   */
   const spotlightRadius = size.borderRadius ?? 0;
   const borderRadius = spotlightRadius > 0 ? spotlightRadius : theme.border.radius.large;
 

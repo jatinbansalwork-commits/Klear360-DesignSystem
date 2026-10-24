@@ -1,72 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import type { SegmentedControlItemProps, SegmentedControlSize } from './types';
+import type { SegmentedControlItemProps } from './types';
 import { useSegmentedControlContext } from './SegmentedControlContext';
-import {
-  paddingX,
-  paddingY,
-  textSizeMap,
-  iconSizeMap,
-  itemBorderRadius,
-  itemHeight,
-} from './segmentedControlTokens';
+import { textSizeMap, iconSizeMap, itemHeight } from './segmentedControlTokens';
+import { getSegmentedControlItemClasses } from './getSegmentedControlModuleClasses';
 import { Text } from '~components/Typography';
-import { makeSpace, castWebType, makeMotionTime } from '~utils';
+import { makeSpace } from '~utils';
 import { makeAccessible } from '~utils/makeAccessible';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
-import getIn from '~utils/lodashButBetter/get';
-
-const StyledSegmentedControlButton = styled.button<{
-  $size: SegmentedControlSize;
-  $isSelected: boolean;
-}>(({ theme, $size, $isSelected }) => ({
-  appearance: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: makeSpace(theme.spacing[3]),
-  flex: 1,
-  height: makeSpace(itemHeight[$size]),
-
-  paddingTop: makeSpace(getIn(theme, paddingY[$size])),
-  paddingBottom: makeSpace(getIn(theme, paddingY[$size])),
-  paddingLeft: makeSpace(getIn(theme, paddingX[$size])),
-  paddingRight: makeSpace(getIn(theme, paddingX[$size])),
-
-  backgroundColor: 'transparent',
-  borderRadius: makeSpace(theme.border.radius[itemBorderRadius[$size]]),
-
-  position: 'relative' as const,
-  zIndex: 1,
-
-  transitionProperty: 'background-color',
-  transitionTimingFunction: castWebType(theme.motion.easing.standard),
-  transitionDuration: castWebType(makeMotionTime(theme.motion.duration.gentle)),
-
-  '&:hover:not(:disabled)': {
-    backgroundColor: $isSelected ? 'transparent' : theme.colors.interactive.background.gray.default,
-  },
-
-  '&:focus:not(:focus-visible)': {
-    outline: 'none',
-  },
-
-  '&:focus-visible': {
-    outline: 'none',
-    boxShadow: `inset 0px 0px 0px 4px ${theme.colors.surface.border.primary.muted}`,
-  },
-
-  '&:disabled': {
-    cursor: 'not-allowed',
-    backgroundColor: 'transparent',
-  },
-  '&:disabled:hover': {
-    backgroundColor: 'transparent',
-  },
-}));
 
 const SegmentedControlItem = ({
   children,
@@ -149,14 +90,14 @@ const SegmentedControlItem = ({
     : 'interactive.icon.gray.muted';
 
   return (
-    <StyledSegmentedControlButton
+    <button
       ref={buttonRef}
       type="button"
       id={`${baseId}-${value}-item`}
       data-value={value}
       tabIndex={shouldReceiveFocus ? 0 : -1}
-      $size={size}
-      $isSelected={isSelected}
+      className={getSegmentedControlItemClasses({ size, isSelected })}
+      style={{ height: makeSpace(itemHeight[size]) }}
       disabled={isDisabled}
       onClick={() => {
         setSelectedValue(() => value);
@@ -177,7 +118,7 @@ const SegmentedControlItem = ({
           {children}
         </Text>
       ) : null}
-    </StyledSegmentedControlButton>
+    </button>
   );
 };
 

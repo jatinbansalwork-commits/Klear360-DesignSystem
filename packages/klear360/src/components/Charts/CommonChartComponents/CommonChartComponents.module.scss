@@ -1,0 +1,19 @@
+.legendButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: var(--spacing-2);
+  cursor: var(--legend-cursor, default);
+  opacity: var(--legend-opacity, 1);
+
+  :global(p) {
+    color: var(--surface-text-gray-muted);
+    text-decoration: var(--legend-text-decoration, none);
+    transition: var(--legend-text-transition, none);
+  }
+
+  &:hover :global(p) {
+    color: var(--legend-hover-text-color, var(--surface-text-gray-muted));
+  }
+}

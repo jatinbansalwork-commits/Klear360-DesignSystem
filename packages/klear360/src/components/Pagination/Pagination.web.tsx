@@ -1,9 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import styled from 'styled-components';
 import { pagination } from './tokens';
+import { PaginationPageSelectionButton } from './PaginationPageSelectionButton.web';
 import type { PaginationProps } from './types';
 import isUndefined from '~utils/lodashButBetter/isUndefined';
-import getIn from '~utils/lodashButBetter/get';
 import BaseBox from '~components/Box/BaseBox';
 import {
   ChevronLeftIcon,
@@ -16,61 +15,16 @@ import { Dropdown, DropdownOverlay } from '~components/Dropdown';
 import { SelectInput } from '~components/Input/DropdownInputTriggers';
 import { ActionList, ActionListItem } from '~components/ActionList';
 import { Text } from '~components/Typography';
-import { makeSize } from '~utils';
 import { Button } from '~components/Button';
 import { makeAccessible } from '~utils/makeAccessible';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { useTheme } from '~components/Klear360Provider';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useControllableState } from '~utils/useControllable';
 import { getStyledProps } from '~components/Box/styledProps';
 
 const defaultPageSizeOptions: number[] = [10, 25, 50];
-
-const PageSelectionButton = styled.button.attrs(() => {
-  return {
-    ...metaAttribute({ name: MetaConstants.TablePageSelectionButton }),
-  };
-})<{ isSelected?: boolean; isDisabled?: boolean }>(({ theme, isSelected, isDisabled }) => ({
-  backgroundColor: isSelected
-    ? getIn(theme.colors, pagination.pageSelectionButton.backgroundColorSelected)
-    : 'transparent',
-  border: 'none',
-  cursor: isDisabled ? 'not-allowed' : 'pointer',
-  height: makeSize(pagination.pageSelectionButton.height),
-  width: makeSize(pagination.pageSelectionButton.width),
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: getIn(theme.border.radius, pagination.pageSelectionButton.borderRadius),
-  opacity: isDisabled ? 0.5 : 1,
-  '&:hover': {
-    backgroundColor: isDisabled
-      ? 'transparent'
-      : isSelected
-      ? getIn(theme.colors, pagination.pageSelectionButton.backgroundColorSelectedHover)
-      : getIn(theme.colors, pagination.pageSelectionButton.backgroundColorHover),
-  },
-  '&:focus-visible': {
-    backgroundColor: isDisabled
-      ? 'transparent'
-      : isSelected
-      ? getIn(theme.colors, pagination.pageSelectionButton.backgroundColorSelectedActive)
-      : getIn(theme.colors, pagination.pageSelectionButton.backgroundColorActive),
-    ...getFocusRingStyles({ theme }),
-    outline: 'none',
-    '&:focus-visible': getFocusRingStyles({ theme }),
-  },
-  '&:active': {
-    backgroundColor: isDisabled
-      ? 'transparent'
-      : isSelected
-      ? getIn(theme.colors, pagination.pageSelectionButton.backgroundColorSelectedActive)
-      : getIn(theme.colors, pagination.pageSelectionButton.backgroundColorActive),
-  },
-}));
 
 const getPaginationButtons = ({
   currentSelection,
@@ -339,7 +293,7 @@ const _Pagination = ({
           )}
           {totalPages > 1 && showPageNumberSelector && !onMobile && (
             <BaseBox gap="spacing.1" display="flex" flexDirection="row">
-              <PageSelectionButton
+              <PaginationPageSelectionButton
                 onClick={() => handlePageChange(paginationButtons.firstItem - 1)}
                 isSelected={internalPage === paginationButtons.firstItem - 1}
                 isDisabled={isDisabled}
@@ -355,9 +309,9 @@ const _Pagination = ({
                 >
                   {paginationButtons.firstItem}
                 </Text>
-              </PageSelectionButton>
+              </PaginationPageSelectionButton>
               {paginationButtons.showStartEllipsis && (
-                <PageSelectionButton
+                <PaginationPageSelectionButton
                   onClick={() => handlePageChange(internalPage - 5)}
                   onMouseOver={() => setCurrentEllipseHover('start')}
                   onMouseLeave={() => setCurrentEllipseHover(undefined)}
@@ -371,10 +325,10 @@ const _Pagination = ({
                   ) : (
                     <MoreHorizontalIcon size="medium" />
                   )}
-                </PageSelectionButton>
+                </PaginationPageSelectionButton>
               )}
               {paginationButtons.middleItems.map((item) => (
-                <PageSelectionButton
+                <PaginationPageSelectionButton
                   key={item - 1}
                   onClick={() => handlePageChange(item - 1)}
                   isSelected={internalPage === item - 1}
@@ -391,10 +345,10 @@ const _Pagination = ({
                   >
                     {item}
                   </Text>
-                </PageSelectionButton>
+                </PaginationPageSelectionButton>
               ))}
               {paginationButtons.showEndEllipsis && (
-                <PageSelectionButton
+                <PaginationPageSelectionButton
                   onClick={() => handlePageChange(internalPage + 5)}
                   onMouseOver={() => setCurrentEllipseHover('end')}
                   onMouseLeave={() => setCurrentEllipseHover(undefined)}
@@ -408,9 +362,9 @@ const _Pagination = ({
                   ) : (
                     <MoreHorizontalIcon size="medium" />
                   )}
-                </PageSelectionButton>
+                </PaginationPageSelectionButton>
               )}
-              <PageSelectionButton
+              <PaginationPageSelectionButton
                 onClick={() => handlePageChange(paginationButtons.lastItem - 1)}
                 isSelected={internalPage === paginationButtons.lastItem - 1}
                 isDisabled={isDisabled}
@@ -426,7 +380,7 @@ const _Pagination = ({
                 >
                   {paginationButtons.lastItem}
                 </Text>
-              </PageSelectionButton>
+              </PaginationPageSelectionButton>
             </BaseBox>
           )}
           <Button

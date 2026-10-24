@@ -1,54 +1,51 @@
-import styled from 'styled-components';
+import React from 'react';
 import type { StyledFileUploadItemWrapperProps } from './types';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
+
+type StyledFileUploadItemWrapperWebProps = Omit<StyledFileUploadItemWrapperProps, 'theme'> &
+  BaseBoxProps &
+  Pick<React.HTMLAttributes<HTMLElement>, 'style' | 'className'>;
 import {
-  fileUploadItemBackgroundColors,
-  fileUploadMotionTokens,
   fileUploadHeightTokens,
+  fileUploadItemBackgroundColors,
 } from './fileUploadTokens';
-import getIn from '~utils/lodashButBetter/get';
-import { castWebType, makeSize, useTheme } from '~utils';
-import { colors as globalColors } from '~tokens/global';
+import {
+  getFileUploadItemClass,
+  getFileUploadItemDataAttributes,
+} from './getFileUploadModuleClasses';
 import BaseBox from '~components/Box/BaseBox';
-import { makeMotionTime } from '~utils/makeMotionTime';
+import { useTheme } from '~components/Klear360Provider';
+import getIn from '~utils/lodashButBetter/get';
+import { makeSize } from '~utils';
 
-const StyledFileUploadItemWrapper = styled(BaseBox)<StyledFileUploadItemWrapperProps>(
-  ({ theme, status, size }) => {
-    const { colorScheme } = useTheme();
-    const boxShadowColor =
-      colorScheme === 'light'
-        ? globalColors.neutral.blueGrayLight.a906
-        : globalColors.neutral.black[50];
-    const easing = getIn(theme.motion, fileUploadMotionTokens.easing);
-    const duration = castWebType(
-      makeMotionTime(getIn(theme.motion, fileUploadMotionTokens.duration)),
-    );
+const StyledFileUploadItemWrapper = React.forwardRef<
+  HTMLElement,
+  StyledFileUploadItemWrapperWebProps
+>(({ status, size, className, style, ...rest }, ref) => {
+  const { theme } = useTheme();
+  const resolvedSize = size === 'variable' ? 'large' : size;
+  const statusColors = fileUploadItemBackgroundColors[status];
 
-    return {
-      position: 'relative',
-      overflow: 'hidden',
-      display: 'flex',
-      justifyContent: 'space-between',
-      borderStyle: 'solid',
-      minHeight: makeSize(fileUploadHeightTokens[size === 'variable' ? 'large' : size]),
-      width: '100%',
-      backgroundColor: getIn(theme.colors, fileUploadItemBackgroundColors[status].default),
-      transitionProperty: 'background-color',
-      transitionTimingFunction: easing,
-      transitionDuration: duration,
-      borderColor:
-        status === 'error'
-          ? theme.colors.interactive.border.negative.faded
-          : theme.colors.surface.border.gray.subtle,
-      wordBreak: 'break-all',
-      boxShadow: `0px 0.5px 4px 0px ${boxShadowColor}`,
+  return (
+    <BaseBox
+      ref={ref as never}
+      {...rest}
+      {...getFileUploadItemDataAttributes(status)}
+      className={[getFileUploadItemClass(), className].filter(Boolean).join(' ')}
+      style={
+        {
+          ['--file-upload-item-min-height' as string]: makeSize(
+            fileUploadHeightTokens[resolvedSize],
+          ),
+          ['--file-upload-item-bg' as string]: getIn(theme.colors, statusColors.default),
+          ['--file-upload-item-bg-hover' as string]: getIn(theme.colors, statusColors.hover),
+          ...style,
+        } as React.CSSProperties
+      }
+    />
+  );
+});
 
-      ...(status !== 'uploading' && {
-        '&:hover': {
-          backgroundColor: getIn(theme.colors, fileUploadItemBackgroundColors[status].hover),
-        },
-      }),
-    };
-  },
-);
+StyledFileUploadItemWrapper.displayName = 'StyledFileUploadItemWrapper';
 
 export { StyledFileUploadItemWrapper };

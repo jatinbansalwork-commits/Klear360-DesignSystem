@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 // eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
-import { Table as ReactTable } from '@table-library/react-table-library/table.js';
 // eslint-disable-next-line import/extensions -- see above
 import { useTheme as useTableTheme } from '@table-library/react-table-library/theme.js';
 import type { MiddlewareFunction } from '@table-library/react-table-library/types/common';
@@ -16,8 +15,8 @@ import {
 } from '@table-library/react-table-library/select.js';
 // eslint-disable-next-line import/extensions -- see above
 import { useTree, TreeExpandClickTypes } from '@table-library/react-table-library/tree.js';
-import styled from 'styled-components';
 import usePresence from 'use-presence';
+import { ScopedReactTable } from './tableScopedStyled.web';
 import type { TableRowContextType, TableDataContextType } from './TableContext';
 import { TableRowContext, TableDataContext } from './TableContext';
 import { ComponentIds } from './componentIds';
@@ -40,15 +39,12 @@ import type {
   TableHeaderRowProps,
   TableSortOrderEntry,
 } from './types';
-import { getTableBodyStyles } from './commonStyles';
 import { TableSurface } from './TableSurface.web';
 import { TableHeader, TableHeaderRow, TableHeaderCell } from './TableHeader';
 import { TableBody, TableRow, TableCell } from './TableBody';
 import { makeBorderSize, makeMotionTime, makeSpace } from '~utils';
 import { getComponentId, isValidAllowedChildren } from '~utils/isValidAllowedChildren';
 import { throwKlear360Error } from '~utils/logger';
-import type { BoxProps } from '~components/Box';
-import { getBaseBoxStyles } from '~components/Box/BaseBox/baseBoxStyles';
 import BaseBox from '~components/Box/BaseBox';
 import { Spinner } from '~components/Spinner';
 import { Skeleton } from '~components/Skeleton';
@@ -112,61 +108,72 @@ const getTableHeaderCellCount = (children: (data: []) => React.ReactElement): nu
   return 0;
 };
 
-const StyledReactTable = styled(ReactTable)<{
-  $styledProps?: {
-    height?: BoxProps['height'];
-    width?: BoxProps['width'];
-    isVirtualized?: boolean;
-    isSelectable?: boolean;
-    showStripedRows?: boolean;
-  };
-}>(({ $styledProps }) => {
-  const { theme } = useTheme();
-  const styledPropsCSSObject = getBaseBoxStyles({
-    theme,
-    height: $styledProps?.height,
-    ...($styledProps?.isVirtualized && {
-      width: '100%',
-    }),
-  });
-  const $isSelectable = $styledProps?.isSelectable;
-  const $showStripedRows = $styledProps?.showStripedRows;
-  return {
-    '&&&': {
-      ...styledPropsCSSObject,
-      // `&&&` boosts specificity against our own styles, but @table-library's internal styles
-      // for this element still won without `!important` here too.
-      overflow: `${$styledProps?.isVirtualized ? 'unset' : 'auto'} !important`,
-    },
-    ...($styledProps?.isVirtualized
-      ? getTableBodyStyles({
-          isVirtualized: $styledProps?.isVirtualized,
-          theme,
-          height: $styledProps?.height,
-          width: '100%',
-          isSelectable: $isSelectable,
-          showStripedRows: $showStripedRows,
-        })
-      : null),
-  };
-});
-
-const RefreshWrapper = styled(BaseBox)<{
+type RefreshWrapperProps = {
   isRefreshSpinnerVisible: boolean;
   isRefreshSpinnerEntering: boolean;
   isRefreshSpinnerExiting: boolean;
-}>(({ isRefreshSpinnerVisible, isRefreshSpinnerEntering, isRefreshSpinnerExiting, theme }) => {
-  return {
-    opacity: isRefreshSpinnerVisible ? 1 : 0,
-    transition: `opacity ${makeMotionTime(theme.motion.duration.quick)} ${
-      isRefreshSpinnerEntering
-        ? theme.motion.easing.entrance
-        : isRefreshSpinnerExiting
-        ? theme.motion.easing.exit
-        : ''
-    }`,
-  };
-});
+  children: React.ReactNode;
+} & React.ComponentProps<typeof BaseBox>;
+
+const RefreshWrapper = ({
+  isRefreshSpinnerVisible,
+  isRefreshSpinnerEntering,
+  isRefreshSpinnerExiting,
+  children,
+  ...rest
+}: RefreshWrapperProps): React.ReactElement => {
+  const { theme } = useTheme();
+  return (
+    <BaseBox
+      {...rest}
+      style={{
+        opacity: isRefreshSpinnerVisible ? 1 : 0,
+        transition: `opacity ${makeMotionTime(theme.motion.duration.quick)} ${
+          isRefreshSpinnerEntering
+            ? theme.motion.easing.entrance
+            : isRefreshSpinnerExiting
+            ? theme.motion.easing.exit
+            : ''
+        }`,
+      }}
+    >
+      {children}
+    </BaseBox>
+  );
+};
+
+type SkeletonRowProps = {
+  $columns: number;
+  $isHeader?: boolean;
+  children: React.ReactNode;
+};
+
+const StyledSkeletonRow = ({
+  $columns,
+  $isHeader,
+  children,
+}: SkeletonRowProps): React.ReactElement => {
+  const { theme } = useTheme();
+  return (
+    <BaseBox
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${$columns}, minmax(100px, 1fr))`,
+        paddingLeft: makeSpace(theme.spacing[4]),
+        paddingRight: makeSpace(theme.spacing[4]),
+        paddingTop: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
+        paddingBottom: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
+        borderBottomWidth: makeSpace(theme.border.width.thin),
+        borderBottomColor: theme.colors.surface.border.gray.muted,
+        borderBottomStyle: 'solid',
+        gap: makeSpace(theme.spacing[4]),
+        alignItems: 'center',
+      }}
+    >
+      {children}
+    </BaseBox>
+  );
+};
 
 const SKELETON_ROW_COUNT = 7;
 const SKELETON_CELL_WIDTHS = {
@@ -176,22 +183,6 @@ const SKELETON_CELL_WIDTHS = {
   headerFirst: '80%',
   headerRest: '60%',
 } as const;
-
-const StyledSkeletonRow = styled(BaseBox)<{ $columns: number; $isHeader?: boolean }>(
-  ({ theme, $columns, $isHeader }) => ({
-    display: 'grid',
-    gridTemplateColumns: `repeat(${$columns}, minmax(100px, 1fr))`,
-    paddingLeft: makeSpace(theme.spacing[4]),
-    paddingRight: makeSpace(theme.spacing[4]),
-    paddingTop: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
-    paddingBottom: makeSpace(theme.spacing[$isHeader ? 3 : 4]),
-    borderBottomWidth: makeSpace(theme.border.width.thin),
-    borderBottomColor: theme.colors.surface.border.gray.muted,
-    borderBottomStyle: 'solid',
-    gap: makeSpace(theme.spacing[4]),
-    alignItems: 'center',
-  }),
-);
 
 const _Table = <Item,>({
   children,
@@ -1119,12 +1110,11 @@ const _Table = <Item,>({
               )}
               {/* wrapping toolbar in BaseBox and passing the same analytics attributes as of table because in analytics POV, events triggered are from table */}
               <BaseBox {...makeAnalyticsAttribute(rest)}>{toolbar}</BaseBox>
-              <StyledReactTable
+              <ScopedReactTable
                 ref={tableElementRef}
                 role="table"
                 layout={{ fixedHeader: shouldHeaderBeSticky, horizontalScroll: true }}
                 data={sortedData}
-                // @ts-expect-error ignore this, theme clashes with styled-component's theme. We're using useTheme from klear360 to get actual theme
                 theme={tableTheme}
                 select={selectionType !== 'none' ? rowSelectConfig : null}
                 // Sorting is applied ourselves above (`sortedData`) so it can compose multiple
@@ -1146,7 +1136,7 @@ const _Table = <Item,>({
                 {...makeAnalyticsAttribute(rest)}
               >
                 {resolvedChildren}
-              </StyledReactTable>
+              </ScopedReactTable>
               {pagination}
             </BaseBox>
           )}

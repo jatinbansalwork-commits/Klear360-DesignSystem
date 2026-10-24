@@ -9,6 +9,7 @@ type SkeletonProps = StyledPropsKlear360 &
   > &
   Partial<FlexboxProps> & {
     testID?: string;
+    className?: string;
   };
 
 export type { SkeletonProps };

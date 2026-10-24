@@ -1,0 +1,36 @@
+.transformWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+
+  &[data-fullscreen] {
+    background-color: var(--surface-background-gray-intense);
+  }
+}
+
+.zoomContainer {
+  width: 100%;
+  height: 100%;
+  transition: cursor 0.1s ease;
+  cursor: default;
+
+  &[data-drag-enabled] {
+    cursor: grab;
+  }
+
+  &[data-drag-enabled][data-dragging] {
+    cursor: grabbing;
+  }
+
+  :global(.zoom-wrapper),
+  :global(.zoom-content) {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,6 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './SideNav.module.scss';
+import {
+  getBannerContainerInlineStyle,
+  getL1MenuInlineStyle,
+  getSideNavContainerInlineStyle,
+} from './getSideNavStyles';
 import { SideNavContext } from './SideNavContext';
+import { useTheme } from '~components/Klear360Provider';
 import {
   classes,
   COLLAPSED_L1_WIDTH,
@@ -13,8 +19,7 @@ import {
 } from './tokens';
 import type { SideNavContextType, SideNavProps } from './types';
 import type { Klear360ElementRef } from '~utils/types';
-import { size as sizeTokens } from '~tokens/global';
-import { makeBorderSize, makeMotionTime, makeSize, makeSpace } from '~utils';
+import { makeSize } from '~utils';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useIsMobile } from '~utils/useIsMobile';
@@ -23,111 +28,7 @@ import { getStyledProps } from '~components/Box/styledProps';
 import { Drawer, DrawerBody, DrawerHeader } from '~components/Drawer';
 import { SkipNavContent, SkipNavLink } from '~components/SkipNav/SkipNav';
 
-const {
-  COLLAPSED,
-  SHOW_WHEN_COLLAPSED,
-  HIDE_WHEN_COLLAPSED,
-  TRANSITIONING,
-  L1_ITEM_WRAPPER,
-} = classes;
-
-const MobileL1Container = styled(BaseBox)(() => {
-  return {
-    [`.${SHOW_WHEN_COLLAPSED}`]: {
-      display: 'none',
-    },
-  };
-});
-
-const StyledL1Menu = styled(BaseBox)<{ $isSideNavExpandable: boolean }>((props) => {
-  const quick = makeMotionTime(props.theme.motion.duration.quick);
-  const xmoderate = makeMotionTime(props.theme.motion.duration.xmoderate);
-  const easing = props.theme.motion.easing;
-
-  const l1Expand = `width ${xmoderate} ${easing.entrance}`;
-  const l1Collapse = `width ${quick} ${easing.exit}`;
-
-  const textVisibilityProps = props.$isSideNavExpandable
-    ? {}
-    : {
-        [`.${SHOW_WHEN_COLLAPSED}`]: {
-          display: 'none',
-        },
-        [`&.${COLLAPSED}`]: {
-          width: makeSize(COLLAPSED_L1_WIDTH),
-          transition: l1Collapse,
-          [`& > .${L1_ITEM_WRAPPER}`]: {
-            padding: `${makeSpace(props.theme.spacing[3])} ${makeSpace(props.theme.spacing[3])}`,
-          },
-          [`&:not(.${TRANSITIONING}) .${HIDE_WHEN_COLLAPSED}`]: {
-            display: 'none',
-          },
-          [`&:not(.${TRANSITIONING}) .${SHOW_WHEN_COLLAPSED}`]: {
-            display: 'initial',
-          },
-        },
-      };
-
-  return {
-    width: '100%',
-    // the overall sidenav expands and collapses in this case. No need transition here
-    transition: props.$isSideNavExpandable ? 'none' : l1Expand,
-    [`& > .${L1_ITEM_WRAPPER}`]: {
-      padding: makeSpace(props.theme.spacing[3]),
-    },
-    ...textVisibilityProps,
-  };
-});
-
-const StyledSideNavContainer = styled(BaseBox)<{ $isSideNavExpandable: boolean }>((props) => {
-  const quick = makeMotionTime(props.theme.motion.duration.quick);
-  const xmoderate = makeMotionTime(props.theme.motion.duration.xmoderate);
-  const easing = props.theme.motion.easing;
-
-  const sideNavExpand = `width ${xmoderate} ${easing.entrance}`;
-  const sideNavCollapse = `width ${quick} ${easing.exit}`;
-
-  if (!props.$isSideNavExpandable) {
-    return {};
-  }
-
-  return {
-    transition: sideNavExpand,
-    [`&.${COLLAPSED}`]: {
-      width: makeSize(COLLAPSED_L1_WIDTH),
-      transition: sideNavCollapse,
-      [`&:not(.${TRANSITIONING}) .${HIDE_WHEN_COLLAPSED}`]: {
-        opacity: '0',
-        pointerEvents: 'none',
-        transition: `opacity ${quick} ${easing.exit}`,
-      },
-      [`&:not(.${TRANSITIONING}) .${SHOW_WHEN_COLLAPSED}`]: {
-        opacity: '1',
-        pointerEvents: 'auto',
-        transition: `opacity ${quick} ${easing.entrance}`,
-      },
-    },
-    [`.${SHOW_WHEN_COLLAPSED}`]: {
-      opacity: '0',
-      pointerEvents: 'none',
-      transition: `opacity ${quick} ${easing.exit}`,
-    },
-    [`.${HIDE_WHEN_COLLAPSED}`]: {
-      opacity: '1',
-      pointerEvents: 'auto',
-      transition: `opacity ${quick} ${easing.entrance}`,
-    },
-  };
-});
-
-const StyledL2PortalContainer = styled(BaseBox)(() => {
-  return {
-    // This ensures that the portal node has 100% height when it has items
-    '& > div:not(:empty)': {
-      height: '100%',
-    },
-  };
-});
+const { COLLAPSED, TRANSITIONING } = classes;
 
 const getL1MenuClassName = ({
   isL1Collapsed,
@@ -150,22 +51,6 @@ const getL1MenuClassName = ({
 
   return '';
 };
-
-const BannerContainer = styled(BaseBox)((props) => {
-  return {
-    '&:not(:empty)': {
-      borderBottom: makeBorderSize(props.theme.border.width.thin),
-      borderBottomStyle: 'solid',
-      borderBottomColor: props.theme.colors.surface.border.gray.muted,
-      borderRight: makeBorderSize(props.theme.border.width.thin),
-      borderRightStyle: 'solid',
-      borderRightColor: props.theme.colors.surface.border.gray.muted,
-      padding: makeSpace(props.theme.spacing[3]),
-      maxHeight: makeSize(sizeTokens['100']),
-      width: '100%',
-    },
-  };
-});
 
 /**
  * ### SideNav component
@@ -208,6 +93,8 @@ const _SideNav = (
   const [l2DrawerTitle, setL2DrawerTitle] = React.useState('');
 
   const isMobile = useIsMobile();
+  const { theme } = useTheme();
+  const isSideNavExpandable = typeof _isExpanded !== 'undefined';
   const isSideNavCollapsed = _isExpanded === false;
 
   const effectiveIsL1Collapsed = isMobile ? isMobileL2Open : isSideNavCollapsed || isL1Collapsed;
@@ -357,11 +244,11 @@ const _SideNav = (
           <Drawer isOpen={isOpen ?? false} onDismiss={closeMobileNav}>
             <DrawerHeader title="Main Menu" />
             <DrawerBody>
-              <MobileL1Container
+              <BaseBox
                 display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
-                className="mobile-l1-container"
+                className={[styles.mobileL1Container, 'mobile-l1-container'].join(' ')}
                 height="100%"
                 {...metaAttribute({
                   name: MetaConstants.SideNav,
@@ -369,7 +256,7 @@ const _SideNav = (
                 })}
               >
                 {children}
-              </MobileL1Container>
+              </BaseBox>
             </DrawerBody>
           </Drawer>
           {/* L2 */}
@@ -381,10 +268,15 @@ const _SideNav = (
           </Drawer>
         </>
       ) : (
-        <StyledSideNavContainer
-          $isSideNavExpandable={typeof _isExpanded !== 'undefined'}
-          ref={ref as never}
-          className={isSideNavCollapsed ? COLLAPSED : ''}
+        <BaseBox
+          ref={ref}
+          className={[
+            isSideNavExpandable ? styles.sideNavContainerExpandable : '',
+            isSideNavCollapsed ? COLLAPSED : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          style={getSideNavContainerInlineStyle({ theme, isSideNavExpandable })}
           position="fixed"
           backgroundColor={backgroundColor}
           height="100%"
@@ -410,9 +302,14 @@ const _SideNav = (
             });
           }}
         >
-          {banner ? <BannerContainer>{banner}</BannerContainer> : null}
+          {banner ? (
+            <BaseBox className={styles.bannerContainer} style={getBannerContainerInlineStyle(theme)}>
+              {banner}
+            </BaseBox>
+          ) : null}
           <BaseBox position="relative" display="block" flex="1" width="100%">
-            <StyledL2PortalContainer
+            <BaseBox
+              className={styles.l2PortalContainer}
               position="absolute"
               display={isSideNavCollapsed ? 'none' : 'block'}
               backgroundColor={backgroundColor}
@@ -425,15 +322,21 @@ const _SideNav = (
               borderRightColor="surface.border.gray.muted"
               ref={l2PortalContainerRef}
             />
-            <StyledL1Menu
+            <BaseBox
               ref={l1ContainerRef}
               id="klear360-sidenav-l1"
-              className={getL1MenuClassName({
-                isL1Collapsed: effectiveIsL1Collapsed,
-                isL1Hovered: effectiveIsL1Hovered,
-                isTransitioning,
-              })}
-              $isSideNavExpandable={typeof _isExpanded !== 'undefined'}
+              className={[
+                styles.l1Menu,
+                getL1MenuClassName({
+                  isL1Collapsed: effectiveIsL1Collapsed,
+                  isL1Hovered: effectiveIsL1Hovered,
+                  isTransitioning,
+                }),
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              data-side-nav-expandable={isSideNavExpandable ? 'true' : 'false'}
+              style={getL1MenuInlineStyle({ theme, isSideNavExpandable })}
               position="absolute"
               display="flex"
               flexDirection="column"
@@ -445,7 +348,7 @@ const _SideNav = (
               left="spacing.0"
               borderRightWidth="thin"
               borderRightColor="surface.border.gray.muted"
-              onTransitionEnd={(e) => {
+              onTransitionEnd={(e: React.TransitionEvent<HTMLElement>) => {
                 // This check ensures transitioning is set to false only when its true
                 // And only the l1Container element's transitions are considered and other transitions of l1 expand or child elements are ignored
                 if (isTransitioning && l1ContainerRef.current === e.target) {
@@ -494,10 +397,10 @@ const _SideNav = (
             >
               <SkipNavLink id={SKIP_NAV_ID} _hasBackground={true} />
               {children}
-            </StyledL1Menu>
+            </BaseBox>
             <SkipNavContent id={SKIP_NAV_ID} />
           </BaseBox>
-        </StyledSideNavContainer>
+        </BaseBox>
       )}
     </SideNavContext.Provider>
   );

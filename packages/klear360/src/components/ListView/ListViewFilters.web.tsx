@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import type { ListViewFilterProps, ListViewSelectedFiltersType } from './types';
+import styles from './ListViewFilters.module.scss';
 import { ListViewFiltersProvider } from './ListViewFiltersContext.web';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import BaseBox from '~components/Box/BaseBox';
@@ -10,17 +10,6 @@ import { SearchInput } from '~components/Input/SearchInput';
 import { useId } from '~utils/useId';
 import { useIsMobile } from '~utils/useIsMobile';
 import { getComponentId } from '~utils/isValidAllowedChildren';
-
-const StyledQuickFilterContainer = styled(BaseBox)({
-  /* For Webkit (Chrome, Safari) */
-  '::-webkit-scrollbar': {
-    display: 'none',
-  },
-  /* For Firefox */
-  scrollbarWidth: 'none',
-  /* For Edge */
-  msOverflowStyle: 'none',
-});
 
 const ListViewFilters = ({
   testID,
@@ -95,7 +84,8 @@ const ListViewFilters = ({
               flex="1"
               minWidth="0px"
             >
-              <StyledQuickFilterContainer
+              <BaseBox
+                className={styles.hiddenScrollbar}
                 overflow="scroll"
                 width="100%"
                 paddingTop={isMobile ? 'spacing.4' : 'spacing.1'}
@@ -103,7 +93,7 @@ const ListViewFilters = ({
                 paddingLeft="spacing.1"
               >
                 {quickFilters}
-              </StyledQuickFilterContainer>
+              </BaseBox>
             </Box>
 
             <BaseBox display="flex" alignItems="center" flexShrink="0">

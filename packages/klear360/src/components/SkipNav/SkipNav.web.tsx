@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './SkipNav.module.scss';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
-import { screenReaderStyles } from '~components/VisuallyHidden/ScreenReaderStyles';
 import { BaseLink } from '~components/Link/BaseLink';
 import type { StringChildrenType, TestID } from '~utils/types';
-import { makeSpace } from '~utils';
 
 const fallbackId = 'klear360-skip-nav';
 type SkipNavLinkProps = {
@@ -18,32 +16,20 @@ type SkipNavLinkProps = {
   _hasBackground?: boolean;
 };
 
-const StyledLink = styled(BaseLink)<Pick<SkipNavLinkProps, '_hasBackground'>>(
-  ({ theme, _hasBackground }) => ({
-    ...screenReaderStyles,
-    top: theme.spacing[5],
-    left: theme.spacing[5],
-    backgroundColor: _hasBackground ? theme.colors.surface.background.gray.intense : undefined,
-    zIndex: _hasBackground ? 1 : undefined,
-    ':focus': {
-      padding: makeSpace(theme.spacing[2]),
-      clip: 'auto',
-      clipPath: 'unset',
-      width: 'auto',
-      height: 'auto',
-    },
-  }),
-);
-
 const SkipNavLink = ({
   id = fallbackId,
   children = 'Skip to content',
   _hasBackground = false,
 }: SkipNavLinkProps): React.ReactElement => {
   return (
-    <StyledLink href={`#${id}`} _hasBackground={_hasBackground}>
+    <BaseLink
+      href={`#${id}`}
+      // @ts-expect-error className is internal to BaseLink styled shell
+      className={styles.skipNavLink}
+      {...(_hasBackground ? { 'data-has-background': true } : {})}
+    >
       {children}
-    </StyledLink>
+    </BaseLink>
   );
 };
 

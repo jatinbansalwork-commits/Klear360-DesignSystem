@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSProperties } from 'react';
 import { baseInputBorderBackgroundMotion } from './baseInputTokens';
 import type { Theme } from '~components/Klear360Provider';
 import { castWebType, makeBorderSize, makeMotionTime } from '~utils';
@@ -14,7 +14,7 @@ const getBaseInputBorderStyles = ({
   borderWidth: number;
   borderColor: string;
   isFocused?: boolean;
-}): CSSObject => ({
+}): CSSProperties => ({
   borderWidth: makeBorderSize(theme.border.width.none),
   boxShadow: `${borderColor} 0px 0px 0px ${makeBorderSize(borderWidth)}`,
   transitionProperty: 'box-shadow, background-color',
@@ -26,7 +26,7 @@ const getBaseInputBorderStyles = ({
       ),
     ),
   ),
-  transitionEasing: castWebType(
+  transitionTimingFunction: castWebType(
     getIn(
       theme.motion.easing,
       baseInputBorderBackgroundMotion[isFocused ? 'enter' : 'exit'].easing,

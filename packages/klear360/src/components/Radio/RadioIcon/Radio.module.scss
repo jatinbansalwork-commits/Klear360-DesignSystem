@@ -1,0 +1,63 @@
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: var(--border-width-thick);
+  border-style: solid;
+  margin: var(--spacing-1);
+  border-radius: var(--border-radius-max);
+  background-color: transparent;
+  transition-property: background-color, border-color;
+  transition-duration: var(--duration-xquick);
+  transition-timing-function: var(--easing-exit);
+}
+
+.iconSmall {
+  min-width: 12px;
+  width: 12px;
+  height: 12px;
+  margin-top: 3px;
+}
+
+.iconMedium {
+  min-width: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.iconLarge {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.defaultUnchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-gray-highlighted);
+}
+
+.defaultChecked {
+  background-color: var(--interactive-background-primary-default);
+  border-color: var(--interactive-border-primary-default);
+}
+
+.disabledUnchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-gray-disabled);
+}
+
+.disabledChecked {
+  background-color: var(--interactive-background-primary-disabled);
+  border-color: transparent;
+}
+
+.negativeUnchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-negative-default);
+}
+
+.negativeChecked {
+  background-color: var(--interactive-background-negative-default);
+  border-color: var(--interactive-border-negative-default);
+}

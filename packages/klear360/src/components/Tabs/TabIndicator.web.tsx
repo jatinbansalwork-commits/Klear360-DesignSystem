@@ -2,24 +2,16 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable consistent-return */
 import React from 'react';
-import styled from 'styled-components';
 import { useTabsContext } from './TabsContext';
+import { getTabIndicatorClasses } from './getTabsModuleClasses';
 import { intenseSelected } from './tabTokens';
+import getIn from '~utils/lodashButBetter/get';
 import { castWebType, makeMotionTime } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { useTheme } from '~components/Klear360Provider';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import { useResize } from '~utils/useResize';
 import BaseBox from '~components/Box/BaseBox';
-
-const StyledTabIndicator = styled(BaseBox)(({ theme }) => {
-  return {
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.colors.interactive.background.primary.fadedHighlighted,
-    },
-  };
-});
 
 const TabIndicator = ({
   tabListContainerRef,
@@ -33,40 +25,34 @@ const TabIndicator = ({
 
   const updateDimensions = React.useCallback(() => {
     const activeTabItem = document.getElementById(`${baseId}-${selectedValue}-tabitem`);
-    // Skip if element not found or not visible (width 0 means container is hidden)
     if (!activeTabItem || activeTabItem.offsetWidth === 0) return;
+
+    const v = variant === 'borderless' ? 'bordered' : variant;
 
     setDimensions({
       width: activeTabItem.offsetWidth,
       height: activeTabItem.offsetHeight,
       x: activeTabItem.offsetLeft,
       y:
-        variant === 'filled' || isVertical
-          ? // on filled variant or vertical layout the indicator is positioned on top of the tab item
-            activeTabItem.offsetTop
+        v === 'filled' || isVertical
+          ? activeTabItem.offsetTop
           : activeTabItem.offsetTop + activeTabItem.offsetHeight - 1.5,
     });
 
-    // Enable animations after first valid measurement renders
     setShouldAnimate((prev) => {
       if (!prev) requestAnimationFrame(() => setShouldAnimate(true));
       return prev;
     });
   }, [baseId, selectedValue, variant, isVertical]);
 
-  // Update the dimensions when the selected value changes
   useIsomorphicLayoutEffect(() => {
     if (!selectedValue) return;
     updateDimensions();
   }, [baseId, selectedValue, updateDimensions]);
 
-  // Update the dimensions when fonts load
   React.useEffect(() => {
-    // check for FontFace API support
-    // FontFaceAPI is widely supported but better to be safe than sorry
     if ('fonts' in document) {
       try {
-        // wait for fonts to be loaded and then recalculate the dimensions
         void document.fonts.ready.then(() => {
           updateDimensions();
         });
@@ -76,8 +62,6 @@ const TabIndicator = ({
     }
   }, [updateDimensions]);
 
-  // Update the dimensions when the container resizes (covers window resize,
-  // sidebar toggles, lazy-loaded content, and containers becoming visible)
   useResize(tabListContainerRef, updateDimensions);
 
   const transitionProps = {
@@ -88,20 +72,31 @@ const TabIndicator = ({
     transitionTimingFunction: castWebType(theme.motion.easing.standard),
   };
 
-  // Vertical bordered: 1.5px-wide line on the left side that slides vertically
+  const indicatorClass = getTabIndicatorClasses({
+    variant: variant!,
+    isVertical,
+    size: size!,
+    selectedEmphasis,
+  });
+
+  const isSmallHorizontal = size === 'small' && !isVertical && variant === 'filled';
+
+  const borderedIndicatorColor = theme.colors.interactive.border.neutral.highlighted;
+  const filledIndicatorColor =
+    selectedEmphasis === 'intense'
+      ? getIn(theme.colors, intenseSelected.indicatorBackgroundColor)
+      : theme.colors.surface.background.gray.intense;
+
   if (isVertical && variant !== 'filled') {
     return (
-      <StyledTabIndicator
+      <BaseBox
         pointerEvents="none"
-        position="absolute"
-        left="1.75px"
-        top="0px"
-        width="1.5px"
-        backgroundColor="interactive.border.neutral.highlighted"
+        className={indicatorClass}
         style={{
           ...transitionProps,
           height: `${dimensions.height}px`,
           transform: `translateY(${dimensions.y}px)`,
+          backgroundColor: borderedIndicatorColor,
         }}
         {...metaAttribute({ name: MetaConstants.TabIndicator })}
       />
@@ -109,25 +104,16 @@ const TabIndicator = ({
   }
 
   if (variant === 'filled') {
-    const isSmallHorizontal = size === 'small' && !isVertical;
     return (
-      <StyledTabIndicator
+      <BaseBox
         pointerEvents="none"
-        position="absolute"
-        left="0px"
-        top="0px"
-        borderRadius={isSmallHorizontal ? undefined : 'small'}
-        backgroundColor={
-          selectedEmphasis === 'intense'
-            ? intenseSelected.indicatorBackgroundColor
-            : 'surface.background.gray.intense'
-        }
+        className={indicatorClass}
         style={{
           ...transitionProps,
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
           transform: `translate(${dimensions.x}px, ${dimensions.y}px)`,
-          // 6px for small — deliberate: between xsmall(4px) and small(8px) for visual proportion, mirrors SegmentedControl indicator radius
+          backgroundColor: filledIndicatorColor,
           ...(isSmallHorizontal ? { borderRadius: 6 } : {}),
         }}
         {...metaAttribute({ name: MetaConstants.TabIndicator })}
@@ -136,17 +122,14 @@ const TabIndicator = ({
   }
 
   return (
-    <StyledTabIndicator
+    <BaseBox
       pointerEvents="none"
-      position="absolute"
-      left="0%"
-      top="-0.5px"
-      height="2px"
-      backgroundColor="interactive.border.neutral.highlighted"
+      className={indicatorClass}
       style={{
         ...transitionProps,
         width: `${dimensions.width}px`,
         transform: `translate(${dimensions.x}px, ${dimensions.y}px)`,
+        backgroundColor: borderedIndicatorColor,
       }}
       {...metaAttribute({ name: MetaConstants.TabIndicator })}
     />

@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import styled from 'styled-components';
 import { ResizableSplitHandle } from './ResizableSplitHandle.web';
 import { ComponentIds } from './componentIds';
 import type { ResizableSplitProps, ResizableSplitPaneProps } from './types';
+import { getResizableSplitClass, getResizableSplitPaneClass } from './getResizableSplitModuleClasses';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
@@ -13,32 +13,18 @@ const DEFAULT_MIN_PANE_WIDTH = 320;
 const DEFAULT_HANDLE_WIDTH = 12;
 const DEFAULT_STEP = 16;
 
-const StyledSplit = styled.div<{ $gridTemplateColumns: string }>(({ $gridTemplateColumns }) => ({
-  display: 'grid',
-  gridTemplateColumns: $gridTemplateColumns,
-  width: '100%',
-  height: '100%',
-  minWidth: 0,
-  minHeight: 0,
-}));
-
-const StyledPane = styled.div({
-  minWidth: 0,
-  minHeight: 0,
-  overflow: 'auto',
-});
-
 const _ResizableSplitPane = ({
   children,
   testID,
   ...rest
 }: ResizableSplitPaneProps): React.ReactElement => (
-  <StyledPane
+  <div
+    className={getResizableSplitPaneClass()}
     {...metaAttribute({ name: MetaConstants.ResizableSplitPane, testID })}
     {...makeAnalyticsAttribute(rest)}
   >
     {children}
-  </StyledPane>
+  </div>
 );
 
 const ResizableSplitPane = assignWithoutSideEffects(_ResizableSplitPane, {
@@ -112,9 +98,10 @@ const _ResizableSplit = ({
   const valueNow = valueRange > 0 ? ((resolvedEndWidth - minEndWidth) / valueRange) * 100 : 0;
 
   return (
-    <StyledSplit
+    <div
       ref={containerRef}
-      $gridTemplateColumns={gridTemplateColumns}
+      className={getResizableSplitClass()}
+      style={{ gridTemplateColumns }}
       {...metaAttribute({ name: MetaConstants.ResizableSplit, testID })}
       {...makeAnalyticsAttribute(rest)}
     >
@@ -136,7 +123,7 @@ const _ResizableSplit = ({
         getContainerRightEdge={getContainerRightEdge}
       />
       {endPane}
-    </StyledSplit>
+    </div>
   );
 };
 

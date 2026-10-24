@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
+import styles from './ChatInput.module.scss';
 import type { ChatInputProps } from './types';
 import { chatInputFilePreviewItemWidth } from './chatInputTokens';
 import { ChatInputActionBar } from './ChatInputActionBar';
@@ -24,11 +24,6 @@ import type { Klear360ElementRef } from '~utils/types';
 import { useMergeRefs } from '~utils/useMergeRefs';
 import { msToSeconds } from '~utils/msToSeconds';
 import { cssBezierToArray } from '~utils/cssBezierToArray';
-
-const HiddenScrollbarBox = styled(BaseBox)(() => ({
-  '&::-webkit-scrollbar': { display: 'none' },
-  scrollbarWidth: 'none' as const,
-}));
 
 const _ChatInput: React.ForwardRefRenderFunction<Klear360ElementRef, ChatInputProps> = (
   {
@@ -170,8 +165,9 @@ const _ChatInput: React.ForwardRefRenderFunction<Klear360ElementRef, ChatInputPr
     <AnimatePresence>
       {hasFiles ? (
         <BaseMotionBox motionVariants={filePreviewMotionVariants}>
-          <HiddenScrollbarBox
+          <BaseBox
             ref={fileScrollRef}
+            className={styles.hiddenScrollbar}
             display="flex"
             flexDirection="row"
             gap="spacing.3"
@@ -196,7 +192,7 @@ const _ChatInput: React.ForwardRefRenderFunction<Klear360ElementRef, ChatInputPr
                 />
               </BaseBox>
             ))}
-          </HiddenScrollbarBox>
+          </BaseBox>
         </BaseMotionBox>
       ) : null}
     </AnimatePresence>

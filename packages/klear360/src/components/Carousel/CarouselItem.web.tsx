@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
-import styled from 'styled-components';
 import React from 'react';
 import type { CarouselProps } from './types';
 import { useCarouselContext } from './CarouselContext';
@@ -24,61 +23,53 @@ type StyledCarouselItemProps = Pick<CarouselProps, 'visibleItems' | 'shouldAddSt
     isResponsive?: boolean;
   };
 
-const StyledCarouselItem = styled(BaseBox)<StyledCarouselItemProps>(
-  ({
-    visibleItems,
-    isResponsive,
-    shouldAddStartEndSpacing,
-    shouldHaveStartSpacing,
-    theme,
-    snapAlign,
-    gap,
-  }) => {
-    const { matchedDeviceType, matchedBreakpoint } = useBreakpoint({
-      breakpoints: theme.breakpoints,
-    });
-    const isMobile = matchedDeviceType === 'mobile';
+const getCarouselItemLayoutStyles = ({
+  visibleItems,
+  isResponsive,
+  shouldAddStartEndSpacing,
+  shouldHaveStartSpacing,
+  theme,
+  snapAlign,
+  gap,
+  isMobile,
+  matchedBreakpoint,
+}: StyledCarouselItemProps & {
+  theme: ReturnType<typeof useTheme>['theme'];
+  matchedBreakpoint?: ReturnType<typeof useBreakpoint>['matchedBreakpoint'];
+}): React.CSSProperties => {
+  const resolvedGap = gap
+    ? parseInt(
+        getSpacingValue(
+          gap,
+          theme,
+          typeof gap === 'string' ? 'base' : matchedBreakpoint || 'base',
+        ) || '0',
+        10,
+      )
+    : isMobile
+    ? theme.spacing[4]
+    : theme.spacing[5];
 
-    // Resolve gap value: convert spacing token to pixels or use default spacing
-    // Default: spacing.4 (12px) on mobile, spacing.5 (16px) on desktop
-    const resolvedGap = gap
-      ? parseInt(
-          getSpacingValue(
-            gap,
-            theme,
-            typeof gap === 'string' ? 'base' : matchedBreakpoint || 'base',
-          ) || '0',
-          10,
-        )
-      : isMobile
-      ? theme.spacing[4]
-      : theme.spacing[5];
+  const calculatedWidth = `calc(100% / ${visibleItems!} - ${resolvedGap}px * (${visibleItems} - 1) / ${visibleItems})`;
+  const calculatedMarginLeft = shouldHaveStartSpacing
+    ? `calc(${calculatedWidth} + ${resolvedGap}px)`
+    : 0;
 
-    // Calculate item width: (containerWidth / numberOfItems) - (totalGapSpace / numberOfItems)
-    // This ensures each item gets equal width while accounting for gaps between items
-    const calculatedWidth = `calc(100% / ${visibleItems!} - ${resolvedGap}px * (${visibleItems} - 1) / ${visibleItems})`;
-    const calculatedMarginLeft = shouldHaveStartSpacing
-      ? `calc(${calculatedWidth} + ${resolvedGap}px)`
-      : 0;
-
-    return {
-      flexGrow: 0,
-      flexShrink: 0,
-      width: calculatedWidth,
-      height: '100%',
-      minHeight: '100%',
-      scrollSnapAlign: snapAlign ?? 'start',
-      marginLeft: calculatedMarginLeft,
-
-      // Responsive slider styles, a special case
-      ...(isResponsive && {
-        width: '100%',
-        scrollSnapAlign: snapAlign ?? (isMobile || !shouldAddStartEndSpacing ? 'start' : 'center'),
-        marginLeft: shouldHaveStartSpacing ? '40%' : 0,
-      }),
-    };
-  },
-);
+  return {
+    flexGrow: 0,
+    flexShrink: 0,
+    width: calculatedWidth,
+    height: '100%',
+    minHeight: '100%',
+    scrollSnapAlign: snapAlign ?? 'start',
+    marginLeft: calculatedMarginLeft,
+    ...(isResponsive && {
+      width: '100%',
+      scrollSnapAlign: snapAlign ?? (isMobile || !shouldAddStartEndSpacing ? 'start' : 'center'),
+      marginLeft: shouldHaveStartSpacing ? '40%' : 0,
+    }),
+  };
+};
 
 type CarouselItemProps = {
   id?: string;
@@ -108,11 +99,25 @@ const _CarouselItem = ({
     carouselItemWidth,
     shouldAddStartEndSpacing,
   } = useCarouselContext();
-  const { platform } = useTheme();
+  const { platform, theme } = useTheme();
   const isMobile = platform === 'onMobile';
+  const { matchedBreakpoint } = useBreakpoint({ breakpoints: theme.breakpoints });
+
+  const itemLayoutStyle = getCarouselItemLayoutStyles({
+    visibleItems,
+    isResponsive,
+    shouldAddStartEndSpacing,
+    shouldHaveStartSpacing,
+    theme,
+    snapAlign,
+    gap,
+    isMobile,
+    matchedBreakpoint,
+  });
 
   return (
-    <StyledCarouselItem
+    <BaseBox
+      style={itemLayoutStyle}
       {...makeAccessible({
         role: 'tabpanel',
         roleDescription: 'slide',
@@ -120,20 +125,12 @@ const _CarouselItem = ({
       })}
       ref={itemRef}
       id={id}
-      isMobile={isMobile}
       data-slide-index={index}
-      isResponsive={isResponsive}
-      visibleItems={visibleItems}
       maxWidth={carouselItemWidth}
-      shouldAddStartEndSpacing={shouldAddStartEndSpacing}
-      shouldHaveStartSpacing={shouldHaveStartSpacing}
-      shouldHaveEndSpacing={shouldHaveEndSpacing}
-      snapAlign={snapAlign}
-      gap={gap}
       {...makeAnalyticsAttribute(rest)}
     >
       {children}
-    </StyledCarouselItem>
+    </BaseBox>
   );
 };
 

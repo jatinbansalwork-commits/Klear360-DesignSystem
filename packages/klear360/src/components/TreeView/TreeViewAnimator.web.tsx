@@ -1,31 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import BaseBox from '~components/Box/BaseBox';
-import { castWebType } from '~utils';
+import styles from './TreeView.module.scss';
+import { castWebType, useTheme } from '~utils';
 import { makeMotionTime } from '~utils/makeMotionTime';
-
-const StyledTreeViewAnimator = styled(BaseBox)<{ isExpanded: boolean; isClipped: boolean }>(
-  (props) => ({
-    display: 'grid',
-    // B5: animate grid-template-rows (0fr <-> 1fr), never height
-    gridTemplateRows: props.isExpanded ? '1fr' : '0fr',
-    transition: `grid-template-rows ${makeMotionTime(
-      props.theme.motion.duration.quick,
-    )} ${castWebType(props.theme.motion.easing.standard)}`,
-    '& > div': {
-      // clipping is only needed while the group is collapsed or moving: a clipping wrapper also
-      // cuts off the focus ring of the rows inside it, since the ring is an `outline` painted
-      // outside the row's box (getFocusRingStyles)
-      overflow: props.isClipped ? 'hidden' : 'visible',
-      minHeight: '0px',
-      visibility: props.isExpanded ? 'visible' : 'hidden',
-      // keep content visible while the collapse animation runs, then hide it (also removes it from AT)
-      transition: props.isExpanded
-        ? undefined
-        : `visibility 0s linear ${makeMotionTime(props.theme.motion.duration.quick)}`,
-    },
-  }),
-);
 
 /**
  * Tracks whether the wrapper must clip its content.
@@ -90,6 +66,48 @@ const useTreeViewMountScopeRef = (): React.MutableRefObject<boolean> => {
   return isScopeFirstRenderRef;
 };
 
+type TreeViewAnimatorShellProps = {
+  isExpanded: boolean;
+  isClipped: boolean;
+  animatorRef: React.RefObject<HTMLDivElement>;
+  onTransitionEnd: (event: React.TransitionEvent<HTMLElement>) => void;
+  children: React.ReactNode;
+};
+
+const TreeViewAnimatorShell = ({
+  isExpanded,
+  isClipped,
+  animatorRef,
+  onTransitionEnd,
+  children,
+}: TreeViewAnimatorShellProps): React.ReactElement => {
+  const { theme } = useTheme();
+  const collapseVisibilityDelay = makeMotionTime(theme.motion.duration.quick);
+
+  return (
+    <div
+      ref={animatorRef}
+      className={styles.animator}
+      data-expanded={isExpanded ? true : undefined}
+      onTransitionEnd={onTransitionEnd}
+    >
+      <div
+        className={styles.animatorInner}
+        data-clipped={isClipped ? true : undefined}
+        style={{
+          overflow: isClipped ? 'hidden' : 'visible',
+          visibility: isExpanded ? 'visible' : 'hidden',
+          transition: isExpanded
+            ? undefined
+            : `visibility 0s linear ${castWebType(collapseVisibilityDelay)}`,
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
 /**
  * Expand / collapse animation for a branch's children group (B5)
  *
@@ -126,14 +144,14 @@ const TreeViewGroupAnimator = ({
 
   return (
     <TreeViewMountScopeContext.Provider value={isScopeFirstRenderRef}>
-      <StyledTreeViewAnimator
-        ref={animatorRef as never}
+      <TreeViewAnimatorShell
         isExpanded={isOpen}
         isClipped={isClipped}
+        animatorRef={animatorRef}
         onTransitionEnd={onTransitionEnd}
       >
         {children}
-      </StyledTreeViewAnimator>
+      </TreeViewAnimatorShell>
     </TreeViewMountScopeContext.Provider>
   );
 };
@@ -150,14 +168,14 @@ const AnimatedRowMount = ({ children }: { children: React.ReactNode }): React.Re
   const { isClipped, animatorRef, onTransitionEnd } = useTreeViewAnimatorClip(isOpen);
 
   return (
-    <StyledTreeViewAnimator
-      ref={animatorRef as never}
+    <TreeViewAnimatorShell
       isExpanded={isOpen}
       isClipped={isClipped}
+      animatorRef={animatorRef}
       onTransitionEnd={onTransitionEnd}
     >
       {children}
-    </StyledTreeViewAnimator>
+    </TreeViewAnimatorShell>
   );
 };
 

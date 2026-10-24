@@ -1,24 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StepLine } from './StepLine';
 import type { StepLineProps } from './StepLine';
+import { StepInteractiveItemHeader } from './StepInteractiveItemHeader.web';
 import { useStepGroup } from './StepGroupContext';
-import type {
-  InteractiveItemHeaderProps,
-  StepGroupContextType,
-  StepGroupProps,
-  StepItemProps,
-} from './types';
+import type { StepGroupContextType, StepGroupProps, StepItemProps } from './types';
 import { componentIds } from './componentIds';
 import { itemLineGap, stepItemHeaderTokens } from './tokens';
 import { Box } from '~components/Box';
 import { Text } from '~components/Typography';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import BaseBox from '~components/Box/BaseBox';
-import { makeSize, makeSpace } from '~utils';
+import { makeSize } from '~utils';
 import { size as sizeTokens } from '~tokens/global';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
-import getIn from '~utils/lodashButBetter/get';
 import { throwKlear360Error } from '~utils/logger';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
@@ -28,34 +21,6 @@ type GetStepTypeFromIndexProps = {
   _nestingLevel: StepGroupProps['_nestingLevel'];
   itemsCount: StepGroupContextType['itemsInGroupCount'];
 };
-
-const InteractiveItemHeaderBox = styled.button<InteractiveItemHeaderProps>((props) => {
-  return {
-    padding: `${makeSpace(getIn(props.theme, props.paddingY))} ${makeSpace(
-      getIn(props.theme, props.paddingX),
-    )}`,
-    cursor: 'pointer',
-    display: 'inline-block',
-    textDecoration: 'none',
-    border: 'none',
-    textAlign: 'inherit',
-    backgroundColor: props.theme.colors.transparent,
-    borderRadius: props.theme.border.radius.medium,
-    width: '100%',
-    transition: `background-color ${props.theme.motion.duration.xquick} ${props.theme.motion.easing.standard}`,
-    ':not([disabled]):hover': {
-      backgroundColor: props.isSelected
-        ? props.theme.colors.interactive.background.primary.faded
-        : props.theme.colors.interactive.background.gray.default,
-    },
-    ':not([disabled]):focus-visible': {
-      ...getFocusRingStyles({ theme: props.theme }),
-    },
-    '&[disabled]': {
-      cursor: 'not-allowed',
-    },
-  };
-});
 
 const getStepTypeFromIndex = ({
   _index,
@@ -171,11 +136,6 @@ const _StepItem = ({
     </Box>
   );
 
-  const stepItemHeaderPaddings: Omit<InteractiveItemHeaderProps, 'isSelected'> = {
-    paddingY: 'spacing.3',
-    paddingX: 'spacing.4',
-  } as const;
-
   const enhancedMarker = marker
     ? React.cloneElement(marker, {
         isDisabled: isDisabled ?? marker?.props?.isDisabled,
@@ -207,20 +167,20 @@ const _StepItem = ({
       />
       <Box flex="1" marginRight={isVertical ? undefined : undefined}>
         {isInteractive ? (
-          <InteractiveItemHeaderBox
-            {...stepItemHeaderPaddings}
-            as={href ? 'a' : 'button'}
+          <StepInteractiveItemHeader
             href={href}
             target={target}
             isSelected={isSelected}
             onClick={onClick}
-            disabled={isDisabled}
+            isDisabled={isDisabled}
             {...metaAttribute({ name: MetaConstants.StepItemButton })}
           >
             {stepItemHeaderJSX}
-          </InteractiveItemHeaderBox>
+          </StepInteractiveItemHeader>
         ) : (
-          <Box {...stepItemHeaderPaddings}>{stepItemHeaderJSX}</Box>
+          <Box paddingY="spacing.3" paddingX="spacing.4">
+            {stepItemHeaderJSX}
+          </Box>
         )}
         {children ? (
           <Box paddingX="spacing.4" paddingBottom="spacing.3">

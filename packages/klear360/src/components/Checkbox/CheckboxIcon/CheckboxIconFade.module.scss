@@ -1,0 +1,37 @@
+@keyframes checkboxFadeIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkboxFadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+
+.fadeRoot {
+  animation-duration: var(--duration-xquick);
+}
+
+.enter {
+  animation-name: checkboxFadeIn;
+  animation-timing-function: var(--easing-entrance);
+}
+
+.exit {
+  animation-name: checkboxFadeOut;
+  animation-timing-function: var(--easing-exit);
+}

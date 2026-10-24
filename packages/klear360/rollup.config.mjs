@@ -134,7 +134,17 @@ const getWebConfig = (inputs) => {
       postcss({
         extract: 'styles/index.css',
         modules: true,
-        minimize: process.env.NODE_ENV === 'production',
+        minimize:
+          process.env.NODE_ENV === 'production'
+            ? {
+                preset: [
+                  'default',
+                  // postcss-discard-duplicates throws on compound selectors from CSS Modules
+                  // (e.g. `.horizontal.thin`) — disable until cssnano fixes upstream.
+                  { discardDuplicates: false },
+                ],
+              }
+            : false,
         sourceMap: true,
         use: ['sass'],
       }),

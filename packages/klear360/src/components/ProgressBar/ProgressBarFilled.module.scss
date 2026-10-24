@@ -1,0 +1,86 @@
+@keyframes progressBarPulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes progressBarSlideAndScale {
+  0% {
+    left: -8%;
+    transform: scaleX(1);
+  }
+  50% {
+    left: 50%;
+    transform: scaleX(5);
+  }
+  100% {
+    left: 103%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes progressBarOscillate {
+  0% {
+    left: -8%;
+    transform: scaleX(1);
+  }
+  25% {
+    left: 50%;
+    transform: scaleX(5);
+  }
+  50% {
+    left: 103%;
+    transform: scaleX(1);
+  }
+  75% {
+    left: 50%;
+    transform: scaleX(5);
+  }
+  100% {
+    left: -8%;
+    transform: scaleX(1);
+  }
+}
+
+.indeterminateFill {
+  position: absolute;
+  width: 5%;
+  height: 100%;
+}
+
+.indeterminateSlide {
+  animation: progressBarSlideAndScale var(--progress-indeterminate-duration) linear infinite;
+  position: absolute;
+  width: 5%;
+  height: 100%;
+}
+
+.indeterminateOscillate {
+  animation: progressBarOscillate var(--progress-indeterminate-duration) linear infinite;
+  position: absolute;
+  width: 5%;
+  height: 100%;
+  border-radius: var(--progress-bar-radius);
+}
+
+.pulse {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  animation: progressBarPulse var(--progress-pulse-duration) var(--progress-pulse-easing) infinite;
+  animation-delay: var(--progress-pulse-delay);
+}
+
+.determinateFill {
+  height: 100%;
+  transition-property: width;
+  transition-duration: var(--progress-fill-duration);
+  transition-timing-function: var(--progress-fill-easing);
+}

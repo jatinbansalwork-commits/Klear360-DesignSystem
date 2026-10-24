@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './TimePickerContent.module.scss';
 import { SpinWheel } from './SpinWheel';
 import { TimePickerFooter } from './TimePickerFooter';
 import type { TimePickerContentProps } from './types';
@@ -10,32 +10,6 @@ import BaseBox from '~components/Box/BaseBox';
 import { useIsMobile } from '~utils/useIsMobile';
 import { size } from '~tokens/global';
 import { makeSize } from '~utils/makeSize';
-
-// Styled container with fade overlay
-const StyledFadeContainer = styled(BaseBox)`
-  position: relative;
-  border-radius: ${({ theme }) => theme.border.radius.small}px;
-
-  /* Fade overlay that sits above content */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      ${({ theme }) => theme.colors.surface.background.gray.intense} 0px,
-      transparent 48px,
-      transparent calc(100% - 48px),
-      ${({ theme }) => theme.colors.surface.background.gray.intense} 100%
-    );
-    pointer-events: none;
-    z-index: 10;
-    border-radius: ${({ theme }) => theme.border.radius.small}px;
-  }
-`;
 
 /**
  * Content component for TimePicker dropdown
@@ -167,8 +141,14 @@ const TimePickerContent = ({
       data-allow-scroll="true"
     >
       {/* Time Selection Wheels */}
-      <StyledFadeContainer
-        theme={theme}
+      <BaseBox
+        className={styles.fadeContainer}
+        style={
+          {
+            '--time-picker-fade-radius': `${theme.border.radius.small}px`,
+            '--time-picker-fade-color': theme.colors.surface.background.gray.intense,
+          } as React.CSSProperties
+        }
         display="flex"
         flexDirection="row"
         justifyContent="center"
@@ -228,7 +208,7 @@ const TimePickerContent = ({
             />
           </>
         )}
-      </StyledFadeContainer>
+      </BaseBox>
 
       {/* Footer with Apply/Cancel buttons */}
       {showFooterActions && <TimePickerFooter onApply={handleApply} onCancel={onCancel} />}

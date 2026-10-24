@@ -1,0 +1,12 @@
+.interactiveWrapper {
+  all: unset;
+  appearance: none;
+  cursor: pointer;
+  line-height: 0;
+  box-sizing: border-box;
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+}

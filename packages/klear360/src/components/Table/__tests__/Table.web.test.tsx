@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import type { RenderResult } from '@testing-library/react';
 import { Table } from '../Table';
 import { TableBody, TableCell, TableRow, TableVirtualizedWrapper } from '../TableBody';
@@ -292,7 +292,52 @@ const spanningNodes = [
   { id: '3', merchant: 'Swiggy', method: 'UPI', amount: 150 },
 ];
 
+const getTableSurfaceElement = (getByRole: RenderResult['getByRole']): HTMLElement =>
+  getByRole('table').parentElement!.parentElement! as HTMLElement;
+
 describe('<Table />', () => {
+  it('TableSurface box-shadow follows colorScheme via theme resolution', () => {
+    const tableUi = (
+      <Table data={{ nodes: nodes.slice(0, 1) }}>
+        {(tableData) => (
+          <>
+            <TableHeader>
+              <TableHeaderRow>
+                <TableHeaderCell>Payment ID</TableHeaderCell>
+              </TableHeaderRow>
+            </TableHeader>
+            <TableBody>
+              {tableData.map((item) => (
+                <TableRow key={item.id} item={item}>
+                  <TableCell>{item.paymentId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>
+    );
+
+    const lightRender = render(
+      <Klear360Provider themeTokens={klear360Theme} colorScheme="light">
+        {tableUi}
+      </Klear360Provider>,
+    );
+    const lightBoxShadow = getTableSurfaceElement(lightRender.getByRole).style.boxShadow;
+    lightRender.unmount();
+
+    const darkRender = render(
+      <Klear360Provider themeTokens={klear360Theme} colorScheme="dark">
+        {tableUi}
+      </Klear360Provider>,
+    );
+    const darkBoxShadow = getTableSurfaceElement(darkRender.getByRole).style.boxShadow;
+
+    expect(lightBoxShadow).not.toBe(darkBoxShadow);
+    expect(lightBoxShadow.length).toBeGreaterThan(0);
+    expect(darkBoxShadow.length).toBeGreaterThan(0);
+  });
+
   it('should render table', () => {
     const { container, getAllByRole, queryAllByRole } = renderWithTheme(
       <Table data={{ nodes: nodes.slice(0, 5) }} toolbar={<TableToolbar />}>

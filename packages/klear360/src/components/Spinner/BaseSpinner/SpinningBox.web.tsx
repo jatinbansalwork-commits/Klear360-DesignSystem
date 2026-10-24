@@ -1,26 +1,22 @@
-import styled, { css, keyframes } from 'styled-components';
-import { motion as spinnerMotion } from './spinnerTokens';
-import getIn from '~utils/lodashButBetter/get';
+import React from 'react';
 import BaseBox from '~components/Box/BaseBox';
-import { makeMotionTime } from '~utils/makeMotionTime';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
+import styles from './Spinner.module.scss';
 
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
+type SpinningBoxProps = BaseBoxProps & {
+  className?: string;
+};
 
-const SpinningBox = styled(BaseBox)(({ theme }) => {
-  return css`
-    padding: 1px;
-    width: max-content;
-    display: inline-flex;
-    animation: ${rotate} ${makeMotionTime(getIn(theme.motion, spinnerMotion.duration))}
-      ${getIn(theme.motion, spinnerMotion.easing)} infinite;
-  `;
-});
+const SpinningBox = React.forwardRef<HTMLElement, SpinningBoxProps>(
+  ({ className, ...props }, ref) => (
+    <BaseBox
+      ref={ref as never}
+      {...props}
+      className={[styles['spinner-box'], className].filter(Boolean).join(' ')}
+    />
+  ),
+);
+
+SpinningBox.displayName = 'SpinningBox';
 
 export { SpinningBox };

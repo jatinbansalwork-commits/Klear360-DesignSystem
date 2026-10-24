@@ -1,0 +1,18 @@
+.segment {
+  padding-left: var(--time-segment-px-1, 2px);
+  padding-right: var(--time-segment-px-1, 2px);
+  box-sizing: content-box;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  outline: none;
+  border-radius: var(--time-segment-px-1, 2px);
+
+  &:focus {
+    background-color: var(--time-segment-focus-bg) !important;
+    color: #ffffff !important;
+
+    span {
+      color: #000000 !important;
+    }
+  }
+}

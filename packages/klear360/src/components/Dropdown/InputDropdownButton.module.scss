@@ -1,0 +1,27 @@
+.button {
+  background-color: transparent;
+  gap: var(--spacing-2);
+  display: flex;
+  box-sizing: border-box;
+  height: var(--input-dropdown-button-height);
+  padding: var(--spacing-2);
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--input-dropdown-button-radius);
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--interactive-background-gray-faded);
+  }
+
+  &:focus-visible:not(:disabled) {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: var(--spacing-0);
+    background-color: var(--interactive-background-gray-faded);
+  }
+}

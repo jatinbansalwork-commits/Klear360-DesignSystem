@@ -1,73 +1,23 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
-import type { FlattenSimpleInterpolation } from 'styled-components';
-import styled, { css, keyframes } from 'styled-components';
+import styles from './CheckboxIconFade.module.scss';
 import type { FadeProps } from './types';
-import { useTheme } from '~components/Klear360Provider';
-import { makeMotionTime } from '~utils/makeMotionTime';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 
-const fadeIn = keyframes`
-  from {
-    transform: scale(.6);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  to {
-    transform: scale(.6);
-    opacity: 0;
-  }
-`;
-
-const AnimatedFade = styled.div<{ animationType: FlattenSimpleInterpolation | null }>(
-  ({ animationType }) =>
-    animationType === null
-      ? ''
-      : css`
-          ${animationType}
-        `,
-);
-
-const Fade = ({ show, children, styles }: FadeProps) => {
-  const { theme } = useTheme();
-
-  const duration = theme.motion.duration.xquick;
-  const enter = css`
-    animation: ${fadeIn} ${makeMotionTime(duration)} ${theme.motion.easing.entrance as string};
-  `;
-
-  const exit = css`
-    animation: ${fadeOut} ${makeMotionTime(duration)} ${theme.motion.easing.exit as string};
-  `;
-
-  // if show is undefined do not initialize the animation to prevent flash of animation
-  const animation = show === undefined ? null : show ? enter : exit;
+const Fade = ({ show, children, styles: inlineStyles }: FadeProps) => {
+  const animationClass =
+    show === undefined ? null : show ? styles.enter : styles.exit;
 
   return (
-    <AnimatedFade
-      animationType={animation}
+    <div
+      className={[styles.fadeRoot, animationClass].filter(Boolean).join(' ')}
       style={{
         opacity: show ? 1 : 0,
-        ...styles,
+        ...inlineStyles,
       }}
       {...metaAttribute({ name: MetaConstants.CheckboxIconFade })}
     >
       {children}
-    </AnimatedFade>
+    </div>
   );
 };
 

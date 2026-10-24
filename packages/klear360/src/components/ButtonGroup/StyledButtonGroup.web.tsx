@@ -1,63 +1,42 @@
-import styled from 'styled-components';
+import React from 'react';
 import type { StyledButtonGroupProps } from './types';
-import BaseBox from '~components/Box/BaseBox';
-import { makeBorderSize } from '~utils';
-import { buttonBorderRadius } from '~components/Button/BaseButton/buttonTokens';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
 
-const StyledButtonGroup = styled(BaseBox)<StyledButtonGroupProps>(
-  ({ theme, variant = 'primary', isFullWidth, size = 'medium' }) => {
+type StyledButtonGroupWebProps = StyledButtonGroupProps &
+  BaseBoxProps &
+  Pick<React.HTMLAttributes<HTMLElement>, 'role' | 'style' | 'className'>;
+import {
+  getButtonGroupDataAttributes,
+  getButtonGroupRootClass,
+} from './getButtonGroupModuleClasses';
+import BaseBox from '~components/Box/BaseBox';
+import { useTheme } from '~components/Klear360Provider';
+import { buttonBorderRadius } from '~components/Button/BaseButton/buttonTokens';
+import { makeBorderSize } from '~utils';
+
+const StyledButtonGroup = React.forwardRef<HTMLElement, StyledButtonGroupWebProps>(
+  ({ variant = 'primary', isFullWidth, size = 'medium', className, style, ...rest }, ref) => {
+    const { theme } = useTheme();
     const borderRadiusToken = buttonBorderRadius[size];
     const borderRadius = makeBorderSize(theme.border.radius[borderRadiusToken]);
-    const isSecondaryOrTertiary = variant === 'secondary' || variant === 'tertiary';
 
-    return {
-      display: 'flex',
-      width: isFullWidth ? '100%' : 'fit-content',
-      borderWidth: makeBorderSize(theme.border.width.thin),
-      borderRadius,
-      borderStyle: 'solid',
-      borderColor: 'transparent',
-      overflow: 'hidden',
-      'button[role="button"]': {
-        flex: isFullWidth ? 1 : 'auto',
-        borderRadius: 0,
-      },
-
-      // Handles both direct buttons and buttons wrapped in components like Dropdown
-      '> button[role="button"]:first-child, > *:first-child button[role="button"]': {
-        borderRight: 'none',
-        borderTopLeftRadius: borderRadius,
-        borderBottomLeftRadius: borderRadius,
-      },
-
-      // Targets middle buttons, whether direct children or wrapped in container elements
-      '> button[role="button"]:not(:first-child):not(:last-child), > *:not(:first-child):not(:last-child) button[role="button"]': {
-        borderLeft: 'none',
-        borderRight: 'none',
-      },
-
-      // Handles last button in group, accounting for wrapper components like Dropdown
-      '> button[role="button"]:last-child, > *:last-child button[role="button"]': {
-        borderLeft: 'none',
-        borderTopRightRadius: borderRadius,
-        borderBottomRightRadius: borderRadius,
-      },
-
-      // Remove radial gradient from all buttons except the first one
-      '> button[role="button"]:not(:first-child), > *:not(:first-child) button[role="button"]': {
-        backgroundImage: 'none',
-      },
-
-      // For secondary/tertiary variants, use negative margin to collapse double borders
-      // (these variants have borders via box-shadow, so adjacent buttons would show double borders)
-      ...(isSecondaryOrTertiary && {
-        '> button[role="button"]:not(:first-child), > *:not(:first-child) button[role="button"]': {
-          marginLeft: '-1px',
-          backgroundImage: 'none',
-        },
-      }),
-    };
+    return (
+      <BaseBox
+        ref={ref as never}
+        {...rest}
+        {...getButtonGroupDataAttributes(isFullWidth)}
+        className={[getButtonGroupRootClass({ variant }), className].filter(Boolean).join(' ')}
+        style={
+          {
+            ['--button-group-radius' as string]: borderRadius,
+            ...style,
+          } as React.CSSProperties
+        }
+      />
+    );
   },
 );
+
+StyledButtonGroup.displayName = 'StyledButtonGroup';
 
 export { StyledButtonGroup };

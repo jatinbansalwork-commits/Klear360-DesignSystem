@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { CellWrapper, StyledCell } from './TableBody';
+import { CellWrapper } from './TableBody';
+import { EditableStyledCell } from './tableScopedStyled.web';
 import { useTableRowContext } from './TableContext';
 import type { TableEditableSearchCellProps, TableProps } from './types';
 import {
@@ -9,7 +9,6 @@ import {
   validationStateToInputTrailingIconMap,
 } from './tokens';
 import { ComponentIds } from './componentIds';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import type { MarginProps } from '~components/Box/BaseBox/types/spacingTypes';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import BaseBox from '~components/Box/BaseBox';
@@ -22,17 +21,6 @@ import { CloseIcon, SearchIcon } from '~components/Icons';
 import { IconButton } from '~components/Button/IconButton';
 import isEmpty from '~utils/lodashButBetter/isEmpty';
 import type { Klear360ElementRefWithValue } from '~utils/types';
-
-const StyledEditableCell = styled(StyledCell)<{
-  $rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-}>(({ theme, $rowDensity }) => ({
-  '&&&': {
-    '&:focus-visible': { outline: '1px solid' },
-    '&:focus-within': {
-      ...($rowDensity !== 'comfortable' ? getFocusRingStyles({ theme, negativeOffset: true }) : {}),
-    },
-  },
-}));
 
 // Same rules as TableEditableCell's - kept in sync deliberately (see TableEditableCell.web.tsx).
 const getEditableInputMargin = ({
@@ -88,7 +76,7 @@ const _TableEditableSearchCell = ({
   );
 
   return (
-    <StyledEditableCell
+    <EditableStyledCell
       role="cell"
       $backgroundColor={backgroundColor}
       $rowDensity={rowDensity}
@@ -167,7 +155,7 @@ const _TableEditableSearchCell = ({
           </Box>
         </CellWrapper>
       </BaseBox>
-    </StyledEditableCell>
+    </EditableStyledCell>
   );
 };
 

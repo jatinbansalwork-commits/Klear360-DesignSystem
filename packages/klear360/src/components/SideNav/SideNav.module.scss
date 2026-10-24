@@ -1,0 +1,87 @@
+.mobileL1Container {
+  :global(.show-when-collapsed) {
+    display: none;
+  }
+}
+
+.l2PortalContainer {
+  :global(> div:not(:empty)) {
+    height: 100%;
+  }
+}
+
+.bannerContainer {
+  &:not(:empty) {
+    border-bottom: var(--border-width-thin) solid var(--sidenav-banner-border, var(--surface-border-gray-muted));
+    border-right: var(--border-width-thin) solid var(--sidenav-banner-border, var(--surface-border-gray-muted));
+    border-bottom-style: solid;
+    border-right-style: solid;
+    padding: var(--sidenav-banner-padding, var(--spacing-3));
+    max-height: var(--sidenav-banner-max-height);
+    width: 100%;
+  }
+}
+
+.sideNavContainerExpandable {
+  transition: var(--sidenav-width-transition-enter, width 300ms ease);
+
+  &:global(.collapsed) {
+    width: var(--sidenav-collapse-width) !important;
+    transition: var(--sidenav-width-transition-collapse);
+
+    &:not(:global(.transitioning)) :global(.hide-when-collapsed) {
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--sidenav-opacity-transition-exit);
+    }
+
+    &:not(:global(.transitioning)) :global(.show-when-collapsed) {
+      opacity: 1;
+      pointer-events: auto;
+      transition: var(--sidenav-opacity-transition-enter);
+    }
+  }
+
+  :global(.show-when-collapsed) {
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--sidenav-opacity-transition-exit);
+  }
+
+  :global(.hide-when-collapsed) {
+    opacity: 1;
+    pointer-events: auto;
+    transition: var(--sidenav-opacity-transition-enter);
+  }
+}
+
+.l1Menu {
+  width: 100%;
+
+  :global(> .l1-item-wrapper) {
+    padding: var(--sidenav-l1-item-padding-expanded, var(--spacing-3));
+  }
+
+  &:global(.collapsed) {
+    width: var(--sidenav-collapse-width) !important;
+    transition: var(--sidenav-width-transition-collapse);
+
+    :global(> .l1-item-wrapper) {
+      padding: var(--sidenav-l1-item-padding-collapsed);
+    }
+
+    &:not(:global(.transitioning)) :global(.hide-when-collapsed) {
+      display: none;
+    }
+
+    &:not(:global(.transitioning)) :global(.show-when-collapsed) {
+      display: initial;
+    }
+  }
+
+  &:not([data-side-nav-expandable='true']) {
+    :global(.show-when-collapsed) {
+      display: none;
+    }
+  }
+}

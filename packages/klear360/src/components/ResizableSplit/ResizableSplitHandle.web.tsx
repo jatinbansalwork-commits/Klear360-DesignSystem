@@ -1,27 +1,14 @@
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
 import {
-  getHandleContainerStyles,
-  getHandleTrackStyles,
-  getHandleGripStyles,
-} from './getResizableSplitHandleStyles';
+  getResizableSplitHandleContainerClass,
+  getResizableSplitHandleDataAttributes,
+  getResizableSplitHandleGripClass,
+  getResizableSplitHandleTrackClass,
+} from './getResizableSplitModuleClasses';
 import { ComponentIds } from './componentIds';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import DragHandleIcon from '~components/Icons/DragHandleIcon';
-
-const StyledHandleContainer = styled.div<{ $handleWidth: number; $isFocusVisible: boolean }>(
-  ({ theme, $handleWidth, $isFocusVisible }) =>
-    getHandleContainerStyles({ theme, handleWidth: $handleWidth, isFocusVisible: $isFocusVisible }),
-);
-
-const StyledTrack = styled.div<{ $isDragging: boolean }>(({ theme, $isDragging }) =>
-  getHandleTrackStyles({ theme, isDragging: $isDragging }),
-);
-
-const StyledGrip = styled.div<{ $isDragging: boolean }>(({ theme, $isDragging }) =>
-  getHandleGripStyles({ theme, isDragging: $isDragging }),
-);
 
 type ResizableSplitHandleProps = {
   handleWidth: number;
@@ -140,10 +127,15 @@ const _ResizableSplitHandle = ({
   };
 
   return (
-    <StyledHandleContainer
+    <div
       {...metaAttribute({ name: MetaConstants.ResizableSplitHandle })}
-      $handleWidth={handleWidth}
-      $isFocusVisible={isFocusVisible}
+      className={getResizableSplitHandleContainerClass()}
+      style={
+        {
+          '--resizable-split-handle-width': `${handleWidth}px`,
+        } as React.CSSProperties
+      }
+      {...getResizableSplitHandleDataAttributes({ isDragging, isFocusVisible })}
       role="separator"
       tabIndex={0}
       aria-label={accessibilityLabel}
@@ -161,11 +153,11 @@ const _ResizableSplitHandle = ({
       onFocus={(e) => setIsFocusVisible(e.currentTarget.matches(':focus-visible'))}
       onBlur={() => setIsFocusVisible(false)}
     >
-      <StyledTrack $isDragging={isDragging} />
-      <StyledGrip $isDragging={isDragging}>
+      <div className={getResizableSplitHandleTrackClass()} />
+      <div className={getResizableSplitHandleGripClass()}>
         <DragHandleIcon size="small" />
-      </StyledGrip>
-    </StyledHandleContainer>
+      </div>
+    </div>
   );
 };
 

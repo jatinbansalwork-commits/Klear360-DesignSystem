@@ -1,6 +1,9 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import { Klear360Provider } from '~components/Klear360Provider';
+import { klear360Theme } from '~tokens/theme';
+import { themeToCSSVariables } from '~utils/themeToCSSVariables';
 import { Dropdown, DropdownLink, DropdownOverlay, FilterChipSelectInput } from '../index';
 import { DropdownButton } from '../DropdownButton';
 import { DropdownFooter, DropdownHeader } from '../DropdownHeaderFooter';
@@ -20,6 +23,69 @@ const getActiveDescendant = (selectInput: HTMLElement): string | null | undefine
 };
 
 describe('<Dropdown />', () => {
+  it('overlay panel background follows colorScheme via provider CSS custom properties', async () => {
+    const user = userEvent.setup();
+    const menu = (
+      <Dropdown>
+        <DropdownButton>Theme menu</DropdownButton>
+        <DropdownOverlay>
+          <ActionList>
+            <ActionListItem title="One" value="one" />
+            <ActionListItem title="Two" value="two" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>
+    );
+
+    const lightVars = themeToCSSVariables({
+      colors: klear360Theme.colors.onLight,
+      elevation: klear360Theme.elevation.onLight,
+      border: klear360Theme.border,
+      typography: klear360Theme.typography.onMobile,
+      motion: klear360Theme.motion,
+    });
+    const darkVars = themeToCSSVariables({
+      colors: klear360Theme.colors.onDark,
+      elevation: klear360Theme.elevation.onDark,
+      border: klear360Theme.border,
+      typography: klear360Theme.typography.onMobile,
+      motion: klear360Theme.motion,
+    });
+    expect(lightVars['--popup-background-gray-moderate']).not.toBe(
+      darkVars['--popup-background-gray-moderate'],
+    );
+
+    const { unmount, getByRole } = render(
+      <Klear360Provider themeTokens={klear360Theme} colorScheme="light">
+        {menu}
+      </Klear360Provider>,
+    );
+    await user.click(getByRole('button', { name: 'Theme menu' }));
+    await waitFor(() => expect(getByRole('menu')).toBeVisible());
+    const lightProvider = document.querySelector('[data-klear360-color-scheme="light"]') as
+      | HTMLElement
+      | null;
+    expect(lightProvider?.style.getPropertyValue('--popup-background-gray-moderate')).toBe(
+      lightVars['--popup-background-gray-moderate'],
+    );
+
+    unmount();
+
+    const darkRender = render(
+      <Klear360Provider themeTokens={klear360Theme} colorScheme="dark">
+        {menu}
+      </Klear360Provider>,
+    );
+    await user.click(darkRender.getByRole('button', { name: 'Theme menu' }));
+    await waitFor(() => expect(darkRender.getByRole('menu')).toBeVisible());
+    const darkProvider = document.querySelector('[data-klear360-color-scheme="dark"]') as
+      | HTMLElement
+      | null;
+    expect(darkProvider?.style.getPropertyValue('--popup-background-gray-moderate')).toBe(
+      darkVars['--popup-background-gray-moderate'],
+    );
+  });
+
   it('should render dropdown and make it visible on click', async () => {
     const user = userEvent.setup();
 

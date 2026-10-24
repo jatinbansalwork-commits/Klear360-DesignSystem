@@ -1,0 +1,23 @@
+@property --travel-x {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --travel-r {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --travel-x2 {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --travel-r2 {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}

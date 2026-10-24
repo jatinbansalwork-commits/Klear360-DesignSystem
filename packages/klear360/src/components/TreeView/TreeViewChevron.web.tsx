@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './TreeViewChevron.module.scss';
 import BaseBox from '~components/Box/BaseBox';
 import { ChevronRightIcon } from '~components/Icons';
 import { Spinner } from '~components/Spinner';
 import { size } from '~tokens/global';
 import { castWebType, makeSize } from '~utils';
 import { makeAccessible } from '~utils/makeAccessible';
-import { makeMotionTime } from '~utils/makeMotionTime';
 
 const CHEVRON_GUTTER_SIZE = size[20];
 
@@ -17,16 +16,6 @@ type TreeViewChevronProps = {
   isDisabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
-
-const StyledChevronRotator = styled(BaseBox)<{ isExpanded: boolean }>((props) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transform: props.isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-  transition: `transform ${makeMotionTime(props.theme.motion.duration.quick)} ${castWebType(
-    props.theme.motion.easing.standard,
-  )}`,
-}));
 
 /**
  * Internal chevron slot of TreeViewItem: a 20px slot with a 16px chevron
@@ -54,12 +43,15 @@ const TreeViewChevron = ({
     >
       {state === 'loading' ? <Spinner accessibilityLabel="Loading" size="medium" /> : null}
       {isExpandable ? (
-        <StyledChevronRotator isExpanded={state === 'expanded'}>
+        <div
+          className={styles.chevronRotator}
+          data-expanded={state === 'expanded' ? true : undefined}
+        >
           <ChevronRightIcon
             size="medium"
             color={isDisabled ? 'interactive.icon.gray.disabled' : 'interactive.icon.gray.muted'}
           />
-        </StyledChevronRotator>
+        </div>
       ) : null}
     </BaseBox>
   );

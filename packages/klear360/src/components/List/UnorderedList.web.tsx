@@ -1,6 +1,17 @@
-import styled from 'styled-components';
-import { getListStyleResetter } from './getListStyleResetter';
+import React from 'react';
+import { getUnorderedListClass } from './getListModuleClasses';
+import type { DotNotationSpacingStringToken } from '~utils/types';
 
-const UnorderedList = styled.ul(getListStyleResetter());
+type UnorderedListWebProps = React.HTMLAttributes<HTMLUListElement> & {
+  marginTop?: DotNotationSpacingStringToken;
+};
+
+const UnorderedList = React.forwardRef<HTMLUListElement, UnorderedListWebProps>(
+  ({ className, marginTop: _marginTop, ...rest }, ref) => (
+    <ul ref={ref} className={[getUnorderedListClass(), className].filter(Boolean).join(' ')} {...rest} />
+  ),
+);
+
+UnorderedList.displayName = 'UnorderedList';
 
 export { UnorderedList };
