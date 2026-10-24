@@ -29,6 +29,7 @@ const Klear360Provider = ({
         elevation: theme.elevation,
         border: theme.border,
         typography: theme.typography,
+        motion: theme.motion,
       }),
     [theme],
   );
