@@ -32,7 +32,7 @@ describe('<Avatar />', () => {
     );
     const [avatar1, avatar2, avatar3] = getAllByRole('button');
     expect(avatar1).toHaveTextContent('NK');
-    expect(avatar2).toHaveTextContent('AN');
+    expect(avatar2).toHaveTextContent('MA');
     expect(avatar3).toHaveTextContent('RB');
   });
 

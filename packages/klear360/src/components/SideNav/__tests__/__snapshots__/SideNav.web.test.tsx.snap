@@ -32,7 +32,7 @@ exports[`SideNav should render 1`] = `
   left: 0px;
   background-color: hsla(210,40%,98%,1);
   border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
   border-right-style: solid;
 }
 
@@ -55,7 +55,7 @@ exports[`SideNav should render 1`] = `
   left: 0px;
   background-color: hsla(210,40%,98%,1);
   border-right-width: 1px;
-  border-right-color: hsla(222,47%,11%,0.12);
+  border-right-color: hsla(222,47%,11%,0.126);
   border-right-style: solid;
 }
 
@@ -201,7 +201,7 @@ exports[`SideNav should render 1`] = `
   left: -20px;
   background-color: hsla(210,40%,98%,1);
   border-top-width: 1px;
-  border-top-color: hsla(222,47%,11%,0.12);
+  border-top-color: hsla(222,47%,11%,0.126);
   border-top-style: solid;
   box-shadow: 0px 2px 4px 0px hsla(200,10%,18%,0.06);
 }
@@ -637,7 +637,7 @@ exports[`SideNav should render 1`] = `
 .c25.c25.c25.c25.c25 {
   height: 2px;
   width: 100%;
-  background: linear-gradient(90deg,hsla(0,0%,100%,0) 0%,hsla(222,47%,11%,0.12) 50%,hsla(0,0%,100%,0) 100%);
+  background: linear-gradient(90deg,hsla(0,0%,100%,0) 0%,hsla(222,47%,11%,0.126) 50%,hsla(0,0%,100%,0) 100%);
 }
 
 .c29.c29.c29.c29.c29 {
@@ -1178,7 +1178,7 @@ exports[`SideNav should render 1`] = `
                             class="c19 hide-when-collapsed"
                             data-klear360-component="base-text"
                           >
-                            Gateway
+                            Connections
                           </p>
                         </div>
                       </div>
@@ -1529,7 +1529,7 @@ exports[`SideNav should render 1`] = `
                       cx="5"
                       cy="5"
                       data-klear360-component="svg-circle"
-                      fill="hsla(143, 72%, 31%, 1)"
+                      fill="hsla(142, 71%, 25%, 1)"
                       r="2.5"
                     />
                   </svg>

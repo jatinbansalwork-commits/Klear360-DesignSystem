@@ -18,7 +18,7 @@ describe('<AvatarGroup />', () => {
       );
       expect(container).toMatchSnapshot();
       expect(container).toHaveTextContent('NK');
-      expect(container).toHaveTextContent('AN');
+      expect(container).toHaveTextContent('MA');
       expect(container).toHaveTextContent('RB');
     });
   });
@@ -34,10 +34,10 @@ describe('<AvatarGroup />', () => {
       </AvatarGroup>,
     );
     expect(container).toHaveTextContent('NK');
-    expect(container).toHaveTextContent('AN');
+    expect(container).toHaveTextContent('MA');
     expect(container).toHaveTextContent('RB');
-    expect(container).not.toHaveTextContent('CH');
-    expect(container).not.toHaveTextContent('SA');
+    expect(container).not.toHaveTextContent('RI');
+    expect(container).not.toHaveTextContent('PR');
     expect(container).toHaveTextContent('+2');
   });
 

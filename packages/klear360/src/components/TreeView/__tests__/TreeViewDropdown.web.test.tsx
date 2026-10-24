@@ -267,7 +267,11 @@ describe('<TreeView /> inside <Dropdown /> with <SelectInput />', () => {
         }),
       ),
     );
-    expect(getByRole('treeitem', { name: 'Karnataka' })).toHaveAttribute('aria-checked', 'true');
+    // the controlled value round-trips through the parent's state and back into Dropdown's
+    // selection store, so the tree settles a commit after onChange fires
+    await waitFor(() =>
+      expect(getByRole('treeitem', { name: 'Karnataka' })).toHaveAttribute('aria-checked', 'true'),
+    );
   });
 
   it('should activate TreeViewLoadMore on click without selecting it', async () => {
