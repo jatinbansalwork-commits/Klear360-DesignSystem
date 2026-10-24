@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBaseBoxStyles } from './baseBoxStyles';
+import { getAllMediaQueries, getAllProps } from './baseBoxStyles';
 import type { BaseBoxProps } from './types';
 import type { Theme } from '~components/Klear360Provider';
 import { useTheme } from '~components/Klear360Provider';
@@ -48,7 +48,7 @@ const useMemoizedStyles = (
   const { colorScheme } = useTheme();
   const boxPropsMemoDependency = getMemoDependency({ ...boxProps, colorScheme });
   const boxPropsCSSObject = React.useMemo(
-    () => getBaseBoxStyles({ ...boxProps, theme: boxProps.theme }),
+    () => getAllProps({ ...boxProps, theme: boxProps.theme }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [boxPropsMemoDependency],
   );
@@ -56,4 +56,17 @@ const useMemoizedStyles = (
   return boxPropsCSSObject as React.CSSProperties;
 };
 
-export { useMemoizedStyles, getMemoDependency };
+/** Breakpoint overrides for BaseBox — injected via scoped `<style>` (not inline `style`). */
+const useMemoizedResponsiveStyles = (
+  boxProps: BaseBoxProps & { theme: Theme },
+): Record<string, unknown> => {
+  const { colorScheme } = useTheme();
+  const boxPropsMemoDependency = getMemoDependency({ ...boxProps, colorScheme });
+  return React.useMemo(
+    () => getAllMediaQueries({ ...boxProps, theme: boxProps.theme }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [boxPropsMemoDependency],
+  );
+};
+
+export { useMemoizedStyles, useMemoizedResponsiveStyles, getMemoDependency };

@@ -26,6 +26,7 @@ export type HeadingProps = {
   size?: Extract<BaseTextSizes, 'small' | 'medium' | 'large' | 'xlarge' | '2xlarge'>;
   textTransform?: BaseTextProps['textTransform'];
   wordBreak?: BaseTextProps['wordBreak'];
+  style?: React.CSSProperties;
 } & TestID &
   ElementTiming &
   StyledPropsKlear360;
@@ -91,6 +92,7 @@ const _Heading = (
     textDecorationLine,
     wordBreak,
     textTransform,
+    style,
     ...styledProps
   }: HeadingProps,
   ref: React.Ref<Klear360ElementRef>,
@@ -107,6 +109,7 @@ const _Heading = (
       textDecorationLine={textDecorationLine}
       textTransform={textTransform}
       wordBreak={wordBreak}
+      style={style}
       {...getStyledProps(styledProps)}
       {...makeAnalyticsAttribute(styledProps)}
     >

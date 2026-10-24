@@ -35,11 +35,15 @@ function withScopedTableStyles<P extends { className?: string }>(
     rowContext?: ReturnType<typeof useTableRowContext>;
   }) => Record<string, unknown>,
   options?: { useRowContext?: boolean },
-): React.FC<P> {
-  const Wrapped = (props: P): React.ReactElement => {
+): React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<unknown>> {
+  const Wrapped = React.forwardRef<unknown, P>(function ScopedTableStylesWrapper(props, ref) {
     const { theme } = useTheme();
     const rowContext = options?.useRowContext ? useTableRowContext() : undefined;
     const scopeClass = useStableScopeClass('tbl');
+    const { className, style, ...restProps } = props as P & {
+      className?: string;
+      style?: React.CSSProperties;
+    };
     const styleObject = React.useMemo(
       () => getStyleObject({ theme, props, rowContext }),
       [theme, props, rowContext],
@@ -49,12 +53,14 @@ function withScopedTableStyles<P extends { className?: string }>(
       <>
         <ScopedRuntimeStyles scopeClass={scopeClass} styleObject={styleObject} />
         <Component
-          {...props}
-          className={[scopeClass, props.className].filter(Boolean).join(' ')}
+          {...(restProps as P)}
+          ref={ref as never}
+          style={style}
+          className={[scopeClass, className].filter(Boolean).join(' ')}
         />
       </>
     );
-  };
+  });
   Wrapped.displayName = `Scoped(${Component.displayName ?? 'Component'})`;
   return Wrapped;
 }

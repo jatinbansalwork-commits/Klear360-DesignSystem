@@ -66,18 +66,21 @@ describe('<ListView />', () => {
     // `role="table"` element: a row-wrapper div, then TableSurface itself), driven by
     // `isInsideListView` from context. jsdom's `getComputedStyle` doesn't reliably resolve
     // border-radius/background-color through styled-components' generated classes here, so this
-    // compares the generated utility class names instead - those are a deterministic function of
-    // the actual style props TableSurface received, so a different class reliably means different
-    // styles were applied, without depending on jsdom's CSS cascade resolution.
+    // P2 TableSurface applies standalone vs nested differences via BaseBox styled props
+    // (inline `style`), not separate SCSS module class names — compare those instead.
+    const getTableSurface = (getByRole: (role: string) => HTMLElement): HTMLElement =>
+      getByRole('table').parentElement!.parentElement!;
+
     const standalone = renderWithTheme(renderBasicTable());
-    const standaloneSurfaceClass = standalone.getByRole('table').parentElement!.parentElement!
-      .className;
+    const standaloneSurface = getTableSurface(standalone.getByRole);
+    const standaloneBoxShadow = standaloneSurface.style.boxShadow;
     standalone.unmount();
 
     const nested = renderWithTheme(<ListView>{renderBasicTable()}</ListView>);
-    const nestedSurfaceClass = nested.getByRole('table').parentElement!.parentElement!.className;
+    const nestedSurface = getTableSurface(nested.getByRole);
 
-    expect(nestedSurfaceClass).not.toBe(standaloneSurfaceClass);
+    expect(nestedSurface.style.boxShadow).toBe('');
+    expect(standaloneBoxShadow).not.toBe('');
   });
 
   it('should have no accessibility violations', async () => {

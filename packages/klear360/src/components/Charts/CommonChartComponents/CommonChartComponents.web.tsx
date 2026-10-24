@@ -594,7 +594,11 @@ const LegendItem = ({
             borderRadius: theme.border.radius['2xsmall'],
           }}
         />
-        <Text size="medium" color="surface.text.gray.muted">
+        <Text
+          size="medium"
+          color="surface.text.gray.muted"
+          textDecorationLine={isSelected ? 'none' : 'line-through'}
+        >
           {entry.value}
         </Text>
       </Box>

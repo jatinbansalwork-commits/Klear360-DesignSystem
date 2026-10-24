@@ -133,7 +133,9 @@ const getWebConfig = (inputs) => {
       // A config with no CSS in its graph (tokens, utils) emits no stylesheet.
       postcss({
         extract: 'styles/index.css',
-        modules: true,
+        modules: {
+          auto: (resourcePath) => resourcePath.endsWith('.module.scss'),
+        },
         minimize:
           process.env.NODE_ENV === 'production'
             ? {
@@ -241,6 +243,23 @@ const getNativeConfig = (inputs) => {
   };
 };
 
+/** Side-effect SCSS/CSS imports are stripped from emitted JS; d.ts bundling must not resolve them. */
+const ignoreStyleImportsForDeclarations = () => ({
+  name: 'ignore-style-imports-for-declarations',
+  resolveId(source) {
+    if (/\.(scss|css)$/.test(source)) {
+      return source;
+    }
+    return null;
+  },
+  load(id) {
+    if (/\.(scss|css)$/.test(id)) {
+      return 'export {};\n';
+    }
+    return null;
+  },
+});
+
 const getDeclarationsConfig = ({ exportCategory, isNative }) => {
   const platform = isNative ? 'native' : 'web';
 
@@ -271,6 +290,7 @@ const getDeclarationsConfig = ({ exportCategory, isNative }) => {
       },
     ],
     plugins: [
+      ignoreStyleImportsForDeclarations(),
       pluginDeclarations({
         compilerOptions,
       }),

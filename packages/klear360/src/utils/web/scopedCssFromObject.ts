@@ -16,7 +16,13 @@ const objectToCssText = (selector: string, obj: Record<string, unknown>): string
 
   for (const [key, value] of Object.entries(obj)) {
     if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-      nestedRules.push(objectToCssText(resolveSelector(selector, key), value as Record<string, unknown>));
+      if (key.startsWith('@media') || key.startsWith('@supports')) {
+        nestedRules.push(
+          `${key}{${objectToCssText(selector, value as Record<string, unknown>)}}`,
+        );
+      } else {
+        nestedRules.push(objectToCssText(resolveSelector(selector, key), value as Record<string, unknown>));
+      }
     } else if (value !== undefined) {
       declarations.push(`${camelToKebab(key)}:${String(value)};`);
     }

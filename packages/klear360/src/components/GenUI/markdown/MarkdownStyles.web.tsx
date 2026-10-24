@@ -3,7 +3,7 @@ import './MarkdownStyles.global.scss';
 import styles from './MarkdownStyles.module.scss';
 import { useTheme } from '~components/Klear360Provider';
 import { ScopedRuntimeStyles, useStableScopeClass } from '~utils/web/scopedCssFromObject';
-
+import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 const TextAnimationStyles = (): null => null;
 
 const MarkdownUnorderedList = ({
@@ -53,6 +53,17 @@ type MarkdownHeadingContainerProps = React.ComponentProps<'div'> & {
   $level: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
+const getPreviousHeadingContainer = (element: HTMLElement): HTMLElement | null => {
+  let previousSibling = element.previousElementSibling;
+  while (previousSibling) {
+    if (previousSibling instanceof HTMLElement && previousSibling.dataset.markdownHeadingContainer) {
+      return previousSibling;
+    }
+    previousSibling = previousSibling.previousElementSibling;
+  }
+  return null;
+};
+
 const MarkdownHeadingContainer = ({
   $level,
   className,
@@ -61,7 +72,8 @@ const MarkdownHeadingContainer = ({
   ...rest
 }: MarkdownHeadingContainerProps): React.ReactElement => {
   const { theme } = useTheme();
-  const scopeClass = useStableScopeClass('md-h');
+  /** Must match `jest/cssModuleMock.js` pass-through class name for `.headingContainer`. */
+  const scopeClass = 'headingContainer';
   const spacing = {
     1: { marginTop: 0, marginBottom: theme.spacing[4] },
     2: { marginTop: theme.spacing[7], marginBottom: theme.spacing[3] },
@@ -71,29 +83,43 @@ const MarkdownHeadingContainer = ({
     6: { marginTop: theme.spacing[5], marginBottom: theme.spacing[2] },
   }[$level];
 
-  const styleObject = React.useMemo(
-    () =>
-      $level === 6
-        ? {
-            [`& + &.${scopeClass}`]: { marginTop: 0 },
-            [`& > h6`]: {
-              fontFamily: theme.typography.fonts.family.text,
-              fontSize: `${theme.typography.fonts.size[100]}px`,
-              lineHeight: `${theme.typography.lineHeights[300]}px`,
-              letterSpacing: '0.03em',
-            },
-          }
-        : { [`& + &.${scopeClass}`]: { marginTop: 0 } },
-    [theme, $level, scopeClass],
-  );
+  const styleObject = React.useMemo(() => {
+    if ($level !== 6) {
+      return { [`& + &`]: { marginTop: 0 } };
+    }
+    return {
+      [`& + &`]: { marginTop: 0 },
+      [`& > h6`]: {
+        fontFamily: theme.typography.fonts.family.text,
+        fontSize: `${theme.typography.fonts.size[100]}px`,
+        lineHeight: `${theme.typography.lineHeights[300]}px`,
+        letterSpacing: '0.03em',
+      },
+    };
+  }, [theme, $level]);
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [marginTop, setMarginTop] = React.useState(spacing.marginTop);
+
+  useIsomorphicLayoutEffect(() => {
+    const element = containerRef.current;
+    if (!element) {
+      return;
+    }
+
+    setMarginTop(getPreviousHeadingContainer(element) ? 0 : spacing.marginTop);
+  }, [spacing.marginTop]);
 
   return (
     <>
       <ScopedRuntimeStyles scopeClass={scopeClass} styleObject={styleObject} />
       <div
+        ref={containerRef}
+        data-markdown-heading-container=""
         className={[styles.headingContainer, scopeClass, className].filter(Boolean).join(' ')}
         style={{
-          margin: `${spacing.marginTop}px 0 ${spacing.marginBottom}px`,
+          marginTop,
+          marginBottom: spacing.marginBottom,
           ...style,
         }}
         {...rest}
@@ -138,8 +164,8 @@ const MarkdownListItem = ({
           marginBottom: 0,
           color: theme.colors.surface.text.gray.subtle,
           fontFamily: theme.typography.fonts.family.text,
-          fontSize: theme.typography.fonts.size[100],
-          lineHeight: theme.typography.lineHeights[100],
+          fontSize: `${theme.typography.fonts.size[100]}px`,
+          lineHeight: `${theme.typography.lineHeights[100]}px`,
           listStyle: 'none',
           ...style,
         }}
@@ -253,13 +279,13 @@ const MarkdownInlineCode = ({
         display: 'inline-flex',
         alignItems: 'center',
         boxSizing: 'border-box',
-        verticalAlign: 1.5,
+        verticalAlign: '1.5px',
         color: theme.colors.interactive.text.information.normal,
         fontFamily: theme.typography.fonts.family.code,
-        fontSize: theme.typography.fonts.size[50],
+        fontSize: `${theme.typography.fonts.size[50]}px`,
         fontStyle: 'normal',
         fontWeight: theme.typography.fonts.weight.regular,
-        lineHeight: theme.typography.lineHeights[50],
+        lineHeight: `${theme.typography.lineHeights[50]}px`,
         letterSpacing: 0,
         background: theme.colors.surface.background.gray.intense,
         borderRadius: theme.border.radius.xsmall,
@@ -283,10 +309,10 @@ const MarkdownItalic = ({
       style={{
         color: theme.colors.surface.text.gray.subtle,
         fontFamily: theme.typography.fonts.family.text,
-        fontSize: theme.typography.fonts.size[100],
+        fontSize: `${theme.typography.fonts.size[100]}px`,
         fontStyle: 'italic',
         fontWeight: 'inherit',
-        lineHeight: theme.typography.lineHeights[100],
+        lineHeight: `${theme.typography.lineHeights[100]}px`,
         ...style,
       }}
       {...props}
@@ -416,10 +442,10 @@ const MarkdownCodeBlockLanguage = ({
         alignItems: 'center',
         color: theme.colors.surface.text.gray.muted,
         fontFamily: theme.typography.fonts.family.code,
-        fontSize: theme.typography.fonts.size[50],
+        fontSize: `${theme.typography.fonts.size[50]}px`,
         fontWeight: theme.typography.fonts.weight.regular,
         letterSpacing: theme.typography.letterSpacings[100],
-        lineHeight: theme.typography.lineHeights[50],
+        lineHeight: `${theme.typography.lineHeights[50]}px`,
         ...style,
       }}
       {...props}
@@ -440,9 +466,9 @@ const MarkdownCodeBlockCode = ({
         padding: theme.spacing[4],
         color: theme.colors.surface.text.gray.normal,
         fontFamily: theme.typography.fonts.family.code,
-        fontSize: theme.typography.fonts.size[75],
+        fontSize: `${theme.typography.fonts.size[75]}px`,
         fontWeight: theme.typography.fonts.weight.regular,
-        lineHeight: theme.typography.lineHeights[100],
+        lineHeight: `${theme.typography.lineHeights[100]}px`,
         whiteSpace: 'pre',
         background: 'none',
         border: 'none',
