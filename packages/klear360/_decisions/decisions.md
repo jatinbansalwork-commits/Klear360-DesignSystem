@@ -347,4 +347,20 @@ Working assumption: class names and token usage line up closely enough to use th
 - `postcss.config.js`: `postcss-nested`, the local `postcss-klear360-layer.cjs` plugin (wraps this package's `.module.scss`/`.module.css` output in `@layer klear360` so unlayered consumer CSS wins without `!important`), then `autoprefixer`. `src/styles/layers.scss` declares the layer up front.
 - klear360-core declares the **same** `@layer klear360`. If an app loads both stylesheets, their rules share one layer and source order decides between them - acceptable while core's styles are only a reference, but revisit if both ever ship to the same page.
 - The `*.module.scss` type declaration lives in its own `src/@types/cssModules.d.ts`: a wildcard `declare module` inside `globals.d.ts` (which has top-level imports, so it is a module) is treated as an augmentation and silently declares nothing.
-- Verified with a throwaway `.module.scss` (nesting, a `$variable`, theme custom properties), deleted before the PR: classes are hashed, Sass compiles, `var(--spacing-*)` passes through, output is wrapped in `@layer klear360`. In production the minifier folds the standalone `@layer klear360;` statement into the first `@layer klear360 { ... }` block - equivalent with a single layer, not a bug.
+- Verified with a throwaway `.module.scss` (nesting, a `$variable`, theme custom properties), deleted before the PR: classes are hashed, Sass compiles, `var(--spacing-*)` passes through, output is wrapped in `@layer klear360`. In production the minifier folds the standalone `@layer klear360;` statement into the first `@layer klear360 {` block - equivalent with a single layer, not a bug.
+
+## P1: dynamic styling mechanism (web)
+
+Migrated web components use **SCSS Modules + CSS custom properties**, not styled-components' runtime theme object:
+
+1. **`Klear360Provider` (web)** flattens the resolved `Theme` (after color-scheme + breakpoint selection) into inline CSS variables on a wrapper element via `themeToCSSVariables` (kept in sync with klear360-core's copy until P3). Descendants read tokens as `var(--surface-border-gray-muted)`, etc. `data-klear360-color-scheme` is set for any future static `theme.css` pairing.
+2. **Static variant props** (orientation, size, color intent, …) map to **composed module class names** (e.g. `.horizontal.thin.muted`) rather than inline styles. SCSS holds the rules; React only picks classes.
+3. **One-off layout** (Divider `width` / `height` when the parent is not flex) stays **inline `style`**, same as before.
+4. **Prop-driven / interactive components** (Button, Table, … — P1 pilots #2–#3) will add **`data-*` attributes** on the root for states styled-components currently branches on in JS (variant, size, disabled, …), with SCSS selectors like `[data-variant='primary'][data-size='medium']`. Per-component PRs document their attribute set.
+5. **React Native** stays on styled-components until a separate native styling pass; each migrated component keeps a `.native.tsx` implementation.
+
+## P1 pilot progress
+
+- [x] **Divider (web)** — simple static component; `.module.scss` verified against current styled output; native unchanged.
+- [ ] **Button / BaseButton** — prop-driven variant/size/color.
+- [ ] **Table or Dropdown** — runtime theme switching in existing tests.
