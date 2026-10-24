@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import type { GestureResponderEvent } from 'react-native';
-import type { CSSObject } from 'styled-components';
 import { CardSurface } from './CardSurface';
 import { CardProvider, useVerifyInsideCard } from './CardContext';
 import { LinkOverlay } from './LinkOverlay';
@@ -209,7 +208,7 @@ export type CardProps = {
    */
   as?: 'label';
   cursor?: Platform.Select<{
-    web: CSSObject['cursor'];
+    web: React.CSSProperties['cursor'];
     native: undefined;
   }>;
   opacity?: BoxProps['opacity'];

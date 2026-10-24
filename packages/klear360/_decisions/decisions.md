@@ -388,7 +388,7 @@ Mechanism unchanged from P1. Each component: diff against current styled output,
 | **Table** (7 scoped web files → `tableScopedStyled.web.tsx` + module SCSS), **SideNav** root + **SideNavLink** (`SideNav.module.scss`, `getSideNav*Styles`, `SideNavLink.module.scss`), **Carousel** (3 web files incl. **CircularIndicatorButton**), **TimePicker** (3 incl. **SpinWheel** ref typing), **DatePicker** CalendarStyles, **ProgressBar** (2), **GenUI** (2), **Charts** CommonChartComponents legend, **TourMask**, **SelectorInput** | done (P2 waves 19–27) |
 | Amount, AppBar, Breadcrumb, Heading, Text, TrustBadge | already CSS/token-based on web (no styled wrapper in scoped files) |
 
-**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining styled usage on web is in **shared cross-platform `.tsx` entry points** (e.g. `BaseInput.tsx`, `BaseButton.tsx`, `Code.tsx`, `List`/`ListItem`, `Tag`, `ActionListItem`, `StyledColorInput`) — P3 cutover scope, not P2.
+**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining styled usage on web is in **shared cross-platform `.tsx` entry points** still on the bridge (`Menu/docs/CustomMenu.web.tsx`, `TopNav/TopNavOverlayThemeOverride.tsx`, `Klear360Provider.web.tsx`) plus docs/stories — P3 waves 4–5.
 
 **`Klear360Provider` (web):** `ThemeContext` + CSS-variable wrapper unchanged. **`ThemeProvider` / `StyleSheetManager` not removed** — dropping them breaks every remaining styled-components consumer above (web Jest without the bridge fails with `props.theme` undefined). Remove at P3 when shared `.tsx` styled entry points are migrated or deleted.
 
@@ -402,7 +402,7 @@ Goal: remove remaining **shared `.tsx`** styled-components usage on web, then dr
 |------|--------|--------|
 | **1** | `Tag`, `List`, `ListItem`, `Code` (shared entry points; no styled wrappers on web) | done |
 | **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` focus-ring wrapper | done |
-| **3** | `BaseButton.tsx` (native styled path only if any), `Card.tsx` types/helpers | pending |
+| **3** | `BaseButton.tsx` (`ButtonContent` → `BaseBox` + inline opacity), `Card.tsx` / `types.ts` (`CSSProperties['cursor']` instead of `CSSObject`) | done |
 | **4** | Remove web `ThemeProvider` / `StyleSheetManager`; audit web Jest without styled bridge | pending |
 | **5** | Docs/storybook styled usage; optional `@klear/klear360-core` peer for published package | pending |
 
