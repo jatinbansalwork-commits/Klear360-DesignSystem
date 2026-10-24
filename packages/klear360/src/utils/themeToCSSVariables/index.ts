@@ -3,7 +3,7 @@
  * Duplicated here until @klear/klear360-core is a published peer at P3 cutover.
  */
 import { tokenToCSSVariable } from '~utils/tokenToCSSVariable';
-import type { Border, Elevation } from '~tokens/global';
+import type { Border, Elevation, Motion } from '~tokens/global';
 import type { Typography } from '~tokens/global/typography';
 import type { Colors as ThemeColors } from '~tokens/theme';
 
@@ -12,6 +12,7 @@ export type ThemeCSSVariableSource = {
   elevation: Elevation;
   border: Border;
   typography?: Typography;
+  motion?: Motion;
 };
 
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
@@ -95,6 +96,26 @@ const typographyToCSSVariables = (typography: Typography): Record<string, string
   return cssVariables;
 };
 
+const motionToCSSVariables = (motion: Motion): Record<string, string> => {
+  const cssVariables: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(motion.duration)) {
+    cssVariables[tokenToCSSVariable(`duration.${key}`)] = `${value}ms`;
+  }
+
+  for (const [key, value] of Object.entries(motion.delay)) {
+    cssVariables[tokenToCSSVariable(`delay.${key}`)] = `${value}ms`;
+  }
+
+  for (const [key, value] of Object.entries(motion.easing)) {
+    if (typeof value === 'string') {
+      cssVariables[tokenToCSSVariable(`easing.${key}`)] = value;
+    }
+  }
+
+  return cssVariables;
+};
+
 export const themeToCSSVariables = (theme: ThemeCSSVariableSource): Record<string, string> => {
   const cssVariables: Record<string, string> = {};
 
@@ -111,6 +132,10 @@ export const themeToCSSVariables = (theme: ThemeCSSVariableSource): Record<strin
 
   if (theme.typography) {
     Object.assign(cssVariables, typographyToCSSVariables(theme.typography));
+  }
+
+  if (theme.motion) {
+    Object.assign(cssVariables, motionToCSSVariables(theme.motion));
   }
 
   return cssVariables;

@@ -362,5 +362,5 @@ Migrated web components use **SCSS Modules + CSS custom properties**, not styled
 ## P1 pilot progress
 
 - [x] **Divider (web)** — simple static component; `.module.scss` verified against current styled output; native unchanged.
-- [ ] **Button / BaseButton** — prop-driven variant/size/color.
+- [x] **BaseButton (web)** — CVA + `BaseButton.module.scss` (~680 lines, verified against styled-components + klear360-core reference); variant/color/size/disabled/full-width/icon-only via module classes; `:focus:not(:focus-visible)` + `!important` inset stroke; motion tokens added to `themeToCSSVariables`; native unchanged.
 - [ ] **Table or Dropdown** — runtime theme switching in existing tests.
