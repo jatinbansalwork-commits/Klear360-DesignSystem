@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Menu renders a Menu 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <body>
   <div
     data-floating-ui-inert=""
@@ -28,9 +24,8 @@ exports[`Menu renders a Menu 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -452,10 +447,6 @@ exports[`Menu renders a Menu 1`] = `
 `;
 
 exports[`Menu should support data-analytics attribute 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <body>
   <div
     data-floating-ui-inert=""
@@ -479,9 +470,8 @@ exports[`Menu should support data-analytics attribute 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
