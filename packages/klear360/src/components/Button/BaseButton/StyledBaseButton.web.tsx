@@ -9,6 +9,7 @@ type StyledBaseButtonWebProps = StyledBaseButtonProps & {
   target?: string;
   rel?: string;
   isIconOnly?: boolean;
+  className?: string;
 };
 
 const StyledBaseButton = React.forwardRef<HTMLButtonElement, StyledBaseButtonWebProps>(
