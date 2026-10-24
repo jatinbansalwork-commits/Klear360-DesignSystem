@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
-import styled from 'styled-components';
 import type { TouchableOpacity } from 'react-native';
+import styles from './styles/ActionList.module.scss';
 import { componentIds } from './componentIds';
 import { validateActionListItemProps, getNormalTextColor } from './actionListUtils';
 import { getActionListItemRole, getActionListSectionRole } from './getA11yRoles';
@@ -17,7 +17,6 @@ import { castWebType, isReactNative } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import type { DataAnalyticsAttribute, StringChildrenType, TestID } from '~utils/types';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { makeSize } from '~utils/makeSize';
 import { makeAccessible } from '~utils/makeAccessible';
 import { throwKlear360Error } from '~utils/logger';
 import type { BadgeProps } from '~components/Badge';
@@ -103,11 +102,6 @@ type ActionListItemProps = {
 } & TestID &
   DataAnalyticsAttribute;
 
-const StyledActionListSectionTitle = styled(BaseBox)((props) => ({
-  // @TODO: replace this styled-component with new layout box when we have padding shorthand
-  padding: makeSize(props.theme.spacing[3]),
-}));
-
 type ActionListSectionProps = {
   title: string;
   children: React.ReactNode[] | React.ReactNode;
@@ -136,7 +130,8 @@ const _ActionListSectionTitle = ({
   isInsideVirtualizedList?: boolean;
 }): React.ReactElement => {
   return (
-    <StyledActionListSectionTitle
+    <BaseBox
+      className={styles.sectionTitle}
       {...makeAccessible({
         hidden: !isInsideVirtualizedList,
         role: isInsideVirtualizedList ? 'heading' : undefined,
@@ -145,7 +140,7 @@ const _ActionListSectionTitle = ({
       <Text color="surface.text.gray.muted" size="small" weight="semibold">
         {title}
       </Text>
-    </StyledActionListSectionTitle>
+    </BaseBox>
   );
 };
 

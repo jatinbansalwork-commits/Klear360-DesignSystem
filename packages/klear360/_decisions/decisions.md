@@ -401,7 +401,7 @@ Goal: remove remaining **shared `.tsx`** styled-components usage on web, then dr
 | Wave | Scope | Status |
 |------|--------|--------|
 | **1** | `Tag`, `List`, `ListItem`, `Code` (shared entry points; no styled wrappers on web) | done |
-| **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` border/wrapper leftovers | pending |
+| **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` focus-ring wrapper | done |
 | **3** | `BaseButton.tsx` (native styled path only if any), `Card.tsx` types/helpers | pending |
 | **4** | Remove web `ThemeProvider` / `StyleSheetManager`; audit web Jest without styled bridge | pending |
 | **5** | Docs/storybook styled usage; optional `@klear/klear360-core` peer for published package | pending |
