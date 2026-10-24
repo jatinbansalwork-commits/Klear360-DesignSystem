@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<InfoGroup /> should render InfoGroup with Avatars and apply correct padding to InfoItemKey and InfoItemValue 1`] = `
-.c0.c0.c0.c0.c0 {
-  padding: 0px 4px;
-  background-color: hsla(222,47%,11%,0.09);
-  border-radius: 4px;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 0rem;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -218,8 +209,8 @@ exports[`<InfoGroup /> should render InfoGroup with Avatars and apply correct pa
                 style="display: flex; align-items: center; justify-content: flex-start; min-height: 20px;"
               >
                 <span
-                  class="c0"
                   data-klear360-component="code"
+                  style="display: inline-block; padding: 0px 4px; background-color: rgba(15, 15, 15, 0.09); border-radius: 4px; line-height: 0rem; vertical-align: middle;"
                 >
                   <code
                     data-klear360-component="base-text"

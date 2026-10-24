@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FloatingActionButton /> should render a loading neutral button with an inverted spinner 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 0;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -74,9 +70,8 @@ exports[`<FloatingActionButton /> should render a loading neutral button with an
             </div>
           </div>
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 0;"
           >
             <div
               data-klear360-component="base-box"
@@ -112,10 +107,6 @@ exports[`<FloatingActionButton /> should render a loading neutral button with an
 `;
 
 exports[`<FloatingActionButton /> should render as an icon-only button when children is omitted 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -139,9 +130,8 @@ exports[`<FloatingActionButton /> should render as an icon-only button when chil
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"
@@ -171,10 +161,6 @@ exports[`<FloatingActionButton /> should render as an icon-only button when chil
 `;
 
 exports[`<FloatingActionButton /> should render neutral color 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -197,9 +183,8 @@ exports[`<FloatingActionButton /> should render neutral color 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"
@@ -235,10 +220,6 @@ exports[`<FloatingActionButton /> should render neutral color 1`] = `
 `;
 
 exports[`<FloatingActionButton /> should render primary color 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -261,9 +242,8 @@ exports[`<FloatingActionButton /> should render primary color 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"
@@ -299,10 +279,6 @@ exports[`<FloatingActionButton /> should render primary color 1`] = `
 `;
 
 exports[`<FloatingActionButton /> should render white color 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -325,9 +301,8 @@ exports[`<FloatingActionButton /> should render white color 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"
@@ -363,10 +338,6 @@ exports[`<FloatingActionButton /> should render white color 1`] = `
 `;
 
 exports[`<FloatingActionButton /> should render with a label 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -389,9 +360,8 @@ exports[`<FloatingActionButton /> should render with a label 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"

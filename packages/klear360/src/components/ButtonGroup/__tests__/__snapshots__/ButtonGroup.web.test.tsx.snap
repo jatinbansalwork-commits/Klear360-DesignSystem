@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -29,9 +25,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] =
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -59,9 +54,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] =
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -89,9 +83,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] =
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -108,10 +101,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with default properties 1`] =
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with dropdown 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -136,9 +125,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with dropdown 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-box"
@@ -195,9 +183,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with dropdown 1`] = `
               style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
             >
               <div
-                class="c0"
                 data-klear360-component="base-box"
-                style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
               >
                 <div
                   data-klear360-component="base-box"
@@ -237,10 +224,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with dropdown 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -266,9 +249,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -296,9 +278,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -326,9 +307,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -345,10 +325,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with full width 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -373,9 +349,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -403,9 +378,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -433,9 +407,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -452,10 +425,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with large size 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -480,9 +449,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -510,9 +478,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -540,9 +507,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -559,10 +525,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with medium size 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -587,9 +549,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -617,9 +578,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -647,9 +607,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -666,10 +625,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with small size 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -694,9 +649,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -724,9 +678,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -754,9 +707,8 @@ exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -773,10 +725,6 @@ exports[`<ButtonGroup /> should render ButtonGroup with xsmall size 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -802,9 +750,8 @@ exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -833,9 +780,8 @@ exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -864,9 +810,8 @@ exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -883,10 +828,6 @@ exports[`<ButtonGroup /> should render disabled ButtonGroup 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render disabled negative color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -906,9 +847,8 @@ exports[`<ButtonGroup /> should render disabled negative color primary button 1`
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -924,10 +864,6 @@ exports[`<ButtonGroup /> should render disabled negative color primary button 1`
 `;
 
 exports[`<ButtonGroup /> should render disabled negative color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -947,9 +883,8 @@ exports[`<ButtonGroup /> should render disabled negative color secondary button 
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -965,10 +900,6 @@ exports[`<ButtonGroup /> should render disabled negative color secondary button 
 `;
 
 exports[`<ButtonGroup /> should render disabled positive color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -988,9 +919,8 @@ exports[`<ButtonGroup /> should render disabled positive color primary button 1`
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1006,10 +936,6 @@ exports[`<ButtonGroup /> should render disabled positive color primary button 1`
 `;
 
 exports[`<ButtonGroup /> should render disabled positive color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1029,9 +955,8 @@ exports[`<ButtonGroup /> should render disabled positive color secondary button 
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1047,10 +972,6 @@ exports[`<ButtonGroup /> should render disabled positive color secondary button 
 `;
 
 exports[`<ButtonGroup /> should render disabled primary color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1070,9 +991,8 @@ exports[`<ButtonGroup /> should render disabled primary color primary button 1`]
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1088,10 +1008,6 @@ exports[`<ButtonGroup /> should render disabled primary color primary button 1`]
 `;
 
 exports[`<ButtonGroup /> should render disabled primary color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1111,9 +1027,8 @@ exports[`<ButtonGroup /> should render disabled primary color secondary button 1
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1129,10 +1044,6 @@ exports[`<ButtonGroup /> should render disabled primary color secondary button 1
 `;
 
 exports[`<ButtonGroup /> should render disabled primary color tertiary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1152,9 +1063,8 @@ exports[`<ButtonGroup /> should render disabled primary color tertiary button 1`
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1170,10 +1080,6 @@ exports[`<ButtonGroup /> should render disabled primary color tertiary button 1`
 `;
 
 exports[`<ButtonGroup /> should render disabled white color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1193,9 +1099,8 @@ exports[`<ButtonGroup /> should render disabled white color primary button 1`] =
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1211,10 +1116,6 @@ exports[`<ButtonGroup /> should render disabled white color primary button 1`] =
 `;
 
 exports[`<ButtonGroup /> should render disabled white color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1234,9 +1135,8 @@ exports[`<ButtonGroup /> should render disabled white color secondary button 1`]
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1252,10 +1152,6 @@ exports[`<ButtonGroup /> should render disabled white color secondary button 1`]
 `;
 
 exports[`<ButtonGroup /> should render disabled white color tertiary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1275,9 +1171,8 @@ exports[`<ButtonGroup /> should render disabled white color tertiary button 1`] 
         style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c0"
           data-klear360-component="base-box"
-          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
         >
           <div
             data-klear360-component="base-text"
@@ -1293,10 +1188,6 @@ exports[`<ButtonGroup /> should render disabled white color tertiary button 1`] 
 `;
 
 exports[`<ButtonGroup /> should render negative color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1321,9 +1212,8 @@ exports[`<ButtonGroup /> should render negative color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1351,9 +1241,8 @@ exports[`<ButtonGroup /> should render negative color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1381,9 +1270,8 @@ exports[`<ButtonGroup /> should render negative color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1400,10 +1288,6 @@ exports[`<ButtonGroup /> should render negative color primary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1428,9 +1312,8 @@ exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1454,9 +1337,8 @@ exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1480,9 +1362,8 @@ exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1499,10 +1380,6 @@ exports[`<ButtonGroup /> should render negative color secondary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render positive color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1527,9 +1404,8 @@ exports[`<ButtonGroup /> should render positive color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1557,9 +1433,8 @@ exports[`<ButtonGroup /> should render positive color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1587,9 +1462,8 @@ exports[`<ButtonGroup /> should render positive color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1606,10 +1480,6 @@ exports[`<ButtonGroup /> should render positive color primary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1634,9 +1504,8 @@ exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1660,9 +1529,8 @@ exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1686,9 +1554,8 @@ exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1705,10 +1572,6 @@ exports[`<ButtonGroup /> should render positive color secondary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render primary color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1733,9 +1596,8 @@ exports[`<ButtonGroup /> should render primary color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1763,9 +1625,8 @@ exports[`<ButtonGroup /> should render primary color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1793,9 +1654,8 @@ exports[`<ButtonGroup /> should render primary color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1812,10 +1672,6 @@ exports[`<ButtonGroup /> should render primary color primary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1840,9 +1696,8 @@ exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1866,9 +1721,8 @@ exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1892,9 +1746,8 @@ exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1911,10 +1764,6 @@ exports[`<ButtonGroup /> should render primary color secondary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -1939,9 +1788,8 @@ exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1965,9 +1813,8 @@ exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -1991,9 +1838,8 @@ exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2010,10 +1856,6 @@ exports[`<ButtonGroup /> should render primary color tertiary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render white color primary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -2038,9 +1880,8 @@ exports[`<ButtonGroup /> should render white color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2068,9 +1909,8 @@ exports[`<ButtonGroup /> should render white color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2098,9 +1938,8 @@ exports[`<ButtonGroup /> should render white color primary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2117,10 +1956,6 @@ exports[`<ButtonGroup /> should render white color primary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render white color secondary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -2145,9 +1980,8 @@ exports[`<ButtonGroup /> should render white color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2171,9 +2005,8 @@ exports[`<ButtonGroup /> should render white color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2197,9 +2030,8 @@ exports[`<ButtonGroup /> should render white color secondary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2216,10 +2048,6 @@ exports[`<ButtonGroup /> should render white color secondary button 1`] = `
 `;
 
 exports[`<ButtonGroup /> should render white color tertiary button 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -2244,9 +2072,8 @@ exports[`<ButtonGroup /> should render white color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2270,9 +2097,8 @@ exports[`<ButtonGroup /> should render white color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
@@ -2296,9 +2122,8 @@ exports[`<ButtonGroup /> should render white color tertiary button 1`] = `
           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
         >
           <div
-            class="c0"
             data-klear360-component="base-box"
-            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
           >
             <div
               data-klear360-component="base-text"
