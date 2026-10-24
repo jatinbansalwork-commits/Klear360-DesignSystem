@@ -1,31 +1,33 @@
-import type { CSSObject } from 'styled-components';
-import styled from 'styled-components';
+import React from 'react';
 import type { LinkOverlayProps } from './types';
+import styles from './Card.module.scss';
 
-// https://www.sarasoueidan.com/blog/nested-links/
-const LinkOverlay = styled.a<LinkOverlayProps>(
-  (): CSSObject => {
-    return {
-      // Need this to reset the button styles
-      all: 'unset',
-      cursor: 'pointer',
-      appearance: 'none',
-      border: 0,
-      padding: 0,
-      position: 'static',
-      '&:before': {
-        content: "''",
-        cursor: 'inherit',
-        display: 'block',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        zIndex: 1,
-        width: '100%',
-        height: '100%',
-      },
-    };
+type WebLinkOverlayProps = LinkOverlayProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    as?: 'a' | 'button';
+  };
+
+const LinkOverlay = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, WebLinkOverlayProps>(
+  ({ as = 'a', className, children, ...rest }, ref) => {
+    const classes = [styles.linkOverlay, className].filter(Boolean).join(' ');
+
+    if (as === 'button') {
+      return (
+        <button ref={ref as React.Ref<HTMLButtonElement>} type="button" className={classes} {...rest}>
+          {children}
+        </button>
+      );
+    }
+
+    return (
+      <a ref={ref as React.Ref<HTMLAnchorElement>} className={classes} {...rest}>
+        {children}
+      </a>
+    );
   },
 );
+
+LinkOverlay.displayName = 'LinkOverlay';
 
 export { LinkOverlay };

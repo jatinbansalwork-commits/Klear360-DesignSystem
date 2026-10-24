@@ -1,0 +1,286 @@
+.tagSlotContainer {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes baseInputExpand {
+  from {
+    max-height: var(--base-input-expand-from, 38px);
+  }
+
+  to {
+    max-height: var(--base-input-expand-to, 200px);
+  }
+}
+
+@keyframes baseInputCollapse {
+  from {
+    max-height: var(--base-input-collapse-from, 200px);
+  }
+
+  to {
+    max-height: var(--base-input-collapse-to, 38px);
+  }
+}
+
+.expandAnimation {
+  animation: baseInputExpand var(--duration-quick) var(--easing-entrance);
+}
+
+.collapseAnimation {
+  animation: baseInputCollapse var(--duration-quick) var(--easing-exit);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: var(--border-radius-small);
+  background-color: var(--surface-background-gray-intense);
+  box-shadow: var(--interactive-border-gray-default) 0px 0px 0px var(--border-width-thin);
+  transition-property: box-shadow, background-color;
+  transition-duration: var(--duration-xgentle);
+  transition-timing-function: var(--easing-emphasized);
+}
+
+.input-wrapper.radius-medium {
+  border-radius: var(--border-radius-medium);
+}
+
+/* Hover — border highlight (skipped when disabled/error) */
+.input-wrapper:hover:not([data-disabled]):not(.validation-error) {
+  box-shadow: var(--interactive-border-gray-highlighted) 0px 0px 0px var(--border-width-thin);
+}
+
+/* Focus — thick primary ring (skipped when disabled/error) */
+.focus-ring-wrapper:focus-within .input-wrapper:not([data-disabled]):not(.validation-error) {
+  box-shadow: var(--interactive-border-primary-default) 0px 0px 0px var(--border-width-thick);
+}
+
+/* Validation: error — thick negative ring always */
+.input-wrapper.validation-error {
+  box-shadow: var(--interactive-border-negative-default) 0px 0px 0px var(--border-width-thick);
+  z-index: 1;
+}
+
+/* Validation: success keeps the default gray thin border (mirrors React). */
+
+/* Disabled — moderate bg + gray thin border, no interaction */
+.input-wrapper[data-disabled] {
+  background-color: var(--surface-background-gray-moderate);
+  box-shadow: var(--interactive-border-gray-disabled) 0px 0px 0px var(--border-width-thin);
+}
+
+/* ── The native input / textarea ── */
+.input {
+  flex: 1;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  text-align: inherit;
+
+  font-family: var(--font-family-text);
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-100);
+  font-weight: var(--font-weight-regular);
+  color: var(--interactive-text-gray-normal);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input[disabled] {
+  color: var(--surface-text-gray-disabled);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--surface-text-gray-disabled);
+}
+
+.input::placeholder {
+  color: var(--surface-text-gray-disabled);
+  font-family: var(--font-family-text);
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-100);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Text-align variants (mirrors React `textAlign` on the input) */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+/* ── Size: height + vertical padding ── */
+.size-xsmall {
+  height: 28px;
+  min-height: 28px;
+  padding-top: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  font-size: var(--font-size-75);
+  line-height: var(--line-height-75);
+}
+.size-small {
+  height: 32px;
+  min-height: 32px;
+  padding-top: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  font-size: var(--font-size-75);
+  line-height: var(--line-height-75);
+}
+.size-medium {
+  height: 36px;
+  min-height: 36px;
+  padding-top: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-100);
+}
+.size-large {
+  height: 48px;
+  min-height: 48px;
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+  font-size: var(--font-size-200);
+  line-height: var(--line-height-200);
+}
+
+.size-xsmall::placeholder,
+.size-small::placeholder {
+  font-size: var(--font-size-75);
+  line-height: var(--line-height-75);
+}
+.size-medium::placeholder {
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-100);
+}
+.size-large::placeholder {
+  font-size: var(--font-size-200);
+  line-height: var(--line-height-200);
+}
+
+/* ── Left padding: default per size, collapses when a leading visual exists ── */
+.pad-left-xsmall {
+  padding-left: var(--spacing-3);
+}
+.pad-left-small {
+  padding-left: var(--spacing-3);
+}
+.pad-left-medium {
+  padding-left: var(--spacing-4);
+}
+.pad-left-large {
+  padding-left: var(--spacing-4);
+}
+
+/* When a leading icon/prefix/element is rendered, input hugs it with spacing.3 */
+.has-leading {
+  padding-left: var(--spacing-3);
+}
+
+/* ── Right padding: default per size, collapses when a trailing visual exists ── */
+.pad-right-xsmall {
+  padding-right: var(--spacing-3);
+}
+.pad-right-small {
+  padding-right: var(--spacing-3);
+}
+.pad-right-medium {
+  padding-right: var(--spacing-4);
+}
+.pad-right-large {
+  padding-right: var(--spacing-4);
+}
+
+.has-trailing {
+  padding-right: var(--spacing-3);
+}
+
+/* ── valueComponentType="heading" (OTPInput) — heading font family + sizes ── */
+.value-heading {
+  font-family: var(--font-family-heading);
+  color: var(--interactive-text-gray-normal);
+}
+.value-heading[disabled] {
+  color: var(--surface-text-gray-disabled);
+}
+/* xsmall maps up to heading `small`. */
+.value-heading.size-xsmall,
+.value-heading.size-small {
+  font-size: var(--font-size-300);
+  line-height: var(--line-height-300);
+}
+.value-heading.size-medium {
+  font-size: var(--font-size-400);
+  line-height: var(--line-height-400);
+}
+.value-heading.size-large {
+  font-size: var(--font-size-500);
+  line-height: var(--line-height-500);
+}
+.value-heading.size-xsmall::placeholder,
+.value-heading.size-small::placeholder {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-300);
+  line-height: var(--line-height-300);
+}
+.value-heading.size-medium::placeholder {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-400);
+  line-height: var(--line-height-400);
+}
+.value-heading.size-large::placeholder {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-500);
+  line-height: var(--line-height-500);
+}
+
+
+.text-area-align {
+  align-items: flex-start;
+}
+
+.dropdown-trigger-height {
+  height: auto;
+}
+
+.input-wrapper.table-input-cell {
+  border-radius: var(--border-radius-none);
+  background-color: transparent;
+  box-shadow: 0 0 0 var(--border-width-thin) transparent;
+}
+
+.input-wrapper.table-input-cell:hover:not([data-disabled]):not(.validation-error) {
+  background-color: var(--surface-background-gray-intense);
+}
+
+.focus-ring-wrapper:focus-within
+  .input-wrapper.table-input-cell:not([data-disabled]):not(.validation-error) {
+  background-color: var(--surface-background-gray-intense);
+  box-shadow: var(--interactive-border-primary-default) 0px 0px 0px var(--border-width-thick);
+}
+
+.input-wrapper.table-input-cell.validation-error {
+  box-shadow: none;
+  background-color: var(--feedback-background-negative-subtle);
+  z-index: 1;
+}
+
+.input-wrapper.table-input-cell[data-disabled] {
+  background-color: var(--surface-background-gray-moderate);
+}

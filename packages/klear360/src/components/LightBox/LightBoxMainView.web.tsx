@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './LightBox.module.scss';
 import type { LightBoxItemProps } from './types';
 import { Box } from '~components/Box';
 import { BaseBox } from '~components/Box/BaseBox';
@@ -31,15 +31,6 @@ const LightBoxContentWrapper = ({ children }: LightBoxContentWrapperProps): Reac
   </BaseBox>
 );
 
-const StyledMainImage = styled.img({
-  display: 'block',
-  width: 'auto',
-  height: 'auto',
-  maxWidth: '100%',
-  maxHeight: '100%',
-  objectFit: 'contain',
-});
-
 const LightBoxMainView = ({
   items,
   activeIndex,
@@ -68,7 +59,11 @@ const LightBoxMainView = ({
           >
             {item.src ? (
               <LightBoxContentWrapper>
-                <StyledMainImage src={item.src} alt={item.alt ?? `Item ${i + 1}`} />
+                <img
+                  className={styles.mainImage}
+                  src={item.src}
+                  alt={item.alt ?? `Item ${i + 1}`}
+                />
               </LightBoxContentWrapper>
             ) : (
               <LightBoxContentWrapper>{item.children}</LightBoxContentWrapper>

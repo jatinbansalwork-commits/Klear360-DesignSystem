@@ -1,0 +1,9 @@
+.overlay {
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.overlayContent {
+  backdrop-filter: blur(var(--backdrop-blur-medium, 8px));
+}

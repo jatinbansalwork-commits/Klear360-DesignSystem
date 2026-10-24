@@ -1,17 +1,8 @@
 // Selector* components are used in Checkbox/Radio
 import React from 'react';
-import styled from 'styled-components';
+import styles from './Selector.module.scss';
 import type { SelectorLabelProps } from './types';
 import { metaAttribute } from '~utils/metaAttribute';
-import { makeSpace } from '~utils/makeSpace';
-
-const StyledSelectorLabel = styled.label(({ theme }) => {
-  return {
-    display: 'flex',
-    marginTop: makeSpace(theme.spacing[1]),
-    marginBottom: makeSpace(theme.spacing[1]),
-  };
-});
 
 const SelectorLabel = ({
   children,
@@ -27,7 +18,8 @@ const SelectorLabel = ({
   style,
 }: SelectorLabelProps): React.ReactElement => {
   return (
-    <StyledSelectorLabel
+    <label
+      className={styles.label}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       onMouseDown={onMouseDown}
@@ -39,7 +31,7 @@ const SelectorLabel = ({
       {...metaAttribute({ name: componentName, testID })}
     >
       {children}
-    </StyledSelectorLabel>
+    </label>
   );
 };
 

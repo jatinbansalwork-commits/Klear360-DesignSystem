@@ -1,0 +1,31 @@
+.interactiveHeader {
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  text-align: inherit;
+  background-color: transparent;
+  border-radius: var(--border-radius-medium);
+  width: 100%;
+  transition-property: background-color;
+  transition-duration: var(--duration-xquick);
+  transition-timing-function: var(--easing-standard);
+
+  &:not([disabled]):hover {
+    background-color: var(--interactive-background-gray-default);
+  }
+
+  &[data-selected]:not([disabled]):hover {
+    background-color: var(--interactive-background-primary-faded);
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}

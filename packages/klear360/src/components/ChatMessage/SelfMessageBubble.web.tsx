@@ -1,16 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { CommonChatMessageProps } from './types';
 import { chatMessageToken } from './token';
 import { getMessageBubbleBoxShadow } from './utils';
 import BaseBox from '~components/Box/BaseBox';
 import { FormHint } from '~components/Form/FormHint';
 import { useTheme } from '~utils';
-
-const StyledSelfMessageBubble = styled(BaseBox)(() => {
-  const { colorScheme } = useTheme();
-  return getMessageBubbleBoxShadow(colorScheme);
-});
 
 const SelfMessageBubble = ({
   children,
@@ -21,11 +15,12 @@ const SelfMessageBubble = ({
   // is child is text then only add padding otherwise no need to add padding
   isChildText: boolean;
 }): React.ReactElement => {
+  const { colorScheme } = useTheme();
   const isError = validationState === 'error';
 
   return (
     <BaseBox display="flex" flexDirection="column">
-      <StyledSelfMessageBubble
+      <BaseBox
         backgroundColor={chatMessageToken.self.backgroundColor.default}
         padding={isChildText ? 'spacing.4' : 'spacing.0'}
         borderRadius="large"
@@ -34,9 +29,10 @@ const SelfMessageBubble = ({
         alignSelf="flex-end"
         border="thin"
         borderColor="surface.border.gray.muted"
+        style={getMessageBubbleBoxShadow(colorScheme)}
       >
         {children}
-      </StyledSelfMessageBubble>
+      </BaseBox>
       <BaseBox alignSelf="flex-end">
         {isError && <FormHint type="error" errorText={errorText} size="small" />}
       </BaseBox>

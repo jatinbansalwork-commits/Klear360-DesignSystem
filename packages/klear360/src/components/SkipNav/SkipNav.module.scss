@@ -1,0 +1,28 @@
+.skipNavLink {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0 -1px -1px 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: var(--spacing-5);
+  left: var(--spacing-5);
+  width: 1px;
+  white-space: nowrap;
+  word-wrap: normal;
+
+  &:focus {
+    padding: var(--spacing-2);
+    clip: auto;
+    clip-path: unset;
+    width: auto;
+    height: auto;
+  }
+
+  &[data-has-background] {
+    background-color: var(--surface-background-gray-intense);
+    z-index: 1;
+  }
+}

@@ -1,0 +1,38 @@
+@keyframes tourMaskScaleIn {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes tourMaskFadeOut {
+  from {
+    fill-opacity: 1;
+  }
+  to {
+    fill-opacity: 0;
+  }
+}
+
+@keyframes tourMaskPulse {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeEnter {
+  animation: tourMaskScaleIn var(--tour-mask-duration) var(--tour-mask-easing-enter) forwards;
+}
+
+.fadeExit {
+  animation: tourMaskFadeOut var(--tour-mask-duration) var(--tour-mask-easing-exit) forwards;
+}
+
+.pulsing {
+  animation: tourMaskPulse 2s infinite alternate;
+}

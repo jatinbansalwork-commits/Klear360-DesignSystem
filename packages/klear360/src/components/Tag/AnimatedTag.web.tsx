@@ -1,52 +1,8 @@
 import React from 'react';
-import type { FlattenSimpleInterpolation } from 'styled-components';
-import styled, { css, keyframes } from 'styled-components';
 import { Tag } from './Tag';
 import type { AnimatedTagProps } from './types';
-import {
-  TAG_MAX_WIDTH_END,
-  TAG_MAX_WIDTH_START,
-  TAG_OPACITY_END,
-  TAG_OPACITY_START,
-} from './tagAnimationConfig';
+import { getAnimatedTagContainerClass } from './getTagModuleClasses';
 import BaseBox from '~components/Box/BaseBox';
-import { useTheme } from '~components/Klear360Provider';
-import { makeMotionTime } from '~utils';
-
-const tagDissappearKeyframe = keyframes`
-  0% {
-    opacity: ${TAG_OPACITY_START};
-    max-width: ${TAG_MAX_WIDTH_START}
-  }
-
-  100% {
-    opacity: ${TAG_OPACITY_END};
-    max-width: ${TAG_MAX_WIDTH_END};
-  }
-`;
-
-const tagShowKeyframe = keyframes`
-  0% {
-    opacity: ${TAG_OPACITY_END};
-  }
-
-  100% {
-    opacity: ${TAG_OPACITY_START};
-  }
-`;
-
-const AnimatedTagContainer = styled(BaseBox)<{
-  animationProps: FlattenSimpleInterpolation;
-  isVisible: boolean;
-}>(
-  (props) => css`
-    ${props.animationProps};
-    display: inline-block;
-    opacity: ${props.isVisible ? TAG_OPACITY_START : TAG_OPACITY_END};
-    max-width: ${props.isVisible ? TAG_MAX_WIDTH_START : TAG_MAX_WIDTH_END};
-    flex-shrink: 0;
-  `,
-);
 
 const AnimatedTag = ({
   children,
@@ -57,27 +13,23 @@ const AnimatedTag = ({
   size = 'medium',
 }: AnimatedTagProps): React.ReactElement => {
   const [isTagVisible, setIsTagVisible] = React.useState(true);
-  const { theme } = useTheme();
-
-  const hideTagAnimationProps = css`
-    animation: ${tagDissappearKeyframe} ${makeMotionTime(theme.motion.duration.xquick)}
-      ${String(theme.motion.easing.exit)};
-  `;
-
-  const showTagAnimationProps = css`
-    animation: ${tagShowKeyframe} ${makeMotionTime(theme.motion.duration.xquick)}
-      ${String(theme.motion.easing.entrance)};
-  `;
+  const [hasCompletedShowAnimation, setHasCompletedShowAnimation] = React.useState(false);
 
   return (
-    <AnimatedTagContainer
-      isVisible={isTagVisible}
+    <BaseBox
+      className={getAnimatedTagContainerClass({
+        isVisible: isTagVisible,
+        isAnimatingShow: isTagVisible && !hasCompletedShowAnimation,
+        isAnimatingDismiss: !isTagVisible,
+      })}
       onAnimationEnd={() => {
+        if (isTagVisible && !hasCompletedShowAnimation) {
+          setHasCompletedShowAnimation(true);
+        }
         if (!isTagVisible) {
           onDismiss({ tagIndex: currentTagIndex, tagName: children });
         }
       }}
-      animationProps={isTagVisible ? showTagAnimationProps : hideTagAnimationProps}
     >
       <Tag
         _isVirtuallyFocused={currentTagIndex === activeTagIndex}
@@ -92,7 +44,7 @@ const AnimatedTag = ({
       >
         {children}
       </Tag>
-    </AnimatedTagContainer>
+    </BaseBox>
   );
 };
 

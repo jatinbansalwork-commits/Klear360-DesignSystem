@@ -3,8 +3,8 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
-import styled from 'styled-components';
 import { rubberbandIfOutOfBounds, useDrag } from '@use-gesture/react';
+import styles from './BottomSheet.module.scss';
 import usePresence from 'use-presence';
 import { clearAllBodyScrollLocks, enableBodyScroll } from 'body-scroll-lock-upgrade';
 import { BottomSheetHeader } from './BottomSheetHeader';
@@ -27,47 +27,13 @@ import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import { useTheme } from '~components/Klear360Provider';
 import { useId } from '~utils/useId';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { makeSize } from '~utils/makeSize';
 import { makeAccessible } from '~utils/makeAccessible';
-import { size } from '~tokens/global';
 import { makeMotionTime } from '~utils/makeMotionTime';
 import { componentZIndices } from '~utils/componentZIndices';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 
 export const BOTTOM_SHEET_EASING = 'cubic-bezier(.15,0,.24,.97)';
 const AUTOCOMPLETE_DEFAULT_SNAPPOINT = 0.85;
-
-const BottomSheetSurface = styled.div<{
-  windowHeight: number;
-  isDragging: boolean;
-}>(({ theme, windowHeight, isDragging }) => {
-  return {
-    background: theme.colors.popup.background.gray.subtle,
-    borderTopLeftRadius: makeSize(size[16]),
-    borderTopRightRadius: makeSize(size[16]),
-    borderColor: theme.colors.popup.border.gray.subtle,
-    // this is reverse top elevation of highRaised elevation token
-    boxShadow: '0px -24px 48px -12px hsla(217, 56%, 17%, 0.18)',
-    opacity: 0,
-    pointerEvents: 'none',
-    transitionDuration: isDragging
-      ? undefined
-      : `${makeMotionTime(theme.motion.duration.moderate)}`,
-    transitionTimingFunction: BOTTOM_SHEET_EASING,
-    willChange: 'transform, opacity, height',
-    transitionProperty: 'transform, opacity, height',
-    position: 'fixed',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    top: windowHeight,
-    backgroundColor: theme.colors.popup.background.gray.subtle,
-    justifyContent: 'center',
-    alignItems: 'center',
-    touchAction: 'none',
-    overflow: 'hidden',
-  };
-});
 
 const _BottomSheet = ({
   isOpen,
@@ -514,14 +480,15 @@ const _BottomSheet = ({
   return (
     <BottomSheetContext.Provider value={contextValue}>
       <BottomSheetBackdrop zIndex={bottomSheetZIndex} />
-      <BottomSheetSurface
+      <div
         {...metaAttribute({
           name: MetaConstants.BottomSheet,
           testID: 'bottomsheet-surface',
         })}
         {...makeAccessible({ modal: true, role: 'dialog', label: accessibilityLabel })}
-        windowHeight={dimensions.height}
-        isDragging={isDragging}
+        className={styles.surface}
+        data-state={isVisible ? 'open' : 'closed'}
+        data-dragging={isDragging ? 'true' : undefined}
         style={{
           opacity: isVisible ? 1 : 0,
           pointerEvents: isVisible ? 'all' : 'none',
@@ -529,6 +496,9 @@ const _BottomSheet = ({
           bottom: 0,
           top: 'auto',
           zIndex: bottomSheetZIndex,
+          transitionDuration: isDragging
+            ? '0s'
+            : makeMotionTime(theme.motion.duration.moderate),
         }}
         {...makeAnalyticsAttribute(dataAnalyticsProps)}
       >
@@ -541,7 +511,7 @@ const _BottomSheet = ({
           />
           {children}
         </BaseBox>
-      </BottomSheetSurface>
+      </div>
     </BottomSheetContext.Provider>
   );
 };

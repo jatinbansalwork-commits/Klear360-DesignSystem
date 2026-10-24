@@ -4,15 +4,14 @@ import {
   FloatingPortal,
   useFloating,
 } from '@floating-ui/react';
-import type { CSSProperties } from 'react';
 import React from 'react';
-import styled from 'styled-components';
 import usePresence from 'use-presence';
+import styles from './Drawer.module.scss';
 import { drawerComponentIds } from './drawerComponentIds';
 import { DrawerContext } from './DrawerContext';
 import type { DrawerProps } from './types';
 import BaseBox from '~components/Box/BaseBox';
-import { castWebType, getMediaQuery, makeMotionTime, useTheme } from '~utils';
+import { useTheme } from '~utils';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { componentZIndices } from '~utils/componentZIndices';
 import { useDrawerStack } from '~components/Drawer/StackProvider';
@@ -23,63 +22,6 @@ import { useVerifyAllowedChildren } from '~utils/useVerifyAllowedChildren';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import type { Klear360ElementRef } from '~utils/types';
 import { mergeRefs } from '~utils/useMergeRefs';
-
-const SHOW_DRAWER = 'show-drawer';
-
-const AnimatedDrawerContainer = styled(BaseBox)<{
-  isFirstDrawerInStack: boolean;
-  isVisible: boolean;
-}>(({ theme, isFirstDrawerInStack, isVisible }) => {
-  const entranceTransition: CSSProperties['transition'] = `all ${castWebType(
-    castWebType(makeMotionTime(theme.motion.duration.xmoderate)),
-  )} ${castWebType(theme.motion.easing.entrance)}`;
-
-  const exitTransition: CSSProperties['transition'] = `all
-  ${castWebType(makeMotionTime(theme.motion.duration.moderate))}
-  ${castWebType(theme.motion.easing.exit)}`;
-
-  return {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible
-      ? isFirstDrawerInStack
-        ? 'translateX(calc(-100% - 16px))'
-        : `translateX(-100%)`
-      : 'translateX(0%)',
-    transition: isVisible ? entranceTransition : exitTransition,
-    animationFillMode: 'initial',
-    position: 'fixed',
-    top: '0px',
-    bottom: '0px',
-    left: '100%',
-    height: 'auto',
-    [`@media ${getMediaQuery({ min: theme.breakpoints.m })}`]: {
-      top: isFirstDrawerInStack ? '24px' : '8px',
-      bottom: isFirstDrawerInStack ? '24px' : '8px',
-      transform: isVisible
-        ? isFirstDrawerInStack
-          ? 'translateX(calc(-100% - 24px))'
-          : `translateX(calc(-100% - ${theme.spacing[3]}px))`
-        : 'translateX(0%)',
-    },
-  };
-});
-
-const DrawerOverlay = styled(FloatingOverlay)(({ theme }) => {
-  return {
-    opacity: 0,
-    transition: `opacity
-      ${makeMotionTime(theme.motion.duration.xmoderate)}
-      ${castWebType(theme.motion.easing.exit)}`,
-    backgroundColor: theme.colors.overlay.background.subtle,
-
-    [`&.${SHOW_DRAWER}`]: {
-      opacity: 1,
-      transition: `opacity ${makeMotionTime(theme.motion.duration.gentle)} ${castWebType(
-        theme.motion.easing.entrance,
-      )}`,
-    },
-  };
-});
 
 const _Drawer: React.ForwardRefRenderFunction<Klear360ElementRef, DrawerProps> = (
   {
@@ -185,27 +127,28 @@ const _Drawer: React.ForwardRefRenderFunction<Klear360ElementRef, DrawerProps> =
               zIndex={zIndexState}
             >
               {showOverlay ? (
-                <DrawerOverlay
+                <FloatingOverlay
                   onClick={() => {
                     onDismiss();
                   }}
-                  className={isVisible ? SHOW_DRAWER : ''}
+                  className={styles.overlay}
+                  data-visible={isVisible ? true : undefined}
                   lockScroll={true}
                   {...metaAttribute({
                     testID: 'drawer-overlay',
                   })}
                 />
               ) : null}
-              <AnimatedDrawerContainer
-                isVisible={isVisible}
-                isFirstDrawerInStack={isFirstDrawerInStack}
+              <BaseBox
+                className={styles.panel}
+                data-visible={isVisible ? true : undefined}
+                data-first-in-stack={isFirstDrawerInStack ? true : undefined}
                 width={{ base: '90%', s: '375px', m: '420px' }}
                 {...makeAccessible({
                   role: 'dialog',
                   modal: true,
                   label: accessibilityLabel,
                 })}
-                position="fixed"
                 backgroundColor="popup.background.gray.subtle"
                 borderRadius={{ base: 'none', m: 'large' }}
                 overflow="hidden"
@@ -220,7 +163,7 @@ const _Drawer: React.ForwardRefRenderFunction<Klear360ElementRef, DrawerProps> =
                 }}
               >
                 {children}
-              </AnimatedDrawerContainer>
+              </BaseBox>
             </BaseBox>
           </FloatingFocusManager>
         ) : null}

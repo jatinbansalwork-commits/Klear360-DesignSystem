@@ -1,28 +1,12 @@
 import React, { useRef, useEffect, useMemo } from 'react';
-import styled from 'styled-components';
 import type { SpinWheelProps } from './types';
+import styles from './SpinWheel.module.scss';
 import { Text } from '~components/Typography';
 import BaseBox from '~components/Box/BaseBox';
 import { useIsMobile } from '~utils/useIsMobile';
 import { size } from '~tokens/global';
 import { makeSize } from '~utils/makeSize';
 import debounce from '~utils/lodashButBetter/debounce';
-
-// Styled scroll container with scroll snap
-const StyledScrollContainer = styled(BaseBox)`
-  scroll-snap-type: y proximity; /* Changed from mandatory to proximity for smoother scrolling */
-  scroll-behavior: smooth;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none;
-`;
-
-// Styled scroll item with scroll snap
-const StyledScrollItem = styled(BaseBox)`
-  scroll-snap-align: center;
-  /* Removed scroll-snap-stop: always for smoother interaction */
-`;
 
 /**
  * Reusable SpinWheel component for time selection
@@ -141,13 +125,15 @@ const SpinWheel = ({
     >
       <BaseBox position="relative" width="100%" overflow="hidden">
         {/* Scrollable container */}
-        <StyledScrollContainer
-          ref={(node: HTMLDivElement | null) => {
-            containerRef.current = node;
+        <BaseBox
+          className={styles.scrollContainer}
+          ref={(node) => {
+            const el = node as HTMLDivElement | null;
+            containerRef.current = el;
             if (typeof scrollContainerRef === 'function') {
-              scrollContainerRef(node);
+              scrollContainerRef(el);
             } else if (scrollContainerRef && 'current' in scrollContainerRef) {
-              (scrollContainerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+              (scrollContainerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
             }
           }}
           height="100%"
@@ -165,9 +151,12 @@ const SpinWheel = ({
               activeIndex === index || String(value) === String(positioningValue);
 
             return (
-              <StyledScrollItem
+              <BaseBox
                 key={`${value}-${index}`}
-                ref={(el) => (itemRefs.current[index] = el)}
+                className={styles.scrollItem}
+                ref={(el) => {
+                  itemRefs.current[index] = el as HTMLDivElement | null;
+                }}
                 height="34px"
                 display="flex"
                 alignItems="center"
@@ -189,13 +178,13 @@ const SpinWheel = ({
                 >
                   {String(value).padStart(2, '0')}
                 </Text>
-              </StyledScrollItem>
+              </BaseBox>
             );
           })}
 
           {/* Invisible spacer at bottom - allows last item to scroll to center */}
           <BaseBox height="68px" />
-        </StyledScrollContainer>
+        </BaseBox>
       </BaseBox>
     </BaseBox>
   );

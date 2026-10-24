@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './ThumbnailPreview.module.scss';
 import type { ResolvedThumbnailItem, ThumbnailPreviewProps } from './types';
 import { chatMessageToken } from './token';
 import BaseBox from '~components/Box/BaseBox';
@@ -39,14 +39,6 @@ const getCardStyle = (stackIndex: number, isSingleThumbnail: boolean): CardStyle
     imagePreviewToken.stackCardStyles[imagePreviewToken.stackCardStyles.length - 1]
   );
 };
-
-const StyledPreviewImage = styled.img({
-  width: '100%',
-  height: '100%',
-  aspectRatio: '1 / 1',
-  objectFit: 'cover',
-  display: 'block',
-});
 
 const ThumbnailPreview = ({
   thumbnails,
@@ -121,7 +113,7 @@ const ThumbnailPreview = ({
                 borderColor="interactive.border.staticWhite.default"
                 backgroundColor="surface.background.gray.moderate"
               >
-                <StyledPreviewImage src={url} alt={alt} />
+                <img className={styles.previewImage} src={url} alt={alt} />
               </BaseBox>
             );
           })

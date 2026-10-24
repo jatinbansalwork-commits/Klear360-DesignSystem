@@ -1,12 +1,22 @@
-import styled from 'styled-components';
-import { getBaseActionListStyles } from './getBaseActionListStyles';
-import type { StyledActionListProps } from './getBaseActionListStyles';
+import React from 'react';
 import BaseBox from '~components/Box/BaseBox';
+import type { StyledActionListProps } from './getBaseActionListStyles';
+import styles from './ActionList.module.scss';
 
-const StyledActionList = styled(BaseBox)<StyledActionListProps>((props) => {
-  return {
-    ...getBaseActionListStyles(props),
-  };
-});
+type StyledActionListWebProps = StyledActionListProps & {
+  className?: string;
+};
+
+const StyledActionList = React.forwardRef<HTMLElement, StyledActionListWebProps>(
+  ({ isInBottomSheet, className, ...props }, ref) => (
+    <BaseBox
+      ref={ref as never}
+      {...props}
+      className={[!isInBottomSheet ? styles.panel : undefined, className].filter(Boolean).join(' ')}
+    />
+  ),
+);
+
+StyledActionList.displayName = 'StyledActionList';
 
 export { StyledActionList };

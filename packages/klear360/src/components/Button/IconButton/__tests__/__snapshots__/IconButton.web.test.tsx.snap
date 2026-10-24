@@ -1,56 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<IconButton /> should render 1`] = `
-.c0.c0.c0.c0.c0 {
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 2px;
-  background: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  color: hsla(215,25%,27%,1);
-  -webkit-transition-property: color,box-shadow;
-  transition-property: color,box-shadow;
-  -webkit-transition-duration: 160ms;
-  transition-duration: 160ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-}
-
-.c0.c0.c0.c0.c0:hover:not([disabled]) {
-  color: hsla(218,50%,6%,1);
-  background-color: transparent;
-}
-
-.c0.c0.c0.c0.c0:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-  color: hsla(218,50%,6%,1);
-  background-color: transparent;
-}
-
-.c0.c0.c0.c0.c0:active {
-  color: hsla(218,50%,6%,1);
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -58,13 +8,12 @@ exports[`<IconButton /> should render 1`] = `
   >
     <button
       aria-label="Close"
-      class="c0"
+      class=""
       data-klear360-component="icon-button"
       type="button"
     >
       <svg
         aria-hidden="true"
-        class=""
         data-klear360-component="icon"
         fill="none"
         height="16px"
@@ -83,56 +32,6 @@ exports[`<IconButton /> should render 1`] = `
 `;
 
 exports[`<IconButton /> should render with emphasis 1`] = `
-.c0.c0.c0.c0.c0 {
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 2px;
-  background: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  color: hsla(215,25%,27%,1);
-  -webkit-transition-property: color,box-shadow;
-  transition-property: color,box-shadow;
-  -webkit-transition-duration: 160ms;
-  transition-duration: 160ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-}
-
-.c0.c0.c0.c0.c0:hover:not([disabled]) {
-  color: hsla(218,50%,6%,1);
-  background-color: transparent;
-}
-
-.c0.c0.c0.c0.c0:focus-visible {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 80ms;
-  transition-duration: 80ms;
-  -webkit-transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  transition-timing-function: cubic-bezier(0.3,0,0.2,1);
-  z-index: 2;
-  color: hsla(218,50%,6%,1);
-  background-color: transparent;
-}
-
-.c0.c0.c0.c0.c0:active {
-  color: hsla(218,50%,6%,1);
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -140,13 +39,12 @@ exports[`<IconButton /> should render with emphasis 1`] = `
   >
     <button
       aria-label="Close"
-      class="c0"
+      class=""
       data-klear360-component="icon-button"
       type="button"
     >
       <svg
         aria-hidden="true"
-        class=""
         data-klear360-component="icon"
         fill="none"
         height="16px"

@@ -2,28 +2,25 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 
 import React from 'react';
-import styled from 'styled-components';
 import { useDropdown } from './useDropdown';
+import styles from './InputDropdownButton.module.scss';
+import { getInputDropdownButtonStyleVars } from './getInputDropdownButtonStyleVars';
+import { useTheme } from '~components/Klear360Provider';
 import { dropdownComponentIds } from './dropdownComponentIds';
-import { makeSpace } from '~utils';
 import { makeAccessible } from '~utils/makeAccessible';
 import type { DataAnalyticsAttribute } from '~utils/types';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { metaAttribute } from '~utils/metaAttribute';
-import { spacing } from '~tokens/global';
 import type { BaseButtonProps } from '~components/Button/BaseButton/BaseButton';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { ChevronUpDownIcon } from '~components/Icons';
 import { Box } from '~components/Box';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { Text } from '~components/Typography';
 import { getActionListContainerRole } from '~components/ActionList/getA11yRoles';
 import { useId } from '~utils/useId';
 import type { IconComponent } from '~components/Icons';
 import { useControlledDropdownInput } from '~utils/useControlledDropdownInput';
 import {
-  inputDropdownButtonBorderRadius,
-  baseInputHeight,
   inputDropdownButtonPadding,
 } from '~components/Input/BaseInput/baseInputTokens';
 import type { BaseInputProps } from '~components/Input/BaseInput/BaseInput';
@@ -110,45 +107,6 @@ type InputDropDownButtonProps =
   | ControlledInputDropDownButtonProps
   | UncontrolledInputDropDownButtonProps;
 
-const StyledSearchTrailingDropdown = styled.button<{
-  $isSelected?: boolean;
-  isDisabled?: boolean;
-  $size: NonNullable<BaseInputProps['size']>;
-}>(({ theme, isDisabled, $size }) => {
-  // The wrapper BaseBox in BaseInputVisuals already applies paddingY
-  // So we need to subtract that from the baseInputHeight to get the correct button height
-  const paddingValue = inputDropdownButtonPadding[$size];
-  const wrapperVerticalPadding = spacing[paddingValue] * 2; // top + bottom padding from wrapper
-  const buttonHeight = baseInputHeight[$size] - wrapperVerticalPadding;
-
-  return {
-    backgroundColor: theme.colors.transparent,
-    gap: makeSpace(theme.spacing[2]),
-    display: 'flex',
-    boxSizing: 'border-box',
-    height: makeSpace(buttonHeight),
-    padding: makeSpace(theme.spacing[2]),
-    alignItems: 'center',
-    border: 'none',
-    cursor: isDisabled ? 'not-allowed' : 'pointer',
-    '&[disabled]': {
-      cursor: 'not-allowed',
-      pointerEvents: 'none',
-    },
-    '&:focus': {
-      ...getFocusRingStyles({ theme }),
-      backgroundColor: theme.colors.interactive.background.gray.faded,
-    },
-    '&:hover': {
-      backgroundColor: theme.colors.interactive.background.gray.faded,
-    },
-    '&:focus-visible': {
-      outlineOffset: makeSpace(theme.spacing[0]),
-    },
-    borderRadius: inputDropdownButtonBorderRadius[$size],
-  };
-});
-
 const _InputDropdownButton = ({
   onClick,
   onBlur,
@@ -167,6 +125,7 @@ const _InputDropdownButton = ({
   size = 'medium',
   ...rest
 }: InputDropDownButtonProps): React.ReactElement | null => {
+  const { theme } = useTheme();
   const idBase = useId('input-drop-down-button');
   const {
     onTriggerClick,
@@ -198,9 +157,10 @@ const _InputDropdownButton = ({
   }
 
   return (
-    <StyledSearchTrailingDropdown
+    <button
       type="button"
-      $size={size}
+      className={styles.button}
+      style={getInputDropdownButtonStyleVars({ theme, size })}
       disabled={isDisabled}
       onClick={(e) => {
         if (isDisabled) return;
@@ -231,8 +191,7 @@ const _InputDropdownButton = ({
         controls: `${dropdownBaseId}-actionlist`,
         activeDescendant: activeIndex >= 0 ? `${dropdownBaseId}-${activeIndex}` : undefined,
       })}
-      ref={triggererRef}
-      isDisabled={isDisabled}
+      ref={triggererRef as React.Ref<HTMLButtonElement>}
       {...makeAnalyticsAttribute(rest)}
       {...metaAttribute({ name: 'InputDropdownButton', testID })}
     >
@@ -275,7 +234,7 @@ const _InputDropdownButton = ({
           color={isDisabled ? 'surface.icon.gray.disabled' : 'surface.icon.gray.muted'}
         />
       </Box>
-    </StyledSearchTrailingDropdown>
+    </button>
   );
 };
 

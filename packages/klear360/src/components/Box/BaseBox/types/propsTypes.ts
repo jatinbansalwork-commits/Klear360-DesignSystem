@@ -1,4 +1,4 @@
-import type { View } from 'react-native';
+import type { StyleProp, View, ViewStyle } from 'react-native';
 import type { CSSObject } from 'styled-components';
 import type { MarginProps, PaddingProps, SpacingValueType } from './spacingTypes';
 import type { MakeObjectResponsive } from './responsiveTypes';
@@ -335,6 +335,8 @@ type BaseBoxProps = Omit<BoxProps, keyof BoxVisualProps> &
         className?: string;
         id?: string;
         tabIndex?: number;
+        /** Web: merged with computed box styles. Native: passed to the underlying View. */
+        style?: Platform.Select<{ web: React.CSSProperties; native: StyleProp<ViewStyle> }>;
       } & ElementTiming
   > &
   Klear360CommonEvents & {

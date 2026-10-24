@@ -130,6 +130,8 @@ const _Counter = (
         minHeight={makeSize(counterHeight[size])}
         minWidth={makeSize(counterMinWidth[size])}
         backgroundColor={backgroundColor}
+        color={color}
+        emphasis={emphasis}
         size={size}
         platform={platform}
       >

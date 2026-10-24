@@ -1,0 +1,100 @@
+.animatedChip {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  text-overflow: ellipsis;
+  width: 100%;
+  border-style: solid;
+  background-color: transparent;
+  transition-property: transform;
+  transition-duration: var(--duration-xquick);
+  transition-timing-function: var(--easing-standard);
+}
+
+.pressed {
+  transform: scale(0.92);
+}
+
+@media (min-width: 768px) {
+  .animatedChip {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 767px) {
+  .animatedChip {
+    max-width: 280px;
+  }
+}
+
+.chipInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  border-style: solid;
+  border-color: transparent;
+  transition-property: background-color;
+  transition-duration: var(--duration-xquick);
+  transition-timing-function: var(--easing-standard);
+}
+
+.innerUnchecked {
+  background-color: var(--surface-background-gray-intense);
+
+  &:hover {
+    background-color: var(--interactive-background-gray-faded);
+  }
+}
+
+.innerPrimaryChecked {
+  background-color: var(--interactive-background-primary-faded);
+  border-color: var(--interactive-border-primary-default);
+
+  &:hover {
+    background-color: var(--interactive-background-primary-faded-highlighted);
+  }
+}
+
+.innerPositiveChecked {
+  background-color: var(--interactive-background-positive-faded);
+  border-color: var(--interactive-border-positive-default);
+
+  &:hover {
+    background-color: var(--interactive-background-positive-faded-highlighted);
+  }
+}
+
+.innerNegativeChecked {
+  background-color: var(--interactive-background-negative-faded);
+  border-color: var(--interactive-border-negative-default);
+
+  &:hover {
+    background-color: var(--interactive-background-negative-faded-highlighted);
+  }
+}
+
+.innerUncheckedDisabled {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.innerPrimaryDisabled {
+  background-color: var(--interactive-background-primary-disabled);
+  border-color: var(--interactive-border-primary-disabled);
+}
+
+.innerPositiveDisabled {
+  background-color: var(--interactive-background-positive-disabled);
+  border-color: var(--interactive-border-positive-disabled);
+}
+
+.innerNegativeDisabled {
+  background-color: var(--interactive-background-negative-disabled);
+  border-color: var(--interactive-border-negative-disabled);
+}

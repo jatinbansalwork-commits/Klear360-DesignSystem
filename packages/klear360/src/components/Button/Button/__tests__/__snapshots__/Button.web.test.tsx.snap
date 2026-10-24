@@ -1,59 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Button /> should render button with default properties 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -70,16 +18,18 @@ exports[`<Button /> should render button with default properties 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -91,59 +41,7 @@ exports[`<Button /> should render button with default properties 1`] = `
 `;
 
 exports[`<Button /> should render button with full width 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -160,16 +58,18 @@ exports[`<Button /> should render button with full width 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -181,74 +81,7 @@ exports[`<Button /> should render button with full width 1`] = `
 `;
 
 exports[`<Button /> should render button with icon with default iconPosition 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.c3.c3.c3.c3.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c4.c4.c4.c4.c4 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -265,20 +98,21 @@ exports[`<Button /> should render button with icon with default iconPosition 1`]
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-box"
+            style="display: flex; align-items: center; justify-content: center;"
           >
             <svg
               aria-hidden="true"
-              class=""
               data-klear360-component="icon"
               fill="none"
               height="16px"
@@ -305,8 +139,8 @@ exports[`<Button /> should render button with icon with default iconPosition 1`]
             </svg>
           </div>
           <div
-            class="c4"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -318,74 +152,7 @@ exports[`<Button /> should render button with icon with default iconPosition 1`]
 `;
 
 exports[`<Button /> should render button with icon with right iconPosition 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.c4.c4.c4.c4.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -402,26 +169,27 @@ exports[`<Button /> should render button with icon with right iconPosition 1`] =
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
           <div
-            class="c4"
             data-klear360-component="base-box"
+            style="display: flex; align-items: center; justify-content: center;"
           >
             <svg
               aria-hidden="true"
-              class=""
               data-klear360-component="icon"
               fill="none"
               height="16px"
@@ -455,59 +223,7 @@ exports[`<Button /> should render button with icon with right iconPosition 1`] =
 `;
 
 exports[`<Button /> should render disabled button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(198,100%,18%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -525,16 +241,18 @@ exports[`<Button /> should render disabled button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(0, 0, 0, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -546,59 +264,7 @@ exports[`<Button /> should render disabled button 1`] = `
 `;
 
 exports[`<Button /> should render disabled negative color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(3,69%,51%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -616,16 +282,18 @@ exports[`<Button /> should render disabled negative color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(44, 216, 216, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -637,59 +305,7 @@ exports[`<Button /> should render disabled negative color primary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled negative color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(3,69%,51%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -707,16 +323,18 @@ exports[`<Button /> should render disabled negative color secondary button 1`] =
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(44, 216, 216, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -728,59 +346,7 @@ exports[`<Button /> should render disabled negative color secondary button 1`] =
 `;
 
 exports[`<Button /> should render disabled positive color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(143,73%,40%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -798,16 +364,18 @@ exports[`<Button /> should render disabled positive color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(28, 28, 28, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -819,59 +387,7 @@ exports[`<Button /> should render disabled positive color primary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled positive color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(143,73%,40%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -889,16 +405,18 @@ exports[`<Button /> should render disabled positive color secondary button 1`] =
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(28, 28, 28, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -910,59 +428,7 @@ exports[`<Button /> should render disabled positive color secondary button 1`] =
 `;
 
 exports[`<Button /> should render disabled primary color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(198,100%,18%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -980,16 +446,18 @@ exports[`<Button /> should render disabled primary color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(0, 0, 0, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1001,59 +469,7 @@ exports[`<Button /> should render disabled primary color primary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled primary color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(222,47%,11%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1071,16 +487,18 @@ exports[`<Button /> should render disabled primary color secondary button 1`] = 
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(15, 15, 15, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1092,59 +510,7 @@ exports[`<Button /> should render disabled primary color secondary button 1`] = 
 `;
 
 exports[`<Button /> should render disabled primary color tertiary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(222,47%,11%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1162,16 +528,18 @@ exports[`<Button /> should render disabled primary color tertiary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(15, 15, 15, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1183,59 +551,7 @@ exports[`<Button /> should render disabled primary color tertiary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled white color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,0%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1253,16 +569,18 @@ exports[`<Button /> should render disabled white color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(0, 0, 0, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1274,59 +592,7 @@ exports[`<Button /> should render disabled white color primary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled white color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1344,16 +610,18 @@ exports[`<Button /> should render disabled white color secondary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(255, 255, 255, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1365,59 +633,7 @@ exports[`<Button /> should render disabled white color secondary button 1`] = `
 `;
 
 exports[`<Button /> should render disabled white color tertiary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,0.32);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1435,16 +651,18 @@ exports[`<Button /> should render disabled white color tertiary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(255, 255, 255, 0.32); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1456,59 +674,7 @@ exports[`<Button /> should render disabled white color tertiary button 1`] = `
 `;
 
 exports[`<Button /> should render large size button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 1rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1525,16 +691,18 @@ exports[`<Button /> should render large size button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 1rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.5rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1546,59 +714,7 @@ exports[`<Button /> should render large size button 1`] = `
 `;
 
 exports[`<Button /> should render medium size button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1615,16 +731,18 @@ exports[`<Button /> should render medium size button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1636,59 +754,7 @@ exports[`<Button /> should render medium size button 1`] = `
 `;
 
 exports[`<Button /> should render negative color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1705,16 +771,18 @@ exports[`<Button /> should render negative color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1726,59 +794,7 @@ exports[`<Button /> should render negative color primary button 1`] = `
 `;
 
 exports[`<Button /> should render negative color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(3,69%,51%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1795,16 +811,18 @@ exports[`<Button /> should render negative color secondary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(44, 216, 216); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1816,59 +834,7 @@ exports[`<Button /> should render negative color secondary button 1`] = `
 `;
 
 exports[`<Button /> should render positive color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1885,16 +851,18 @@ exports[`<Button /> should render positive color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1906,59 +874,7 @@ exports[`<Button /> should render positive color primary button 1`] = `
 `;
 
 exports[`<Button /> should render positive color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(143,72%,31%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -1975,16 +891,18 @@ exports[`<Button /> should render positive color secondary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(22, 22, 22); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -1996,59 +914,7 @@ exports[`<Button /> should render positive color secondary button 1`] = `
 `;
 
 exports[`<Button /> should render primary color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2065,16 +931,18 @@ exports[`<Button /> should render primary color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2086,59 +954,7 @@ exports[`<Button /> should render primary color primary button 1`] = `
 `;
 
 exports[`<Button /> should render primary color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2155,16 +971,18 @@ exports[`<Button /> should render primary color secondary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(2, 2, 2); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2176,59 +994,7 @@ exports[`<Button /> should render primary color secondary button 1`] = `
 `;
 
 exports[`<Button /> should render primary color tertiary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(216,56%,2%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2245,16 +1011,18 @@ exports[`<Button /> should render primary color tertiary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(2, 2, 2); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2266,59 +1034,7 @@ exports[`<Button /> should render primary color tertiary button 1`] = `
 `;
 
 exports[`<Button /> should render small size button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2335,16 +1051,18 @@ exports[`<Button /> should render small size button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.75rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.0625rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2356,59 +1074,7 @@ exports[`<Button /> should render small size button 1`] = `
 `;
 
 exports[`<Button /> should render white color primary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,0%,0.72);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2425,16 +1091,18 @@ exports[`<Button /> should render white color primary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgba(0, 0, 0, 0.72); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2446,59 +1114,7 @@ exports[`<Button /> should render white color primary button 1`] = `
 `;
 
 exports[`<Button /> should render white color secondary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2515,16 +1131,18 @@ exports[`<Button /> should render white color secondary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2536,59 +1154,7 @@ exports[`<Button /> should render white color secondary button 1`] = `
 `;
 
 exports[`<Button /> should render white color tertiary button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2605,16 +1171,18 @@ exports[`<Button /> should render white color tertiary button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.875rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.25rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>
@@ -2626,59 +1194,7 @@ exports[`<Button /> should render white color tertiary button 1`] = `
 `;
 
 exports[`<Button /> should render xsmall size button 1`] = `
-.c1.c1.c1.c1.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .c0.c0.c0.c0.c0 {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-duration: cubic-bezier(0.3,0,0.2,1);
-  transition-duration: cubic-bezier(0.3,0,0.2,1);
-  -webkit-transition-timing-function: 160px;
-  transition-timing-function: 160px;
-}
-
-.c3.c3.c3.c3.c3 {
-  color: hsla(0,0%,100%,1);
-  font-family: "Inter","Roboto","Inter Fallback Arial",Arial;
-  font-size: 0.75rem;
-  font-weight: 500;
-  font-style: normal;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  line-height: 1.0625rem;
-  -webkit-letter-spacing: 0px;
-  -moz-letter-spacing: 0px;
-  -ms-letter-spacing: 0px;
-  letter-spacing: 0px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-
-.c2.c2.c2.c2.c2 {
   opacity: 1;
 }
 
@@ -2695,16 +1211,18 @@ exports[`<Button /> should render xsmall size button 1`] = `
       type="button"
     >
       <div
-        class=" c0"
+        class=""
         data-klear360-component="base-box"
+        style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
       >
         <div
-          class="c1 c2"
+          class="c0"
           data-klear360-component="base-box"
+          style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
         >
           <div
-            class="c3"
             data-klear360-component="base-text"
+            style="color: rgb(255, 255, 255); font-family: "Inter", "Roboto", "Inter Fallback Arial", Arial; font-size: 0.75rem; font-weight: 500; font-style: normal; text-decoration-line: none; line-height: 1.0625rem; letter-spacing: 0px; text-align: center; margin: 0px 4px 0px 4px; padding: 0px;"
           >
             Pay Now
           </div>

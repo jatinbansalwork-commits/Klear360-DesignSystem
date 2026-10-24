@@ -1,30 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import overlayStyles from './MenuOverlay.module.scss';
 import { MENU_MIN_WIDTH, overlayPaddingX, overlayPaddingTop, overlayPaddingBottom } from './tokens';
 import type { MenuOverlayProps } from './types';
-import type { ColorSchemeNames } from '~tokens/theme';
 import { getPopupBoxShadowString, isReactNative, useTheme } from '~utils';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import type { Klear360ElementRef } from '~utils/types';
 import { componentZIndices } from '~utils/componentZIndices';
 import BaseBox from '~components/Box/BaseBox';
-
-const UnfocussableOverlay = styled(BaseBox)((_props) => {
-  return {
-    '&:focus-visible': {
-      outline: 'none',
-    },
-  };
-});
-
-const StyledMenuOverlayContent = styled(BaseBox)<{ colorScheme: ColorSchemeNames }>(
-  ({ theme, colorScheme }) => {
-    return {
-      backdropFilter: `blur(${theme.backdropBlur.medium}px)`,
-      boxShadow: isReactNative() ? undefined : getPopupBoxShadowString(theme, colorScheme),
-    };
-  },
-);
 
 const _MenuOverlay: React.ForwardRefRenderFunction<Klear360ElementRef, MenuOverlayProps> = (
   {
@@ -40,14 +22,15 @@ const _MenuOverlay: React.ForwardRefRenderFunction<Klear360ElementRef, MenuOverl
   },
   ref,
 ): React.ReactElement => {
-  const { colorScheme } = useTheme();
+  const { colorScheme, theme } = useTheme();
   void offset;
 
   return (
-    <UnfocussableOverlay
+    <BaseBox
       ref={ref as never}
       {...props}
       zIndex={zIndex}
+      className={overlayStyles.overlay}
       {...metaAttribute({ name: MetaConstants.Menu, testID })}
       minWidth={minWidth ?? MENU_MIN_WIDTH}
       width={width}
@@ -58,19 +41,23 @@ const _MenuOverlay: React.ForwardRefRenderFunction<Klear360ElementRef, MenuOverl
 
         https://floating-ui.com/docs/usetransition#usetransitionstyles
       */}
-      <StyledMenuOverlayContent
-        colorScheme={colorScheme}
+      <BaseBox
+        className={overlayStyles.overlayContent}
         backgroundColor="popup.background.gray.moderate"
         paddingX={overlayPaddingX}
         paddingTop={overlayPaddingTop}
         paddingBottom={overlayPaddingBottom}
         borderWidth="none"
         borderRadius="medium"
-        style={_transitionStyle}
+        style={{
+          ..._transitionStyle,
+          backdropFilter: `blur(${theme.backdropBlur.medium}px)`,
+          boxShadow: isReactNative() ? undefined : getPopupBoxShadowString(theme, colorScheme),
+        }}
       >
         {children}
-      </StyledMenuOverlayContent>
-    </UnfocussableOverlay>
+      </BaseBox>
+    </BaseBox>
   );
 };
 

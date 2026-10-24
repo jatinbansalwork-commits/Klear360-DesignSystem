@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import chartStyles from './CommonChartComponents.module.scss';
 import {
   XAxis as RechartsXAxis,
   YAxis as RechartsYAxis,
@@ -539,30 +539,6 @@ const ChartTooltip: React.FC<ChartTooltipProps> = (props) => {
   );
 };
 
-const StyledLegendWrapper = styled.button<{ $isHidden: boolean; $isClickable: boolean }>(
-  ({ theme, $isHidden, $isClickable }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    cursor: $isClickable ? 'pointer' : 'default',
-    opacity: $isHidden ? 0.4 : 1,
-    background: 'none',
-    border: 'none',
-    padding: theme.spacing[2],
-    '& p': {
-      color: theme.colors.surface.text.gray.muted,
-      textDecoration: $isHidden ? 'line-through' : 'none',
-      transition: $isClickable
-        ? `color ${theme.motion.duration.xquick}ms ${theme.motion.easing.linear}`
-        : 'none',
-    },
-    '&:hover p': {
-      color: $isClickable
-        ? theme.colors.surface.text.gray.normal
-        : theme.colors.surface.text.gray.muted,
-    },
-  }),
-);
-
 const LegendItem = ({
   entry,
   index,
@@ -585,10 +561,21 @@ const LegendItem = ({
   const legendKey = chartName === 'donut' ? sanitizeString(entry.value ?? '') : entry.dataKey;
 
   return (
-    <StyledLegendWrapper
+    <button
       key={`item-${index}`}
-      $isHidden={!isSelected}
-      $isClickable={isClickable}
+      type="button"
+      className={chartStyles.legendButton}
+      style={{
+        ['--legend-cursor' as string]: isClickable ? 'pointer' : 'default',
+        ['--legend-opacity' as string]: isSelected ? 1 : 0.4,
+        ['--legend-text-decoration' as string]: isSelected ? 'none' : 'line-through',
+        ['--legend-text-transition' as string]: isClickable
+          ? `color ${theme.motion.duration.xquick}ms ${theme.motion.easing.linear}`
+          : 'none',
+        ['--legend-hover-text-color' as string]: isClickable
+          ? theme.colors.surface.text.gray.normal
+          : theme.colors.surface.text.gray.muted,
+      }}
       onClick={
         isClickable
           ? () => {
@@ -596,7 +583,6 @@ const LegendItem = ({
             }
           : undefined
       }
-      type="button"
     >
       <Box display="flex" gap="spacing.3" justifyContent="center" alignItems="center">
         <span
@@ -612,7 +598,7 @@ const LegendItem = ({
           {entry.value}
         </Text>
       </Box>
-    </StyledLegendWrapper>
+    </button>
   );
 };
 

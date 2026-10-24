@@ -1,0 +1,26 @@
+.row > :global([role='treeitem']) {
+  padding-left: var(--tree-view-row-padding-left);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.row
+  > :global([role='treeitem'][aria-expanded='true']:not(:hover):not([aria-selected='true'])) {
+  background-color: transparent;
+}
+
+.animator {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition-property: grid-template-rows;
+  transition-duration: var(--duration-quick);
+  transition-timing-function: var(--easing-standard);
+
+  &[data-expanded] {
+    grid-template-rows: 1fr;
+  }
+}
+
+.animatorInner {
+  min-height: 0;
+}

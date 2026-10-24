@@ -157,6 +157,8 @@ const _Badge = (
       <StyledBadge
         height={makeSize(badgeHeight[size])}
         backgroundColor={backgroundColor}
+        color={color}
+        emphasis={emphasis}
         size={size}
         textAlign={'left' as never}
       >

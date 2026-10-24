@@ -1,23 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import styled from 'styled-components';
-import type { SectionListProps } from 'react-native';
-import { getBaseListBoxWrapperStyles } from './getBaseListBoxWrapperStyles';
+import React from 'react';
 import BaseBox from '~components/Box/BaseBox';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
+import styles from './ActionList.module.scss';
 
-const StyledListBoxWrapper = styled(BaseBox)<
-  Partial<SectionListProps<any, any>> & { isInBottomSheet: boolean }
->((props) => {
-  return {
-    // Hides the last Divider (we don't want divider on last section)
-    [`& [role=group]:last-child > [role=separator]:last-child`]: {
-      display: 'none',
-    },
-    overflowY: 'auto',
-    ...getBaseListBoxWrapperStyles({
-      theme: props.theme,
-      isInBottomSheet: props.isInBottomSheet,
-    }),
-  };
-});
+type StyledListBoxWrapperProps = BaseBoxProps & {
+  isInBottomSheet: boolean;
+  className?: string;
+};
+
+const StyledListBoxWrapper = React.forwardRef<HTMLElement, StyledListBoxWrapperProps>(
+  ({ isInBottomSheet, className, ...props }, ref) => (
+    <BaseBox
+      ref={ref as never}
+      {...props}
+      className={[
+        isInBottomSheet ? styles.wrapperInSheet : styles.wrapper,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    />
+  ),
+);
+
+StyledListBoxWrapper.displayName = 'StyledListBoxWrapper';
 
 export { StyledListBoxWrapper };

@@ -1,0 +1,63 @@
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-style: solid;
+  margin: var(--spacing-1);
+  border-radius: var(--border-radius-xsmall);
+  box-sizing: border-box;
+}
+
+.icon-small {
+  width: 12px;
+  height: 12px;
+  border-width: var(--border-width-thick);
+}
+
+.icon-medium {
+  width: 16px;
+  height: 16px;
+  border-width: var(--border-width-thick);
+}
+
+.icon-large {
+  width: 20px;
+  height: 20px;
+  border-width: var(--border-width-thicker);
+}
+
+.icon-small-pad {
+  padding-top: 1px;
+}
+
+.default-checked {
+  background-color: var(--interactive-background-primary-default);
+  border-color: var(--interactive-border-primary-default);
+}
+
+.default-unchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-gray-highlighted);
+}
+
+.disabled-checked {
+  background-color: var(--interactive-background-primary-disabled);
+  border-color: transparent;
+}
+
+.disabled-unchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-gray-disabled);
+}
+
+.negative-checked {
+  background-color: var(--interactive-background-negative-default);
+  border-color: var(--interactive-border-negative-default);
+}
+
+.negative-unchecked {
+  background-color: transparent;
+  border-color: var(--interactive-border-negative-default);
+}

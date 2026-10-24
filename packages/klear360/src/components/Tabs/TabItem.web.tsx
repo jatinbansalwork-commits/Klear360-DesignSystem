@@ -1,132 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
-import styled from 'styled-components';
 import React from 'react';
 import { CompositeItem } from '@floating-ui/react';
-import type { TabItemProps, TabsProps } from './types';
+import type { TabItemProps } from './types';
 import { useTabsContext } from './TabsContext';
-import {
-  backgroundColor,
-  paddingTop,
-  paddingBottom,
-  paddingX,
-  textColor,
-  iconColor,
-  textSizeMap,
-  borderWidth as borderWidthToken,
-  borderRadius as borderRadiusToken,
-  focusBorderRadius as focusBorderRadiusToken,
-  borderColor as borderColorToken,
-  needsStackingContext,
-  intenseSelected,
-} from './tabTokens';
+import { getTabButtonClasses } from './getTabsModuleClasses';
+import { iconColor, intenseSelected, textColor, textSizeMap } from './tabTokens';
 import { iconSizeMap, useTabsItemPropRestriction } from './utils';
 import { Text } from '~components/Typography';
-import { castWebType, makeBorderSize, makeMotionTime, makeSpace } from '~utils';
 import useInteraction from '~utils/useInteraction';
 import { makeAccessible } from '~utils/makeAccessible';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
-import getIn from '~utils/lodashButBetter/get';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
-
-const StyledTabButton = styled.button<{
-  size: TabsProps['size'];
-  isFullWidthTabItem?: TabsProps['isFullWidthTabItem'];
-  variant: NonNullable<TabsProps['variant']>;
-  isVertical: boolean;
-  isSelected: boolean;
-  isIntenseSelected: boolean;
-}>(({ theme, isSelected, isIntenseSelected, size, variant, isFullWidthTabItem, isVertical }) => {
-  const orientation = isVertical ? 'vertical' : 'horizontal';
-  const border = isVertical ? 'borderLeft' : 'borderBottom';
-  const selectedState: 'selected' | 'unselected' = isSelected ? 'selected' : 'unselected';
-  const _variant = variant === 'borderless' ? 'bordered' : variant;
-
-  const background = backgroundColor[selectedState][_variant][orientation];
-  const borderColor = borderColorToken[selectedState][_variant][orientation];
-  const borderWidth = borderWidthToken[_variant][orientation];
-  const borderRadius = borderRadiusToken[_variant][orientation][size!];
-  const focusBorderRadius = focusBorderRadiusToken[_variant][orientation][size!];
-
-  return {
-    appearance: 'none',
-    textDecoration: 'none',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: isVertical ? 'left' : 'center',
-    gap: makeSpace(theme.spacing[3]),
-    width: isFullWidthTabItem ? '100%' : undefined,
-
-    // Padding
-    paddingTop: makeSpace(getIn(theme, paddingTop[_variant][orientation][size!])),
-    paddingBottom: makeSpace(getIn(theme, paddingBottom[_variant][orientation][size!])),
-    paddingLeft: makeSpace(getIn(theme, paddingX[_variant][orientation][size!])),
-    paddingRight: makeSpace(getIn(theme, paddingX[_variant][orientation][size!])),
-
-    // Colors & border
-    backgroundColor: getIn(theme, background.default),
-    // 6px for small filled horizontal — deliberate: between xsmall(4px) and small(8px) for visual proportion, mirrors SegmentedControl item radius
-    borderRadius:
-      borderRadius === 'none'
-        ? 0
-        : variant === 'filled' && !isVertical && size === 'small'
-        ? 6
-        : theme.border.radius[borderRadius],
-    [`${border}Style`]: 'solid',
-    [`${border}Width`]:
-      borderWidth === 'none' ? 0 : makeBorderSize(theme.border.width[borderWidth]),
-    // For vertical bordered, borderLeft is transparent because the TabIndicator component
-    // handles the selected indicator (avoids border curving with focus border-radius)
-    [`${border}Color`]:
-      isVertical && _variant === 'bordered' ? 'transparent' : getIn(theme, borderColor.default),
-
-    // States
-    '&:hover': {
-      [`${border}Color`]:
-        isVertical && _variant === 'bordered'
-          ? 'transparent'
-          : getIn(theme, borderColor.highlighted),
-      backgroundColor: getIn(theme, background.highlighted),
-    },
-    '&:focus-visible': {
-      borderRadius: makeSpace(theme.border.radius[focusBorderRadius]),
-      boxShadow: `inset 0px 0px 0px ${isIntenseSelected ? 2 : 4}px ${
-        isIntenseSelected
-          ? getIn(theme.colors, intenseSelected.focusRingColor)
-          : theme.colors.surface.border.primary.muted
-      }`,
-      backgroundColor: isSelected
-        ? getIn(theme, background.default)
-        : theme.colors.interactive.background.gray.default,
-      [`${border}Color`]: 'transparent',
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
-      backgroundColor: getIn(theme, background.disabled),
-      [`${border}Color`]: 'transparent',
-    },
-    '&:disabled:hover': {
-      [`${border}Color`]: 'transparent',
-      backgroundColor: getIn(theme, background.disabled),
-    },
-
-    ...(needsStackingContext[_variant][orientation]
-      ? { position: 'relative' as const, zIndex: 1 }
-      : {}),
-
-    transitionProperty: 'all',
-    transitionTimingFunction: castWebType(theme.motion.easing.standard),
-    transitionDuration: castWebType(makeMotionTime(theme.motion.duration.gentle)),
-    '*': {
-      transitionProperty: 'color, fill',
-      transitionTimingFunction: castWebType(theme.motion.easing.standard),
-      transitionDuration: castWebType(makeMotionTime(theme.motion.duration.xquick)),
-    },
-  };
-});
 
 const TabItem = ({
   children,
@@ -149,17 +34,15 @@ const TabItem = ({
     selectedEmphasis,
     renderedPanelValues,
   } = useTabsContext();
-  const { currentInteraction, ...interactionProps } = useInteraction();
+  const { currentInteraction, setCurrentInteraction: _setCurrentInteraction, ...interactionHandlers } =
+    useInteraction();
   const validatedTrailingComponent = useTabsItemPropRestriction(trailing, size!);
   const isSelected = selectedValue === value;
   const selectedState = isSelected ? 'selected' : 'unselected';
   const panelId = `${baseId}-${value}-tabpanel`;
   const tabItemId = `${baseId}-${value}-tabitem`;
   const isFilled = variant === 'filled';
-  // Primary pill + white label/icon - see `intenseSelected` in tabTokens.
   const isIntenseSelected = isSelected && isFilled && selectedEmphasis === 'intense';
-  // Only point at a panel that is actually rendered (Tabs can be used without TabPanels).
-  // `renderedPanelValues` is undefined outside the web Tabs provider - keep the old behaviour then.
   const controlsPanelId =
     !renderedPanelValues || renderedPanelValues.has(value) ? panelId : undefined;
 
@@ -171,61 +54,81 @@ const TabItem = ({
   } as const;
   const interaction = isDisabled ? 'disabled' : interactionMap[currentInteraction];
 
+  const className = getTabButtonClasses({
+    size: size!,
+    variant: variant!,
+    isVertical,
+    isSelected,
+    isFullWidthTabItem: isFullWidthTabItem || isFilled,
+    isDisabled,
+    href,
+    isIntenseSelected,
+  });
+
+  const sharedProps = {
+    id: tabItemId,
+    className,
+    ...interactionHandlers,
+    onClick: (e: React.MouseEvent) => {
+      setSelectedValue?.(() => value);
+      onClick?.(e);
+    },
+    ...makeAccessible({
+      role: 'tab',
+      selected: isSelected,
+      controls: controlsPanelId,
+    }),
+    ...metaAttribute({ name: MetaConstants.TabItem }),
+    ...makeAnalyticsAttribute(rest),
+  };
+
+  const tabContent = (
+    <>
+      {Leading ? (
+        <Leading
+          size={iconSizeMap[size!]}
+          color={
+            isIntenseSelected
+              ? intenseSelected.iconColor[interaction]
+              : iconColor[selectedState][interaction]
+          }
+        />
+      ) : null}
+
+      {children ? (
+        <Text
+          color={
+            isIntenseSelected
+              ? intenseSelected.textColor[interaction]
+              : textColor[selectedState][interaction]
+          }
+          size={textSizeMap[size!]}
+          weight="medium"
+        >
+          {children}
+        </Text>
+      ) : null}
+
+      {validatedTrailingComponent}
+    </>
+  );
+
   return (
     <CompositeItem
       render={
-        <StyledTabButton
-          type="button"
-          as={href ? 'a' : 'button'}
-          href={href}
-          isVertical={isVertical}
-          isSelected={isSelected}
-          isIntenseSelected={isIntenseSelected}
-          variant={variant!}
-          isFullWidthTabItem={isFullWidthTabItem || isFilled}
-          id={tabItemId}
-          size={size}
-          disabled={isDisabled}
-          {...interactionProps}
-          onClick={(e: React.MouseEvent) => {
-            setSelectedValue?.(() => value);
-            onClick?.(e);
-          }}
-          {...makeAccessible({
-            role: 'tab',
-            selected: isSelected,
-            controls: controlsPanelId,
-          })}
-          {...metaAttribute({ name: MetaConstants.TabItem })}
-          {...makeAnalyticsAttribute(rest)}
-        >
-          {Leading ? (
-            <Leading
-              size={iconSizeMap[size!]}
-              color={
-                isIntenseSelected
-                  ? intenseSelected.iconColor[interaction]
-                  : iconColor[selectedState][interaction]
-              }
-            />
-          ) : null}
-
-          {children ? (
-            <Text
-              color={
-                isIntenseSelected
-                  ? intenseSelected.textColor[interaction]
-                  : textColor[selectedState][interaction]
-              }
-              size={textSizeMap[size!]}
-              weight="medium"
-            >
-              {children}
-            </Text>
-          ) : null}
-
-          {validatedTrailingComponent}
-        </StyledTabButton>
+        href ? (
+          <a
+            href={href}
+            aria-disabled={isDisabled || undefined}
+            {...sharedProps}
+          >
+            {tabContent}
+          </a>
+        ) : (
+          <button type="button" disabled={isDisabled} {...sharedProps}>
+            {tabContent}
+          </button>
+        )
       }
     />
   );

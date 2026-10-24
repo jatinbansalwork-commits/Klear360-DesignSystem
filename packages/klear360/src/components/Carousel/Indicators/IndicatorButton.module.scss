@@ -1,0 +1,39 @@
+.root {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: var(--border-radius-max);
+  background-color: var(--overlay-background-moderate);
+  width: 6px;
+  height: 6px;
+  transition-property: width, background-color;
+  transition-duration: var(--duration-gentle);
+  transition-timing-function: var(--easing-standard);
+
+  &::before {
+    content: '';
+    padding: 10px;
+    padding-top: 20px;
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+
+  &[data-active] {
+    width: 18px;
+
+    &[data-variant='gray'] {
+      background-color: var(--interactive-icon-gray-muted);
+    }
+
+    &[data-variant='white'] {
+      background-color: var(--interactive-icon-static-white-normal);
+    }
+
+    &[data-variant='blue'] {
+      background-color: var(--interactive-icon-primary-subtle);
+    }
+  }
+}

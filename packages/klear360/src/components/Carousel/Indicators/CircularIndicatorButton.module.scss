@@ -1,0 +1,29 @@
+@keyframes carouselIndicatorProgress {
+  from {
+    stroke-dashoffset: var(--carousel-ring-circumference);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--carousel-indicator-svg-size);
+  min-height: var(--carousel-indicator-svg-size);
+  position: relative;
+}
+
+.progressRing {
+  stroke-dashoffset: var(--carousel-ring-circumference);
+
+  &.animate {
+    animation: carouselIndicatorProgress var(--carousel-autoplay-interval) linear forwards;
+  }
+}

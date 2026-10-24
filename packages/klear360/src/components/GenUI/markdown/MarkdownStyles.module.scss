@@ -1,0 +1,29 @@
+.headingContainer + .headingContainer {
+  margin-top: 0;
+}
+
+.unorderedMarker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+
+  &::before {
+    content: '';
+    border-radius: var(--md-marker-radius);
+    background: var(--md-marker-bg);
+    width: var(--md-marker-size);
+    height: var(--md-marker-size);
+  }
+}
+
+.orderedMarker {
+  display: inline-block;
+  text-align: right;
+  flex-shrink: 0;
+  min-width: var(--md-ordered-marker-min-width);
+
+  &::before {
+    content: counter(markdown-ordered-list) '.';
+  }
+}

@@ -1,0 +1,28 @@
+.input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+
+  &:focus-visible + :global(div) {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+    transition-property: outline-width;
+    transition-duration: var(--duration-2xquick);
+    transition-timing-function: var(--easing-standard);
+    z-index: 2;
+  }
+
+  &:hover:not(:disabled) + :global(div) {
+    border-color: var(--selector-hover-border-color, transparent);
+    background-color: var(--selector-hover-background-color, transparent);
+    transition-timing-function: var(--easing-standard);
+    transition-duration: var(--duration-2xquick);
+  }
+}

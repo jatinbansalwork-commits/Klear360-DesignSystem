@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
-import styled from 'styled-components';
+import styles from './Preview.module.scss';
 import type {
   PreviewProps,
   PreviewHeaderProps,
@@ -9,8 +9,6 @@ import type {
 } from './types';
 import { usePreviewContext, PreviewProvider } from './PreviewContext';
 import { MetaConstants } from '~utils/metaAttribute';
-import getIn from '~utils/lodashButBetter/get';
-import type { DotNotationToken } from '~utils/lodashButBetter/get';
 import { size } from '~tokens/global';
 import BaseBox from '~components/Box/BaseBox';
 import {
@@ -28,7 +26,6 @@ import { getComponentId } from '~utils/isValidAllowedChildren';
 import { Divider } from '~components/Divider';
 import { useControllableState } from '~utils/useControllable';
 import { componentZIndices } from '~utils/componentZIndices';
-import type { Theme } from '~components/Klear360Provider';
 import { makeSize } from '~utils/makeSize';
 
 const _PreviewHeader = ({
@@ -184,51 +181,9 @@ const PreviewFooter = assignWithoutSideEffects(_PreviewFooter, {
   componentId: MetaConstants.PreviewFooter,
 });
 
-const dotSpacing = 16;
-const dotSize = 1;
-const ZoomContainer = styled.div<{ isDragEnabled: boolean; isDragging: boolean }>`
-  width: 100%;
-  height: 100%;
-  cursor: ${({ isDragEnabled, isDragging }) => {
-    if (!isDragEnabled) return 'default';
-    return isDragging ? 'grabbing' : 'grab';
-  }};
-  background-image: ${({ isDragEnabled, theme }) =>
-    isDragEnabled
-      ? `radial-gradient(
-    circle,
-    ${getIn(
-      theme.colors,
-      'surface.border.gray.muted' as DotNotationToken<Theme['colors']>,
-    )} ${dotSize}px,
-    transparent ${dotSize}px
-  )`
-      : 'none'};
-  background-size: ${dotSpacing}px ${dotSpacing}px;
-  .zoom-wrapper,
-  .zoom-content {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  transition: cursor 0.1s ease;
-`;
+const PREVIEW_DOT_SPACING_PX = 16;
+const PREVIEW_DOT_SIZE_PX = 1;
 
-const TransFormWrapperContainer = styled.div<{
-  isFullScreen: boolean;
-}>`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  background-color: ${({ isFullScreen, theme }) =>
-    isFullScreen
-      ? getIn(theme.colors, 'surface.background.gray.intense' as DotNotationToken<Theme['colors']>)
-      : 'transparent'};
-`;
 const Preview = ({
   children,
   onFullScreen: onFullScreenProp,
@@ -325,7 +280,11 @@ const Preview = ({
         defaultZoom: defaultZoom ?? 1,
       }}
     >
-      <TransFormWrapperContainer ref={containerRef} isFullScreen={isFullScreen}>
+      <div
+        ref={containerRef}
+        className={styles.transformWrapper}
+        data-fullscreen={isFullScreen ? true : undefined}
+      >
         <TransformWrapper
           onTransformed={handleTransformed}
           minScale={0.1}
@@ -350,17 +309,29 @@ const Preview = ({
             >
               {previewHeader}
               <BaseBox flex={1} overflow="hidden" position="relative" width="100%">
-                <ZoomContainer isDragEnabled={!isDragAndZoomDisabled} isDragging={isDragging}>
+                <div
+                  className={styles.zoomContainer}
+                  data-drag-enabled={!isDragAndZoomDisabled ? true : undefined}
+                  data-dragging={isDragging ? true : undefined}
+                  style={
+                    !isDragAndZoomDisabled
+                      ? {
+                          backgroundImage: `radial-gradient(circle, var(--surface-border-gray-muted) ${PREVIEW_DOT_SIZE_PX}px, transparent ${PREVIEW_DOT_SIZE_PX}px)`,
+                          backgroundSize: `${PREVIEW_DOT_SPACING_PX}px ${PREVIEW_DOT_SPACING_PX}px`,
+                        }
+                      : undefined
+                  }
+                >
                   <TransformComponent wrapperClass="zoom-wrapper" contentClass="zoom-content">
                     {previewBody}
                   </TransformComponent>
-                </ZoomContainer>
+                </div>
               </BaseBox>
               {previewFooter}
             </BaseBox>
           )}
         </TransformWrapper>
-      </TransFormWrapperContainer>
+      </div>
     </PreviewProvider>
   );
 };

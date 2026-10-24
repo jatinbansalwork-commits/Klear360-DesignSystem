@@ -1,4 +1,6 @@
+import type { ReactNode } from 'react';
 import type { CounterProps } from './Counter';
+import type { BaseBoxProps } from '~components/Box/BaseBox';
 import type { Theme } from '~components/Klear360Provider';
 import type { TypographyPlatforms } from '~tokens/global';
 import type { DotNotationColorStringToken } from '~utils/types';
@@ -13,6 +15,11 @@ type SurfacePrimaryColors = `surface.background.primary.${SubtleOrIntense}`;
 export type StyledCounterProps = {
   backgroundColor: FeedbackBackgroundColors | SurfacePrimaryColors;
   size: NonNullable<CounterProps['size']>;
+  color: NonNullable<CounterProps['color']>;
+  emphasis: NonNullable<CounterProps['emphasis']>;
   platform: TypographyPlatforms;
-  theme: Theme;
-};
+  /** Injected by styled-components on native; omitted on web SCSS path. */
+  theme?: Theme;
+  className?: string;
+  children?: ReactNode;
+} & Pick<BaseBoxProps, 'minHeight' | 'minWidth'>;

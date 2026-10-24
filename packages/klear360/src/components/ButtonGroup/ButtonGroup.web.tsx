@@ -1,55 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import styled from 'styled-components';
 import type { ButtonGroupProps } from './types';
 import { StyledButtonGroup } from './StyledButtonGroup';
+import { StyledButtonGroupDivider } from './StyledButtonGroupDivider.web';
 import { ButtonGroupProvider } from './ButtonGroupContext';
-import BaseBox from '~components/Box/BaseBox';
 import { getStyledProps } from '~components/Box/styledProps';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { makeBorderSize } from '~utils';
-import type { DotNotationToken } from '~utils/lodashButBetter/get';
-import getIn from '~utils/lodashButBetter/get';
-import type { Theme } from '~components/Klear360Provider';
 import type { Klear360ElementRef } from '~utils/types';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { useVerifyAllowedChildren } from '~utils/useVerifyAllowedChildren';
-import { getBackgroundColorToken } from '~components/Button/BaseButton/BaseButton';
-
-const getDividerColorToken = ({
-  color,
-  variant,
-  isDisabled,
-}: Pick<ButtonGroupProps, 'color' | 'isDisabled' | 'variant'>): DotNotationToken<
-  Theme['colors']
-> => {
-  if (variant === 'primary') {
-    return 'surface.border.gray.subtle';
-  }
-
-  if (variant === 'secondary') {
-    return getBackgroundColorToken({
-      variant,
-      color,
-      state: isDisabled ? 'disabled' : 'default',
-    });
-  }
-
-  return 'surface.border.gray.muted';
-};
-
-const StyledDivider = styled(BaseBox)<Pick<ButtonGroupProps, 'color' | 'isDisabled' | 'variant'>>(
-  ({ theme, color, variant, isDisabled }) => {
-    return {
-      borderWidth: 0,
-      borderLeftStyle: 'solid',
-      borderLeftWidth: makeBorderSize(theme.border.width.thin),
-      alignSelf: 'stretch',
-      color: getIn(theme.colors, getDividerColorToken({ color, variant, isDisabled })),
-    };
-  },
-);
 
 const _ButtonGroup = (
   {
@@ -101,7 +61,7 @@ const _ButtonGroup = (
             <>
               {child}
               {showDivider && (
-                <StyledDivider variant={variant} color={color} isDisabled={isDisabled} />
+                <StyledButtonGroupDivider variant={variant} color={color} isDisabled={isDisabled} />
               )}
             </>
           );

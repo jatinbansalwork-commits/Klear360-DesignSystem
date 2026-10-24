@@ -365,3 +365,31 @@ Migrated web components use **SCSS Modules + CSS custom properties**, not styled
 - [x] **BaseButton (web)** — CVA + `BaseButton.module.scss` (~680 lines, verified against styled-components + klear360-core reference); variant/color/size/disabled/full-width/icon-only via module classes; `:focus:not(:focus-visible)` + `!important` inset stroke; motion tokens added to `themeToCSSVariables`; native unchanged.
 - [x] **Dropdown overlay (web)** — `StyledDropdownOverlay.module.scss` + CSS vars for panel fill; box-shadow/backdrop still resolved from theme + `colorScheme` (light/dark inset differs); theme-switch test added.
 - [x] **TableSurface (web)** — layout in `TableSurface.module.scss`; surface borders, gradients, and elevation shadow still resolved from `theme` + `colorScheme` (same split as styled-components); theme-switch test on `boxShadow`.
+
+## P2: bulk web migration — **COMPLETE**
+
+Mechanism unchanged from P1. Each component: diff against current styled output, adopt/adapt klear360-core `.module.css` when present, split `Component.web.tsx` / `Styled*.web.tsx` + `.module.scss`, keep native on styled-components.
+
+| Component | Status |
+|-----------|--------|
+| Divider, BaseButton, Dropdown overlay, TableSurface | done (P1) |
+| Alert, Spinner, Skeleton, AnnouncementBanner, Badge, Counter, Tooltip, Collapsible, **IconButton**, **ActionList**, **InputGroup**, **Modal** (backdrop + surface), **Switch** (track), **SegmentedControl**, **BaseMenu** item container | done (P2 wave 1–3) |
+| **Accordion** (surface + button), **Checkbox** (icon wrapper), **Radio** (icon wrapper), **Chip** (animated shell + inner), **Toast** (+ container wrapper opacity) | done (P2 wave 4) |
+| **Tabs** (list + item + indicator), **Card** (root + surface), **Avatar** (wrapper + button + group), **BottomSheet** (surface + backdrop + grab handle), **CounterInput** (root + step buttons) | done (P2 wave 5) |
+| **BaseLink**, **AnimatedButtonContent**, **LinkOverlay**, **CardTicketSurface**, **BaseInput** (tag slot + wrapper animations; border/hover wrapper still styled) | done (P2 wave 6) |
+| **StyledBaseInput** (web native input/textarea/button/div), **AnimatedBaseInputWrapper** (SCSS border/hover/focus-within + table cell) | done (P2 wave 7) |
+| **Switch** (animated thumb + thumb icon + thumb wrapper web), **VisuallyHidden**, **QuickFilters** wrapper, **FileUpload** (drop zone + item row), **ButtonGroup** (root + divider) | done (P2 wave 8) |
+| **Tag** (animated dismiss/show), **List** (ordered/unordered/item shell), **SkipNav** link, **Checkbox** icon fade, **Radio** icon fade | done (P2 wave 9) |
+| **Pagination** (page selection button), **ResizableSplit** (grid + pane + handle track/grip), **Menu** overlay shell, **Popover** interactive wrapper, **StepGroup** interactive item header | done (P2 wave 10) |
+| **BottomNav** item link styles, **ChatMessage** thumbnail image, **TreeView** chevron rotator, **Carousel** nav + dot indicators (web), **CitedFieldRow** row hover + source chip | done (P2 wave 11) |
+| **Preview** zoom/fullscreen shells, **FilterChip** chip + trigger + clear, **TreeView** row indent + group animator, **ChatMessage** self bubble shadow | done (P2 wave 12) |
+| **Drawer** overlay + panel motion, **LightBox** backdrop/content + images, **SideNav** item/section shell, **Selector** label | done (P2 wave 13) |
+| **BaseBox** / **BaseText** / **Svg** / **BaseMotion** / **PopoverContentWrapper** / **useMemoizedStyles** (React.CSSProperties), **TreeView** list wrapper, **ListView** surface, **ListViewFilters** scrollbar, **ChatInput** scrollbar, **InputDropdownButton**, **TabNav** item + indicator, **getBaseInputBorderStyles** | done (P2 waves 14–18) |
+| **Table** (7 scoped web files → `tableScopedStyled.web.tsx` + module SCSS), **SideNav** root + **SideNavLink** (`SideNav.module.scss`, `getSideNav*Styles`, `SideNavLink.module.scss`), **Carousel** (3 web files incl. **CircularIndicatorButton**), **TimePicker** (3 incl. **SpinWheel** ref typing), **DatePicker** CalendarStyles, **ProgressBar** (2), **GenUI** (2), **Charts** CommonChartComponents legend, **TourMask**, **SelectorInput** | done (P2 waves 19–27) |
+| Amount, AppBar, Breadcrumb, Heading, Text, TrustBadge | already CSS/token-based on web (no styled wrapper in scoped files) |
+
+**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining styled usage on web is in **shared cross-platform `.tsx` entry points** (e.g. `BaseInput.tsx`, `BaseButton.tsx`, `Code.tsx`, `List`/`ListItem`, `Tag`, `ActionListItem`, `StyledColorInput`) — P3 cutover scope, not P2.
+
+**`Klear360Provider` (web):** `ThemeContext` + CSS-variable wrapper unchanged. **`ThemeProvider` / `StyleSheetManager` not removed** — dropping them breaks every remaining styled-components consumer above (web Jest without the bridge fails with `props.theme` undefined). Remove at P3 when shared `.tsx` styled entry points are migrated or deleted.
+
+**Not in core CSS reference tree** (migrated from styled-components only): Table body/row/cell runtime styles, SideNav root/link, Charts, GenUI, DatePicker calendar chrome, etc.

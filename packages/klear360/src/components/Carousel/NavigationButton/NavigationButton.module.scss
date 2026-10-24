@@ -1,0 +1,46 @@
+.root {
+  cursor: pointer;
+  background: transparent;
+  border-style: solid;
+  border-width: var(--border-width-thin);
+  border-radius: var(--border-radius-max);
+  border-color: var(--interactive-border-gray-faded);
+  padding: var(--spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  transition-property: color, box-shadow, background-color;
+  transition-duration: var(--duration-xquick);
+  transition-timing-function: var(--easing-standard);
+
+  &[data-variant='filled'] {
+    background-color: var(--interactive-background-static-white-default);
+    color: var(--interactive-icon-static-black-muted);
+    box-shadow: var(--elevation-low-raised);
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      color: var(--interactive-icon-static-black-muted);
+      background-color: var(--interactive-background-static-white-highlighted);
+    }
+  }
+
+  &[data-variant='stroked'] {
+    background-color: var(--interactive-background-static-white-faded);
+    color: var(--interactive-icon-gray-normal);
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      color: var(--interactive-icon-gray-normal);
+      background-color: var(--interactive-background-static-white-faded-highlighted);
+    }
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--surface-border-primary-muted);
+    outline-offset: 1px;
+  }
+}

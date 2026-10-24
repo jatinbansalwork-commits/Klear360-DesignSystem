@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
+import styles from './TimeInput.module.scss';
 import { useLocale } from '@react-aria/i18n';
 import { useTimeField, useDateSegment } from '@react-aria/datepicker';
 import type { TimeValue } from '@react-aria/datepicker';
@@ -14,29 +14,6 @@ import { ClockIcon } from '~components/Icons';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
 import { mergeRefs } from '~utils/useMergeRefs';
 import { makeSpace } from '~utils/makeSpace';
-
-const StyledTimeSegment = styled.div`
-  padding-left: ${makeSpace(spacing[1])};
-  padding-right: ${makeSpace(spacing[1])};
-  box-sizing: content-box;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  outline: none;
-  border-radius: ${makeSpace(spacing[1])};
-
-  /* !important here guards against a host page's own *:focus reset (e.g. *:focus { outline: none
-     !important }) overriding this segment's focus state - see StyledBaseButton.web.tsx for the
-     same pattern. */
-  &:focus {
-    background-color: ${({ theme }) =>
-      theme.colors.interactive.background.primary.faded} !important;
-    color: #ffffff !important;
-
-    span {
-      color: #000000 !important;
-    }
-  }
-`;
 
 /**
  * TimeSegment Component
@@ -70,11 +47,18 @@ const TimeSegment: React.ForwardRefRenderFunction<Klear360ElementRef, TimeSegmen
   // Calculate minWidth based on segment maxValue to prevent layout shifts
   const minWidth = segment.maxValue != null ? `${String(segment.maxValue).length}ch` : 'auto';
 
+  const segmentStyle = {
+    ...segmentProps.style,
+    minWidth,
+    '--time-segment-px-1': makeSpace(spacing[1]),
+    '--time-segment-focus-bg': theme.colors.interactive.background.primary.faded,
+  } as React.CSSProperties;
+
   return (
-    <StyledTimeSegment
+    <div
       ref={ref}
-      theme={theme}
-      style={{ ...segmentProps.style, minWidth }}
+      className={styles.segment}
+      style={segmentStyle}
       onFocus={(e: React.FocusEvent<HTMLDivElement>) => {
         setIsFocused(true);
         segmentProps.onFocus?.(e);
@@ -117,7 +101,7 @@ const TimeSegment: React.ForwardRefRenderFunction<Klear360ElementRef, TimeSegmen
           ? segment.text.toUpperCase()
           : segment.text}
       </BaseBox>
-    </StyledTimeSegment>
+    </div>
   );
 };
 

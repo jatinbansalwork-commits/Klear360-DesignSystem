@@ -1,7 +1,29 @@
-import styled from 'styled-components';
+import React from 'react';
 import type { RadioRectProps } from './RadioIconWrapperStyles';
-import { getRadioIconWrapperStyles } from './RadioIconWrapperStyles';
+import { getRadioIconModuleClasses } from './getRadioIconModuleClasses';
 
-const RadioIconWrapper = styled.div<RadioRectProps>((props) => getRadioIconWrapperStyles(props));
+type RadioIconWrapperProps = RadioRectProps &
+  React.HTMLAttributes<HTMLDivElement> & {
+    children?: React.ReactNode;
+  };
+
+const RadioIconWrapper = React.forwardRef<HTMLDivElement, RadioIconWrapperProps>(
+  ({ isChecked, isDisabled, isNegative, size, className, children, ...rest }, ref) => (
+    <div
+      ref={ref}
+      className={[
+        getRadioIconModuleClasses({ isChecked, isDisabled, isNegative, size }),
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      {...rest}
+    >
+      {children}
+    </div>
+  ),
+);
+
+RadioIconWrapper.displayName = 'RadioIconWrapper';
 
 export { RadioIconWrapper };

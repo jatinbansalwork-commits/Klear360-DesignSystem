@@ -1,91 +1,17 @@
 import React from 'react';
-import type { CSSObject } from 'styled-components';
-import styled from 'styled-components';
-import { FILTER_CHIP_HEIGHT } from './tokens';
+import styles from './FilterChip.module.scss';
 import type { BaseFilterChipProps } from './types';
-import { makeBorderSize, makeSpace } from '~utils';
-import type { Theme } from '~components/Klear360Provider';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import type { Klear360ElementRef } from '~utils/types';
 import { makeAccessible } from '~utils/makeAccessible';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { Box } from '~components/Box';
-import BaseBox from '~components/Box/BaseBox';
 import { Counter } from '~components/Counter';
 import { Divider } from '~components/Divider';
 import { ChevronDownIcon, CloseIcon } from '~components/Icons';
 import { Text } from '~components/Typography';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { getStyledProps } from '~components/Box/styledProps';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-
-const getInteractiveFilterItemStyles = ({ theme }: { theme: Theme }): CSSObject => {
-  return {
-    display: 'flex',
-    height: '100%',
-    alignItems: 'center',
-    border: 'none',
-    cursor: 'pointer',
-    color: 'currentcolor',
-    '&:not([disabled]):hover': {
-      backgroundColor: theme.colors.interactive.background.gray.faded,
-    },
-    '&[disabled]': {
-      cursor: 'not-allowed',
-    },
-    '&:focus-visible': {
-      ...getFocusRingStyles({ theme }),
-      outlineOffset: makeSpace(theme.spacing[1]),
-    },
-  };
-};
-
-const StyledFilterChip = styled(BaseBox)<{ $isSelected?: boolean; $isDisabled?: boolean }>(
-  ({ theme, $isDisabled, $isSelected }) => {
-    return {
-      borderWidth: makeBorderSize(theme.border.width.thin),
-      borderColor: theme.colors.interactive.border.gray[$isDisabled ? 'disabled' : 'faded'],
-      height: FILTER_CHIP_HEIGHT,
-      borderRadius: theme.border.radius.small,
-      display: 'flex',
-      borderStyle: $isSelected ? 'solid' : 'dashed',
-      backgroundColor: theme.colors.surface.background.gray.intense,
-      color: theme.colors.interactive.text.gray[$isDisabled ? 'disabled' : 'muted'],
-      width: 'fit-content',
-    };
-  },
-);
-
-const StyledFilterTrigger = styled.button<{ $hasClearButton?: boolean }>(
-  ({ theme, $hasClearButton }) => {
-    const { spacing } = theme;
-    return {
-      backgroundColor: theme.colors.transparent,
-      // When a clear button follows the trigger its right corners butt against the divider,
-      // so they're squared off. Without a clear button the trigger is a self-contained pill.
-      borderRadius: $hasClearButton ? theme.border.radius.none : theme.border.radius.small,
-      borderTopLeftRadius: theme.border.radius.small,
-      borderBottomLeftRadius: theme.border.radius.small,
-      paddingLeft: makeSpace(spacing[4]),
-      paddingRight: $hasClearButton ? makeSpace(spacing[2]) : makeSpace(spacing[3]),
-      gap: makeSpace(spacing[2]),
-      ...getInteractiveFilterItemStyles({ theme }),
-    };
-  },
-);
-
-const StyledFilterCloseButton = styled.button(({ theme }) => {
-  return {
-    backgroundColor: theme.colors.transparent,
-    borderTopRightRadius: theme.border.radius.small,
-    borderBottomRightRadius: theme.border.radius.small,
-    paddingLeft: makeSpace(theme.spacing[2] + theme.spacing[1]),
-    paddingRight: makeSpace(theme.spacing[2] + theme.spacing[1]),
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...getInteractiveFilterItemStyles({ theme }),
-  };
-});
 
 const renderValue = (
   selectionType: BaseFilterChipProps['selectionType'],
@@ -143,13 +69,16 @@ const _BaseFilterChip: React.ForwardRefRenderFunction<Klear360ElementRef, BaseFi
   const shouldShowClearButton = isSelected && showClearButton;
 
   return (
-    <StyledFilterChip
-      $isDisabled={isDisabled}
-      $isSelected={isSelected}
+    <div
       ref={ref as React.Ref<HTMLDivElement>}
+      className={styles.chip}
+      data-selected={isSelected ? true : undefined}
+      data-disabled={isDisabled ? true : undefined}
     >
-      <StyledFilterTrigger
-        $hasClearButton={shouldShowClearButton}
+      <button
+        type="button"
+        className={styles.trigger}
+        data-has-clear-button={shouldShowClearButton ? true : undefined}
         disabled={isDisabled}
         id={id}
         onClick={(e) => {
@@ -183,11 +112,13 @@ const _BaseFilterChip: React.ForwardRefRenderFunction<Klear360ElementRef, BaseFi
         <Box display="flex" alignItems="center" paddingRight="spacing.1">
           <ChevronDownIcon size="small" color="interactive.icon.gray.muted" />
         </Box>
-      </StyledFilterTrigger>
+      </button>
       {shouldShowClearButton ? (
         <>
           <Divider orientation="vertical" variant={isDisabled ? 'muted' : 'subtle'} />
-          <StyledFilterCloseButton
+          <button
+            type="button"
+            className={styles.closeButton}
             aria-label={`Clear ${label} value`}
             // value can never be undefined because when it's undefined the button itself doesn't render/
             onClick={() => onClearButtonClick?.({ value: value ?? '' })}
@@ -195,10 +126,10 @@ const _BaseFilterChip: React.ForwardRefRenderFunction<Klear360ElementRef, BaseFi
             {...metaAttribute({ name: 'filter-chip-close-button' })}
           >
             <CloseIcon size="small" color="interactive.icon.gray.muted" />
-          </StyledFilterCloseButton>
+          </button>
         </>
       ) : null}
-    </StyledFilterChip>
+    </div>
   );
 };
 

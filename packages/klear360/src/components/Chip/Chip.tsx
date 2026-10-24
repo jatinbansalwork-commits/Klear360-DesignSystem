@@ -216,7 +216,7 @@ const _Chip: React.ForwardRefRenderFunction<Klear360ElementRef, ChipProps> = (
                 justifyContent={isReactNative() ? 'flex-start' : 'center'}
                 alignItems="center"
                 overflow="hidden"
-                backgroundColor={chipBackgroundColor}
+                {...(isReactNative() ? { backgroundColor: chipBackgroundColor } : {})}
                 borderWidth={['xsmall', 'small'].includes(_size) ? 'thinner' : 'thin'}
                 paddingLeft={
                   chipHorizontalPaddingTokens[

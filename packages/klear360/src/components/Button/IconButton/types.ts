@@ -24,4 +24,6 @@ export type StyledIconButtonProps = {
 } & TestID &
   Klear360CommonEvents &
   DataAnalyticsAttribute &
-  StyledPropsKlear360;
+  StyledPropsKlear360 & {
+    className?: string;
+  };

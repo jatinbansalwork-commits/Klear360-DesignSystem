@@ -1,9 +1,6 @@
-import type { FlattenSimpleInterpolation } from 'styled-components';
-import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import type { CircularProgressBarFilledProps } from './types';
 import {
-  pulseAnimation,
   circularProgressSizeTokens,
   getCircularProgressSVGTokens,
 } from './progressBarTokens';
@@ -12,80 +9,11 @@ import getIn from '~utils/lodashButBetter/get';
 import BaseBox from '~components/Box/BaseBox';
 import { castWebType } from '~utils';
 import { makeMotionTime } from '~utils/makeMotionTime';
-import type { TextProps } from '~components/Typography';
 import { getTextProps } from '~components/Typography';
 import { Svg, Circle } from '~components/Icons/_Svg';
 import getBaseTextStyles from '~components/Typography/BaseText/getBaseTextStyles';
-
-const pulseKeyframes = keyframes`
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.65;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-const getPulseAnimationStyles = ({
-  duration,
-  easing,
-  progressPercent,
-  isMeter,
-}: {
-  duration: string;
-  easing: string;
-  progressPercent: number;
-  isMeter: boolean;
-}): FlattenSimpleInterpolation => {
-  if (isMeter || progressPercent === 100) {
-    return css`
-      height: 100%;
-      width: 100%;
-      transition: stroke-dashoffset ${duration} ${easing};
-    `;
-  }
-
-  return css`
-    height: 100%;
-    width: 100%;
-    opacity: ${pulseAnimation.opacityInitial};
-    background-color: ${pulseAnimation.backgroundColor};
-    transition: stroke-dashoffset ${duration} ${easing};
-    animation: ${pulseKeyframes} ${duration} ${easing} infinite;
-  `;
-};
-
-const StyledSVGText = styled.text<Pick<TextProps<{ variant: 'body' }>, 'size' | 'weight'>>(
-  ({ theme, size, weight }) => {
-    return {
-      ...getBaseTextStyles({
-        theme,
-        ...getTextProps({ variant: 'body', size, weight }),
-      }),
-      fill: theme.colors.surface.text.gray.normal,
-    };
-  },
-);
-
-const DeterminatePulseAnimation = styled.circle<
-  Pick<
-    CircularProgressBarFilledProps,
-    'pulseMotionDuration' | 'pulseMotionDelay' | 'motionEasing' | 'progressPercent' | 'isMeter'
-  >
->(({ theme, pulseMotionDuration, motionEasing, progressPercent, isMeter }) => {
-  const duration = castWebType(makeMotionTime(getIn(theme.motion, pulseMotionDuration)));
-  const easing = castWebType(getIn(theme.motion, motionEasing));
-
-  return getPulseAnimationStyles({
-    duration,
-    easing,
-    progressPercent,
-    isMeter,
-  });
-});
+import { useTheme } from '~components/Klear360Provider';
+import styles from './CircularProgressBar.module.scss';
 
 const CircularProgressBarFilled = ({
   progressPercent,
@@ -95,7 +23,10 @@ const CircularProgressBarFilled = ({
   label,
   showPercentage = true,
   isMeter,
+  pulseMotionDuration,
+  motionEasing,
 }: CircularProgressBarFilledProps): React.ReactElement => {
+  const { theme } = useTheme();
   const {
     sqSize,
     strokeWidth,
@@ -104,6 +35,29 @@ const CircularProgressBarFilled = ({
     dashArray,
     dashOffset,
   } = getCircularProgressSVGTokens({ size, progressPercent });
+
+  const duration = castWebType(makeMotionTime(getIn(theme.motion, pulseMotionDuration)));
+  const easing = castWebType(getIn(theme.motion, motionEasing));
+  const shouldPulse = !isMeter && progressPercent !== 100;
+
+  const arcStyle: React.CSSProperties = {
+    transition: `stroke-dashoffset ${duration} ${easing}`,
+    ...(shouldPulse
+      ? ({
+          '--circular-progress-duration': duration,
+          '--circular-progress-easing': easing,
+        } as React.CSSProperties)
+      : {}),
+  };
+
+  const percentTextStyles = getBaseTextStyles({
+    theme,
+    ...getTextProps({
+      variant: 'body',
+      size: circularProgressSizeTokens[size].percentTextSize,
+      weight: 'semibold',
+    }),
+  });
 
   return (
     <BaseBox
@@ -123,34 +77,34 @@ const CircularProgressBarFilled = ({
           strokeWidth={`${strokeWidth}px`}
         />
 
-        <DeterminatePulseAnimation
-          progressPercent={progressPercent}
-          isMeter={isMeter}
+        <circle
+          className={[styles.progressArc, shouldPulse ? styles.progressArcPulse : undefined]
+            .filter(Boolean)
+            .join(' ')}
+          style={arcStyle}
           fill="none"
           stroke={fillColor}
-          cx={sqSize / 2}
-          cy={sqSize / 2}
-          r={radius}
+          cx={String(sqSize / 2)}
+          cy={String(sqSize / 2)}
+          r={String(radius)}
           strokeWidth={`${strokeWidth}px`}
-          // Start progress marker at 12 O'Clock
           transform={`rotate(-90 ${sqSize / 2} ${sqSize / 2})`}
           strokeDasharray={dashArray}
           strokeDashoffset={dashOffset}
-          pulseMotionDuration="duration.2xgentle"
-          pulseMotionDelay="delay.long"
-          motionEasing="easing.emphasized"
         />
         {showPercentage && size !== 'small' && (
-          <StyledSVGText
-            size={circularProgressSizeTokens[size].percentTextSize}
-            weight="semibold"
+          <text
+            style={{
+              ...percentTextStyles,
+              fill: theme.colors.surface.text.gray.normal,
+            }}
             x="50%"
             y="50%"
             textAnchor="middle"
             dy=".4em"
           >
             {progressPercent}%
-          </StyledSVGText>
+          </text>
         )}
       </Svg>
 

@@ -1,0 +1,14 @@
+.scrollContainer {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+}
+
+.scrollItem {
+  scroll-snap-align: center;
+}

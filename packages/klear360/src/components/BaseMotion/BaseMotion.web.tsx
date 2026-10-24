@@ -1,24 +1,14 @@
 import React from 'react';
 import { m as motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
 import { mergeRefs } from '@mantine/hooks';
 import type { BaseMotionBoxProps, MotionMeta, BaseMotionEntryExitProps } from './types';
 import { makeAnimationVariables, useMotionVariants } from './baseMotionUtils';
 import { useAnimateInteractions } from '~components/AnimateInteractions/AnimateInteractionsProvider';
 import { useStagger } from '~components/Stagger/StaggerProvider';
 import type { Klear360ElementRef } from '~utils/types';
-import { useMemoizedStyles } from '~components/Box/BaseBox/useMemoizedStyles';
-import type { BoxProps } from '~components/Box';
-import type { Theme } from '~components/Klear360Provider';
+import BaseBox from '~components/Box/BaseBox';
 
-// Creating empty styled component so that the final component supports `as` prop
-const StyledDiv = styled.div((props: BoxProps & { theme: Theme }) => {
-  // We're turning normal div into Box here because our BaseBox does not forward the props to next component which is needed for enhancer component wrapper
-  const boxStyles = useMemoizedStyles(props);
-  return boxStyles;
-});
-
-const MotionDiv = motion(StyledDiv);
+const MotionDiv = motion(BaseBox);
 
 const _BaseMotionBox = (
   {

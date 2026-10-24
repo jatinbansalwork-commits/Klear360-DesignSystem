@@ -1,15 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './CitedFieldRow.module.scss';
 import type { CitedFieldRowProps, CitedFieldRowSource } from './types';
 import {
   citeDotSize,
-  sourceVariantTokens,
-  activeSourceTokens,
-  citeMutedChipOpacity,
   citedFieldRowGridTemplateColumns,
   citedFieldRowSubtleBackground,
   errorValueCellTokens,
   successValueCellTokens,
+  citeMutedChipOpacity,
 } from './citedFieldRowTokens';
 import BaseBox from '~components/Box/BaseBox';
 import { Text } from '~components/Typography';
@@ -18,72 +16,9 @@ import { getStyledProps } from '~components/Box/styledProps';
 import { metaAttribute, MetaConstants } from '~utils/metaAttribute';
 import { makeAccessible } from '~utils/makeAccessible';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
-import getIn from '~utils/lodashButBetter/get';
-import { makeBorderSize, makeSize, makeSpace, castWebType } from '~utils';
+import { makeSize } from '~utils';
 import { opacity, size } from '~tokens/global';
-
-// The value cell's own `data-klear360-component` attribute doubles as the hover target below -
-// scoped to this row instance via `&`, so it never bleeds into other rows.
-const VALUE_CELL_ATTR_SELECTOR = `[data-klear360-component="${MetaConstants.CitedFieldRowValue}"]`;
-
-const StyledRow = styled(BaseBox)<{ $isCiteMuted: boolean }>(({ theme, $isCiteMuted }) => ({
-  ...(!$isCiteMuted && {
-    [`&:hover ${VALUE_CELL_ATTR_SELECTOR}`]: {
-      backgroundColor: getIn(theme.colors, citedFieldRowSubtleBackground as never),
-      transitionProperty: 'background-color',
-      transitionDuration: castWebType(theme.motion.duration.quick),
-      transitionTimingFunction: castWebType(theme.motion.easing.standard),
-    },
-  }),
-}));
-
-const StyledSourceRefButton = styled.button<{
-  $variant: 'doc' | 'trace';
-  $isActive: boolean;
-  $isDisabled: boolean;
-}>(({ theme, $variant, $isActive, $isDisabled }) => {
-  const tokens = $isActive ? activeSourceTokens : sourceVariantTokens[$variant];
-  const transitionProperties = ['background-color', 'border-color', 'color', 'box-shadow'];
-
-  return {
-    appearance: 'none',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: makeSpace(theme.spacing[1]),
-    margin: 0,
-    padding: `${makeSpace(theme.spacing[1])} ${makeSpace(theme.spacing[2])}`,
-    border: `${makeBorderSize(theme.border.width.thin)} solid ${getIn(
-      theme.colors,
-      tokens.border as never,
-    )}`,
-    borderRadius: makeSize(theme.border.radius.max),
-    backgroundColor: getIn(theme.colors, tokens.background as never),
-    color: getIn(theme.colors, tokens.text as never),
-    font: 'inherit',
-    textAlign: 'start',
-    whiteSpace: 'nowrap',
-    cursor: $isDisabled ? 'not-allowed' : 'pointer',
-    opacity: $isDisabled ? opacity[citeMutedChipOpacity] : undefined,
-    boxShadow: 'none',
-    transitionProperty: transitionProperties.join(', '),
-    transitionDuration: castWebType(theme.motion.duration.quick),
-    transitionTimingFunction: castWebType(theme.motion.easing.standard),
-    '&:hover:not(:disabled)': {
-      boxShadow: castWebType(theme.elevation.lowRaised),
-    },
-    '&:hover:not(:disabled) span': {
-      textDecoration: 'none',
-    },
-    '&:focus-visible': getFocusRingStyles({ theme }),
-  };
-});
-
-const StyledTabularNumsSpan = styled.span({
-  minWidth: 0,
-  fontVariantNumeric: 'tabular-nums',
-});
 
 const SourceRefChip = ({
   source,
@@ -96,16 +31,18 @@ const SourceRefChip = ({
 }): React.ReactElement => {
   const variant = source.variant ?? 'doc';
   const tip = source.accessibilityLabel ?? source.label;
+  const isActive = Boolean(source.isActive);
 
   return (
-    <StyledSourceRefButton
+    <button
       type="button"
-      $variant={variant}
-      $isActive={Boolean(source.isActive)}
-      $isDisabled={isDisabled}
+      className={styles.sourceRef}
+      data-variant={variant}
+      data-active={isActive ? true : undefined}
       disabled={isDisabled}
       onClick={onClick}
       title={tip}
+      style={isDisabled ? { opacity: opacity[citeMutedChipOpacity] } : undefined}
       {...makeAccessible({ label: tip })}
       {...metaAttribute({ name: MetaConstants.CitedFieldRowSource })}
     >
@@ -121,7 +58,7 @@ const SourceRefChip = ({
       <Text as="span" variant="body" size="small" weight="medium" color="currentColor">
         {source.label}
       </Text>
-    </StyledSourceRefButton>
+    </button>
   );
 };
 
@@ -180,9 +117,10 @@ const _CitedFieldRow = (
   };
 
   return (
-    <StyledRow
+    <BaseBox
       ref={ref as never}
-      $isCiteMuted={isCiteMuted}
+      className={styles.row}
+      data-cite-muted={isCiteMuted ? true : undefined}
       display="grid"
       gridTemplateColumns={citedFieldRowGridTemplateColumns}
       alignItems="stretch"
@@ -217,6 +155,7 @@ const _CitedFieldRow = (
       </BaseBox>
 
       <BaseBox
+        className={styles.valueCell}
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -243,7 +182,7 @@ const _CitedFieldRow = (
             gap="spacing.3"
             minWidth={0 as never}
           >
-            <StyledTabularNumsSpan>
+            <span className={styles.tabularNums}>
               <Text
                 variant="body"
                 size="small"
@@ -253,7 +192,7 @@ const _CitedFieldRow = (
               >
                 {displayValue}
               </Text>
-            </StyledTabularNumsSpan>
+            </span>
             {source ? (
               <SourceRefChip source={source} isDisabled={isCiteMuted} onClick={handleCiteClick} />
             ) : null}
@@ -291,7 +230,7 @@ const _CitedFieldRow = (
           </BaseBox>
         ) : null}
       </BaseBox>
-    </StyledRow>
+    </BaseBox>
   );
 };
 

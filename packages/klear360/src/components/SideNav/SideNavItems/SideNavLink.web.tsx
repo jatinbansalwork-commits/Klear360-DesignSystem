@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { FloatingFocusManager, FloatingPortal, useFloating } from '@floating-ui/react';
 import { NavLinkContext, useNavLink, useSideNav } from '../SideNavContext';
-import { classes, getNavItemTransition, NAV_ITEM_HEIGHT } from '../tokens';
+import { classes } from '../tokens';
 import type { SideNavLinkProps } from '../types';
-import { makeBorderSize, makeSize, makeSpace } from '~utils';
+import linkStyles from './SideNavLink.module.scss';
+import { getCurvedVerticalLineStyle, getNavLinkShellStyle } from './getSideNavLinkStyles';
 import { makeAccessible } from '~utils/makeAccessible';
 import { throwKlear360Error } from '~utils/logger';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
@@ -19,59 +19,9 @@ import { useCollapsible } from '~components/Collapsible/CollapsibleContext';
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '~components/Icons';
 import { BaseText } from '~components/Typography/BaseText';
 import { Text } from '~components/Typography';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
+import { useTheme } from '~components/Klear360Provider';
 
 const { SHOW_ON_LINK_HOVER, HIDE_WHEN_COLLAPSED, STYLED_NAV_LINK } = classes;
-
-const StyledNavLinkContainer = styled(BaseBox)<{ $hasDescription: boolean }>((props) => {
-  return {
-    width: '100%',
-    [`.${SHOW_ON_LINK_HOVER}`]: {
-      opacity: 0,
-      '&:focus-within, &:focus-visible': {
-        opacity: 1,
-      },
-    },
-    '&:hover': {
-      [`.${SHOW_ON_LINK_HOVER}`]: {
-        opacity: 1,
-      },
-
-      [`.${STYLED_NAV_LINK}`]: {
-        color: props.theme.colors.interactive.text.gray.normal,
-        backgroundColor: props.theme.colors.interactive.background.gray.default,
-      },
-    },
-    [`.${STYLED_NAV_LINK}`]: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      height: props.$hasDescription ? undefined : makeSize(NAV_ITEM_HEIGHT),
-      width: '100%',
-      textDecoration: 'none',
-      overflow: 'hidden',
-      flexWrap: 'nowrap',
-      cursor: 'pointer',
-      padding: `${makeSpace(props.theme.spacing[props.$hasDescription ? 3 : 0])} ${makeSpace(
-        props.theme.spacing[4],
-      )}`,
-      margin: `${makeSpace(props.theme.spacing[1])} ${makeSpace(props.theme.spacing[0])}`,
-      color: props.theme.colors.interactive.text.gray.subtle,
-      borderRadius: props.theme.border.radius.small,
-      borderWidth: makeBorderSize(props.theme.border.width.none),
-      backgroundColor: props.theme.colors.transparent,
-      transition: getNavItemTransition(props.theme),
-      '&[aria-current], &[aria-current]:hover': {
-        color: props.theme.colors.interactive.text.gray.normal,
-        backgroundColor: props.theme.colors.interactive.background.gray.fadedHighlighted,
-      },
-      '&:focus-visible': {
-        ...getFocusRingStyles({ theme: props.theme }),
-      },
-    },
-  };
-});
 
 const NavLinkIconTitle = ({
   icon: Icon,
@@ -161,6 +111,7 @@ const L3Trigger = ({
   | 'onClick'
 >): React.ReactElement => {
   const { onExpandChange, isExpanded, collapsibleBodyId } = useCollapsible();
+  const { theme } = useTheme();
 
   const toggleCollapse = (e: React.MouseEvent): void => {
     onClick?.(e);
@@ -173,11 +124,14 @@ const L3Trigger = ({
 
   return (
     <TooltipifyComponent tooltip={tooltip}>
-      <StyledNavLinkContainer $hasDescription={Boolean(description)}>
+      <BaseBox
+        className={linkStyles.navLinkContainer}
+        style={getNavLinkShellStyle({ theme, hasDescription: Boolean(description) })}
+      >
         <BaseBox
           className={STYLED_NAV_LINK}
           as={href ? as : 'button'}
-          to={href}
+          {...(href ? { to: href } : {})}
           target={target}
           onClick={(e: React.MouseEvent) => toggleCollapse(e)}
           {...makeAccessible({ expanded: isExpanded, controls: collapsibleBodyId })}
@@ -193,32 +147,10 @@ const L3Trigger = ({
             }
           />
         </BaseBox>
-      </StyledNavLinkContainer>
+      </BaseBox>
     </TooltipifyComponent>
   );
 };
-
-/**
- * This is the curved line that appears when you select L3 item
- */
-const CurvedVerticalLine = styled(BaseBox)((props) => {
-  const { colors, border, spacing } = props.theme;
-  return {
-    borderWidth: makeBorderSize(props.theme.border.width.thin),
-    borderColor: `${colors.transparent} ${colors.transparent} ${colors.surface.border.gray.muted} ${colors.surface.border.gray.muted}`,
-    borderStyle: 'solid',
-    borderRadius: `${makeBorderSize(border.radius.none)} ${makeBorderSize(
-      border.radius.none,
-    )} ${makeBorderSize(border.radius.none)} ${makeBorderSize(border.radius.medium)}`,
-    // We set veritical line infinitely tall (full size of screen) and then hide the overflowing part from top
-    height: '100vh',
-    position: 'absolute',
-    // We want the active line to be positioned in the middle of item's height thus divide by 2
-    top: `calc(-100vh + ${makeSize(NAV_ITEM_HEIGHT / 2)})`,
-    width: makeSpace(spacing[3]),
-    left: makeSpace(-spacing[3]),
-  };
-});
 
 const SideNavLink = ({
   title,
@@ -235,6 +167,7 @@ const SideNavLink = ({
   onClick,
   ...rest
 }: SideNavLinkProps): React.ReactElement => {
+  const { theme } = useTheme();
   const {
     l2PortalContainerRef,
     onLinkActiveChange,
@@ -284,6 +217,7 @@ const SideNavLink = ({
   }, [isActive]);
 
   const shouldHideL1Item = currentLevel === 1 && !icon && isSideNavCollapsed;
+  const hasDescription = currentLevel !== 1 && Boolean(description);
 
   return (
     <NavLinkContext.Provider value={{ level: currentLevel, title }}>
@@ -308,20 +242,20 @@ const SideNavLink = ({
         </Collapsible>
       ) : (
         <>
-          <StyledNavLinkContainer
-            $hasDescription={currentLevel !== 1 && Boolean(description)}
+          <BaseBox
+            className={linkStyles.navLinkContainer}
+            style={getNavLinkShellStyle({ theme, hasDescription })}
             position="relative"
           >
             <TooltipifyComponent tooltip={tooltip}>
               <BaseBox
                 className={`${STYLED_NAV_LINK} ${shouldHideL1Item ? HIDE_WHEN_COLLAPSED : ''}`}
                 as={as ?? 'a'}
-                to={href}
-                href={as ? undefined : href}
+                {...(href ? { to: href } : {})}
+                {...(as ? {} : { href })}
                 target={target}
                 ref={refs.setReference}
                 onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-                  // Close the mobile nav when item is clicked and its not trigger for next menu
                   if (!isL2Trigger) {
                     closeMobileNav?.();
                   }
@@ -338,11 +272,8 @@ const SideNavLink = ({
 
                   onClick?.(e);
                 }}
-                onFocus={(e: { target: HTMLDivElement }) => {
-                  // FloatinFocusManager by default focusses on last clicked element when you move to different tab and come back to the original tab
-                  // Which can make L1 to expand when tabs / windows are changed
-                  // Adding focus-visible check ensures this behaviour of closing menus is only applicable when there is visible focus ring on it (while tabbing)
-                  const hasFocusRing = e.target?.matches(':focus-visible');
+                onFocus={(e: React.FocusEvent<HTMLElement>) => {
+                  const hasFocusRing = e.target instanceof HTMLElement && e.target.matches(':focus-visible');
                   if (isL1Collapsed && !isSideNavCollapsed && currentLevel === 1 && hasFocusRing) {
                     setIsL1Collapsed?.(false);
                   }
@@ -380,8 +311,13 @@ const SideNavLink = ({
                 {trailing}
               </BaseBox>
             ) : null}
-            {currentLevel === 3 && isActive ? <CurvedVerticalLine /> : null}
-          </StyledNavLinkContainer>
+            {currentLevel === 3 && isActive ? (
+              <BaseBox
+                className={linkStyles.curvedVerticalLine}
+                style={getCurvedVerticalLineStyle(theme)}
+              />
+            ) : null}
+          </BaseBox>
           {children ? (
             <FloatingPortal root={l2PortalContainerRef}>
               {isActive && isL1Collapsed ? (

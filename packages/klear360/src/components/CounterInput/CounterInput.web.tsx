@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
 import type { CounterInputProps } from './types';
 import { StyledCounterInput, StyledNumberWrapper } from './StyledCounterInput';
+import { getCounterButtonClasses } from './getCounterInputModuleClasses';
+import styles from './CounterInput.module.scss';
 import {
   COUNTER_INPUT_TOKEN,
   COUNTER_INPUT_ICON_SIZE_MAP,
@@ -22,66 +23,11 @@ import { FormLabel } from '~components/Form';
 import { useFormId } from '~components/Form/useFormId';
 import { useId } from '~utils/useId';
 import { useTheme } from '~components/Klear360Provider';
-import {
-  useBreakpoint,
-  makeSpace,
-  castWebType,
-  makeMotionTime,
-  makeBorderSize,
-  makeTypographySize,
-} from '~utils';
+import { useBreakpoint, makeTypographySize } from '~utils';
 import { MinusIcon, PlusIcon } from '~components/Icons';
 import { ProgressBar } from '~components/ProgressBar';
-import get from '~utils/lodashButBetter/get';
 import { mergeRefs } from '~utils/useMergeRefs';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
 import { getTextProps } from '~components/Typography/Text/Text';
-
-const StyledCounterButton = styled.button<{
-  disabled?: boolean;
-  $padding: number;
-  $margin: readonly number[];
-  $emphasis: 'subtle' | 'intense';
-  $borderRadius: number;
-}>`
-  background-color: transparent;
-  border: none;
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: ${({ $borderRadius }) => makeBorderSize($borderRadius)};
-  padding: ${({ $padding }) => makeSpace($padding)};
-  margin: ${({ $margin }) => $margin.map((m) => makeSpace(m)).join(' ')};
-
-  /* Transitions for smooth hover effects */
-  transition-property: background-color, color;
-  transition-duration: ${({ theme }) =>
-    castWebType(makeMotionTime(get(theme.motion, 'duration.xquick')))};
-  transition-timing-function: ${({ theme }) => get(theme.motion, 'easing.standard')};
-
-  &:focus-visible {
-    ${({ theme }) => getFocusRingStyles({ theme, negativeOffset: true })}
-  }
-
-  /* Hover styles based on emphasis - !important guards this against being overridden by a
-     consumer's own hover styles on this button. */
-  &:hover:not(:disabled) {
-    ${({ theme, $emphasis }) => {
-      if ($emphasis === 'subtle') {
-        return `
-          background-color: ${theme.colors.interactive.background.gray.fadedHighlighted} !important;
-          color: ${theme.colors.interactive.icon.gray.normal} !important;
-        `;
-      } else {
-        return `
-          background-color: ${theme.colors.interactive.background.primary.fadedHighlighted} !important;
-          color: ${theme.colors.interactive.icon.primary.normal} !important;
-        `;
-      }
-    }}
-  }
-`;
 
 const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
   (
@@ -179,8 +125,8 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
       if (lastActionRef.current && !isLoading && internalValue !== previousValueRef.current) {
         const animationClass =
           lastActionRef.current === 'increment'
-            ? '__klear360-counter-input-animate-slide-up'
-            : '__klear360-counter-input-animate-slide-down';
+            ? `${styles['animate-slide-up']} __klear360-counter-input-animate-slide-up`
+            : `${styles['animate-slide-down']} __klear360-counter-input-animate-slide-down`;
         if (animationTimeoutRef.current !== null) {
           clearTimeout(animationTimeoutRef.current);
         }
@@ -253,7 +199,6 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
       <CounterInputProvider value={contextValue}>
         {/* __klear360-counter-input: CSS selector for animations and component-specific styles */}
         <StyledCounterInput
-          className="__klear360-counter-input"
           data-emphasis={emphasis}
           ref={mergeRefs(getOuterMotionRef({ _motionMeta, ref }), containerRef)}
           {...metaAttribute({ name: MetaConstants.CounterInput, testID })}
@@ -297,24 +242,18 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
               }
             >
               <BaseBox display="flex" alignItems="center" flexDirection="row">
-                <StyledCounterButton
-                  className="__klear360-counter-input-decrement-button"
+                <button
+                  type="button"
+                  className={[
+                    getCounterButtonClasses({ size, emphasis, type: 'decrement' }),
+                    '__klear360-counter-input-decrement-button',
+                  ].join(' ')}
                   onClick={handleDecrement}
-                  $padding={COUNTER_INPUT_TOKEN.iconPadding[size]}
-                  $margin={COUNTER_INPUT_TOKEN.decrementIconMargin}
-                  $emphasis={emphasis}
-                  $borderRadius={COUNTER_INPUT_TOKEN.buttonBorderRadius[size]}
                   aria-label="Decrement value"
                   disabled={isDecrementDisabled}
-                  style={{
-                    color: isDecrementDisabled
-                      ? get(theme.colors, emphasisTokens.disabledIconColor, '')
-                      : get(theme.colors, emphasisTokens.iconColor, ''),
-                  }}
                 >
-                  {/* Using currentColor allows CSS hover styles to control icon color */}
                   <MinusIcon size={COUNTER_INPUT_ICON_SIZE_MAP[size]} color="currentColor" />
-                </StyledCounterButton>
+                </button>
 
                 <StyledNumberWrapper
                   className={`__klear360-counter-input-number-wrapper ${animationClass}`.trim()}
@@ -347,24 +286,18 @@ const _CounterInput = React.forwardRef<Klear360ElementRef, CounterInputProps>(
                   />
                 </StyledNumberWrapper>
 
-                <StyledCounterButton
-                  className="__klear360-counter-input-increment-button"
+                <button
+                  type="button"
+                  className={[
+                    getCounterButtonClasses({ size, emphasis, type: 'increment' }),
+                    '__klear360-counter-input-increment-button',
+                  ].join(' ')}
                   onClick={handleIncrement}
-                  $padding={COUNTER_INPUT_TOKEN.iconPadding[size]}
-                  $margin={COUNTER_INPUT_TOKEN.incrementIconMargin}
-                  $emphasis={emphasis}
-                  $borderRadius={COUNTER_INPUT_TOKEN.buttonBorderRadius[size]}
                   aria-label="Increment value"
                   disabled={isIncrementDisabled}
-                  style={{
-                    color: isIncrementDisabled
-                      ? get(theme.colors, emphasisTokens.disabledIconColor, '')
-                      : get(theme.colors, emphasisTokens.iconColor, ''),
-                  }}
                 >
-                  {/* Using currentColor allows CSS hover styles to control icon color */}
                   <PlusIcon size={COUNTER_INPUT_ICON_SIZE_MAP[size]} color="currentColor" />
-                </StyledCounterButton>
+                </button>
               </BaseBox>
               {isLoading && (
                 <BaseBox width="100%" position="absolute" bottom="spacing.0">

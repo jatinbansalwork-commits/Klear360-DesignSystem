@@ -1,11 +1,35 @@
-import styled from 'styled-components';
-import { getStyledBadgeStyles } from './getStyledBadgeStyles';
-import type { StyledBadgeProps } from './types';
+import React from 'react';
 import BaseBox from '~components/Box/BaseBox';
+import type { StyledBadgeProps } from './types';
+import { getBadgeModuleClasses } from './getBadgeModuleClasses';
 
-const StyledBadge = styled(BaseBox)<StyledBadgeProps>((props) => ({
-  ...getStyledBadgeStyles(props),
-  width: 'fit-content',
-}));
+export const StyledBadge = React.forwardRef<HTMLElement, StyledBadgeProps>(
+  (
+    {
+      color,
+      emphasis,
+      size,
+      backgroundColor: _backgroundColor,
+      height: _height,
+      className,
+      children,
+      ...props
+    },
+    ref,
+  ) => (
+    <BaseBox
+      ref={ref as never}
+      {...props}
+      className={[
+        getBadgeModuleClasses({ color, emphasis, size }),
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      {children}
+    </BaseBox>
+  ),
+);
 
-export { StyledBadge };
+StyledBadge.displayName = 'StyledBadge';

@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { BaseInputTagSlotProps } from './types';
+import { getBaseInputTagSlotClass } from './getBaseInputWrapperModuleClasses';
 import { baseInputHeight } from './baseInputTokens';
 import { castWebType, makeSize } from '~utils';
 import { MetaConstants } from '~utils/metaAttribute';
@@ -99,17 +99,6 @@ const getSelectedTextWithoutTags = ({
 
   return `${items} Selected`;
 };
-
-const TagSlotContainer = styled(BaseBox)(() => {
-  return {
-    // hides the scrollbar of tagslot
-    '::-webkit-scrollbar': {
-      display: 'none',
-    },
-    '-ms-overflow-style': 'none',
-    'scrollbar-width': 'none',
-  };
-});
 
 const SelectedCountText = ({
   children,
@@ -214,9 +203,9 @@ const BaseInputTagSlot = ({
   const paddingYWithTags = isMobile ? 'spacing.1' : 'spacing.2';
 
   return (
-    <TagSlotContainer
+    <BaseBox
       ref={slotRef}
-      className="tags-slot"
+      className={[getBaseInputTagSlotClass(), 'tags-slot'].join(' ')}
       paddingY={paddingYWithTags}
       paddingLeft="spacing.4"
       display="flex"
@@ -272,7 +261,7 @@ const BaseInputTagSlot = ({
       >
         {children}
       </BaseBox>
-    </TagSlotContainer>
+    </BaseBox>
   );
 };
 

@@ -1,6 +1,8 @@
+import type { BaseBoxProps } from '~components/Box/BaseBox';
 import type { LinkProps } from '~components/Link';
 import type { Klear360CommonEvents } from '~components/types';
 import type { Platform } from '~utils';
+import type { AccessibilityProps } from '~utils/makeAccessible';
 import type { DataAnalyticsAttribute } from '~utils/types';
 
 type BaseMenuItemProps = {
@@ -36,7 +38,14 @@ type BaseMenuItemProps = {
 type StyledBaseMenuItemContainerProps = Pick<
   BaseMenuItemProps,
   'color' | 'selectionType' | 'isSelected' | 'isDisabled' | 'isVisible' | 'isKeydownPressed'
->;
+> &
+  Partial<BaseBoxProps> &
+  Partial<AccessibilityProps> &
+  Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
+    as?: BaseMenuItemProps['as'];
+    className?: string;
+    children?: React.ReactNode;
+  };
 
 type BaseMenuItemContextType = {
   color?: BaseMenuItemProps['color'];

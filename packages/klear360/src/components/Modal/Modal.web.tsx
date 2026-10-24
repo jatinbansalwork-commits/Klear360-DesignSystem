@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
-import styled, { css } from 'styled-components';
 import { FloatingFocusManager, FloatingPortal, useFloating } from '@floating-ui/react';
 import usePresence from 'use-presence';
 import { ModalHeader } from './ModalHeader';
@@ -10,7 +9,8 @@ import type { ModalFooterProps } from './ModalFooter';
 import { ModalBody } from './ModalBody';
 import type { ModalBodyProps } from './ModalBody';
 import { ModalContext } from './ModalContext';
-import { ModalBackdrop } from './ModalBackdrop';
+import { ModalBackdrop } from './ModalBackdrop.web';
+import { ModalContent } from './ModalContent.web';
 import {
   modalBorderRadius,
   modalMaxHeight,
@@ -20,8 +20,7 @@ import {
   modalMargin,
 } from './modalTokens';
 import type { ModalProps } from './types';
-import { castWebType, makeMotionTime, makeSize } from '~utils';
-import { BaseBox } from '~components/Box/BaseBox';
+import { makeSize } from '~utils';
 import { useTheme } from '~components/Klear360Provider';
 import { Box } from '~components/Box';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
@@ -30,33 +29,6 @@ import { logger } from '~utils/logger';
 import { componentZIndices } from '~utils/componentZIndices';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { TopNavOverlayThemeOverride } from '~components/TopNav/TopNavOverlayThemeOverride';
-
-const ModalContent = styled(BaseBox)<{ isVisible: boolean; size: NonNullable<ModalProps['size']> }>(
-  ({ isVisible, theme, size }) => {
-    const scale = isVisible ? 1 : 0.9;
-    const transform = size !== 'full' ? `translate(-50%, -50%) scale(${scale})` : ``;
-
-    return css`
-      box-shadow: ${theme.elevation.highRaised};
-      opacity: ${isVisible ? 1 : 0};
-      position: fixed;
-      transform: ${transform};
-      transition-property: opacity, transform;
-      transition-duration: ${castWebType(makeMotionTime(theme.motion.duration.moderate))};
-      transition-timing-function: ${isVisible
-        ? castWebType(theme.motion.easing.entrance)
-        : castWebType(theme.motion.easing.exit)};
-
-      ${size === 'full' &&
-      css`
-        top: ${makeSize(modalMargin[size])};
-        left: ${makeSize(modalMargin[size])};
-        right: ${makeSize(modalMargin[size])};
-        bottom: ${makeSize(modalMargin[size])};
-      `}
-    `;
-  },
-);
 
 const Modal = ({
   isOpen = false,

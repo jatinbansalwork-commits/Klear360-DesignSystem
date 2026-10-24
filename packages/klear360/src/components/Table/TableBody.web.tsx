@@ -1,82 +1,54 @@
 import React, { useEffect, useMemo } from 'react';
 // eslint-disable-next-line import/extensions -- @table-library/react-table-library's package.json "exports" map requires the explicit .js extension on this subpath
-import { Body, Row, Cell } from '@table-library/react-table-library/table.js';
 // eslint-disable-next-line import/extensions -- see above
 import { Virtualized } from '@table-library/react-table-library/virtualized.js';
-import styled from 'styled-components';
 import { useTableRowContext, useTableDataContext } from './TableContext';
+import {
+  ScopedTableBody,
+  StyledCell,
+  CellWrapper,
+  ScopedTableRow,
+} from './tableScopedStyled.web';
+import { useTheme } from '~components/Klear360Provider';
 import { checkboxCellWidth, classes, tableRow } from './tokens';
 import { ComponentIds } from './componentIds';
 import type {
-  TableProps,
   TableBodyProps,
   TableRowProps,
   TableCellProps,
-  TableBackgroundColors,
   TableVirtualizedWrapperProps,
   RowHeightType,
   TableNode,
 } from './types';
-import { getTableActionsHoverStyles, getTableRowBackgroundTransition } from './utils';
-import { getTableBodyStyles } from './commonStyles';
-import getIn from '~utils/lodashButBetter/get';
 import { Text } from '~components/Typography';
 import type { CheckboxProps } from '~components/Checkbox';
 import { Checkbox } from '~components/Checkbox';
-import { castWebType, getMediaQuery, makeMotionTime, makeSize, makeSpace } from '~utils';
+import { castWebType, makeMotionTime, makeSize } from '~utils';
 import BaseBox from '~components/Box/BaseBox';
 import { MetaConstants, metaAttribute } from '~utils/metaAttribute';
 import { assignWithoutSideEffects } from '~utils/assignWithoutSideEffects';
-import { getFocusRingStyles } from '~utils/getFocusRingStyles';
-import { size } from '~tokens/global';
 import { makeAccessible } from '~utils/makeAccessible';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
 import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { IconButton } from '~components/Button/IconButton';
 import { ChevronRightIcon } from '~components/Icons';
 import { getComponentId } from '~utils/isValidAllowedChildren';
-const StyledBody = styled(Body)<{
-  $isSelectable: boolean;
-  $showStripedRows: boolean;
-}>(({ theme, $showStripedRows, $isSelectable }) => {
-  const rowBackgroundTransition = getTableRowBackgroundTransition(theme);
-
-  return {
-    '&&&': {
-      border: 'none',
-      transition: rowBackgroundTransition,
-
-      '& tr:last-child .cell-wrapper': {
-        borderBottom: 'none',
-      },
-
-      ...{
-        ...getTableBodyStyles({
-          addCommonStyles: true,
-          theme,
-          isSelectable: $isSelectable,
-          showStripedRows: $showStripedRows,
-          isVirtualized: false,
-        }),
-      },
-    },
-  };
-});
+export { StyledCell, CellWrapper };
 
 const _TableBody = <Item,>({ children, ...rest }: TableBodyProps<Item>): React.ReactElement => {
   const { showStripedRows, selectionType } = useTableRowContext();
   const isSelectable = selectionType !== 'none';
 
   return (
-    <StyledBody
+    <ScopedTableBody
       $isSelectable={isSelectable}
-      $showStripedRows={showStripedRows}
+      $showStripedRows={Boolean(showStripedRows)}
       $showBorderedCells={true}
       {...metaAttribute({ name: MetaConstants.TableBody })}
       {...makeAnalyticsAttribute(rest)}
     >
-      {children}
-    </StyledBody>
+      {children as React.ReactNode}
+    </ScopedTableBody>
   );
 };
 
@@ -85,66 +57,31 @@ const TableBody = assignWithoutSideEffects(_TableBody, {
   componentId: ComponentIds.TableBody,
 });
 
-export const StyledCell = styled(Cell)<{
-  $backgroundColor: TableBackgroundColors;
-  $gridRow?: string;
-}>(({ theme, $backgroundColor, $gridRow }) => ({
-  '&&&': {
-    height: '100%',
-    backgroundColor: getIn(theme.colors, $backgroundColor),
-    gridRow: $gridRow,
-    '& > div:first-child': {
-      alignSelf: 'stretch',
-    },
-    '&:focus-visible': { ...getFocusRingStyles({ theme, negativeOffset: true }) },
-  },
-}));
-
-export const CellWrapper = styled(BaseBox)<{
-  $rowDensity: NonNullable<TableProps<unknown>['rowDensity']>;
-  showStripedRows?: boolean;
-  hasPadding?: boolean;
-  textAlign?: TableCellProps['textAlign'];
-}>(({ theme, $rowDensity, showStripedRows, hasPadding = true, textAlign }) => {
-  const rowBackgroundTransition = `background-color ${makeMotionTime(
-    getIn(theme.motion, tableRow.backgroundColorMotionDuration),
-  )} ${getIn(theme.motion, tableRow.backgroundColorMotionEasing)}`;
-
-  return {
-    '&&&': {
-      transition: rowBackgroundTransition,
-      backgroundColor: tableRow.nonStripeWrapper.backgroundColor,
-      paddingLeft: hasPadding ? makeSpace(getIn(theme, tableRow.paddingLeft[$rowDensity])) : '0px',
-      paddingRight: hasPadding
-        ? makeSpace(getIn(theme, tableRow.paddingRight[$rowDensity]))
-        : '0px',
-      minHeight: makeSize(getIn(size, tableRow.minHeight[$rowDensity])),
-      height: '100%',
-      width: '100%',
-      justifyContent: textAlign,
-      ...(!showStripedRows && {
-        borderBottomWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
-        borderBottomColor: getIn(theme.colors, tableRow.borderColor),
-        borderBottomStyle: 'solid',
-      }),
-    },
-  };
-});
-
-// Rotates a single chevron glyph rather than swapping between two icon components - same
-// rotate+transition convention already used for TreeView's expand/collapse affordance
-// (TreeViewChevron.web.tsx) and Collapsible's (CollapsibleChevronIcon.web.tsx), both driven by
-// the same theme motion tokens.
-const StyledExpandChevron = styled(BaseBox)<{ $isExpanded: boolean }>(({ theme, $isExpanded }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transform: $isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-  transformOrigin: 'center center',
-  transitionProperty: 'transform',
-  transitionDuration: castWebType(makeMotionTime(theme.motion.duration.quick)),
-  transitionTimingFunction: castWebType(theme.motion.easing.standard),
-}));
+const ExpandChevron = ({
+  isExpanded,
+  children,
+}: {
+  isExpanded: boolean;
+  children: React.ReactNode;
+}): React.ReactElement => {
+  const { theme } = useTheme();
+  return (
+    <BaseBox
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      style={{
+        transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+        transformOrigin: 'center center',
+        transitionProperty: 'transform',
+        transitionDuration: castWebType(makeMotionTime(theme.motion.duration.quick)),
+        transitionTimingFunction: castWebType(theme.motion.easing.standard),
+      }}
+    >
+      {children}
+    </BaseBox>
+  );
+};
 
 const _TableCell = ({
   children,
@@ -210,7 +147,7 @@ const _TableCell = ({
               pointerEvents="auto"
               onClick={(event: React.MouseEvent) => event.stopPropagation()}
             >
-              <StyledExpandChevron $isExpanded={isExpanded}>
+              <ExpandChevron isExpanded={isExpanded}>
                 <IconButton
                   size="small"
                   icon={ChevronRightIcon}
@@ -219,7 +156,7 @@ const _TableCell = ({
                   }
                   onClick={() => toggleRowExpansionById(_groupRowId)}
                 />
-              </StyledExpandChevron>
+              </ExpandChevron>
             </BaseBox>
           ) : null}
           {isChildrenString ? (
@@ -286,119 +223,6 @@ const TableCheckboxCell = ({
     </TableCell>
   );
 };
-
-const StyledRow = styled(Row)<{
-  $isSelectable: boolean;
-  $isHoverable: boolean;
-  $showBorderedCells: boolean;
-  $isGrouped: boolean;
-  $isGroupHeader: boolean;
-}>(({ theme, $isSelectable, $isHoverable, $showBorderedCells, $isGrouped, $isGroupHeader }) => {
-  const { hasHoverActions, checkboxDisplay, selectionType } = useTableRowContext();
-
-  const rowBackgroundTransition = `background-color ${makeMotionTime(
-    getIn(theme.motion, tableRow.backgroundColorMotionDuration),
-  )} ${getIn(theme.motion, tableRow.backgroundColorMotionEasing)}`;
-
-  return {
-    '&&&': {
-      backgroundColor: 'transparent',
-      '& .cell-wrapper': $showBorderedCells
-        ? {
-            borderRightWidth: makeSpace(getIn(theme.border.width, tableRow.borderBottomWidth)),
-            borderRightStyle: 'solid',
-            borderRightColor: getIn(theme.colors, tableRow.borderColor),
-          }
-        : undefined,
-      '& td:last-child .cell-wrapper': {
-        borderRight: 'none',
-      },
-      ...(hasHoverActions
-        ? {
-            [`@media ${getMediaQuery({ min: theme.breakpoints.m })}`]: {
-              '& td:last-child': {
-                opacity: 0,
-                position: 'sticky',
-                zIndex: 2,
-                right: 0,
-                width: '0px',
-                '& > div:first-child': {
-                  overflow: 'visible',
-                },
-              },
-              '& td:last-child:focus-within': {
-                opacity: 1,
-                ...getTableActionsHoverStyles({
-                  theme,
-                  hoverColor: tableRow.nonStripe.backgroundColor,
-                }),
-              },
-              '&:hover td:last-child': {
-                opacity: 1,
-              },
-            },
-          }
-        : {}),
-      ...(($isHoverable || $isSelectable) && {
-        '&:hover:not(.disabled-row) .cell-wrapper-base': {
-          transition: rowBackgroundTransition,
-          cursor: 'pointer',
-          backgroundColor: getIn(theme.colors, tableRow.nonStripe.backgroundColorHover),
-          ...getTableActionsHoverStyles({
-            hoverColor: tableRow.nonStripe.backgroundColorHover,
-            theme,
-          }),
-        },
-      }),
-      ...($isSelectable && {
-        '&:focus:not(.disabled-row) .cell-wrapper-base': {
-          transition: rowBackgroundTransition,
-          backgroundColor: getIn(theme.colors, tableRow.nonStripe.backgroundColorFocus),
-          cursor: 'pointer',
-          ...getTableActionsHoverStyles({
-            hoverColor: tableRow.nonStripe.backgroundColorFocus,
-            backgroundGradientColor: tableRow.nonStripe.backgroundColorHover,
-            theme,
-          }),
-        },
-        '&:active:not(.disabled-row) .cell-wrapper-base': {
-          transition: rowBackgroundTransition,
-          backgroundColor: getIn(theme.colors, tableRow.nonStripe.backgroundColorActive),
-          cursor: 'pointer',
-        },
-      }),
-      '&:focus': getFocusRingStyles({ theme, negativeOffset: true }),
-      ...($isGroupHeader && {
-        '& td': {
-          backgroundColor: getIn(theme.colors, tableRow.groupHeaderBackgroundColor),
-        },
-      }),
-      ...($isGrouped && {
-        '& .cell-wrapper': {
-          border: 'none',
-        },
-      }),
-      // When checkboxDisplay="on-hover", hide only the checkbox content inside the
-      // first td. We target .cell-wrapper > * (the BaseBox wrapping the Checkbox)
-      // rather than the td itself so that the cell-wrapper's border-bottom — which
-      // draws the row separator line — stays fully visible.
-      // Reveal on row hover, keyboard focus, or when the row is already selected
-      // (.row-select-selected class is added by @table-library/react-table-library).
-      ...(checkboxDisplay === 'on-hover' &&
-        selectionType === 'multiple' && {
-          '& td:first-child .cell-wrapper > *': {
-            opacity: 0,
-            transition: `opacity ${makeMotionTime(
-              getIn(theme.motion, tableRow.backgroundColorMotionDuration),
-            )} ${getIn(theme.motion, tableRow.backgroundColorMotionEasing)}`,
-          },
-          '&:hover td:first-child .cell-wrapper > *': { opacity: 1 },
-          '&:focus td:first-child .cell-wrapper > *': { opacity: 1 },
-          '&.row-select-selected td:first-child .cell-wrapper > *': { opacity: 1 },
-        }),
-    },
-  };
-});
 
 const _TableRow = <Item,>({
   children,
@@ -487,7 +311,7 @@ const _TableRow = <Item,>({
   }, [hasHoverActions]);
 
   return (
-    <StyledRow
+    <ScopedTableRow
       disabled={isDisabled}
       $isSelectable={isDisabled ? false : isSelectable}
       $isHoverable={isDisabled ? false : Boolean(onHover) || Boolean(onClick)}
@@ -553,7 +377,7 @@ const _TableRow = <Item,>({
           </BaseBox>
         </TableCell>
       ) : null}
-    </StyledRow>
+    </ScopedTableRow>
   );
 };
 

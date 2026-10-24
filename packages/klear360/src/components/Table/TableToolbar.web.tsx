@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ComponentIds } from './componentIds';
 import { tableToolbar } from './tokens';
 import { useTableRowContext, useTableDataContext } from './TableContext';
@@ -87,12 +86,6 @@ const TableToolbarSearch = assignWithoutSideEffects(_TableToolbarSearch, {
   componentId: ComponentIds.TableToolbarSearch,
 });
 
-const ToolbarWrapper = styled(BaseBox)(({ theme }) => ({
-  transition: `background-color ${makeMotionTime(
-    getIn(theme.motion, tableToolbar.backgroundColorMotionDuration),
-  )} ${getIn(theme.motion, tableToolbar.backgroundColorMotionEasing)}`,
-}));
-
 const _TableToolbar = ({
   children,
   title,
@@ -105,8 +98,11 @@ const _TableToolbar = ({
     tableToolbarPlacement,
   } = useTableRowContext();
   const { currentPaginationState, totalItems } = useTableDataContext();
-  const { platform } = useTheme();
+  const { platform, theme } = useTheme();
   const isSelected = selectedRows && selectedRows.length > 0;
+  const toolbarTransition = `background-color ${makeMotionTime(
+    getIn(theme.motion, tableToolbar.backgroundColorMotionDuration),
+  )} ${getIn(theme.motion, tableToolbar.backgroundColorMotionEasing)}`;
 
   const defaultTitle = currentPaginationState
     ? `Showing ${currentPaginationState.page * currentPaginationState.size + 1}-${
@@ -129,7 +125,7 @@ const _TableToolbar = ({
 
   return (
     <BaseBox>
-      <ToolbarWrapper
+      <BaseBox
         display="flex"
         backgroundColor={tableToolbar.backgroundColor}
         padding={tableToolbar.padding}
@@ -137,6 +133,7 @@ const _TableToolbar = ({
         flexDirection={onMobile && tableToolbarPlacement === 'inline' ? 'column' : 'row'}
         gap="spacing.5"
         minHeight={makeSize(tableToolbar.minHeight)}
+        style={{ transition: toolbarTransition }}
       >
         <BaseBox display="flex" alignItems="center" flex={1}>
           <BaseBox>
@@ -157,7 +154,7 @@ const _TableToolbar = ({
           )}
         </BaseBox>
         {children}
-      </ToolbarWrapper>
+      </BaseBox>
     </BaseBox>
   );
 };

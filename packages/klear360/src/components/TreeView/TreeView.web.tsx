@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { componentIds } from './componentIds';
 import type { TreeViewProps, TreeViewNodeType } from './types';
 import { TreeViewContext } from './useTreeView';
@@ -30,11 +29,23 @@ import { makeAnalyticsAttribute } from '~utils/makeAnalyticsAttribute';
 import { logger, throwKlear360Error } from '~utils/logger';
 import { useId } from '~utils/useId';
 import { useIsomorphicLayoutEffect } from '~utils/useIsomorphicLayoutEffect';
+import { useTheme } from '~components/Klear360Provider';
 
-const StyledTreeViewListBoxWrapper = styled(BaseBox)((props) => ({
-  overflowY: 'auto',
-  ...getBaseListBoxWrapperStyles({ theme: props.theme, isInBottomSheet: false }),
-}));
+const TreeViewListBoxWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement => {
+  const { theme } = useTheme();
+  return (
+    <BaseBox
+      overflowY="auto"
+      style={getBaseListBoxWrapperStyles({ theme, isInBottomSheet: false }) as React.CSSProperties}
+    >
+      {children}
+    </BaseBox>
+  );
+};
 
 const _TreeView = ({
   children,
@@ -707,7 +718,7 @@ const _TreeView = ({
           {...makeAnalyticsAttribute(rest)}
         >
           {isInsideDropdown ? (
-            <StyledTreeViewListBoxWrapper>{treeContent}</StyledTreeViewListBoxWrapper>
+            <TreeViewListBoxWrapper>{treeContent}</TreeViewListBoxWrapper>
           ) : (
             treeContent
           )}
