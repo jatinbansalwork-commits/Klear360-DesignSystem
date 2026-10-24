@@ -1,24 +1,27 @@
 # React Library Best Practices — prioritized backlog
 
-Living tracker for `@klear/klear360`. Detail in [decisions.md](./decisions.md).
+Living tracker for `@klear/klear360`. **Full 1–25 checklist:** [react-library-ship-tracker.md](./react-library-ship-tracker.md). Detail in [decisions.md](./decisions.md).
 
-## P0 — Ship now
+## P0 — Ship now (items 1–2)
 
-| ID | Item | Status |
-|----|------|--------|
-| P0-1 | P3 wave 5 (#187) | Open PR |
-| P0-2 | Triage stale audit PRs (#156–#157–#162–#179) | **#188** supersedes 156/157/162; **#179 closed** |
+| # | Item | Status |
+|---|------|--------|
+| 1 | P3 waves 3–5 | **#187** — CI fix pushed; merge when green |
+| 2 | RN optional peers + audit docs | **#188** — merge when green |
 
-## P1 — Next minors
+## P1 — Next minors (items 4–6, 18, 23–25)
 
-| ID | Item |
-|----|------|
-| P1-1 | Web styled stragglers (Button.stories, Sandpack samples) |
-| P1-2 | Confirm `@klear/klear360-core` `src/styles` |
-| P1-3 | GenUI file split |
-| P1-4 | Storybook-dedicated tsconfig for stories typecheck |
-| P1-5 | Open PR #179 superseded — P0 pipeline on `main` via later PRs |
+| # | Item |
+|---|------|
+| 4 | Web styled stragglers (Button.stories, Sandpack) |
+| 5 | Confirm `@klear/klear360-core` `src/styles` |
+| 18 | Storybook-dedicated tsconfig |
+| 23–25 | Reconcile `decisions.md`, backlog hygiene |
 
-## P2 — Programs / major
+(GenUI split = **done**; drop P1-3.)
 
-Native styling pass, `on*Change` major, RN Jest, `@klear/klear360-core` peer, Table row re-renders, etc. — see prior backlog sections in chat / expand as needed.
+## P2 — Programs / major (items 3, 6–17, 19–22)
+
+Native styling (**3**), `on*Change` major (**7**), RN Jest (**17**), core peer (**6**), tarball CI (**15**), Table rows (**11**), SideNav reducer (**12**), a11y/docs/tests (**19–22**), npm audit (**16**).
+
+**Branch for items 3+:** `cursor/react-library-ship-100` (open after P0 merges).
