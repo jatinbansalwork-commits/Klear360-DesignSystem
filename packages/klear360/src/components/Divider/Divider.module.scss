@@ -1,0 +1,84 @@
+/* Verified against Divider.tsx styled-components (Oct 2026). klear360-core divider.module.css used as a starting point only. */
+.divider {
+  border: 0;
+}
+
+.horizontal {
+  flex-grow: 1;
+}
+
+.vertical {
+  align-self: stretch;
+}
+
+.horizontal.thinner {
+  border-bottom-width: var(--border-width-thinner);
+}
+
+.horizontal.thin {
+  border-bottom-width: var(--border-width-thin);
+}
+
+.horizontal.thick {
+  border-bottom-width: var(--border-width-thick);
+}
+
+.horizontal.thicker {
+  border-bottom-width: var(--border-width-thicker);
+}
+
+.vertical.thinner {
+  border-left-width: var(--border-width-thinner);
+}
+
+.vertical.thin {
+  border-left-width: var(--border-width-thin);
+}
+
+.vertical.thick {
+  border-left-width: var(--border-width-thick);
+}
+
+.vertical.thicker {
+  border-left-width: var(--border-width-thicker);
+}
+
+.horizontal.solid {
+  border-bottom-style: solid;
+}
+
+.horizontal.dashed {
+  border-bottom-style: dashed;
+}
+
+.vertical.solid {
+  border-left-style: solid;
+}
+
+.vertical.dashed {
+  border-left-style: dashed;
+}
+
+.horizontal.normal {
+  border-bottom-color: var(--surface-border-gray-normal);
+}
+
+.horizontal.subtle {
+  border-bottom-color: var(--surface-border-gray-subtle);
+}
+
+.horizontal.muted {
+  border-bottom-color: var(--surface-border-gray-muted);
+}
+
+.vertical.normal {
+  border-left-color: var(--surface-border-gray-normal);
+}
+
+.vertical.subtle {
+  border-left-color: var(--surface-border-gray-subtle);
+}
+
+.vertical.muted {
+  border-left-color: var(--surface-border-gray-muted);
+}
