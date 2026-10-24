@@ -1,6 +1,6 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
 import React from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from '~components/Klear360Provider';
 import {
   ChartXAxis,
   ChartYAxis,
@@ -1027,7 +1027,7 @@ LineChartWithLargeLabelsAndSecondary.parameters = {
 };
 
 export const LineChartWithCustomCursor: StoryFn<typeof ChartLine> = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   return (
     <ChartsWrapper>
       <Box width="100%" height="500px">
@@ -1055,7 +1055,7 @@ export const LineChartWithCustomCursor: StoryFn<typeof ChartLine> = () => {
 
 // Uncontrolled Legend with Default Selection
 export const LineChartWithDefaultSelectedDataKeys: StoryFn<typeof ChartLine> = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   return (
     <ChartsWrapper>
       <Box width="100%" height="500px">
@@ -1085,7 +1085,7 @@ export const LineChartWithDefaultSelectedDataKeys: StoryFn<typeof ChartLine> = (
 
 // Controlled Legend Selection
 export const LineChartWithControlledSelection: StoryFn<typeof ChartLine> = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const [selectedDataKeys, setSelectedDataKeys] = React.useState(['northAmerica', 'asia']);
 
   const handleSelectionChange = ({
@@ -1139,7 +1139,7 @@ export const LineChartWithControlledSelection: StoryFn<typeof ChartLine> = () =>
 
 // Legend with onSelectedDataKeysChange callback
 export const LineChartWithLegendClickCallback: StoryFn<typeof ChartLine> = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const [lastClicked, setLastClicked] = React.useState<string | null>(null);
   const dummyData = [
     {
@@ -1353,7 +1353,7 @@ const salesAnalysisData = [
 
 // Line Chart with Benchmark Line and Single Point
 export const LineChartWithBenchmarkAndSinglePoint: StoryFn<typeof ChartLine> = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const benchmarkValue = 3200;
   const specialEventDate = 'Oct 10';
   const specialEventValue = 4500;

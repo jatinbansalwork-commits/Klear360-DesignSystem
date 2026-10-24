@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import debounce from '~utils/lodashButBetter/debounce';
 import { Box } from '~components/Box';
 import { IconButton } from '~components/Button/IconButton';
@@ -13,42 +12,7 @@ import { makeBorderSize } from '~utils';
 import { SandboxHighlighter } from '~utils/storybook/Sandbox/SandpackEditor';
 import { useTheme } from '~components/Klear360Provider';
 
-const ColorSelection = styled.button<{ color: string; isSelected?: boolean }>(
-  ({ color, isSelected, theme }) => ({
-    width: '24px',
-    height: '24px',
-    borderRadius: makeBorderSize(theme.border.radius.round),
-    outline: `1px solid ${theme.colors.surface.background.gray.subtle}`,
-    boxShadow: `0px 0px 4px 3px ${
-      isSelected ? theme.colors.feedback.background.information : 'transparent'
-    }`,
-    border: 'none',
-    backgroundColor: color,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    '&:focus-visible': {
-      boxShadow: `0px 0px 6px 3px ${color}`,
-    },
-  }),
-);
-
-const ColorPickerTrigger = styled.label<{ isSelected?: boolean }>(({ isSelected, theme }) => ({
-  width: '24px',
-  height: '24px',
-  borderRadius: makeBorderSize(theme.border.radius.round),
-  border: 'none',
-  cursor: 'pointer',
-  position: 'relative',
-  background: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
-  outline: `1px solid ${theme.colors.surface.background.gray.subtle}`,
-  boxShadow: `0px 0px 4px 3px ${
-    isSelected ? theme.colors.feedback.background.information : 'transparent'
-  }`,
-}));
-
-const ColorPickerInput = styled.input({
+const colorPickerInputStyle: React.CSSProperties = {
   border: 'none',
   background: 'none',
   cursor: 'pointer',
@@ -59,7 +23,7 @@ const ColorPickerInput = styled.input({
   opacity: 0,
   width: 0,
   height: 0,
-});
+};
 
 const ColorSelector = ({
   color,
@@ -70,10 +34,60 @@ const ColorSelector = ({
   isSelected?: boolean;
   onClick?: () => void;
 }): React.ReactElement => {
+  const { theme } = useTheme();
+
   return (
-    <ColorSelection color={color} onClick={onClick} isSelected={isSelected}>
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        width: '24px',
+        height: '24px',
+        borderRadius: makeBorderSize(theme.border.radius.round),
+        outline: `1px solid ${theme.colors.surface.background.gray.subtle}`,
+        boxShadow: `0px 0px 4px 3px ${
+          isSelected ? theme.colors.feedback.background.information : 'transparent'
+        }`,
+        border: 'none',
+        backgroundColor: color,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+      }}
+    >
       {isSelected ? <CheckIcon size="large" color="interactive.icon.onPrimary.normal" /> : null}
-    </ColorSelection>
+    </button>
+  );
+};
+
+const ColorPickerTrigger = ({
+  isSelected,
+  children,
+}: {
+  isSelected?: boolean;
+  children?: React.ReactNode;
+}): React.ReactElement => {
+  const { theme } = useTheme();
+
+  return (
+    <label
+      style={{
+        width: '24px',
+        height: '24px',
+        borderRadius: makeBorderSize(theme.border.radius.round),
+        border: 'none',
+        cursor: 'pointer',
+        position: 'relative',
+        background: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
+        outline: `1px solid ${theme.colors.surface.background.gray.subtle}`,
+        boxShadow: `0px 0px 4px 3px ${
+          isSelected ? theme.colors.feedback.background.information : 'transparent'
+        }`,
+      }}
+    >
+      {children}
+    </label>
   );
 };
 
@@ -187,11 +201,12 @@ const ThemeSelector = ({
                     selectedPreBuiltTheme === undefined
                   }
                 >
-                  <ColorPickerInput
+                  <input
                     defaultValue={colorOptions[0]}
                     type="color"
                     onChange={handleDebouncedColorChange}
                     aria-label="Select a color"
+                    style={colorPickerInputStyle}
                   />
                 </ColorPickerTrigger>
               </Box>

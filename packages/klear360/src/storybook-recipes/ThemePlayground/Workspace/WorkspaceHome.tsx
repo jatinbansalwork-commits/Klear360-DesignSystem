@@ -1,54 +1,18 @@
-import styled from 'styled-components';
 import { Heading, Text, Box, Card, CardBody, ChevronRightIcon } from '../../../components';
 import { WorkspaceShell } from './WorkspaceShell';
-import { makeMotionTime, makeSpace } from '~utils';
-
-const ClickableRow = styled.button(({ theme }) => ({
-  border: 'none',
-  background: 'none',
-  cursor: 'pointer',
-  overflow: 'hidden',
-  alignItems: 'center',
-  display: 'flex',
-  flex: 1,
-  width: '100%',
-  borderBottom: `2px solid ${theme.colors.surface.border.gray.muted}`,
-  transition: `background-color ${makeMotionTime(theme.motion.duration.gentle)} ${
-    theme.motion.easing.emphasized
-  }}`,
-  padding: `${makeSpace(theme.spacing[4])} ${makeSpace(theme.spacing[4])}`,
-  '&:hover': {
-    backgroundColor: theme.colors.interactive.background.primary.faded,
-  },
-  '&:last-child': {
-    borderBottom: 'none',
-    borderBottomLeftRadius: theme.border.radius.medium,
-    borderBottomRightRadius: theme.border.radius.medium,
-  },
-  '&:first-child': {
-    borderTopLeftRadius: theme.border.radius.medium,
-    borderTopRightRadius: theme.border.radius.medium,
-  },
-}));
-
-const RowMark = styled.div(({ theme }) => ({
-  height: '24px',
-  width: '24px',
-  borderRadius: theme.border.radius.small,
-  backgroundColor: theme.colors.surface.background.primary.subtle,
-}));
+import styles from './WorkspaceHome.module.scss';
 
 const WorkspaceRow = ({ title }: { title: string }): React.ReactElement => {
   return (
-    <ClickableRow>
+    <button type="button" className={styles.clickableRow}>
       <Box paddingRight="spacing.5">
-        <RowMark />
+        <div className={styles.rowMark} />
       </Box>
       <Text>{title}</Text>
       <Box display="flex" flex={1} alignItems="center" justifyContent="flex-end">
         <ChevronRightIcon size="xlarge" color="surface.icon.primary.normal" />
       </Box>
-    </ClickableRow>
+    </button>
   );
 };
 

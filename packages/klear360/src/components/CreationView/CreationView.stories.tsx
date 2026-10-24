@@ -2,7 +2,6 @@ import type { StoryFn, Meta } from '@storybook/react-vite';
 import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import styled from 'styled-components';
 import DonateNow from './assets/donatenow.png';
 import PayNow from './assets/paynow.png';
 import DonationButton from './assets/donationButton.png';
@@ -1577,13 +1576,6 @@ const MultiStepExample: StoryFn = ({ withProgressBar = false }: { withProgressBa
     );
   };
 
-  const BackdropContainer = styled.div`
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.overlay.background.subtle};
-    z-index: 1004;
-  `;
   return (
     <Box>
       <Button onClick={() => setIsOpen(!isOpen)}>Create GNR Details</Button>
@@ -1683,7 +1675,14 @@ const MultiStepExample: StoryFn = ({ withProgressBar = false }: { withProgressBa
                 </Box>
               </Slide>
               <Fade motionTriggers={['mount']} isVisible={showStepGroup} shouldUnmountWhenHidden>
-                <BackdropContainer onClick={() => setShowStepGroup((prev: boolean) => !prev)} />
+                <Box
+                  position="fixed"
+                  width="100%"
+                  height="100%"
+                  backgroundColor="overlay.background.subtle"
+                  zIndex={1004}
+                  onClick={() => setShowStepGroup((prev: boolean) => !prev)}
+                />
               </Fade>
             </Box>
             {/* Step content */}

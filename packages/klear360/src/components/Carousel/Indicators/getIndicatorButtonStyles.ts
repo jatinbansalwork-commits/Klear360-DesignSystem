@@ -1,4 +1,5 @@
-import type { CSSObject, DefaultTheme } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
+import type { DefaultTheme } from 'styled-components';
 import type { IndicatorButtonProps } from './types';
 import { size } from '~tokens/global';
 import { castWebType, isReactNative, makeMotionTime, makeSize, makeSpace } from '~utils';

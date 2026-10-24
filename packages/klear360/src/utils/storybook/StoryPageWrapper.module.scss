@@ -1,0 +1,24 @@
+.docsRoot {
+  :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    clear: both;
+    margin-bottom: 1.25rem;
+  }
+
+  :global(table.props-table) {
+    border-collapse: collapse;
+  }
+
+  :global(table.props-table tr:nth-of-type(2n)) {
+    background-color: #f8f8f8;
+  }
+
+  :global(table.props-table td) {
+    vertical-align: top;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgb(19, 38, 68);
+    margin: 0;
+    padding: 6px 13px;
+  }
+}

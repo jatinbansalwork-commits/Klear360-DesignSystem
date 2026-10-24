@@ -1,4 +1,5 @@
-import type { CSSObject, StyledProps } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
+import type { StyledProps } from 'styled-components';
 import type { StyledAccordionButtonProps } from './types';
 import type { Theme } from '~components/Klear360Provider';
 import { makeMotionTime } from '~utils';

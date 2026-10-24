@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { radioIconColors, radioSizes } from '../radioTokens';
 import type { RadioIconProps } from './RadioIcon';
 import getIn from '~utils/lodashButBetter/get';

@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import type { ViewStyle, View } from 'react-native';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { Spacing, EasingFactoryFn } from '~tokens/global';
 import type { Platform } from '~utils';
 
@@ -128,7 +128,7 @@ type PickIfExist<T, K extends keyof T> = {
  * // On Native --> This will be just `flex` and `none`
  * ```
  */
-type PickCSSByPlatform<T extends keyof React.CSSProperties | keyof ViewStyle> = Platform.Select<{
+type PickCSSByPlatform<T extends keyof CSSObject | keyof ViewStyle> = Platform.Select<{
   web: PickIfExist<CSSObject, T>;
   // @ts-expect-error: T passed here may not neccessarily exist. We return `never` type when it doesn't
   native: PickIfExist<ViewStyle, T>;

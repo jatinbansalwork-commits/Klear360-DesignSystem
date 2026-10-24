@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { checkboxIconColors, checkboxSizes } from '../checkboxTokens';
 import type { CheckboxIconProps } from './CheckboxIcon';
 import getIn from '~utils/lodashButBetter/get';

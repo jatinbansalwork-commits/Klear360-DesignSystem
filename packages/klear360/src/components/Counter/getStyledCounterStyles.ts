@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { maxWidth } from './counterTokens';
 import type { StyledCounterProps } from './types';
 import getIn from '~utils/lodashButBetter/get';

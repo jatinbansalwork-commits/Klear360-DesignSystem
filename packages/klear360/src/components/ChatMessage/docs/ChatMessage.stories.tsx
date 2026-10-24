@@ -1,7 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react-vite';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { ChatMessage } from '../ChatMessage';
+import suggestionStyles from './ChatMessage.stories.module.scss';
 import type { ChatMessageProps } from '../types';
 import { Heading } from '~components/Typography/Heading';
 import { Box } from '~components/Box';
@@ -434,20 +434,6 @@ const suggestedQuestions = [
   'What are the supported payment methods?',
 ];
 
-const StyledSuggestionButton = styled.button(({ theme }) => ({
-  display: 'block',
-  width: '100%',
-  background: 'transparent',
-  border: 'none',
-  padding: `${theme.spacing[3]}px`,
-  cursor: 'pointer',
-  textAlign: 'left',
-  borderRadius: `${theme.border.radius.small}px`,
-  '&:hover': {
-    backgroundColor: theme.colors.interactive.background.gray.default,
-  },
-}));
-
 const SuggestedQuestionItem = ({
   label,
   onClick,
@@ -456,11 +442,11 @@ const SuggestedQuestionItem = ({
   onClick: () => void;
 }): React.ReactElement => {
   return (
-    <StyledSuggestionButton onClick={onClick}>
+    <button type="button" className={suggestionStyles.suggestionButton} onClick={onClick}>
       <Text color="surface.text.gray.normal" size="medium">
         {label}
       </Text>
-    </StyledSuggestionButton>
+    </button>
   );
 };
 

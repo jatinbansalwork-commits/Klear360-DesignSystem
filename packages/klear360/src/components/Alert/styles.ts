@@ -1,4 +1,5 @@
-import type { CSSObject, StyledProps } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
+import type { StyledProps } from 'styled-components';
 
 import type { StyledAlertProps, AlertColors } from './types';
 import type { SubtleOrIntense } from '~tokens/theme/theme';
