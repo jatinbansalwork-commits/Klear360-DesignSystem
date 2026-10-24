@@ -1,30 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Text } from '~components/Typography';
-import { makeSpace } from '~utils';
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-  margin-top: ${({ theme }) => makeSpace(theme.spacing[8])};
-  margin-bottom: ${({ theme }) => makeSpace(theme.spacing[8])};
-
-  th,
-  td {
-    width: 20%;
-    padding: ${({ theme }) => makeSpace(theme.spacing[4])};
-    padding-inline: ${({ theme }) => makeSpace(theme.spacing[7])};
-  }
-
-  tr:nth-child(odd) {
-    background-color: ${({ theme }) => theme.colors.surface.background.gray.moderate};
-  }
-
-  tr:nth-child(even) {
-    background-color: ${({ theme }) => theme.colors.surface.background.gray.subtle};
-  }
-`;
+import tableStyles from './StorybookTable.module.scss';
 
 const Strong = ({ children }: { children: React.ReactNode }): React.ReactElement => {
   return <Text weight="semibold">{children}</Text>;
@@ -32,7 +8,7 @@ const Strong = ({ children }: { children: React.ReactNode }): React.ReactElement
 
 const PopoverVsTooltip = (): React.ReactElement => {
   return (
-    <Table>
+    <table className={tableStyles.tablePopoverTooltip}>
       <thead>
         <tr>
           <th />
@@ -207,7 +183,7 @@ const PopoverVsTooltip = (): React.ReactElement => {
           </td>
         </tr>
       </tbody>
-    </Table>
+    </table>
   );
 };
 

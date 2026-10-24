@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { StyledPropsKlear360 } from '~components/Box/styledProps';
 import type { TestID } from '~utils/types';
 

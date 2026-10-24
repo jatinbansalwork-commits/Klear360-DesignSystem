@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { LinkToStorybook } from './LinkToStorybook';
+import tableStyles from './StorybookTable.module.scss';
 
 import type { ComponentStatuses } from './componentStatusData';
 import { componentData } from './componentStatusData';
@@ -18,29 +18,7 @@ import { Heading, Text } from '~components/Typography';
 import BaseBox from '~components/Box/BaseBox';
 import type { BadgeProps } from '~components/Badge';
 import { Badge } from '~components/Badge';
-import { makeSpace } from '~utils/makeSpace';
 import { Tooltip, TooltipInteractiveWrapper } from '~components/Tooltip';
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-
-  th,
-  td {
-    width: 20%;
-    padding: ${({ theme }) => makeSpace(theme.spacing[4])};
-    padding-inline: ${({ theme }) => makeSpace(theme.spacing[7])};
-  }
-
-  tr:nth-child(odd) {
-    background-color: ${({ theme }) => theme.colors.surface.background.gray.subtle};
-  }
-
-  tr:nth-child(even) {
-    background-color: ${({ theme }) => theme.colors.surface.background.gray.moderate};
-  }
-`;
 
 const ComponentStatusBadge = ({ status }: { status: ComponentStatuses }): React.ReactElement => {
   const badgeVariants: Record<
@@ -159,7 +137,7 @@ const ComponentStatusTable = (): React.ReactElement => {
         </Badge>
       </BaseBox>
       <BaseBox>
-        <Table>
+        <table className={tableStyles.table}>
           <thead>
             <tr>
               <th align="left">
@@ -230,7 +208,7 @@ const ComponentStatusTable = (): React.ReactElement => {
               );
             })}
           </tbody>
-        </Table>
+        </table>
       </BaseBox>
     </>
   );

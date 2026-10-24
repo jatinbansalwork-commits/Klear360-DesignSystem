@@ -5,7 +5,7 @@ import dedent from 'dedent';
 import { DocsContext } from '@storybook/addon-docs/blocks';
 
 import type { Project, VM } from '@stackblitz/sdk';
-import styled from 'styled-components';
+import forkButtonStyles from './StackblitzSandbox.module.scss';
 import {
   getIndexTSX,
   indexHTML,
@@ -21,35 +21,14 @@ import BaseBox from '~components/Box/BaseBox';
 import { Box } from '~components/Box';
 import { BoxIcon } from '~components/Icons';
 
-const StyledForkButton = styled.button`
-  background-color: hsl(0 0% 91%);
-  height: 100%;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  border-radius: 0px 0px 0px 4px;
-
-  & > span {
-    font-size: 12px;
-  }
-
-  &:hover {
-    background-color: hsl(0 0% 86%);
-  }
-`;
-
 const ForkButton = ({ onClick }: { onClick: () => void }): React.ReactElement => {
   return (
-    <StyledForkButton onClick={onClick}>
+    <button type="button" className={forkButtonStyles.forkButton} onClick={onClick}>
       <BoxIcon size="small" />
       <span>
         Fork on <b>StackBlitz</b>
       </span>
-    </StyledForkButton>
+    </button>
   );
 };
 

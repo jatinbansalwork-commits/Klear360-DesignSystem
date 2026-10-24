@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type {
   BaseBoxProps,
   MakeValueResponsive,

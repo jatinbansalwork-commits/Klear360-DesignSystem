@@ -1,0 +1,14 @@
+.codeLineHighlighter {
+  border-radius: 4px;
+  overflow: auto;
+
+  :global(.highlight) {
+    background-color: #fffbdd;
+    border-radius: 2px;
+    padding: 2px;
+  }
+
+  :global(pre) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,49 @@
+.trigger {
+  all: unset;
+  padding: var(--spacing-4);
+  color: var(--surface-text-gray-normal);
+  background-color: var(--interactive-background-gray-faded);
+  border-radius: var(--border-radius-medium);
+  border-bottom-width: var(--border-width-thick);
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background-color: var(--interactive-background-gray-faded-highlighted);
+    color: var(--interactive-text-primary-normal);
+    border-bottom-color: var(--interactive-border-primary-default);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--interactive-border-primary-default);
+    outline-offset: 2px;
+  }
+}
+
+.triggerTransparent {
+  all: unset;
+  padding: var(--spacing-4);
+  color: var(--surface-text-gray-normal);
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom-width: var(--border-width-thick);
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background-color: transparent;
+    color: var(--interactive-text-primary-normal);
+    border-bottom-color: var(--interactive-border-primary-default);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--interactive-border-primary-default);
+    outline-offset: 2px;
+  }
+}

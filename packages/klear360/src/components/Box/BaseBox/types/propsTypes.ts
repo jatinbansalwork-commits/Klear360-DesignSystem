@@ -1,5 +1,5 @@
 import type { StyleProp, View, ViewStyle } from 'react-native';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { MarginProps, PaddingProps, SpacingValueType } from './spacingTypes';
 import type { MakeObjectResponsive } from './responsiveTypes';
 import type { Theme } from '~components/Klear360Provider';

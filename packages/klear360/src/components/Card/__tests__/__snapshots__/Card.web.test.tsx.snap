@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Card /> should render a Card with Footer 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -82,9 +78,8 @@ exports[`<Card /> should render a Card with Footer 1`] = `
                     style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
                   >
                     <div
-                      class="c0"
                       data-klear360-component="base-box"
-                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
                     >
                       <div
                         data-klear360-component="base-text"
@@ -118,9 +113,8 @@ exports[`<Card /> should render a Card with Footer 1`] = `
                     style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
                   >
                     <div
-                      class="c0"
                       data-klear360-component="base-box"
-                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
                     >
                       <div
                         data-klear360-component="base-text"
@@ -386,10 +380,6 @@ exports[`<Card /> should render a plain Card 1`] = `
 `;
 
 exports[`<Card /> should support adding data-analytics attributes 1`] = `
-.c0.c0.c0.c0.c0 {
-  opacity: 1;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -466,9 +456,8 @@ exports[`<Card /> should support adding data-analytics attributes 1`] = `
                     style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
                   >
                     <div
-                      class="c0"
                       data-klear360-component="base-box"
-                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
                     >
                       <div
                         data-klear360-component="base-text"
@@ -502,9 +491,8 @@ exports[`<Card /> should support adding data-analytics attributes 1`] = `
                     style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
                   >
                     <div
-                      class="c0"
                       data-klear360-component="base-box"
-                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                      style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
                     >
                       <div
                         data-klear360-component="base-text"

@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -90,9 +73,15 @@ exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r3g"
+                >
+                  .base-input-fr-r3g:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r3g focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -133,9 +122,15 @@ exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r3h"
+                >
+                  .base-input-fr-r3h:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r3h focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -176,9 +171,15 @@ exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r3i"
+                >
+                  .base-input-fr-r3i:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r3i focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -219,9 +220,15 @@ exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r3j"
+                >
+                  .base-input-fr-r3j:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r3j focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -263,23 +270,6 @@ exports[`<OTPInput /> should accept data-analytics attributes 1`] = `
 `;
 
 exports[`<OTPInput /> should render 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 8px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -352,9 +342,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r6"
+                >
+                  .base-input-fr-r6:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r6 focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -393,9 +389,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r7"
+                >
+                  .base-input-fr-r7:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r7 focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -434,9 +436,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r8"
+                >
+                  .base-input-fr-r8:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r8 focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -475,9 +483,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-r9"
+                >
+                  .base-input-fr-r9:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-r9 focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -516,9 +530,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-ra"
+                >
+                  .base-input-fr-ra:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-ra focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -557,9 +577,15 @@ exports[`<OTPInput /> should render 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rb"
+                >
+                  .base-input-fr-rb:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rb focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 8px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -599,23 +625,6 @@ exports[`<OTPInput /> should render 1`] = `
 `;
 
 exports[`<OTPInput /> should render large size 1`] = `
-.c0.c0.c0.c0.c0 {
-  border-radius: 12px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -688,9 +697,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rc"
+                >
+                  .base-input-fr-rc:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rc focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -730,9 +745,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rd"
+                >
+                  .base-input-fr-rd:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rd focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -772,9 +793,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-re"
+                >
+                  .base-input-fr-re:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-re focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -814,9 +841,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rf"
+                >
+                  .base-input-fr-rf:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rf focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -856,9 +889,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rg"
+                >
+                  .base-input-fr-rg:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rg focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"
@@ -897,9 +936,15 @@ exports[`<OTPInput /> should render large size 1`] = `
                 data-klear360-component="base-box"
                 style="display: flex; flex-direction: column; position: relative; width: 100%;"
               >
+                <style
+                  data-klear360-scoped="base-input-fr-rh"
+                >
+                  .base-input-fr-rh:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+                </style>
                 <div
-                  class="c0 focus-ring-wrapper"
+                  class="base-input-fr-rh focus-ring-wrapper"
                   data-klear360-component="base-box"
+                  style="width: 100%; border-radius: 12px;"
                 >
                   <div
                     class="__klear360-base-input-wrapper"

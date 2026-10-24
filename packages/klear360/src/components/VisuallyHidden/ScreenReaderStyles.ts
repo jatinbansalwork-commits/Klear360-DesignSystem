@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 
 /**
  * Screen reader class adapted from webaim

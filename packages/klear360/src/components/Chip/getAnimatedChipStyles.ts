@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { AnimatedChipProps } from './types';
 import { chipBorderRadiusTokens } from './chipTokens';
 import getIn from '~utils/lodashButBetter/get';

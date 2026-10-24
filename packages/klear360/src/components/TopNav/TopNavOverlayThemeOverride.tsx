@@ -1,9 +1,9 @@
 import React from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { useTopNavContext } from './TopNavContext';
 import { Klear360Provider, useTheme } from '~components/Klear360Provider';
 import type { Theme } from '~components/Klear360Provider';
 import { ThemeContext } from '~components/Klear360Provider/useTheme';
+import { ThemeCssVariablesRoot } from '~components/Klear360Provider/ThemeCssVariablesRoot';
 
 const getOverrideColorScheme = ({
   isPrimaryVariant,
@@ -57,7 +57,7 @@ type TopNavOverlayThemeOverrideProps = {
  *   the app's original colorScheme (for portalled overlays like Popover, Menu).
  * - With `shouldOverrideTheme={false}`: stays in TopNav's dark theme.
  * - With `shouldOverrideTheme={true}`: switches to the app's original colorScheme
- *   via ThemeContext + StyledThemeProvider (for inline theme switches like SearchInput).
+ *   via ThemeContext + CSS variable root (for inline theme switches like SearchInput).
  *
  * Outside TopNav this is a no-op passthrough.
  */
@@ -89,21 +89,25 @@ const TopNavOverlayThemeOverride = ({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     const noop = (): void => {};
 
+    const overrideColorScheme = getOverrideColorScheme({
+      isPrimaryVariant,
+      shouldOverrideTheme,
+      topNavContext,
+    });
+
     return (
       <ThemeContext.Provider
         value={{
           theme: overrideTheme,
           themeTokens,
-          colorScheme: getOverrideColorScheme({
-            isPrimaryVariant,
-            shouldOverrideTheme,
-            topNavContext,
-          }),
+          colorScheme: overrideColorScheme,
           setColorScheme: noop,
           platform,
         }}
       >
-        <StyledThemeProvider theme={overrideTheme}>{children}</StyledThemeProvider>
+        <ThemeCssVariablesRoot theme={overrideTheme} colorScheme={overrideColorScheme}>
+          {children}
+        </ThemeCssVariablesRoot>
       </ThemeContext.Provider>
     );
   }

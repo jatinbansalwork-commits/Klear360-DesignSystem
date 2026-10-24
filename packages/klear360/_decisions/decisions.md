@@ -388,22 +388,26 @@ Mechanism unchanged from P1. Each component: diff against current styled output,
 | **Table** (7 scoped web files → `tableScopedStyled.web.tsx` + module SCSS), **SideNav** root + **SideNavLink** (`SideNav.module.scss`, `getSideNav*Styles`, `SideNavLink.module.scss`), **Carousel** (3 web files incl. **CircularIndicatorButton**), **TimePicker** (3 incl. **SpinWheel** ref typing), **DatePicker** CalendarStyles, **ProgressBar** (2), **GenUI** (2), **Charts** CommonChartComponents legend, **TourMask**, **SelectorInput** | done (P2 waves 19–27) |
 | Amount, AppBar, Breadcrumb, Heading, Text, TrustBadge | already CSS/token-based on web (no styled wrapper in scoped files) |
 
-**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining styled usage on web is in **shared cross-platform `.tsx` entry points** (e.g. `BaseInput.tsx`, `BaseButton.tsx`, `Code.tsx`, `List`/`ListItem`, `Tag`, `ActionListItem`, `StyledColorInput`) — P3 cutover scope, not P2.
+**Scoped web path audit:** zero `import … from 'styled-components'` in `src/components/**/*.web.{tsx,ts}` outside `docs/` and `__tests__/`. Remaining runtime styled usage on web is **docs/stories/tests** only (wave 5); shared production paths use `ThemeContext` + `ThemeCssVariablesRoot`.
 
-**`Klear360Provider` (web):** `ThemeContext` + CSS-variable wrapper unchanged. **`ThemeProvider` / `StyleSheetManager` not removed** — dropping them breaks every remaining styled-components consumer above (web Jest without the bridge fails with `props.theme` undefined). Remove at P3 when shared `.tsx` styled entry points are migrated or deleted.
+**`Klear360Provider` (web):** `ThemeContext` + `ThemeCssVariablesRoot` (CSS custom properties). **No `ThemeProvider` / `StyleSheetManager`** on web — native provider still uses the styled-components bridge until the native styling pass.
 
 **Not in core CSS reference tree** (migrated from styled-components only): Table body/row/cell runtime styles, SideNav root/link, Charts, GenUI, DatePicker calendar chrome, etc.
 
-## P3: styled-components cutover — **IN PROGRESS**
+Prioritized open work against the React Library Best Practices checklist: [react-library-backlog.md](./react-library-backlog.md).
 
-Goal: remove remaining **shared `.tsx`** styled-components usage on web, then drop `ThemeProvider` / `StyleSheetManager` from `Klear360Provider.web.tsx` and uninstall styled-components when only native paths remain.
+## P3: styled-components cutover — **done (web production + docs)**
+
+Goal: remove remaining **shared `.tsx`** styled-components usage on web, then drop `ThemeProvider` / `StyleSheetManager` from `Klear360Provider.web.tsx`. **Web runtime and Storybook/doc demos** no longer depend on styled-components except one intentional story (`Button.stories.tsx` global-style demo) and the `styledProps.web.test.tsx` bridge.
 
 | Wave | Scope | Status |
 |------|--------|--------|
 | **1** | `Tag`, `List`, `ListItem`, `Code` (shared entry points; no styled wrappers on web) | done |
 | **2** | `ActionListItem`, `StyledColorInput`, `BaseInput.tsx` focus-ring wrapper | done |
-| **3** | `BaseButton.tsx` (native styled path only if any), `Card.tsx` types/helpers | pending |
-| **4** | Remove web `ThemeProvider` / `StyleSheetManager`; audit web Jest without styled bridge | pending |
-| **5** | Docs/storybook styled usage; optional `@klear/klear360-core` peer for published package | pending |
+| **3** | `BaseButton.tsx` (`ButtonContent` → `BaseBox` + inline opacity), `Card.tsx` / `types.ts` (`CSSProperties['cursor']` instead of `CSSObject`) | done |
+| **4** | Remove web `ThemeProvider` / `StyleSheetManager`; `ThemeCssVariablesRoot`; `TopNavOverlayThemeOverride` CSS vars | done |
+| **5** | Storybook/docs styled → SCSS modules + `useTheme`; `~utils/cssObject` type alias; Sandpack/Stackblitz sandbox chrome | done |
+
+**Still on styled-components:** native `.native.tsx` runtime (separate pass), `Klear360Provider.native.tsx`, peer dep for published package (optional `@klear/klear360-core` still deferred — Yarn 1 nohoist / vitest collision; see P0 notes), Sandpack `dependencies.json` / `baseCode.ts` sample snippets for external sandboxes.
 
 Native `.native.tsx` files keep styled-components until a separate native styling pass (unchanged from P1 plan).

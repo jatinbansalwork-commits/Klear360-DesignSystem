@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { CodeViewerProps } from '@codesandbox/sandpack-react';
 import {
   Sandpack,
@@ -18,6 +17,8 @@ import BaseBox from '~components/Box/BaseBox';
 import { castWebType } from '~utils';
 import { Box } from '~components/Box';
 import { Button } from '~components/Button';
+import { useTheme } from '~components/Klear360Provider';
+import sandboxStyles from './Sandbox.module.scss';
 
 const useSandpackSetup = ({
   code,
@@ -44,19 +45,29 @@ const useSandpackSetup = ({
   };
 };
 
-const CodeLineHighlighterContainer = styled(BaseBox)((props) => ({
-  '& .highlight': {
-    backgroundColor: '#fffbdd',
-    borderRadius: '2px',
-    padding: '2px',
-  },
-  '& pre': {
-    padding: '0px',
-  },
-  borderRadius: '4px',
-  overflow: 'auto',
-  fontFamily: props.theme.typography.fonts.family.code,
-}));
+const CodeLineHighlighterContainer = ({
+  children,
+  className,
+  border,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  border?: string;
+}): JSX.Element => {
+  const { theme } = useTheme();
+
+  return (
+    <BaseBox
+      className={`${sandboxStyles.codeLineHighlighter} ${className ?? ''}`}
+      style={{
+        fontFamily: theme.typography.fonts.family.code,
+        border,
+      }}
+    >
+      {children}
+    </BaseBox>
+  );
+};
 
 const SandboxHighlighter = ({
   children,
@@ -96,12 +107,6 @@ const SandboxProvider = ({
   );
 };
 
-const StyledSandpack = styled(BaseBox)((props) => {
-  return {
-    fontFamily: props.theme.typography.fonts.family.code,
-  };
-});
-
 function Sandbox({
   children,
   language = 'tsx',
@@ -111,9 +116,14 @@ function Sandbox({
   padding = ['spacing.5', 'spacing.0', 'spacing.8'],
 }: SandboxProps): JSX.Element {
   const sandpackSetup = useSandpackSetup({ language, code: children });
+  const { theme } = useTheme();
 
   return (
-    <StyledSandpack className="sb-unstyled" padding={padding}>
+    <BaseBox
+      className="sb-unstyled"
+      padding={padding}
+      style={{ fontFamily: theme.typography.fonts.family.code }}
+    >
       <Sandpack
         {...sandpackSetup}
         options={{
@@ -124,7 +134,7 @@ function Sandbox({
           editorWidthPercentage,
         }}
       />
-    </StyledSandpack>
+    </BaseBox>
   );
 }
 

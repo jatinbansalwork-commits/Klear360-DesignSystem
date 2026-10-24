@@ -1,27 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ChatInput /> should render ChatInput 1`] = `
-.c1.c1.c1.c1.c1 {
-  opacity: 1;
-}
-
-.c0.c0.c0.c0.c0 {
-  border-radius: 16px;
-  width: 100%;
-}
-
-.c0.c0.c0.c0.c0:focus-within {
-  outline: 4px solid hsla(198,100%,18%,0.18);
-  outline-offset: 1px;
-  -webkit-transition-property: outline-width;
-  transition-property: outline-width;
-  -webkit-transition-duration: 640ms;
-  transition-duration: 640ms;
-  -webkit-transition-timing-function: cubic-bezier(0.5,0,0,1);
-  transition-timing-function: cubic-bezier(0.5,0,0,1);
-  z-index: 2;
-}
-
 <div>
   <div
     data-klear360-color-scheme="light"
@@ -48,10 +27,15 @@ exports[`<ChatInput /> should render ChatInput 1`] = `
             data-klear360-component="base-box"
             style="display: flex; flex-direction: column; position: relative; width: 100%;"
           >
+            <style
+              data-klear360-scoped="base-input-fr-r0"
+            >
+              .base-input-fr-r0:focus-within{outline:4px solid hsla(198, 100%, 18%, 0.18);outline-offset:1px;transition-property:outline-width;transition-duration:640ms;transition-timing-function:cubic-bezier(0.5, 0, 0, 1);z-index:2;}
+            </style>
             <div
-              class="c0 focus-ring-wrapper"
+              class="base-input-fr-r0 focus-ring-wrapper"
               data-klear360-component="base-box"
-              style="box-shadow: 0px 8px 24px -4px hsla(200, 10%, 18%, 0.06);"
+              style="width: 100%; border-radius: 16px;"
             >
               <div
                 class="__klear360-base-input-wrapper"
@@ -146,9 +130,8 @@ exports[`<ChatInput /> should render ChatInput 1`] = `
                           style="transition-duration: 160ms; transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);"
                         >
                           <div
-                            class="c1"
                             data-klear360-component="base-box"
-                            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1;"
+                            style="display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; z-index: 1; opacity: 1;"
                           >
                             <div
                               data-klear360-component="base-box"

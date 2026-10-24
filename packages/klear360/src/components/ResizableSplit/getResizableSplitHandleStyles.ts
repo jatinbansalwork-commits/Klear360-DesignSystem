@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { Theme } from '~components/Klear360Provider';
 import { makeSize, makeSpace, castWebType, makeMotionTime } from '~utils';
 import { getFocusRingStyles } from '~utils/getFocusRingStyles';

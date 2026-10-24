@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 
 const DOTTED_UNDERLINE_STYLES: CSSObject = {
   textDecorationStyle: 'dotted',

@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import { getBaseBoxStyles } from './baseBoxStyles';
 import type { BaseBoxProps, StyledPropsKlear360 } from './types';
 import type { Theme } from '~components/Klear360Provider';

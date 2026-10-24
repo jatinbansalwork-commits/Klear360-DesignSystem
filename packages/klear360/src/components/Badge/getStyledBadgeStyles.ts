@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { StyledBadgeProps } from './types';
 import getIn from '~utils/lodashButBetter/get';
 import { makeBorderSize } from '~utils/makeBorderSize';

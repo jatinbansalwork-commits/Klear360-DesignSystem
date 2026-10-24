@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controls, Primary, Stories } from '@storybook/addon-docs/blocks';
-import styled from 'styled-components';
 import { SandboxHighlighter } from './Sandbox/SandpackEditor';
+import styles from './StoryPageWrapper.module.scss';
 import { componentData } from './componentStatusData';
 import BaseBox from '~components/Box/BaseBox';
 import { Alert } from '~components/Alert';
@@ -49,30 +49,6 @@ type StoryPageWrapperTypes = {
   apiDecisionComponentName?: string;
 };
 
-// Global Styles are not applied by default on `.mdx` pages of storybook. So just overriding few global styles here which are applied to both, stories and guide pages
-const WithGlobalStyles = styled(BaseBox)`
-  hr {
-    border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    clear: both;
-    margin-bottom: 1.25rem;
-  }
-
-  table.props-table {
-    border-collapse: collapse;
-  }
-  table.props-table tr:nth-of-type(2n) {
-    background-color: #f8f8f8;
-  }
-  table.props-table td {
-    vertical-align: top;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: rgb(19, 38, 68);
-    margin: 0;
-    padding: 6px 13px;
-  }
-`;
-
 const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
   React.useEffect(() => {
     // Storybook renders inside iframe so by default it doesn't support scrolling to the sections.
@@ -90,7 +66,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
 
   return (
     <Klear360Provider themeTokens={klear360Theme}>
-      <WithGlobalStyles>
+      <BaseBox className={styles.docsRoot}>
         <Display size="small" marginBottom="spacing.3">
           {props.componentName}
         </Display>
@@ -178,7 +154,7 @@ const StoryPageWrapper = (props: StoryPageWrapperTypes): React.ReactElement => {
             <Stories />
           </>
         ) : null}
-      </WithGlobalStyles>
+      </BaseBox>
     </Klear360Provider>
   );
 };

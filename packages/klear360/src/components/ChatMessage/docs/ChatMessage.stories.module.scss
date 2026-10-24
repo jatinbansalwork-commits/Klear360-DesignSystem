@@ -1,0 +1,14 @@
+.suggestionButton {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: var(--spacing-3);
+  cursor: pointer;
+  text-align: left;
+  border-radius: var(--border-radius-small);
+
+  &:hover {
+    background-color: var(--interactive-background-gray-default);
+  }
+}

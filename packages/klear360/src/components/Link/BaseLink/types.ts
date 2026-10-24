@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { BaseLinkProps } from './BaseLink';
 import type { DurationString, EasingString } from '~tokens/global';
 import type { StyledPropsKlear360 } from '~components/Box/styledProps';

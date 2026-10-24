@@ -3,7 +3,6 @@ import React from 'react';
 import type { StoryFn, Meta } from '@storybook/react';
 import { Link, matchPath, useHistory, useLocation } from 'react-router-dom';
 import { Title } from '@storybook/addon-docs/blocks';
-import styled from 'styled-components';
 import { TopNav, TopNavActions, TopNavContent, TopNavBrand } from '../TopNav';
 import type { TabNavItemProps } from '../TabNav';
 import { TabNavItems, TabNav, TabNavItem } from '../TabNav';
@@ -220,12 +219,15 @@ const ExploreItem = ({
   );
 };
 
-const DashboardBackground = styled.div<{ background?: string }>(({ background }) => {
-  return {
-    height: '100vh',
-    background: background ?? '#000000',
-  };
-});
+const DashboardBackground = ({
+  background,
+  children,
+}: {
+  background?: string;
+  children?: React.ReactNode;
+}): React.ReactElement => (
+  <div style={{ height: '100vh', background: background ?? '#000000' }}>{children}</div>
+);
 
 const searchMenuItems = [
   { title: 'Payment Links', icon: PaymentLinkIcon },
@@ -240,10 +242,22 @@ const popularSearchItems = [
   { title: 'Refunds', icon: ShoppingBagIcon },
 ];
 
-const SearchContainer = styled.div<{ isActive: boolean }>(({ isActive }) => ({
-  width: isActive ? '400px' : '200px',
-  transition: 'width 200ms ease-in-out',
-}));
+const SearchContainer = ({
+  isActive,
+  children,
+}: {
+  isActive: boolean;
+  children?: React.ReactNode;
+}): React.ReactElement => (
+  <div
+    style={{
+      width: isActive ? '400px' : '200px',
+      transition: 'width 200ms ease-in-out',
+    }}
+  >
+    {children}
+  </div>
+);
 
 const TopNavSearchDropdown = (): React.ReactElement => {
   const [searchTerm, setSearchTerm] = React.useState('');

@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import type { CSSObject } from '~utils/cssObject';
 import type { Theme } from '~components/Klear360Provider';
 import { isReactNative } from '~utils';
 import { makeSize } from '~utils/makeSize';

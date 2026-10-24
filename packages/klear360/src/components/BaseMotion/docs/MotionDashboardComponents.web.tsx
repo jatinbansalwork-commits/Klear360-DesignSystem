@@ -2,7 +2,6 @@
 import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Link, matchPath, Route, Switch, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import {
   TopNav,
   TopNavActions,
@@ -145,12 +144,20 @@ const TabNavItemLink = React.forwardRef<
   );
 });
 
-const DashboardBackground = styled.div(() => {
-  return {
-    height: '100vh',
-    background: 'radial-gradient(94.74% 64.44% at 29.03% 15.17%, #FFFFFF 0%, #90A5BB 100%)',
-  };
-});
+const DashboardBackground = ({
+  children,
+}: {
+  children?: React.ReactNode;
+}): React.ReactElement => (
+  <div
+    style={{
+      height: '100vh',
+      background: 'radial-gradient(94.74% 64.44% at 29.03% 15.17%, #FFFFFF 0%, #90A5BB 100%)',
+    }}
+  >
+    {children}
+  </div>
+);
 
 export const DashboardWithRoutingExample = ({
   routeComponent,
